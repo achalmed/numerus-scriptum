@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://achalmaedison.netlify.app/ofimatica/2023-06-05-separando-hojas-de-excel-en-documentos-individuales/index.html</loc>
+    <lastmod>2025-05-16T00:32:49.562Z</lastmod>
+  </url>
+  <url>
+    <loc>https://achalmaedison.netlify.app/ofimatica/2023-05-31-combinando-hojas-de-excel-con-vba/index.html</loc>
+    <lastmod>2025-04-17T20:20:15.694Z</lastmod>
+  </url>
+  <url>
     <loc>https://achalmaedison.netlify.app/fundamentos-programacion/2018-06-09-typografia/index.html</loc>
     <lastmod>2025-04-17T20:20:15.742Z</lastmod>
   </url>
@@ -18,7 +26,7 @@
   </url>
   <url>
     <loc>https://achalmaedison.netlify.app/index.html</loc>
-    <lastmod>2025-07-17T07:10:37.976Z</lastmod>
+    <lastmod>2025-07-30T02:35:41.422Z</lastmod>
   </url>
   <url>
     <loc>https://achalmaedison.netlify.app/SECURITY.html</loc>

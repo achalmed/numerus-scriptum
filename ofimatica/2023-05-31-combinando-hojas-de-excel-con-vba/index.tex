@@ -1,0 +1,515 @@
+\documentclass[
+  jou,
+  floatsintext,
+  longtable,
+  a4paper,
+  nolmodern,
+  notxfonts,
+  notimes,
+  colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{apa7}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+
+
+\usepackage[bidi=default]{babel}
+\babelprovide[main,import]{spanish}
+
+
+\babelfont{rm}[,RawFeature={fallback=mainfontfallback}]{Latin Modern
+Roman}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+
+\RequirePackage{longtable}
+\RequirePackage{threeparttablex}
+
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-.5em}%
+	{\normalfont\normalsize\bfseries\typesectitle}}
+
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{0.5em}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-\z@\relax}%
+	{\normalfont\normalsize\bfseries\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
+
+
+
+\usepackage{longtable, booktabs, multirow, multicol, colortbl, hhline, caption, array, float, xpatch}
+\usepackage{subcaption}
+
+
+\renewcommand\thesubfigure{\Alph{subfigure}}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,theorems, breakable, skins}
+\usepackage{fontawesome5}
+
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{ACACAC}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582EC}
+\definecolor{quarto-callout-important-color-frame}{HTML}{D9534F}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{F0AD4E}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02B875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{FD7E14}
+
+%\newlength\Oldarrayrulewidth
+%\newlength\Oldtabcolsep
+
+
+\usepackage{hyperref}
+
+
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+
+
+\usepackage{fontspec} 
+
+\defaultfontfeatures{Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+
+  \setmainfont[,RawFeature={fallback=mainfontfallback}]{Latin Modern
+Roman}
+
+
+
+
+\title{Combinando Hojas de Excel: VBA}
+
+
+\shorttitle{Combinar Hojas de Excel}
+
+
+\usepackage{etoolbox}
+
+
+
+\ccoppy{\textcopyright~2023}
+
+
+
+\author{Edison Achalma}
+
+
+
+\affiliation{
+{Escuela Profesional de Economía, Universidad Nacional de San Cristóbal
+de Huamanga}}
+
+
+
+
+\leftheader{Achalma}
+
+\date{2023-05-31}
+
+
+\abstract{This article introduces a simple VBA macro designed to merge
+all sheets from multiple Excel files into a single workbook. The macro
+automates the process of data consolidation, which is particularly
+useful for repetitive tasks in econometrics or any field requiring data
+aggregation from various sources. The method involves opening each file
+in read-only mode, copying all sheets to a target workbook, and then
+closing the source workbook to proceed to the next file in the
+directory. }
+
+\keywords{VBA, Excel, Data Automation, Macros, Consolidation}
+
+\authornote{\par{\addORCIDlink{Edison Achalma}{0000-0001-6996-3364}} 
+\par{ }
+\par{   El autor no tiene conflictos de interés que revelar.    Los
+roles de autor se clasificaron utilizando la taxonomía de roles de
+colaborador (CRediT; https://credit.niso.org/) de la siguiente
+manera:  Edison Achalma:   conceptualización, redacción}
+\par{La correspondencia relativa a este artículo debe dirigirse a Edison
+Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
+}
+
+\usepackage{pbalance}
+% \usepackage{float}
+\makeatletter
+\let\oldtpt\ThreePartTable
+\let\endoldtpt\endThreePartTable
+\def\ThreePartTable{\@ifnextchar[\ThreePartTable@i \ThreePartTable@ii}
+\def\ThreePartTable@i[#1]{\begin{figure}[!htbp]
+\onecolumn
+\begin{minipage}{0.485\textwidth}
+\oldtpt[#1]
+}
+\def\ThreePartTable@ii{\begin{figure}[!htbp]
+\onecolumn
+\begin{minipage}{0.48\textwidth}
+\oldtpt
+}
+\def\endThreePartTable{
+\endoldtpt
+\end{minipage}
+\twocolumn
+\end{figure}}
+\makeatother
+
+
+\makeatletter
+\let\endoldlt\endlongtable		
+\def\endlongtable{
+\hline
+\endoldlt}
+\makeatother
+
+\newenvironment{twocolumntable}% environment name
+{% begin code
+\begin{table*}[!htbp]%
+\onecolumn%
+}%
+{%
+\twocolumn%
+\end{table*}%
+}% end code
+
+\urlstyle{same}
+
+
+
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Tabla de contenidos}
+\else
+  \newcommand\contentsname{Tabla de contenidos}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figura}
+\else
+  \newcommand\figurename{Figura}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Tabla}
+\else
+  \newcommand\tablename{Tabla}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\makeatother
+
+% From https://tex.stackexchange.com/a/645996/211326
+%%% apa7 doesn't want to add appendix section titles in the toc
+%%% let's make it do it
+\makeatletter
+\xpatchcmd{\appendix}
+  {\par}
+  {\addcontentsline{toc}{section}{\@currentlabelname}\par}
+  {}{}
+\makeatother
+
+%% Disable longtable counter
+%% https://tex.stackexchange.com/a/248395/211326
+
+\usepackage{etoolbox}
+
+\makeatletter
+\patchcmd{\LT@caption}
+  {\bgroup}
+  {\bgroup\global\LTpatch@captiontrue}
+  {}{}
+\patchcmd{\longtable}
+  {\par}
+  {\par\global\LTpatch@captionfalse}
+  {}{}
+\apptocmd{\endlongtable}
+  {\ifLTpatch@caption\else\addtocounter{table}{-1}\fi}
+  {}{}
+\newif\ifLTpatch@caption
+\makeatother
+
+\begin{document}
+
+\maketitle
+
+\hypertarget{toc}{}
+\tableofcontents
+\newpage
+\section[Introduction]{Combinando Hojas de Excel}
+
+\setcounter{secnumdepth}{5}
+
+\setlength\LTleft{0pt}
+
+
+\section{Combinando Hojas de Excel con
+VBA}\label{combinando-hojas-de-excel-con-vba}
+
+Sencilla macro en VBA (Visual Basic for Applications) que puedes usar
+para combinar todas las hojas de varios archivos Excel en un solo libro
+de trabajo.
+
+\subsection{Código VBA para Combinar
+Hojas}\label{cuxf3digo-vba-para-combinar-hojas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Sub Combinar\_hojas()}
+
+\NormalTok{    Path = "C:\textbackslash{}Users\textbackslash{}Edison\textbackslash{}OneDrive\textbackslash{}Documentos\textbackslash{}Classroom\textbackslash{}Econometría I\textbackslash{}Bibliografías\textbackslash{}Texto\_Damodar N. Gujarati\_BOOK\textbackslash{}Data\_Gujarati\textbackslash{}Excel Files Gujarati\_5 Edicion\textbackslash{}"}
+\NormalTok{    Filename = Dir(Path \& "*.xls")}
+\NormalTok{    Do While Filename \textless{}\textgreater{} ""}
+    
+\NormalTok{        Workbooks.Open Filename:=Path \& Filename, ReadOnly:=True}
+\NormalTok{        For Each Sheet In ActiveWorkbook.Sheets}
+\NormalTok{            Sheet.Copy After:=ThisWorkbook.Sheets(1)}
+\NormalTok{        Next Sheet}
+\NormalTok{        Workbooks(Filename).Close}
+\NormalTok{        Filename = Dir()}
+\NormalTok{    Loop}
+\NormalTok{End Sub}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Explicación del Código}\label{explicaciuxf3n-del-cuxf3digo}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Path:} Define la ruta del directorio donde se encuentran los
+  archivos Excel que deseas combinar.
+\item
+  \textbf{Filename:} Utiliza la función \texttt{Dir} para obtener el
+  primer archivo que cumpla con el patrón ``*.xls''.
+\item
+  \textbf{Do While Loop:} Este bucle se ejecuta mientras haya archivos
+  en la carpeta que coincidan con el patrón especificado.
+\item
+  \textbf{Workbooks.Open:} Abre cada archivo en modo de solo lectura
+  para evitar modificaciones accidentales.
+\item
+  \textbf{For Each Loop:} Copia cada hoja del libro de trabajo abierto
+  en el libro actual después de la primera hoja.
+\item
+  \textbf{Workbooks(Filename).Close:} Cierra el archivo después de
+  copiar todas sus hojas.
+\item
+  \textbf{Filename = Dir():} Actualiza \texttt{Filename} para el
+  siguiente archivo en la carpeta.
+\end{itemize}
+
+\subsection{Cómo Usar Esta Macro}\label{cuxf3mo-usar-esta-macro}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Abrir Excel:} Abre una nueva hoja de Excel.
+\item
+  \textbf{Acceder a VBA:} Presiona \texttt{ALT\ +\ F11} para abrir el
+  editor de VBA.
+\item
+  \textbf{Insertar Módulo:} En el editor, inserta un nuevo módulo
+  (\texttt{Insert\ \textgreater{}\ Module}).
+\item
+  \textbf{Pegar el Código:} Copia y pega el código VBA proporcionado en
+  el módulo vacío.
+\item
+  \textbf{Ejecutar la Macro:} Vuelve a Excel, ve a
+  \texttt{Developer\ \textgreater{}\ Macros}, selecciona
+  \texttt{Combinar\_hojas} y haz clic en \texttt{Ejecutar}.
+\end{enumerate}
+
+Recuerda ajustar la ruta \texttt{Path} según la ubicación de tus
+archivos en tu sistema.
+
+Este script puede ahorrarte mucho tiempo si trabajas con múltiples
+archivos de Excel, especialmente en tareas repetitivas como la
+consolidación de datos para análisis econometría o cualquier otra
+aplicación donde los datos estén dispersos en varios libros.
+
+\section{Publicaciones Similares}\label{publicaciones-similares}
+
+Si te interesó este artículo, te recomendamos que explores otros blogs y
+recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo
+algunas sugerencias:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2022-12-05-01-introduccion-al-lenguaje-y-editor-vba/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2022-12-05-01-introduccion-al-lenguaje-y-editor-vba}{01
+  Introduccion Al Lenguaje Y Editor Vba}
+\item
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2022-12-12-02-grabar-y-modificar/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2022-12-12-02-grabar-y-modificar}{02
+  Grabar Y Modificar}
+\item
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2022-12-19-03-procedimientos/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2022-12-19-03-procedimientos}{03
+  Procedimientos}
+\item
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2022-12-26-04-funciones-en-vba/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2022-12-26-04-funciones-en-vba}{04
+  Funciones En Vba}
+\item
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-01-02-05-funciones-condicionales-estructuras-condicionales/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-01-02-05-funciones-condicionales-estructuras-condicionales}{05
+  Funciones Condicionales Estructuras Condicionales}
+\item
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-01-09-06-funciones-iterativas-estructuras-repetitivas-o-bucles/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-01-09-06-funciones-iterativas-estructuras-repetitivas-o-bucles}{06
+  Funciones Iterativas Estructuras Repetitivas O Bucles}
+\item
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-01-16-07-formularios/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-01-16-07-formularios}{07
+  Formularios}
+\item
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-01-23-08-eventos/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-01-23-08-eventos}{08
+  Eventos}
+\item
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-03-17-comando-para-convertir-docx-a-odt/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-03-17-comando-para-convertir-docx-a-odt}{Comando
+  Para Convertir Docx A Odt}
+\item
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-04-03-buscar-reemplazar-en-libreoffice/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-04-03-buscar-reemplazar-en-libreoffice}{Buscar
+  Reemplazar En Libreoffice}
+\item
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-05-21-anclaje-envoltura-alineacion-y-organizacion-de-objetos-en-llibreoffice/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-05-21-anclaje-envoltura-alineacion-y-organizacion-de-objetos-en-llibreoffice}{Anclaje
+  Envoltura Alineacion Y Organizacion De Objetos En Llibreoffice}
+\item
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-05-31-combinando-hojas-de-excel-con-vba/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-05-31-combinando-hojas-de-excel-con-vba}{Combinando
+  Hojas De Excel Con Vba}
+\item
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-06-05-separando-hojas-de-excel-en-documentos-individuales/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-06-05-separando-hojas-de-excel-en-documentos-individuales}{Separando
+  Hojas De Excel En Documentos Individuales}
+\item
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2024-03-31-por-editar/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2024-03-31-por-editar}{Por
+  Editar}
+\end{enumerate}
+
+Esperamos que encuentres estas publicaciones igualmente interesantes y
+útiles. ¡Disfruta de la lectura!
+
+
+
+
+
+
+\end{document}

@@ -332,5 +332,115 @@
     "index.html": "b2cff532",
     "index.tex": "eab745cf",
     "index.docx": "fcdfb6d2"
+  },
+  "power-bi/2022-10-17-06-lenguaje-de-analisis-de-datos-dax-columnas-campos-calculados/index.qmd": {
+    "index.html": "a48d3492",
+    "index.tex": "9de639df",
+    "index.docx": "57c28646"
+  },
+  "power-bi/2022-10-10-05-inteligencia-de-tiempo-dimension-de-tiempo/index.qmd": {
+    "index.html": "944e71c4",
+    "index.tex": "7cfad98b",
+    "index.docx": "6181ba17"
+  },
+  "power-bi/2022-09-12-01-introduccion-al-mundo-de-bi-y-la-suite-power/index.qmd": {
+    "index.html": "1f5b8fac",
+    "index.tex": "49a72194",
+    "index.docx": "5a7b7fdc"
+  },
+  "power-bi/2022-10-24-08-vizualizacion-de-datos/index.qmd": {
+    "index.html": "5fc91e5c",
+    "index.tex": "68daf3aa",
+    "index.docx": "7f2df9f4"
+  },
+  "power-bi/2024-03-31-por-editar/index.qmd": {
+    "index.html": "fe0e4abf",
+    "index.tex": "02976222",
+    "index.docx": "d6ab7e2b"
+  },
+  "power-bi/2022-10-03-04-power-pivot-modelo-de-datos/index.qmd": {
+    "index.html": "22bfd47a",
+    "index.tex": "842228b1",
+    "index.docx": "e883f256"
+  },
+  "power-bi/2022-09-26-03-proceso-etl-2/index.qmd": {
+    "index.html": "6ff34a7c",
+    "index.tex": "0d1b4b7f",
+    "index.docx": "423d25e4"
+  },
+  "power-bi/2022-09-19-02-power-query-proceso-etl/index.qmd": {
+    "index.html": "ded118dc",
+    "index.tex": "7de308ab",
+    "index.docx": "e03ea319"
+  },
+  "ofimatica/2023-01-09-06-funciones-iterativas-estructuras-repetitivas-o-bucles/index.qmd": {
+    "index.html": "a2dcce9f",
+    "index.tex": "c5115654",
+    "index.docx": "77e30763"
+  },
+  "ofimatica/2022-12-05-01-introduccion-al-lenguaje-y-editor-vba/index.qmd": {
+    "index.html": "55c326b9",
+    "index.tex": "ca02a5c9",
+    "index.docx": "5efe33c3"
+  },
+  "ofimatica/2023-05-21-anclaje-envoltura-alineacion-y-organizacion-de-objetos-en-llibreoffice/index.qmd": {
+    "index.html": "20e5cebb",
+    "index.tex": "1bf649b3",
+    "index.docx": "b5898a3c"
+  },
+  "ofimatica/2022-12-12-02-grabar-y-modificar/index.qmd": {
+    "index.html": "8e81aaae",
+    "index.tex": "568440cc",
+    "index.docx": "320e0723"
+  },
+  "ofimatica/2023-01-02-05-funciones-condicionales-estructuras-condicionales/index.qmd": {
+    "index.html": "6bb80add",
+    "index.tex": "b57ed31c",
+    "index.docx": "0394328e"
+  },
+  "ofimatica/2024-03-31-por-editar/index.qmd": {
+    "index.html": "054ce439",
+    "index.tex": "44e7b5d8",
+    "index.docx": "27c9d67d"
+  },
+  "ofimatica/2023-01-16-07-formularios/index.qmd": {
+    "index.html": "3c9dc8d7",
+    "index.tex": "d3bc6917",
+    "index.docx": "b4ed20d6"
+  },
+  "ofimatica/2023-01-23-08-eventos/index.qmd": {
+    "index.html": "01c8f46d",
+    "index.tex": "8518af97",
+    "index.docx": "9b80ac70"
+  },
+  "ofimatica/2022-12-26-04-funciones-en-vba/index.qmd": {
+    "index.html": "b5763791",
+    "index.tex": "cec3e9a1",
+    "index.docx": "e68c9cbe"
+  },
+  "ofimatica/2023-04-03-buscar-reemplazar-en-libreoffice/index.qmd": {
+    "index.html": "2d1f2613",
+    "index.tex": "d5395b7e",
+    "index.docx": "48a950a1"
+  },
+  "ofimatica/2022-12-19-03-procedimientos/index.qmd": {
+    "index.html": "83cac2aa",
+    "index.tex": "1e291ee8",
+    "index.docx": "b1ed02a5"
+  },
+  "ofimatica/2023-05-31-combinando-hojas-de-excel-con-vba/index.qmd": {
+    "index.html": "902c513d",
+    "index.tex": "049c359e",
+    "index.docx": "c9db8429"
+  },
+  "ofimatica/2023-03-17-comando-para-convertir-docx-a-odt/index.qmd": {
+    "index.html": "33971a9b",
+    "index.tex": "e1831960",
+    "index.docx": "e47cb6e3"
+  },
+  "ofimatica/2023-06-05-separando-hojas-de-excel-en-documentos-individuales/index.qmd": {
+    "index.html": "c33922aa",
+    "index.tex": "07977932",
+    "index.docx": "e27334a8"
   }
 }

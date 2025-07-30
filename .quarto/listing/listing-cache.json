@@ -9,7 +9,9 @@
       "matlab/*/index.qmd",
       "python/*/index.qmd",
       "r/*/index.qmd",
-      "stata/*/index.qmd"
+      "stata/*/index.qmd",
+      "ofimatica/*/index.qmd",
+      "powerbi/*/index.qmd"
     ]
   }
 }

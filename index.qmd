@@ -17,6 +17,8 @@ listing:
       - "python/*/index.qmd"
       - "r/*/index.qmd"
       - "stata/*/index.qmd"
+      - "ofimatica/*/index.qmd"
+      - "powerbi/*/index.qmd"
     type: default # (table, default)
     sort: 
       - "date desc"
