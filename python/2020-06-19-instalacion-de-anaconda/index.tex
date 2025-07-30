@@ -1,0 +1,997 @@
+\documentclass[
+  jou,
+  floatsintext,
+  longtable,
+  a4paper,
+  nolmodern,
+  notxfonts,
+  notimes,
+  colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{apa7}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+
+
+\usepackage[bidi=default]{babel}
+\babelprovide[main,import]{spanish}
+
+
+\babelfont{rm}[,RawFeature={fallback=mainfontfallback}]{Latin Modern
+Roman}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+
+\RequirePackage{longtable}
+\RequirePackage{threeparttablex}
+
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-.5em}%
+	{\normalfont\normalsize\bfseries\typesectitle}}
+
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{0.5em}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-\z@\relax}%
+	{\normalfont\normalsize\bfseries\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
+
+
+
+\usepackage{longtable, booktabs, multirow, multicol, colortbl, hhline, caption, array, float, xpatch}
+\usepackage{subcaption}
+
+
+\renewcommand\thesubfigure{\Alph{subfigure}}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,theorems, breakable, skins}
+\usepackage{fontawesome5}
+
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{ACACAC}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582EC}
+\definecolor{quarto-callout-important-color-frame}{HTML}{D9534F}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{F0AD4E}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02B875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{FD7E14}
+
+%\newlength\Oldarrayrulewidth
+%\newlength\Oldtabcolsep
+
+
+\usepackage{hyperref}
+
+
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+
+
+\usepackage{fontspec} 
+
+\defaultfontfeatures{Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+
+  \setmainfont[,RawFeature={fallback=mainfontfallback}]{Latin Modern
+Roman}
+
+
+
+
+\title{Instalación de Anaconda en Ubuntu Linux: Una guía paso a paso
+para instalar y configurar Anaconda en Ubuntu Linux y aprovechar al
+máximo su plataforma de gestión de paquetes y entornos virtuales.}
+
+
+\shorttitle{Editar}
+
+
+\usepackage{etoolbox}
+
+
+
+\ccoppy{\textcopyright~2020}
+
+
+
+\author{Edison Achalma}
+
+
+
+\affiliation{
+{Escuela Profesional de Economía, Universidad Nacional de San Cristóbal
+de Huamanga}}
+
+
+
+
+\leftheader{Achalma}
+
+\date{2020-06-19}
+
+
+\abstract{Primer parrafo de abstrac }
+
+\keywords{keyword1, keyword2}
+
+\authornote{\par{\addORCIDlink{Edison Achalma}{0000-0001-6996-3364}} 
+\par{ }
+\par{   El autor no tiene conflictos de interés que revelar.    Los
+roles de autor se clasificaron utilizando la taxonomía de roles de
+colaborador (CRediT; https://credit.niso.org/) de la siguiente
+manera:  Edison Achalma:   conceptualización, redacción}
+\par{La correspondencia relativa a este artículo debe dirigirse a Edison
+Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
+}
+
+\usepackage{pbalance}
+% \usepackage{float}
+\makeatletter
+\let\oldtpt\ThreePartTable
+\let\endoldtpt\endThreePartTable
+\def\ThreePartTable{\@ifnextchar[\ThreePartTable@i \ThreePartTable@ii}
+\def\ThreePartTable@i[#1]{\begin{figure}[!htbp]
+\onecolumn
+\begin{minipage}{0.485\textwidth}
+\oldtpt[#1]
+}
+\def\ThreePartTable@ii{\begin{figure}[!htbp]
+\onecolumn
+\begin{minipage}{0.48\textwidth}
+\oldtpt
+}
+\def\endThreePartTable{
+\endoldtpt
+\end{minipage}
+\twocolumn
+\end{figure}}
+\makeatother
+
+
+\makeatletter
+\let\endoldlt\endlongtable		
+\def\endlongtable{
+\hline
+\endoldlt}
+\makeatother
+
+\newenvironment{twocolumntable}% environment name
+{% begin code
+\begin{table*}[!htbp]%
+\onecolumn%
+}%
+{%
+\twocolumn%
+\end{table*}%
+}% end code
+
+\urlstyle{same}
+
+
+
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Tabla de contenidos}
+\else
+  \newcommand\contentsname{Tabla de contenidos}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figura}
+\else
+  \newcommand\figurename{Figura}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Tabla}
+\else
+  \newcommand\tablename{Tabla}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\makeatother
+
+% From https://tex.stackexchange.com/a/645996/211326
+%%% apa7 doesn't want to add appendix section titles in the toc
+%%% let's make it do it
+\makeatletter
+\xpatchcmd{\appendix}
+  {\par}
+  {\addcontentsline{toc}{section}{\@currentlabelname}\par}
+  {}{}
+\makeatother
+
+%% Disable longtable counter
+%% https://tex.stackexchange.com/a/248395/211326
+
+\usepackage{etoolbox}
+
+\makeatletter
+\patchcmd{\LT@caption}
+  {\bgroup}
+  {\bgroup\global\LTpatch@captiontrue}
+  {}{}
+\patchcmd{\longtable}
+  {\par}
+  {\par\global\LTpatch@captionfalse}
+  {}{}
+\apptocmd{\endlongtable}
+  {\ifLTpatch@caption\else\addtocounter{table}{-1}\fi}
+  {}{}
+\newif\ifLTpatch@caption
+\makeatother
+
+\begin{document}
+
+\maketitle
+
+\hypertarget{toc}{}
+\tableofcontents
+\newpage
+\section[Introduction]{Instalación de Anaconda en Ubuntu Linux}
+
+\setcounter{secnumdepth}{5}
+
+\setlength\LTleft{0pt}
+
+
+\section{Introducción}\label{introducciuxf3n}
+
+La instalación de Anaconda en Ubuntu Linux es un paso crucial para
+aquellos que desean aprovechar al máximo el desarrollo en Python en este
+sistema operativo. Anaconda, una plataforma de gestión de paquetes y
+entornos virtuales, ofrece una amplia gama de herramientas y bibliotecas
+que facilitan el trabajo con Python, así como con otros lenguajes de
+programación populares. Al instalar Anaconda en Ubuntu Linux, los
+desarrolladores obtienen una solución integral que simplifica el proceso
+de configuración y administración de su entorno de desarrollo.
+
+La importancia de la instalación de Anaconda en Ubuntu Linux radica en
+su capacidad para proporcionar un flujo de trabajo fluido y eficiente.
+Al ofrecer una amplia selección de paquetes precompilados, Anaconda
+elimina la necesidad de buscar e instalar manualmente cada biblioteca
+requerida. Esto ahorra tiempo y evita posibles conflictos de
+dependencia, permitiendo a los desarrolladores centrarse en la
+programación en lugar de la configuración del entorno.
+
+Además de su conveniencia, Anaconda también ofrece beneficios
+significativos en términos de gestión de entornos virtuales. Con la
+ayuda de la herramienta ``conda'', los desarrolladores pueden crear y
+administrar fácilmente entornos aislados para proyectos específicos.
+Esto permite mantener diferentes versiones de paquetes y bibliotecas
+para cada proyecto, evitando conflictos y facilitando la replicación del
+entorno de desarrollo en diferentes sistemas.
+
+¡Sumérgete en el mundo de Anaconda y descubre cómo simplificar y mejorar
+tu experiencia de desarrollo en Python en Ubuntu Linux!
+
+\section{¿Qué es Anaconda?}\label{quuxe9-es-anaconda}
+
+Anaconda es una plataforma de gestión de paquetes y entornos virtuales
+diseñada para facilitar el desarrollo en Python y otros lenguajes de
+programación populares. Imagina que tienes una caja de herramientas
+repleta de todo lo que necesitas para construir aplicaciones, analizar
+datos o desarrollar proyectos de aprendizaje automático. Esa es
+Anaconda: una caja de herramientas poderosa y completa que te brinda
+todo lo que necesitas para trabajar con Python de manera eficiente.
+
+Una de las principales ventajas de Anaconda es su capacidad para
+gestionar paquetes. En lugar de buscar y descargar manualmente cada
+biblioteca que necesitas, Anaconda te ofrece una amplia selección de
+paquetes precompilados y listos para usar. Esto significa que no tienes
+que preocuparte por las dependencias o por perder tiempo en
+configuraciones complicadas. Con Anaconda, puedes comenzar a trabajar en
+tu proyecto de inmediato.
+
+Otra gran ventaja de Anaconda es su capacidad para crear entornos
+virtuales. ¿Qué significa esto? Básicamente, puedes aislar tus proyectos
+en entornos separados, cada uno con su propia configuración de paquetes
+y versiones. Esto es especialmente útil cuando trabajas en varios
+proyectos al mismo tiempo o cuando necesitas mantener diferentes
+versiones de bibliotecas para distintas aplicaciones. Anaconda hace que
+la gestión de entornos sea sencilla y te permite alternar entre ellos
+con facilidad.
+
+\section{Pasos para la instalación de Anaconda en Ubuntu
+Linux}\label{pasos-para-la-instalaciuxf3n-de-anaconda-en-ubuntu-linux}
+
+\subsection{Descargar el instalador de
+Anaconda}\label{descargar-el-instalador-de-anaconda}
+
+\textbf{Paso 1:} Accede al sitio web oficial de Anaconda. Puedes hacerlo
+abriendo tu navegador web favorito y dirigiéndote a
+\href{https://www.anaconda.com/}{Anaconda.com}. Una vez allí, busca la
+sección de descargas.
+
+\textbf{Paso 2:} En la sección de descargas, encontrarás diferentes
+opciones de Anaconda según tu sistema operativo. Como estamos trabajando
+en Ubuntu Linux, asegúrate de seleccionar la versión adecuada para
+Linux.
+
+\textbf{Paso 3:} Una vez que hayas seleccionado la versión de Linux,
+verás dos opciones: Anaconda Individual Edition y Anaconda Enterprise.
+Para la mayoría de los casos, Anaconda Individual Edition es la opción
+recomendada, ya que es una versión gratuita y completa de Anaconda. Haz
+clic en el botón de descarga correspondiente a la edición que deseas
+instalar.
+
+\textbf{Paso 4:} La descarga comenzará y, dependiendo de la velocidad de
+tu conexión a Internet, podría llevar algunos minutos. Asegúrate de
+esperar hasta que la descarga se complete antes de pasar al siguiente
+paso.
+
+Ahora que has descargado el instalador de Anaconda en tu sistema Ubuntu
+Linux, es hora de abrir la terminal y ejecutar algunos comandos para
+continuar con el proceso de instalación. ¡No te preocupes, te guiaré
+paso a paso!
+
+\textbf{Paso 5:} Abre la terminal. Puedes hacerlo de diferentes maneras,
+pero una forma común es presionar las teclas Ctrl + Alt + T al mismo
+tiempo. Esto abrirá una nueva ventana de terminal en tu pantalla.
+
+\textbf{Paso 6:} Una vez que tengas la terminal abierta, es importante
+asegurarte de que estás ubicado en el directorio correcto. Para hacerlo,
+ejecuta el comando ``pwd'' y presiona Enter. Esto te mostrará la ruta
+actual en la que te encuentras. Asegúrate de estar en el lugar adecuado
+antes de continuar.
+
+\textbf{Paso 7:} Ahora, necesitamos navegar a la ubicación donde se
+encuentra el instalador de Anaconda que descargaste. Por lo general, se
+guarda en la carpeta ``Downloads'' (Descargas). Para acceder a esta
+carpeta, ejecuta el siguiente comando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{cd}\NormalTok{ Downloads/}
+\end{Highlighting}
+\end{Shaded}
+
+Presiona Enter después de escribir el comando y verás que la ruta de la
+terminal cambia al directorio ``Downloads''.
+
+\textbf{Paso 8:} ¡Estamos casi listos para ejecutar el instalador de
+Anaconda! Ahora, debes ejecutar el archivo de instalación. Asegúrate de
+que el nombre del archivo coincida con el que descargaste. Para
+ejecutarlo, utiliza el siguiente comando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{bash}\NormalTok{ nombre{-}del{-}archivo.sh}
+\end{Highlighting}
+\end{Shaded}
+
+Reemplaza ``nombre-del-archivo'' con el nombre exacto del archivo de
+instalación que descargaste. Por ejemplo, si el archivo se llama
+``Anaconda3-2021.05-Linux-x86\_64.sh'', el comando sería:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{bash}\NormalTok{ Anaconda3{-}2021.05{-}Linux{-}x86\_64.sh}
+\end{Highlighting}
+\end{Shaded}
+
+Presiona Enter y comenzará el proceso de instalación de Anaconda. Sigue
+las instrucciones que aparecerán en la terminal y asegúrate de leer y
+aceptar los términos de licencia.
+
+\textbf{Paso 9:} ¡Genial! Ahora que has ejecutado el instalador de
+Anaconda en Ubuntu Linux, solo te queda seguir las instrucciones de
+instalación que aparecerán en la terminal. No te preocupes, te guiaré a
+través de este paso.
+
+Después de ejecutar el comando para iniciar la instalación, verás que
+aparecerá una serie de instrucciones en la terminal. Lee cuidadosamente
+cada paso y asegúrate de seguirlos correctamente.
+
+Por lo general, las instrucciones te pedirán que revises y aceptes los
+términos de licencia. Para hacerlo, simplemente lee los términos y
+condiciones que se muestran en la terminal y, cuando se te solicite,
+presiona Enter para avanzar y aceptar los términos.
+
+A continuación, se te pedirá que especifiques la ubicación de la
+instalación de Anaconda. Por defecto, suele ser en tu directorio de
+inicio, pero puedes elegir una ubicación diferente si lo deseas. Si no
+estás seguro, te recomendaría que aceptes la ubicación predeterminada
+presionando Enter.
+
+Luego, la instalación te preguntará si deseas agregar Anaconda a tu
+variable de entorno PATH. Esto es útil para que puedas acceder a los
+comandos de Anaconda desde cualquier ubicación en tu sistema. Te
+sugeriría que respondas ``yes'' (sí) y presiones Enter.
+
+Cuando la carpeta de anaconda ya existe, actualizamos programas
+existente.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{bash}\NormalTok{ Anaconda3{-}2021.11{-}Linux{-}x86\_64.sh }\AttributeTok{{-}u} 
+\end{Highlighting}
+\end{Shaded}
+
+Después de eso, la instalación continuará y verás una barra de progreso
+que indica el avance del proceso. Puede llevar algún tiempo, así que ten
+paciencia.
+
+Una vez que la instalación se complete con éxito, verás un mensaje
+indicando que Anaconda se ha instalado correctamente. ¡Felicidades! Has
+instalado Anaconda en tu sistema Ubuntu Linux.
+
+Ahora puedes cerrar la terminal y comenzar a disfrutar de las ventajas
+de utilizar Anaconda en tu sistema. Recuerda que Anaconda te ofrece un
+entorno de gestión de paquetes y entornos virtuales que te facilitará el
+trabajo con Python y otras herramientas de ciencia de datos.
+
+\textbf{Paso 10:} Una vez que hayas instalado Anaconda en tu sistema
+Ubuntu Linux, es importante añadirlo al PATH del sistema para que puedas
+acceder a los comandos de Anaconda desde cualquier ubicación en tu
+sistema. Te guiaré a través de este paso.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Abre la terminal en tu sistema Ubuntu Linux. Puedes hacerlo buscando
+  ``Terminal'' en el menú de aplicaciones o usando el atajo de teclado
+  Ctrl+Alt+T.
+\item
+  En la terminal, escribe el siguiente comando para abrir el archivo de
+  configuración de inicio de sesión:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{nano}\NormalTok{ \textasciitilde{}/.bashrc}
+\end{Highlighting}
+\end{Shaded}
+\item
+  Esto abrirá el archivo \texttt{.bashrc} en el editor de texto
+  \texttt{nano}. Ahora, desplázate hasta el final del archivo.
+\item
+  En la última línea del archivo, añade el siguiente comando para
+  agregar Anaconda al PATH:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{export} \VariableTok{PATH}\OperatorTok{=}\StringTok{"/ruta/donde/instalaste/anaconda/bin:}\VariableTok{$PATH}\StringTok{"}
+\end{Highlighting}
+\end{Shaded}
+
+  Recuerda reemplazar ``/ruta/donde/instalaste/anaconda'' con la
+  ubicación real donde instalaste Anaconda. Si elegiste la ubicación
+  predeterminada, el comando será:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{export} \VariableTok{PATH}\OperatorTok{=}\StringTok{"}\VariableTok{$HOME}\StringTok{/anaconda/bin:}\VariableTok{$PATH}\StringTok{"}
+\end{Highlighting}
+\end{Shaded}
+\item
+  Después de añadir el comando, guarda los cambios en el archivo
+  \texttt{\textasciitilde{}/.bashrc}. En \texttt{nano}, puedes hacerlo
+  presionando Ctrl+O, luego presiona Enter para confirmar y finalmente
+  presiona Ctrl+X para salir del editor \texttt{nano}.
+\item
+  Ahora, para que los cambios tengan efecto, actualiza el archivo de
+  configuración de inicio de sesión con el siguiente comando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{source}\NormalTok{ \textasciitilde{}/.bashrc}
+\end{Highlighting}
+\end{Shaded}
+\end{enumerate}
+
+¡Y eso es todo! Has añadido correctamente Anaconda al PATH del sistema
+en Ubuntu Linux. Ahora podrás acceder a los comandos de Anaconda desde
+cualquier ubicación en tu sistema.
+
+\textbf{Algunos problemas:} A veces, durante la instalación de Anaconda,
+puede ocurrir que no se pueda responder con ``yes'' al prompt de
+inicialización de Anaconda en el archivo \texttt{.bashrc}. Aquí te
+proporcionaré una solución detallada para abordar este problema:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Después de que la instalación de Anaconda se complete y se muestre el
+  prompt para inicializar Anaconda en el archivo \texttt{.bashrc}, si no
+  puedes responder con ``yes'' y el proceso se cierra, no te preocupes.
+\item
+  Abre la terminal en tu sistema Ubuntu Linux. Puedes hacerlo buscando
+  ``Terminal'' en el menú de aplicaciones o usando el atajo de teclado
+  Ctrl+Alt+T.
+\item
+  En la terminal, ejecuta el siguiente comando para abrir el archivo
+  \texttt{.bashrc} en un editor de texto:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ gedit \textasciitilde{}/.bashrc}
+\end{Highlighting}
+\end{Shaded}
+
+  Esto abrirá el archivo \texttt{.bashrc} con privilegios de
+  administrador para poder editarlo.
+\item
+  Desplázate hasta el final del archivo \texttt{.bashrc} y agrega el
+  siguiente bloque de código:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# \textgreater{}\textgreater{}\textgreater{} conda initialize \textgreater{}\textgreater{}\textgreater{}}
+\ExtensionTok{!!}\NormalTok{ Contents within this block are managed by }\StringTok{\textquotesingle{}conda init\textquotesingle{}}\NormalTok{ !!}
+\VariableTok{\_\_conda\_setup}\OperatorTok{=}\StringTok{"}\VariableTok{$(}\StringTok{\textquotesingle{}/home/achalmaubuntu/anaconda3/bin/conda\textquotesingle{}} \StringTok{\textquotesingle{}shell.bash\textquotesingle{}} \StringTok{\textquotesingle{}hook\textquotesingle{}} \DecValTok{2}\OperatorTok{\textgreater{}}\NormalTok{ /dev/null}\VariableTok{)}\StringTok{"}
+\ControlFlowTok{if} \BuiltInTok{[} \VariableTok{$?} \OtherTok{{-}eq}\NormalTok{ 0 }\BuiltInTok{]}\KeywordTok{;} \ControlFlowTok{then}
+    \BuiltInTok{eval} \StringTok{"}\VariableTok{$\_\_conda\_setup}\StringTok{"}
+\ControlFlowTok{else}
+    \ControlFlowTok{if} \BuiltInTok{[} \OtherTok{{-}f} \StringTok{"/home/achalmaubuntu/anaconda3/etc/profile.d/conda.sh"} \BuiltInTok{]}\KeywordTok{;} \ControlFlowTok{then}
+        \BuiltInTok{.} \StringTok{"/home/achalmaubuntu/anaconda3/etc/profile.d/conda.sh"}
+    \ControlFlowTok{else}
+        \BuiltInTok{export} \VariableTok{PATH}\OperatorTok{=}\StringTok{"/home/achalmaubuntu/anaconda3/bin:}\VariableTok{$PATH}\StringTok{"}
+    \ControlFlowTok{fi}
+\ControlFlowTok{fi}
+\BuiltInTok{unset} \VariableTok{\_\_conda\_setup}
+\CommentTok{\# \textless{}\textless{}\textless{} conda initialize \textless{}\textless{}\textless{}}
+\end{Highlighting}
+\end{Shaded}
+
+  Recuerda cambiar el achalmaubuntu con su usuario
+\item
+  Guarda los cambios en el archivo \texttt{.bashrc}.
+\item
+  Luego, en la terminal, ejecuta el siguiente comando para actualizar
+  las variables de entorno con los cambios realizados en el archivo
+  \texttt{.bashrc}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{source}\NormalTok{ \textasciitilde{}/.bashrc}
+\end{Highlighting}
+\end{Shaded}
+\end{enumerate}
+
+Recuerda reiniciar la terminal o abrir una nueva ventana de terminal
+para que los cambios surtan efecto.
+
+¡Y eso es todo! Has solucionado el problema de inicialización de
+Anaconda en el archivo \texttt{.bashrc} y ahora puedes utilizar Anaconda
+y sus comandos sin problemas en tu sistema Ubuntu Linux.
+
+\section{Verificación de la instalación de
+Anaconda}\label{verificaciuxf3n-de-la-instalaciuxf3n-de-anaconda}
+
+Una vez que hayas completado la instalación de Anaconda en tu sistema
+Ubuntu Linux, es importante verificar que todo haya sido instalado
+correctamente. Aquí te mostraré cómo comprobarlo y también cómo
+verificar la versión de Anaconda y los paquetes instalados.
+
+\textbf{Comprobar la instalación de Anaconda:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Abre la terminal en tu sistema Ubuntu Linux.
+\item
+  En la terminal, ingresa el siguiente comando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda} \AttributeTok{{-}{-}version}
+\end{Highlighting}
+\end{Shaded}
+
+  Esto mostrará la versión de Anaconda instalada en tu sistema. Si se
+  muestra la versión correctamente, significa que Anaconda está
+  instalado correctamente.
+\end{enumerate}
+
+\textbf{Verificar la versión de Anaconda:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  En la terminal, ingresa el siguiente comando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ list anaconda$}
+\end{Highlighting}
+\end{Shaded}
+
+  Esto mostrará una lista de los paquetes instalados con el nombre
+  ``anaconda'' en su versión. Si se muestra la lista de paquetes
+  correctamente, significa que la instalación de Anaconda incluyendo los
+  paquetes se ha realizado correctamente.
+\item
+  Para verificar la versión de un paquete específico, puedes ingresar el
+  siguiente comando en la terminal, reemplazando
+  \texttt{\textless{}nombre\_paquete\textgreater{}} con el nombre del
+  paquete que deseas verificar:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ list }\OperatorTok{\textless{}}\NormalTok{nombre\_paquete}\OperatorTok{\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+
+  Esto mostrará la versión del paquete específico instalado en tu
+  sistema.
+\end{enumerate}
+
+¡Listo! Ahora puedes asegurarte de que Anaconda esté correctamente
+instalado y verificar las versiones de Anaconda y los paquetes
+instalados en tu sistema Ubuntu Linux. Esto te ayudará a garantizar un
+funcionamiento adecuado de Anaconda y sus herramientas para el
+desarrollo de proyectos.
+
+\section{Actualización de Anaconda en Ubuntu
+Linux}\label{actualizaciuxf3n-de-anaconda-en-ubuntu-linux}
+
+Mantener tu instalación de Anaconda actualizada es crucial para
+aprovechar las últimas mejoras, características y correcciones de
+errores. Afortunadamente, actualizar Anaconda en Ubuntu Linux es un
+proceso sencillo. A continuación, te mostraré los pasos para actualizar
+Anaconda a la última versión utilizando los comandos de actualización de
+Conda y paquetes.
+
+\textbf{Pasos para actualizar Anaconda:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Abre la terminal en tu sistema Ubuntu Linux.
+\item
+  En la terminal, ingresa el siguiente comando para actualizar Conda, el
+  administrador de paquetes de Anaconda:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ update conda}
+\end{Highlighting}
+\end{Shaded}
+
+  Este comando actualizará Conda a la última versión disponible.
+\item
+  A continuación, puedes utilizar el siguiente comando para actualizar
+  todos los paquetes instalados en tu entorno de Anaconda:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ update }\AttributeTok{{-}{-}all}
+\end{Highlighting}
+\end{Shaded}
+
+  Este comando buscará actualizaciones para todos los paquetes
+  instalados y los actualizará a las últimas versiones disponibles.
+\item
+  Si deseas actualizar un paquete específico, puedes utilizar el
+  siguiente comando, reemplazando
+  \texttt{\textless{}nombre\_paquete\textgreater{}} con el nombre del
+  paquete que deseas actualizar:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ update }\OperatorTok{\textless{}}\NormalTok{nombre\_paquete}\OperatorTok{\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+
+  Esto actualizará el paquete especificado a la última versión
+  disponible.
+\end{enumerate}
+
+Recuerda que antes de realizar la actualización, es recomendable crear
+un entorno virtual y respaldar tus proyectos para evitar cualquier
+conflicto o pérdida de datos.
+
+¡Y eso es todo! Con estos pasos, podrás mantener tu instalación de
+Anaconda actualizada y disfrutar de las últimas mejoras en Ubuntu Linux.
+Asegúrate de realizar actualizaciones periódicas para aprovechar al
+máximo las capacidades de Anaconda y sus paquetes.
+
+\section{Desinstalación de Anaconda en Ubuntu
+Linux}\label{desinstalaciuxf3n-de-anaconda-en-ubuntu-linux}
+
+Si en algún momento deseas eliminar completamente Anaconda de tu sistema
+Ubuntu Linux, ya sea para realizar una nueva instalación o por cualquier
+otro motivo, puedes seguir estos pasos para desinstalarlo por completo.
+
+\textbf{Proceso para eliminar completamente Anaconda:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Abre la terminal en tu sistema Ubuntu Linux.
+\item
+  En la terminal, ingresa el siguiente comando para desactivar cualquier
+  configuración de Anaconda que esté activa en tu entorno actual:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ deactivate}
+\end{Highlighting}
+\end{Shaded}
+
+  Esto asegurará que no haya entornos virtuales activos relacionados con
+  Anaconda.
+\item
+  A continuación, puedes utilizar el siguiente comando para desinstalar
+  Anaconda y eliminar todos los archivos relacionados:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{anaconda{-}clean} \AttributeTok{{-}{-}yes}
+\end{Highlighting}
+\end{Shaded}
+
+  Este comando eliminará Anaconda de tu sistema y eliminará los archivos
+  y directorios asociados.
+\item
+  Una vez completado el proceso de desinstalación, puedes verificar que
+  Anaconda se haya eliminado por completo. Puedes utilizar el siguiente
+  comando para verificar si el directorio de Anaconda ya no existe:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ls}\NormalTok{ \textasciitilde{}/anaconda3}
+\end{Highlighting}
+\end{Shaded}
+
+  Si el directorio no se encuentra, significa que Anaconda ha sido
+  eliminado correctamente.
+\end{enumerate}
+
+Recuerda que este proceso eliminará permanentemente Anaconda de tu
+sistema, incluyendo todos los paquetes y entornos virtuales asociados.
+Asegúrate de realizar una copia de seguridad de tus proyectos y datos
+importantes antes de proceder con la desinstalación.
+
+¡Y eso es todo! Siguiendo estos pasos, podrás eliminar completamente
+Anaconda de tu sistema Ubuntu Linux. Si en el futuro decides volver a
+instalarlo, podrás seguir los pasos que hemos cubierto anteriormente en
+este blog.
+
+\section{Comandos básicos}\label{comandos-buxe1sicos}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \texttt{conda\ deactivate}: Este comando se utiliza para desactivar el
+  entorno activo de Conda. Cuando trabajas con entornos virtuales en
+  Anaconda, puedes utilizar este comando para volver al entorno base o
+  desactivar cualquier entorno virtual activo.
+\item
+  \texttt{conda\ activate}: Con este comando, puedes activar un entorno
+  virtual específico en Anaconda. Puedes crear entornos virtuales
+  personalizados con diferentes versiones de Python y paquetes
+  instalados. Al utilizar este comando, podrás activar uno de esos
+  entornos y trabajar en él.
+\item
+  \texttt{jupyter\ notebook}: Este comando se utiliza para abrir el
+  entorno de Jupyter Notebook. Jupyter Notebook es una aplicación web
+  que te permite crear y compartir documentos interactivos que contienen
+  código, visualizaciones y texto explicativo. Al ejecutar este comando,
+  se abrirá una nueva pestaña del navegador con el entorno de Jupyter
+  Notebook.
+\item
+  \texttt{spyder}: Al ejecutar este comando, se abrirá el entorno de
+  desarrollo integrado (IDE) de Spyder. Spyder es un entorno de
+  desarrollo muy utilizado en Python que ofrece características como
+  edición de código, depuración y ejecución de programas.
+\item
+  \texttt{python}: Al ejecutar este comando, se iniciará el intérprete
+  de Python en la línea de comandos. Podrás ejecutar comandos y scripts
+  de Python directamente en la terminal.
+\item
+  \texttt{anaconda-navigator}: Con este comando, se abrirá la interfaz
+  gráfica de Anaconda Navigator. Anaconda Navigator es una aplicación
+  que te permite administrar tus entornos virtuales, instalar paquetes y
+  lanzar aplicaciones como Jupyter Notebook y Spyder de manera visual.
+\item
+  \texttt{conda\ info}: Este comando proporciona información detallada
+  sobre la instalación de Conda, como la versión de Conda, la ubicación
+  de los archivos y la configuración actual.
+\item
+  \texttt{conda\ update\ conda}: Utilizando este comando, puedes
+  actualizar la versión de Conda en tu sistema. Conda es el
+  administrador de paquetes y entornos virtuales de Anaconda, y
+  mantenerlo actualizado te permitirá acceder a las últimas funciones y
+  mejoras.
+\item
+  \texttt{rm\ -rf\ \textasciitilde{}/anaconda3}: Este comando se utiliza
+  para desinstalar completamente Anaconda de tu sistema. Ten en cuenta
+  que este comando eliminará permanentemente Anaconda y todos los
+  archivos relacionados, incluyendo tus entornos virtuales y paquetes
+  instalados. Asegúrate de hacer una copia de seguridad de tus datos
+  importantes antes de ejecutar este comando.
+\end{enumerate}
+
+Si tienes alguna pregunta o necesitas más ayuda, no dudes en dejar un
+comentario.
+
+\textbf{¡Hasta la próxima!}
+
+\section{Publicaciones Similares}\label{publicaciones-similares}
+
+Si te interesó este artículo, te recomendamos que explores otros blogs y
+recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo
+algunas sugerencias:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2020-06-19-instalacion-de-anaconda/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2020-06-19-instalacion-de-anaconda}{Instalacion
+  De Anaconda}
+\item
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2020-06-20-configurar-entorno-virtual-python-anaconda}{Configurar
+  Entorno Virtual Python Anaconda}
+\item
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2021-04-17-01-introducion-a-la-programacion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2021-04-17-01-introducion-a-la-programacion-con-python}{01
+  Introducion A La Programacion Con Python}
+\item
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2021-05-31-02-variables-expresiones-y-statements-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2021-05-31-02-variables-expresiones-y-statements-con-python}{02
+  Variables Expresiones Y Statements Con Python}
+\item
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2021-06-07-03-objetos-de-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2021-06-07-03-objetos-de-python}{03
+  Objetos De Python}
+\item
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2021-06-14-04-ejecucion-condicional-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2021-06-14-04-ejecucion-condicional-con-python}{04
+  Ejecucion Condicional Con Python}
+\item
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2021-06-21-05-iteraciones-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2021-06-21-05-iteraciones-con-python}{05
+  Iteraciones Con Python}
+\item
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2021-08-16-06-funciones-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2021-08-16-06-funciones-con-python}{06
+  Funciones Con Python}
+\item
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2021-08-23-07-dataframes-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2021-08-23-07-dataframes-con-python}{07
+  Dataframes Con Python}
+\item
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python}{08
+  Prediccion Y Metrica De Performance Con Python}
+\item
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python}{09
+  Metodos De Machine Learning Para Clasificacion Con Python}
+\item
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python}{10
+  Metodos De Machine Learning Para Regresion Con Python}
+\item
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2022-10-31-11-validacion-cruzada-y-composicion-del-modelo-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2022-10-31-11-validacion-cruzada-y-composicion-del-modelo-con-python}{11
+  Validacion Cruzada Y Composicion Del Modelo Con Python}
+\item
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/programacion-software/python/2025-05-10-visualizacion-de-datos-con-python}{Visualizacion
+  De Datos Con Python}
+\end{enumerate}
+
+Esperamos que encuentres estas publicaciones igualmente interesantes y
+útiles. ¡Disfruta de la lectura!
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,422 @@
+---
+title: Visualización de Datos con Python
+date: 2025-05-10  # Actualizado a la fecha actual
+tags:
+  - Visualización de datos
+  - Python
+  - Matplotlib
+  - Gráficos
+  - Estadística
+copyrightnotice: 2025
+copyrightext: Todos los derechos reservados
+# image: featured.jpg
+subtitle: Técnicas y Ejemplos de Gráficos para Análisis de Datos
+shorttitle: Visualización con Python
+abstract: Este documento presenta una colección de ejemplos prácticos de visualización de datos utilizando Python y la biblioteca Matplotlib. Se incluyen gráficos de líneas, barras, histogramas, circulares, de caja y combinados, cada uno acompañado de código comentado y optimizado. El objetivo es proporcionar una guía educativa para estudiantes y profesionales interesados en representar datos de manera clara y efectiva, con énfasis en buenas prácticas de diseño y presentación.
+keywords:
+  - Visualización de datos
+  - Python
+  - Matplotlib
+  - Gráficos estadísticos
+  - Análisis de datos
+categories:
+  - Programación
+  - Visualización de Datos
+  - Estadística
+author:
+  - name: Elmer Achalma
+    url: https://achalmaedison.netlify.app
+    affiliation:
+      name: Universidad Nacional de San Cristóbal de Huamanga
+      department: Economía
+    affiliation-url: https://www.gob.pe/unsch
+    orcid: 0000-0001-6996-3364
+    email: elmer.achalma.09@unsch.edu.pe
+    attributes:
+      corresponding: true
+      equal-contributor: true
+    roles:
+      - Investigación
+      - Programación
+      - Redacción
+author-note:
+  disclosures:
+    conflict-of-interest: Los autores no tienen conflictos de intereses que revelar.
+    gratitude: Agradezco a mis maestros por su orientación en el aprendizaje de la programación y visualización de datos, a mis padres por su apoyo constante durante mi formación, y a Dios por la salud y fortaleza para perseguir mis metas. Me comprometo a seguir mejorando mis habilidades en la universidad y en todos los ámbitos, siempre con respeto.
+description: Guía práctica de visualización de datos con Python, incluyendo ejemplos de gráficos optimizados con Matplotlib.
+eval: true  # Habilitado para procesar el código
+citation:
+  type: article-journal
+  author: Elmer Achalma
+  pdf-url: https://achalmaedison.netlify.app/blog/posts/2025-05-10-visualizacion-datos-python/index.pdf
+draft: false
+jupyter: python3
+---
+
+# Grafico de lineas
+```{python}
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Configurar el tamaño de la figura para mejor visualización
+#plt.figure(figsize=(10, 8))
+
+# Datos de consumo de carne bovina (kg por habitante)
+consumo_bovino = [22.1, 22.1, 23.1, 23.9, 24.6, 21.7, 23.5, 22.0, 22.5, 23.6, 21.7]
+anios_bovino = [2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011]
+
+# Datos de consumo de carne porcina (kg por habitante)
+consumo_porcino = [17.9, 19.4, 19.1, 18.3, 19.3, 22.5, 23.5, 25.0, 24.0, 24.4, 25.6]
+anios_porcino = [2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011]
+
+# Graficar consumo de carne bovina con marcadores circulares y línea discontinua
+plt.plot(anios_bovino, consumo_bovino, marker='o', linestyle='--', color='red', label='Carne Bovina')
+
+# Graficar consumo de carne porcina con marcadores de diamante y línea discontinua
+plt.plot(anios_porcino, consumo_porcino, marker='d', linestyle='--', color='blue', label='Carne Porcina')
+
+# Etiquetas de los ejes y título con formato adecuado
+plt.xlabel('Año')
+plt.ylabel('Consumo (kg por habitante)')
+plt.title('Consumo Anual de Carne en Chile (2001-2011)')
+
+# Añadir leyenda en la esquina inferior derecha
+plt.legend(loc='lower right')
+
+# Configurar marcas en el eje x para mostrar cada año
+plt.xticks(anios_bovino)
+
+# Añadir una cuadrícula para mejorar la legibilidad
+plt.grid(True, linestyle='--', alpha=0.7)
+
+# Ajustar el diseño para evitar recortes de etiquetas
+plt.tight_layout()
+
+# Guardar la figura en un archivo (opcional, se puede descomentar para usar)
+# plt.savefig('consumo_carne_chile.png')
+
+# Mostrar el gráfico
+plt.show()
+```
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0, 2 * np.pi, 200)
+y = np.sin(x)
+
+fig, ax = plt.subplots()
+ax.plot(x, y)
+plt.show()
+```
+
+
+
+```{python}
+
+#| label: fig-polar
+#| fig-cap: "A line plot on a polar axis"
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+r = np.arange(0, 2, 0.01)
+theta = 2 * np.pi * r
+fig, ax = plt.subplots(
+  subplot_kw = {'projection': 'polar'} 
+)
+ax.plot(theta, r)
+ax.set_rticks([0.5, 1, 1.5, 2])
+ax.grid(True)
+plt.show()
+```
+
+# Gráfico de barras
+## horizontal
+```{python}
+import matplotlib.pyplot as plt
+
+# Configurar el tamaño de la figura para una mejor visualización
+#plt.figure(figsize=(10, 8))
+
+# Tipos de legumbres y sus respectivos consumos en kg por habitante en 2001
+tipos_legumbres = ["Poroto", "Lenteja", "Garbanzo", "Arveja"]
+consumo_legumbres = [2.1, 1.0, 0.3, 0.5]
+
+# Crear un gráfico de barras con color personalizado y borde
+plt.bar(tipos_legumbres, consumo_legumbres, color='green', edgecolor='black', alpha=0.7)
+
+# Etiquetas de los ejes y título con formato adecuado
+plt.xlabel('Tipos de Legumbres')
+plt.ylabel('Consumo (kg por habitante)')
+plt.title('Consumo de Legumbres en Chile (2001)')
+
+# Añadir una cuadrícula en el eje y para facilitar la lectura
+plt.grid(True, axis='y', linestyle='--', alpha=0.7)
+
+# Ajustar el diseño para evitar recortes de etiquetas
+plt.tight_layout()
+
+# Guardar la figura en un archivo (opcional, descomentar para usar)
+# plt.savefig('consumo_legumbres_2001.png')
+
+# Mostrar el gráfico
+plt.show()
+```
+
+## vertical
+
+```{python}
+#plt.figure(figsize=[10,8])
+#Consumo de legumbres en el 2001
+legumbres=["Poroto","Lenteja","Garbanzo","Arveja"]
+consumo=[2.1, 1.0, 0.3, 0.5]
+
+plt.barh(legumbres,consumo)
+
+plt.ylabel("Tipos de legumbre")
+plt.xlabel("Consumo (kg/hab)")
+plt.title("Consumo de Legumbres en el 2001")
+plt.show()
+```
+
+# Histograma
+```{python}
+import matplotlib.pyplot as plt
+
+# Configurar el tamaño de la figura para una mejor visualización
+#plt.figure(figsize=(10, 8))
+
+# Datos de niveles de glucosa (mg/dl)
+niveles_glucosa = [52, 54, 55, 57, 56, 57, 54, 59, 60, 57, 52, 62, 64, 68, 64, 72, 77, 80, 
+                   76, 79, 81, 85, 88, 84, 89, 92, 85, 92, 94, 93, 92, 99, 100, 105, 106, 107, 109]
+
+# Bordes de los intervalos para el histograma (bins)
+intervalos = [50, 60, 70, 80, 90, 100, 110, 120, 130]
+
+# Crear el histograma con color personalizado y bordes
+plt.hist(niveles_glucosa, bins=intervalos, color='skyblue', edgecolor='black', alpha=0.7)
+
+# Etiquetas de los ejes y título con formato adecuado
+plt.xlabel('Nivel de Glucosa (mg/dl)')
+plt.ylabel('Número de Pacientes')
+plt.title('Distribución de Niveles de Glucosa en Pacientes')
+
+# Añadir una cuadrícula en el eje y para facilitar la lectura
+plt.grid(True, axis='y', linestyle='--', alpha=0.7)
+
+# Ajustar el diseño para evitar recortes de etiquetas
+plt.tight_layout()
+
+# Guardar la figura en un archivo (opcional, descomentar para usar)
+# plt.savefig('distribucion_glucosa.png')
+
+# Mostrar el gráfico
+plt.show()
+```
+
+
+# Grafico circular
+
+```{python}
+import matplotlib.pyplot as plt
+
+# Configurar el tamaño de la figura para una mejor visualización
+#plt.figure(figsize=(10, 8))
+
+# Datos de marcas de autos y sus ventas (en alguna unidad, ej. miles de unidades)
+marcas_autos = ["Kia", "Toyota", "Nissan", "Suzuki", "Audi"]
+ventas = [10.5, 15.3, 14.2, 16.1, 9.8]
+# Resaltar la primera marca (Kia) ligeramente
+resaltar = [0.1, 0, 0, 0, 0]
+
+# Aplicar un estilo visual predefinido (ggplot)
+plt.style.use("ggplot")
+
+# Crear el gráfico de pastel
+plt.pie(x=ventas, explode=resaltar, labels=marcas_autos, autopct="%.2f%%", shadow=True, startangle=20)
+
+# Asegurar que el gráfico sea circular
+plt.axis=("equal")
+
+# Añadir un título descriptivo
+plt.title("Distribución de Ventas de Autos en EE.UU.")
+
+# Añadir una leyenda en la esquina superior izquierda
+plt.legend(marcas_autos, loc="upper left")
+
+# Ajustar el diseño para evitar recortes
+plt.tight_layout()
+
+# Guardar la figura en un archivo (opcional, descomentar para usar)
+# plt.savefig('ventas_autos_eeuu.png')
+
+# Mostrar el gráfico
+plt.show()
+```
+
+# Grafico de Donut
+```{python}
+import matplotlib.pyplot as plt
+
+# Configurar el tamaño de la figura para una mejor visualización
+#plt.figure(figsize=(10, 8))
+
+# Datos de marcas de autos y sus ventas (en alguna unidad, ej. miles de unidades)
+marcas_autos = ["Kia", "Toyota", "Nissan", "Suzuki", "Audi"]
+ventas = [10.5, 15.3, 14.2, 16.1, 9.8]
+# Resaltar la primera marca (Kia) ligeramente
+resaltar = [0.1, 0, 0, 0, 0]
+
+# Aplicar un estilo visual predefinido (ggplot)
+plt.style.use("ggplot")
+
+# Crear el gráfico de pastel (donut chart)
+plt.pie(ventas, explode=resaltar, labels=marcas_autos, autopct="%.2f%%", shadow=True, startangle=20)
+
+# Asegurar que el gráfico sea circular
+plt.axis=("equal")
+
+# Añadir un título descriptivo
+plt.title("Distribución de Ventas de Autos en EE.UU.")
+
+# Añadir una leyenda en la esquina superior izquierda
+plt.legend(marcas_autos, loc="upper left")
+
+# Añadir un círculo central para crear el efecto de "donut chart"
+circulo_central = plt.Circle(xy=(0, 0), radius=0.75, facecolor="white")
+plt.gca().add_artist(circulo_central)
+
+# Ajustar el diseño para evitar recortes
+plt.tight_layout()
+
+# Guardar la figura en un archivo (opcional, descomentar para usar)
+# plt.savefig('ventas_autos_eeuu_donut.png')
+
+# Mostrar el gráfico
+plt.show()
+```
+
+# Grafico de cajas
+
+```{python}
+import matplotlib.pyplot as plt
+
+# Configurar el tamaño de la figura para una mejor visualización
+#plt.figure(figsize=(10, 8))
+
+# Datos de las edades de los alumnos
+edades_alumnos = [12, 13, 12, 17, 16, 15, 14, 15, 15, 16, 14, 12, 15, 16, 14, 12, 16, 17]
+
+# Crear el diagrama de caja con un estilo personalizado
+plt.boxplot(edades_alumnos, vert=True, patch_artist=True, 
+            boxprops=dict(facecolor='lightblue', edgecolor='black'),
+            medianprops=dict(color='red'), whiskerprops=dict(color='black'),
+            capprops=dict(color='black'), flierprops=dict(marker='o', color='orange', markersize=8))
+
+# Etiquetas de los ejes y título con formato adecuado
+plt.ylabel('Edad (años)')
+plt.title('Distribución de Edades de Alumnos de Secundaria')
+
+# Añadir una cuadrícula en el eje y para facilitar la lectura
+plt.grid(True, axis='y', linestyle='--', alpha=0.7)
+
+# Configurar las etiquetas del eje x (opcional, ya que solo hay un grupo)
+plt.xticks([1], ['Alumnos'])
+
+# Ajustar el diseño para evitar recortes
+plt.tight_layout()
+
+# Guardar la figura en un archivo (opcional, descomentar para usar)
+# plt.savefig('edades_alumnos_secundaria.png')
+
+# Mostrar el gráfico
+plt.show()
+```
+
+# Grafico de barras combinadas
+
+```{python}
+import matplotlib.pyplot as plt
+
+# Configurar el tamaño de la figura para una mejor visualización
+#plt.figure(figsize=(10, 8))
+
+# Datos de ventas de autos por día (en unidades)
+ventas_toyota = [10, 15, 19, 14, 9]
+ventas_audi = [15, 25, 27, 24, 28]
+dias = [0, 1, 2, 3, 4]  # Posiciones para los días
+ancho_barras = 0.5  # Grosor de las barras
+
+# Crear el gráfico de barras apiladas
+barras_toyota = plt.bar(dias, ventas_toyota, ancho_barras, label='Toyota', color='skyblue', edgecolor='black')
+barras_audi = plt.bar(dias, ventas_audi, ancho_barras, bottom=ventas_toyota, label='Audi', color='salmon', edgecolor='black')
+
+# Configurar las etiquetas del eje x con los días
+plt.xticks(dias, ['Día 1', 'Día 2', 'Día 3', 'Día 4', 'Día 5'])
+
+# Etiquetas de los ejes y título con formato adecuado
+plt.xlabel('Días')
+plt.ylabel('Unidades Vendidas')
+plt.title('Ventas de Autos por Día (Toyota vs. Audi)')
+
+# Configurar las marcas del eje y para mayor claridad
+plt.yticks([0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50])
+
+# Añadir una cuadrícula en el eje y para facilitar la lectura
+plt.grid(True, axis='y', linestyle='--', alpha=0.7)
+
+# Añadir una leyenda para identificar las marcas
+plt.legend()
+
+# Ajustar el diseño para evitar recortes
+plt.tight_layout()
+
+# Guardar la figura en un archivo (opcional, descomentar para usar)
+# plt.savefig('ventas_autos_toyota_audi.png')
+
+# Mostrar el gráfico
+plt.show()
+```
+
+# Graficos combinados
+```{python}
+import matplotlib.pyplot as plt
+
+# Configurar el tamaño de la figura para una mejor visualización
+#plt.figure(figsize=(10, 8))
+
+# Datos de vacunación proyectada (en número de pacientes)
+vacunacion_proyectada = [250, 120, 270, 560, 450, 280, 550]
+# Datos de vacunación real (en número de pacientes)
+vacunacion_real = [150, 300, 120, 550, 500, 240, 600]
+meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"]
+
+# Graficar la vacunación proyectada como una línea con marcadores
+plt.plot(meses, vacunacion_proyectada, marker='d', linestyle='--', color='red', label='Vacunación Proyectada')
+
+# Graficar la vacunación real como barras
+plt.bar(meses, vacunacion_real, color='skyblue', edgecolor='black', alpha=0.7, label='Vacunación Real')
+
+# Etiquetas de los ejes y título con formato adecuado
+plt.xlabel('Meses')
+plt.ylabel('Número de Pacientes Vacunados')
+plt.title('Vacunación Real vs. Proyectada (Enero - Julio)')
+
+# Añadir una leyenda
+plt.legend()
+
+# Añadir una cuadrícula en el eje y para facilitar la lectura
+plt.grid(True, axis='y', linestyle='--', alpha=0.7)
+
+# Ajustar el diseño para evitar recortes
+plt.tight_layout()
+
+# Guardar la figura en un archivo (opcional, descomentar para usar)
+# plt.savefig('vacunacion_real_vs_proyectada.png')
+
+# Mostrar el gráfico
+plt.show()
+```

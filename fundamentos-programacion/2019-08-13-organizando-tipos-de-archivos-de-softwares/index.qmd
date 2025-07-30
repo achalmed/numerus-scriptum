@@ -1,0 +1,207 @@
+---
+documentmode: stu  # Modo de documento: Can be jou (journal), man (manuscript), stu (student), or doc (document)
+    # - man (Manuscrito): Similar al formato .docx
+    # - jou (Revista): Un formato pulido de dos columnas similar a muchas revistas APA.
+    # - doc (Documento): Similar al predeterminado LaTex artículos.
+    # - stu (Estudiante): Formateado para trabajos de estudiantes
+# MODO ESTUDIANTE (STU)
+# course: Metodología (EDUC 5101)
+# professor: Dr. Edison Achalma Mendoza
+# duedate: 01/23/2022
+# MODO REVISTA (JOU)
+# journal: The American Economic Review # Econometrica, The American Economic Review, Revista de Economía, Revista de la CEPAL
+# volume: 2025, Vol. 131, No. 2, 10--60
+copyrightnotice: 2019
+copyrightext: All rights reserved
+# image: featured.png
+title: Tipografía en entornos académicos y de programación 
+subtitle: Selección y aplicación para mejorar la legibilidad
+shorttitle: "Tipografía en academia y programación"
+abstract: |
+  Typography is a fundamental element in both academic and programming environments, impacting readability, comprehension, and professional presentation. This article explores the principles of typographic selection and application, emphasizing font choices for academic writing, coding environments, and digital interfaces. It discusses the characteristics of monospaced fonts for programming, the importance of typographic contrast, and the role of ligatures in code readability. Additionally, it provides insights into the differences between OTF and TTF formats, along with recommendations for font pairing in scholarly and technical contexts. Understanding typography enhances clarity and effectiveness in both educational and software development fields.
+keywords: [Typography, academic writing, programming fonts, readability, monospaced typefaces]
+categories:
+  - Tipografía
+  - Comunicación visual
+tags:
+  - Fuentes clásicas
+  - Tipografías modernas
+  - Tipografía en programación
+  - Legibilidad
+  - Selección tipográfica
+
+# Nota del Autor
+author-note:
+  status-changes: 
+    # Ejemplo: [Nombre del autor] está ahora en [afiliación].
+    affiliation-change: ~
+    # Ejemplo: [Nombre del autor] ha fallecido.
+    deceased: ~
+  # Las divulgaciones se condensan en un párrafo, pero puede iniciar un campo con dos saltos de línea para separarlas: \n\nNew 
+  disclosures:
+    # Ejemplo: Este estudio se registró en X (Identificador Y).
+    study-registration: ~
+    # Reconozca y cite los datos/materiales que se van a compartir.
+    data-sharing: ~
+    # Ejemplo: Este artículo se basa en datos publicados en [Referencia].
+    # Ejemplo: Este artículo se basa en la disertación realizada por [cita].
+    related-report: ~
+    # Ejemplo: [Nombre del autor] ha sido consultor remunerado de la Corporación X, que ha financiado este estudio.
+    conflict-of-interest: El autor no tiene conflictos de interés que revelar.
+    # Ejemplo: Este estudio ha contado con el apoyo de la subvención [Número de subvención] de [Fuente de financiación].
+    financial-support: ~
+    # Ejemplo: Los autores agradecen a [Persona] por [Motivo].
+    gratitude: ~
+    # Ejemplo. Dado que los autores contribuyen por igual, el orden de autoría se determinó mediante el lanzamiento de una moneda al aire.
+    authorship-agreements: ~
+
+description: '' # Texto que se muestra debajo de las etiquetas, no en la página del listado
+# links:
+# - icon: pin-map-fill
+#   name: Collection of maps
+#   url: /project/2024-06-16-ccd-sips #./../talk/2021-03-16-xaringan-deploy-demo/
+# - icon: github
+#   icon_pack: fab
+#   name: R-Ladies template files
+#   url: https://github.com/spcanelon/RLadies-xaringan-template
+eval: false # true(predeterminado): evaluar celda de código, false: no evaluar la celda de código
+# Google Scholar
+# bibliography: mybibliography.bib
+citation:
+  type: article-journal
+  author:
+    - Edison Achalma
+  pdf-url: https://achalmaedison.netlify.app/investigacion-metodologia/posts/2025-01-12-recurso-de-bibliografia-y-documentacion/index.pdf
+date: "01/12/2025"
+draft: false  # Modo de borrador (false = final, true = borrador)
+---
+
+¡Absolutamente! Aquí tienes una tabla comparativa de los tipos de archivos más comunes que generan los software estadísticos y de programación que mencionaste, junto con sus funciones principales y extensiones comunes. Esta tabla te será de gran utilidad para organizar tus archivos de manera eficiente:
+
+| Software    | Tipo de Archivo | Función Principal                                                  | Extensión Común        |
+| ----------- | --------------- | ------------------------------------------------------------------ | ---------------------- |
+| **SPSS**    | Datos           | Almacena datos para análisis                                       | .sav                   |
+|             | Sintaxis        | Contiene comandos para ejecutar análisis                           | .sps                   |
+|             | Salida          | Guarda resultados de análisis                                      | .spv                   |
+|             | Gráficos        | Almacena gráficos generados                                        | .png, .jpg, .bmp       |
+| **Minitab** | Proyecto        | Contiene todo el proyecto, incluyendo datos, análisis y resultados | .mpj                   |
+|             | Hoja de Trabajo | Almacena datos para un análisis específico                         | .mtw                   |
+|             | Sesión          | Registra la sesión de trabajo                                      | .mtw                   |
+|             | Gráficos        | Almacena gráficos generados                                        | .png, .jpg, .bmp       |
+|             | Macro           | Contiene comandos para automatizar tareas                          | .mac                   |
+| **EViews**  | Workfile        | Contiene todos los objetos creados en una sesión                   | .wf1                   |
+|             | Programa        | Contiene código para automatizar tareas                            | .prg                   |
+|             | Datos           | Almacena datos en formato ASCII                                    | .dat                   |
+|             | Serie           | Almacena una serie de tiempo                                       | .ser                   |
+|             | Ecuación        | Almacena una ecuación estimada                                     | .equ                   |
+|             | Sistema         | Almacena un sistema de ecuaciones                                  | .sys                   |
+|             | Gráfico         | Almacena gráficos generados                                        | .wpg                   |
+| **Gretl**   | Datos           | Almacena datos de series de tiempo o de corte transversal          | .gdt                   |
+|             | Resultados      | Guarda resultados de estimaciones                                  | .gph                   |
+|             | Gráficos        | Almacena gráficos generados                                        | .png, .jpg, .pdf       |
+|             | Script          | Contiene comandos de gretl                                         | .gpi                   |
+| **Stata**   | Datos           | Almacena datos para análisis                                       | .dta                   |
+|             | Do-file         | Contiene comandos de Stata                                         | .do                    |
+|             | Log             | Registra la ejecución de comandos                                  | .log                   |
+|             | Resultados      | Almacena resultados de comandos                                    | .smcl                  |
+|             | Gráficos        | Almacena gráficos generados                                        | .gph                   |
+| **Octave**  | Datos           | Matrices y vectores                                                | .mat                   |
+|             | Script          | Contiene código de Octave                                          | .m                     |
+|             | Gráficos        | Almacena gráficos generados                                        | .png, .jpg, .pdf       |
+| **MATLAB**  | Datos           | Matrices y vectores                                                | .mat                   |
+|             | Script          | Contiene código de MATLAB                                          | .m                     |
+|             | Gráficos        | Almacena gráficos generados                                        | .fig, .png, .jpg, .pdf |
+| **Julia**   | Datos           | Matrices y vectores                                                | .jld2                  |
+|             | Script          | Contiene código de Julia                                           | .jl                    |
+|             | Gráficos        | Almacena gráficos generados                                        | .png, .jpg, .pdf       |
+| **R**       | Datos           | Data frames                                                        | .RData                 |
+|             | Script          | Contiene código de R                                               | .R                     |
+|             | Gráficos        | Almacena gráficos generados                                        | .png, .jpg, .pdf       |
+
+**Observaciones:**
+
+- **Extensiones comunes:** Aunque las extensiones pueden variar ligeramente entre diferentes versiones o configuraciones, las mencionadas son las más comunes.
+- **Formatos de datos:** Muchos software pueden importar y exportar datos en diversos formatos (CSV, Excel, etc.), pero sus formatos nativos son los más eficientes.
+- **Scripts:** Los scripts son fundamentales para automatizar tareas y reproducir análisis.
+- **Gráficos:** Los gráficos suelen guardarse en formatos de imagen estándar para su inclusión en informes.
+
+**Recomendaciones adicionales:**
+
+- **Organiza tus archivos:** Crea una estructura de carpetas clara y lógica para cada proyecto.
+- **Utiliza nombres descriptivos:** Facilita la identificación de los archivos.
+- **Realiza copias de seguridad:** Evita la pérdida de datos importantes.
+- **Documenta tu trabajo:** Añade comentarios a tus scripts para explicar el código.
+
+**¿Necesitas más información sobre algún software o tipo de archivo en particular?**
+
+¡Absolutamente! Aquí tienes una matriz que agrupa las extensiones de archivo más comunes utilizadas en software estadístico, según su función principal. Ten en cuenta que algunas extensiones pueden tener usos más específicos o variar ligeramente entre diferentes versiones de software:
+
+| Función Principal            | Extensiones Comunes                 | Software                                              |
+| ---------------------------- | ----------------------------------- | ----------------------------------------------------- |
+| **Datos**                    | .sav, .dta, .gdt, .mtw, .csv, .xlsx | SPSS, Stata, Gretl, Minitab, Excel                    |
+| **Sintaxis/Script**          | .sps, .do, .gpi, .mac, .m, .jl, .R  | SPSS, Stata, Gretl, Minitab, Octave, MATLAB, Julia, R |
+| **Resultados**               | .spv, .smcl, .gph, .mtw, .txt       | SPSS, Stata, Gretl, Minitab                           |
+| **Gráficos**                 | .png, .jpg, .bmp, .pdf, .fig, .wpg  | Casi todos los software                               |
+| **Proyecto/Trabajo**         | .mpj, .wf1                          | Minitab, EViews                                       |
+| **Sesión**                   | .mtw                                | Minitab                                               |
+| **Modelo/Ecuación**          | .equ, .sys                          | EViews                                                |
+| **Datos en formato binario** | .mat, .jld2, .RData                 | MATLAB, Julia, R                                      |
+
+**Explicación de las agrupaciones:**
+
+- **Datos:** Almacenan los conjuntos de datos utilizados para el análisis.
+- **Sintaxis/Script:** Contienen los comandos o código que se ejecutan para realizar los análisis.
+- **Resultados:** Guardan los resultados de los análisis, como tablas, estadísticas y resultados de modelos.
+- **Gráficos:** Almacenan las representaciones visuales de los datos o resultados.
+- **Proyecto/Trabajo:** Contienen toda la información relacionada con un proyecto específico, incluyendo datos, análisis y resultados.
+- **Sesión:** Registran la sesión de trabajo, incluyendo los comandos ejecutados y los resultados obtenidos.
+- **Modelo/Ecuación:** Almacenan modelos estadísticos o ecuaciones estimadas.
+- **Datos en formato binario:** Almacenan datos en un formato optimizado para el software, a menudo utilizado para grandes conjuntos de datos o estructuras de datos complejas.
+
+**Observaciones adicionales:**
+
+- **CSV (Comma Separated Values):** Es un formato de texto plano muy común para intercambiar datos entre diferentes programas.
+- **Excel (.xlsx):** Aunque no está diseñado específicamente para análisis estadístico, se utiliza comúnmente para almacenar y manipular datos.
+- **Otros formatos:** Existen muchos otros formatos de archivo que pueden ser utilizados, dependiendo del software y la tarea específica.
+
+**¿Necesitas más detalles sobre alguna extensión en particular o sobre cómo convertir entre diferentes formatos?**
+
+**Ejemplo de uso:**
+
+Si tienes un archivo de datos en formato .csv y quieres analizarlo en SPSS, puedes importarlo a un nuevo archivo .sav. Luego, escribirías un script .sps para realizar el análisis y guardar los resultados en un archivo .spv. Finalmente, podrías exportar los gráficos generados en formato .png para incluirlos en un informe.
+
+**¿Hay algo más que te gustaría saber sobre los archivos en software estadístico?**
+
+¡Claro! Aquí tienes la misma opción en inglés, pero con algunas palabras más concisas y comunes en el ámbito de la programación y el análisis de datos:
+
+**Option 2: More descriptive words:**
+
+- **Datos:** Data
+- **Sintaxis/Script:** Code
+- **Resultados:** Output
+- **Gráficos:** Graphs
+- **Proyecto:** Project
+- **Sesión:** Session
+- **Modelo:** Model
+- **Binario:** Binary
+
+**A continuación te explicamos por qué se suelen utilizar estos términos:**
+
+- **Datos:** Este es el término más directo para la información en bruto con la que estás trabajando.
+- **Código:** Se refiere a las instrucciones que das al ordenador para realizar cálculos o crear visualizaciones.
+- **Salida:** Es el resultado de ejecutar tu código, como tablas, gráficos o resultados numéricos.
+- **Gráficos:** Este es un término más general para cualquier representación visual de tus datos.
+- **Proyecto:** Se refiere a la colección general de archivos y código relacionados con un análisis específico.
+- **Sesión:** Es un registro de las acciones que realizaste durante un periodo de trabajo específico.
+- **Modelo:** Se refiere a una representación matemática de un fenómeno del mundo real.
+- **Binario:** Se refiere a los datos almacenados en un formato binario, que a menudo se utiliza para la eficiencia.
+
+**¿Quieres que te dé ejemplos de cómo utilizar estos términos en los nombres de los archivos?**
+
+Traducción realizada con la versión gratuita del traductor DeepL.com
+
+{{< include ../../_contenido-inicio.qmd >}}
+
+{{< include ../_contenido_fundamentos-programacion.qmd >}}
+
+{{< include ../../_contenido-final.qmd >}}

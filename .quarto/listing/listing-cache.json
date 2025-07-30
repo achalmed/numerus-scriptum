@@ -1,0 +1,15 @@
+{
+  "listingMap": {
+    "index.qmd": [
+      "bloomberg/*/index.qmd",
+      "cpp/*/index.qmd",
+      "eviews/*/index.qmd",
+      "fundamentos-programacion/*/index.qmd",
+      "latex/*/index.qmd",
+      "matlab/*/index.qmd",
+      "python/*/index.qmd",
+      "r/*/index.qmd",
+      "stata/*/index.qmd"
+    ]
+  }
+}

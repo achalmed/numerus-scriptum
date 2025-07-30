@@ -1,0 +1,336 @@
+{
+  "latex/2015-07-12-01-introduccion-al-latex/index.qmd": {
+    "index.html": "50ec30b9",
+    "index.tex": "85666b91",
+    "index.docx": "568077ee"
+  },
+  "latex/2015-07-16-05-presentaciones-en-beamer/index.qmd": {
+    "index.html": "2b441a80",
+    "index.tex": "baa43402",
+    "index.docx": "b5e9b418"
+  },
+  "latex/2015-07-17-06-tikz/index.qmd": {
+    "index.html": "f6365394",
+    "index.tex": "3037bd7c",
+    "index.docx": "d8051992"
+  },
+  "latex/2015-07-13-02-latex-y-matematica/index.qmd": {
+    "index.html": "1fd4e5fb",
+    "index.tex": "2cf99286",
+    "index.docx": "baf06ec5"
+  },
+  "latex/2015-07-14-03-latex-como-editor-de-texto/index.qmd": {
+    "index.html": "cd71d1d4",
+    "index.tex": "8e2fdde3",
+    "index.docx": "01783b94"
+  },
+  "latex/2015-07-15-04-latex-y-referencias/index.qmd": {
+    "index.html": "dca851f7",
+    "index.tex": "b58d6819",
+    "index.docx": "d8c869bf"
+  },
+  "stata/2022-06-27-05-modelos-de-seleccion-discreta/index.qmd": {
+    "index.html": "1688f113",
+    "index.tex": "38e360bd",
+    "index.docx": "fa0efa96"
+  },
+  "stata/2022-06-13-03-data-visualization/index.qmd": {
+    "index.html": "802cabc9",
+    "index.tex": "8e137738",
+    "index.docx": "1904363d"
+  },
+  "stata/2022-07-04-06-series-de-tiempo/index.qmd": {
+    "index.html": "ca282f27",
+    "index.tex": "419c05f5",
+    "index.docx": "7df7639e"
+  },
+  "stata/2022-06-06-02-manipulando-los-datos/index.qmd": {
+    "index.html": "ce4ebcc7",
+    "index.tex": "aed1c149",
+    "index.docx": "16bd2cc2"
+  },
+  "stata/2022-05-30-01-introduccion-al-programa/index.qmd": {
+    "index.html": "671dede3",
+    "index.tex": "5a11e505",
+    "index.docx": "be9320a1"
+  },
+  "stata/2022-07-18-08-modelos-de-evaluacion-de-impacto/index.qmd": {
+    "index.html": "631b28a9",
+    "index.tex": "1761cdfc",
+    "index.docx": "39532125"
+  },
+  "stata/2024-03-31-por-editar/index.qmd": {
+    "index.html": "e14a9f55",
+    "index.tex": "f71e1647",
+    "index.docx": "133ab5d4"
+  },
+  "stata/2022-07-11-07-paneles-de-datos/index.qmd": {
+    "index.html": "17463c7f",
+    "index.tex": "df06160b",
+    "index.docx": "723562d8"
+  },
+  "stata/2022-06-20-04-regresiones/index.qmd": {
+    "index.html": "cbe6ca01",
+    "index.tex": "6e265493",
+    "index.docx": "f0875ef7"
+  },
+  "cpp/2024-03-31-por-editar/index.qmd": {
+    "index.html": "1218f448",
+    "index.tex": "847896e0",
+    "index.docx": "eb735861"
+  },
+  "eviews/2022-02-07-05-objetos-avanzados/index.qmd": {
+    "index.html": "21140e4f",
+    "index.tex": "6f7f5d91",
+    "index.docx": "787a4576"
+  },
+  "eviews/2021-09-06-02-empleo-de-bucles-y-variables-temporales/index.qmd": {
+    "index.html": "cc66c6f4",
+    "index.tex": "2520e864",
+    "index.docx": "791e8513"
+  },
+  "eviews/2022-02-14-06-empleo-de-subrutinas/index.qmd": {
+    "index.html": "aeb55b63",
+    "index.tex": "33120111",
+    "index.docx": "32d0b3a9"
+  },
+  "eviews/2021-08-30-01-introduccion-a-la-programacion-con-eviews/index.qmd": {
+    "index.html": "31296d16",
+    "index.tex": "2f6e25a9",
+    "index.docx": "b4e80ad6"
+  },
+  "eviews/2024-03-31-por-editar/index.qmd": {
+    "index.html": "e57222cc",
+    "index.tex": "73c5e839",
+    "index.docx": "d334719f"
+  },
+  "eviews/2021-09-13-03-metodos-de-estimacion-objeto-equatio-objeto-table/index.qmd": {
+    "index.html": "08bbbe27",
+    "index.tex": "b8871d8c",
+    "index.docx": "1efdca49"
+  },
+  "eviews/2022-02-21-07-modelacion/index.qmd": {
+    "index.html": "ea35384b",
+    "index.tex": "bce795bd",
+    "index.docx": "5a41eb83"
+  },
+  "index.qmd": {
+    "index.html": "8d4d53fc"
+  },
+  "SECURITY.md": {
+    "SECURITY.html": "6fd3f4d6"
+  },
+  "matlab/2022-10-03-11-aplicaciones/index.qmd": {
+    "index.html": "8ab82f6e",
+    "index.tex": "ea6ab0fd",
+    "index.docx": "184f55f4"
+  },
+  "matlab/2022-08-01-02-elementos-basicos-en-matlab-i/index.qmd": {
+    "index.html": "aa3a29ae",
+    "index.tex": "e18e81fc",
+    "index.docx": "88adb650"
+  },
+  "matlab/2022-08-15-04-programacion-en-matlab/index.qmd": {
+    "index.html": "fb5fa8fa",
+    "index.tex": "a72c4cf4",
+    "index.docx": "2ac6db0d"
+  },
+  "matlab/2022-08-22-05-visualizacion-de-datos-en-matlab/index.qmd": {
+    "index.html": "e95f2832",
+    "index.tex": "22055455",
+    "index.docx": "7c00c265"
+  },
+  "matlab/2022-09-12-08-tipos-de-datos-heterogeneos/index.qmd": {
+    "index.html": "0898123a",
+    "index.tex": "6ad48051",
+    "index.docx": "056aef37"
+  },
+  "matlab/2022-08-08-03-elementos-basicos-en-matlab-ii/index.qmd": {
+    "index.html": "d9f51e32",
+    "index.tex": "38b6f318",
+    "index.docx": "53f5b1a3"
+  },
+  "matlab/2022-09-05-07-metodos-numericos/index.qmd": {
+    "index.html": "ce72c960",
+    "index.tex": "2822e1a5",
+    "index.docx": "f780cbd5"
+  },
+  "matlab/2022-07-25-01-primeros-pasos-en-matlab/index.qmd": {
+    "index.html": "51d0c4e1",
+    "index.tex": "59439697",
+    "index.docx": "db0ae032"
+  },
+  "matlab/2022-09-19-09-funciones-avanzadas/index.qmd": {
+    "index.html": "85d26c4b",
+    "index.tex": "7a4065be",
+    "index.docx": "58f6e702"
+  },
+  "matlab/2022-09-26-10-toolbox-optimization/index.qmd": {
+    "index.html": "4b581440",
+    "index.tex": "3ea9d7cc",
+    "index.docx": "52184e10"
+  },
+  "matlab/2022-08-29-06-sentencias-de-control/index.qmd": {
+    "index.html": "f40c98d8",
+    "index.tex": "3f4f83c1",
+    "index.docx": "90e68a40"
+  },
+  "python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python/index.qmd": {
+    "index.html": "62544af4",
+    "index.tex": "f77cfb36",
+    "index.docx": "6345ba2b"
+  },
+  "python/2021-06-14-04-ejecucion-condicional-con-python/index.qmd": {
+    "index.html": "ceff4a40",
+    "index.tex": "ceb81930",
+    "index.docx": "06fcf759"
+  },
+  "python/2020-06-19-instalacion-de-anaconda/index.qmd": {
+    "index.html": "fee020b2",
+    "index.tex": "498d7488",
+    "index.docx": "640ae34f"
+  },
+  "python/2021-06-07-03-objetos-de-python/index.qmd": {
+    "index.html": "1f3ecd55",
+    "index.tex": "9b375c96",
+    "index.docx": "c2512fb0"
+  },
+  "python/2021-04-17-01-introducion-a-la-programacion-con-python/index.qmd": {
+    "index.html": "d7def9af",
+    "index.tex": "6fb7ac60",
+    "index.docx": "2d7fcaa0"
+  },
+  "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.qmd": {
+    "index.html": "a4ba4580",
+    "index.tex": "d3781cbd",
+    "index.docx": "0e2e6b4a"
+  },
+  "python/2025-05-10-visualizacion-de-datos-con-python/index.qmd": {
+    "index.html": "f08bfa60",
+    "index.tex": "5d1d8717",
+    "index.docx": "ac159306"
+  },
+  "python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python/index.qmd": {
+    "index.html": "47dbbc7e",
+    "index.tex": "05353b94",
+    "index.docx": "83cba154"
+  },
+  "python/2021-08-16-06-funciones-con-python/index.qmd": {
+    "index.html": "dd529551",
+    "index.tex": "134ffaf3",
+    "index.docx": "67f4ce97"
+  },
+  "python/2021-08-23-07-dataframes-con-python/index.qmd": {
+    "index.html": "c0605174",
+    "index.tex": "b5bb33df",
+    "index.docx": "dd298c77"
+  },
+  "python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python/index.qmd": {
+    "index.html": "c1c29946",
+    "index.tex": "947984e2",
+    "index.docx": "fb86fc4e"
+  },
+  "python/2022-10-31-11-validacion-cruzada-y-composicion-del-modelo-con-python/index.qmd": {
+    "index.html": "3a78e3c5",
+    "index.tex": "14df7781",
+    "index.docx": "3fc4c1e7"
+  },
+  "python/2021-05-31-02-variables-expresiones-y-statements-con-python/index.qmd": {
+    "index.html": "488e1b7d",
+    "index.tex": "d4355e6f",
+    "index.docx": "2fa3e775"
+  },
+  "python/2021-06-21-05-iteraciones-con-python/index.qmd": {
+    "index.html": "380d53e5",
+    "index.tex": "2b8a76af",
+    "index.docx": "fc5210d2"
+  },
+  "404.qmd": {
+    "404.html": "264e95fb"
+  },
+  "r/2020-06-10-013-lo-que-debemos-saber-de-r/index.qmd": {
+    "index.html": "46084943",
+    "index.tex": "a1eb6af3",
+    "index.docx": "11250a18"
+  },
+  "r/2020-06-10-011-instalacion-de-r/index.qmd": {
+    "index.html": "2d4def62",
+    "index.tex": "40b632f5",
+    "index.docx": "91b3f66c"
+  },
+  "r/2020-06-10-012-que-ofrece-r/index.qmd": {
+    "index.html": "001dc445",
+    "index.tex": "900159cb",
+    "index.docx": "337dbf30"
+  },
+  "r/2021-04-05-02-manipulacion-de-datos/index.qmd": {
+    "index.html": "b57aa0b6",
+    "index.tex": "fb1f7972",
+    "index.docx": "52132df1"
+  },
+  "r/2021-04-12-03-visualizacion-de-datos/index.qmd": {
+    "index.html": "548f1f71",
+    "index.tex": "7e633f10",
+    "index.docx": "d9b19c58"
+  },
+  "r/2022-11-07-04-modelo-de-machine-learning-i-analisis-exploratorio/index.qmd": {
+    "index.html": "7573e1a4",
+    "index.tex": "3a0d82b4",
+    "index.docx": "c5afd7cc"
+  },
+  "r/2021-03-027-01-introduccion-al-programa/index.qmd": {
+    "index.html": "3443bfc6",
+    "index.tex": "9f8d4ca0",
+    "index.docx": "e65cb76d"
+  },
+  "r/2022-11-21-06-modelo-de-machine-learning-iii-modelo-de-regresion/index.qmd": {
+    "index.html": "f4188928",
+    "index.tex": "88b1ce50",
+    "index.docx": "e45913e3"
+  },
+  "r/2022-11-28-07-modelo-de-machine-learning-iv-tex-mining/index.qmd": {
+    "index.html": "0c0140d0",
+    "index.tex": "0f3ba8c7",
+    "index.docx": "038e339e"
+  },
+  "r/2022-11-14-05-modelo-de-machine-learning-ii-modelo-de-clasificacion/index.qmd": {
+    "index.html": "fd105244",
+    "index.tex": "a03ab91d",
+    "index.docx": "734de903"
+  },
+  "fundamentos-programacion/2018-06-09-typografia/index.qmd": {
+    "index.html": "85fac460",
+    "index.tex": "7be4d9c2",
+    "index.docx": "8aa583c2"
+  },
+  "fundamentos-programacion/2019-08-13-organizando-tipos-de-archivos-de-softwares/index.qmd": {
+    "index.html": "d71066e9",
+    "index.tex": "3ebbc556",
+    "index.docx": "ff9cdc97"
+  },
+  "fundamentos-programacion/2021-01-04-01-pensamiento-logico/index.qmd": {
+    "index.html": "42cd05e0",
+    "index.tex": "c5b9b1bf",
+    "index.docx": "608f1c1b"
+  },
+  "fundamentos-programacion/2021-01-11-02-introduccion-a-los-algoritmos/index.qmd": {
+    "index.html": "bb94074c",
+    "index.tex": "7ed0ef8c",
+    "index.docx": "3fef258f"
+  },
+  "fundamentos-programacion/2024-03-31-por-editar/index.qmd": {
+    "index.html": "8dcb6bd9",
+    "index.tex": "4d6e6237",
+    "index.docx": "3a7ec769"
+  },
+  "fundamentos-programacion/2021-01-18-03-programacion-basica-en-html/index.qmd": {
+    "index.html": "b10b9d3d",
+    "index.tex": "463dcde6",
+    "index.docx": "6ad72d71"
+  },
+  "bloomberg/2024-03-31-por-editar/index.qmd": {
+    "index.html": "b2cff532",
+    "index.tex": "eab745cf",
+    "index.docx": "fcdfb6d2"
+  }
+}

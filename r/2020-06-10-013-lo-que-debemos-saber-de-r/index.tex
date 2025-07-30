@@ -1,0 +1,816 @@
+\documentclass[
+  jou,
+  floatsintext,
+  longtable,
+  a4paper,
+  nolmodern,
+  notxfonts,
+  notimes,
+  colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{apa7}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+
+
+\usepackage[bidi=default]{babel}
+\babelprovide[main,import]{spanish}
+
+
+\babelfont{rm}[,RawFeature={fallback=mainfontfallback}]{Latin Modern
+Roman}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+
+\RequirePackage{longtable}
+\RequirePackage{threeparttablex}
+
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-.5em}%
+	{\normalfont\normalsize\bfseries\typesectitle}}
+
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{0.5em}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-\z@\relax}%
+	{\normalfont\normalsize\bfseries\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
+
+
+
+\usepackage{longtable, booktabs, multirow, multicol, colortbl, hhline, caption, array, float, xpatch}
+\usepackage{subcaption}
+
+
+\renewcommand\thesubfigure{\Alph{subfigure}}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,theorems, breakable, skins}
+\usepackage{fontawesome5}
+
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{ACACAC}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582EC}
+\definecolor{quarto-callout-important-color-frame}{HTML}{D9534F}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{F0AD4E}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02B875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{FD7E14}
+
+%\newlength\Oldarrayrulewidth
+%\newlength\Oldtabcolsep
+
+
+\usepackage{hyperref}
+
+
+
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+
+
+\usepackage{fontspec} 
+
+\defaultfontfeatures{Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+
+  \setmainfont[,RawFeature={fallback=mainfontfallback}]{Latin Modern
+Roman}
+
+
+
+
+\title{Lo que debemos saber de R: Explorando las capacidades de R y su
+uso en el entorno Linux}
+
+
+\shorttitle{Editar}
+
+
+\usepackage{etoolbox}
+
+
+
+\ccoppy{\textcopyright~2020}
+
+
+
+\author{Edison Achalma}
+
+
+
+\affiliation{
+{Escuela Profesional de Economía, Universidad Nacional de San Cristóbal
+de Huamanga}}
+
+
+
+
+\leftheader{Achalma}
+
+\date{2020-06-10}
+
+
+\abstract{Primer parrafo de abstrac }
+
+\keywords{keyword1, keyword2}
+
+\authornote{\par{\addORCIDlink{Edison Achalma}{0000-0001-6996-3364}} 
+\par{ }
+\par{   El autor no tiene conflictos de interés que revelar.    Los
+roles de autor se clasificaron utilizando la taxonomía de roles de
+colaborador (CRediT; https://credit.niso.org/) de la siguiente
+manera:  Edison Achalma:   conceptualización, redacción}
+\par{La correspondencia relativa a este artículo debe dirigirse a Edison
+Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
+}
+
+\usepackage{pbalance}
+% \usepackage{float}
+\makeatletter
+\let\oldtpt\ThreePartTable
+\let\endoldtpt\endThreePartTable
+\def\ThreePartTable{\@ifnextchar[\ThreePartTable@i \ThreePartTable@ii}
+\def\ThreePartTable@i[#1]{\begin{figure}[!htbp]
+\onecolumn
+\begin{minipage}{0.485\textwidth}
+\oldtpt[#1]
+}
+\def\ThreePartTable@ii{\begin{figure}[!htbp]
+\onecolumn
+\begin{minipage}{0.48\textwidth}
+\oldtpt
+}
+\def\endThreePartTable{
+\endoldtpt
+\end{minipage}
+\twocolumn
+\end{figure}}
+\makeatother
+
+
+\makeatletter
+\let\endoldlt\endlongtable		
+\def\endlongtable{
+\hline
+\endoldlt}
+\makeatother
+
+\newenvironment{twocolumntable}% environment name
+{% begin code
+\begin{table*}[!htbp]%
+\onecolumn%
+}%
+{%
+\twocolumn%
+\end{table*}%
+}% end code
+
+\urlstyle{same}
+
+
+
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{acacac}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582ec}
+\definecolor{quarto-callout-important-color-frame}{HTML}{d9534f}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{f0ad4e}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02b875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{fd7e14}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Tabla de contenidos}
+\else
+  \newcommand\contentsname{Tabla de contenidos}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figura}
+\else
+  \newcommand\figurename{Figura}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Tabla}
+\else
+  \newcommand\tablename{Tabla}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\makeatother
+
+% From https://tex.stackexchange.com/a/645996/211326
+%%% apa7 doesn't want to add appendix section titles in the toc
+%%% let's make it do it
+\makeatletter
+\xpatchcmd{\appendix}
+  {\par}
+  {\addcontentsline{toc}{section}{\@currentlabelname}\par}
+  {}{}
+\makeatother
+
+%% Disable longtable counter
+%% https://tex.stackexchange.com/a/248395/211326
+
+\usepackage{etoolbox}
+
+\makeatletter
+\patchcmd{\LT@caption}
+  {\bgroup}
+  {\bgroup\global\LTpatch@captiontrue}
+  {}{}
+\patchcmd{\longtable}
+  {\par}
+  {\par\global\LTpatch@captionfalse}
+  {}{}
+\apptocmd{\endlongtable}
+  {\ifLTpatch@caption\else\addtocounter{table}{-1}\fi}
+  {}{}
+\newif\ifLTpatch@caption
+\makeatother
+
+\begin{document}
+
+\maketitle
+
+\hypertarget{toc}{}
+\tableofcontents
+\newpage
+\section[Introduction]{Lo que debemos saber de R}
+
+\setcounter{secnumdepth}{5}
+
+\setlength\LTleft{0pt}
+
+
+\section{Lo que debemos saber}\label{lo-que-debemos-saber}
+
+\subsection{Tipos de datos}\label{tipos-de-datos}
+
+En R, es fundamental comprender los diferentes tipos de datos
+disponibles. A continuación, exploraremos los tres tipos básicos de
+datos en R y cómo se utilizan en la programación.
+
+\subsubsection{1. Tipos de datos
+numéricos}\label{tipos-de-datos-numuxe9ricos}
+
+Los datos numéricos en R se dividen en dos tipos principales:
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  Números reales, se conoce como \texttt{double}. Estos son los números
+  más comunes y se utilizan para representar valores decimales. Por
+  ejemplo, 3.14 y 2.71828 son números reales en R. La precisión de los
+  números reales en R depende de la máquina en la que se ejecuta el
+  programa.
+\item
+  Números enteros, se conoce como \texttt{integer}. Estos son números
+  que no contienen decimales y se utilizan para representar valores
+  enteros. Por ejemplo, 1, 2, -5 son ejemplos de números enteros en R.
+  Los números enteros se utilizan cuando no se requiere precisión
+  decimal.
+\end{enumerate}
+
+\subsubsection{2. Tipo de datos lógico}\label{tipo-de-datos-luxf3gico}
+
+El tipo de dato lógico en R se conoce como \texttt{booleano}. Este tipo
+de dato puede tener uno de dos valores: TRUE o FALSE. Los valores
+booleanos se utilizan principalmente para realizar operaciones de
+comparación y evaluación lógica en los programas. Por ejemplo, se puede
+usar una expresión lógica para verificar si una condición es verdadera o
+falsa.
+
+\subsubsection{3. Tipo de datos
+carácter}\label{tipo-de-datos-caruxe1cter}
+
+El tipo de dato carácter en R se utiliza para almacenar letras
+\texttt{text} y símbolos \texttt{strings}. Los datos de tipo carácter se
+definen utilizando comillas simples ('\,`) o comillas dobles (``\,``).
+Por ejemplo,''Hola'' y 'RStudio' son ejemplos de datos de tipo carácter
+en R. Los datos de tipo carácter se utilizan con frecuencia para
+almacenar texto legible por humanos, como nombres, descripciones o
+mensajes.
+
+\begin{quote}
+Es importante comprender estos tipos de datos en R, ya que nos permiten
+manipular y realizar operaciones en los datos de manera adecuada. Cada
+tipo de dato tiene sus propias características y funciones asociadas que
+nos permiten realizar tareas específicas en la programación.
+\end{quote}
+
+\subsection{Estructura de datos}\label{estructura-de-datos}
+
+Las estructuras de datos nos permiten organizar y manipular la
+información de manera eficiente. A continuación, exploraremos las
+principales estructuras de datos disponibles en R y cómo se utilizan en
+la programación.
+
+\subsubsection{1. Escalar}\label{escalar}
+
+Un escalar es un dato individual, como un número o una palabra, que no
+está agrupado con otros elementos. En R, los escalares pueden ser de
+diferentes tipos de datos, como numéricos, lógicos o caracteres. Estos
+datos se utilizan cuando solo necesitamos almacenar una única
+observación.
+
+\subsubsection{2. Vector}\label{vector}
+
+Un vector es una colección ordenada de elementos del mismo tipo de dato.
+Puede contener números, valores lógicos o caracteres. En R, los vectores
+son utilizados para almacenar conjuntos de datos relacionados. Por
+ejemplo, podemos tener un vector de edades o un vector de nombres. Los
+vectores son una de las estructuras de datos más utilizadas en R y nos
+permiten realizar operaciones y cálculos de manera eficiente.
+
+\textbf{Vectores}
+
+Concatenación de elementos con \textbf{\texttt{c()}}: Se utiliza la
+función \texttt{c()} para concatenar elementos y crear vectores en R.
+
+\textbf{Acciones con vectores}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Asignar los vectores a nombres:
+
+  Creamos un vector llamado ``dbl'' que contiene los números decimales
+  0.5, 0.6 y 0.25.
+
+  Creamos un vector llamado ``chr'' que contiene los caracteres ``a'',
+  ``b'' y ``c''.
+\item
+  Imprimir los vectores ``dbl'' y ``chr'' en la consola:
+
+  Visualizamos en la consola el contenido del vector ``dbl'', que son
+  los números decimales 0.5, 0.6 y 0.25.
+
+  Visualizamos en la consola el contenido del vector ``chr'', que son
+  los caracteres ``a'', ``b'' y ``c''.
+\item
+  Verificar el número de elementos en ``dbl'' y ``chr'':
+
+  Calculamos y mostramos en la consola la longitud del vector ``dbl'',
+  que es 3.
+
+  Calculamos y mostramos en la consola la longitud del vector ``chr'',
+  que es 3.
+\item
+  Verificar el tipo de dato de ``dbl'' y ``chr'':
+
+  Visualizamos en la consola el tipo de dato del vector ``dbl'', que es
+  ``double'' (números decimales).
+
+  Visualizamos en la consola el tipo de dato del vector ``chr'', que es
+  ``character'' (caracteres).
+\item
+  Combinar dos vectores:
+
+  Se puede combinar el vector ``dbl'' consigo mismo utilizando la
+  función ``c()'', creando un nuevo vector que contiene los elementos
+  duplicados del vector original.
+
+  Tambien se puede combina el vector ``dbl'' con el vector ``chr''
+  utilizando la función ``c()'', creando un nuevo vector que contiene
+  los elementos de ambos vectores concatenados.
+\end{enumerate}
+
+\begin{tcolorbox}[enhanced jigsaw, opacityback=0, bottomrule=.15mm, toptitle=1mm, bottomtitle=1mm, breakable, left=2mm, titlerule=0mm, arc=.35mm, leftrule=.75mm, colback=white, coltitle=black, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Nota}, opacitybacktitle=0.6, toprule=.15mm, rightrule=.15mm]
+
+El cambio automático del tipo de datos del vector resultante se denomina
+coerción. La coerción garantiza que se mantiene el mismo tipo de datos
+para cada elemento del vector.
+
+\end{tcolorbox}
+
+\textbf{Operaciones aritméticas con vectores}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Definamos dos nuevos vectores numéricos llamados \texttt{a} y
+  \texttt{b} con 4 elementos cada uno:
+\item
+  Realizamos una multiplicación escalar de \texttt{a} por 5, lo que
+  significa que cada elemento en \texttt{a} se multiplica por 5:
+\item
+  Realizamos una multiplicación de vectores entre \texttt{a} y
+  \texttt{b}, lo que implica multiplicar cada elemento en \texttt{a} por
+  el elemento correspondiente en \texttt{b}:
+\item
+  Creamos un nuevo vector numérico llamado \texttt{v} con longitud 5.
+\end{enumerate}
+
+\begin{tcolorbox}[enhanced jigsaw, opacityback=0, bottomrule=.15mm, toptitle=1mm, bottomtitle=1mm, breakable, left=2mm, titlerule=0mm, arc=.35mm, leftrule=.75mm, colback=white, coltitle=black, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Nota}, opacitybacktitle=0.6, toprule=.15mm, rightrule=.15mm]
+
+Las operaciones aritméticas de los vectores se realizan por elementos.
+si dos vectores no tienen la misma longitud, el vector más corto se
+reciclará para que coincida con el más largo (en este caso, se vuelve a
+utilizar el primer elemento de a).
+
+\end{tcolorbox}
+
+\subsubsection{3. Matriz}\label{matriz}
+
+Una matriz es una estructura bidimensional que contiene elementos
+organizados en filas y columnas. Todos los elementos de una matriz deben
+ser del mismo tipo de dato. Las matrices son útiles para almacenar datos
+tabulares, como una tabla de datos con variables en filas y
+observaciones en columnas. En R, podemos realizar operaciones
+matriciales y manipular los datos de manera eficiente utilizando esta
+estructura.
+
+\textbf{Matrices}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Combinamos los vectores \texttt{a} y \texttt{b}, definidas
+  anteriormente, por columnas utilizando la función \texttt{cbind()}:
+
+  Esta opción combina los vectores \texttt{a} y \texttt{b} por columnas,
+  creando una matriz \texttt{A} donde los elementos de \texttt{a} forman
+  la primera columna y los elementos de \texttt{b} forman la segunda
+  columna.
+\item
+  Combinamos los vectores \texttt{a} y \texttt{b} por filas utilizando
+  la función \texttt{rbind()}:
+
+  En esta opción, los vectores \texttt{a} y \texttt{b} se combinan por
+  filas para crear una matriz \texttt{B}. Los elementos de \texttt{a}
+  forman la primera fila y los elementos de \texttt{b} forman la segunda
+  fila.
+\item
+  Creamos una matriz a partir de los elementos de vector \texttt{a}
+  utilizando la función \texttt{matrix()}:
+
+  Aquí se utiliza la función \texttt{matrix()} para crear una matriz
+  \texttt{A} a partir de los elementos del vector \texttt{a}. Se
+  especifica que la matriz tendrá 2 columnas y 2 filas. Los argumentos
+  nrow y ncol indican el número de filas y el número de columnas de que
+  consta la matriz resultante.
+\item
+  Para 4 elementos y ncol =2 la matriz sólo puede tener 2 filas. Por lo
+  tanto no es necesario especificar ambos argumentos
+
+  En esta variante, se crea una matriz \texttt{A} con 2 columnas y se
+  ajusta automáticamente el número de filas según la longitud del vector
+  \texttt{a}.
+\item
+  Por defecto la matriz se rellena columna a columna (R trata
+  internamente un objeto matriz como vector columna). si la matriz debe
+  rellenarse fila a fila se requiere el argumento
+  \texttt{byrow\ =\ TRUE}
+
+  En esta opción, se crea una matriz \texttt{B} con 2 columnas y se
+  especifica que los elementos del vector \texttt{a} se distribuirán por
+  filas \texttt{byrow\ =\ TRUE}, es decir, los primeros elementos de
+  \texttt{a} formarán la primera fila, los siguientes elementos formarán
+  la segunda fila, y así sucesivamente.
+\end{enumerate}
+
+\textbf{Acciones con matrices}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Verificamos el número de filas de la matriz \texttt{A} utilizando la
+  función \texttt{nrow()}:
+
+  Esta línea de código devuelve el número de filas de la matriz
+  \texttt{A}.
+\item
+  Verificamos el número de columnas de la matriz \texttt{A} utilizando
+  la función \texttt{ncol()}:
+
+  Aquí se obtiene el número de columnas de la matriz \texttt{A}.
+\item
+  Verificamos la dimensión (número de filas y columnas) de la matriz
+  \texttt{A} utilizando la función \texttt{dim()}:
+
+  Esta línea de código devuelve la dimensión de la matriz \texttt{A} en
+  formato \texttt{{[}nrow,\ ncol{]}}.
+\item
+  Combinamos dos matrices \texttt{A} por columnas utilizando la función
+  \texttt{cbind()} y almacenamos el resultado en \texttt{D.wide}:
+
+  En esta línea se crea una nueva matriz \texttt{D.wide} que combina las
+  matrices \texttt{A} y \texttt{A} por columnas.
+\item
+  Combinamos dos matrices \texttt{A} por filas utilizando la función
+  \texttt{rbind()} y almacenamos el resultado en \texttt{D.long}:
+
+  Aquí se crea una nueva matriz \texttt{D.long} que combina las matrices
+  \texttt{A} y \texttt{A} por filas.
+\item
+  Combinamos las matrices \texttt{D.wide} y \texttt{D.long} por columnas
+  utilizando la función \texttt{cbind()} y almacenamos el resultado en
+  \texttt{D}:
+
+  En esta línea se crea una nueva matriz \texttt{D} que combina las
+  matrices \texttt{D.wide} y \texttt{D.long} por columnas.
+\end{enumerate}
+
+\textbf{Operaciones aritméticas con matrices}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Suma de la matriz \texttt{B} consigo misma utilizando el operador
+  \texttt{+}:
+
+  Esta línea de código realiza la suma de la matriz \texttt{B} con ella
+  misma.
+\item
+  Multiplicación escalar de la matriz \texttt{B} por 2 utilizando el
+  operador \texttt{*}:
+
+  Aquí se realiza la multiplicación de cada elemento de la matriz
+  \texttt{B} por 2.
+\item
+  Multiplicación elemento a elemento de la matriz \texttt{B} consigo
+  misma y almacenar el resultado en \texttt{a}:
+
+  En esta línea se realiza la multiplicación elemento a elemento de la
+  matriz \texttt{B} con ella misma, y el resultado se almacena en la
+  matriz \texttt{a}.
+\item
+  Multiplicación de matrices utilizando el operador \texttt{\%*\%}:
+
+  Aquí se realiza la multiplicación de matrices entre la matriz
+  \texttt{B} y ella misma, y el resultado se almacena en la matriz
+  \texttt{C}.
+\end{enumerate}
+
+\textbf{Otras operaciones con matrices:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Transposición de la matriz \texttt{D.wide} utilizando la función
+  \texttt{t()}:
+
+  Esta línea de código transpone la matriz \texttt{D.wide}, es decir,
+  intercambia las filas por columnas y viceversa.
+\item
+  Cálculo del determinante de la matriz \texttt{B} utilizando la función
+  \texttt{det()}:
+
+  Aquí se calcula el determinante de la matriz \texttt{B}.
+\item
+  Cálculo de la inversa de la matriz \texttt{B} utilizando la función
+  \texttt{solve()} (solo si el determinante es diferente de 0):
+
+  En esta línea se calcula la inversa de la matriz \texttt{B}, siempre y
+  cuando el determinante sea diferente de 0.
+\item
+  Cálculo de los valores propios (eigenvalues) de una matriz cuadrada y
+  simétrica utilizando la función \texttt{eigen()}:
+
+  Aquí se calculan los valores propios de la matriz \texttt{B}. Esta
+  operación solo es aplicable a matrices cuadradas y simétricas.
+\end{enumerate}
+
+\subsubsection{4. Data frame}\label{data-frame}
+
+Un data frame es una estructura similar a una matriz, pero más flexible.
+Puede contener columnas con diferentes tipos de datos, lo que lo hace
+ideal para almacenar conjuntos de datos heterogéneos. Los data frames
+son muy utilizados en el análisis de datos, ya que nos permiten
+manipular y explorar datos de manera eficiente. Podemos realizar
+operaciones de filtrado, selección y transformación en los data frames
+para obtener información significativa.
+
+\textbf{Creación del data frame:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Creamos vectores con diferentes tipos de datos, como números decimales
+  (\texttt{dbl}), números enteros (\texttt{int}), valores lógicos
+  (\texttt{lgl}) y caracteres (\texttt{chr}):
+
+  Cada vector tiene elementos que representan valores de su respectivo
+  tipo de dato.
+\item
+  Utilizamos la función \texttt{data.frame()} para combinar los vectores
+  en un data frame llamado \texttt{df}:
+
+  El data frame \texttt{df} se crea utilizando los vectores
+  \texttt{dbl}, \texttt{int}, \texttt{lgl} y \texttt{chr} como columnas.
+\item
+  Mostamos el contenido del data frame en la consola:
+
+  Esto imprime el contenido del data frame \texttt{df}.
+\end{enumerate}
+
+\textbf{Acciones con data frames:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Verificamos el número de filas del data frame utilizando la función
+  \texttt{nrow()}:
+
+  Esta línea de código devuelve el número de filas en el data frame
+  \texttt{df}.
+\item
+  Verificamos el número de columnas del data frame utilizando la función
+  \texttt{ncol()}:
+
+  Aquí se obtiene el número de columnas en el data frame \texttt{df}.
+\item
+  Verificamos la dimensión (número de filas y columnas) del data frame
+  utilizando la función \texttt{dim()}:
+
+  Esta línea de código devuelve la dimensión del data frame \texttt{df}
+  en formato \texttt{{[}nrow,\ ncol{]}}, es decir, el número de filas y
+  columnas que tiene el data frame.
+\end{enumerate}
+
+\subsubsection{5. Lista}\label{lista}
+
+Una lista es una estructura de datos genérica que puede contener
+diferentes objetos, como vectores, matrices, data frames o incluso otras
+listas. A diferencia de las otras estructuras, las listas no tienen
+restricciones en cuanto a los tipos de datos o la longitud de los
+componentes individuales. Las listas son muy flexibles y se utilizan
+cuando necesitamos almacenar objetos de diferentes tipos o estructuras
+complejas.
+
+\textbf{Creación de la lista}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Creamos una variable \texttt{a} que contiene un \textbf{escalar} de
+  tipo entero (\texttt{1L}):
+\item
+  Creamos un \textbf{vector numérico} \texttt{dbl} con 5 elementos:
+\item
+  Creamos un \textbf{vector de caracteres} \texttt{chr} con 3 elementos:
+\item
+  Creamos un vector \texttt{v} con 4 elementos de tipo numérico:
+\item
+  Creamos una matriz \texttt{mat} de tamaño 2x2 a partir del vector
+  \texttt{v}:
+
+  La matriz \texttt{mat} tiene 2 columnas y los elementos del vector
+  \texttt{v} se llenan por columnas.
+\item
+  Creamos una lista \texttt{l} que contiene los elementos \texttt{a},
+  \texttt{dbl}, \texttt{chr} y \texttt{mat}:
+
+  La lista \texttt{l} contiene estos elementos en ese orden.
+\item
+  Finalmente, visualizamos el contenido de la lista en la consola:
+
+  Esto imprime el contenido de la lista \texttt{l}.
+\end{enumerate}
+
+\begin{quote}
+Es importante comprender estas estructuras de datos en R, ya que nos
+permiten organizar y manipular la información de manera efectiva. Cada
+estructura tiene sus propias características y funciones asociadas que
+nos facilitan el trabajo con los datos en la programación.
+\end{quote}
+
+\section{Publicaciones Similares}\label{publicaciones-similares}
+
+Si te interesó este artículo, te recomendamos que explores otros blogs y
+recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo
+algunas sugerencias:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{https://achalmaedison.netlify.app/programacion-software/r/2020-06-10-011-instalacion-de-r/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/programacion-software/r/2020-06-10-011-instalacion-de-r}{011
+  Instalacion De R}
+\item
+  \href{https://achalmaedison.netlify.app/programacion-software/r/2020-06-10-012-que-ofrece-r/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/programacion-software/r/2020-06-10-012-que-ofrece-r}{012
+  Que Ofrece R}
+\item
+  \href{https://achalmaedison.netlify.app/programacion-software/r/2020-06-10-013-lo-que-debemos-saber-de-r/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/programacion-software/r/2020-06-10-013-lo-que-debemos-saber-de-r}{013
+  Lo Que Debemos Saber De R}
+\item
+  \href{https://achalmaedison.netlify.app/programacion-software/r/2021-03-027-01-introduccion-al-programa/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/programacion-software/r/2021-03-027-01-introduccion-al-programa}{2021
+  03 027 01 Introduccion Al Programa}
+\item
+  \href{https://achalmaedison.netlify.app/programacion-software/r/2021-04-05-02-manipulacion-de-datos/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/programacion-software/r/2021-04-05-02-manipulacion-de-datos}{02
+  Manipulacion De Datos}
+\item
+  \href{https://achalmaedison.netlify.app/programacion-software/r/2021-04-12-03-visualizacion-de-datos/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/programacion-software/r/2021-04-12-03-visualizacion-de-datos}{03
+  Visualizacion De Datos}
+\item
+  \href{https://achalmaedison.netlify.app/programacion-software/r/2022-11-07-04-modelo-de-machine-learning-i-analisis-exploratorio/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/programacion-software/r/2022-11-07-04-modelo-de-machine-learning-i-analisis-exploratorio}{04
+  Modelo De Machine Learning I Analisis Exploratorio}
+\item
+  \href{https://achalmaedison.netlify.app/programacion-software/r/2022-11-14-05-modelo-de-machine-learning-ii-modelo-de-clasificacion/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/programacion-software/r/2022-11-14-05-modelo-de-machine-learning-ii-modelo-de-clasificacion}{05
+  Modelo De Machine Learning Ii Modelo De Clasificacion}
+\item
+  \href{https://achalmaedison.netlify.app/programacion-software/r/2022-11-21-06-modelo-de-machine-learning-iii-modelo-de-regresion/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/programacion-software/r/2022-11-21-06-modelo-de-machine-learning-iii-modelo-de-regresion}{06
+  Modelo De Machine Learning Iii Modelo De Regresion}
+\item
+  \href{https://achalmaedison.netlify.app/programacion-software/r/2022-11-28-07-modelo-de-machine-learning-iv-tex-mining/index.pdf}{\faIcon{file-pdf}}
+  \href{https://achalmaedison.netlify.app/programacion-software/r/2022-11-28-07-modelo-de-machine-learning-iv-tex-mining}{07
+  Modelo De Machine Learning Iv Tex Mining}
+\end{enumerate}
+
+Esperamos que encuentres estas publicaciones igualmente interesantes y
+útiles. ¡Disfruta de la lectura!
+
+
+
+
+
+
+\end{document}
