@@ -2,11 +2,12 @@
 title: Visualización de Datos con Python
 date: 2025-05-10  # Actualizado a la fecha actual
 tags:
-  - Visualización de datos
-  - Python
-  - Matplotlib
-  - Gráficos
-  - Estadística
+  - visualizacion_de_datos
+  - python
+  - matplotlib
+  - graficos
+  - estadistica
+  - programacion_software
 copyrightnotice: 2025
 copyrightext: Todos los derechos reservados
 # image: featured.jpg

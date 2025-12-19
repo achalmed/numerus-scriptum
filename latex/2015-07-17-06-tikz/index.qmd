@@ -25,11 +25,13 @@ categories:
   - Visualización  
   - Programación
 tags:
-  - TikZ  
-  - Diagram Drawing  
-  - Graph Examples  
-  - Illustrations  
-  - Vector Graphics
+  - tikz
+  - diagram_drawing
+  - graph_examples
+  - illustrations
+  - vector_graphics
+  - programacion_software
+  - latex
 
 # Nota del Autor
 author-note:

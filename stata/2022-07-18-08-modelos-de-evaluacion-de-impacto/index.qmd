@@ -25,11 +25,13 @@ categories:
   - Econometría  
   - Análisis de Datos  
 tags:
-  - Causalidad  
-  - Matching Methods  
-  - Difference in Differences  
-  - Regression Discontinuity  
-  - Health Insurance
+  - causalidad
+  - matching_methods
+  - difference_in_differences
+  - regression_discontinuity
+  - health_insurance
+  - programacion_software
+  - stata
 
 # Nota del Autor
 author-note:

@@ -26,11 +26,13 @@ categories:
   - Econometría  
   - Desarrollo de Software
 tags:
-  - Subroutines  
-  - Local Global Arguments  
-  - Include Call  
-  - Database Import  
-  - Multivariate Modeling
+  - subroutines
+  - local_global_arguments
+  - include_call
+  - database_import
+  - multivariate_modeling
+  - programacion_software
+  - eviews
 
 # Nota del Autor
 author-note:

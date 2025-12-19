@@ -26,10 +26,8 @@ categories:
   - Desarrollo Web
   - Herramientas para R
 tags:
-  - RStudio
-  - Blogdown
-  - Comandos
-  - DesarrolloWeb
+  - programacion_software
+  - power_bi
 
 # Nota del Autor
 author-note:

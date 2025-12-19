@@ -25,11 +25,12 @@ categories:
   - Programación  
   - Econometría  
 tags:
-  - Object-Oriented Programming  
-  - Workfile Creation  
-  - Scalar Vector Matrix  
-  - Series Group Objects  
-  - Eviews Basics
+  - object_oriented_programming
+  - workfile_creation
+  - scalar_vector_matrix
+  - series_group_objects
+  - programacion_software
+  - eviews
 
 # Nota del Autor
 author-note:

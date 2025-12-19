@@ -26,11 +26,13 @@ categories:
   - Visual Basic  
   - Lógica de Programación
 tags:
-  - If Statements  
-  - Elseif  
-  - Switch Case  
-  - Conditional Logic  
-  - Decision Making
+  - if_statements
+  - elseif
+  - switch_case
+  - conditional_logic
+  - decision_making
+  - programacion_software
+  - ofimatica
 
 # Nota del Autor
 author-note:

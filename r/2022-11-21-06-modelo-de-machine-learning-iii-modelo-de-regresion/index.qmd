@@ -26,11 +26,14 @@ categories:
   - Modelos Predictivos  
   - Estadística
 tags:
-  - Decision Trees  
-  - Bagging  
-  - Random Forest  
-  - Least Squares  
-  - Ridge Lasso
+  - decision_trees
+  - bagging
+  - random_forest
+  - least_squares
+  - ridge_lasso
+  - programacion_software
+  - r
+  - rstudio
 
 # Nota del Autor
 author-note:

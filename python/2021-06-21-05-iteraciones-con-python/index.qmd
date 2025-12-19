@@ -25,11 +25,13 @@ categories:
   - Programación  
   - Algoritmos
 tags:
-  - Loops  
-  - List Comprehension  
-  - For  
-  - While  
-  - Nested
+  - loops
+  - list_comprehension
+  - for
+  - while
+  - nested
+  - programacion_software
+  - python
 
 # Nota del Autor
 author-note:

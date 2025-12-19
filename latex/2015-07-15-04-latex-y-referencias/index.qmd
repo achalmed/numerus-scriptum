@@ -25,11 +25,13 @@ categories:
   - Escritura Académica  
   - Documentación
 tags:
-  - Cross-Referencing  
-  - Bibliography Management  
-  - BibTeX  
-  - Citation  
-  - Reference Formatting
+  - cross_referencing
+  - bibliography_management
+  - bibtex
+  - citation
+  - reference_formatting
+  - programacion_software
+  - latex
 
 # Nota del Autor
 author-note:

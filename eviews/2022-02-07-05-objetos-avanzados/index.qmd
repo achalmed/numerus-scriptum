@@ -26,11 +26,13 @@ categories:
   - Econometría  
   - Análisis de Datos
 tags:
-  - LogL  
-  - VAR System  
-  - Pool  
-  - Model Object  
-  - Space Object
+  - logl
+  - var_system
+  - pool
+  - model_object
+  - space_object
+  - programacion_software
+  - eviews
 
 # Nota del Autor
 author-note:

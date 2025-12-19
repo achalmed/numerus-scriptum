@@ -26,11 +26,13 @@ categories:
   - Visual Basic  
   - Desarrollo de Software
 tags:
-  - Sub Procedures  
-  - Code Structure  
-  - Modular Programming  
-  - Reusability  
-  - VBA Procedures
+  - sub_procedures
+  - code_structure
+  - modular_programming
+  - reusability
+  - vba_procedures
+  - programacion_software
+  - ofimatica
 
 # Nota del Autor
 author-note:

@@ -25,11 +25,13 @@ categories:
   - VBA  
   - Desarrollo de Software
 tags:
-  - Function Creation  
-  - Subroutines  
-  - Return Values  
-  - Function Calls  
-  - VBA Programming
+  - function_creation
+  - subroutines
+  - return_values
+  - function_calls
+  - vba_programming
+  - programacion_software
+  - ofimatica
 
 # Nota del Autor
 author-note:

@@ -25,11 +25,13 @@ categories:
   - Programación   
   - Básico
 tags:
-  - Variables  
-  - Operadores  
-  - Expresiones  
-  - Inputs  
-  - Mnemonic
+  - variables
+  - operadores
+  - expresiones
+  - inputs
+  - mnemonic
+  - programacion_software
+  - python
 
 # Nota del Autor
 author-note:

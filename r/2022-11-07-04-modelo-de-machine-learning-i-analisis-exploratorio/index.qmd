@@ -26,11 +26,14 @@ categories:
   - Análisis de Datos  
   - Estadística Multivariada
 tags:
-  - PCA  
-  - Cluster Analysis  
-  - K-means  
-  - Hierarchical Clustering  
-  - Outliers
+  - pca
+  - cluster_analysis
+  - k_means
+  - hierarchical_clustering
+  - outliers
+  - programacion_software
+  - r
+  - rstudio
 
 # Nota del Autor
 author-note:

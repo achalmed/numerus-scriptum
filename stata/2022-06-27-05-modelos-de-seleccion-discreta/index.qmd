@@ -25,11 +25,13 @@ categories:
   - Econometría  
   - Modelos Estadísticos  
 tags:
-  - Binary Models  
-  - Marginal Effects  
-  - Multinomial Analysis  
-  - Probit Logit  
-  - ENAHO Data
+  - binary_models
+  - marginal_effects
+  - multinomial_analysis
+  - probit_logit
+  - enaho_data
+  - programacion_software
+  - stata
 
 # Nota del Autor
 author-note:

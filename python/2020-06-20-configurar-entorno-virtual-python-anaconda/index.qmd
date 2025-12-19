@@ -25,14 +25,12 @@ categories:
   - Tecnología
   - Desarrollo de software
 tags:
-  - Linux
-  - OpenSource
-  - Anaconda
-  - EntornosVirtuales
-  - Python
-  - Conda
-  - GestiónDePaquetes
-  - DesarrolloDeSoftware
+  - linux
+  - opensource
+  - anaconda
+  - python
+  - conda
+  - programacion_software
 
 # Nota del Autor
 author-note:

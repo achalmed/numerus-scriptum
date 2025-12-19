@@ -24,11 +24,10 @@ categories:
   - R
   - RStudio
 tags:
-  - R
-  - RStudio
-  - Linux
-  - ManipulaciónDeDatos
-  - AnálisisDeDatos
+  - r
+  - rstudio
+  - linux
+  - programacion_software
 
 # Nota del Autor
 author-note:

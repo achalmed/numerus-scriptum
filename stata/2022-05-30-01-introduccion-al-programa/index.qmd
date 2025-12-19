@@ -24,11 +24,13 @@ categories:
   - Stata
   - Análisis de Datos  
 tags:
-  - Stata Interface  
-  - Data Import  
-  - Data Merging  
-  - Data Formats  
-  - ENAHO Modules
+  - stata_interface
+  - data_import
+  - data_merging
+  - data_formats
+  - enaho_modules
+  - programacion_software
+  - stata
 
 # Nota del Autor
 author-note:

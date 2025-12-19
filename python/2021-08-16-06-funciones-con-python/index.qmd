@@ -25,11 +25,13 @@ categories:
   - Programación   
   - Funcionalidad
 tags:
-  - Lambda  
-  - Mapping  
-  - Filtering  
-  - Numpy  
-  - Pandas
+  - lambda
+  - mapping
+  - filtering
+  - numpy
+  - pandas
+  - programacion_software
+  - python
 
 # Nota del Autor
 author-note:

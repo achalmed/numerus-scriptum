@@ -25,11 +25,13 @@ categories:
   - Econometría  
   - Análisis de Datos 
 tags:
-  - Panel Data  
-  - Fixed Effects  
-  - Random Effects  
-  - Hausman Test  
-  - ENAHO
+  - panel_data
+  - fixed_effects
+  - random_effects
+  - hausman_test
+  - enaho
+  - programacion_software
+  - stata
 
 # Nota del Autor
 author-note:

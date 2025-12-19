@@ -25,9 +25,11 @@ categories:
   - Educación  
   - Lógica  
 tags:
-  - Lógica Proposicional  
-  - Conectivos  
-  - Diagramas de Flujo  
+  - logica_proposicional
+  - conectivos
+  - diagramas_de_flujo
+  - programacion_software
+  - fundamentos_programacion
 
 # Nota del Autor
 author-note:

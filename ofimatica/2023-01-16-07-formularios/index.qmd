@@ -26,11 +26,13 @@ categories:
   - Visual Basic  
   - Desarrollo de Aplicaciones
 tags:
-  - Form Design  
-  - User Interface  
-  - Controls  
-  - Form Properties  
-  - Event-Driven Programming
+  - form_design
+  - user_interface
+  - controls
+  - form_properties
+  - event_driven_programming
+  - programacion_software
+  - ofimatica
 
 # Nota del Autor
 author-note:

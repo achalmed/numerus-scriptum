@@ -26,11 +26,13 @@ categories:
   - Modelización  
   - Estadística
 tags:
-  - Cross Validation  
-  - Grid Search  
-  - Contribución de Datos  
-  - Contribución de Variables  
-  - Modelos Predictivos
+  - cross_validation
+  - grid_search
+  - contribucion_de_datos
+  - contribucion_de_variables
+  - modelos_predictivos
+  - programacion_software
+  - python
 
 # Nota del Autor
 author-note:

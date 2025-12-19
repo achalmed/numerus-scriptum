@@ -25,11 +25,14 @@ categories:
   - Programación en R  
   - Análisis de Datos  
 tags:
-  - R Language
-  - Data Import
-  - Data Objects
-  - R Packages
-  - Tidyverse
+  - r_language
+  - data_import
+  - data_objects
+  - r_packages
+  - tidyverse
+  - programacion_software
+  - r
+  - rstudio
 
 # Nota del Autor
 author-note:

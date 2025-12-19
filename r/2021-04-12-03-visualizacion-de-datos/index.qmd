@@ -26,11 +26,14 @@ categories:
   - Visualización  
   - Programación en R
 tags:
-  - Histogram  
-  - Scatter Plot  
-  - Box Plot  
-  - Rmarkdown  
-  - GGPlot
+  - histogram
+  - scatter_plot
+  - box_plot
+  - rmarkdown
+  - ggplot
+  - programacion_software
+  - r
+  - rstudio
 
 # Nota del Autor
 author-note:

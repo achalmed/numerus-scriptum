@@ -26,10 +26,12 @@ categories:
   - Desarrollo Web
   - Herramientas para R
 tags:
-  - RStudio
-  - Blogdown
-  - Comandos
-  - DesarrolloWeb
+  - rstudio
+  - blogdown
+  - comandos
+  - desarrolloweb
+  - programacion_software
+  - ofimatica
 
 # Nota del Autor
 author-note:

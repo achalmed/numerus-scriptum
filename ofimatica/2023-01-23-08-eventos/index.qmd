@@ -26,11 +26,13 @@ categories:
   - Visual Basic  
   - Interfaz de Usuario
 tags:
-  - Event Handling  
-  - User Interaction  
-  - Event Procedures  
-  - Event Triggers  
-  - GUI Programming
+  - event_handling
+  - user_interaction
+  - event_procedures
+  - event_triggers
+  - gui_programming
+  - programacion_software
+  - ofimatica
 
 # Nota del Autor
 author-note:

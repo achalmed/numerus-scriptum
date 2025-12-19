@@ -26,11 +26,13 @@ categories:
   - Modelos Estadísticos  
   - Software de Análisis
 tags:
-  - Economic Cycles  
-  - ARIMA  
-  - SVAR Models  
-  - GARCH Models  
-  - Forecasting
+  - economic_cycles
+  - arima
+  - svar_models
+  - garch_models
+  - forecasting
+  - programacion_software
+  - eviews
 
 # Nota del Autor
 author-note:

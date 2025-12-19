@@ -26,11 +26,14 @@ categories:
   - Clasificación  
   - Algoritmos
 tags:
-  - Logistic Regression  
-  - K-Nearest Neighbors  
-  - Decision Trees  
-  - Bagging  
-  - Random Forest
+  - logistic_regression
+  - k_nearest_neighbors
+  - decision_trees
+  - bagging
+  - random_forest
+  - programacion_software
+  - r
+  - rstudio
 
 # Nota del Autor
 author-note:

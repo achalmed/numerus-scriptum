@@ -25,11 +25,13 @@ categories:
   - Presentaciones  
   - Educación
 tags:
-  - Beamer  
-  - Slide Design  
-  - LaTeX Slides  
-  - Academic Presentations  
-  - Template Customization
+  - beamer
+  - slide_design
+  - latex_slides
+  - academic_presentations
+  - template_customization
+  - programacion_software
+  - latex
 
 # Nota del Autor
 author-note:

@@ -25,11 +25,13 @@ categories:
   - Matemáticas  
   - Educación
 tags:
-  - Mathematical Equations  
-  - Theorems  
-  - Math Environments  
-  - Academic Writing  
-  - Equation Formatting
+  - mathematical_equations
+  - theorems
+  - math_environments
+  - academic_writing
+  - equation_formatting
+  - programacion_software
+  - latex
 
 # Nota del Autor
 author-note:

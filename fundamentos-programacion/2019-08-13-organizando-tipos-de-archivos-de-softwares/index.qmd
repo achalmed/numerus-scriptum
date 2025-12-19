@@ -24,11 +24,13 @@ categories:
   - Tipografía
   - Comunicación visual
 tags:
-  - Fuentes clásicas
-  - Tipografías modernas
-  - Tipografía en programación
-  - Legibilidad
-  - Selección tipográfica
+  - fuentes_clasicas
+  - tipografias_modernas
+  - tipografia_en_programacion
+  - legibilidad
+  - seleccion_tipografica
+  - programacion_software
+  - fundamentos_programacion
 
 # Nota del Autor
 author-note:

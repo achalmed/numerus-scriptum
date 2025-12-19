@@ -24,11 +24,13 @@ categories:
   - Latex
   - Software de Edición
 tags:
-  - LaTeX Installation  
-  - Basic Elements  
-  - LaTeX Interfaces  
-  - Document Structure  
-  - Text Formatting
+  - latex_installation
+  - basic_elements
+  - latex_interfaces
+  - document_structure
+  - text_formatting
+  - programacion_software
+  - latex
 
 # Nota del Autor
 author-note:

@@ -25,10 +25,8 @@ categories:
   - Educación  
   - Software Aplicado
 tags:
-  - RStudio
-  - Blogdown
-  - Comandos
-  - DesarrolloWeb
+  - programacion_software
+  - matlab
 
 # Nota del Autor
 author-note:

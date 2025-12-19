@@ -26,11 +26,13 @@ categories:
   - Econometría  
   - Automatización
 tags:
-  - Temporal Variables  
-  - Loops Conditionals  
-  - Object Manipulation  
-  - Vector Matrix Operations  
-  - Group Creation
+  - temporal_variables
+  - loops_conditionals
+  - object_manipulation
+  - vector_matrix_operations
+  - group_creation
+  - programacion_software
+  - eviews
 
 # Nota del Autor
 author-note:

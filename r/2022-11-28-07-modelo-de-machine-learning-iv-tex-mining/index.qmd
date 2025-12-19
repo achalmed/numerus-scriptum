@@ -26,11 +26,14 @@ categories:
   - Procesamiento de Lenguaje Natural  
   - Análisis de Datos
 tags:
-  - Text Cleaning  
-  - Sentiment Analysis  
-  - Word Clouds  
-  - Airbnb Data  
-  - Text Mining
+  - text_cleaning
+  - sentiment_analysis
+  - word_clouds
+  - airbnb_data
+  - text_mining
+  - programacion_software
+  - r
+  - rstudio
 
 # Nota del Autor
 author-note:

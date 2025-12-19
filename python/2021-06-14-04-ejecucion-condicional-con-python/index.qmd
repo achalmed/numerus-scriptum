@@ -25,11 +25,13 @@ categories:
   - Programación  
   - Lógica
 tags:
-  - Boolean  
-  - Logical Operators  
-  - If Statements  
-  - Try Except  
-  - Short-Circuit
+  - boolean
+  - logical_operators
+  - if_statements
+  - try_except
+  - short_circuit
+  - programacion_software
+  - python
 
 # Nota del Autor
 author-note:

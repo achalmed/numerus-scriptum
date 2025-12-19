@@ -26,11 +26,13 @@ categories:
   - Análisis de Datos  
   - Software de Análisis
 tags:
-  - Equation Object  
-  - LS TSLS 3SLS  
-  - Table Object  
-  - Model Specification  
-  - Data Interaction
+  - equation_object
+  - ls_tsls_3sls
+  - table_object
+  - model_specification
+  - data_interaction
+  - programacion_software
+  - eviews
 
 # Nota del Autor
 author-note:

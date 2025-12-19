@@ -26,11 +26,13 @@ categories:
   - Evaluación de Modelos  
   - Estadística
 tags:
-  - Confusion Matrix  
-  - Accuracy  
-  - Precision  
-  - Recall  
-  - ROC AUC
+  - confusion_matrix
+  - accuracy
+  - precision
+  - recall
+  - roc_auc
+  - programacion_software
+  - python
 
 # Nota del Autor
 author-note:

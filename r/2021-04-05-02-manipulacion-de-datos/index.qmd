@@ -26,11 +26,14 @@ categories:
   - Análisis de Datos  
   - Tidyverse
 tags:
-  - Data Wrangling  
-  - Factors  
-  - Dates Times  
-  - Custom Functions  
-  - Loops
+  - data_wrangling
+  - factors
+  - dates_times
+  - custom_functions
+  - loops
+  - programacion_software
+  - r
+  - rstudio
 
 # Nota del Autor
 author-note:

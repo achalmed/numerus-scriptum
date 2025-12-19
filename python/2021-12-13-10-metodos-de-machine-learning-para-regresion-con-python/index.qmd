@@ -26,11 +26,13 @@ categories:
   - Análisis de Datos  
   - Modelos Predictivos
 tags:
-  - Least Squares  
-  - Ridge  
-  - Polynomial Regression  
-  - R-squared  
-  - MSE
+  - least_squares
+  - ridge
+  - polynomial_regression
+  - r_squared
+  - mse
+  - programacion_software
+  - python
 
 # Nota del Autor
 author-note:

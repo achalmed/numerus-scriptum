@@ -25,11 +25,13 @@ categories:
   - Econometría  
   - Análisis de Datos  
 tags:
-  - Time Series  
-  - ARIMA  
-  - VAR  
-  - Data Smoothing  
-  - BCRP Data
+  - time_series
+  - arima
+  - var
+  - data_smoothing
+  - bcrp_data
+  - programacion_software
+  - stata
 
 # Nota del Autor
 author-note:

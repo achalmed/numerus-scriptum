@@ -26,11 +26,13 @@ categories:
   - Visual Basic  
   - Algoritmos
 tags:
-  - Loops  
-  - For Loop  
-  - While Loop  
-  - Do While  
-  - Iteration
+  - loops
+  - for_loop
+  - while_loop
+  - do_while
+  - iteration
+  - programacion_software
+  - ofimatica
 
 # Nota del Autor
 author-note:

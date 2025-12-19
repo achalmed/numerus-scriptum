@@ -26,13 +26,15 @@ categories:
   - Excel
   - VBA
 tags:
-  - Automatización
-  - Macros
-  - VBA Scripting
-  - Data Merging
-  - Office Efficiency
-  - Automation Techniques
-  - Spreadsheet Management
+  - automatizacion
+  - macros
+  - vba_scripting
+  - data_merging
+  - office_efficiency
+  - automation_techniques
+  - spreadsheet_management
+  - programacion_software
+  - ofimatica
 
 # Nota del Autor
 author-note:

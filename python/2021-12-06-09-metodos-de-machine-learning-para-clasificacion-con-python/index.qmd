@@ -26,11 +26,13 @@ categories:
   - Clasificación  
   - Algoritmos
 tags:
-  - Logistic Regression  
-  - KNN  
-  - Decision Trees  
-  - Random Forests  
-  - Multi-Class
+  - logistic_regression
+  - knn
+  - decision_trees
+  - random_forests
+  - multi_class
+  - programacion_software
+  - python
 
 # Nota del Autor
 author-note:

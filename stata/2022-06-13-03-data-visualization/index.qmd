@@ -25,11 +25,13 @@ categories:
   - Análisis de Datos  
   - Visualización  
 tags:
-  - Graphs  
-  - Geospatial Data  
-  - Histogram  
-  - Export Graphics  
-  - Agrarian Census
+  - graphs
+  - geospatial_data
+  - histogram
+  - export_graphics
+  - agrarian_census
+  - programacion_software
+  - stata
 
 # Nota del Autor
 author-note:

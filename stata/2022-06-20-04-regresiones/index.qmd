@@ -25,11 +25,13 @@ categories:
   - Econometría  
   - Análisis de Datos 
 tags:
-  - Linear Regression  
-  - Multicollinearity  
-  - Heteroscedasticity  
-  - Instrumental Variables  
-  - Complex Sampling
+  - linear_regression
+  - multicollinearity
+  - heteroscedasticity
+  - instrumental_variables
+  - complex_sampling
+  - programacion_software
+  - stata
 
 # Nota del Autor
 author-note:

@@ -26,11 +26,13 @@ categories:
   - VBA  
   - Introducción
 tags:
-  - VBA Language  
-  - Macro Recorder  
-  - Objects Properties  
-  - Variable Declaration  
-  - Excel Macros
+  - vba_language
+  - macro_recorder
+  - objects_properties
+  - variable_declaration
+  - excel_macros
+  - programacion_software
+  - ofimatica
 
 # Nota del Autor
 author-note:

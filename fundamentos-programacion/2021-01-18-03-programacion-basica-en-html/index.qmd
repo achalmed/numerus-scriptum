@@ -26,11 +26,13 @@ categories:
   - Desarrollo Web  
   - Educación Tecnológica
 tags:
-  - HTML  
-  - CSS  
-  - Javascript  
-  - Aplicaciones Prácticas  
-  - Eventos
+  - html
+  - css
+  - javascript
+  - aplicaciones_practicas
+  - eventos
+  - programacion_software
+  - fundamentos_programacion
 
 # Nota del Autor
 author-note:

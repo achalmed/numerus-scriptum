@@ -26,11 +26,13 @@ categories:
   - VBA  
   - Excel
 tags:
-  - Sheets  
-  - Cells  
-  - Range  
-  - Select Copy Paste  
-  - VBA Macros
+  - sheets
+  - cells
+  - range
+  - select_copy_paste
+  - vba_macros
+  - programacion_software
+  - ofimatica
 
 # Nota del Autor
 author-note:

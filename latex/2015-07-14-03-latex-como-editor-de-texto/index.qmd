@@ -25,11 +25,13 @@ categories:
   - Escritura Técnica  
   - Edición de Documentos
 tags:
-  - Figures  
-  - Tables  
-  - Code Blocks  
-  - Document Formatting  
-  - Sectioning
+  - figures
+  - tables
+  - code_blocks
+  - document_formatting
+  - sectioning
+  - programacion_software
+  - latex
 
 # Nota del Autor
 author-note:

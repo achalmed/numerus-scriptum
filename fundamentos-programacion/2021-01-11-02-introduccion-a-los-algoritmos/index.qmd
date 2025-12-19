@@ -26,11 +26,13 @@ categories:
   - Algoritmos  
   - Educación
 tags:
-  - Algoritmos  
-  - Estructura de Datos  
-  - Lenguajes de Programación  
-  - Metodología  
-  - POO
+  - algoritmos
+  - estructura_de_datos
+  - lenguajes_de_programacion
+  - metodologia
+  - poo
+  - programacion_software
+  - fundamentos_programacion
 
 # Nota del Autor
 author-note:
