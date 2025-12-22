@@ -6,6 +6,7 @@
   nolmodern,
   notxfonts,
   notimes,
+  12pt,
   colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{apa7}
 
 \usepackage{amsmath}
@@ -17,8 +18,6 @@
 \babelprovide[main,import]{spanish}
 
 
-\babelfont{rm}[,RawFeature={fallback=mainfontfallback}]{Latin Modern
-Roman}
 % get rid of language-specific shorthands (see #6817):
 \let\LanguageShortHands\languageshorthands
 \def\languageshorthands#1{}
@@ -115,21 +114,19 @@ Roman}
 
 
 
-\usepackage{fontspec} 
+\usepackage{newtx}
 
 \defaultfontfeatures{Scale=MatchLowercase}
 \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 
-  \setmainfont[,RawFeature={fallback=mainfontfallback}]{Latin Modern
-Roman}
 
 
 
 
-\title{Separando Hojas de Excel en documentos individuales: VBA}
+\title{Separar hojas Excel en archivos VBA}
 
 
-\shorttitle{Combinar Hojas de Excel}
+\shorttitle{COMBINAR HOJAS DE EXCEL}
 
 
 \usepackage{etoolbox}
@@ -153,7 +150,7 @@ de Huamanga}}
 
 \leftheader{Achalma}
 
-\date{2023-05-31}
+\date{2023-06-05}
 
 
 \abstract{This article introduces a simple VBA macro designed to merge
@@ -231,14 +228,14 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
   \newcommand\contentsname{Tabla de contenidos}
 \fi
 \ifdefined\listfigurename
-  \renewcommand*\listfigurename{List of Figures}
+  \renewcommand*\listfigurename{Lista de Figuras}
 \else
-  \newcommand\listfigurename{List of Figures}
+  \newcommand\listfigurename{Lista de Figuras}
 \fi
 \ifdefined\listtablename
-  \renewcommand*\listtablename{List of Tables}
+  \renewcommand*\listtablename{Lista de Tablas}
 \else
-  \newcommand\listtablename{List of Tables}
+  \newcommand\listtablename{Lista de Tablas}
 \fi
 \ifdefined\figurename
   \renewcommand*\figurename{Figura}
@@ -255,7 +252,7 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 \floatstyle{ruled}
 \@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
 \floatname{codelisting}{Listing}
-\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listings}}
 \makeatother
 \makeatletter
 \makeatother
@@ -301,15 +298,17 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 
 \maketitle
 
+
 \hypertarget{toc}{}
 \tableofcontents
 \newpage
-\section[Introduction]{Separando Hojas de Excel en documentos
-individuales}
+\section[Introduction]{Separar hojas Excel en archivos VBA}
 
-\setcounter{secnumdepth}{5}
+\setcounter{secnumdepth}{3}
 
 \setlength\LTleft{0pt}
+
+
 
 
 SEPARAR HOJAS DE EXCEL EN DOCUMENTOS INDIVIDUALES Seguramente en
@@ -366,61 +365,57 @@ algunas sugerencias:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2022-12-05-01-introduccion-al-lenguaje-y-editor-vba/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2022-12-05-01-introduccion-al-lenguaje-y-editor-vba}{01
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2022-12-05-01-introduccion-al-lenguaje-y-editor-vba/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2022-12-05-01-introduccion-al-lenguaje-y-editor-vba}{01
   Introduccion Al Lenguaje Y Editor Vba}
 \item
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2022-12-12-02-grabar-y-modificar/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2022-12-12-02-grabar-y-modificar}{02
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2022-12-12-02-grabar-y-modificar/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2022-12-12-02-grabar-y-modificar}{02
   Grabar Y Modificar}
 \item
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2022-12-19-03-procedimientos/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2022-12-19-03-procedimientos}{03
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2022-12-19-03-procedimientos/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2022-12-19-03-procedimientos}{03
   Procedimientos}
 \item
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2022-12-26-04-funciones-en-vba/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2022-12-26-04-funciones-en-vba}{04
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2022-12-26-04-funciones-en-vba/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2022-12-26-04-funciones-en-vba}{04
   Funciones En Vba}
 \item
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-01-02-05-funciones-condicionales-estructuras-condicionales/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-01-02-05-funciones-condicionales-estructuras-condicionales}{05
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2023-01-02-05-funciones-condicionales-estructuras-condicionales/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2023-01-02-05-funciones-condicionales-estructuras-condicionales}{05
   Funciones Condicionales Estructuras Condicionales}
 \item
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-01-09-06-funciones-iterativas-estructuras-repetitivas-o-bucles/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-01-09-06-funciones-iterativas-estructuras-repetitivas-o-bucles}{06
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2023-01-09-06-funciones-iterativas-estructuras-repetitivas-o-bucles/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2023-01-09-06-funciones-iterativas-estructuras-repetitivas-o-bucles}{06
   Funciones Iterativas Estructuras Repetitivas O Bucles}
 \item
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-01-16-07-formularios/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-01-16-07-formularios}{07
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2023-01-16-07-formularios/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2023-01-16-07-formularios}{07
   Formularios}
 \item
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-01-23-08-eventos/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-01-23-08-eventos}{08
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2023-01-23-08-eventos/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2023-01-23-08-eventos}{08
   Eventos}
 \item
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-03-17-comando-para-convertir-docx-a-odt/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-03-17-comando-para-convertir-docx-a-odt}{Comando
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2023-03-17-comando-para-convertir-docx-a-odt/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2023-03-17-comando-para-convertir-docx-a-odt}{Comando
   Para Convertir Docx A Odt}
 \item
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-04-03-buscar-reemplazar-en-libreoffice/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-04-03-buscar-reemplazar-en-libreoffice}{Buscar
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2023-04-03-buscar-reemplazar-en-libreoffice/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2023-04-03-buscar-reemplazar-en-libreoffice}{Buscar
   Reemplazar En Libreoffice}
 \item
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-05-21-anclaje-envoltura-alineacion-y-organizacion-de-objetos-en-llibreoffice/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-05-21-anclaje-envoltura-alineacion-y-organizacion-de-objetos-en-llibreoffice}{Anclaje
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2023-05-21-anclaje-envoltura-alineacion-y-organizacion-de-objetos-en-llibreoffice/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2023-05-21-anclaje-envoltura-alineacion-y-organizacion-de-objetos-en-llibreoffice}{Anclaje
   Envoltura Alineacion Y Organizacion De Objetos En Llibreoffice}
 \item
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-05-31-combinando-hojas-de-excel-con-vba/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-05-31-combinando-hojas-de-excel-con-vba}{Combinando
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2023-05-31-combinando-hojas-de-excel-con-vba/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2023-05-31-combinando-hojas-de-excel-con-vba}{Combinando
   Hojas De Excel Con Vba}
 \item
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-06-05-separando-hojas-de-excel-en-documentos-individuales/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2023-06-05-separando-hojas-de-excel-en-documentos-individuales}{Separando
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2023-06-05-separando-hojas-de-excel-en-documentos-individuales/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/ofimatica/2023-06-05-separando-hojas-de-excel-en-documentos-individuales}{Separando
   Hojas De Excel En Documentos Individuales}
-\item
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2024-03-31-por-editar/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/ofimatica/2024-03-31-por-editar}{Por
-  Editar}
 \end{enumerate}
 
 Esperamos que encuentres estas publicaciones igualmente interesantes y

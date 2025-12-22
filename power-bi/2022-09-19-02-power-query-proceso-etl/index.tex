@@ -6,6 +6,7 @@
   nolmodern,
   notxfonts,
   notimes,
+  12pt,
   colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{apa7}
 
 \usepackage{amsmath}
@@ -17,8 +18,6 @@
 \babelprovide[main,import]{spanish}
 
 
-\babelfont{rm}[,RawFeature={fallback=mainfontfallback}]{Latin Modern
-Roman}
 % get rid of language-specific shorthands (see #6817):
 \let\LanguageShortHands\languageshorthands
 \def\languageshorthands#1{}
@@ -115,21 +114,19 @@ Roman}
 
 
 
-\usepackage{fontspec} 
+\usepackage{newtx}
 
 \defaultfontfeatures{Scale=MatchLowercase}
 \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 
-  \setmainfont[,RawFeature={fallback=mainfontfallback}]{Latin Modern
-Roman}
 
 
 
 
-\title{Editar: Editar}
+\title{Power Query: proceso ETL básico}
 
 
-\shorttitle{Editar}
+\shorttitle{Power Query}
 
 
 \usepackage{etoolbox}
@@ -156,10 +153,8 @@ de Huamanga}}
 \date{2022-09-19}
 
 
-\abstract{Descubre cómo crear tu propio sitio web estático con Blogdown,
-una herramienta poderosa que combina R Markdown y Hugo. Aprende a usar
-comandos sencillos para personalizar, construir y alojar tu sitio web de
-manera fácil y rápida. ¡Comienza tu proyecto web hoy mismo! }
+\abstract{Este abstract será actualizado una vez que se complete el
+contenido final del artículo. }
 
 \keywords{keyword1, keyword2}
 
@@ -227,14 +222,14 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
   \newcommand\contentsname{Tabla de contenidos}
 \fi
 \ifdefined\listfigurename
-  \renewcommand*\listfigurename{List of Figures}
+  \renewcommand*\listfigurename{Lista de Figuras}
 \else
-  \newcommand\listfigurename{List of Figures}
+  \newcommand\listfigurename{Lista de Figuras}
 \fi
 \ifdefined\listtablename
-  \renewcommand*\listtablename{List of Tables}
+  \renewcommand*\listtablename{Lista de Tablas}
 \else
-  \newcommand\listtablename{List of Tables}
+  \newcommand\listtablename{Lista de Tablas}
 \fi
 \ifdefined\figurename
   \renewcommand*\figurename{Figura}
@@ -251,7 +246,7 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 \floatstyle{ruled}
 \@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
 \floatname{codelisting}{Listing}
-\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listings}}
 \makeatother
 \makeatletter
 \makeatother
@@ -297,14 +292,17 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 
 \maketitle
 
+
 \hypertarget{toc}{}
 \tableofcontents
 \newpage
-\section[Introduction]{Editar}
+\section[Introduction]{Power Query}
 
-\setcounter{secnumdepth}{5}
+\setcounter{secnumdepth}{3}
 
 \setlength\LTleft{0pt}
+
+
 
 
 Este artículo está actualmente en proceso de edición, y todas las
@@ -320,37 +318,33 @@ algunas sugerencias:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/power-bi/2022-09-12-01-introduccion-al-mundo-de-bi-y-la-suite-power/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/power-bi/2022-09-12-01-introduccion-al-mundo-de-bi-y-la-suite-power}{01
+  \href{https://numerus-scriptum.netlify.app/power-bi/2022-09-12-01-introduccion-al-mundo-de-bi-y-la-suite-power/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/power-bi/2022-09-12-01-introduccion-al-mundo-de-bi-y-la-suite-power}{01
   Introduccion Al Mundo De Bi Y La Suite Power}
 \item
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/power-bi/2022-09-19-02-power-query-proceso-etl/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/power-bi/2022-09-19-02-power-query-proceso-etl}{02
+  \href{https://numerus-scriptum.netlify.app/power-bi/2022-09-19-02-power-query-proceso-etl/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/power-bi/2022-09-19-02-power-query-proceso-etl}{02
   Power Query Proceso Etl}
 \item
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/power-bi/2022-09-26-03-proceso-etl-2/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/power-bi/2022-09-26-03-proceso-etl-2}{03
+  \href{https://numerus-scriptum.netlify.app/power-bi/2022-09-26-03-proceso-etl-2/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/power-bi/2022-09-26-03-proceso-etl-2}{03
   Proceso Etl 2}
 \item
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/power-bi/2022-10-03-04-power-pivot-modelo-de-datos/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/power-bi/2022-10-03-04-power-pivot-modelo-de-datos}{04
+  \href{https://numerus-scriptum.netlify.app/power-bi/2022-10-03-04-power-pivot-modelo-de-datos/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/power-bi/2022-10-03-04-power-pivot-modelo-de-datos}{04
   Power Pivot Modelo De Datos}
 \item
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/power-bi/2022-10-10-05-inteligencia-de-tiempo-dimension-de-tiempo/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/power-bi/2022-10-10-05-inteligencia-de-tiempo-dimension-de-tiempo}{05
+  \href{https://numerus-scriptum.netlify.app/power-bi/2022-10-10-05-inteligencia-de-tiempo-dimension-de-tiempo/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/power-bi/2022-10-10-05-inteligencia-de-tiempo-dimension-de-tiempo}{05
   Inteligencia De Tiempo Dimension De Tiempo}
 \item
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/power-bi/2022-10-17-06-lenguaje-de-analisis-de-datos-dax-columnas-campos-calculados/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/power-bi/2022-10-17-06-lenguaje-de-analisis-de-datos-dax-columnas-campos-calculados}{06
+  \href{https://numerus-scriptum.netlify.app/power-bi/2022-10-17-06-lenguaje-de-analisis-de-datos-dax-columnas-campos-calculados/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/power-bi/2022-10-17-06-lenguaje-de-analisis-de-datos-dax-columnas-campos-calculados}{06
   Lenguaje De Analisis De Datos Dax Columnas Campos Calculados}
 \item
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/power-bi/2022-10-24-08-vizualizacion-de-datos/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/power-bi/2022-10-24-08-vizualizacion-de-datos}{08
+  \href{https://numerus-scriptum.netlify.app/power-bi/2022-10-24-08-vizualizacion-de-datos/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/power-bi/2022-10-24-08-vizualizacion-de-datos}{08
   Vizualizacion De Datos}
-\item
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/power-bi/2024-03-31-por-editar/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/herramientas-oficina/power-bi/2024-03-31-por-editar}{Por
-  Editar}
 \end{enumerate}
 
 Esperamos que encuentres estas publicaciones igualmente interesantes y

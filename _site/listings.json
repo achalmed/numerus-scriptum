@@ -3,15 +3,15 @@
     "listing": "/index.html",
     "items": [
       "/python/2025-05-10-visualizacion-de-datos-con-python/index.html",
-      "/fundamentos-programacion/2018-06-09-typografia/index.html",
-      "/fundamentos-programacion/2019-08-13-organizando-tipos-de-archivos-de-softwares/index.html",
       "/ofimatica/2023-06-05-separando-hojas-de-excel-en-documentos-individuales/index.html",
       "/ofimatica/2023-05-31-combinando-hojas-de-excel-con-vba/index.html",
       "/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html",
       "/python/2020-06-19-instalacion-de-anaconda/index.html",
-      "/r/2020-06-10-012-que-ofrece-r/index.html",
+      "/r/2020-06-10-011-instalacion-de-r/index.html",
       "/r/2020-06-10-013-lo-que-debemos-saber-de-r/index.html",
-      "/r/2020-06-10-011-instalacion-de-r/index.html"
+      "/r/2020-06-10-012-que-ofrece-r/index.html",
+      "/fundamentos-programacion/2019-08-13-organizando-tipos-de-archivos-de-softwares/index.html",
+      "/fundamentos-programacion/2018-06-09-typografia/index.html"
     ]
   }
 ]

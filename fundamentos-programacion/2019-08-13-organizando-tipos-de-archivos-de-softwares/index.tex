@@ -6,6 +6,7 @@
   nolmodern,
   notxfonts,
   notimes,
+  12pt,
   colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{apa7}
 
 \usepackage{amsmath}
@@ -17,8 +18,6 @@
 \babelprovide[main,import]{spanish}
 
 
-\babelfont{rm}[,RawFeature={fallback=mainfontfallback}]{Latin Modern
-Roman}
 % get rid of language-specific shorthands (see #6817):
 \let\LanguageShortHands\languageshorthands
 \def\languageshorthands#1{}
@@ -115,27 +114,25 @@ Roman}
 
 
 
-\usepackage{fontspec} 
+\usepackage{newtx}
 
 \defaultfontfeatures{Scale=MatchLowercase}
 \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 
-  \setmainfont[,RawFeature={fallback=mainfontfallback}]{Latin Modern
-Roman}
 
 
 
 
-\title{Tipografía en entornos académicos y de programación: Selección y
-aplicación para mejorar la legibilidad}
+\title{Organización de archivos de software}
 
 
-\shorttitle{Tipografía en academia y programación}
+\shorttitle{TIPOGRAFÍA EN ACADEMIA Y PROGRAMACIÓN}
 
 
 \usepackage{etoolbox}
 
 
+\duedate{08/13/2019}
 
 \ccoppy{\textcopyright~2019}
 
@@ -154,21 +151,9 @@ de Huamanga}}
 
 \leftheader{Achalma}
 
-\date{2025-01-12}
+\date{2019-08-13}
 
 
-\abstract{Typography is a fundamental element in both academic and
-programming environments, impacting readability, comprehension, and
-professional presentation. This article explores the principles of
-typographic selection and application, emphasizing font choices for
-academic writing, coding environments, and digital interfaces. It
-discusses the characteristics of monospaced fonts for programming, the
-importance of typographic contrast, and the role of ligatures in code
-readability. Additionally, it provides insights into the differences
-between OTF and TTF formats, along with recommendations for font pairing
-in scholarly and technical contexts. Understanding typography enhances
-clarity and effectiveness in both educational and software development
-fields. }
 
 \keywords{Typography, academic writing, programming
 fonts, readability, monospaced typefaces}
@@ -204,14 +189,14 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
   \newcommand\contentsname{Tabla de contenidos}
 \fi
 \ifdefined\listfigurename
-  \renewcommand*\listfigurename{List of Figures}
+  \renewcommand*\listfigurename{Lista de Figuras}
 \else
-  \newcommand\listfigurename{List of Figures}
+  \newcommand\listfigurename{Lista de Figuras}
 \fi
 \ifdefined\listtablename
-  \renewcommand*\listtablename{List of Tables}
+  \renewcommand*\listtablename{Lista de Tablas}
 \else
-  \newcommand\listtablename{List of Tables}
+  \newcommand\listtablename{Lista de Tablas}
 \fi
 \ifdefined\figurename
   \renewcommand*\figurename{Figura}
@@ -228,7 +213,7 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 \floatstyle{ruled}
 \@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
 \floatname{codelisting}{Listing}
-\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listings}}
 \makeatother
 \makeatletter
 \makeatother
@@ -274,15 +259,17 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 
 \maketitle
 
+
 \hypertarget{toc}{}
 \tableofcontents
 \newpage
-\section[Introduction]{Tipografía en entornos académicos y de
-programación}
+\section[Introduction]{Organización de archivos de software}
 
-\setcounter{secnumdepth}{5}
+\setcounter{secnumdepth}{3}
 
 \setlength\LTleft{0pt}
+
+
 
 
 ¡Absolutamente! Aquí tienes una tabla comparativa de los tipos de
@@ -562,28 +549,24 @@ algunas sugerencias:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/fundamentos-programacion/2018-06-09-typografia/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/fundamentos-programacion/2018-06-09-typografia}{Typografia}
+  \href{https://numerus-scriptum.netlify.app/fundamentos-programacion/2018-06-09-typografia/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/fundamentos-programacion/2018-06-09-typografia}{Typografia}
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/fundamentos-programacion/2019-08-13-organizando-tipos-de-archivos-de-softwares/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/fundamentos-programacion/2019-08-13-organizando-tipos-de-archivos-de-softwares}{Organizando
+  \href{https://numerus-scriptum.netlify.app/fundamentos-programacion/2019-08-13-organizando-tipos-de-archivos-de-softwares/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/fundamentos-programacion/2019-08-13-organizando-tipos-de-archivos-de-softwares}{Organizando
   Tipos De Archivos De Softwares}
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/fundamentos-programacion/2021-01-04-01-pensamiento-logico/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/fundamentos-programacion/2021-01-04-01-pensamiento-logico}{01
+  \href{https://numerus-scriptum.netlify.app/fundamentos-programacion/2021-01-04-01-pensamiento-logico/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/fundamentos-programacion/2021-01-04-01-pensamiento-logico}{01
   Pensamiento Logico}
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/fundamentos-programacion/2021-01-11-02-introduccion-a-los-algoritmos/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/fundamentos-programacion/2021-01-11-02-introduccion-a-los-algoritmos}{02
+  \href{https://numerus-scriptum.netlify.app/fundamentos-programacion/2021-01-11-02-introduccion-a-los-algoritmos/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/fundamentos-programacion/2021-01-11-02-introduccion-a-los-algoritmos}{02
   Introduccion A Los Algoritmos}
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/fundamentos-programacion/2021-01-18-03-programacion-basica-en-html/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/fundamentos-programacion/2021-01-18-03-programacion-basica-en-html}{03
+  \href{https://numerus-scriptum.netlify.app/fundamentos-programacion/2021-01-18-03-programacion-basica-en-html/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/fundamentos-programacion/2021-01-18-03-programacion-basica-en-html}{03
   Programacion Basica En Html}
-\item
-  \href{https://achalmaedison.netlify.app/programacion-software/fundamentos-programacion/2024-03-31-por-editar/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/fundamentos-programacion/2024-03-31-por-editar}{Por
-  Editar}
 \end{enumerate}
 
 Esperamos que encuentres estas publicaciones igualmente interesantes y

@@ -6,6 +6,7 @@
   nolmodern,
   notxfonts,
   notimes,
+  12pt,
   colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{apa7}
 
 \usepackage{amsmath}
@@ -17,8 +18,6 @@
 \babelprovide[main,import]{spanish}
 
 
-\babelfont{rm}[,RawFeature={fallback=mainfontfallback}]{Latin Modern
-Roman}
 % get rid of language-specific shorthands (see #6817):
 \let\LanguageShortHands\languageshorthands
 \def\languageshorthands#1{}
@@ -79,6 +78,46 @@ Roman}
 
 
 
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -115,22 +154,19 @@ Roman}
 
 
 
-\usepackage{fontspec} 
+\usepackage{newtx}
 
 \defaultfontfeatures{Scale=MatchLowercase}
 \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 
-  \setmainfont[,RawFeature={fallback=mainfontfallback}]{Latin Modern
-Roman}
 
 
 
 
-\title{Visualización de Datos con Python: Técnicas y Ejemplos de
-Gráficos para Análisis de Datos}
+\title{Visualización de datos con Python}
 
 
-\shorttitle{Visualización con Python}
+\shorttitle{VISUALIZACIÓN CON PYTHON}
 
 
 \usepackage{etoolbox}
@@ -145,8 +181,8 @@ Gráficos para Análisis de Datos}
 
 
 
-\affiliation{
-{Economía, Universidad Nacional de San Cristóbal de Huamanga}}
+\authorsaffiliations{
+}
 
 
 
@@ -174,12 +210,8 @@ revelar.  Agradezco a mis maestros por su orientación en el aprendizaje
 de la programación y visualización de datos, a mis padres por su apoyo
 constante durante mi formación, y a Dios por la salud y fortaleza para
 perseguir mis metas. Me comprometo a seguir mejorando mis habilidades en
-la universidad y en todos los ámbitos, siempre con respeto.  Los roles
-de autor se clasificaron utilizando la taxonomía de roles de colaborador
-(CRediT; https://credit.niso.org/) de la siguiente manera:  Elmer
-Achalma:   Investigación, Programación, Redacción}
-\par{La correspondencia relativa a este artículo debe dirigirse a Elmer
-Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
+la universidad y en todos los ámbitos, siempre con respeto.  }
+\par{La correspondencia relativa a este artículo debe dirigirse a }
 }
 
 \usepackage{pbalance}
@@ -236,14 +268,14 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
   \newcommand\contentsname{Tabla de contenidos}
 \fi
 \ifdefined\listfigurename
-  \renewcommand*\listfigurename{List of Figures}
+  \renewcommand*\listfigurename{Lista de Figuras}
 \else
-  \newcommand\listfigurename{List of Figures}
+  \newcommand\listfigurename{Lista de Figuras}
 \fi
 \ifdefined\listtablename
-  \renewcommand*\listtablename{List of Tables}
+  \renewcommand*\listtablename{Lista de Tablas}
 \else
-  \newcommand\listtablename{List of Tables}
+  \newcommand\listtablename{Lista de Tablas}
 \fi
 \ifdefined\figurename
   \renewcommand*\figurename{Figura}
@@ -260,7 +292,7 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 \floatstyle{ruled}
 \@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
 \floatname{codelisting}{Listing}
-\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listings}}
 \makeatother
 \makeatletter
 \makeatother
@@ -303,29 +335,104 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 
 \maketitle
 
+
 \hypertarget{toc}{}
 \tableofcontents
 \newpage
-\section[Introduction]{Visualización de Datos con Python}
+\section[Introduction]{Visualización de datos con Python}
 
-\setcounter{secnumdepth}{5}
+\setcounter{secnumdepth}{3}
 
 \setlength\LTleft{0pt}
 
 
+
+
 \section{Grafico de lineas}\label{grafico-de-lineas}
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-2-output-1.png}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-3-output-1.png}}
+\CommentTok{\# Configurar el tamaño de la figura para mejor visualización}
+\CommentTok{\#plt.figure(figsize=(10, 8))}
+
+\CommentTok{\# Datos de consumo de carne bovina (kg por habitante)}
+\NormalTok{consumo\_bovino }\OperatorTok{=}\NormalTok{ [}\FloatTok{22.1}\NormalTok{, }\FloatTok{22.1}\NormalTok{, }\FloatTok{23.1}\NormalTok{, }\FloatTok{23.9}\NormalTok{, }\FloatTok{24.6}\NormalTok{, }\FloatTok{21.7}\NormalTok{, }\FloatTok{23.5}\NormalTok{, }\FloatTok{22.0}\NormalTok{, }\FloatTok{22.5}\NormalTok{, }\FloatTok{23.6}\NormalTok{, }\FloatTok{21.7}\NormalTok{]}
+\NormalTok{anios\_bovino }\OperatorTok{=}\NormalTok{ [}\DecValTok{2001}\NormalTok{, }\DecValTok{2002}\NormalTok{, }\DecValTok{2003}\NormalTok{, }\DecValTok{2004}\NormalTok{, }\DecValTok{2005}\NormalTok{, }\DecValTok{2006}\NormalTok{, }\DecValTok{2007}\NormalTok{, }\DecValTok{2008}\NormalTok{, }\DecValTok{2009}\NormalTok{, }\DecValTok{2010}\NormalTok{, }\DecValTok{2011}\NormalTok{]}
+
+\CommentTok{\# Datos de consumo de carne porcina (kg por habitante)}
+\NormalTok{consumo\_porcino }\OperatorTok{=}\NormalTok{ [}\FloatTok{17.9}\NormalTok{, }\FloatTok{19.4}\NormalTok{, }\FloatTok{19.1}\NormalTok{, }\FloatTok{18.3}\NormalTok{, }\FloatTok{19.3}\NormalTok{, }\FloatTok{22.5}\NormalTok{, }\FloatTok{23.5}\NormalTok{, }\FloatTok{25.0}\NormalTok{, }\FloatTok{24.0}\NormalTok{, }\FloatTok{24.4}\NormalTok{, }\FloatTok{25.6}\NormalTok{]}
+\NormalTok{anios\_porcino }\OperatorTok{=}\NormalTok{ [}\DecValTok{2001}\NormalTok{, }\DecValTok{2002}\NormalTok{, }\DecValTok{2003}\NormalTok{, }\DecValTok{2004}\NormalTok{, }\DecValTok{2005}\NormalTok{, }\DecValTok{2006}\NormalTok{, }\DecValTok{2007}\NormalTok{, }\DecValTok{2008}\NormalTok{, }\DecValTok{2009}\NormalTok{, }\DecValTok{2010}\NormalTok{, }\DecValTok{2011}\NormalTok{]}
+
+\CommentTok{\# Graficar consumo de carne bovina con marcadores circulares y línea discontinua}
+\NormalTok{plt.plot(anios\_bovino, consumo\_bovino, marker}\OperatorTok{=}\StringTok{\textquotesingle{}o\textquotesingle{}}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{\textquotesingle{}{-}{-}\textquotesingle{}}\NormalTok{, color}\OperatorTok{=}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Carne Bovina\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Graficar consumo de carne porcina con marcadores de diamante y línea discontinua}
+\NormalTok{plt.plot(anios\_porcino, consumo\_porcino, marker}\OperatorTok{=}\StringTok{\textquotesingle{}d\textquotesingle{}}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{\textquotesingle{}{-}{-}\textquotesingle{}}\NormalTok{, color}\OperatorTok{=}\StringTok{\textquotesingle{}blue\textquotesingle{}}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Carne Porcina\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Etiquetas de los ejes y título con formato adecuado}
+\NormalTok{plt.xlabel(}\StringTok{\textquotesingle{}Año\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.ylabel(}\StringTok{\textquotesingle{}Consumo (kg por habitante)\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.title(}\StringTok{\textquotesingle{}Consumo Anual de Carne en Chile (2001{-}2011)\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Añadir leyenda en la esquina inferior derecha}
+\NormalTok{plt.legend(loc}\OperatorTok{=}\StringTok{\textquotesingle{}lower right\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Configurar marcas en el eje x para mostrar cada año}
+\NormalTok{plt.xticks(anios\_bovino)}
+
+\CommentTok{\# Añadir una cuadrícula para mejorar la legibilidad}
+\NormalTok{plt.grid(}\VariableTok{True}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{\textquotesingle{}{-}{-}\textquotesingle{}}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.7}\NormalTok{)}
+
+\CommentTok{\# Ajustar el diseño para evitar recortes de etiquetas}
+\NormalTok{plt.tight\_layout()}
+
+\CommentTok{\# Guardar la figura en un archivo (opcional, se puede descomentar para usar)}
+\CommentTok{\# plt.savefig(\textquotesingle{}consumo\_carne\_chile.png\textquotesingle{})}
+
+\CommentTok{\# Mostrar el gráfico}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+
+\NormalTok{x }\OperatorTok{=}\NormalTok{ np.linspace(}\DecValTok{0}\NormalTok{, }\DecValTok{2} \OperatorTok{*}\NormalTok{ np.pi, }\DecValTok{200}\NormalTok{)}
+\NormalTok{y }\OperatorTok{=}\NormalTok{ np.sin(x)}
+
+\NormalTok{fig, ax }\OperatorTok{=}\NormalTok{ plt.subplots()}
+\NormalTok{ax.plot(x, y)}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{figure}
 
-\caption{\label{fig-polar}A line plot on a polar axis}
+\caption{\label{fig-polar}}
 
 \centering{
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/fig-polar-output-1.png}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+
+\NormalTok{r }\OperatorTok{=}\NormalTok{ np.arange(}\DecValTok{0}\NormalTok{, }\DecValTok{2}\NormalTok{, }\FloatTok{0.01}\NormalTok{)}
+\NormalTok{theta }\OperatorTok{=} \DecValTok{2} \OperatorTok{*}\NormalTok{ np.pi }\OperatorTok{*}\NormalTok{ r}
+\NormalTok{fig, ax }\OperatorTok{=}\NormalTok{ plt.subplots(}
+\NormalTok{  subplot\_kw }\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}projection\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}polar\textquotesingle{}}\NormalTok{\} }
+\NormalTok{)}
+\NormalTok{ax.plot(theta, r)}
+\NormalTok{ax.set\_rticks([}\FloatTok{0.5}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{1.5}\NormalTok{, }\DecValTok{2}\NormalTok{])}
+\NormalTok{ax.grid(}\VariableTok{True}\NormalTok{)}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
 
 }
 
@@ -335,36 +442,311 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 
 \subsection{horizontal}\label{horizontal}
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-5-output-1.png}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+
+\CommentTok{\# Configurar el tamaño de la figura para una mejor visualización}
+\CommentTok{\#plt.figure(figsize=(10, 8))}
+
+\CommentTok{\# Tipos de legumbres y sus respectivos consumos en kg por habitante en 2001}
+\NormalTok{tipos\_legumbres }\OperatorTok{=}\NormalTok{ [}\StringTok{"Poroto"}\NormalTok{, }\StringTok{"Lenteja"}\NormalTok{, }\StringTok{"Garbanzo"}\NormalTok{, }\StringTok{"Arveja"}\NormalTok{]}
+\NormalTok{consumo\_legumbres }\OperatorTok{=}\NormalTok{ [}\FloatTok{2.1}\NormalTok{, }\FloatTok{1.0}\NormalTok{, }\FloatTok{0.3}\NormalTok{, }\FloatTok{0.5}\NormalTok{]}
+
+\CommentTok{\# Crear un gráfico de barras con color personalizado y borde}
+\NormalTok{plt.bar(tipos\_legumbres, consumo\_legumbres, color}\OperatorTok{=}\StringTok{\textquotesingle{}green\textquotesingle{}}\NormalTok{, edgecolor}\OperatorTok{=}\StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.7}\NormalTok{)}
+
+\CommentTok{\# Etiquetas de los ejes y título con formato adecuado}
+\NormalTok{plt.xlabel(}\StringTok{\textquotesingle{}Tipos de Legumbres\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.ylabel(}\StringTok{\textquotesingle{}Consumo (kg por habitante)\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.title(}\StringTok{\textquotesingle{}Consumo de Legumbres en Chile (2001)\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Añadir una cuadrícula en el eje y para facilitar la lectura}
+\NormalTok{plt.grid(}\VariableTok{True}\NormalTok{, axis}\OperatorTok{=}\StringTok{\textquotesingle{}y\textquotesingle{}}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{\textquotesingle{}{-}{-}\textquotesingle{}}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.7}\NormalTok{)}
+
+\CommentTok{\# Ajustar el diseño para evitar recortes de etiquetas}
+\NormalTok{plt.tight\_layout()}
+
+\CommentTok{\# Guardar la figura en un archivo (opcional, descomentar para usar)}
+\CommentTok{\# plt.savefig(\textquotesingle{}consumo\_legumbres\_2001.png\textquotesingle{})}
+
+\CommentTok{\# Mostrar el gráfico}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
 
 \subsection{vertical}\label{vertical}
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-6-output-1.png}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#plt.figure(figsize=[10,8])}
+\CommentTok{\#Consumo de legumbres en el 2001}
+\NormalTok{legumbres}\OperatorTok{=}\NormalTok{[}\StringTok{"Poroto"}\NormalTok{,}\StringTok{"Lenteja"}\NormalTok{,}\StringTok{"Garbanzo"}\NormalTok{,}\StringTok{"Arveja"}\NormalTok{]}
+\NormalTok{consumo}\OperatorTok{=}\NormalTok{[}\FloatTok{2.1}\NormalTok{, }\FloatTok{1.0}\NormalTok{, }\FloatTok{0.3}\NormalTok{, }\FloatTok{0.5}\NormalTok{]}
+
+\NormalTok{plt.barh(legumbres,consumo)}
+
+\NormalTok{plt.ylabel(}\StringTok{"Tipos de legumbre"}\NormalTok{)}
+\NormalTok{plt.xlabel(}\StringTok{"Consumo (kg/hab)"}\NormalTok{)}
+\NormalTok{plt.title(}\StringTok{"Consumo de Legumbres en el 2001"}\NormalTok{)}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
 
 \section{Histograma}\label{histograma}
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-7-output-1.png}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+
+\CommentTok{\# Configurar el tamaño de la figura para una mejor visualización}
+\CommentTok{\#plt.figure(figsize=(10, 8))}
+
+\CommentTok{\# Datos de niveles de glucosa (mg/dl)}
+\NormalTok{niveles\_glucosa }\OperatorTok{=}\NormalTok{ [}\DecValTok{52}\NormalTok{, }\DecValTok{54}\NormalTok{, }\DecValTok{55}\NormalTok{, }\DecValTok{57}\NormalTok{, }\DecValTok{56}\NormalTok{, }\DecValTok{57}\NormalTok{, }\DecValTok{54}\NormalTok{, }\DecValTok{59}\NormalTok{, }\DecValTok{60}\NormalTok{, }\DecValTok{57}\NormalTok{, }\DecValTok{52}\NormalTok{, }\DecValTok{62}\NormalTok{, }\DecValTok{64}\NormalTok{, }\DecValTok{68}\NormalTok{, }\DecValTok{64}\NormalTok{, }\DecValTok{72}\NormalTok{, }\DecValTok{77}\NormalTok{, }\DecValTok{80}\NormalTok{, }
+                   \DecValTok{76}\NormalTok{, }\DecValTok{79}\NormalTok{, }\DecValTok{81}\NormalTok{, }\DecValTok{85}\NormalTok{, }\DecValTok{88}\NormalTok{, }\DecValTok{84}\NormalTok{, }\DecValTok{89}\NormalTok{, }\DecValTok{92}\NormalTok{, }\DecValTok{85}\NormalTok{, }\DecValTok{92}\NormalTok{, }\DecValTok{94}\NormalTok{, }\DecValTok{93}\NormalTok{, }\DecValTok{92}\NormalTok{, }\DecValTok{99}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{105}\NormalTok{, }\DecValTok{106}\NormalTok{, }\DecValTok{107}\NormalTok{, }\DecValTok{109}\NormalTok{]}
+
+\CommentTok{\# Bordes de los intervalos para el histograma (bins)}
+\NormalTok{intervalos }\OperatorTok{=}\NormalTok{ [}\DecValTok{50}\NormalTok{, }\DecValTok{60}\NormalTok{, }\DecValTok{70}\NormalTok{, }\DecValTok{80}\NormalTok{, }\DecValTok{90}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{110}\NormalTok{, }\DecValTok{120}\NormalTok{, }\DecValTok{130}\NormalTok{]}
+
+\CommentTok{\# Crear el histograma con color personalizado y bordes}
+\NormalTok{plt.hist(niveles\_glucosa, bins}\OperatorTok{=}\NormalTok{intervalos, color}\OperatorTok{=}\StringTok{\textquotesingle{}skyblue\textquotesingle{}}\NormalTok{, edgecolor}\OperatorTok{=}\StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.7}\NormalTok{)}
+
+\CommentTok{\# Etiquetas de los ejes y título con formato adecuado}
+\NormalTok{plt.xlabel(}\StringTok{\textquotesingle{}Nivel de Glucosa (mg/dl)\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.ylabel(}\StringTok{\textquotesingle{}Número de Pacientes\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.title(}\StringTok{\textquotesingle{}Distribución de Niveles de Glucosa en Pacientes\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Añadir una cuadrícula en el eje y para facilitar la lectura}
+\NormalTok{plt.grid(}\VariableTok{True}\NormalTok{, axis}\OperatorTok{=}\StringTok{\textquotesingle{}y\textquotesingle{}}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{\textquotesingle{}{-}{-}\textquotesingle{}}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.7}\NormalTok{)}
+
+\CommentTok{\# Ajustar el diseño para evitar recortes de etiquetas}
+\NormalTok{plt.tight\_layout()}
+
+\CommentTok{\# Guardar la figura en un archivo (opcional, descomentar para usar)}
+\CommentTok{\# plt.savefig(\textquotesingle{}distribucion\_glucosa.png\textquotesingle{})}
+
+\CommentTok{\# Mostrar el gráfico}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
 
 \section{Grafico circular}\label{grafico-circular}
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-8-output-1.png}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+
+\CommentTok{\# Configurar el tamaño de la figura para una mejor visualización}
+\CommentTok{\#plt.figure(figsize=(10, 8))}
+
+\CommentTok{\# Datos de marcas de autos y sus ventas (en alguna unidad, ej. miles de unidades)}
+\NormalTok{marcas\_autos }\OperatorTok{=}\NormalTok{ [}\StringTok{"Kia"}\NormalTok{, }\StringTok{"Toyota"}\NormalTok{, }\StringTok{"Nissan"}\NormalTok{, }\StringTok{"Suzuki"}\NormalTok{, }\StringTok{"Audi"}\NormalTok{]}
+\NormalTok{ventas }\OperatorTok{=}\NormalTok{ [}\FloatTok{10.5}\NormalTok{, }\FloatTok{15.3}\NormalTok{, }\FloatTok{14.2}\NormalTok{, }\FloatTok{16.1}\NormalTok{, }\FloatTok{9.8}\NormalTok{]}
+\CommentTok{\# Resaltar la primera marca (Kia) ligeramente}
+\NormalTok{resaltar }\OperatorTok{=}\NormalTok{ [}\FloatTok{0.1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{]}
+
+\CommentTok{\# Aplicar un estilo visual predefinido (ggplot)}
+\NormalTok{plt.style.use(}\StringTok{"ggplot"}\NormalTok{)}
+
+\CommentTok{\# Crear el gráfico de pastel}
+\NormalTok{plt.pie(x}\OperatorTok{=}\NormalTok{ventas, explode}\OperatorTok{=}\NormalTok{resaltar, labels}\OperatorTok{=}\NormalTok{marcas\_autos, autopct}\OperatorTok{=}\StringTok{"}\SpecialCharTok{\%.2f\%\%}\StringTok{"}\NormalTok{, shadow}\OperatorTok{=}\VariableTok{True}\NormalTok{, startangle}\OperatorTok{=}\DecValTok{20}\NormalTok{)}
+
+\CommentTok{\# Asegurar que el gráfico sea circular}
+\NormalTok{plt.axis}\OperatorTok{=}\NormalTok{(}\StringTok{"equal"}\NormalTok{)}
+
+\CommentTok{\# Añadir un título descriptivo}
+\NormalTok{plt.title(}\StringTok{"Distribución de Ventas de Autos en EE.UU."}\NormalTok{)}
+
+\CommentTok{\# Añadir una leyenda en la esquina superior izquierda}
+\NormalTok{plt.legend(marcas\_autos, loc}\OperatorTok{=}\StringTok{"upper left"}\NormalTok{)}
+
+\CommentTok{\# Ajustar el diseño para evitar recortes}
+\NormalTok{plt.tight\_layout()}
+
+\CommentTok{\# Guardar la figura en un archivo (opcional, descomentar para usar)}
+\CommentTok{\# plt.savefig(\textquotesingle{}ventas\_autos\_eeuu.png\textquotesingle{})}
+
+\CommentTok{\# Mostrar el gráfico}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
 
 \section{Grafico de Donut}\label{grafico-de-donut}
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-9-output-1.png}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+
+\CommentTok{\# Configurar el tamaño de la figura para una mejor visualización}
+\CommentTok{\#plt.figure(figsize=(10, 8))}
+
+\CommentTok{\# Datos de marcas de autos y sus ventas (en alguna unidad, ej. miles de unidades)}
+\NormalTok{marcas\_autos }\OperatorTok{=}\NormalTok{ [}\StringTok{"Kia"}\NormalTok{, }\StringTok{"Toyota"}\NormalTok{, }\StringTok{"Nissan"}\NormalTok{, }\StringTok{"Suzuki"}\NormalTok{, }\StringTok{"Audi"}\NormalTok{]}
+\NormalTok{ventas }\OperatorTok{=}\NormalTok{ [}\FloatTok{10.5}\NormalTok{, }\FloatTok{15.3}\NormalTok{, }\FloatTok{14.2}\NormalTok{, }\FloatTok{16.1}\NormalTok{, }\FloatTok{9.8}\NormalTok{]}
+\CommentTok{\# Resaltar la primera marca (Kia) ligeramente}
+\NormalTok{resaltar }\OperatorTok{=}\NormalTok{ [}\FloatTok{0.1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{]}
+
+\CommentTok{\# Aplicar un estilo visual predefinido (ggplot)}
+\NormalTok{plt.style.use(}\StringTok{"ggplot"}\NormalTok{)}
+
+\CommentTok{\# Crear el gráfico de pastel (donut chart)}
+\NormalTok{plt.pie(ventas, explode}\OperatorTok{=}\NormalTok{resaltar, labels}\OperatorTok{=}\NormalTok{marcas\_autos, autopct}\OperatorTok{=}\StringTok{"}\SpecialCharTok{\%.2f\%\%}\StringTok{"}\NormalTok{, shadow}\OperatorTok{=}\VariableTok{True}\NormalTok{, startangle}\OperatorTok{=}\DecValTok{20}\NormalTok{)}
+
+\CommentTok{\# Asegurar que el gráfico sea circular}
+\NormalTok{plt.axis}\OperatorTok{=}\NormalTok{(}\StringTok{"equal"}\NormalTok{)}
+
+\CommentTok{\# Añadir un título descriptivo}
+\NormalTok{plt.title(}\StringTok{"Distribución de Ventas de Autos en EE.UU."}\NormalTok{)}
+
+\CommentTok{\# Añadir una leyenda en la esquina superior izquierda}
+\NormalTok{plt.legend(marcas\_autos, loc}\OperatorTok{=}\StringTok{"upper left"}\NormalTok{)}
+
+\CommentTok{\# Añadir un círculo central para crear el efecto de "donut chart"}
+\NormalTok{circulo\_central }\OperatorTok{=}\NormalTok{ plt.Circle(xy}\OperatorTok{=}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{), radius}\OperatorTok{=}\FloatTok{0.75}\NormalTok{, facecolor}\OperatorTok{=}\StringTok{"white"}\NormalTok{)}
+\NormalTok{plt.gca().add\_artist(circulo\_central)}
+
+\CommentTok{\# Ajustar el diseño para evitar recortes}
+\NormalTok{plt.tight\_layout()}
+
+\CommentTok{\# Guardar la figura en un archivo (opcional, descomentar para usar)}
+\CommentTok{\# plt.savefig(\textquotesingle{}ventas\_autos\_eeuu\_donut.png\textquotesingle{})}
+
+\CommentTok{\# Mostrar el gráfico}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
 
 \section{Grafico de cajas}\label{grafico-de-cajas}
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-10-output-1.png}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+
+\CommentTok{\# Configurar el tamaño de la figura para una mejor visualización}
+\CommentTok{\#plt.figure(figsize=(10, 8))}
+
+\CommentTok{\# Datos de las edades de los alumnos}
+\NormalTok{edades\_alumnos }\OperatorTok{=}\NormalTok{ [}\DecValTok{12}\NormalTok{, }\DecValTok{13}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{17}\NormalTok{, }\DecValTok{16}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{14}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{16}\NormalTok{, }\DecValTok{14}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{16}\NormalTok{, }\DecValTok{14}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{16}\NormalTok{, }\DecValTok{17}\NormalTok{]}
+
+\CommentTok{\# Crear el diagrama de caja con un estilo personalizado}
+\NormalTok{plt.boxplot(edades\_alumnos, vert}\OperatorTok{=}\VariableTok{True}\NormalTok{, patch\_artist}\OperatorTok{=}\VariableTok{True}\NormalTok{, }
+\NormalTok{            boxprops}\OperatorTok{=}\BuiltInTok{dict}\NormalTok{(facecolor}\OperatorTok{=}\StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{, edgecolor}\OperatorTok{=}\StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{),}
+\NormalTok{            medianprops}\OperatorTok{=}\BuiltInTok{dict}\NormalTok{(color}\OperatorTok{=}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{), whiskerprops}\OperatorTok{=}\BuiltInTok{dict}\NormalTok{(color}\OperatorTok{=}\StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{),}
+\NormalTok{            capprops}\OperatorTok{=}\BuiltInTok{dict}\NormalTok{(color}\OperatorTok{=}\StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{), flierprops}\OperatorTok{=}\BuiltInTok{dict}\NormalTok{(marker}\OperatorTok{=}\StringTok{\textquotesingle{}o\textquotesingle{}}\NormalTok{, color}\OperatorTok{=}\StringTok{\textquotesingle{}orange\textquotesingle{}}\NormalTok{, markersize}\OperatorTok{=}\DecValTok{8}\NormalTok{))}
+
+\CommentTok{\# Etiquetas de los ejes y título con formato adecuado}
+\NormalTok{plt.ylabel(}\StringTok{\textquotesingle{}Edad (años)\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.title(}\StringTok{\textquotesingle{}Distribución de Edades de Alumnos de Secundaria\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Añadir una cuadrícula en el eje y para facilitar la lectura}
+\NormalTok{plt.grid(}\VariableTok{True}\NormalTok{, axis}\OperatorTok{=}\StringTok{\textquotesingle{}y\textquotesingle{}}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{\textquotesingle{}{-}{-}\textquotesingle{}}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.7}\NormalTok{)}
+
+\CommentTok{\# Configurar las etiquetas del eje x (opcional, ya que solo hay un grupo)}
+\NormalTok{plt.xticks([}\DecValTok{1}\NormalTok{], [}\StringTok{\textquotesingle{}Alumnos\textquotesingle{}}\NormalTok{])}
+
+\CommentTok{\# Ajustar el diseño para evitar recortes}
+\NormalTok{plt.tight\_layout()}
+
+\CommentTok{\# Guardar la figura en un archivo (opcional, descomentar para usar)}
+\CommentTok{\# plt.savefig(\textquotesingle{}edades\_alumnos\_secundaria.png\textquotesingle{})}
+
+\CommentTok{\# Mostrar el gráfico}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
 
 \section{Grafico de barras
 combinadas}\label{grafico-de-barras-combinadas}
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-11-output-1.png}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+
+\CommentTok{\# Configurar el tamaño de la figura para una mejor visualización}
+\CommentTok{\#plt.figure(figsize=(10, 8))}
+
+\CommentTok{\# Datos de ventas de autos por día (en unidades)}
+\NormalTok{ventas\_toyota }\OperatorTok{=}\NormalTok{ [}\DecValTok{10}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{19}\NormalTok{, }\DecValTok{14}\NormalTok{, }\DecValTok{9}\NormalTok{]}
+\NormalTok{ventas\_audi }\OperatorTok{=}\NormalTok{ [}\DecValTok{15}\NormalTok{, }\DecValTok{25}\NormalTok{, }\DecValTok{27}\NormalTok{, }\DecValTok{24}\NormalTok{, }\DecValTok{28}\NormalTok{]}
+\NormalTok{dias }\OperatorTok{=}\NormalTok{ [}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{]  }\CommentTok{\# Posiciones para los días}
+\NormalTok{ancho\_barras }\OperatorTok{=} \FloatTok{0.5}  \CommentTok{\# Grosor de las barras}
+
+\CommentTok{\# Crear el gráfico de barras apiladas}
+\NormalTok{barras\_toyota }\OperatorTok{=}\NormalTok{ plt.bar(dias, ventas\_toyota, ancho\_barras, label}\OperatorTok{=}\StringTok{\textquotesingle{}Toyota\textquotesingle{}}\NormalTok{, color}\OperatorTok{=}\StringTok{\textquotesingle{}skyblue\textquotesingle{}}\NormalTok{, edgecolor}\OperatorTok{=}\StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{)}
+\NormalTok{barras\_audi }\OperatorTok{=}\NormalTok{ plt.bar(dias, ventas\_audi, ancho\_barras, bottom}\OperatorTok{=}\NormalTok{ventas\_toyota, label}\OperatorTok{=}\StringTok{\textquotesingle{}Audi\textquotesingle{}}\NormalTok{, color}\OperatorTok{=}\StringTok{\textquotesingle{}salmon\textquotesingle{}}\NormalTok{, edgecolor}\OperatorTok{=}\StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Configurar las etiquetas del eje x con los días}
+\NormalTok{plt.xticks(dias, [}\StringTok{\textquotesingle{}Día 1\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Día 2\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Día 3\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Día 4\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Día 5\textquotesingle{}}\NormalTok{])}
+
+\CommentTok{\# Etiquetas de los ejes y título con formato adecuado}
+\NormalTok{plt.xlabel(}\StringTok{\textquotesingle{}Días\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.ylabel(}\StringTok{\textquotesingle{}Unidades Vendidas\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.title(}\StringTok{\textquotesingle{}Ventas de Autos por Día (Toyota vs. Audi)\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Configurar las marcas del eje y para mayor claridad}
+\NormalTok{plt.yticks([}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{25}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{35}\NormalTok{, }\DecValTok{40}\NormalTok{, }\DecValTok{45}\NormalTok{, }\DecValTok{50}\NormalTok{])}
+
+\CommentTok{\# Añadir una cuadrícula en el eje y para facilitar la lectura}
+\NormalTok{plt.grid(}\VariableTok{True}\NormalTok{, axis}\OperatorTok{=}\StringTok{\textquotesingle{}y\textquotesingle{}}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{\textquotesingle{}{-}{-}\textquotesingle{}}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.7}\NormalTok{)}
+
+\CommentTok{\# Añadir una leyenda para identificar las marcas}
+\NormalTok{plt.legend()}
+
+\CommentTok{\# Ajustar el diseño para evitar recortes}
+\NormalTok{plt.tight\_layout()}
+
+\CommentTok{\# Guardar la figura en un archivo (opcional, descomentar para usar)}
+\CommentTok{\# plt.savefig(\textquotesingle{}ventas\_autos\_toyota\_audi.png\textquotesingle{})}
+
+\CommentTok{\# Mostrar el gráfico}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
 
 \section{Graficos combinados}\label{graficos-combinados}
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-12-output-1.png}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+
+\CommentTok{\# Configurar el tamaño de la figura para una mejor visualización}
+\CommentTok{\#plt.figure(figsize=(10, 8))}
+
+\CommentTok{\# Datos de vacunación proyectada (en número de pacientes)}
+\NormalTok{vacunacion\_proyectada }\OperatorTok{=}\NormalTok{ [}\DecValTok{250}\NormalTok{, }\DecValTok{120}\NormalTok{, }\DecValTok{270}\NormalTok{, }\DecValTok{560}\NormalTok{, }\DecValTok{450}\NormalTok{, }\DecValTok{280}\NormalTok{, }\DecValTok{550}\NormalTok{]}
+\CommentTok{\# Datos de vacunación real (en número de pacientes)}
+\NormalTok{vacunacion\_real }\OperatorTok{=}\NormalTok{ [}\DecValTok{150}\NormalTok{, }\DecValTok{300}\NormalTok{, }\DecValTok{120}\NormalTok{, }\DecValTok{550}\NormalTok{, }\DecValTok{500}\NormalTok{, }\DecValTok{240}\NormalTok{, }\DecValTok{600}\NormalTok{]}
+\NormalTok{meses }\OperatorTok{=}\NormalTok{ [}\StringTok{"Enero"}\NormalTok{, }\StringTok{"Febrero"}\NormalTok{, }\StringTok{"Marzo"}\NormalTok{, }\StringTok{"Abril"}\NormalTok{, }\StringTok{"Mayo"}\NormalTok{, }\StringTok{"Junio"}\NormalTok{, }\StringTok{"Julio"}\NormalTok{]}
+
+\CommentTok{\# Graficar la vacunación proyectada como una línea con marcadores}
+\NormalTok{plt.plot(meses, vacunacion\_proyectada, marker}\OperatorTok{=}\StringTok{\textquotesingle{}d\textquotesingle{}}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{\textquotesingle{}{-}{-}\textquotesingle{}}\NormalTok{, color}\OperatorTok{=}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Vacunación Proyectada\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Graficar la vacunación real como barras}
+\NormalTok{plt.bar(meses, vacunacion\_real, color}\OperatorTok{=}\StringTok{\textquotesingle{}skyblue\textquotesingle{}}\NormalTok{, edgecolor}\OperatorTok{=}\StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.7}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Vacunación Real\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Etiquetas de los ejes y título con formato adecuado}
+\NormalTok{plt.xlabel(}\StringTok{\textquotesingle{}Meses\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.ylabel(}\StringTok{\textquotesingle{}Número de Pacientes Vacunados\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.title(}\StringTok{\textquotesingle{}Vacunación Real vs. Proyectada (Enero {-} Julio)\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Añadir una leyenda}
+\NormalTok{plt.legend()}
+
+\CommentTok{\# Añadir una cuadrícula en el eje y para facilitar la lectura}
+\NormalTok{plt.grid(}\VariableTok{True}\NormalTok{, axis}\OperatorTok{=}\StringTok{\textquotesingle{}y\textquotesingle{}}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{\textquotesingle{}{-}{-}\textquotesingle{}}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.7}\NormalTok{)}
+
+\CommentTok{\# Ajustar el diseño para evitar recortes}
+\NormalTok{plt.tight\_layout()}
+
+\CommentTok{\# Guardar la figura en un archivo (opcional, descomentar para usar)}
+\CommentTok{\# plt.savefig(\textquotesingle{}vacunacion\_real\_vs\_proyectada.png\textquotesingle{})}
+
+\CommentTok{\# Mostrar el gráfico}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
+
 
 
 

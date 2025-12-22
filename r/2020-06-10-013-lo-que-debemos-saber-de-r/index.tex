@@ -6,6 +6,7 @@
   nolmodern,
   notxfonts,
   notimes,
+  12pt,
   colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{apa7}
 
 \usepackage{amsmath}
@@ -17,8 +18,6 @@
 \babelprovide[main,import]{spanish}
 
 
-\babelfont{rm}[,RawFeature={fallback=mainfontfallback}]{Latin Modern
-Roman}
 % get rid of language-specific shorthands (see #6817):
 \let\LanguageShortHands\languageshorthands
 \def\languageshorthands#1{}
@@ -79,6 +78,46 @@ Roman}
 
 
 
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -115,22 +154,19 @@ Roman}
 
 
 
-\usepackage{fontspec} 
+\usepackage{newtx}
 
 \defaultfontfeatures{Scale=MatchLowercase}
 \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 
-  \setmainfont[,RawFeature={fallback=mainfontfallback}]{Latin Modern
-Roman}
 
 
 
 
-\title{Lo que debemos saber de R: Explorando las capacidades de R y su
-uso en el entorno Linux}
+\title{Conceptos esenciales antes de usar R}
 
 
-\shorttitle{Editar}
+\shorttitle{Conceptos esenciales antes de usar R}
 
 
 \usepackage{etoolbox}
@@ -157,7 +193,8 @@ de Huamanga}}
 \date{2020-06-10}
 
 
-\abstract{Primer parrafo de abstrac }
+\abstract{Este abstract será actualizado una vez que se complete el
+contenido final del artículo. }
 
 \keywords{keyword1, keyword2}
 
@@ -241,14 +278,14 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
   \newcommand\contentsname{Tabla de contenidos}
 \fi
 \ifdefined\listfigurename
-  \renewcommand*\listfigurename{List of Figures}
+  \renewcommand*\listfigurename{Lista de Figuras}
 \else
-  \newcommand\listfigurename{List of Figures}
+  \newcommand\listfigurename{Lista de Figuras}
 \fi
 \ifdefined\listtablename
-  \renewcommand*\listtablename{List of Tables}
+  \renewcommand*\listtablename{Lista de Tablas}
 \else
-  \newcommand\listtablename{List of Tables}
+  \newcommand\listtablename{Lista de Tablas}
 \fi
 \ifdefined\figurename
   \renewcommand*\figurename{Figura}
@@ -265,7 +302,7 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 \floatstyle{ruled}
 \@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
 \floatname{codelisting}{Listing}
-\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listings}}
 \makeatother
 \makeatletter
 \makeatother
@@ -311,14 +348,17 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 
 \maketitle
 
+
 \hypertarget{toc}{}
 \tableofcontents
 \newpage
-\section[Introduction]{Lo que debemos saber de R}
+\section[Introduction]{Conceptos esenciales antes de usar R}
 
-\setcounter{secnumdepth}{5}
+\setcounter{secnumdepth}{3}
 
 \setlength\LTleft{0pt}
+
+
 
 
 \section{Lo que debemos saber}\label{lo-que-debemos-saber}
@@ -406,6 +446,17 @@ permiten realizar operaciones y cálculos de manera eficiente.
 Concatenación de elementos con \textbf{\texttt{c()}}: Se utiliza la
 función \texttt{c()} para concatenar elementos y crear vectores en R.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.6}\NormalTok{, }\FloatTok{0.25}\NormalTok{) }\CommentTok{\# números decimales (double)}
+\FunctionTok{c}\NormalTok{(}\DecValTok{9}\NormalTok{L, }\DecValTok{10}\NormalTok{L, }\DecValTok{11}\NormalTok{L, }\DecValTok{12}\NormalTok{L, }\DecValTok{13}\NormalTok{L) }\CommentTok{\# números enteros (integer)}
+\FunctionTok{c}\NormalTok{(}\DecValTok{9}\SpecialCharTok{:}\DecValTok{13}\NormalTok{) }\CommentTok{\# secuencia de números enteros (integer sequence)}
+\FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{) }\CommentTok{\# valores lógicos (logical)}
+\FunctionTok{c}\NormalTok{(}\DecValTok{1} \SpecialCharTok{+} \DecValTok{0}\NormalTok{i, }\DecValTok{2} \SpecialCharTok{+} \DecValTok{4}\NormalTok{i) }\CommentTok{\# números complejos (complex)}
+\FunctionTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{) }\CommentTok{\# caracteres (character)}
+\end{Highlighting}
+\end{Shaded}
+
 \textbf{Acciones con vectores}
 
 \begin{enumerate}
@@ -416,32 +467,80 @@ función \texttt{c()} para concatenar elementos y crear vectores en R.
   Creamos un vector llamado ``dbl'' que contiene los números decimales
   0.5, 0.6 y 0.25.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dbl }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.6}\NormalTok{, }\FloatTok{0.25}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
   Creamos un vector llamado ``chr'' que contiene los caracteres ``a'',
   ``b'' y ``c''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chr }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 \item
   Imprimir los vectores ``dbl'' y ``chr'' en la consola:
 
   Visualizamos en la consola el contenido del vector ``dbl'', que son
   los números decimales 0.5, 0.6 y 0.25.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dbl}
+\end{Highlighting}
+\end{Shaded}
+
   Visualizamos en la consola el contenido del vector ``chr'', que son
   los caracteres ``a'', ``b'' y ``c''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chr}
+\end{Highlighting}
+\end{Shaded}
 \item
   Verificar el número de elementos en ``dbl'' y ``chr'':
 
   Calculamos y mostramos en la consola la longitud del vector ``dbl'',
   que es 3.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{length}\NormalTok{(dbl)}
+\end{Highlighting}
+\end{Shaded}
+
   Calculamos y mostramos en la consola la longitud del vector ``chr'',
   que es 3.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{length}\NormalTok{(chr)}
+\end{Highlighting}
+\end{Shaded}
 \item
   Verificar el tipo de dato de ``dbl'' y ``chr'':
 
   Visualizamos en la consola el tipo de dato del vector ``dbl'', que es
   ``double'' (números decimales).
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{typeof}\NormalTok{(dbl)}
+\end{Highlighting}
+\end{Shaded}
+
   Visualizamos en la consola el tipo de dato del vector ``chr'', que es
   ``character'' (caracteres).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{typeof}\NormalTok{(chr)}
+\end{Highlighting}
+\end{Shaded}
 \item
   Combinar dos vectores:
 
@@ -449,12 +548,24 @@ función \texttt{c()} para concatenar elementos y crear vectores en R.
   función ``c()'', creando un nuevo vector que contiene los elementos
   duplicados del vector original.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{c}\NormalTok{(dbl, dbl)}
+\end{Highlighting}
+\end{Shaded}
+
   Tambien se puede combina el vector ``dbl'' con el vector ``chr''
   utilizando la función ``c()'', creando un nuevo vector que contiene
   los elementos de ambos vectores concatenados.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{c}\NormalTok{(dbl, chr)}
+\end{Highlighting}
+\end{Shaded}
 \end{enumerate}
 
-\begin{tcolorbox}[enhanced jigsaw, breakable, colback=white, colframe=quarto-callout-note-color-frame, arc=.35mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Nota}, titlerule=0mm, toptitle=1mm, opacitybacktitle=0.6, leftrule=.75mm, bottomrule=.15mm, toprule=.15mm, bottomtitle=1mm, rightrule=.15mm, left=2mm, colbacktitle=quarto-callout-note-color!10!white, coltitle=black, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white, toprule=.15mm, titlerule=0mm, breakable, opacitybacktitle=0.6, rightrule=.15mm, bottomrule=.15mm, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, arc=.35mm, opacityback=0, colback=white, left=2mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Nota}]
 
 El cambio automático del tipo de datos del vector resultante se denomina
 coerción. La coerción garantiza que se mantiene el mismo tipo de datos
@@ -469,18 +580,44 @@ para cada elemento del vector.
 \item
   Definamos dos nuevos vectores numéricos llamados \texttt{a} y
   \texttt{b} con 4 elementos cada uno:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{)}
+\NormalTok{b }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{40}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 \item
   Realizamos una multiplicación escalar de \texttt{a} por 5, lo que
   significa que cada elemento en \texttt{a} se multiplica por 5:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\SpecialCharTok{*} \DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
 \item
   Realizamos una multiplicación de vectores entre \texttt{a} y
   \texttt{b}, lo que implica multiplicar cada elemento en \texttt{a} por
   el elemento correspondiente en \texttt{b}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\SpecialCharTok{*}\NormalTok{ b}
+\end{Highlighting}
+\end{Shaded}
 \item
   Creamos un nuevo vector numérico llamado \texttt{v} con longitud 5.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{1.1}\NormalTok{, }\FloatTok{1.2}\NormalTok{, }\FloatTok{1.3}\NormalTok{, }\FloatTok{1.4}\NormalTok{, }\FloatTok{1.5}\NormalTok{)}
+\NormalTok{a }\SpecialCharTok{*}\NormalTok{ v}
+\end{Highlighting}
+\end{Shaded}
 \end{enumerate}
 
-\begin{tcolorbox}[enhanced jigsaw, breakable, colback=white, colframe=quarto-callout-note-color-frame, arc=.35mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Nota}, titlerule=0mm, toptitle=1mm, opacitybacktitle=0.6, leftrule=.75mm, bottomrule=.15mm, toprule=.15mm, bottomtitle=1mm, rightrule=.15mm, left=2mm, colbacktitle=quarto-callout-note-color!10!white, coltitle=black, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white, toprule=.15mm, titlerule=0mm, breakable, opacitybacktitle=0.6, rightrule=.15mm, bottomrule=.15mm, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, arc=.35mm, opacityback=0, colback=white, left=2mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Nota}]
 
 Las operaciones aritméticas de los vectores se realizan por elementos.
 si dos vectores no tienen la misma longitud, el vector más corto se
@@ -507,6 +644,13 @@ estructura.
   Combinamos los vectores \texttt{a} y \texttt{b}, definidas
   anteriormente, por columnas utilizando la función \texttt{cbind()}:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{A }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(a, b)}
+\NormalTok{A}
+\end{Highlighting}
+\end{Shaded}
+
   Esta opción combina los vectores \texttt{a} y \texttt{b} por columnas,
   creando una matriz \texttt{A} donde los elementos de \texttt{a} forman
   la primera columna y los elementos de \texttt{b} forman la segunda
@@ -515,6 +659,13 @@ estructura.
   Combinamos los vectores \texttt{a} y \texttt{b} por filas utilizando
   la función \texttt{rbind()}:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(a, b)}
+\NormalTok{B}
+\end{Highlighting}
+\end{Shaded}
+
   En esta opción, los vectores \texttt{a} y \texttt{b} se combinan por
   filas para crear una matriz \texttt{B}. Los elementos de \texttt{a}
   forman la primera fila y los elementos de \texttt{b} forman la segunda
@@ -522,6 +673,13 @@ estructura.
 \item
   Creamos una matriz a partir de los elementos de vector \texttt{a}
   utilizando la función \texttt{matrix()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{A }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(a, }\AttributeTok{ncol =} \DecValTok{2}\NormalTok{, }\AttributeTok{nrow =} \DecValTok{2}\NormalTok{)}
+\NormalTok{A}
+\end{Highlighting}
+\end{Shaded}
 
   Aquí se utiliza la función \texttt{matrix()} para crear una matriz
   \texttt{A} a partir de los elementos del vector \texttt{a}. Se
@@ -532,6 +690,13 @@ estructura.
   Para 4 elementos y ncol =2 la matriz sólo puede tener 2 filas. Por lo
   tanto no es necesario especificar ambos argumentos
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{A }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(a, }\AttributeTok{ncol =} \DecValTok{2}\NormalTok{)}
+\NormalTok{A}
+\end{Highlighting}
+\end{Shaded}
+
   En esta variante, se crea una matriz \texttt{A} con 2 columnas y se
   ajusta automáticamente el número de filas según la longitud del vector
   \texttt{a}.
@@ -540,6 +705,13 @@ estructura.
   internamente un objeto matriz como vector columna). si la matriz debe
   rellenarse fila a fila se requiere el argumento
   \texttt{byrow\ =\ TRUE}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(a, }\AttributeTok{ncol =} \DecValTok{2}\NormalTok{, }\AttributeTok{byrow =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{B}
+\end{Highlighting}
+\end{Shaded}
 
   En esta opción, se crea una matriz \texttt{B} con 2 columnas y se
   especifica que los elementos del vector \texttt{a} se distribuirán por
@@ -556,16 +728,34 @@ estructura.
   Verificamos el número de filas de la matriz \texttt{A} utilizando la
   función \texttt{nrow()}:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{nrow}\NormalTok{(A)}
+\end{Highlighting}
+\end{Shaded}
+
   Esta línea de código devuelve el número de filas de la matriz
   \texttt{A}.
 \item
   Verificamos el número de columnas de la matriz \texttt{A} utilizando
   la función \texttt{ncol()}:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ncol}\NormalTok{(A)}
+\end{Highlighting}
+\end{Shaded}
+
   Aquí se obtiene el número de columnas de la matriz \texttt{A}.
 \item
   Verificamos la dimensión (número de filas y columnas) de la matriz
   \texttt{A} utilizando la función \texttt{dim()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{dim}\NormalTok{(A)}
+\end{Highlighting}
+\end{Shaded}
 
   Esta línea de código devuelve la dimensión de la matriz \texttt{A} en
   formato \texttt{{[}nrow,\ ncol{]}}.
@@ -573,11 +763,25 @@ estructura.
   Combinamos dos matrices \texttt{A} por columnas utilizando la función
   \texttt{cbind()} y almacenamos el resultado en \texttt{D.wide}:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{D.wide }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(A, A)}
+\NormalTok{D.wide}
+\end{Highlighting}
+\end{Shaded}
+
   En esta línea se crea una nueva matriz \texttt{D.wide} que combina las
   matrices \texttt{A} y \texttt{A} por columnas.
 \item
   Combinamos dos matrices \texttt{A} por filas utilizando la función
   \texttt{rbind()} y almacenamos el resultado en \texttt{D.long}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{D.long }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(A, A)}
+\NormalTok{D.long}
+\end{Highlighting}
+\end{Shaded}
 
   Aquí se crea una nueva matriz \texttt{D.long} que combina las matrices
   \texttt{A} y \texttt{A} por filas.
@@ -585,6 +789,12 @@ estructura.
   Combinamos las matrices \texttt{D.wide} y \texttt{D.long} por columnas
   utilizando la función \texttt{cbind()} y almacenamos el resultado en
   \texttt{D}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# D \textless{}{-} cbind(D.wide, D.long)}
+\end{Highlighting}
+\end{Shaded}
 
   En esta línea se crea una nueva matriz \texttt{D} que combina las
   matrices \texttt{D.wide} y \texttt{D.long} por columnas.
@@ -598,11 +808,23 @@ estructura.
   Suma de la matriz \texttt{B} consigo misma utilizando el operador
   \texttt{+}:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B }\SpecialCharTok{+}\NormalTok{ B}
+\end{Highlighting}
+\end{Shaded}
+
   Esta línea de código realiza la suma de la matriz \texttt{B} con ella
   misma.
 \item
   Multiplicación escalar de la matriz \texttt{B} por 2 utilizando el
   operador \texttt{*}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B }\SpecialCharTok{*} \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
 
   Aquí se realiza la multiplicación de cada elemento de la matriz
   \texttt{B} por 2.
@@ -610,11 +832,25 @@ estructura.
   Multiplicación elemento a elemento de la matriz \texttt{B} consigo
   misma y almacenar el resultado en \texttt{a}:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{\textless{}{-}}\NormalTok{ B }\SpecialCharTok{*}\NormalTok{ B}
+\NormalTok{a}
+\end{Highlighting}
+\end{Shaded}
+
   En esta línea se realiza la multiplicación elemento a elemento de la
   matriz \texttt{B} con ella misma, y el resultado se almacena en la
   matriz \texttt{a}.
 \item
   Multiplicación de matrices utilizando el operador \texttt{\%*\%}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{C }\OtherTok{\textless{}{-}}\NormalTok{ B }\SpecialCharTok{\%*\%}\NormalTok{ B}
+\NormalTok{C}
+\end{Highlighting}
+\end{Shaded}
 
   Aquí se realiza la multiplicación de matrices entre la matriz
   \texttt{B} y ella misma, y el resultado se almacena en la matriz
@@ -629,22 +865,46 @@ estructura.
   Transposición de la matriz \texttt{D.wide} utilizando la función
   \texttt{t()}:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t}\NormalTok{(D.wide)}
+\end{Highlighting}
+\end{Shaded}
+
   Esta línea de código transpone la matriz \texttt{D.wide}, es decir,
   intercambia las filas por columnas y viceversa.
 \item
   Cálculo del determinante de la matriz \texttt{B} utilizando la función
   \texttt{det()}:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{det}\NormalTok{(B)}
+\end{Highlighting}
+\end{Shaded}
+
   Aquí se calcula el determinante de la matriz \texttt{B}.
 \item
   Cálculo de la inversa de la matriz \texttt{B} utilizando la función
   \texttt{solve()} (solo si el determinante es diferente de 0):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{solve}\NormalTok{(B)}
+\end{Highlighting}
+\end{Shaded}
 
   En esta línea se calcula la inversa de la matriz \texttt{B}, siempre y
   cuando el determinante sea diferente de 0.
 \item
   Cálculo de los valores propios (eigenvalues) de una matriz cuadrada y
   simétrica utilizando la función \texttt{eigen()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{eigen}\NormalTok{(B)}
+\end{Highlighting}
+\end{Shaded}
 
   Aquí se calculan los valores propios de la matriz \texttt{B}. Esta
   operación solo es aplicable a matrices cuadradas y simétricas.
@@ -669,16 +929,37 @@ para obtener información significativa.
   (\texttt{dbl}), números enteros (\texttt{int}), valores lógicos
   (\texttt{lgl}) y caracteres (\texttt{chr}):
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dbl }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.6}\NormalTok{, }\FloatTok{0.25}\NormalTok{, }\FloatTok{1.2}\NormalTok{, }\FloatTok{0.333}\NormalTok{) }\CommentTok{\# números decimales (double)}
+\NormalTok{int }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{9}\NormalTok{L, }\DecValTok{10}\NormalTok{L, }\DecValTok{11}\NormalTok{L, }\DecValTok{12}\NormalTok{L, }\DecValTok{13}\NormalTok{L) }\CommentTok{\# números enteros (integer)}
+\NormalTok{lgl }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{) }\CommentTok{\# valores lógicos (logical)}
+\NormalTok{chr }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{, }\StringTok{"d"}\NormalTok{, }\StringTok{"e"}\NormalTok{) }\CommentTok{\# caracteres (character)}
+\end{Highlighting}
+\end{Shaded}
+
   Cada vector tiene elementos que representan valores de su respectivo
   tipo de dato.
 \item
   Utilizamos la función \texttt{data.frame()} para combinar los vectores
   en un data frame llamado \texttt{df}:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(dbl, int, lgl, chr)}
+\end{Highlighting}
+\end{Shaded}
+
   El data frame \texttt{df} se crea utilizando los vectores
   \texttt{dbl}, \texttt{int}, \texttt{lgl} y \texttt{chr} como columnas.
 \item
   Mostamos el contenido del data frame en la consola:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
 
   Esto imprime el contenido del data frame \texttt{df}.
 \end{enumerate}
@@ -691,16 +972,34 @@ para obtener información significativa.
   Verificamos el número de filas del data frame utilizando la función
   \texttt{nrow()}:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{nrow}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
   Esta línea de código devuelve el número de filas en el data frame
   \texttt{df}.
 \item
   Verificamos el número de columnas del data frame utilizando la función
   \texttt{ncol()}:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ncol}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
   Aquí se obtiene el número de columnas en el data frame \texttt{df}.
 \item
   Verificamos la dimensión (número de filas y columnas) del data frame
   utilizando la función \texttt{dim()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{dim}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
 
   Esta línea de código devuelve la dimensión del data frame \texttt{df}
   en formato \texttt{{[}nrow,\ ncol{]}}, es decir, el número de filas y
@@ -724,15 +1023,45 @@ complejas.
 \item
   Creamos una variable \texttt{a} que contiene un \textbf{escalar} de
   tipo entero (\texttt{1L}):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{\textless{}{-}} \DecValTok{1}\NormalTok{L}
+\end{Highlighting}
+\end{Shaded}
 \item
   Creamos un \textbf{vector numérico} \texttt{dbl} con 5 elementos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dbl }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.6}\NormalTok{, }\FloatTok{0.25}\NormalTok{, }\FloatTok{1.2}\NormalTok{, }\FloatTok{0.333}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 \item
   Creamos un \textbf{vector de caracteres} \texttt{chr} con 3 elementos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chr }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 \item
   Creamos un vector \texttt{v} con 4 elementos de tipo numérico:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{1.1}\NormalTok{, }\FloatTok{1.2}\NormalTok{, }\FloatTok{1.3}\NormalTok{, }\FloatTok{1.4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 \item
   Creamos una matriz \texttt{mat} de tamaño 2x2 a partir del vector
   \texttt{v}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mat }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(v, }\AttributeTok{ncol =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
   La matriz \texttt{mat} tiene 2 columnas y los elementos del vector
   \texttt{v} se llenan por columnas.
@@ -740,9 +1069,21 @@ complejas.
   Creamos una lista \texttt{l} que contiene los elementos \texttt{a},
   \texttt{dbl}, \texttt{chr} y \texttt{mat}:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{l }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(a, dbl, chr, mat)}
+\end{Highlighting}
+\end{Shaded}
+
   La lista \texttt{l} contiene estos elementos en ese orden.
 \item
   Finalmente, visualizamos el contenido de la lista en la consola:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{l}
+\end{Highlighting}
+\end{Shaded}
 
   Esto imprime el contenido de la lista \texttt{l}.
 \end{enumerate}
@@ -764,44 +1105,40 @@ algunas sugerencias:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2020-06-10-011-instalacion-de-r/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2020-06-10-011-instalacion-de-r}{011
+  \href{https://numerus-scriptum.netlify.app/r/2020-06-10-011-instalacion-de-r/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2020-06-10-011-instalacion-de-r}{011
   Instalacion De R}
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2020-06-10-012-que-ofrece-r/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2020-06-10-012-que-ofrece-r}{012
+  \href{https://numerus-scriptum.netlify.app/r/2020-06-10-012-que-ofrece-r/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2020-06-10-012-que-ofrece-r}{012
   Que Ofrece R}
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2020-06-10-013-lo-que-debemos-saber-de-r/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2020-06-10-013-lo-que-debemos-saber-de-r}{013
+  \href{https://numerus-scriptum.netlify.app/r/2020-06-10-013-lo-que-debemos-saber-de-r/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2020-06-10-013-lo-que-debemos-saber-de-r}{013
   Lo Que Debemos Saber De R}
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2021-03-027-01-introduccion-al-programa/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2021-03-027-01-introduccion-al-programa}{2021
-  03 027 01 Introduccion Al Programa}
-\item
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2021-04-05-02-manipulacion-de-datos/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2021-04-05-02-manipulacion-de-datos}{02
+  \href{https://numerus-scriptum.netlify.app/r/2021-04-05-02-manipulacion-de-datos/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2021-04-05-02-manipulacion-de-datos}{02
   Manipulacion De Datos}
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2021-04-12-03-visualizacion-de-datos/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2021-04-12-03-visualizacion-de-datos}{03
+  \href{https://numerus-scriptum.netlify.app/r/2021-04-12-03-visualizacion-de-datos/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2021-04-12-03-visualizacion-de-datos}{03
   Visualizacion De Datos}
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2022-11-07-04-modelo-de-machine-learning-i-analisis-exploratorio/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2022-11-07-04-modelo-de-machine-learning-i-analisis-exploratorio}{04
+  \href{https://numerus-scriptum.netlify.app/r/2022-11-07-04-modelo-de-machine-learning-i-analisis-exploratorio/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2022-11-07-04-modelo-de-machine-learning-i-analisis-exploratorio}{04
   Modelo De Machine Learning I Analisis Exploratorio}
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2022-11-14-05-modelo-de-machine-learning-ii-modelo-de-clasificacion/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2022-11-14-05-modelo-de-machine-learning-ii-modelo-de-clasificacion}{05
+  \href{https://numerus-scriptum.netlify.app/r/2022-11-14-05-modelo-de-machine-learning-ii-modelo-de-clasificacion/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2022-11-14-05-modelo-de-machine-learning-ii-modelo-de-clasificacion}{05
   Modelo De Machine Learning Ii Modelo De Clasificacion}
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2022-11-21-06-modelo-de-machine-learning-iii-modelo-de-regresion/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2022-11-21-06-modelo-de-machine-learning-iii-modelo-de-regresion}{06
+  \href{https://numerus-scriptum.netlify.app/r/2022-11-21-06-modelo-de-machine-learning-iii-modelo-de-regresion/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2022-11-21-06-modelo-de-machine-learning-iii-modelo-de-regresion}{06
   Modelo De Machine Learning Iii Modelo De Regresion}
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2022-11-28-07-modelo-de-machine-learning-iv-tex-mining/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2022-11-28-07-modelo-de-machine-learning-iv-tex-mining}{07
+  \href{https://numerus-scriptum.netlify.app/r/2022-11-28-07-modelo-de-machine-learning-iv-tex-mining/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2022-11-28-07-modelo-de-machine-learning-iv-tex-mining}{07
   Modelo De Machine Learning Iv Tex Mining}
 \end{enumerate}
 

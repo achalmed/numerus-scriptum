@@ -6,6 +6,7 @@
   nolmodern,
   notxfonts,
   notimes,
+  12pt,
   colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{apa7}
 
 \usepackage{amsmath}
@@ -17,8 +18,6 @@
 \babelprovide[main,import]{spanish}
 
 
-\babelfont{rm}[,RawFeature={fallback=mainfontfallback}]{Latin Modern
-Roman}
 % get rid of language-specific shorthands (see #6817):
 \let\LanguageShortHands\languageshorthands
 \def\languageshorthands#1{}
@@ -115,22 +114,19 @@ Roman}
 
 
 
-\usepackage{fontspec} 
+\usepackage{newtx}
 
 \defaultfontfeatures{Scale=MatchLowercase}
 \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 
-  \setmainfont[,RawFeature={fallback=mainfontfallback}]{Latin Modern
-Roman}
 
 
 
 
-\title{Introducción a la Programación en Eviews: Objetos y Estructuras
-Básicas}
+\title{Programación básica en EViews}
 
 
-\shorttitle{Intro Prog Eviews}
+\shorttitle{INTRO PROG EVIEWS}
 
 
 \usepackage{etoolbox}
@@ -157,10 +153,6 @@ de Huamanga}}
 \date{2021-08-30}
 
 
-\abstract{Descubre cómo crear tu propio sitio web estático con Blogdown,
-una herramienta poderosa que combina R Markdown y Hugo. Aprende a usar
-comandos sencillos para personalizar, construir y alojar tu sitio web de
-manera fácil y rápida. }
 
 \keywords{keyword1, keyword2}
 
@@ -228,14 +220,14 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
   \newcommand\contentsname{Tabla de contenidos}
 \fi
 \ifdefined\listfigurename
-  \renewcommand*\listfigurename{List of Figures}
+  \renewcommand*\listfigurename{Lista de Figuras}
 \else
-  \newcommand\listfigurename{List of Figures}
+  \newcommand\listfigurename{Lista de Figuras}
 \fi
 \ifdefined\listtablename
-  \renewcommand*\listtablename{List of Tables}
+  \renewcommand*\listtablename{Lista de Tablas}
 \else
-  \newcommand\listtablename{List of Tables}
+  \newcommand\listtablename{Lista de Tablas}
 \fi
 \ifdefined\figurename
   \renewcommand*\figurename{Figura}
@@ -252,7 +244,7 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 \floatstyle{ruled}
 \@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
 \floatname{codelisting}{Listing}
-\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listings}}
 \makeatother
 \makeatletter
 \makeatother
@@ -298,14 +290,17 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 
 \maketitle
 
+
 \hypertarget{toc}{}
 \tableofcontents
 \newpage
-\section[Introduction]{Introducción a la Programación en Eviews}
+\section[Introduction]{Programación básica en EViews}
 
-\setcounter{secnumdepth}{5}
+\setcounter{secnumdepth}{3}
 
 \setlength\LTleft{0pt}
+
+
 
 
 Este artículo está actualmente en proceso de edición, y todas las
@@ -321,33 +316,29 @@ algunas sugerencias:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/eviews/2021-08-30-01-introduccion-a-la-programacion-con-eviews/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/eviews/2021-08-30-01-introduccion-a-la-programacion-con-eviews}{01
+  \href{https://numerus-scriptum.netlify.app/eviews/2021-08-30-01-introduccion-a-la-programacion-con-eviews/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/eviews/2021-08-30-01-introduccion-a-la-programacion-con-eviews}{01
   Introduccion A La Programacion Con Eviews}
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/eviews/2021-09-06-02-empleo-de-bucles-y-variables-temporales/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/eviews/2021-09-06-02-empleo-de-bucles-y-variables-temporales}{02
+  \href{https://numerus-scriptum.netlify.app/eviews/2021-09-06-02-empleo-de-bucles-y-variables-temporales/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/eviews/2021-09-06-02-empleo-de-bucles-y-variables-temporales}{02
   Empleo De Bucles Y Variables Temporales}
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/eviews/2021-09-13-03-metodos-de-estimacion-objeto-equatio-objeto-table/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/eviews/2021-09-13-03-metodos-de-estimacion-objeto-equatio-objeto-table}{03
+  \href{https://numerus-scriptum.netlify.app/eviews/2021-09-13-03-metodos-de-estimacion-objeto-equatio-objeto-table/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/eviews/2021-09-13-03-metodos-de-estimacion-objeto-equatio-objeto-table}{03
   Metodos De Estimacion Objeto Equatio Objeto Table}
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/eviews/2022-02-07-05-objetos-avanzados/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/eviews/2022-02-07-05-objetos-avanzados}{05
+  \href{https://numerus-scriptum.netlify.app/eviews/2022-02-07-05-objetos-avanzados/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/eviews/2022-02-07-05-objetos-avanzados}{05
   Objetos Avanzados}
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/eviews/2022-02-14-06-empleo-de-subrutinas/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/eviews/2022-02-14-06-empleo-de-subrutinas}{06
+  \href{https://numerus-scriptum.netlify.app/eviews/2022-02-14-06-empleo-de-subrutinas/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/eviews/2022-02-14-06-empleo-de-subrutinas}{06
   Empleo De Subrutinas}
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/eviews/2022-02-21-07-modelacion/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/eviews/2022-02-21-07-modelacion}{07
+  \href{https://numerus-scriptum.netlify.app/eviews/2022-02-21-07-modelacion/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/eviews/2022-02-21-07-modelacion}{07
   Modelacion}
-\item
-  \href{https://achalmaedison.netlify.app/programacion-software/eviews/2024-03-31-por-editar/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/eviews/2024-03-31-por-editar}{Por
-  Editar}
 \end{enumerate}
 
 Esperamos que encuentres estas publicaciones igualmente interesantes y

@@ -6,6 +6,7 @@
   nolmodern,
   notxfonts,
   notimes,
+  12pt,
   colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{apa7}
 
 \usepackage{amsmath}
@@ -17,8 +18,6 @@
 \babelprovide[main,import]{spanish}
 
 
-\babelfont{rm}[,RawFeature={fallback=mainfontfallback}]{Latin Modern
-Roman}
 % get rid of language-specific shorthands (see #6817):
 \let\LanguageShortHands\languageshorthands
 \def\languageshorthands#1{}
@@ -79,6 +78,46 @@ Roman}
 
 
 
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -115,29 +154,26 @@ Roman}
 
 
 
-\usepackage{fontspec} 
+\usepackage{newtx}
 
 \defaultfontfeatures{Scale=MatchLowercase}
 \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 
-  \setmainfont[,RawFeature={fallback=mainfontfallback}]{Latin Modern
-Roman}
 
 
 
 
-\title{¿Qué nos ofrece R?: Explorando las capacidades de R y su uso en
-el entorno Linux}
+\title{Capacidades y ventajas de R}
 
 
-\shorttitle{Editar}
+\shorttitle{Capacidades y ventajas de R}
 
 
 \usepackage{etoolbox}
 
 
 
-\ccoppy{\textcopyright~2025}
+\ccoppy{\textcopyright~2020}
 
 
 
@@ -157,7 +193,8 @@ de Huamanga}}
 \date{2020-06-10}
 
 
-\abstract{Primer parrafo de abstrac }
+\abstract{Este abstract será actualizado una vez que se complete el
+contenido final del artículo. }
 
 \keywords{keyword1, keyword2}
 
@@ -192,14 +229,14 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
   \newcommand\contentsname{Tabla de contenidos}
 \fi
 \ifdefined\listfigurename
-  \renewcommand*\listfigurename{List of Figures}
+  \renewcommand*\listfigurename{Lista de Figuras}
 \else
-  \newcommand\listfigurename{List of Figures}
+  \newcommand\listfigurename{Lista de Figuras}
 \fi
 \ifdefined\listtablename
-  \renewcommand*\listtablename{List of Tables}
+  \renewcommand*\listtablename{Lista de Tablas}
 \else
-  \newcommand\listtablename{List of Tables}
+  \newcommand\listtablename{Lista de Tablas}
 \fi
 \ifdefined\figurename
   \renewcommand*\figurename{Figura}
@@ -216,7 +253,7 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 \floatstyle{ruled}
 \@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
 \floatname{codelisting}{Listing}
-\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listings}}
 \makeatother
 \makeatletter
 \makeatother
@@ -262,14 +299,17 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 
 \maketitle
 
+
 \hypertarget{toc}{}
 \tableofcontents
 \newpage
-\section[Introduction]{¿Qué nos ofrece R?}
+\section[Introduction]{Capacidades y ventajas de R}
 
-\setcounter{secnumdepth}{5}
+\setcounter{secnumdepth}{3}
 
 \setlength\LTleft{0pt}
+
+
 
 
 \section{¿Qúe nos ofrece RStudio?}\label{quxfae-nos-ofrece-rstudio}
@@ -388,6 +428,33 @@ de variables, visualización, entre otros. Es importante asegurarse de
 que el código esté escrito correctamente y tenga una sintaxis válida.
 
 \pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-html/Screenshot_20230611_004241.png}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Este es un ejemplo de un script básico en R}
+
+\CommentTok{\# Comentario de una línea: los comentarios se utilizan para agregar notas o explicaciones al código}
+
+\CommentTok{\# Variables}
+\NormalTok{nombre }\OtherTok{\textless{}{-}} \StringTok{"Juan"} \CommentTok{\# Variable de tipo texto (cadena de caracteres)}
+\NormalTok{edad }\OtherTok{\textless{}{-}} \DecValTok{25} \CommentTok{\# Variable numérica}
+
+\CommentTok{\# Imprimir en la consola}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Hola,"}\NormalTok{, nombre, }\StringTok{"tienes"}\NormalTok{, edad, }\StringTok{"años.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+
+\CommentTok{\# Operaciones aritméticas}
+\NormalTok{suma }\OtherTok{\textless{}{-}} \DecValTok{10} \SpecialCharTok{+} \DecValTok{5}
+\NormalTok{resta }\OtherTok{\textless{}{-}} \DecValTok{10} \SpecialCharTok{{-}} \DecValTok{5}
+\NormalTok{multiplicacion }\OtherTok{\textless{}{-}} \DecValTok{10} \SpecialCharTok{*} \DecValTok{5}
+\NormalTok{division }\OtherTok{\textless{}{-}} \DecValTok{10} \SpecialCharTok{/} \DecValTok{5}
+
+\CommentTok{\# Imprimir los resultados}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"La suma es:"}\NormalTok{, suma, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"La resta es:"}\NormalTok{, resta, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"La multiplicación es:"}\NormalTok{, multiplicacion, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"La división es:"}\NormalTok{, division, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \textbf{Paso 3: Ejecutar el script}
 
@@ -702,44 +769,40 @@ algunas sugerencias:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2020-06-10-011-instalacion-de-r/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2020-06-10-011-instalacion-de-r}{011
+  \href{https://numerus-scriptum.netlify.app/r/2020-06-10-011-instalacion-de-r/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2020-06-10-011-instalacion-de-r}{011
   Instalacion De R}
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2020-06-10-012-que-ofrece-r/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2020-06-10-012-que-ofrece-r}{012
+  \href{https://numerus-scriptum.netlify.app/r/2020-06-10-012-que-ofrece-r/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2020-06-10-012-que-ofrece-r}{012
   Que Ofrece R}
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2020-06-10-013-lo-que-debemos-saber-de-r/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2020-06-10-013-lo-que-debemos-saber-de-r}{013
+  \href{https://numerus-scriptum.netlify.app/r/2020-06-10-013-lo-que-debemos-saber-de-r/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2020-06-10-013-lo-que-debemos-saber-de-r}{013
   Lo Que Debemos Saber De R}
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2021-03-027-01-introduccion-al-programa/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2021-03-027-01-introduccion-al-programa}{2021
-  03 027 01 Introduccion Al Programa}
-\item
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2021-04-05-02-manipulacion-de-datos/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2021-04-05-02-manipulacion-de-datos}{02
+  \href{https://numerus-scriptum.netlify.app/r/2021-04-05-02-manipulacion-de-datos/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2021-04-05-02-manipulacion-de-datos}{02
   Manipulacion De Datos}
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2021-04-12-03-visualizacion-de-datos/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2021-04-12-03-visualizacion-de-datos}{03
+  \href{https://numerus-scriptum.netlify.app/r/2021-04-12-03-visualizacion-de-datos/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2021-04-12-03-visualizacion-de-datos}{03
   Visualizacion De Datos}
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2022-11-07-04-modelo-de-machine-learning-i-analisis-exploratorio/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2022-11-07-04-modelo-de-machine-learning-i-analisis-exploratorio}{04
+  \href{https://numerus-scriptum.netlify.app/r/2022-11-07-04-modelo-de-machine-learning-i-analisis-exploratorio/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2022-11-07-04-modelo-de-machine-learning-i-analisis-exploratorio}{04
   Modelo De Machine Learning I Analisis Exploratorio}
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2022-11-14-05-modelo-de-machine-learning-ii-modelo-de-clasificacion/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2022-11-14-05-modelo-de-machine-learning-ii-modelo-de-clasificacion}{05
+  \href{https://numerus-scriptum.netlify.app/r/2022-11-14-05-modelo-de-machine-learning-ii-modelo-de-clasificacion/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2022-11-14-05-modelo-de-machine-learning-ii-modelo-de-clasificacion}{05
   Modelo De Machine Learning Ii Modelo De Clasificacion}
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2022-11-21-06-modelo-de-machine-learning-iii-modelo-de-regresion/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2022-11-21-06-modelo-de-machine-learning-iii-modelo-de-regresion}{06
+  \href{https://numerus-scriptum.netlify.app/r/2022-11-21-06-modelo-de-machine-learning-iii-modelo-de-regresion/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2022-11-21-06-modelo-de-machine-learning-iii-modelo-de-regresion}{06
   Modelo De Machine Learning Iii Modelo De Regresion}
 \item
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2022-11-28-07-modelo-de-machine-learning-iv-tex-mining/index.pdf}{\faIcon{file-pdf}}
-  \href{https://achalmaedison.netlify.app/programacion-software/r/2022-11-28-07-modelo-de-machine-learning-iv-tex-mining}{07
+  \href{https://numerus-scriptum.netlify.app/r/2022-11-28-07-modelo-de-machine-learning-iv-tex-mining/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2022-11-28-07-modelo-de-machine-learning-iv-tex-mining}{07
   Modelo De Machine Learning Iv Tex Mining}
 \end{enumerate}
 
