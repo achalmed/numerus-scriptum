@@ -1,57 +1,48 @@
 ---
-title: Visualización de Datos con Python
-date: 2025-05-10  # Actualizado a la fecha actual
-tags:
-  - visualizacion_de_datos
-  - python
-  - matplotlib
-  - graficos
-  - estadistica
-  - programacion_software
 copyrightnotice: 2025
-copyrightext: Todos los derechos reservados
-# image: featured.jpg
-subtitle: Técnicas y Ejemplos de Gráficos para Análisis de Datos
-shorttitle: Visualización con Python
-abstract: Este documento presenta una colección de ejemplos prácticos de visualización de datos utilizando Python y la biblioteca Matplotlib. Se incluyen gráficos de líneas, barras, histogramas, circulares, de caja y combinados, cada uno acompañado de código comentado y optimizado. El objetivo es proporcionar una guía educativa para estudiantes y profesionales interesados en representar datos de manera clara y efectiva, con énfasis en buenas prácticas de diseño y presentación.
+copyrightext: All rights reserved
+title: Visualización de datos con Python
+shorttitle: VISUALIZACIÓN CON PYTHON
+abstract: Este documento presenta una colección de ejemplos prácticos de visualización
+  de datos utilizando Python y la biblioteca Matplotlib. Se incluyen gráficos de líneas,
+  barras, histogramas, circulares, de caja y combinados, cada uno acompañado de código
+  comentado y optimizado. El objetivo es proporcionar una guía educativa para estudiantes
+  y profesionales interesados en representar datos de manera clara y efectiva, con
+  énfasis en buenas prácticas de diseño y presentación.
 keywords:
-  - Visualización de datos
-  - Python
-  - Matplotlib
-  - Gráficos estadísticos
-  - Análisis de datos
+- Visualización de datos
+- Python
+- Matplotlib
+- Gráficos estadísticos
+- Análisis de datos
 categories:
-  - Programación
-  - Visualización de Datos
-  - Estadística
-author:
-  - name: Elmer Achalma
-    url: https://achalmaedison.netlify.app
-    affiliation:
-      name: Universidad Nacional de San Cristóbal de Huamanga
-      department: Economía
-    affiliation-url: https://www.gob.pe/unsch
-    orcid: 0000-0001-6996-3364
-    email: elmer.achalma.09@unsch.edu.pe
-    attributes:
-      corresponding: true
-      equal-contributor: true
-    roles:
-      - Investigación
-      - Programación
-      - Redacción
+- Python
+tags:
+- python
+- visualizacion_python
 author-note:
   disclosures:
     conflict-of-interest: Los autores no tienen conflictos de intereses que revelar.
-    gratitude: Agradezco a mis maestros por su orientación en el aprendizaje de la programación y visualización de datos, a mis padres por su apoyo constante durante mi formación, y a Dios por la salud y fortaleza para perseguir mis metas. Me comprometo a seguir mejorando mis habilidades en la universidad y en todos los ámbitos, siempre con respeto.
-description: Guía práctica de visualización de datos con Python, incluyendo ejemplos de gráficos optimizados con Matplotlib.
-eval: true  # Habilitado para procesar el código
+    gratitude: Agradezco a mis maestros por su orientación en el aprendizaje de la
+      programación y visualización de datos, a mis padres por su apoyo constante durante
+      mi formación, y a Dios por la salud y fortaleza para perseguir mis metas. Me
+      comprometo a seguir mejorando mis habilidades en la universidad y en todos los
+      ámbitos, siempre con respeto.
+description: Uso de bibliotecas Matplotlib, Seaborn y Plotly para crear gráficos informativos
+  y atractivos en análisis de datos con Python.
+eval: true
 citation:
   type: article-journal
   author: Elmer Achalma
-  pdf-url: https://achalmaedison.netlify.app/blog/posts/2025-05-10-visualizacion-datos-python/index.pdf
+  pdf-url: https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf
+date: 05/10/2025
 draft: false
+author:
+- name: Elmer Achalma
+  orcid: 0000-0001-6996-3364
+  email: elmer.achalma.09@unsch.edu.pe
 jupyter: python3
+image: ../featured.jpg
 ---
 
 # Grafico de lineas
