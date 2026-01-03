@@ -1,2 +1,1185 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"></html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Edison Achalma">
+<meta name="keywords" content="Objetos Python, Mutabilidad, Referencias vs copia">
+<meta name="description" content="Todo es objeto en Python: inmutabilidad, referencias y principales tipos built-in (int, str, list, dict).">
+
+<title>Objetos y tipos de datos en Python – Edison Achalma B.Sc. Econ.</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/img/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-89b654103854700c49e4eb323b3dc1f9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K4GMRCPL');</script>
+<!-- End Google Tag Manager -->
+
+
+<link rel="stylesheet" href="../../assets/styles.css">
+<meta property="og:title" content="Edison Achalma B.Sc. Econ.">
+<meta property="og:description" content="Investigador y educador que aplica la ciencia de datos de forma que se dé prioridad a la equidad social.">
+<meta property="og:image" content="https://numerus-scriptum.netlify.app/python/featured.jpg">
+<meta property="og:site_name" content="Actus mercator">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:title" content="Objetos y tipos de datos en Python – Edison Achalma B.Sc. Econ.">
+<meta name="twitter:description" content="Todo es objeto en Python: inmutabilidad, referencias y principales tipos built-in (int, str, list, dict).">
+<meta name="twitter:image" content="https://numerus-scriptum.netlify.app/python/featured.jpg">
+<meta name="twitter:creator" content="@achalmaedison">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="citation_title" content="Objetos y tipos de datos en Python">
+<meta name="citation_abstract" content="En Python, todo es un objeto y su comportamiento está determinado por su tipo y mutabilidad. Este artículo explora los conceptos fundamentales de objetos en Python, con énfasis en la diferencia entre asignación por referencia y por valor, los principales tipos de datos built-in y el manejo práctico de las colecciones más utilizadas; listas (mutables y ordenadas), tuplas (inmutables y eficientes en memoria) y diccionarios (mutables, no ordenados y basados en claves-valor). Se presentan ejemplos claros sobre indexación, métodos principales, evaluación de membresía, copia superficial y profunda, así como consideraciones importantes de consumo de memoria y buenas prácticas al trabajar con estas estructuras.">
+<meta name="citation_keywords" content="Objetos Python,Mutabilidad,Referencias vs copia">
+<meta name="citation_author" content="Edison Achalma">
+<meta name="citation_publication_date" content="2021-06-07">
+<meta name="citation_cover_date" content="2021-06-07">
+<meta name="citation_year" content="2021">
+<meta name="citation_online_date" content="2021-06-07">
+<meta name="citation_fulltext_html_url" content="https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python/">
+<meta name="citation_pdf_url" content="https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python/index.pdf">
+<meta name="citation_language" content="es">
+</head>
+
+<body class="floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Edison Achalma B.Sc. Econ.</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://achalmaedison.netlify.app/about/"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-more" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-ellipsis-h" role="img" aria-label="More">
+</i> 
+ <span class="menu-text">More</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-more">    
+        <li>
+    <a class="dropdown-item" href="https://epsilon-y-beta.netlify.app/">
+ <span class="dropdown-text">Econometria</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://dialectica-y-mercado.netlify.app/">
+ <span class="dropdown-text">Filosofía</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://pecunia-fluxus.netlify.app/">
+ <span class="dropdown-text">Finanzas</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://actus-mercator.netlify.app/">
+ <span class="dropdown-text">Gestión empresarial</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://res-publica.netlify.app/">
+ <span class="dropdown-text">Gestión pública</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://methodica.netlify.app/">
+ <span class="dropdown-text">Metodología de la investigación</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://aequilibria.netlify.app/">
+ <span class="dropdown-text">Macroeconomía</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://axiomata.netlify.app/">
+ <span class="dropdown-text">Matemáticas</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://optimums.netlify.app/">
+ <span class="dropdown-text">Microeconomía</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://numerus-scriptum.netlify.app/">
+ <span class="dropdown-text">Programación y Software</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://chaska-x.netlify.app/">
+ <span class="dropdown-text">Seguridad informática</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/achalmed"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/achalmaedison"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../index.xml"> <i class="bi bi-rss" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <div id="quarto-announcement" data-announcement-id="198edcd182a186efde93855487f89d6b" class="alert alert-primary hidden"><i class="bi bi-gift quarto-announcement-icon"></i><div class="quarto-announcement-content">
+<p>¡Bienvenidos a mi mundo! ¡Felices fiestas! Gracias por visitar 🎄</p>
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns" style="position: relative; width: 100%; margin: 0; padding: 0;">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+
+  <!-- Incluir imagen de fondo si existe featured.jpg, de lo contrario, partículas -->
+    <div id="particles-js"></div>
+  
+  <!-- Contenido principal del bloque de título -->
+  <div class="title-block-content">
+    <div class="quarto-title-block"><div><h1 class="title">Objetos y tipos de datos en Python</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source" data-quarto-source-url="https://github.com/achalmed/numerus-scriptum/blob/main/python/2021-06-07-03-objetos-de-python/index.qmd"><i class="bi"></i></button></div></div>
+                <div class="quarto-categories">
+            <div class="quarto-category">Python</div>
+          </div>
+        
+    <div class="quarto-title-meta-author">
+      <div class="quarto-title-meta-heading">Autor/a</div>
+      <div class="quarto-title-meta-heading">Afiliación</div>
+      
+        <div class="quarto-title-meta-contents">
+        <p class="author"><a href="https://achalmaedison.netlify.app">Edison Achalma</a> <a href="mailto:elmer.achalma.09@unsch.edu.pe" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0001-6996-3364" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+      </div>
+      <div class="quarto-title-meta-contents">
+            <p class="affiliation">
+                <a href="https://www.gob.pe/unsch">
+                Universidad Nacional de San Cristóbal de Huamanga
+                </a>
+              </p>
+          </div>
+      </div>
+
+    <div class="quarto-title-meta">
+
+          
+        <div>
+        <div class="quarto-title-meta-heading">Fecha de publicación</div>
+        <div class="quarto-title-meta-contents">
+          <p class="date">7 de junio de 2021</p>
+        </div>
+      </div>
+      
+        <div>
+        <div class="quarto-title-meta-heading">Fecha de última modificación</div>
+        <div class="quarto-title-meta-contents">
+          <p class="date-modified">3 de enero de 2026</p>
+        </div>
+      </div>
+        
+      </div>
+      
+    <div>
+      <div class="abstract">
+        <div class="block-title">Resumen</div>
+        En Python, todo es un objeto y su comportamiento está determinado por su tipo y mutabilidad. Este artículo explora los conceptos fundamentales de objetos en Python, con énfasis en la diferencia entre asignación por referencia y por valor, los principales tipos de datos built-in y el manejo práctico de las colecciones más utilizadas; listas (mutables y ordenadas), tuplas (inmutables y eficientes en memoria) y diccionarios (mutables, no ordenados y basados en claves-valor). Se presentan ejemplos claros sobre indexación, métodos principales, evaluación de membresía, copia superficial y profunda, así como consideraciones importantes de consumo de memoria y buenas prácticas al trabajar con estas estructuras.
+      </div>
+    </div>
+
+    <div>
+      <div class="keywords">
+        <div class="block-title">Palabras clave</div>
+        <p>Objetos Python, Mutabilidad, Referencias vs copia</p>
+      </div>
+    </div>
+
+    
+    <!-- Cargar script de Particle.js desde CDN, solo si no hay featured.jpg -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+      particlesJS.load(
+        "particles-js",
+        "https://raw.githubusercontent.com/holtzy/lumo/main/_extensions/lumo/particles.json"
+      );
+    </script>
+      </div>
+</header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">Contenidos</h2>
+   
+  <ul>
+  <li><a href="#listas" id="toc-listas" class="nav-link active" data-scroll-target="#listas">Listas</a></li>
+  <li><a href="#asignación-como-referencia-o-como-valor" id="toc-asignación-como-referencia-o-como-valor" class="nav-link" data-scroll-target="#asignación-como-referencia-o-como-valor">Asignación como referencia o como valor</a></li>
+  <li><a href="#evaluando-la-existencia-de-objetos-en-una-lista" id="toc-evaluando-la-existencia-de-objetos-en-una-lista" class="nav-link" data-scroll-target="#evaluando-la-existencia-de-objetos-en-una-lista">Evaluando la existencia de objetos en una lista</a></li>
+  <li><a href="#otros-metodos-para-modificar-listas." id="toc-otros-metodos-para-modificar-listas." class="nav-link" data-scroll-target="#otros-metodos-para-modificar-listas.">Otros metodos para modificar listas.</a></li>
+  <li><a href="#trabajando-con-tuplas." id="toc-trabajando-con-tuplas." class="nav-link" data-scroll-target="#trabajando-con-tuplas.">Trabajando con tuplas.</a></li>
+  <li><a href="#diccionarios" id="toc-diccionarios" class="nav-link" data-scroll-target="#diccionarios">Diccionarios:</a></li>
+  <li><a href="#publicaciones-similares" id="toc-publicaciones-similares" class="nav-link" data-scroll-target="#publicaciones-similares">Publicaciones Similares</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Otros formatos</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF (apaquarto)</a></li><li><a href="index.docx"><i class="bi bi-file-word"></i>MS Word (apaquarto)</a></li></ul></div><div class="quarto-other-links"><h2>Otros Enlaces</h2><ul><li><a href="https://gravatar.com/achalmaedison"><i class="bi bi-link-45deg"></i>Gravatar</a></li></ul></div></nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+<style>
+  :root {
+    --primary-color: ;
+  }
+
+  #title-block-header {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .title-block-content {
+    position: relative;
+    padding-top: 60px;
+    /* Reducido de 130px */
+    padding-bottom: 60px;
+    /* Reducido de 130px */
+    max-width: 752px;
+    margin: 0 auto;
+    z-index: 1;
+  }
+
+  #particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+</style>
+
+
+
+
+<section id="listas" class="level1">
+<h1>Listas</h1>
+<p>Las listas son objetos mutables e iterables en python. Son muy versátiles pues permiten coleccionar de manera ordenada cualquier objeto (incluso otras listas). Las listas además te permiten acceder a los elementos que contiene adentro utilizando índices.</p>
+<div id="632d7c85" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>frutas <span class="op">=</span> [<span class="st">'manzana'</span>, <span class="st">'banana'</span>, <span class="st">'durazno'</span>]</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="bu">print</span>(frutas)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="a298f44e" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>carnes <span class="op">=</span> <span class="bu">list</span>([<span class="st">'cerdo'</span>, <span class="st">'vaca'</span>, <span class="st">'pollo'</span>])</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="bu">print</span>(carnes)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="f0986620" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>mix <span class="op">=</span> [<span class="dv">123</span>, [<span class="st">'Python'</span>, <span class="st">'Stata'</span>], <span class="st">'iPhone'</span>]</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="bu">print</span>(mix)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="asignación-como-referencia-o-como-valor" class="level1">
+<h1>Asignación como referencia o como valor</h1>
+<p>Muchos cometen el error de ‘copiar’ una lista de manera directa y luego editarla. El resultado es que todas las ediciones que hagamos en la lista referida se replicaran en la lista original. Esto ocurre cuando asignamos una lista como referencia en lugar de copiarla.</p>
+<p>Cuando la asignamos como referencia lo unico que hace python es usar el nuevo nombre de variable para referenciar la variable original. Esto permite a python salvar memoria ram porque no estamos creando más objetos en el ambiente de python.</p>
+<p><img src="assign_reference.png" alt="Drawing" style="width: 600px;"></p>
+<div id="0b5e82f3" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> copy</span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a>miPrimeraLista <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
+<span id="cb4-4"><a href="#cb4-4"></a>miPrimeraLista1 <span class="op">=</span> miPrimeraLista <span class="co"># Esto asigna como referencia</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>miPrimeraLista2 <span class="op">=</span> copy.copy(miPrimeraLista) <span class="co"># Esto asigna como valor</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="co">#miPrimeraLista[0]</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>miPrimeraLista[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>miPrimeraLista[<span class="dv">1</span>] <span class="op">=</span> <span class="dv">9</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="bu">print</span>(<span class="st">'miPrimeraLista :'</span>,miPrimeraLista)</span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="bu">print</span>(<span class="st">'miPrimeraLista1:'</span>,miPrimeraLista1)</span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="bu">print</span>(<span class="st">'miPrimeraLista2:'</span>,miPrimeraLista2)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>En el caso de listas de listas la función que nos permite copiar el objeto completo es la rutina deepcopy. Basicamente lo que hace deepcopy es copiar como valor no solo la lista inicial, sino tambien las listas que se contienen adentro.</p>
+<div id="488314bb" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#List of lists:</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>miSegundaLista <span class="op">=</span> [[<span class="st">"Jose"</span>, <span class="st">"Pablo"</span>], [<span class="dv">26</span>, <span class="dv">25</span>]]</span>
+<span id="cb5-3"><a href="#cb5-3"></a>miSegundaListaNombres <span class="op">=</span> miSegundaLista <span class="co"># Esto asigna como referencia</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>miSegundaListaNombres2 <span class="op">=</span> copy.deepcopy(miSegundaLista) <span class="co"># Deepcopy asigna como valor las listas y sublistas</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>miSegundaLista[<span class="dv">1</span>][<span class="dv">1</span>] <span class="op">=</span> <span class="dv">24</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="bu">print</span>(<span class="st">'Lista original:'</span>,miSegundaLista)</span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="bu">print</span>(<span class="st">'Lista copiada como referencia:'</span>,miSegundaListaNombres)</span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="bu">print</span>(<span class="st">'Lista copiada como valor:'</span>,miSegundaListaNombres2)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Para eliminar elementos dentro de una lista, podemos indexar el objeto y con el comando del, podemos eliminar dicho objeto.</p>
+<div id="d8f28d06" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">del</span> miSegundaLista[<span class="dv">1</span>]</span>
+<span id="cb6-2"><a href="#cb6-2"></a>miSegundaLista</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="a507d876" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Combinar listas</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>mylist <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>] <span class="op">+</span> [<span class="dv">3</span>, <span class="dv">4</span>]</span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="bu">print</span>(mylist)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="b6b57a64" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>[<span class="dv">1</span>, <span class="dv">2</span>]<span class="op">*</span><span class="dv">2</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="evaluando-la-existencia-de-objetos-en-una-lista" class="level1">
+<h1>Evaluando la existencia de objetos en una lista</h1>
+<p>En python es posible evaluar la membresía de un elemento en colecciones de elementos como listas, sets, diccionarios y tuplas. Para ello existen los comandos “in”, “not in”.</p>
+<p>Así mismo es posible evaluar si un objeto en python es identico a otro. Esta rutina evalúa si un objeto tiene el mismo valor y propiedades que otro, para ello se usa la rutina “is”.</p>
+<div id="6f23dc11" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Evaluar si un objeto se encuentra en una lista</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="bu">print</span>(mylist)</span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="bu">print</span>(<span class="dv">1</span> <span class="kw">in</span> mylist)</span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="bu">print</span>(<span class="dv">5</span> <span class="kw">in</span> mylist)</span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="bu">print</span>(<span class="dv">1</span> <span class="kw">not</span> <span class="kw">in</span> mylist)</span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="bu">print</span>(<span class="dv">5</span> <span class="kw">not</span> <span class="kw">in</span> mylist)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="b3473bd9" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="bu">print</span>(<span class="dv">5</span> <span class="kw">is</span> <span class="dv">5</span>)</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="bu">print</span>(<span class="dv">5</span> <span class="kw">is</span> <span class="fl">5.</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="otros-metodos-para-modificar-listas." class="level1">
+<h1>Otros metodos para modificar listas.</h1>
+<p>Existen además otros métodos que nos permiten modificar las listas. Por ejemplo, podemos obtener el valor máximo, el mínimo, el tamaño de la lista, así como tambien podemos agregar y remover elementos a una lista.</p>
+<div id="f96ddab8" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Metodos en listas</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="bu">print</span>(<span class="bu">len</span>(mylist)) <span class="co">#Tamano de lista</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="bu">print</span>(<span class="bu">min</span>(mylist)) <span class="co">#Valor minimo en la lista</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="bu">print</span>(<span class="bu">max</span>(mylist)) <span class="co">#Valor maximo en la lista</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="33f5c08d" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># Metodos para agregar y eliminar elementos de una lista:</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>mylist.append(<span class="dv">5</span>) <span class="co">#Agregar elemento</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>mylist</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="c86d7df1" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>mylist.append([<span class="dv">6</span>,<span class="dv">7</span>])</span>
+<span id="cb13-2"><a href="#cb13-2"></a>mylist</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="2f0df152" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>mylist.remove([<span class="dv">6</span>,<span class="dv">7</span>]) <span class="co"># Remover elemento</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>mylist</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="dc9e4f91" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>mylist.extend([<span class="dv">6</span>,<span class="dv">7</span>]) <span class="co"># Extender lista con mas elementos</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>mylist</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="959b1a00" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>mylist.insert(<span class="dv">1</span>,<span class="dv">10</span>) <span class="co"># insert element to a list at a location other than the end</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>mylist</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="86471256" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>mylist.sort()</span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="bu">print</span>(mylist) <span class="co"># Ordenar lista de menor a mayor</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>mylist.index(<span class="dv">2</span>) <span class="co"># Retorna el indice del valor que solicitamos</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="c44ef293" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>mylistExample <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">2</span>]</span>
+<span id="cb18-2"><a href="#cb18-2"></a>mylistExample.index(<span class="dv">2</span>) <span class="co"># Retorna el indice del valor que solicitamos</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="trabajando-con-tuplas." class="level1">
+<h1>Trabajando con tuplas.</h1>
+<p>Las tuplas son colecciones ordenadas de elementos que son inmutables. El beneficio de que sea inmutable es que definir una tupla requiere poca memoria ram pues no tiene muchas rutinas asociadas a comparación de las listas. Usualmente definimos las tuplas entre paréntesis “(,)”.</p>
+<div id="11c1952c" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="im">import</span> sys</span>
+<span id="cb19-2"><a href="#cb19-2"></a></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="co"># Uso de ram para tuplas vs listas:</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a>myTuple <span class="op">=</span> <span class="bu">tuple</span>([i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>)])</span>
+<span id="cb19-5"><a href="#cb19-5"></a>myList  <span class="op">=</span> [i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>)]</span>
+<span id="cb19-6"><a href="#cb19-6"></a><span class="bu">print</span>(sys.getsizeof(myTuple),</span>
+<span id="cb19-7"><a href="#cb19-7"></a>      sys.getsizeof(myList))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="f977b083" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="co">#Evaluando el tipo de elemento</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>myTuple <span class="op">=</span> <span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="co">#print(myTuple)</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="bu">type</span>(myTuple)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="89b2c3d2" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># Convirtiendo una lista en tupla</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="bu">tuple</span>([<span class="dv">1</span>,<span class="dv">2</span>])</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="847e6d94" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># Indexando una tupla</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>myTuple[<span class="dv">0</span>]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="diccionarios" class="level1">
+<h1>Diccionarios:</h1>
+<p>Los diccionarios son colecciones de elementos de manera no ordenada, son mutables y posibles de indexar. En python la forma de crear diccionarios es usando llaves “{}”. Los diccionarios se utilizan para elaborar estructuras de datos que contienen multiples objetos y usualmente se pueden referenciar on un “key name” que suele ser un string. Por lo general los diccionarios siguen la siguiente estructura:</p>
+<pre><code>                                   dictorinary = { 'key1': obj1,
+                                                   'key2': obj2,
+                                                   'key3': obj3}</code></pre>
+<div id="03f05bd0" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># Diccionarios</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a>miDict <span class="op">=</span> {}</span>
+<span id="cb24-3"><a href="#cb24-3"></a></span>
+<span id="cb24-4"><a href="#cb24-4"></a>miDict <span class="op">=</span> {<span class="st">'a'</span>:<span class="st">'perro'</span>, <span class="st">'b'</span>:<span class="st">'gato'</span>}</span>
+<span id="cb24-5"><a href="#cb24-5"></a><span class="bu">print</span>(miDict[<span class="st">'a'</span>])</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="e4a7f5a0" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>miDict[<span class="st">'a'</span>] <span class="op">=</span> <span class="st">'canario'</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a>miDict[<span class="st">'c'</span>] <span class="op">=</span> <span class="st">'conejo'</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a></span>
+<span id="cb25-4"><a href="#cb25-4"></a><span class="bu">print</span>(miDict)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="d93291f5" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="co">#Acceder a llaves (keys) en los diccionarios:</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a><span class="bu">print</span>(<span class="st">'a'</span> <span class="kw">in</span> miDict,</span>
+<span id="cb26-3"><a href="#cb26-3"></a><span class="st">'canario'</span> <span class="kw">in</span> miDict)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="67f170cb" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="bu">list</span>(miDict)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="3de840f4" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>miDict.keys()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="6387c043" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>miDict.values()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="505981ae" class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>miDict.items()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="publicaciones-similares" class="level1">
+<h1>Publicaciones Similares</h1>
+<p>Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:</p>
+<ol type="1">
+<li><a href="https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda">Instalacion De Anaconda</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda">Configurar Entorno Virtual Python Anaconda</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python">01 Introducion A La Programacion Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python">02 Variables Expresiones Y Statements Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python">03 Objetos De Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python">04 Ejecucion Condicional Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python">05 Iteraciones Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python">06 Funciones Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python">07 Dataframes Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python">08 Prediccion Y Metrica De Performance Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python">09 Metodos De Machine Learning Para Clasificacion Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python">10 Metodos De Machine Learning Para Regresion Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2022-10-31-11-validacion-cruzada-y-composicion-del-modelo-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2022-10-31-11-validacion-cruzada-y-composicion-del-modelo-con-python">11 Validacion Cruzada Y Composicion Del Modelo Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python">Visualizacion De Datos Con Python</a></li>
+</ol>
+<p>Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reutilización</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-achalma2021" class="csl-entry quarto-appendix-citeas" role="listitem">
+Achalma, Edison. 2021. <span>“Objetos y tipos de datos en
+Python,”</span> June. <a href="https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python/">https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python/</a>.
+</div></div></section></div></main> <!-- /main -->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4GMRCPL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/numerus-scriptum\.netlify\.app\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<script src="https://utteranc.es/client.js" repo="achalmed/website-achalma" issue-term="title" theme="boxy-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2025 Edison Achalma ∙ Made with <a href="https://quarto.org">Quarto</a></p>
+</div>   
+    <div class="nav-footer-center">
+<p><a class="link-dark me-1" href="../../accessibility.html" title="Accessibility commitment" target="_blank" rel="noopener"><i class="fa-solid fa-universal-access" aria-label="universal-access"></i></a> <a class="link-dark me-1" href="https://fosstodon.org/@achalmaedison" title="mastodon" target="_blank" rel="noopener"><i class="fa-brands fa-mastodon" aria-label="mastodon"></i></a> <a class="link-dark me-1" href="https://github.com/achalmed" title="github" target="_blank" rel="noopener"><i class="fa-brands fa-github" aria-label="github"></i></a> <a class="link-dark me-1" href="https://linkedin.com/in/achalmaedison" title="LinkedIn" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin" aria-label="linkedin"></i></a></p>
+</div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="https://achalmaedison.netlify.app/accessibility">
+<p>Accessibility</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://achalmaedison.netlify.app/contact">
+<p>Contact</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://achalmaedison.netlify.app/license">
+<p>License</p>
+</a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="../../index.xml">
+      <i class="bi bi-rss" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
