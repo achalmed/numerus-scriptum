@@ -387,26 +387,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <section id="listas" class="level1">
 <h1>Listas</h1>
 <p>Las listas son objetos mutables e iterables en python. Son muy versátiles pues permiten coleccionar de manera ordenada cualquier objeto (incluso otras listas). Las listas además te permiten acceder a los elementos que contiene adentro utilizando índices.</p>
-<div id="632d7c85" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="e4927483" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>frutas <span class="op">=</span> [<span class="st">'manzana'</span>, <span class="st">'banana'</span>, <span class="st">'durazno'</span>]</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="bu">print</span>(frutas)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="a298f44e" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="386d5620" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>carnes <span class="op">=</span> <span class="bu">list</span>([<span class="st">'cerdo'</span>, <span class="st">'vaca'</span>, <span class="st">'pollo'</span>])</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="bu">print</span>(carnes)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="f0986620" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="098bee51" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>mix <span class="op">=</span> [<span class="dv">123</span>, [<span class="st">'Python'</span>, <span class="st">'Stata'</span>], <span class="st">'iPhone'</span>]</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="bu">print</span>(mix)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="asignación-como-referencia-o-como-valor" class="level1">
@@ -414,9 +405,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>Muchos cometen el error de ‘copiar’ una lista de manera directa y luego editarla. El resultado es que todas las ediciones que hagamos en la lista referida se replicaran en la lista original. Esto ocurre cuando asignamos una lista como referencia en lugar de copiarla.</p>
 <p>Cuando la asignamos como referencia lo unico que hace python es usar el nuevo nombre de variable para referenciar la variable original. Esto permite a python salvar memoria ram porque no estamos creando más objetos en el ambiente de python.</p>
 <p><img src="assign_reference.png" alt="Drawing" style="width: 600px;"></p>
-<div id="0b5e82f3" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="ceb81bff" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> copy</span>
 <span id="cb4-2"><a href="#cb4-2"></a></span>
 <span id="cb4-3"><a href="#cb4-3"></a>miPrimeraLista <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
@@ -429,12 +418,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span id="cb4-10"><a href="#cb4-10"></a><span class="bu">print</span>(<span class="st">'miPrimeraLista :'</span>,miPrimeraLista)</span>
 <span id="cb4-11"><a href="#cb4-11"></a><span class="bu">print</span>(<span class="st">'miPrimeraLista1:'</span>,miPrimeraLista1)</span>
 <span id="cb4-12"><a href="#cb4-12"></a><span class="bu">print</span>(<span class="st">'miPrimeraLista2:'</span>,miPrimeraLista2)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <p>En el caso de listas de listas la función que nos permite copiar el objeto completo es la rutina deepcopy. Basicamente lo que hace deepcopy es copiar como valor no solo la lista inicial, sino tambien las listas que se contienen adentro.</p>
-<div id="488314bb" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="3089ccfb" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#List of lists:</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>miSegundaLista <span class="op">=</span> [[<span class="st">"Jose"</span>, <span class="st">"Pablo"</span>], [<span class="dv">26</span>, <span class="dv">25</span>]]</span>
 <span id="cb5-3"><a href="#cb5-3"></a>miSegundaListaNombres <span class="op">=</span> miSegundaLista <span class="co"># Esto asigna como referencia</span></span>
@@ -443,124 +429,82 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span id="cb5-6"><a href="#cb5-6"></a><span class="bu">print</span>(<span class="st">'Lista original:'</span>,miSegundaLista)</span>
 <span id="cb5-7"><a href="#cb5-7"></a><span class="bu">print</span>(<span class="st">'Lista copiada como referencia:'</span>,miSegundaListaNombres)</span>
 <span id="cb5-8"><a href="#cb5-8"></a><span class="bu">print</span>(<span class="st">'Lista copiada como valor:'</span>,miSegundaListaNombres2)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <p>Para eliminar elementos dentro de una lista, podemos indexar el objeto y con el comando del, podemos eliminar dicho objeto.</p>
-<div id="d8f28d06" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="637d202d" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">del</span> miSegundaLista[<span class="dv">1</span>]</span>
 <span id="cb6-2"><a href="#cb6-2"></a>miSegundaLista</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="a507d876" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="c1b1b2c7" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Combinar listas</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a>mylist <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>] <span class="op">+</span> [<span class="dv">3</span>, <span class="dv">4</span>]</span>
 <span id="cb7-3"><a href="#cb7-3"></a><span class="bu">print</span>(mylist)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="b6b57a64" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="203d3550" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>[<span class="dv">1</span>, <span class="dv">2</span>]<span class="op">*</span><span class="dv">2</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="evaluando-la-existencia-de-objetos-en-una-lista" class="level1">
 <h1>Evaluando la existencia de objetos en una lista</h1>
 <p>En python es posible evaluar la membresía de un elemento en colecciones de elementos como listas, sets, diccionarios y tuplas. Para ello existen los comandos “in”, “not in”.</p>
 <p>Así mismo es posible evaluar si un objeto en python es identico a otro. Esta rutina evalúa si un objeto tiene el mismo valor y propiedades que otro, para ello se usa la rutina “is”.</p>
-<div id="6f23dc11" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="e5a7a68f" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Evaluar si un objeto se encuentra en una lista</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="bu">print</span>(mylist)</span>
 <span id="cb9-3"><a href="#cb9-3"></a><span class="bu">print</span>(<span class="dv">1</span> <span class="kw">in</span> mylist)</span>
 <span id="cb9-4"><a href="#cb9-4"></a><span class="bu">print</span>(<span class="dv">5</span> <span class="kw">in</span> mylist)</span>
 <span id="cb9-5"><a href="#cb9-5"></a><span class="bu">print</span>(<span class="dv">1</span> <span class="kw">not</span> <span class="kw">in</span> mylist)</span>
 <span id="cb9-6"><a href="#cb9-6"></a><span class="bu">print</span>(<span class="dv">5</span> <span class="kw">not</span> <span class="kw">in</span> mylist)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="b3473bd9" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="26ee5d8a" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="bu">print</span>(<span class="dv">5</span> <span class="kw">is</span> <span class="dv">5</span>)</span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="bu">print</span>(<span class="dv">5</span> <span class="kw">is</span> <span class="fl">5.</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="otros-metodos-para-modificar-listas." class="level1">
 <h1>Otros metodos para modificar listas.</h1>
 <p>Existen además otros métodos que nos permiten modificar las listas. Por ejemplo, podemos obtener el valor máximo, el mínimo, el tamaño de la lista, así como tambien podemos agregar y remover elementos a una lista.</p>
-<div id="f96ddab8" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="8831d677" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Metodos en listas</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a><span class="bu">print</span>(<span class="bu">len</span>(mylist)) <span class="co">#Tamano de lista</span></span>
 <span id="cb11-3"><a href="#cb11-3"></a><span class="bu">print</span>(<span class="bu">min</span>(mylist)) <span class="co">#Valor minimo en la lista</span></span>
 <span id="cb11-4"><a href="#cb11-4"></a><span class="bu">print</span>(<span class="bu">max</span>(mylist)) <span class="co">#Valor maximo en la lista</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="33f5c08d" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="2079b0a9" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># Metodos para agregar y eliminar elementos de una lista:</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a>mylist.append(<span class="dv">5</span>) <span class="co">#Agregar elemento</span></span>
 <span id="cb12-3"><a href="#cb12-3"></a>mylist</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="c86d7df1" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="4b4868a9" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>mylist.append([<span class="dv">6</span>,<span class="dv">7</span>])</span>
 <span id="cb13-2"><a href="#cb13-2"></a>mylist</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="2f0df152" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="3eadf635" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>mylist.remove([<span class="dv">6</span>,<span class="dv">7</span>]) <span class="co"># Remover elemento</span></span>
 <span id="cb14-2"><a href="#cb14-2"></a>mylist</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="dc9e4f91" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="dae62147" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>mylist.extend([<span class="dv">6</span>,<span class="dv">7</span>]) <span class="co"># Extender lista con mas elementos</span></span>
 <span id="cb15-2"><a href="#cb15-2"></a>mylist</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="959b1a00" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="2b8dca8f" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>mylist.insert(<span class="dv">1</span>,<span class="dv">10</span>) <span class="co"># insert element to a list at a location other than the end</span></span>
 <span id="cb16-2"><a href="#cb16-2"></a>mylist</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="86471256" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="d5876932" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>mylist.sort()</span>
 <span id="cb17-2"><a href="#cb17-2"></a><span class="bu">print</span>(mylist) <span class="co"># Ordenar lista de menor a mayor</span></span>
 <span id="cb17-3"><a href="#cb17-3"></a>mylist.index(<span class="dv">2</span>) <span class="co"># Retorna el indice del valor que solicitamos</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="c44ef293" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="e5ec569e" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>mylistExample <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">2</span>]</span>
 <span id="cb18-2"><a href="#cb18-2"></a>mylistExample.index(<span class="dv">2</span>) <span class="co"># Retorna el indice del valor que solicitamos</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="trabajando-con-tuplas." class="level1">
 <h1>Trabajando con tuplas.</h1>
 <p>Las tuplas son colecciones ordenadas de elementos que son inmutables. El beneficio de que sea inmutable es que definir una tupla requiere poca memoria ram pues no tiene muchas rutinas asociadas a comparación de las listas. Usualmente definimos las tuplas entre paréntesis “(,)”.</p>
-<div id="11c1952c" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="0dc77399" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="im">import</span> sys</span>
 <span id="cb19-2"><a href="#cb19-2"></a></span>
 <span id="cb19-3"><a href="#cb19-3"></a><span class="co"># Uso de ram para tuplas vs listas:</span></span>
@@ -568,30 +512,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span id="cb19-5"><a href="#cb19-5"></a>myList  <span class="op">=</span> [i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>)]</span>
 <span id="cb19-6"><a href="#cb19-6"></a><span class="bu">print</span>(sys.getsizeof(myTuple),</span>
 <span id="cb19-7"><a href="#cb19-7"></a>      sys.getsizeof(myList))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="f977b083" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="d46d1d8b" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="co">#Evaluando el tipo de elemento</span></span>
 <span id="cb20-2"><a href="#cb20-2"></a>myTuple <span class="op">=</span> <span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span></span>
 <span id="cb20-3"><a href="#cb20-3"></a><span class="co">#print(myTuple)</span></span>
 <span id="cb20-4"><a href="#cb20-4"></a><span class="bu">type</span>(myTuple)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="89b2c3d2" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="b663a7a3" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># Convirtiendo una lista en tupla</span></span>
 <span id="cb21-2"><a href="#cb21-2"></a><span class="bu">tuple</span>([<span class="dv">1</span>,<span class="dv">2</span>])</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="847e6d94" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="a71c8661" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># Indexando una tupla</span></span>
 <span id="cb22-2"><a href="#cb22-2"></a>myTuple[<span class="dv">0</span>]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="diccionarios" class="level1">
@@ -600,56 +534,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <pre><code>                                   dictorinary = { 'key1': obj1,
                                                    'key2': obj2,
                                                    'key3': obj3}</code></pre>
-<div id="03f05bd0" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="a6930617" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># Diccionarios</span></span>
 <span id="cb24-2"><a href="#cb24-2"></a>miDict <span class="op">=</span> {}</span>
 <span id="cb24-3"><a href="#cb24-3"></a></span>
 <span id="cb24-4"><a href="#cb24-4"></a>miDict <span class="op">=</span> {<span class="st">'a'</span>:<span class="st">'perro'</span>, <span class="st">'b'</span>:<span class="st">'gato'</span>}</span>
 <span id="cb24-5"><a href="#cb24-5"></a><span class="bu">print</span>(miDict[<span class="st">'a'</span>])</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="e4a7f5a0" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="3553b108" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>miDict[<span class="st">'a'</span>] <span class="op">=</span> <span class="st">'canario'</span></span>
 <span id="cb25-2"><a href="#cb25-2"></a>miDict[<span class="st">'c'</span>] <span class="op">=</span> <span class="st">'conejo'</span></span>
 <span id="cb25-3"><a href="#cb25-3"></a></span>
 <span id="cb25-4"><a href="#cb25-4"></a><span class="bu">print</span>(miDict)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="d93291f5" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="8612d8e5" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="co">#Acceder a llaves (keys) en los diccionarios:</span></span>
 <span id="cb26-2"><a href="#cb26-2"></a><span class="bu">print</span>(<span class="st">'a'</span> <span class="kw">in</span> miDict,</span>
 <span id="cb26-3"><a href="#cb26-3"></a><span class="st">'canario'</span> <span class="kw">in</span> miDict)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="67f170cb" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="7aa6327f" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="bu">list</span>(miDict)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="3de840f4" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="6952241f" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>miDict.keys()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="6387c043" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="68f274a3" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>miDict.values()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="505981ae" class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
+<div id="8648de46" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>miDict.items()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="publicaciones-similares" class="level1">
