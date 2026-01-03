@@ -1,7 +1,8 @@
 ---
+documentmode: doc
 copyrightnotice: 2020
 copyrightext: All rights reserved
-title: Instalación de Anaconda Python
+title: Instalación y Configuración de Miniconda
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
 keywords:
@@ -39,298 +40,742 @@ draft: false
 image: ../featured.jpg
 ---
 
-# Introducción
-
-La instalación de Anaconda en Ubuntu Linux es un paso crucial para aquellos que desean aprovechar al máximo el desarrollo en Python en este sistema operativo. Anaconda, una plataforma de gestión de paquetes y entornos virtuales, ofrece una amplia gama de herramientas y bibliotecas que facilitan el trabajo con Python, así como con otros lenguajes de programación populares. Al instalar Anaconda en Ubuntu Linux, los desarrolladores obtienen una solución integral que simplifica el proceso de configuración y administración de su entorno de desarrollo.
-
-La importancia de la instalación de Anaconda en Ubuntu Linux radica en su capacidad para proporcionar un flujo de trabajo fluido y eficiente. Al ofrecer una amplia selección de paquetes precompilados, Anaconda elimina la necesidad de buscar e instalar manualmente cada biblioteca requerida. Esto ahorra tiempo y evita posibles conflictos de dependencia, permitiendo a los desarrolladores centrarse en la programación en lugar de la configuración del entorno.
-
-Además de su conveniencia, Anaconda también ofrece beneficios significativos en términos de gestión de entornos virtuales. Con la ayuda de la herramienta "conda", los desarrolladores pueden crear y administrar fácilmente entornos aislados para proyectos específicos. Esto permite mantener diferentes versiones de paquetes y bibliotecas para cada proyecto, evitando conflictos y facilitando la replicación del entorno de desarrollo en diferentes sistemas.
-
-¡Sumérgete en el mundo de Anaconda y descubre cómo simplificar y mejorar tu experiencia de desarrollo en Python en Ubuntu Linux!
-
 # ¿Qué es Anaconda?
 
 Anaconda es una plataforma de gestión de paquetes y entornos virtuales diseñada para facilitar el desarrollo en Python y otros lenguajes de programación populares. Imagina que tienes una caja de herramientas repleta de todo lo que necesitas para construir aplicaciones, analizar datos o desarrollar proyectos de aprendizaje automático. Esa es Anaconda: una caja de herramientas poderosa y completa que te brinda todo lo que necesitas para trabajar con Python de manera eficiente.
 
-Una de las principales ventajas de Anaconda es su capacidad para gestionar paquetes. En lugar de buscar y descargar manualmente cada biblioteca que necesitas, Anaconda te ofrece una amplia selección de paquetes precompilados y listos para usar. Esto significa que no tienes que preocuparte por las dependencias o por perder tiempo en configuraciones complicadas. Con Anaconda, puedes comenzar a trabajar en tu proyecto de inmediato.
+Esta guía está diseñada específicamente para mi flujo de trabajo como economista que:
 
-Otra gran ventaja de Anaconda es su capacidad para crear entornos virtuales. ¿Qué significa esto? Básicamente, puedes aislar tus proyectos en entornos separados, cada uno con su propia configuración de paquetes y versiones. Esto es especialmente útil cuando trabajas en varios proyectos al mismo tiempo o cuando necesitas mantener diferentes versiones de bibliotecas para distintas aplicaciones. Anaconda hace que la gestión de entornos sea sencilla y te permite alternar entre ellos con facilidad.
+- Mantiene múltiples blogs académicos (epsilon-y-beta, axiomata, methodica, etc.)
+- Desarrolla scripts de automatización en Python
+- Trabaja con análisis econométrico y ciencia de datos
+- Usa Quarto para publicaciones académicas
+- Necesita entornos reproducibles para colaboración
 
-# Pasos para la instalación de Anaconda en Ubuntu Linux
 
-## Descargar el instalador de Anaconda
+# Por Qué Miniconda en Lugar de Anaconda
 
-**Paso 1:** Accede al sitio web oficial de Anaconda. Puedes hacerlo abriendo tu navegador web favorito y dirigiéndote a [Anaconda.com](https://www.anaconda.com/). Una vez allí, busca la sección de descargas.
+## Comparación
 
-**Paso 2:** En la sección de descargas, encontrarás diferentes opciones de Anaconda según tu sistema operativo. Como estamos trabajando en Ubuntu Linux, asegúrate de seleccionar la versión adecuada para Linux.
+| Característica | Miniconda | Anaconda Distribution |
+|----------------|-----------|----------------------|
+| Tamaño inicial | ~50 MB | ~3-5 GB |
+| Paquetes preinstalados | Mínimos (conda, Python, pip) | 250+ paquetes |
+| Control total | Sí | Limitado |
+| Velocidad de instalación | Rápida | Lenta |
+| Ideal para | Usuarios avanzados, servidores | Principiantes |
 
-**Paso 3:** Una vez que hayas seleccionado la versión de Linux, verás dos opciones: Anaconda Individual Edition y Anaconda Enterprise. Para la mayoría de los casos, Anaconda Individual Edition es la opción recomendada, ya que es una versión gratuita y completa de Anaconda. Haz clic en el botón de descarga correspondiente a la edición que deseas instalar.
+## Ventajas
 
-**Paso 4:** La descarga comenzará y, dependiendo de la velocidad de tu conexión a Internet, podría llevar algunos minutos. Asegúrate de esperar hasta que la descarga se complete antes de pasar al siguiente paso.
+1. **Control Total:** Instalas solo lo que necesitas para cada proyecto
+2. **Múltiples Entornos:** Ideal para tus 10+ blogs con dependencias diferentes
+3. **Reproducibilidad:** Archivos `environment.yml` más pequeños y claros
+4. **Velocidad:** Con Mamba, la resolución de dependencias es ultrarrápida
+5. **Integración con Sistema:** Usa Quarto y R del sistema (pacman), Python de conda
 
-Ahora que has descargado el instalador de Anaconda en tu sistema Ubuntu Linux, es hora de abrir la terminal y ejecutar algunos comandos para continuar con el proceso de instalación. ¡No te preocupes, te guiaré paso a paso!
+# Preparación del Sistema
 
-**Paso 5:** Abre la terminal. Puedes hacerlo de diferentes maneras, pero una forma común es presionar las teclas Ctrl + Alt + T al mismo tiempo. Esto abrirá una nueva ventana de terminal en tu pantalla.
+## 1. Verificar Instalaciones Existentes
 
-**Paso 6:** Una vez que tengas la terminal abierta, es importante asegurarte de que estás ubicado en el directorio correcto. Para hacerlo, ejecuta el comando "pwd" y presiona Enter. Esto te mostrará la ruta actual en la que te encuentras. Asegúrate de estar en el lugar adecuado antes de continuar.
+```bash
+# Verificar si conda ya está instalado
+which conda
 
-**Paso 7:** Ahora, necesitamos navegar a la ubicación donde se encuentra el instalador de Anaconda que descargaste. Por lo general, se guarda en la carpeta "Downloads" (Descargas). Para acceder a esta carpeta, ejecuta el siguiente comando:
+# Verificar versión (si existe)
+conda --version
 
-``` bash
-cd Downloads/
+# Verificar entornos existentes
+conda env list
 ```
 
-Presiona Enter después de escribir el comando y verás que la ruta de la terminal cambia al directorio "Downloads".
+## 2. Desinstalar Instalaciones Previas (Si Es Necesario)
 
-**Paso 8:** ¡Estamos casi listos para ejecutar el instalador de Anaconda! Ahora, debes ejecutar el archivo de instalación. Asegúrate de que el nombre del archivo coincida con el que descargaste. Para ejecutarlo, utiliza el siguiente comando:
+**Si tienes Anaconda o Miniconda antiguo:**
 
-``` bash
-bash nombre-del-archivo.sh
+```bash
+# Desactivar entorno base
+conda deactivate
+
+# Eliminar directorio de instalación
+rm -rf ~/miniconda3
+# O si instalaste Anaconda:
+rm -rf ~/anaconda3
+
+# Limpiar configuraciones (OPCIONAL - solo si quieres empezar de cero)
+rm -rf ~/.conda
+rm -f ~/.condarc
+
+# Limpiar inicialización de shells
+# Fish
+nano ~/.config/fish/config.fish  # Eliminar bloque conda initialize
+
+# Bash
+nano ~/.bashrc  # Eliminar bloque conda initialize
+
+# Zsh
+nano ~/.zshrc  # Eliminar bloque conda initialize
 ```
 
-Reemplaza "nombre-del-archivo" con el nombre exacto del archivo de instalación que descargaste. Por ejemplo, si el archivo se llama "Anaconda3-2021.05-Linux-x86_64.sh", el comando sería:
+## 3. Verificar Herramientas del Sistema
 
-``` bash
-bash Anaconda3-2021.05-Linux-x86_64.sh
+```bash
+# Verificar Quarto (debe estar instalado)
+quarto --version
+
+# Verificar R (debe estar instalado)
+R --version
+
+# Verificar LaTeX (para PDFs en Quarto)
+pdflatex --version
+
+# Si falta algo, instalar con pacman
+sudo pacman -S quarto r texlive-most
 ```
 
-Presiona Enter y comenzará el proceso de instalación de Anaconda. Sigue las instrucciones que aparecerán en la terminal y asegúrate de leer y aceptar los términos de licencia.
+# Instalación de Miniconda
 
-**Paso 9:** ¡Genial! Ahora que has ejecutado el instalador de Anaconda en Ubuntu Linux, solo te queda seguir las instrucciones de instalación que aparecerán en la terminal. No te preocupes, te guiaré a través de este paso.
+## Método 1: Instalación Rápida (Recomendado)
 
-Después de ejecutar el comando para iniciar la instalación, verás que aparecerá una serie de instrucciones en la terminal. Lee cuidadosamente cada paso y asegúrate de seguirlos correctamente.
+```bash
+# 1. Crear directorio temporal
+mkdir -p ~/miniconda3
 
-Por lo general, las instrucciones te pedirán que revises y aceptes los términos de licencia. Para hacerlo, simplemente lee los términos y condiciones que se muestran en la terminal y, cuando se te solicite, presiona Enter para avanzar y aceptar los términos.
+# 2. Descargar instalador (x86_64 para Arch Linux estándar)
+curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
+  -o ~/miniconda3/miniconda.sh
 
-A continuación, se te pedirá que especifiques la ubicación de la instalación de Anaconda. Por defecto, suele ser en tu directorio de inicio, pero puedes elegir una ubicación diferente si lo deseas. Si no estás seguro, te recomendaría que aceptes la ubicación predeterminada presionando Enter.
+# 3. Verificar integridad (RECOMENDADO)
+sha256sum ~/miniconda3/miniconda.sh
+# Comparar con el hash oficial en https://repo.anaconda.com/miniconda/
 
-Luego, la instalación te preguntará si deseas agregar Anaconda a tu variable de entorno PATH. Esto es útil para que puedas acceder a los comandos de Anaconda desde cualquier ubicación en tu sistema. Te sugeriría que respondas "yes" (sí) y presiones Enter.
+# 4. Ejecutar instalador
+bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
 
-Cuando la carpeta de anaconda ya existe, actualizamos programas existente.
-
-``` bash
-bash Anaconda3-2021.11-Linux-x86_64.sh -u 
+# 5. Eliminar instalador
+rm ~/miniconda3/miniconda.sh
 ```
 
-Después de eso, la instalación continuará y verás una barra de progreso que indica el avance del proceso. Puede llevar algún tiempo, así que ten paciencia.
+**opciones:**
 
-Una vez que la instalación se complete con éxito, verás un mensaje indicando que Anaconda se ha instalado correctamente. ¡Felicidades! Has instalado Anaconda en tu sistema Ubuntu Linux.
+- `-b`: Modo batch (sin prompts interactivos)
+- `-u`: Actualizar instalación existente si la hay
+- `-p ~/miniconda3`: Ruta de instalación
 
-Ahora puedes cerrar la terminal y comenzar a disfrutar de las ventajas de utilizar Anaconda en tu sistema. Recuerda que Anaconda te ofrece un entorno de gestión de paquetes y entornos virtuales que te facilitará el trabajo con Python y otras herramientas de ciencia de datos.
+## Método 2: Instalación Interactiva
 
-**Paso 10:** Una vez que hayas instalado Anaconda en tu sistema Ubuntu Linux, es importante añadirlo al PATH del sistema para que puedas acceder a los comandos de Anaconda desde cualquier ubicación en tu sistema. Te guiaré a través de este paso.
+```bash
+# 1. Descargar instalador
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 
-1.  Abre la terminal en tu sistema Ubuntu Linux. Puedes hacerlo buscando "Terminal" en el menú de aplicaciones o usando el atajo de teclado Ctrl+Alt+T.
+# 2. Ejecutar instalador interactivo
+bash Miniconda3-latest-Linux-x86_64.sh
 
-2.  En la terminal, escribe el siguiente comando para abrir el archivo de configuración de inicio de sesión:
+# Seguir instrucciones:
+# - Aceptar licencia: yes
+# - Ubicación: /home/achalmaedison/miniconda3 (default)
+# - Inicializar conda: yes (IMPORTANTE)
 
-    ``` bash
-    nano ~/.bashrc
-    ```
+# 3. Eliminar instalador
+rm Miniconda3-latest-Linux-x86_64.sh
+```
 
-3.  Esto abrirá el archivo `.bashrc` en el editor de texto `nano`. Ahora, desplázate hasta el final del archivo.
+# Configuración Inicial
 
-4.  En la última línea del archivo, añade el siguiente comando para agregar Anaconda al PATH:
+## 1. Inicializar Conda para Todos los Shells
 
-    ``` bash
-    export PATH="/ruta/donde/instalaste/anaconda/bin:$PATH"
-    ```
+```bash
+# Activar conda temporalmente
+source ~/miniconda3/bin/activate
 
-    Recuerda reemplazar "/ruta/donde/instalaste/anaconda" con la ubicación real donde instalaste Anaconda. Si elegiste la ubicación predeterminada, el comando será:
+# Inicializar para todos los shells disponibles
+conda init --all
 
-    ``` bash
-    export PATH="$HOME/anaconda/bin:$PATH"
-    ```
+# Resultado: Modifica automáticamente:
+# - ~/.bashrc (Bash)
+# - ~/.zshrc (Zsh)
+# - ~/.config/fish/config.fish (Fish)
+```
 
-5.  Después de añadir el comando, guarda los cambios en el archivo `~/.bashrc`. En `nano`, puedes hacerlo presionando Ctrl+O, luego presiona Enter para confirmar y finalmente presiona Ctrl+X para salir del editor `nano`.
+## 2. Recargar Shell
 
-6.  Ahora, para que los cambios tengan efecto, actualiza el archivo de configuración de inicio de sesión con el siguiente comando:
+```bash
+# Fish
+exec fish
 
-    ``` bash
-    source ~/.bashrc
-    ```
+# Bash
+source ~/.bashrc
 
-¡Y eso es todo! Has añadido correctamente Anaconda al PATH del sistema en Ubuntu Linux. Ahora podrás acceder a los comandos de Anaconda desde cualquier ubicación en tu sistema.
+# Zsh
+source ~/.zshrc
+```
 
-**Algunos problemas:** A veces, durante la instalación de Anaconda, puede ocurrir que no se pueda responder con "yes" al prompt de inicialización de Anaconda en el archivo `.bashrc`. Aquí te proporcionaré una solución detallada para abordar este problema:
+**Verificación:** Deberías ver `(base)` al inicio de tu prompt.
 
-1.  Después de que la instalación de Anaconda se complete y se muestre el prompt para inicializar Anaconda en el archivo `.bashrc`, si no puedes responder con "yes" y el proceso se cierra, no te preocupes.
+## 3. Desactivar Auto-Activación de Base (RECOMENDADO)
 
-2.  Abre la terminal en tu sistema Ubuntu Linux. Puedes hacerlo buscando "Terminal" en el menú de aplicaciones o usando el atajo de teclado Ctrl+Alt+T.
+```bash
+# Evitar que base se active automáticamente
+conda config --set auto_activate_base false
 
-3.  En la terminal, ejecuta el siguiente comando para abrir el archivo `.bashrc` en un editor de texto:
+# Recargar shell
+exec fish  # o source ~/.bashrc / source ~/.zshrc
+```
 
-    ``` bash
-    sudo gedit ~/.bashrc
-    ```
+**Razón:** Es mejor práctica activar entornos específicos manualmente.
 
-    Esto abrirá el archivo `.bashrc` con privilegios de administrador para poder editarlo.
 
-4.  Desplázate hasta el final del archivo `.bashrc` y agrega el siguiente bloque de código:
+# Instalación de Mamba
 
-    ``` bash
-    # >>> conda initialize >>>
-    !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/home/achalmaubuntu/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
+Mamba es un solver ultrarrápido para conda que acelera la instalación de paquetes hasta 10x.
+
+## 1. Instalar Mamba en el Entorno Base
+
+```bash
+# Activar base
+conda activate base
+
+# Instalar mamba desde conda-forge
+conda install mamba -c conda-forge -y
+
+# Configurar mamba como solver por defecto
+conda config --set solver libmamba
+```
+
+## 2. Verificar Instalación
+
+```bash
+# Verificar versión
+mamba --version
+
+# Debería mostrar algo como: mamba 1.5.x
+```
+
+# Configuración de Fish Shell
+
+## 1. Inicialización Automática
+
+**Conda ya debería haber configurado Fish automáticamente.** Verificar:
+
+```fish
+# Abrir configuración de Fish
+nano ~/.config/fish/config.fish
+```
+
+**Debe contener algo como:**
+
+```fish
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if test -f /home/achalmaedison/miniconda3/bin/conda
+    eval /home/achalmaedison/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+else
+    if test -f "/home/achalmaedison/miniconda3/etc/fish/conf.d/conda.fish"
+        . "/home/achalmaedison/miniconda3/etc/fish/conf.d/conda.fish"
     else
-        if [ -f "/home/achalmaubuntu/anaconda3/etc/profile.d/conda.sh" ]; then
-            . "/home/achalmaubuntu/anaconda3/etc/profile.d/conda.sh"
-        else
-            export PATH="/home/achalmaubuntu/anaconda3/bin:$PATH"
-        fi
-    fi
-    unset __conda_setup
-    # <<< conda initialize <<<
-    ```
+        set -x PATH "/home/achalmaedison/miniconda3/bin" $PATH
+    end
+end
+# <<< conda initialize <<<
+```
 
-    Recuerda cambiar el achalmaubuntu con su usuario
+## 2. Agregar Alias Útiles
 
-5.  Guarda los cambios en el archivo `.bashrc`.
+```fish
+# Editar configuración de Fish
+nano ~/.config/fish/config.fish
+```
 
-6.  Luego, en la terminal, ejecuta el siguiente comando para actualizar las variables de entorno con los cambios realizados en el archivo `.bashrc`:
+**Agregar al final:**
 
-    ``` bash
-    source ~/.bashrc
-    ```
+```fish
+# ========================================================================
+# ALIASES DE CONDA Y PROYECTOS
+# ========================================================================
 
-Recuerda reiniciar la terminal o abrir una nueva ventana de terminal para que los cambios surtan efecto.
+# Gestión de entornos
+alias ce="conda env list"
+alias ca="conda activate"
+alias cda="conda deactivate"
 
-¡Y eso es todo! Has solucionado el problema de inicialización de Anaconda en el archivo `.bashrc` y ahora puedes utilizar Anaconda y sus comandos sin problemas en tu sistema Ubuntu Linux.
+# Blogs
+alias blog="conda activate econblog && cd ~/Proyectos/epsilon-y-beta"
+alias blogoff="conda deactivate"
 
-# Verificación de la instalación de Anaconda
+# Scripts
+alias scripts="conda activate scripts-env && cd ~/Proyectos/scripts"
+alias scriptsoff="conda deactivate"
 
-Una vez que hayas completado la instalación de Anaconda en tu sistema Ubuntu Linux, es importante verificar que todo haya sido instalado correctamente. Aquí te mostraré cómo comprobarlo y también cómo verificar la versión de Anaconda y los paquetes instalados.
+# Limpieza
+alias conda-clean="conda clean --all -y"
 
-**Comprobar la instalación de Anaconda:**
+# Actualización
+alias conda-update="conda update -n base conda -y && mamba update --all -y"
+```
 
-1.  Abre la terminal en tu sistema Ubuntu Linux.
+**Recargar configuración:**
 
-2.  En la terminal, ingresa el siguiente comando:
+```fish
+source ~/.config/fish/config.fish
+```
 
-    ``` bash
-    conda --version
-    ```
+## 3. Configuración para Bash/Zsh (Opcional)
 
-    Esto mostrará la versión de Anaconda instalada en tu sistema. Si se muestra la versión correctamente, significa que Anaconda está instalado correctamente.
+**Si también usas Bash o Zsh:**
 
-**Verificar la versión de Anaconda:**
+```bash
+# Bash: ~/.bashrc
+# Zsh: ~/.zshrc
 
-1.  En la terminal, ingresa el siguiente comando:
+# Agregar aliases
+alias ce="conda env list"
+alias ca="conda activate"
+alias cda="conda deactivate"
+alias blog="conda activate econblog && cd ~/Proyectos/epsilon-y-beta"
+alias scripts="conda activate scripts-env && cd ~/Proyectos/scripts"
+alias conda-clean="conda clean --all -y"
+alias conda-update="conda update -n base conda -y && mamba update --all -y"
+```
 
-    ``` bash
-    conda list anaconda$
-    ```
+# Configuración Óptima de Conda
 
-    Esto mostrará una lista de los paquetes instalados con el nombre "anaconda" en su versión. Si se muestra la lista de paquetes correctamente, significa que la instalación de Anaconda incluyendo los paquetes se ha realizado correctamente.
+## 1. Crear Archivo de Configuración
 
-2.  Para verificar la versión de un paquete específico, puedes ingresar el siguiente comando en la terminal, reemplazando `<nombre_paquete>` con el nombre del paquete que deseas verificar:
+```bash
+# El archivo ~/.condarc almacena la configuración global de conda
+nano ~/.condarc
+```
 
-    ``` bash
-    conda list <nombre_paquete>
-    ```
+## 2. Mi Configuración
 
-    Esto mostrará la versión del paquete específico instalado en tu sistema.
+```yaml
+# ========================================================================
+# CONFIGURACIÓN GLOBAL DE CONDA
+# Usuario: Edison Achalma (achalmaedison)
+# Sistema: Arch Linux
+# Fecha: Enero 2026
+# ========================================================================
 
-¡Listo! Ahora puedes asegurarte de que Anaconda esté correctamente instalado y verificar las versiones de Anaconda y los paquetes instalados en tu sistema Ubuntu Linux. Esto te ayudará a garantizar un funcionamiento adecuado de Anaconda y sus herramientas para el desarrollo de proyectos.
+# ------------------------------------------------------------------------
+# Canales (Prioridad de búsqueda de paquetes)
+# ------------------------------------------------------------------------
+channels:
+  - conda-forge        # Canal principal (comunidad, actualizado)
+  - defaults           # Canal oficial de Anaconda
 
-# Actualización de Anaconda en Ubuntu Linux
+# Prioridad estricta (usar en orden de la lista)
+channel_priority: strict
 
-Mantener tu instalación de Anaconda actualizada es crucial para aprovechar las últimas mejoras, características y correcciones de errores. Afortunadamente, actualizar Anaconda en Ubuntu Linux es un proceso sencillo. A continuación, te mostraré los pasos para actualizar Anaconda a la última versión utilizando los comandos de actualización de Conda y paquetes.
+# ------------------------------------------------------------------------
+# Solver (Motor de resolución de dependencias)
+# ------------------------------------------------------------------------
+solver: libmamba      # Usar mamba (mucho más rápido que classic)
 
-**Pasos para actualizar Anaconda:**
+# ------------------------------------------------------------------------
+# Activación Automática
+# ------------------------------------------------------------------------
+auto_activate_base: false   # NO activar base automáticamente
 
-1.  Abre la terminal en tu sistema Ubuntu Linux.
+# ------------------------------------------------------------------------
+# Notificaciones y Actualizaciones
+# ------------------------------------------------------------------------
+auto_update_conda: false    # NO actualizar conda automáticamente
+notify_outdated_conda: true # Notificar si hay nueva versión
 
-2.  En la terminal, ingresa el siguiente comando para actualizar Conda, el administrador de paquetes de Anaconda:
+# ------------------------------------------------------------------------
+# Gestión de Paquetes
+# ------------------------------------------------------------------------
+pip_interop_enabled: true   # Permitir interoperabilidad con pip
+always_yes: false           # Pedir confirmación antes de instalar
 
-    ``` bash
-    conda update conda
-    ```
+# ------------------------------------------------------------------------
+# Almacenamiento
+# ------------------------------------------------------------------------
+pkgs_dirs:
+  - ~/.conda/pkgs           # Directorio de caché de paquetes
 
-    Este comando actualizará Conda a la última versión disponible.
+envs_dirs:
+  - ~/miniconda3/envs       # Directorio de entornos
+  - ~/.conda/envs           # Directorio adicional de entornos
 
-3.  A continuación, puedes utilizar el siguiente comando para actualizar todos los paquetes instalados en tu entorno de Anaconda:
+# ------------------------------------------------------------------------
+# Interfaz de Usuario
+# ------------------------------------------------------------------------
+show_channel_urls: true     # Mostrar URL del canal en listados
+json: false                 # Salida en texto (no JSON)
+quiet: false                # Mostrar mensajes normales
 
-    ``` bash
-    conda update --all
-    ```
+# ------------------------------------------------------------------------
+# Seguridad
+# ------------------------------------------------------------------------
+ssl_verify: true            # Verificar certificados SSL
 
-    Este comando buscará actualizaciones para todos los paquetes instalados y los actualizará a las últimas versiones disponibles.
+# ------------------------------------------------------------------------
+# Proxy (Descomentar si usas proxy corporativo)
+# ------------------------------------------------------------------------
+# proxy_servers:
+#   http: http://proxy.empresa.com:8080
+#   https: https://proxy.empresa.com:8080
+```
 
-4.  Si deseas actualizar un paquete específico, puedes utilizar el siguiente comando, reemplazando `<nombre_paquete>` con el nombre del paquete que deseas actualizar:
+## 3. Verificar Configuración
 
-    ``` bash
-    conda update <nombre_paquete>
-    ```
+```bash
+# Ver configuración actual
+conda config --show
 
-    Esto actualizará el paquete especificado a la última versión disponible.
+# Ver solo configuraciones modificadas
+conda config --show-sources
+```
 
-Recuerda que antes de realizar la actualización, es recomendable crear un entorno virtual y respaldar tus proyectos para evitar cualquier conflicto o pérdida de datos.
+# Integración con Herramientas del Sistema
 
-¡Y eso es todo! Con estos pasos, podrás mantener tu instalación de Anaconda actualizada y disfrutar de las últimas mejoras en Ubuntu Linux. Asegúrate de realizar actualizaciones periódicas para aprovechar al máximo las capacidades de Anaconda y sus paquetes.
+## 1. Usar Quarto del Sistema (No de Conda)
 
-# Desinstalación de Anaconda en Ubuntu Linux
+**Ventaja:** Quarto de pacman es más estable y actualizado.
 
-Si en algún momento deseas eliminar completamente Anaconda de tu sistema Ubuntu Linux, ya sea para realizar una nueva instalación o por cualquier otro motivo, puedes seguir estos pasos para desinstalarlo por completo.
+```bash
+# Verificar que Quarto está en PATH del sistema
+which quarto
+# Debe mostrar: /usr/bin/quarto
 
-**Proceso para eliminar completamente Anaconda:**
+# Verificar versión
+quarto --version
+```
 
-1.  Abre la terminal en tu sistema Ubuntu Linux.
+**En entornos conda, Quarto del sistema se usará automáticamente.**
 
-2.  En la terminal, ingresa el siguiente comando para desactivar cualquier configuración de Anaconda que esté activa en tu entorno actual:
+## 2. Usar R del Sistema (No de Conda)
 
-    ``` bash
-    conda deactivate
-    ```
+**Ventaja:** RStudio funciona mejor con R de pacman.
 
-    Esto asegurará que no haya entornos virtuales activos relacionados con Anaconda.
+```bash
+# Verificar R del sistema
+which R
+# Debe mostrar: /usr/bin/R
 
-3.  A continuación, puedes utilizar el siguiente comando para desinstalar Anaconda y eliminar todos los archivos relacionados:
+# Verificar versión
+R --version
+```
 
-    ``` bash
-    anaconda-clean --yes
-    ```
+**R del sistema estará disponible en todos los entornos conda.**
 
-    Este comando eliminará Anaconda de tu sistema y eliminará los archivos y directorios asociados.
+## 3. Usar LaTeX del Sistema
 
-4.  Una vez completado el proceso de desinstalación, puedes verificar que Anaconda se haya eliminado por completo. Puedes utilizar el siguiente comando para verificar si el directorio de Anaconda ya no existe:
+```bash
+# Verificar LaTeX
+which pdflatex
+# Debe mostrar: /usr/bin/pdflatex
 
-    ``` bash
-    ls ~/anaconda3
-    ```
+# Verificar distribución
+pdflatex --version
+```
 
-    Si el directorio no se encuentra, significa que Anaconda ha sido eliminado correctamente.
+# Verificación de la Instalación
 
-Recuerda que este proceso eliminará permanentemente Anaconda de tu sistema, incluyendo todos los paquetes y entornos virtuales asociados. Asegúrate de realizar una copia de seguridad de tus proyectos y datos importantes antes de proceder con la desinstalación.
+## 1. Verificación Básica
 
-¡Y eso es todo! Siguiendo estos pasos, podrás eliminar completamente Anaconda de tu sistema Ubuntu Linux. Si en el futuro decides volver a instalarlo, podrás seguir los pasos que hemos cubierto anteriormente en este blog.
+```bash
+# Versión de conda
+conda --version
 
-# Comandos básicos
+# Versión de mamba
+mamba --version
 
-1.  `conda deactivate`: Este comando se utiliza para desactivar el entorno activo de Conda. Cuando trabajas con entornos virtuales en Anaconda, puedes utilizar este comando para volver al entorno base o desactivar cualquier entorno virtual activo.
+# Versión de Python (en base)
+python --version
 
-2.  `conda activate`: Con este comando, puedes activar un entorno virtual específico en Anaconda. Puedes crear entornos virtuales personalizados con diferentes versiones de Python y paquetes instalados. Al utilizar este comando, podrás activar uno de esos entornos y trabajar en él.
+# Información del sistema
+conda info
+```
 
-3.  `jupyter notebook`: Este comando se utiliza para abrir el entorno de Jupyter Notebook. Jupyter Notebook es una aplicación web que te permite crear y compartir documentos interactivos que contienen código, visualizaciones y texto explicativo. Al ejecutar este comando, se abrirá una nueva pestaña del navegador con el entorno de Jupyter Notebook.
+## 2. Verificación de Configuración
 
-4.  `spyder`: Al ejecutar este comando, se abrirá el entorno de desarrollo integrado (IDE) de Spyder. Spyder es un entorno de desarrollo muy utilizado en Python que ofrece características como edición de código, depuración y ejecución de programas.
+```bash
+# Ver configuración
+conda config --show
 
-5.  `python`: Al ejecutar este comando, se iniciará el intérprete de Python en la línea de comandos. Podrás ejecutar comandos y scripts de Python directamente en la terminal.
+# Ver canales
+conda config --show channels
 
-6.  `anaconda-navigator`: Con este comando, se abrirá la interfaz gráfica de Anaconda Navigator. Anaconda Navigator es una aplicación que te permite administrar tus entornos virtuales, instalar paquetes y lanzar aplicaciones como Jupyter Notebook y Spyder de manera visual.
+# Ver solver
+conda config --show solver
+```
 
-7.  `conda info`: Este comando proporciona información detallada sobre la instalación de Conda, como la versión de Conda, la ubicación de los archivos y la configuración actual.
+## 3. Prueba de Funcionamiento
 
-8.  `conda update conda`: Utilizando este comando, puedes actualizar la versión de Conda en tu sistema. Conda es el administrador de paquetes y entornos virtuales de Anaconda, y mantenerlo actualizado te permitirá acceder a las últimas funciones y mejoras.
+```bash
+# Crear entorno de prueba
+mamba create -n test-env python=3.12 pandas -y
 
-9.  `rm -rf ~/anaconda3`: Este comando se utiliza para desinstalar completamente Anaconda de tu sistema. Ten en cuenta que este comando eliminará permanentemente Anaconda y todos los archivos relacionados, incluyendo tus entornos virtuales y paquetes instalados. Asegúrate de hacer una copia de seguridad de tus datos importantes antes de ejecutar este comando.
+# Activar entorno
+conda activate test-env
 
-Si tienes alguna pregunta o necesitas más ayuda, no dudes en dejar un comentario.
+# Verificar instalación
+python -c "import pandas; print(f'Pandas {pandas.__version__} funcionando correctamente')"
 
-**¡Hasta la próxima!**
+# Desactivar
+conda deactivate
+
+# Eliminar entorno de prueba
+conda env remove -n test-env -y
+```
+
+---
+
+# Resolución de Problemas
+
+## Problema 1: "conda: command not found"
+
+**Causa:** Conda no está inicializado en tu shell.
+
+**Solución:**
+
+```bash
+# Inicializar manualmente
+source ~/miniconda3/bin/activate
+conda init fish  # o bash / zsh
+
+# Recargar shell
+exec fish
+```
+
+## Problema 2: "(base) No Aparece en el Prompt"
+
+**Causa:** `auto_activate_base` está en `false`.
+
+**Solución (si quieres que aparezca):**
+
+```bash
+conda config --set auto_activate_base true
+exec fish
+```
+
+**O activar manualmente:**
+
+```bash
+conda activate base
+```
+
+## Problema 3: "Mamba No Funciona"
+
+**Causa:** Mamba no está instalado o no está en PATH.
+
+**Solución:**
+
+```bash
+# Verificar instalación
+conda activate base
+conda list | grep mamba
+
+# Si no está, instalar
+conda install mamba -c conda-forge -y
+
+# Configurar como solver
+conda config --set solver libmamba
+```
+
+## Problema 4: "Instalación de Paquetes es Muy Lenta"
+
+**Causa:** Usando solver clásico en lugar de mamba.
+
+**Solución:**
+
+```bash
+# Configurar mamba como solver
+conda config --set solver libmamba
+
+# O usar mamba directamente
+mamba install paquete-nombre
+```
+
+## Problema 5: "Conflictos de Dependencias"
+
+**Causa:** Paquetes incompatibles en el mismo entorno.
+
+**Solución:**
+
+```bash
+# Opción 1: Usar mamba (mejor resolución)
+mamba install paquete-nombre
+
+# Opción 2: Crear entorno nuevo limpio
+mamba create -n nuevo-env python=3.12 paquete-nombre
+
+# Opción 3: Actualizar todos los paquetes
+mamba update --all
+```
+
+## Problema 6: "Espacio en Disco Lleno"
+
+**Causa:** Caché de paquetes acumulado.
+
+**Solución:**
+
+```bash
+# Limpiar caché de paquetes
+conda clean --all -y
+
+# Ver espacio usado
+du -sh ~/.conda/pkgs
+
+# Eliminar entornos no usados
+conda env list
+conda env remove -n nombre-entorno-viejo
+```
+
+## Problema 7: "Fish No Reconoce Conda"
+
+**Causa:** Inicialización incorrecta de Fish.
+
+**Solución:**
+
+```bash
+# Verificar bloque de inicialización
+cat ~/.config/fish/config.fish | grep conda
+
+# Si no existe, agregar manualmente
+nano ~/.config/fish/config.fish
+```
+
+**Agregar:**
+
+```fish
+# >>> conda initialize >>>
+eval /home/achalmaedison/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+# <<< conda initialize <<<
+```
+
+**Recargar:**
+
+```fish
+exec fish
+```
+
+---
+
+# Comandos de Referencia Rápida
+
+## Gestión de Conda
+
+```bash
+# Actualizar conda
+conda update -n base conda -y
+
+# Actualizar mamba
+mamba update mamba -y
+
+# Información del sistema
+conda info
+
+# Ver configuración
+conda config --show
+
+# Limpiar caché
+conda clean --all -y
+```
+
+## Gestión de Entornos
+
+```bash
+# Listar entornos
+conda env list
+
+# Crear entorno
+mamba create -n nombre-env python=3.12 paquete1 paquete2 -y
+
+# Activar entorno
+conda activate nombre-env
+
+# Desactivar entorno
+conda deactivate
+
+# Eliminar entorno
+conda env remove -n nombre-env -y
+
+# Exportar entorno
+conda env export --no-builds > environment.yml
+
+# Crear desde archivo
+conda env create -f environment.yml
+```
+
+## Gestión de Paquetes
+
+```bash
+# Listar paquetes (entorno activo)
+conda list
+
+# Buscar paquete
+conda search nombre-paquete
+
+# Instalar paquete
+mamba install nombre-paquete -y
+
+# Instalar desde canal específico
+mamba install -c conda-forge nombre-paquete -y
+
+# Instalar versión específica
+mamba install nombre-paquete=1.2.3 -y
+
+# Actualizar paquete
+mamba update nombre-paquete -y
+
+# Actualizar todos los paquetes
+mamba update --all -y
+
+# Desinstalar paquete
+conda remove nombre-paquete -y
+```
+
+## Uso con Pip
+
+```bash
+# Instalar con pip (dentro de entorno conda)
+pip install nombre-paquete
+
+# Listar paquetes pip
+pip list
+
+# Actualizar paquete pip
+pip install --upgrade nombre-paquete
+
+# Desinstalar paquete pip
+pip uninstall nombre-paquete
+```
+
+## Información y Debugging
+
+```bash
+# Información de entorno activo
+conda info --envs
+
+# Información de paquete específico
+conda list nombre-paquete
+
+# Ver dependencias de paquete
+conda search nombre-paquete --info
+
+# Verificar integridad de entorno
+conda doctor
+
+# Modo verbose (más información)
+conda install --debug nombre-paquete
+```
+
+# Recursos Adicionales
+
+**Documentación Oficial:**
+
+- Conda: https://docs.conda.io/
+- Mamba: https://mamba.readthedocs.io/
+- Conda-Forge: https://conda-forge.org/
+
+**Comunidad:**
+
+- Conda Discourse: https://conda.discourse.group/
+- GitHub Issues: https://github.com/conda/conda/issues
+
+
 
 {{< include ../../_contenido-inicio.qmd >}}
 

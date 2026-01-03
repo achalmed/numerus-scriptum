@@ -2136,7 +2136,7 @@ June. <a href="https://numerus-scriptum.netlify.app/python/2020-06-20-configurar
   <media:content url="https://numerus-scriptum.netlify.app/python/featured.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
-  <title>Instalación de Anaconda Python</title>
+  <title>Instalación y Configuración de Miniconda</title>
   <dc:creator>Edison Achalma</dc:creator>
   <link>https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/</link>
   <description><![CDATA[ 
@@ -2182,350 +2182,1553 @@ z-index: 0;
 
 
 
-<section id="introducción" class="level1">
-<h1>Introducción</h1>
-<p>La instalación de Anaconda en Ubuntu Linux es un paso crucial para aquellos que desean aprovechar al máximo el desarrollo en Python en este sistema operativo. Anaconda, una plataforma de gestión de paquetes y entornos virtuales, ofrece una amplia gama de herramientas y bibliotecas que facilitan el trabajo con Python, así como con otros lenguajes de programación populares. Al instalar Anaconda en Ubuntu Linux, los desarrolladores obtienen una solución integral que simplifica el proceso de configuración y administración de su entorno de desarrollo.</p>
-<p>La importancia de la instalación de Anaconda en Ubuntu Linux radica en su capacidad para proporcionar un flujo de trabajo fluido y eficiente. Al ofrecer una amplia selección de paquetes precompilados, Anaconda elimina la necesidad de buscar e instalar manualmente cada biblioteca requerida. Esto ahorra tiempo y evita posibles conflictos de dependencia, permitiendo a los desarrolladores centrarse en la programación en lugar de la configuración del entorno.</p>
-<p>Además de su conveniencia, Anaconda también ofrece beneficios significativos en términos de gestión de entornos virtuales. Con la ayuda de la herramienta “conda”, los desarrolladores pueden crear y administrar fácilmente entornos aislados para proyectos específicos. Esto permite mantener diferentes versiones de paquetes y bibliotecas para cada proyecto, evitando conflictos y facilitando la replicación del entorno de desarrollo en diferentes sistemas.</p>
-<p>¡Sumérgete en el mundo de Anaconda y descubre cómo simplificar y mejorar tu experiencia de desarrollo en Python en Ubuntu Linux!</p>
-</section>
 <section id="qué-es-anaconda" class="level1">
 <h1>¿Qué es Anaconda?</h1>
 <p>Anaconda es una plataforma de gestión de paquetes y entornos virtuales diseñada para facilitar el desarrollo en Python y otros lenguajes de programación populares. Imagina que tienes una caja de herramientas repleta de todo lo que necesitas para construir aplicaciones, analizar datos o desarrollar proyectos de aprendizaje automático. Esa es Anaconda: una caja de herramientas poderosa y completa que te brinda todo lo que necesitas para trabajar con Python de manera eficiente.</p>
-<p>Una de las principales ventajas de Anaconda es su capacidad para gestionar paquetes. En lugar de buscar y descargar manualmente cada biblioteca que necesitas, Anaconda te ofrece una amplia selección de paquetes precompilados y listos para usar. Esto significa que no tienes que preocuparte por las dependencias o por perder tiempo en configuraciones complicadas. Con Anaconda, puedes comenzar a trabajar en tu proyecto de inmediato.</p>
-<p>Otra gran ventaja de Anaconda es su capacidad para crear entornos virtuales. ¿Qué significa esto? Básicamente, puedes aislar tus proyectos en entornos separados, cada uno con su propia configuración de paquetes y versiones. Esto es especialmente útil cuando trabajas en varios proyectos al mismo tiempo o cuando necesitas mantener diferentes versiones de bibliotecas para distintas aplicaciones. Anaconda hace que la gestión de entornos sea sencilla y te permite alternar entre ellos con facilidad.</p>
+<p>Esta guía está diseñada específicamente para mi flujo de trabajo como economista que:</p>
+<ul>
+<li>Mantiene múltiples blogs académicos (epsilon-y-beta, axiomata, methodica, etc.)</li>
+<li>Desarrolla scripts de automatización en Python</li>
+<li>Trabaja con análisis econométrico y ciencia de datos</li>
+<li>Usa Quarto para publicaciones académicas</li>
+<li>Necesita entornos reproducibles para colaboración</li>
+</ul>
 </section>
-<section id="pasos-para-la-instalación-de-anaconda-en-ubuntu-linux" class="level1">
-<h1>Pasos para la instalación de Anaconda en Ubuntu Linux</h1>
-<section id="descargar-el-instalador-de-anaconda" class="level2">
-<h2 class="anchored" data-anchor-id="descargar-el-instalador-de-anaconda">Descargar el instalador de Anaconda</h2>
-<p><strong>Paso 1:</strong> Accede al sitio web oficial de Anaconda. Puedes hacerlo abriendo tu navegador web favorito y dirigiéndote a <a href="https://www.anaconda.com/">Anaconda.com</a>. Una vez allí, busca la sección de descargas.</p>
-<p><strong>Paso 2:</strong> En la sección de descargas, encontrarás diferentes opciones de Anaconda según tu sistema operativo. Como estamos trabajando en Ubuntu Linux, asegúrate de seleccionar la versión adecuada para Linux.</p>
-<p><strong>Paso 3:</strong> Una vez que hayas seleccionado la versión de Linux, verás dos opciones: Anaconda Individual Edition y Anaconda Enterprise. Para la mayoría de los casos, Anaconda Individual Edition es la opción recomendada, ya que es una versión gratuita y completa de Anaconda. Haz clic en el botón de descarga correspondiente a la edición que deseas instalar.</p>
-<p><strong>Paso 4:</strong> La descarga comenzará y, dependiendo de la velocidad de tu conexión a Internet, podría llevar algunos minutos. Asegúrate de esperar hasta que la descarga se complete antes de pasar al siguiente paso.</p>
-<p>Ahora que has descargado el instalador de Anaconda en tu sistema Ubuntu Linux, es hora de abrir la terminal y ejecutar algunos comandos para continuar con el proceso de instalación. ¡No te preocupes, te guiaré paso a paso!</p>
-<p><strong>Paso 5:</strong> Abre la terminal. Puedes hacerlo de diferentes maneras, pero una forma común es presionar las teclas Ctrl + Alt + T al mismo tiempo. Esto abrirá una nueva ventana de terminal en tu pantalla.</p>
-<p><strong>Paso 6:</strong> Una vez que tengas la terminal abierta, es importante asegurarte de que estás ubicado en el directorio correcto. Para hacerlo, ejecuta el comando “pwd” y presiona Enter. Esto te mostrará la ruta actual en la que te encuentras. Asegúrate de estar en el lugar adecuado antes de continuar.</p>
-<p><strong>Paso 7:</strong> Ahora, necesitamos navegar a la ubicación donde se encuentra el instalador de Anaconda que descargaste. Por lo general, se guarda en la carpeta “Downloads” (Descargas). Para acceder a esta carpeta, ejecuta el siguiente comando:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">cd</span> Downloads/</span></code></pre></div></div>
-<p>Presiona Enter después de escribir el comando y verás que la ruta de la terminal cambia al directorio “Downloads”.</p>
-<p><strong>Paso 8:</strong> ¡Estamos casi listos para ejecutar el instalador de Anaconda! Ahora, debes ejecutar el archivo de instalación. Asegúrate de que el nombre del archivo coincida con el que descargaste. Para ejecutarlo, utiliza el siguiente comando:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">bash</span> nombre-del-archivo.sh</span></code></pre></div></div>
-<p>Reemplaza “nombre-del-archivo” con el nombre exacto del archivo de instalación que descargaste. Por ejemplo, si el archivo se llama “Anaconda3-2021.05-Linux-x86_64.sh”, el comando sería:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">bash</span> Anaconda3-2021.05-Linux-x86_64.sh</span></code></pre></div></div>
-<p>Presiona Enter y comenzará el proceso de instalación de Anaconda. Sigue las instrucciones que aparecerán en la terminal y asegúrate de leer y aceptar los términos de licencia.</p>
-<p><strong>Paso 9:</strong> ¡Genial! Ahora que has ejecutado el instalador de Anaconda en Ubuntu Linux, solo te queda seguir las instrucciones de instalación que aparecerán en la terminal. No te preocupes, te guiaré a través de este paso.</p>
-<p>Después de ejecutar el comando para iniciar la instalación, verás que aparecerá una serie de instrucciones en la terminal. Lee cuidadosamente cada paso y asegúrate de seguirlos correctamente.</p>
-<p>Por lo general, las instrucciones te pedirán que revises y aceptes los términos de licencia. Para hacerlo, simplemente lee los términos y condiciones que se muestran en la terminal y, cuando se te solicite, presiona Enter para avanzar y aceptar los términos.</p>
-<p>A continuación, se te pedirá que especifiques la ubicación de la instalación de Anaconda. Por defecto, suele ser en tu directorio de inicio, pero puedes elegir una ubicación diferente si lo deseas. Si no estás seguro, te recomendaría que aceptes la ubicación predeterminada presionando Enter.</p>
-<p>Luego, la instalación te preguntará si deseas agregar Anaconda a tu variable de entorno PATH. Esto es útil para que puedas acceder a los comandos de Anaconda desde cualquier ubicación en tu sistema. Te sugeriría que respondas “yes” (sí) y presiones Enter.</p>
-<p>Cuando la carpeta de anaconda ya existe, actualizamos programas existente.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">bash</span> Anaconda3-2021.11-Linux-x86_64.sh <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">-u</span> </span></code></pre></div></div>
-<p>Después de eso, la instalación continuará y verás una barra de progreso que indica el avance del proceso. Puede llevar algún tiempo, así que ten paciencia.</p>
-<p>Una vez que la instalación se complete con éxito, verás un mensaje indicando que Anaconda se ha instalado correctamente. ¡Felicidades! Has instalado Anaconda en tu sistema Ubuntu Linux.</p>
-<p>Ahora puedes cerrar la terminal y comenzar a disfrutar de las ventajas de utilizar Anaconda en tu sistema. Recuerda que Anaconda te ofrece un entorno de gestión de paquetes y entornos virtuales que te facilitará el trabajo con Python y otras herramientas de ciencia de datos.</p>
-<p><strong>Paso 10:</strong> Una vez que hayas instalado Anaconda en tu sistema Ubuntu Linux, es importante añadirlo al PATH del sistema para que puedas acceder a los comandos de Anaconda desde cualquier ubicación en tu sistema. Te guiaré a través de este paso.</p>
+<section id="por-qué-miniconda-en-lugar-de-anaconda" class="level1">
+<h1>Por Qué Miniconda en Lugar de Anaconda</h1>
+<section id="comparación" class="level2">
+<h2 class="anchored" data-anchor-id="comparación">Comparación</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 22%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Característica</th>
+<th>Miniconda</th>
+<th>Anaconda Distribution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tamaño inicial</td>
+<td>~50 MB</td>
+<td>~3-5 GB</td>
+</tr>
+<tr class="even">
+<td>Paquetes preinstalados</td>
+<td>Mínimos (conda, Python, pip)</td>
+<td>250+ paquetes</td>
+</tr>
+<tr class="odd">
+<td>Control total</td>
+<td>Sí</td>
+<td>Limitado</td>
+</tr>
+<tr class="even">
+<td>Velocidad de instalación</td>
+<td>Rápida</td>
+<td>Lenta</td>
+</tr>
+<tr class="odd">
+<td>Ideal para</td>
+<td>Usuarios avanzados, servidores</td>
+<td>Principiantes</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ventajas" class="level2">
+<h2 class="anchored" data-anchor-id="ventajas">Ventajas</h2>
 <ol type="1">
-<li><p>Abre la terminal en tu sistema Ubuntu Linux. Puedes hacerlo buscando “Terminal” en el menú de aplicaciones o usando el atajo de teclado Ctrl+Alt+T.</p></li>
-<li><p>En la terminal, escribe el siguiente comando para abrir el archivo de configuración de inicio de sesión:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">nano</span> ~/.bashrc</span></code></pre></div></div></li>
-<li><p>Esto abrirá el archivo <code>.bashrc</code> en el editor de texto <code>nano</code>. Ahora, desplázate hasta el final del archivo.</p></li>
-<li><p>En la última línea del archivo, añade el siguiente comando para agregar Anaconda al PATH:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">export</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">PATH</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"/ruta/donde/instalaste/anaconda/bin:</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">$PATH</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span></span></code></pre></div></div>
-<p>Recuerda reemplazar “/ruta/donde/instalaste/anaconda” con la ubicación real donde instalaste Anaconda. Si elegiste la ubicación predeterminada, el comando será:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">export</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">PATH</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">$HOME</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">/anaconda/bin:</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">$PATH</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span></span></code></pre></div></div></li>
-<li><p>Después de añadir el comando, guarda los cambios en el archivo <code>~/.bashrc</code>. En <code>nano</code>, puedes hacerlo presionando Ctrl+O, luego presiona Enter para confirmar y finalmente presiona Ctrl+X para salir del editor <code>nano</code>.</p></li>
-<li><p>Ahora, para que los cambios tengan efecto, actualiza el archivo de configuración de inicio de sesión con el siguiente comando:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">source</span> ~/.bashrc</span></code></pre></div></div></li>
+<li><strong>Control Total:</strong> Instalas solo lo que necesitas para cada proyecto</li>
+<li><strong>Múltiples Entornos:</strong> Ideal para tus 10+ blogs con dependencias diferentes</li>
+<li><strong>Reproducibilidad:</strong> Archivos <code>environment.yml</code> más pequeños y claros</li>
+<li><strong>Velocidad:</strong> Con Mamba, la resolución de dependencias es ultrarrápida</li>
+<li><strong>Integración con Sistema:</strong> Usa Quarto y R del sistema (pacman), Python de conda</li>
 </ol>
-<p>¡Y eso es todo! Has añadido correctamente Anaconda al PATH del sistema en Ubuntu Linux. Ahora podrás acceder a los comandos de Anaconda desde cualquier ubicación en tu sistema.</p>
-<p><strong>Algunos problemas:</strong> A veces, durante la instalación de Anaconda, puede ocurrir que no se pueda responder con “yes” al prompt de inicialización de Anaconda en el archivo <code>.bashrc</code>. Aquí te proporcionaré una solución detallada para abordar este problema:</p>
-<ol type="1">
-<li><p>Después de que la instalación de Anaconda se complete y se muestre el prompt para inicializar Anaconda en el archivo <code>.bashrc</code>, si no puedes responder con “yes” y el proceso se cierra, no te preocupes.</p></li>
-<li><p>Abre la terminal en tu sistema Ubuntu Linux. Puedes hacerlo buscando “Terminal” en el menú de aplicaciones o usando el atajo de teclado Ctrl+Alt+T.</p></li>
-<li><p>En la terminal, ejecuta el siguiente comando para abrir el archivo <code>.bashrc</code> en un editor de texto:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">sudo</span> gedit ~/.bashrc</span></code></pre></div></div>
-<p>Esto abrirá el archivo <code>.bashrc</code> con privilegios de administrador para poder editarlo.</p></li>
-<li><p>Desplázate hasta el final del archivo <code>.bashrc</code> y agrega el siguiente bloque de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># &gt;&gt;&gt; conda initialize &gt;&gt;&gt;</span></span>
-<span id="cb10-2"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">!!</span> Contents within this block are managed by <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'conda init'</span> !!</span>
-<span id="cb10-3"><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">__conda_setup</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">$(</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'/home/achalmaubuntu/anaconda3/bin/conda'</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'shell.bash'</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'hook'</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;</span> /dev/null<span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">)</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span></span>
-<span id="cb10-4"><span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">[</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">$?</span> <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">-eq</span> 0 <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">]</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">;</span> <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">then</span></span>
-<span id="cb10-5">    <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">eval</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">$__conda_setup</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span></span>
-<span id="cb10-6"><span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">else</span></span>
-<span id="cb10-7">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">[</span> <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">-f</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"/home/achalmaubuntu/anaconda3/etc/profile.d/conda.sh"</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">]</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">;</span> <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">then</span></span>
-<span id="cb10-8">        <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">.</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"/home/achalmaubuntu/anaconda3/etc/profile.d/conda.sh"</span></span>
-<span id="cb10-9">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">else</span></span>
-<span id="cb10-10">        <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">export</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">PATH</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"/home/achalmaubuntu/anaconda3/bin:</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">$PATH</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span></span>
-<span id="cb10-11">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">fi</span></span>
-<span id="cb10-12"><span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">fi</span></span>
-<span id="cb10-13"><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">unset</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">__conda_setup</span></span>
-<span id="cb10-14"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># &lt;&lt;&lt; conda initialize &lt;&lt;&lt;</span></span></code></pre></div></div>
-<p>Recuerda cambiar el achalmaubuntu con su usuario</p></li>
-<li><p>Guarda los cambios en el archivo <code>.bashrc</code>.</p></li>
-<li><p>Luego, en la terminal, ejecuta el siguiente comando para actualizar las variables de entorno con los cambios realizados en el archivo <code>.bashrc</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">source</span> ~/.bashrc</span></code></pre></div></div></li>
-</ol>
-<p>Recuerda reiniciar la terminal o abrir una nueva ventana de terminal para que los cambios surtan efecto.</p>
-<p>¡Y eso es todo! Has solucionado el problema de inicialización de Anaconda en el archivo <code>.bashrc</code> y ahora puedes utilizar Anaconda y sus comandos sin problemas en tu sistema Ubuntu Linux.</p>
 </section>
 </section>
-<section id="verificación-de-la-instalación-de-anaconda" class="level1">
-<h1>Verificación de la instalación de Anaconda</h1>
-<p>Una vez que hayas completado la instalación de Anaconda en tu sistema Ubuntu Linux, es importante verificar que todo haya sido instalado correctamente. Aquí te mostraré cómo comprobarlo y también cómo verificar la versión de Anaconda y los paquetes instalados.</p>
-<p><strong>Comprobar la instalación de Anaconda:</strong></p>
-<ol type="1">
-<li><p>Abre la terminal en tu sistema Ubuntu Linux.</p></li>
-<li><p>En la terminal, ingresa el siguiente comando:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><span class="ex" style="color: null;
+<section id="preparación-del-sistema" class="level1">
+<h1>Preparación del Sistema</h1>
+<section id="verificar-instalaciones-existentes" class="level2">
+<h2 class="anchored" data-anchor-id="verificar-instalaciones-existentes">1. Verificar Instalaciones Existentes</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Verificar si conda ya está instalado</span></span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">which</span> conda</span>
+<span id="cb1-3"></span>
+<span id="cb1-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Verificar versión (si existe)</span></span>
+<span id="cb1-5"><span class="ex" style="color: null;
 background-color: null;
 font-style: inherit;">conda</span> <span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">--version</span></span></code></pre></div></div>
-<p>Esto mostrará la versión de Anaconda instalada en tu sistema. Si se muestra la versión correctamente, significa que Anaconda está instalado correctamente.</p></li>
-</ol>
-<p><strong>Verificar la versión de Anaconda:</strong></p>
-<ol type="1">
-<li><p>En la terminal, ingresa el siguiente comando:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><span class="ex" style="color: null;
+font-style: inherit;">--version</span></span>
+<span id="cb1-6"></span>
+<span id="cb1-7"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">conda</span> list anaconda$</span></code></pre></div></div>
-<p>Esto mostrará una lista de los paquetes instalados con el nombre “anaconda” en su versión. Si se muestra la lista de paquetes correctamente, significa que la instalación de Anaconda incluyendo los paquetes se ha realizado correctamente.</p></li>
-<li><p>Para verificar la versión de un paquete específico, puedes ingresar el siguiente comando en la terminal, reemplazando <code>&lt;nombre_paquete&gt;</code> con el nombre del paquete que deseas verificar:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><span class="ex" style="color: null;
+font-style: inherit;"># Verificar entornos existentes</span></span>
+<span id="cb1-8"><span class="ex" style="color: null;
 background-color: null;
-font-style: inherit;">conda</span> list <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;</span>nombre_paquete<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;</span></span></code></pre></div></div>
-<p>Esto mostrará la versión del paquete específico instalado en tu sistema.</p></li>
-</ol>
-<p>¡Listo! Ahora puedes asegurarte de que Anaconda esté correctamente instalado y verificar las versiones de Anaconda y los paquetes instalados en tu sistema Ubuntu Linux. Esto te ayudará a garantizar un funcionamiento adecuado de Anaconda y sus herramientas para el desarrollo de proyectos.</p>
+font-style: inherit;">conda</span> env list</span></code></pre></div></div>
 </section>
-<section id="actualización-de-anaconda-en-ubuntu-linux" class="level1">
-<h1>Actualización de Anaconda en Ubuntu Linux</h1>
-<p>Mantener tu instalación de Anaconda actualizada es crucial para aprovechar las últimas mejoras, características y correcciones de errores. Afortunadamente, actualizar Anaconda en Ubuntu Linux es un proceso sencillo. A continuación, te mostraré los pasos para actualizar Anaconda a la última versión utilizando los comandos de actualización de Conda y paquetes.</p>
-<p><strong>Pasos para actualizar Anaconda:</strong></p>
-<ol type="1">
-<li><p>Abre la terminal en tu sistema Ubuntu Linux.</p></li>
-<li><p>En la terminal, ingresa el siguiente comando para actualizar Conda, el administrador de paquetes de Anaconda:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><span class="ex" style="color: null;
+<section id="desinstalar-instalaciones-previas-si-es-necesario" class="level2">
+<h2 class="anchored" data-anchor-id="desinstalar-instalaciones-previas-si-es-necesario">2. Desinstalar Instalaciones Previas (Si Es Necesario)</h2>
+<p><strong>Si tienes Anaconda o Miniconda antiguo:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">conda</span> update conda</span></code></pre></div></div>
-<p>Este comando actualizará Conda a la última versión disponible.</p></li>
-<li><p>A continuación, puedes utilizar el siguiente comando para actualizar todos los paquetes instalados en tu entorno de Anaconda:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><span class="ex" style="color: null;
+font-style: inherit;"># Desactivar entorno base</span></span>
+<span id="cb2-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> deactivate</span>
+<span id="cb2-3"></span>
+<span id="cb2-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Eliminar directorio de instalación</span></span>
+<span id="cb2-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rm</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-rf</span> ~/miniconda3</span>
+<span id="cb2-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># O si instalaste Anaconda:</span></span>
+<span id="cb2-7"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rm</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-rf</span> ~/anaconda3</span>
+<span id="cb2-8"></span>
+<span id="cb2-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Limpiar configuraciones (OPCIONAL - solo si quieres empezar de cero)</span></span>
+<span id="cb2-10"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rm</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-rf</span> ~/.conda</span>
+<span id="cb2-11"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rm</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-f</span> ~/.condarc</span>
+<span id="cb2-12"></span>
+<span id="cb2-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Limpiar inicialización de shells</span></span>
+<span id="cb2-14"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Fish</span></span>
+<span id="cb2-15"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">nano</span> ~/.config/fish/config.fish  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Eliminar bloque conda initialize</span></span>
+<span id="cb2-16"></span>
+<span id="cb2-17"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Bash</span></span>
+<span id="cb2-18"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">nano</span> ~/.bashrc  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Eliminar bloque conda initialize</span></span>
+<span id="cb2-19"></span>
+<span id="cb2-20"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Zsh</span></span>
+<span id="cb2-21"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">nano</span> ~/.zshrc  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Eliminar bloque conda initialize</span></span></code></pre></div></div>
+</section>
+<section id="verificar-herramientas-del-sistema" class="level2">
+<h2 class="anchored" data-anchor-id="verificar-herramientas-del-sistema">3. Verificar Herramientas del Sistema</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Verificar Quarto (debe estar instalado)</span></span>
+<span id="cb3-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">quarto</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--version</span></span>
+<span id="cb3-3"></span>
+<span id="cb3-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Verificar R (debe estar instalado)</span></span>
+<span id="cb3-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">R</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--version</span></span>
+<span id="cb3-6"></span>
+<span id="cb3-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Verificar LaTeX (para PDFs en Quarto)</span></span>
+<span id="cb3-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pdflatex</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--version</span></span>
+<span id="cb3-9"></span>
+<span id="cb3-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Si falta algo, instalar con pacman</span></span>
+<span id="cb3-11"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sudo</span> pacman <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-S</span> quarto r texlive-most</span></code></pre></div></div>
+</section>
+</section>
+<section id="instalación-de-miniconda" class="level1">
+<h1>Instalación de Miniconda</h1>
+<section id="método-1-instalación-rápida-recomendado" class="level2">
+<h2 class="anchored" data-anchor-id="método-1-instalación-rápida-recomendado">Método 1: Instalación Rápida (Recomendado)</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1. Crear directorio temporal</span></span>
+<span id="cb4-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mkdir</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-p</span> ~/miniconda3</span>
+<span id="cb4-3"></span>
+<span id="cb4-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2. Descargar instalador (x86_64 para Arch Linux estándar)</span></span>
+<span id="cb4-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">curl</span> https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb4-6">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-o</span> ~/miniconda3/miniconda.sh</span>
+<span id="cb4-7"></span>
+<span id="cb4-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 3. Verificar integridad (RECOMENDADO)</span></span>
+<span id="cb4-9"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sha256sum</span> ~/miniconda3/miniconda.sh</span>
+<span id="cb4-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Comparar con el hash oficial en https://repo.anaconda.com/miniconda/</span></span>
+<span id="cb4-11"></span>
+<span id="cb4-12"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 4. Ejecutar instalador</span></span>
+<span id="cb4-13"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">bash</span> ~/miniconda3/miniconda.sh <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-b</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-u</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-p</span> ~/miniconda3</span>
+<span id="cb4-14"></span>
+<span id="cb4-15"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 5. Eliminar instalador</span></span>
+<span id="cb4-16"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rm</span> ~/miniconda3/miniconda.sh</span></code></pre></div></div>
+<p><strong>opciones:</strong></p>
+<ul>
+<li><code>-b</code>: Modo batch (sin prompts interactivos)</li>
+<li><code>-u</code>: Actualizar instalación existente si la hay</li>
+<li><code>-p ~/miniconda3</code>: Ruta de instalación</li>
+</ul>
+</section>
+<section id="método-2-instalación-interactiva" class="level2">
+<h2 class="anchored" data-anchor-id="método-2-instalación-interactiva">Método 2: Instalación Interactiva</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1. Descargar instalador</span></span>
+<span id="cb5-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">wget</span> https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh</span>
+<span id="cb5-3"></span>
+<span id="cb5-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2. Ejecutar instalador interactivo</span></span>
+<span id="cb5-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">bash</span> Miniconda3-latest-Linux-x86_64.sh</span>
+<span id="cb5-6"></span>
+<span id="cb5-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Seguir instrucciones:</span></span>
+<span id="cb5-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># - Aceptar licencia: yes</span></span>
+<span id="cb5-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># - Ubicación: /home/achalmaedison/miniconda3 (default)</span></span>
+<span id="cb5-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># - Inicializar conda: yes (IMPORTANTE)</span></span>
+<span id="cb5-11"></span>
+<span id="cb5-12"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 3. Eliminar instalador</span></span>
+<span id="cb5-13"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rm</span> Miniconda3-latest-Linux-x86_64.sh</span></code></pre></div></div>
+</section>
+</section>
+<section id="configuración-inicial" class="level1">
+<h1>Configuración Inicial</h1>
+<section id="inicializar-conda-para-todos-los-shells" class="level2">
+<h2 class="anchored" data-anchor-id="inicializar-conda-para-todos-los-shells">1. Inicializar Conda para Todos los Shells</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Activar conda temporalmente</span></span>
+<span id="cb6-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">source</span> ~/miniconda3/bin/activate</span>
+<span id="cb6-3"></span>
+<span id="cb6-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Inicializar para todos los shells disponibles</span></span>
+<span id="cb6-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> init <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--all</span></span>
+<span id="cb6-6"></span>
+<span id="cb6-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Resultado: Modifica automáticamente:</span></span>
+<span id="cb6-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># - ~/.bashrc (Bash)</span></span>
+<span id="cb6-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># - ~/.zshrc (Zsh)</span></span>
+<span id="cb6-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># - ~/.config/fish/config.fish (Fish)</span></span></code></pre></div></div>
+</section>
+<section id="recargar-shell" class="level2">
+<h2 class="anchored" data-anchor-id="recargar-shell">2. Recargar Shell</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Fish</span></span>
+<span id="cb7-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">exec</span> fish</span>
+<span id="cb7-3"></span>
+<span id="cb7-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Bash</span></span>
+<span id="cb7-5"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">source</span> ~/.bashrc</span>
+<span id="cb7-6"></span>
+<span id="cb7-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Zsh</span></span>
+<span id="cb7-8"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">source</span> ~/.zshrc</span></code></pre></div></div>
+<p><strong>Verificación:</strong> Deberías ver <code>(base)</code> al inicio de tu prompt.</p>
+</section>
+<section id="desactivar-auto-activación-de-base-recomendado" class="level2">
+<h2 class="anchored" data-anchor-id="desactivar-auto-activación-de-base-recomendado">3. Desactivar Auto-Activación de Base (RECOMENDADO)</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Evitar que base se active automáticamente</span></span>
+<span id="cb8-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> config <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--set</span> auto_activate_base false</span>
+<span id="cb8-3"></span>
+<span id="cb8-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Recargar shell</span></span>
+<span id="cb8-5"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">exec</span> fish  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># o source ~/.bashrc / source ~/.zshrc</span></span></code></pre></div></div>
+<p><strong>Razón:</strong> Es mejor práctica activar entornos específicos manualmente.</p>
+</section>
+</section>
+<section id="instalación-de-mamba" class="level1">
+<h1>Instalación de Mamba</h1>
+<p>Mamba es un solver ultrarrápido para conda que acelera la instalación de paquetes hasta 10x.</p>
+<section id="instalar-mamba-en-el-entorno-base" class="level2">
+<h2 class="anchored" data-anchor-id="instalar-mamba-en-el-entorno-base">1. Instalar Mamba en el Entorno Base</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Activar base</span></span>
+<span id="cb9-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate base</span>
+<span id="cb9-3"></span>
+<span id="cb9-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Instalar mamba desde conda-forge</span></span>
+<span id="cb9-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> install mamba <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-c</span> conda-forge <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb9-6"></span>
+<span id="cb9-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Configurar mamba como solver por defecto</span></span>
+<span id="cb9-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> config <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--set</span> solver libmamba</span></code></pre></div></div>
+</section>
+<section id="verificar-instalación" class="level2">
+<h2 class="anchored" data-anchor-id="verificar-instalación">2. Verificar Instalación</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Verificar versión</span></span>
+<span id="cb10-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--version</span></span>
+<span id="cb10-3"></span>
+<span id="cb10-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Debería mostrar algo como: mamba 1.5.x</span></span></code></pre></div></div>
+</section>
+</section>
+<section id="configuración-de-fish-shell" class="level1">
+<h1>Configuración de Fish Shell</h1>
+<section id="inicialización-automática" class="level2">
+<h2 class="anchored" data-anchor-id="inicialización-automática">1. Inicialización Automática</h2>
+<p><strong>Conda ya debería haber configurado Fish automáticamente.</strong> Verificar:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode numberSource fish number-lines code-with-copy"><code class="sourceCode"><span id="cb11-1"># Abrir configuración de Fish</span>
+<span id="cb11-2">nano ~/.config/fish/config.fish</span></code></pre></div></div>
+<p><strong>Debe contener algo como:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode numberSource fish number-lines code-with-copy"><code class="sourceCode"><span id="cb12-1"># &gt;&gt;&gt; conda initialize &gt;&gt;&gt;</span>
+<span id="cb12-2"># !! Contents within this block are managed by 'conda init' !!</span>
+<span id="cb12-3">if test -f /home/achalmaedison/miniconda3/bin/conda</span>
+<span id="cb12-4">    eval /home/achalmaedison/miniconda3/bin/conda "shell.fish" "hook" $argv | source</span>
+<span id="cb12-5">else</span>
+<span id="cb12-6">    if test -f "/home/achalmaedison/miniconda3/etc/fish/conf.d/conda.fish"</span>
+<span id="cb12-7">        . "/home/achalmaedison/miniconda3/etc/fish/conf.d/conda.fish"</span>
+<span id="cb12-8">    else</span>
+<span id="cb12-9">        set -x PATH "/home/achalmaedison/miniconda3/bin" $PATH</span>
+<span id="cb12-10">    end</span>
+<span id="cb12-11">end</span>
+<span id="cb12-12"># &lt;&lt;&lt; conda initialize &lt;&lt;&lt;</span></code></pre></div></div>
+</section>
+<section id="agregar-alias-útiles" class="level2">
+<h2 class="anchored" data-anchor-id="agregar-alias-útiles">2. Agregar Alias Útiles</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode numberSource fish number-lines code-with-copy"><code class="sourceCode"><span id="cb13-1"># Editar configuración de Fish</span>
+<span id="cb13-2">nano ~/.config/fish/config.fish</span></code></pre></div></div>
+<p><strong>Agregar al final:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode numberSource fish number-lines code-with-copy"><code class="sourceCode"><span id="cb14-1"># ========================================================================</span>
+<span id="cb14-2"># ALIASES DE CONDA Y PROYECTOS</span>
+<span id="cb14-3"># ========================================================================</span>
+<span id="cb14-4"></span>
+<span id="cb14-5"># Gestión de entornos</span>
+<span id="cb14-6">alias ce="conda env list"</span>
+<span id="cb14-7">alias ca="conda activate"</span>
+<span id="cb14-8">alias cda="conda deactivate"</span>
+<span id="cb14-9"></span>
+<span id="cb14-10"># Blogs</span>
+<span id="cb14-11">alias blog="conda activate econblog &amp;&amp; cd ~/Proyectos/epsilon-y-beta"</span>
+<span id="cb14-12">alias blogoff="conda deactivate"</span>
+<span id="cb14-13"></span>
+<span id="cb14-14"># Scripts</span>
+<span id="cb14-15">alias scripts="conda activate scripts-env &amp;&amp; cd ~/Proyectos/scripts"</span>
+<span id="cb14-16">alias scriptsoff="conda deactivate"</span>
+<span id="cb14-17"></span>
+<span id="cb14-18"># Limpieza</span>
+<span id="cb14-19">alias conda-clean="conda clean --all -y"</span>
+<span id="cb14-20"></span>
+<span id="cb14-21"># Actualización</span>
+<span id="cb14-22">alias conda-update="conda update -n base conda -y &amp;&amp; mamba update --all -y"</span></code></pre></div></div>
+<p><strong>Recargar configuración:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode numberSource fish number-lines code-with-copy"><code class="sourceCode"><span id="cb15-1">source ~/.config/fish/config.fish</span></code></pre></div></div>
+</section>
+<section id="configuración-para-bashzsh-opcional" class="level2">
+<h2 class="anchored" data-anchor-id="configuración-para-bashzsh-opcional">3. Configuración para Bash/Zsh (Opcional)</h2>
+<p><strong>Si también usas Bash o Zsh:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Bash: ~/.bashrc</span></span>
+<span id="cb16-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Zsh: ~/.zshrc</span></span>
+<span id="cb16-3"></span>
+<span id="cb16-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Agregar aliases</span></span>
+<span id="cb16-5"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">alias</span> ce=<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"conda env list"</span></span>
+<span id="cb16-6"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">alias</span> ca=<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"conda activate"</span></span>
+<span id="cb16-7"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">alias</span> cda=<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"conda deactivate"</span></span>
+<span id="cb16-8"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">alias</span> blog=<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"conda activate econblog &amp;&amp; cd ~/Proyectos/epsilon-y-beta"</span></span>
+<span id="cb16-9"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">alias</span> scripts=<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"conda activate scripts-env &amp;&amp; cd ~/Proyectos/scripts"</span></span>
+<span id="cb16-10"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">alias</span> conda-clean=<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"conda clean --all -y"</span></span>
+<span id="cb16-11"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">alias</span> conda-update=<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"conda update -n base conda -y &amp;&amp; mamba update --all -y"</span></span></code></pre></div></div>
+</section>
+</section>
+<section id="configuración-óptima-de-conda" class="level1">
+<h1>Configuración Óptima de Conda</h1>
+<section id="crear-archivo-de-configuración" class="level2">
+<h2 class="anchored" data-anchor-id="crear-archivo-de-configuración">1. Crear Archivo de Configuración</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># El archivo ~/.condarc almacena la configuración global de conda</span></span>
+<span id="cb17-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">nano</span> ~/.condarc</span></code></pre></div></div>
+</section>
+<section id="mi-configuración" class="level2">
+<h2 class="anchored" data-anchor-id="mi-configuración">2. Mi Configuración</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb18-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ========================================================================</span></span>
+<span id="cb18-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># CONFIGURACIÓN GLOBAL DE CONDA</span></span>
+<span id="cb18-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Usuario: Edison Achalma (achalmaedison)</span></span>
+<span id="cb18-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Sistema: Arch Linux</span></span>
+<span id="cb18-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Fecha: Enero 2026</span></span>
+<span id="cb18-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ========================================================================</span></span>
+<span id="cb18-7"></span>
+<span id="cb18-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ------------------------------------------------------------------------</span></span>
+<span id="cb18-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Canales (Prioridad de búsqueda de paquetes)</span></span>
+<span id="cb18-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ------------------------------------------------------------------------</span></span>
+<span id="cb18-11"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">channels</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span></span>
+<span id="cb18-12"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> conda-forge</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">        # Canal principal (comunidad, actualizado)</span></span>
+<span id="cb18-13"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> defaults</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">           # Canal oficial de Anaconda</span></span>
+<span id="cb18-14"></span>
+<span id="cb18-15"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Prioridad estricta (usar en orden de la lista)</span></span>
+<span id="cb18-16"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">channel_priority</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> strict</span></span>
+<span id="cb18-17"></span>
+<span id="cb18-18"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ------------------------------------------------------------------------</span></span>
+<span id="cb18-19"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Solver (Motor de resolución de dependencias)</span></span>
+<span id="cb18-20"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ------------------------------------------------------------------------</span></span>
+<span id="cb18-21"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">solver</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> libmamba</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">      # Usar mamba (mucho más rápido que classic)</span></span>
+<span id="cb18-22"></span>
+<span id="cb18-23"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ------------------------------------------------------------------------</span></span>
+<span id="cb18-24"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Activación Automática</span></span>
+<span id="cb18-25"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ------------------------------------------------------------------------</span></span>
+<span id="cb18-26"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">auto_activate_base</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">false</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">   # NO activar base automáticamente</span></span>
+<span id="cb18-27"></span>
+<span id="cb18-28"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ------------------------------------------------------------------------</span></span>
+<span id="cb18-29"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Notificaciones y Actualizaciones</span></span>
+<span id="cb18-30"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ------------------------------------------------------------------------</span></span>
+<span id="cb18-31"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">auto_update_conda</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">false</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    # NO actualizar conda automáticamente</span></span>
+<span id="cb18-32"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">notify_outdated_conda</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">true</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"> # Notificar si hay nueva versión</span></span>
+<span id="cb18-33"></span>
+<span id="cb18-34"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ------------------------------------------------------------------------</span></span>
+<span id="cb18-35"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Gestión de Paquetes</span></span>
+<span id="cb18-36"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ------------------------------------------------------------------------</span></span>
+<span id="cb18-37"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pip_interop_enabled</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">true</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">   # Permitir interoperabilidad con pip</span></span>
+<span id="cb18-38"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">always_yes</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">false</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">           # Pedir confirmación antes de instalar</span></span>
+<span id="cb18-39"></span>
+<span id="cb18-40"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ------------------------------------------------------------------------</span></span>
+<span id="cb18-41"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Almacenamiento</span></span>
+<span id="cb18-42"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ------------------------------------------------------------------------</span></span>
+<span id="cb18-43"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pkgs_dirs</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span></span>
+<span id="cb18-44"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> ~/.conda/pkgs</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">           # Directorio de caché de paquetes</span></span>
+<span id="cb18-45"></span>
+<span id="cb18-46"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">envs_dirs</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span></span>
+<span id="cb18-47"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> ~/miniconda3/envs</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">       # Directorio de entornos</span></span>
+<span id="cb18-48"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> ~/.conda/envs</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">           # Directorio adicional de entornos</span></span>
+<span id="cb18-49"></span>
+<span id="cb18-50"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ------------------------------------------------------------------------</span></span>
+<span id="cb18-51"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Interfaz de Usuario</span></span>
+<span id="cb18-52"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ------------------------------------------------------------------------</span></span>
+<span id="cb18-53"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">show_channel_urls</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">true</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">     # Mostrar URL del canal en listados</span></span>
+<span id="cb18-54"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">json</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">false</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">                 # Salida en texto (no JSON)</span></span>
+<span id="cb18-55"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">quiet</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">false</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">                # Mostrar mensajes normales</span></span>
+<span id="cb18-56"></span>
+<span id="cb18-57"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ------------------------------------------------------------------------</span></span>
+<span id="cb18-58"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Seguridad</span></span>
+<span id="cb18-59"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ------------------------------------------------------------------------</span></span>
+<span id="cb18-60"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ssl_verify</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">true</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">            # Verificar certificados SSL</span></span>
+<span id="cb18-61"></span>
+<span id="cb18-62"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ------------------------------------------------------------------------</span></span>
+<span id="cb18-63"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Proxy (Descomentar si usas proxy corporativo)</span></span>
+<span id="cb18-64"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ------------------------------------------------------------------------</span></span>
+<span id="cb18-65"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># proxy_servers:</span></span>
+<span id="cb18-66"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#   http: http://proxy.empresa.com:8080</span></span>
+<span id="cb18-67"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#   https: https://proxy.empresa.com:8080</span></span></code></pre></div></div>
+</section>
+<section id="verificar-configuración" class="level2">
+<h2 class="anchored" data-anchor-id="verificar-configuración">3. Verificar Configuración</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Ver configuración actual</span></span>
+<span id="cb19-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> config <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--show</span></span>
+<span id="cb19-3"></span>
+<span id="cb19-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Ver solo configuraciones modificadas</span></span>
+<span id="cb19-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> config <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--show-sources</span></span></code></pre></div></div>
+</section>
+</section>
+<section id="integración-con-herramientas-del-sistema" class="level1">
+<h1>Integración con Herramientas del Sistema</h1>
+<section id="usar-quarto-del-sistema-no-de-conda" class="level2">
+<h2 class="anchored" data-anchor-id="usar-quarto-del-sistema-no-de-conda">1. Usar Quarto del Sistema (No de Conda)</h2>
+<p><strong>Ventaja:</strong> Quarto de pacman es más estable y actualizado.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Verificar que Quarto está en PATH del sistema</span></span>
+<span id="cb20-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">which</span> quarto</span>
+<span id="cb20-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Debe mostrar: /usr/bin/quarto</span></span>
+<span id="cb20-4"></span>
+<span id="cb20-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Verificar versión</span></span>
+<span id="cb20-6"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">quarto</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--version</span></span></code></pre></div></div>
+<p><strong>En entornos conda, Quarto del sistema se usará automáticamente.</strong></p>
+</section>
+<section id="usar-r-del-sistema-no-de-conda" class="level2">
+<h2 class="anchored" data-anchor-id="usar-r-del-sistema-no-de-conda">2. Usar R del Sistema (No de Conda)</h2>
+<p><strong>Ventaja:</strong> RStudio funciona mejor con R de pacman.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Verificar R del sistema</span></span>
+<span id="cb21-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">which</span> R</span>
+<span id="cb21-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Debe mostrar: /usr/bin/R</span></span>
+<span id="cb21-4"></span>
+<span id="cb21-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Verificar versión</span></span>
+<span id="cb21-6"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">R</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--version</span></span></code></pre></div></div>
+<p><strong>R del sistema estará disponible en todos los entornos conda.</strong></p>
+</section>
+<section id="usar-latex-del-sistema" class="level2">
+<h2 class="anchored" data-anchor-id="usar-latex-del-sistema">3. Usar LaTeX del Sistema</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Verificar LaTeX</span></span>
+<span id="cb22-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">which</span> pdflatex</span>
+<span id="cb22-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Debe mostrar: /usr/bin/pdflatex</span></span>
+<span id="cb22-4"></span>
+<span id="cb22-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Verificar distribución</span></span>
+<span id="cb22-6"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pdflatex</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--version</span></span></code></pre></div></div>
+</section>
+</section>
+<section id="verificación-de-la-instalación" class="level1">
+<h1>Verificación de la Instalación</h1>
+<section id="verificación-básica" class="level2">
+<h2 class="anchored" data-anchor-id="verificación-básica">1. Verificación Básica</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Versión de conda</span></span>
+<span id="cb23-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--version</span></span>
+<span id="cb23-3"></span>
+<span id="cb23-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Versión de mamba</span></span>
+<span id="cb23-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--version</span></span>
+<span id="cb23-6"></span>
+<span id="cb23-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Versión de Python (en base)</span></span>
+<span id="cb23-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">python</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--version</span></span>
+<span id="cb23-9"></span>
+<span id="cb23-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Información del sistema</span></span>
+<span id="cb23-11"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> info</span></code></pre></div></div>
+</section>
+<section id="verificación-de-configuración" class="level2">
+<h2 class="anchored" data-anchor-id="verificación-de-configuración">2. Verificación de Configuración</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Ver configuración</span></span>
+<span id="cb24-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> config <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--show</span></span>
+<span id="cb24-3"></span>
+<span id="cb24-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Ver canales</span></span>
+<span id="cb24-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> config <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--show</span> channels</span>
+<span id="cb24-6"></span>
+<span id="cb24-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Ver solver</span></span>
+<span id="cb24-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> config <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--show</span> solver</span></code></pre></div></div>
+</section>
+<section id="prueba-de-funcionamiento" class="level2">
+<h2 class="anchored" data-anchor-id="prueba-de-funcionamiento">3. Prueba de Funcionamiento</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Crear entorno de prueba</span></span>
+<span id="cb25-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> create <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-n</span> test-env python=3.12 pandas <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb25-3"></span>
+<span id="cb25-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Activar entorno</span></span>
+<span id="cb25-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate test-env</span>
+<span id="cb25-6"></span>
+<span id="cb25-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Verificar instalación</span></span>
+<span id="cb25-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">python</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-c</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"import pandas; print(f'Pandas {pandas.__version__} funcionando correctamente')"</span></span>
+<span id="cb25-9"></span>
+<span id="cb25-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Desactivar</span></span>
+<span id="cb25-11"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> deactivate</span>
+<span id="cb25-12"></span>
+<span id="cb25-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Eliminar entorno de prueba</span></span>
+<span id="cb25-14"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env remove <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-n</span> test-env <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span></code></pre></div></div>
+<hr>
+</section>
+</section>
+<section id="resolución-de-problemas" class="level1">
+<h1>Resolución de Problemas</h1>
+<section id="problema-1-conda-command-not-found" class="level2">
+<h2 class="anchored" data-anchor-id="problema-1-conda-command-not-found">Problema 1: “conda: command not found”</h2>
+<p><strong>Causa:</strong> Conda no está inicializado en tu shell.</p>
+<p><strong>Solución:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Inicializar manualmente</span></span>
+<span id="cb26-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">source</span> ~/miniconda3/bin/activate</span>
+<span id="cb26-3"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> init fish  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># o bash / zsh</span></span>
+<span id="cb26-4"></span>
+<span id="cb26-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Recargar shell</span></span>
+<span id="cb26-6"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">exec</span> fish</span></code></pre></div></div>
+</section>
+<section id="problema-2-base-no-aparece-en-el-prompt" class="level2">
+<h2 class="anchored" data-anchor-id="problema-2-base-no-aparece-en-el-prompt">Problema 2: “(base) No Aparece en el Prompt”</h2>
+<p><strong>Causa:</strong> <code>auto_activate_base</code> está en <code>false</code>.</p>
+<p><strong>Solución (si quieres que aparezca):</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> config <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--set</span> auto_activate_base true</span>
+<span id="cb27-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">exec</span> fish</span></code></pre></div></div>
+<p><strong>O activar manualmente:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate base</span></code></pre></div></div>
+</section>
+<section id="problema-3-mamba-no-funciona" class="level2">
+<h2 class="anchored" data-anchor-id="problema-3-mamba-no-funciona">Problema 3: “Mamba No Funciona”</h2>
+<p><strong>Causa:</strong> Mamba no está instalado o no está en PATH.</p>
+<p><strong>Solución:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Verificar instalación</span></span>
+<span id="cb29-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate base</span>
+<span id="cb29-3"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> list <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">|</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">grep</span> mamba</span>
+<span id="cb29-4"></span>
+<span id="cb29-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Si no está, instalar</span></span>
+<span id="cb29-6"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> install mamba <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-c</span> conda-forge <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb29-7"></span>
+<span id="cb29-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Configurar como solver</span></span>
+<span id="cb29-9"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> config <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--set</span> solver libmamba</span></code></pre></div></div>
+</section>
+<section id="problema-4-instalación-de-paquetes-es-muy-lenta" class="level2">
+<h2 class="anchored" data-anchor-id="problema-4-instalación-de-paquetes-es-muy-lenta">Problema 4: “Instalación de Paquetes es Muy Lenta”</h2>
+<p><strong>Causa:</strong> Usando solver clásico en lugar de mamba.</p>
+<p><strong>Solución:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Configurar mamba como solver</span></span>
+<span id="cb30-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> config <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--set</span> solver libmamba</span>
+<span id="cb30-3"></span>
+<span id="cb30-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># O usar mamba directamente</span></span>
+<span id="cb30-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> install paquete-nombre</span></code></pre></div></div>
+</section>
+<section id="problema-5-conflictos-de-dependencias" class="level2">
+<h2 class="anchored" data-anchor-id="problema-5-conflictos-de-dependencias">Problema 5: “Conflictos de Dependencias”</h2>
+<p><strong>Causa:</strong> Paquetes incompatibles en el mismo entorno.</p>
+<p><strong>Solución:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Opción 1: Usar mamba (mejor resolución)</span></span>
+<span id="cb31-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> install paquete-nombre</span>
+<span id="cb31-3"></span>
+<span id="cb31-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Opción 2: Crear entorno nuevo limpio</span></span>
+<span id="cb31-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> create <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-n</span> nuevo-env python=3.12 paquete-nombre</span>
+<span id="cb31-6"></span>
+<span id="cb31-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Opción 3: Actualizar todos los paquetes</span></span>
+<span id="cb31-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> update <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--all</span></span></code></pre></div></div>
+</section>
+<section id="problema-6-espacio-en-disco-lleno" class="level2">
+<h2 class="anchored" data-anchor-id="problema-6-espacio-en-disco-lleno">Problema 6: “Espacio en Disco Lleno”</h2>
+<p><strong>Causa:</strong> Caché de paquetes acumulado.</p>
+<p><strong>Solución:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Limpiar caché de paquetes</span></span>
+<span id="cb32-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> clean <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--all</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb32-3"></span>
+<span id="cb32-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Ver espacio usado</span></span>
+<span id="cb32-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">du</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-sh</span> ~/.conda/pkgs</span>
+<span id="cb32-6"></span>
+<span id="cb32-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Eliminar entornos no usados</span></span>
+<span id="cb32-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env list</span>
+<span id="cb32-9"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env remove <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-n</span> nombre-entorno-viejo</span></code></pre></div></div>
+</section>
+<section id="problema-7-fish-no-reconoce-conda" class="level2">
+<h2 class="anchored" data-anchor-id="problema-7-fish-no-reconoce-conda">Problema 7: “Fish No Reconoce Conda”</h2>
+<p><strong>Causa:</strong> Inicialización incorrecta de Fish.</p>
+<p><strong>Solución:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Verificar bloque de inicialización</span></span>
+<span id="cb33-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cat</span> ~/.config/fish/config.fish <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">|</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">grep</span> conda</span>
+<span id="cb33-3"></span>
+<span id="cb33-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Si no existe, agregar manualmente</span></span>
+<span id="cb33-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">nano</span> ~/.config/fish/config.fish</span></code></pre></div></div>
+<p><strong>Agregar:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34" style="background: #f1f3f5;"><pre class="sourceCode numberSource fish number-lines code-with-copy"><code class="sourceCode"><span id="cb34-1"># &gt;&gt;&gt; conda initialize &gt;&gt;&gt;</span>
+<span id="cb34-2">eval /home/achalmaedison/miniconda3/bin/conda "shell.fish" "hook" $argv | source</span>
+<span id="cb34-3"># &lt;&lt;&lt; conda initialize &lt;&lt;&lt;</span></code></pre></div></div>
+<p><strong>Recargar:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35" style="background: #f1f3f5;"><pre class="sourceCode numberSource fish number-lines code-with-copy"><code class="sourceCode"><span id="cb35-1">exec fish</span></code></pre></div></div>
+<hr>
+</section>
+</section>
+<section id="comandos-de-referencia-rápida" class="level1">
+<h1>Comandos de Referencia Rápida</h1>
+<section id="gestión-de-conda" class="level2">
+<h2 class="anchored" data-anchor-id="gestión-de-conda">Gestión de Conda</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Actualizar conda</span></span>
+<span id="cb36-2"><span class="ex" style="color: null;
 background-color: null;
 font-style: inherit;">conda</span> update <span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">--all</span></span></code></pre></div></div>
-<p>Este comando buscará actualizaciones para todos los paquetes instalados y los actualizará a las últimas versiones disponibles.</p></li>
-<li><p>Si deseas actualizar un paquete específico, puedes utilizar el siguiente comando, reemplazando <code>&lt;nombre_paquete&gt;</code> con el nombre del paquete que deseas actualizar:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><span class="ex" style="color: null;
+font-style: inherit;">-n</span> base conda <span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">conda</span> update <span class="op" style="color: #5E5E5E;
+font-style: inherit;">-y</span></span>
+<span id="cb36-3"></span>
+<span id="cb36-4"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">&lt;</span>nombre_paquete<span class="op" style="color: #5E5E5E;
+font-style: inherit;"># Actualizar mamba</span></span>
+<span id="cb36-5"><span class="ex" style="color: null;
 background-color: null;
-font-style: inherit;">&gt;</span></span></code></pre></div></div>
-<p>Esto actualizará el paquete especificado a la última versión disponible.</p></li>
-</ol>
-<p>Recuerda que antes de realizar la actualización, es recomendable crear un entorno virtual y respaldar tus proyectos para evitar cualquier conflicto o pérdida de datos.</p>
-<p>¡Y eso es todo! Con estos pasos, podrás mantener tu instalación de Anaconda actualizada y disfrutar de las últimas mejoras en Ubuntu Linux. Asegúrate de realizar actualizaciones periódicas para aprovechar al máximo las capacidades de Anaconda y sus paquetes.</p>
+font-style: inherit;">mamba</span> update mamba <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb36-6"></span>
+<span id="cb36-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Información del sistema</span></span>
+<span id="cb36-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> info</span>
+<span id="cb36-9"></span>
+<span id="cb36-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Ver configuración</span></span>
+<span id="cb36-11"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> config <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--show</span></span>
+<span id="cb36-12"></span>
+<span id="cb36-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Limpiar caché</span></span>
+<span id="cb36-14"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> clean <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--all</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span></code></pre></div></div>
 </section>
-<section id="desinstalación-de-anaconda-en-ubuntu-linux" class="level1">
-<h1>Desinstalación de Anaconda en Ubuntu Linux</h1>
-<p>Si en algún momento deseas eliminar completamente Anaconda de tu sistema Ubuntu Linux, ya sea para realizar una nueva instalación o por cualquier otro motivo, puedes seguir estos pasos para desinstalarlo por completo.</p>
-<p><strong>Proceso para eliminar completamente Anaconda:</strong></p>
-<ol type="1">
-<li><p>Abre la terminal en tu sistema Ubuntu Linux.</p></li>
-<li><p>En la terminal, ingresa el siguiente comando para desactivar cualquier configuración de Anaconda que esté activa en tu entorno actual:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><span class="ex" style="color: null;
+<section id="gestión-de-entornos" class="level2">
+<h2 class="anchored" data-anchor-id="gestión-de-entornos">Gestión de Entornos</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">conda</span> deactivate</span></code></pre></div></div>
-<p>Esto asegurará que no haya entornos virtuales activos relacionados con Anaconda.</p></li>
-<li><p>A continuación, puedes utilizar el siguiente comando para desinstalar Anaconda y eliminar todos los archivos relacionados:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><span class="ex" style="color: null;
+font-style: inherit;"># Listar entornos</span></span>
+<span id="cb37-2"><span class="ex" style="color: null;
 background-color: null;
-font-style: inherit;">anaconda-clean</span> <span class="at" style="color: #657422;
+font-style: inherit;">conda</span> env list</span>
+<span id="cb37-3"></span>
+<span id="cb37-4"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">--yes</span></span></code></pre></div></div>
-<p>Este comando eliminará Anaconda de tu sistema y eliminará los archivos y directorios asociados.</p></li>
-<li><p>Una vez completado el proceso de desinstalación, puedes verificar que Anaconda se haya eliminado por completo. Puedes utilizar el siguiente comando para verificar si el directorio de Anaconda ya no existe:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><span class="fu" style="color: #4758AB;
+font-style: inherit;"># Crear entorno</span></span>
+<span id="cb37-5"><span class="ex" style="color: null;
 background-color: null;
-font-style: inherit;">ls</span> ~/anaconda3</span></code></pre></div></div>
-<p>Si el directorio no se encuentra, significa que Anaconda ha sido eliminado correctamente.</p></li>
-</ol>
-<p>Recuerda que este proceso eliminará permanentemente Anaconda de tu sistema, incluyendo todos los paquetes y entornos virtuales asociados. Asegúrate de realizar una copia de seguridad de tus proyectos y datos importantes antes de proceder con la desinstalación.</p>
-<p>¡Y eso es todo! Siguiendo estos pasos, podrás eliminar completamente Anaconda de tu sistema Ubuntu Linux. Si en el futuro decides volver a instalarlo, podrás seguir los pasos que hemos cubierto anteriormente en este blog.</p>
+font-style: inherit;">mamba</span> create <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-n</span> nombre-env python=3.12 paquete1 paquete2 <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb37-6"></span>
+<span id="cb37-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Activar entorno</span></span>
+<span id="cb37-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate nombre-env</span>
+<span id="cb37-9"></span>
+<span id="cb37-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Desactivar entorno</span></span>
+<span id="cb37-11"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> deactivate</span>
+<span id="cb37-12"></span>
+<span id="cb37-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Eliminar entorno</span></span>
+<span id="cb37-14"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env remove <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-n</span> nombre-env <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb37-15"></span>
+<span id="cb37-16"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Exportar entorno</span></span>
+<span id="cb37-17"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env export <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--no-builds</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> environment.yml</span>
+<span id="cb37-18"></span>
+<span id="cb37-19"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Crear desde archivo</span></span>
+<span id="cb37-20"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env create <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-f</span> environment.yml</span></code></pre></div></div>
 </section>
-<section id="comandos-básicos" class="level1">
-<h1>Comandos básicos</h1>
-<ol type="1">
-<li><p><code>conda deactivate</code>: Este comando se utiliza para desactivar el entorno activo de Conda. Cuando trabajas con entornos virtuales en Anaconda, puedes utilizar este comando para volver al entorno base o desactivar cualquier entorno virtual activo.</p></li>
-<li><p><code>conda activate</code>: Con este comando, puedes activar un entorno virtual específico en Anaconda. Puedes crear entornos virtuales personalizados con diferentes versiones de Python y paquetes instalados. Al utilizar este comando, podrás activar uno de esos entornos y trabajar en él.</p></li>
-<li><p><code>jupyter notebook</code>: Este comando se utiliza para abrir el entorno de Jupyter Notebook. Jupyter Notebook es una aplicación web que te permite crear y compartir documentos interactivos que contienen código, visualizaciones y texto explicativo. Al ejecutar este comando, se abrirá una nueva pestaña del navegador con el entorno de Jupyter Notebook.</p></li>
-<li><p><code>spyder</code>: Al ejecutar este comando, se abrirá el entorno de desarrollo integrado (IDE) de Spyder. Spyder es un entorno de desarrollo muy utilizado en Python que ofrece características como edición de código, depuración y ejecución de programas.</p></li>
-<li><p><code>python</code>: Al ejecutar este comando, se iniciará el intérprete de Python en la línea de comandos. Podrás ejecutar comandos y scripts de Python directamente en la terminal.</p></li>
-<li><p><code>anaconda-navigator</code>: Con este comando, se abrirá la interfaz gráfica de Anaconda Navigator. Anaconda Navigator es una aplicación que te permite administrar tus entornos virtuales, instalar paquetes y lanzar aplicaciones como Jupyter Notebook y Spyder de manera visual.</p></li>
-<li><p><code>conda info</code>: Este comando proporciona información detallada sobre la instalación de Conda, como la versión de Conda, la ubicación de los archivos y la configuración actual.</p></li>
-<li><p><code>conda update conda</code>: Utilizando este comando, puedes actualizar la versión de Conda en tu sistema. Conda es el administrador de paquetes y entornos virtuales de Anaconda, y mantenerlo actualizado te permitirá acceder a las últimas funciones y mejoras.</p></li>
-<li><p><code>rm -rf ~/anaconda3</code>: Este comando se utiliza para desinstalar completamente Anaconda de tu sistema. Ten en cuenta que este comando eliminará permanentemente Anaconda y todos los archivos relacionados, incluyendo tus entornos virtuales y paquetes instalados. Asegúrate de hacer una copia de seguridad de tus datos importantes antes de ejecutar este comando.</p></li>
-</ol>
-<p>Si tienes alguna pregunta o necesitas más ayuda, no dudes en dejar un comentario.</p>
-<p><strong>¡Hasta la próxima!</strong></p>
+<section id="gestión-de-paquetes" class="level2">
+<h2 class="anchored" data-anchor-id="gestión-de-paquetes">Gestión de Paquetes</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Listar paquetes (entorno activo)</span></span>
+<span id="cb38-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> list</span>
+<span id="cb38-3"></span>
+<span id="cb38-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Buscar paquete</span></span>
+<span id="cb38-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> search nombre-paquete</span>
+<span id="cb38-6"></span>
+<span id="cb38-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Instalar paquete</span></span>
+<span id="cb38-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> install nombre-paquete <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb38-9"></span>
+<span id="cb38-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Instalar desde canal específico</span></span>
+<span id="cb38-11"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> install <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-c</span> conda-forge nombre-paquete <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb38-12"></span>
+<span id="cb38-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Instalar versión específica</span></span>
+<span id="cb38-14"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> install nombre-paquete=1.2.3 <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb38-15"></span>
+<span id="cb38-16"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Actualizar paquete</span></span>
+<span id="cb38-17"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> update nombre-paquete <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb38-18"></span>
+<span id="cb38-19"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Actualizar todos los paquetes</span></span>
+<span id="cb38-20"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> update <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--all</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb38-21"></span>
+<span id="cb38-22"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Desinstalar paquete</span></span>
+<span id="cb38-23"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> remove nombre-paquete <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span></code></pre></div></div>
+</section>
+<section id="uso-con-pip" class="level2">
+<h2 class="anchored" data-anchor-id="uso-con-pip">Uso con Pip</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Instalar con pip (dentro de entorno conda)</span></span>
+<span id="cb39-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pip</span> install nombre-paquete</span>
+<span id="cb39-3"></span>
+<span id="cb39-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Listar paquetes pip</span></span>
+<span id="cb39-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pip</span> list</span>
+<span id="cb39-6"></span>
+<span id="cb39-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Actualizar paquete pip</span></span>
+<span id="cb39-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pip</span> install <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--upgrade</span> nombre-paquete</span>
+<span id="cb39-9"></span>
+<span id="cb39-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Desinstalar paquete pip</span></span>
+<span id="cb39-11"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pip</span> uninstall nombre-paquete</span></code></pre></div></div>
+</section>
+<section id="información-y-debugging" class="level2">
+<h2 class="anchored" data-anchor-id="información-y-debugging">Información y Debugging</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Información de entorno activo</span></span>
+<span id="cb40-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> info <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--envs</span></span>
+<span id="cb40-3"></span>
+<span id="cb40-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Información de paquete específico</span></span>
+<span id="cb40-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> list nombre-paquete</span>
+<span id="cb40-6"></span>
+<span id="cb40-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Ver dependencias de paquete</span></span>
+<span id="cb40-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> search nombre-paquete <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--info</span></span>
+<span id="cb40-9"></span>
+<span id="cb40-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Verificar integridad de entorno</span></span>
+<span id="cb40-11"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> doctor</span>
+<span id="cb40-12"></span>
+<span id="cb40-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Modo verbose (más información)</span></span>
+<span id="cb40-14"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> install <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--debug</span> nombre-paquete</span></code></pre></div></div>
+</section>
+</section>
+<section id="recursos-adicionales" class="level1">
+<h1>Recursos Adicionales</h1>
+<p><strong>Documentación Oficial:</strong></p>
+<ul>
+<li>Conda: https://docs.conda.io/</li>
+<li>Mamba: https://mamba.readthedocs.io/</li>
+<li>Conda-Forge: https://conda-forge.org/</li>
+</ul>
+<p><strong>Comunidad:</strong></p>
+<ul>
+<li>Conda Discourse: https://conda.discourse.group/</li>
+<li>GitHub Issues: https://github.com/conda/conda/issues</li>
+</ul>
 </section>
 <section id="publicaciones-similares" class="level1">
 <h1>Publicaciones Similares</h1>
@@ -2552,8 +3755,8 @@ font-style: inherit;">ls</span> ~/anaconda3</span></code></pre></div></div>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reutilización</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-achalma2020" class="csl-entry quarto-appendix-citeas">
-Achalma, Edison. 2020. <span>“Instalación de Anaconda Python,”</span>
-June. <a href="https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/">https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/</a>.
+Achalma, Edison. 2020. <span>“Instalación y Configuración de
+Miniconda,”</span> June. <a href="https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/">https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/</a>.
 </div></div></section></div> ]]></description>
   <category>Python</category>
   <guid>https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/</guid>
