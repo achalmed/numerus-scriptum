@@ -48,7 +48,7 @@ versátiles pues permiten coleccionar de manera ordenada cualquier objeto
 (incluso otras listas). Las listas además te permiten acceder a los
 elementos que contiene adentro utilizando índices.
 
-::: {#5ac98b2a .cell}
+::: {#e11b49ab .cell}
 ``` {.python .cell-code}
 frutas = ['manzana', 'banana', 'durazno']
 print(frutas)
@@ -56,7 +56,7 @@ print(frutas)
 :::
 
 
-::: {#a9a06430 .cell}
+::: {#8e66de61 .cell}
 ``` {.python .cell-code}
 carnes = list(['cerdo', 'vaca', 'pollo'])
 print(carnes)
@@ -64,7 +64,7 @@ print(carnes)
 :::
 
 
-::: {#4dc74f14 .cell}
+::: {#bda3d895 .cell}
 ``` {.python .cell-code}
 mix = [123, ['Python', 'Stata'], 'iPhone']
 print(mix)
@@ -86,7 +86,7 @@ objetos en el ambiente de python.
 
 <img src="assign_reference.png" alt="Drawing" style="width: 600px;"/>
 
-::: {#76366637 .cell}
+::: {#3b677d19 .cell}
 ``` {.python .cell-code}
 import copy
 
@@ -109,7 +109,7 @@ objeto completo es la rutina deepcopy. Basicamente lo que hace deepcopy
 es copiar como valor no solo la lista inicial, sino tambien las listas
 que se contienen adentro.
 
-::: {#8a825251 .cell}
+::: {#82bd118d .cell}
 ``` {.python .cell-code}
 #List of lists:
 miSegundaLista = [["Jose", "Pablo"], [26, 25]]
@@ -126,7 +126,7 @@ print('Lista copiada como valor:',miSegundaListaNombres2)
 Para eliminar elementos dentro de una lista, podemos indexar el objeto y
 con el comando del, podemos eliminar dicho objeto.
 
-::: {#f656b509 .cell}
+::: {#a292244c .cell}
 ``` {.python .cell-code}
 del miSegundaLista[1]
 miSegundaLista
@@ -134,7 +134,7 @@ miSegundaLista
 :::
 
 
-::: {#2ac0a1f5 .cell}
+::: {#5d7659dc .cell}
 ``` {.python .cell-code}
 # Combinar listas
 mylist = [1, 2] + [3, 4]
@@ -143,7 +143,7 @@ print(mylist)
 :::
 
 
-::: {#871176d2 .cell}
+::: {#83f46fb2 .cell}
 ``` {.python .cell-code}
 [1, 2]*2
 ```
@@ -160,7 +160,7 @@ Así mismo es posible evaluar si un objeto en python es identico a otro.
 Esta rutina evalúa si un objeto tiene el mismo valor y propiedades que
 otro, para ello se usa la rutina "is".
 
-::: {#c15c48eb .cell}
+::: {#3e81e1c4 .cell}
 ``` {.python .cell-code}
 # Evaluar si un objeto se encuentra en una lista
 print(mylist)
@@ -172,7 +172,7 @@ print(5 not in mylist)
 :::
 
 
-::: {#da00db5d .cell}
+::: {#c96daaed .cell}
 ``` {.python .cell-code}
 print(5 is 5)
 print(5 is 5.)
@@ -186,7 +186,7 @@ Existen además otros métodos que nos permiten modificar las listas. Por
 ejemplo, podemos obtener el valor máximo, el mínimo, el tamaño de la
 lista, así como tambien podemos agregar y remover elementos a una lista.
 
-::: {#a3d1aab5 .cell}
+::: {#4b0e933b .cell}
 ``` {.python .cell-code}
 # Metodos en listas
 print(len(mylist)) #Tamano de lista
@@ -196,7 +196,7 @@ print(max(mylist)) #Valor maximo en la lista
 :::
 
 
-::: {#8bc628dc .cell}
+::: {#1d07addf .cell}
 ``` {.python .cell-code}
 # Metodos para agregar y eliminar elementos de una lista:
 mylist.append(5) #Agregar elemento
@@ -205,7 +205,7 @@ mylist
 :::
 
 
-::: {#1aed5ced .cell}
+::: {#c09f6d96 .cell}
 ``` {.python .cell-code}
 mylist.append([6,7])
 mylist
@@ -213,7 +213,7 @@ mylist
 :::
 
 
-::: {#7a45bfd7 .cell}
+::: {#d5a4c9cd .cell}
 ``` {.python .cell-code}
 mylist.remove([6,7]) # Remover elemento
 mylist
@@ -221,7 +221,7 @@ mylist
 :::
 
 
-::: {#f38e33e9 .cell}
+::: {#11d256c4 .cell}
 ``` {.python .cell-code}
 mylist.extend([6,7]) # Extender lista con mas elementos
 mylist
@@ -229,7 +229,7 @@ mylist
 :::
 
 
-::: {#23149449 .cell}
+::: {#05523d25 .cell}
 ``` {.python .cell-code}
 mylist.insert(1,10) # insert element to a list at a location other than the end
 mylist
@@ -237,7 +237,7 @@ mylist
 :::
 
 
-::: {#ead80788 .cell}
+::: {#ad2a8409 .cell}
 ``` {.python .cell-code}
 mylist.sort()
 print(mylist) # Ordenar lista de menor a mayor
@@ -246,7 +246,7 @@ mylist.index(2) # Retorna el indice del valor que solicitamos
 :::
 
 
-::: {#ff57d896 .cell}
+::: {#a8c65e4d .cell}
 ``` {.python .cell-code}
 mylistExample = [1,2,2,4,2]
 mylistExample.index(2) # Retorna el indice del valor que solicitamos
@@ -261,7 +261,7 @@ beneficio de que sea inmutable es que definir una tupla requiere poca
 memoria ram pues no tiene muchas rutinas asociadas a comparación de las
 listas. Usualmente definimos las tuplas entre paréntesis "(,)".
 
-::: {#16f9d318 .cell}
+::: {#52d08b0c .cell}
 ``` {.python .cell-code}
 import sys
 
@@ -274,7 +274,7 @@ print(sys.getsizeof(myTuple),
 :::
 
 
-::: {#6b570f62 .cell}
+::: {#48d6543a .cell}
 ``` {.python .cell-code}
 #Evaluando el tipo de elemento
 myTuple = 1,2,3
@@ -284,7 +284,7 @@ type(myTuple)
 :::
 
 
-::: {#af6152e7 .cell}
+::: {#1d6be943 .cell}
 ``` {.python .cell-code}
 # Convirtiendo una lista en tupla
 tuple([1,2])
@@ -292,7 +292,7 @@ tuple([1,2])
 :::
 
 
-::: {#75eaab39 .cell}
+::: {#a589e026 .cell}
 ``` {.python .cell-code}
 # Indexando una tupla
 myTuple[0]
@@ -315,7 +315,7 @@ general los diccionarios siguen la siguiente estructura:
                                                    'key3': obj3}
 ```
 
-::: {#1f34adc5 .cell}
+::: {#a3cb8586 .cell}
 ``` {.python .cell-code}
 # Diccionarios
 miDict = {}
@@ -326,7 +326,7 @@ print(miDict['a'])
 :::
 
 
-::: {#c5aa6a2c .cell}
+::: {#f91b652f .cell}
 ``` {.python .cell-code}
 miDict['a'] = 'canario'
 miDict['c'] = 'conejo'
@@ -336,7 +336,7 @@ print(miDict)
 :::
 
 
-::: {#6c812172 .cell}
+::: {#5a84a1f1 .cell}
 ``` {.python .cell-code}
 #Acceder a llaves (keys) en los diccionarios:
 print('a' in miDict,
@@ -345,28 +345,28 @@ print('a' in miDict,
 :::
 
 
-::: {#65a2fe23 .cell}
+::: {#d236c5ad .cell}
 ``` {.python .cell-code}
 list(miDict)
 ```
 :::
 
 
-::: {#fec40b76 .cell}
+::: {#8a148738 .cell}
 ``` {.python .cell-code}
 miDict.keys()
 ```
 :::
 
 
-::: {#ac59cdb3 .cell}
+::: {#9c9a6c95 .cell}
 ``` {.python .cell-code}
 miDict.values()
 ```
 :::
 
 
-::: {#2be64a4d .cell}
+::: {#f01e5fda .cell}
 ``` {.python .cell-code}
 miDict.items()
 ```
