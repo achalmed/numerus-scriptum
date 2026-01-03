@@ -1910,197 +1910,3351 @@ z-index: 0;
 
 
 
-<section id="introducción" class="level1">
-<h1>Introducción</h1>
-<p>¡Bienvenidos al blog! En esta ocasión, exploraremos un tema fundamental para cualquier desarrollador o entusiasta de Python: la configuración de un entorno virtual utilizando Anaconda. Si alguna vez te has preguntado cómo mantener tus proyectos de Python aislados, organizados y libres de conflictos de dependencias, estás en el lugar correcto.</p>
-<p>¿Alguna vez has encontrado problemas al trabajar en múltiples proyectos de Python, donde las diferentes versiones de las bibliotecas y paquetes interfieren entre sí? ¡No te preocupes! Configurar un entorno virtual es la solución perfecta para mantener todo bajo control.</p>
-<p>Imagina tener la capacidad de crear espacios de trabajo aislados y personalizados para cada proyecto, sin preocuparte por conflictos entre las versiones de las bibliotecas o paquetes. Con Anaconda, una poderosa plataforma de gestión de paquetes y ambientes virtuales, puedes lograr precisamente eso.</p>
-<p>En este blog, te guiaremos paso a paso en la configuración de tu primer entorno virtual utilizando Anaconda. Aprenderás cómo crear ambientes virtuales, instalar paquetes y bibliotecas específicos, y alternar fácilmente entre ellos para cada proyecto.</p>
-<p>Ya sea que seas un desarrollador principiante o experimentado, este blog te brindará los conocimientos necesarios para dominar el arte de la configuración de entornos virtuales con Anaconda. ¡Prepárate para simplificar tu vida como desarrollador de Python y llevar tus proyectos al siguiente nivel!</p>
-<p>¡Comencemos esta emocionante aventura de configuración de entornos virtuales con Anaconda!</p>
+<section id="filosofía-de-entornos-virtuales" class="level1">
+<h1>Filosofía de Entornos Virtuales</h1>
+<section id="por-qué-usar-entornos-separados" class="level2">
+<h2 class="anchored" data-anchor-id="por-qué-usar-entornos-separados">¿Por Qué Usar Entornos Separados?</h2>
+<p><strong>Problema:</strong> Sin entornos, todos los paquetes comparten el mismo espacio.</p>
+<p><strong>Consecuencias:</strong></p>
+<ul>
+<li>Conflictos de versiones (pandas 1.5 vs 2.0)</li>
+<li>Dependencias rotas al actualizar</li>
+<li>Imposible reproducir análisis antiguos</li>
+<li>Proyectos diferentes interfieren entre sí</li>
+</ul>
+<p><strong>Solución:</strong> Un entorno aislado por proyecto o tipo de trabajo.</p>
 </section>
-<section id="qué-es-un-entorno-virtual" class="level1">
-<h1>¿Qué es un entorno virtual?</h1>
-<p>Si estas en el mundo de la programación en Python, es posible que hayas oído hablar del término “entorno virtual”.</p>
-<p>Cuando hablamos de un entorno virtual, nos referimos a un ambiente aislado y autónomo donde puedes desarrollar y ejecutar tus proyectos de Python de manera independiente. En otras palabras, es como tener una burbuja protegiendo tus proyectos y asegurándote de que las bibliotecas y paquetes que utilices no entren en conflicto con otras versiones o dependencias de Python que puedas tener instaladas en tu sistema operativo.</p>
-<section id="cuáles-son-los-beneficios-de-trabajar-con-entornos-virtuales-en-proyectos-de-python-en-linux" class="level2">
-<h2 class="anchored" data-anchor-id="cuáles-son-los-beneficios-de-trabajar-con-entornos-virtuales-en-proyectos-de-python-en-linux">¿Cuáles son los beneficios de trabajar con entornos virtuales en proyectos de Python en Linux?</h2>
-<p>Permíteme destacar algunos puntos clave:</p>
+<section id="principios-fundamentales" class="level2">
+<h2 class="anchored" data-anchor-id="principios-fundamentales">Principios Fundamentales</h2>
 <ol type="1">
-<li><p><strong>Aislamiento:</strong> Los entornos virtuales te permiten tener control total sobre las versiones de las bibliotecas y paquetes que utilizas en tus proyectos. Esto significa que puedes crear un ambiente aislado para cada proyecto, evitando conflictos y problemas de compatibilidad entre diferentes versiones de Python y sus dependencias.</p></li>
-<li><p><strong>Portabilidad:</strong> Al utilizar entornos virtuales, puedes compartir fácilmente tus proyectos con otros desarrolladores o ejecutarlos en diferentes máquinas sin preocuparte por las diferencias en las configuraciones del sistema. Todo lo que necesitas es compartir el archivo de requisitos del entorno virtual y cualquiera podrá recrear el mismo ambiente de trabajo en su propia máquina.</p></li>
-<li><p><strong>Mantenimiento sencillo:</strong> Los entornos virtuales facilitan la gestión de tus proyectos. Puedes instalar y actualizar paquetes de forma independiente dentro de cada ambiente virtual, sin afectar a otros proyectos o al sistema operativo en sí. Además, si algo sale mal en un entorno virtual, puedes solucionarlo sin que afecte a tus otros proyectos.</p></li>
-<li><p><strong>Experimentación segura:</strong> Si quieres probar una nueva biblioteca o una versión diferente de una dependencia en particular, un entorno virtual te proporciona un espacio seguro para hacerlo. Puedes instalar y probar nuevas bibliotecas sin preocuparte de que afecten a otros proyectos o rompan la funcionalidad existente.</p></li>
+<li><p><strong>NUNCA instalar paquetes en base</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># INCORRECTO</span></span>
+<span id="cb1-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate base</span>
+<span id="cb1-3"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> install pandas  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># NO HACER ESTO</span></span>
+<span id="cb1-4"></span>
+<span id="cb1-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># CORRECTO</span></span>
+<span id="cb1-6"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate mi-proyecto</span>
+<span id="cb1-7"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> install pandas  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Instalar en entorno específico</span></span></code></pre></div></div></li>
+<li><p><strong>Un entorno por propósito</strong></p>
+<ul>
+<li>Blog → entorno <code>econblog</code></li>
+<li>Scripts → entorno <code>scripts-env</code></li>
+<li>Análisis temporal → entorno desechable</li>
+</ul></li>
+<li><p><strong>Documentar dependencias</strong></p>
+<ul>
+<li>Siempre crear <code>environment.yml</code></li>
+<li>Mantener actualizado el archivo</li>
+<li>Versionar en Git</li>
+</ul></li>
+<li><p><strong>Entornos reproducibles</strong></p>
+<ul>
+<li>Especificar versiones exactas cuando sea crítico</li>
+<li>Usar canales consistentes (conda-forge)</li>
+<li>Exportar entornos regularmente</li>
+</ul></li>
 </ol>
 </section>
 </section>
-<section id="anaconda" class="level1">
-<h1>Anaconda</h1>
-<p>¿Qué es Anaconda? Es mucho más que una simple herramienta, es una plataforma completa de gestión de paquetes y entornos virtuales diseñada específicamente para los amantes de Python como tú.</p>
-<p>Entonces, ¿por qué deberías elegir Anaconda frente a otras herramientas? Permíteme contarte algunas de las ventajas que hacen de Anaconda una elección excepcional:</p>
-<ol type="1">
-<li><p><strong>Gestión de paquetes simplificada:</strong> Con Anaconda, olvídate de preocuparte por instalar y gestionar paquetes individualmente. Anaconda tiene su propio sistema de gestión de paquetes llamado “conda”, que te permite instalar, actualizar y eliminar paquetes de manera sencilla y eficiente. Además, Anaconda cuenta con un amplio repositorio de paquetes precompilados que puedes explorar y utilizar en tus proyectos con un solo comando.</p></li>
-<li><p><strong>Creación de entornos virtuales sin complicaciones:</strong> ¿Recuerdas la importancia de los entornos virtuales que discutimos anteriormente? Bueno, con Anaconda, crear y gestionar entornos virtuales es pan comido. Puedes crear un entorno virtual aislado para cada proyecto en cuestión de segundos. Además, puedes especificar fácilmente la versión de Python y las dependencias requeridas para cada entorno virtual, manteniendo todo organizado y libre de conflictos.</p></li>
-<li><p><strong>Multiplataforma:</strong> Ya sea que estés utilizando Linux, Windows o macOS, Anaconda te tiene cubierto. Esta plataforma es compatible con múltiples sistemas operativos, lo que significa que puedes disfrutar de las mismas ventajas y características sin importar el entorno en el que te encuentres. Así que no importa si eres un entusiasta de Linux, un defensor de Windows o un fanático de macOS, Anaconda estará a tu lado.</p></li>
-<li><p><strong>Integración con herramientas adicionales:</strong> Anaconda no solo se detiene en la gestión de paquetes y entornos virtuales, sino que también ofrece una amplia gama de herramientas y utilidades adicionales que pueden mejorar tu flujo de trabajo. Desde el entorno de desarrollo integrado (IDE) llamado Anaconda Navigator, hasta la potencia de Jupyter Notebooks y la facilidad de distribución con Anaconda Cloud, hay muchas herramientas a tu disposición para mejorar tu productividad y simplificar tu desarrollo.</p></li>
-</ol>
+<section id="estrategia-de-entornos-para-tus-proyectos" class="level1">
+<h1>Estrategia de Entornos para Tus Proyectos</h1>
+<section id="mapa-de-entornos-recomendado" class="level2">
+<h2 class="anchored" data-anchor-id="mapa-de-entornos-recomendado">Mapa de Entornos Recomendado</h2>
+<pre><code>~/miniconda3/
+├── envs/
+│   ├── econblog/          # Blogs académicos (epsilon-y-beta, axiomata, etc.)
+│   ├── scripts-env/       # Scripts de automatización
+│   ├── datascience/       # Análisis avanzado temporal
+│   └── teaching/          # Material educativo (notebooks para estudiantes)</code></pre>
 </section>
-<section id="instalación-de-anaconda-en-ubuntu-linux" class="level1">
-<h1>Instalación de Anaconda en Ubuntu Linux</h1>
-<p>Si estás utilizando Ubuntu Linux y te emociona comenzar a trabajar con Anaconda. Te guiaré a través de los pasos para descargar e instalar Anaconda en tu sistema Ubuntu Linux.</p>
-<p><strong>Paso 1: Descargar el instalador de Anaconda</strong></p>
-<p>Para empezar, debes visitar el sitio web oficial de Anaconda <a href="https://www.anaconda.com/download/">Descargar Anaconda</a> y descargar el instalador adecuado para tu versión de Ubuntu Linux. Asegúrate de seleccionar la versión de Python que deseas utilizar y si tu sistema operativo es de 32 o 64 bits.</p>
-<p><strong>Paso 2: Abrir la terminal</strong></p>
-<p>Una vez que hayas descargado el instalador de Anaconda, abre la terminal en tu sistema Ubuntu Linux. Puedes hacerlo utilizando el atajo de teclado Ctrl + Alt + T o buscando “Terminal” en el menú de aplicaciones.</p>
-<p><strong>Paso 3: Navegar a la ubicación del instalador</strong></p>
-<p>En la terminal, navega hasta la ubicación donde descargaste el instalador de Anaconda. Por ejemplo, si lo descargaste en la carpeta “Descargas”, puedes usar el comando siguiente para ir a esa ubicación:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">cd</span> Descargas</span></code></pre></div></div>
-<p>Recuerda reemplazar “Descargas” con la carpeta en la que hayas guardado el archivo.</p>
-<p><strong>Paso 4: Ejecutar el instalador de Anaconda</strong></p>
-<p>Una vez que estés en la ubicación del instalador de Anaconda, puedes ejecutar el siguiente comando para iniciar el proceso de instalación:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">bash</span> nombre_del_instalador.sh</span></code></pre></div></div>
-<p>Asegúrate de reemplazar “nombre_del_instalador.sh” con el nombre real del archivo que descargaste.</p>
-<p><strong>Paso 5: Sigue las instrucciones de instalación</strong></p>
-<p>Después de ejecutar el comando anterior, seguirás las instrucciones del instalador de Anaconda en la terminal. Acepta los términos de licencia, selecciona la ubicación de instalación y responde cualquier pregunta adicional que se te presente durante el proceso de instalación.</p>
-<p><strong>Paso 6: Añadir Anaconda al PATH del sistema</strong></p>
-<p>Una vez que la instalación se complete, se te preguntará si deseas agregar Anaconda al PATH del sistema. Es recomendable seleccionar “yes” para que puedas acceder a los comandos de Anaconda desde cualquier ubicación en la terminal.</p>
+<section id="matriz-de-decisión" class="level2">
+<h2 class="anchored" data-anchor-id="matriz-de-decisión">Matriz de Decisión</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 38%">
+<col style="width: 34%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Proyecto</th>
+<th>Entorno</th>
+<th>Razón</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>epsilon-y-beta, axiomata, methodica</td>
+<td><code>econblog</code></td>
+<td>Comparten dependencias: Quarto, pandas, statsmodels</td>
+</tr>
+<tr class="even">
+<td>Scripts Quarto, Calibre, Zotero</td>
+<td><code>scripts-env</code></td>
+<td>Scripts de automatización compartidos</td>
+</tr>
+<tr class="odd">
+<td>Análisis econométrico complejo</td>
+<td><code>datascience</code></td>
+<td>Paquetes pesados (tensorflow, pytorch)</td>
+</tr>
+<tr class="even">
+<td>Notebooks para clases</td>
+<td><code>teaching</code></td>
+<td>Versiones estables para estudiantes</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="configuración-de-un-entorno-virtual-en-conda" class="level1">
-<h1>Configuración de un entorno virtual en Conda</h1>
-<p><strong>Paso 1: Actualiza Conda</strong>:</p>
-<p>Antes de empezar, es una buena práctica asegurarte de tener la versión más reciente de Conda. Abre tu terminal y ejecuta los siguientes comandos:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="ex" style="color: null;
+</section>
+<section id="entorno-1-econblog-blogs-académicos" class="level1">
+<h1>Entorno 1: econblog (Blogs Académicos)</h1>
+<section id="propósito" class="level2">
+<h2 class="anchored" data-anchor-id="propósito">Propósito</h2>
+<p><strong>Blogs que usa este entorno:</strong></p>
+<ul>
+<li>epsilon-y-beta (Econometría)</li>
+<li>axiomata (Matemáticas para economistas)</li>
+<li>methodica (Metodología de investigación)</li>
+<li>aequilibria (Macroeconomía)</li>
+<li>optimums (Microeconomía)</li>
+<li>pecunia-fluxus (Finanzas)</li>
+<li>actus-mercator (Gestión empresarial)</li>
+<li>res-publica (Gestión pública)</li>
+<li>dialectica-y-mercado (Filosofía)</li>
+<li>numerus-scriptum (Programación)</li>
+</ul>
+</section>
+<section id="paso-1-crear-el-entorno" class="level2">
+<h2 class="anchored" data-anchor-id="paso-1-crear-el-entorno">Paso 1: Crear el Entorno</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">conda</span> update conda</span>
+font-style: inherit;"># Crear entorno con paquetes fundamentales</span></span>
 <span id="cb3-2"><span class="ex" style="color: null;
 background-color: null;
-font-style: inherit;">conda</span> update <span class="at" style="color: #657422;
+font-style: inherit;">mamba</span> create <span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">--all</span></span></code></pre></div></div>
-<p>Esto actualizará Conda y todos los paquetes asociados.</p>
-<p><strong>Paso 2: Configura el entorno virtual:</strong></p>
-<p>Ahora, vamos a crear un nuevo entorno virtual. En tu terminal, ejecuta el siguiente comando:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><span class="ex" style="color: null;
+font-style: inherit;">-n</span> econblog python=3.12 <span class="dt" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">conda</span> create <span class="at" style="color: #657422;
+font-style: inherit;">\</span></span>
+<span id="cb3-3">  jupyterlab <span class="dt" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">--name</span> nombre_del_entorno</span></code></pre></div></div>
-<p>Reemplaza “nombre_del_entorno” con el nombre que desees darle a tu entorno virtual.</p>
-<p><strong>Paso 3: Activa el entorno virtual:</strong></p>
-<p>Una vez que hayas creado el entorno virtual, puedes activarlo con el siguiente comando:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><span class="ex" style="color: null;
+font-style: inherit;">\</span></span>
+<span id="cb3-4">  pandas <span class="dt" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">conda</span> activate nombre_del_entorno</span></code></pre></div></div>
-<p>Esto te permitirá trabajar en el entorno virtual específico.</p>
-<p><strong>Paso 4: Desactiva el entorno virtual:</strong></p>
-<p>Cuando hayas terminado de trabajar en tu entorno virtual y desees volver al entorno base, simplemente ejecuta el siguiente comando:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><span class="ex" style="color: null;
+font-style: inherit;">\</span></span>
+<span id="cb3-5">  numpy <span class="dt" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">conda</span> deactivate</span></code></pre></div></div>
-<p>Esto te llevará de vuelta al entorno base de Conda.</p>
-<p><strong>Paso 5: Elimina el entorno virtual:</strong></p>
-<p>Si en algún momento deseas eliminar un entorno virtual, ejecuta el siguiente comando:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><span class="ex" style="color: null;
+font-style: inherit;">\</span></span>
+<span id="cb3-6">  matplotlib <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb3-7">  seaborn <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb3-8">  plotly <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb3-9">  statsmodels <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb3-10">  linearmodels <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb3-11">  pingouin <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb3-12">  scipy <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb3-13">  scikit-learn <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb3-14">  pyarrow <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb3-15">  openpyxl <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb3-16">  xlrd <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb3-17">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-c</span> conda-forge <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span></code></pre></div></div>
+<p><strong>Tiempo estimado:</strong> 5-10 minutos (con mamba).</p>
+</section>
+<section id="paso-2-activar-y-agregar-paquetes-adicionales" class="level2">
+<h2 class="anchored" data-anchor-id="paso-2-activar-y-agregar-paquetes-adicionales">Paso 2: Activar y Agregar Paquetes Adicionales</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Activar entorno</span></span>
+<span id="cb4-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate econblog</span>
+<span id="cb4-3"></span>
+<span id="cb4-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Paquetes de conda-forge</span></span>
+<span id="cb4-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> install <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-c</span> conda-forge <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb4-6">  jupyterlab-lsp <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb4-7">  myst-parser <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb4-8">  nbconvert <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb4-9">  ipywidgets <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb4-10">  notebook <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb4-11">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb4-12"></span>
+<span id="cb4-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Paquetes solo disponibles en PyPI</span></span>
+<span id="cb4-14"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pip</span> install <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb4-15">  wooldridge <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb4-16">  econml <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb4-17">  causalml <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb4-18">  upsetplot <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb4-19">  arch <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb4-20">  pmdarima</span></code></pre></div></div>
+</section>
+<section id="paso-3-verificar-instalación" class="level2">
+<h2 class="anchored" data-anchor-id="paso-3-verificar-instalación">Paso 3: Verificar Instalación</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Verificar que todo funcione</span></span>
+<span id="cb5-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">python</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-c</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb5-3"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">import pandas as pd</span></span>
+<span id="cb5-4"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">import statsmodels.api as sm</span></span>
+<span id="cb5-5"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">import linearmodels as lm</span></span>
+<span id="cb5-6"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">import wooldridge as wd</span></span>
+<span id="cb5-7"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">print('Todos los paquetes cargados correctamente')</span></span>
+<span id="cb5-8"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">print(f'Pandas {pd.__version__}')</span></span>
+<span id="cb5-9"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">print(f'Statsmodels {sm.__version__}')</span></span>
+<span id="cb5-10"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span></code></pre></div></div>
+</section>
+<section id="paso-4-exportar-configuración" class="level2">
+<h2 class="anchored" data-anchor-id="paso-4-exportar-configuración">Paso 4: Exportar Configuración</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Exportar entorno completo</span></span>
+<span id="cb6-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env export <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--no-builds</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> ~/achalmaedison/publicaciones/epsilon-y-beta/environment.yml</span>
+<span id="cb6-3"></span>
+<span id="cb6-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># O crear manualmente (más limpio)</span></span></code></pre></div></div>
+</section>
+<section id="environment.yml-para-econblog" class="level2">
+<h2 class="anchored" data-anchor-id="environment.yml-para-econblog">environment.yml para econblog</h2>
+<p><strong>Crear archivo:</strong> <code>~/achalmaedison/publicaciones/epsilon-y-beta/environment.yml</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ========================================================================</span></span>
+<span id="cb7-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ENTORNO: econblog</span></span>
+<span id="cb7-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Propósito: Blogs académicos de economía, econometría y ciencia de datos</span></span>
+<span id="cb7-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Autor: Edison Achalma (achalmaedison)</span></span>
+<span id="cb7-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Institución: UNSCH</span></span>
+<span id="cb7-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Fecha: Enero 2026</span></span>
+<span id="cb7-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ========================================================================</span></span>
+<span id="cb7-8"></span>
+<span id="cb7-9"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">name</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> econblog</span></span>
+<span id="cb7-10"></span>
+<span id="cb7-11"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">channels</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span></span>
+<span id="cb7-12"></span>
+<span id="cb7-13"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> conda-forge</span></span>
+<span id="cb7-14"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> defaults</span></span>
+<span id="cb7-15"></span>
+<span id="cb7-16"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dependencies</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span></span>
+<span id="cb7-17"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb7-18"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # Python</span></span>
+<span id="cb7-19"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb7-20"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> python=3.12</span></span>
+<span id="cb7-21"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span></span>
+<span id="cb7-22"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb7-23"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # Jupyter y Notebooks</span></span>
+<span id="cb7-24"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb7-25"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> jupyterlab&gt;=4.0</span></span>
+<span id="cb7-26"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> jupyterlab-lsp</span></span>
+<span id="cb7-27"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> ipywidgets</span></span>
+<span id="cb7-28"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> notebook</span></span>
+<span id="cb7-29"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> nbconvert</span></span>
+<span id="cb7-30"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> myst-parser</span></span>
+<span id="cb7-31"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span></span>
+<span id="cb7-32"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb7-33"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # Manipulación de Datos</span></span>
+<span id="cb7-34"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb7-35"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pandas&gt;=2.0</span></span>
+<span id="cb7-36"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> numpy&gt;=1.24</span></span>
+<span id="cb7-37"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pyarrow</span></span>
+<span id="cb7-38"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> openpyxl</span></span>
+<span id="cb7-39"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> xlrd</span></span>
+<span id="cb7-40"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span></span>
+<span id="cb7-41"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb7-42"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # Visualización</span></span>
+<span id="cb7-43"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb7-44"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> matplotlib&gt;=3.7</span></span>
+<span id="cb7-45"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> seaborn&gt;=0.12</span></span>
+<span id="cb7-46"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> plotly&gt;=5.14</span></span>
+<span id="cb7-47"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span></span>
+<span id="cb7-48"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb7-49"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # Estadística y Econometría</span></span>
+<span id="cb7-50"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb7-51"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> statsmodels&gt;=0.14</span></span>
+<span id="cb7-52"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> linearmodels</span></span>
+<span id="cb7-53"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pingouin</span></span>
+<span id="cb7-54"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> scipy&gt;=1.11</span></span>
+<span id="cb7-55"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> scikit-learn&gt;=1.3</span></span>
+<span id="cb7-56"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span></span>
+<span id="cb7-57"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb7-58"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # Utilidades</span></span>
+<span id="cb7-59"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb7-60"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pip</span></span>
+<span id="cb7-61"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span></span>
+<span id="cb7-62"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb7-63"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # Paquetes de PyPI (solo disponibles con pip)</span></span>
+<span id="cb7-64"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb7-65"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pip</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span></span>
+<span id="cb7-66"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> wooldridge</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">         # Datasets de econometría</span></span>
+<span id="cb7-67"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> econml</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">            # Machine learning causal</span></span>
+<span id="cb7-68"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> causalml</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">          # Inferencia causal</span></span>
+<span id="cb7-69"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> upsetplot</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">         # Gráficos de conjuntos</span></span>
+<span id="cb7-70"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> arch</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">              # Modelos ARCH/GARCH</span></span>
+<span id="cb7-71"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pmdarima</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">          # ARIMA automático</span></span></code></pre></div></div>
+</section>
+<section id="paso-5-crear-alias-personalizados" class="level2">
+<h2 class="anchored" data-anchor-id="paso-5-crear-alias-personalizados">Paso 5: Crear Alias Personalizados</h2>
+<p><strong>Agregar a <code>~/.config/fish/config.fish</code>:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode numberSource fish number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"># Alias para blog de econometría</span>
+<span id="cb8-2">alias econblog="conda activate econblog &amp;&amp; cd ~/Proyectos/epsilon-y-beta"</span>
+<span id="cb8-3">alias eboff="conda deactivate"</span>
+<span id="cb8-4"></span>
+<span id="cb8-5"># Jupyter Lab para blog</span>
+<span id="cb8-6">alias jlab-blog="conda activate econblog &amp;&amp; jupyter lab --notebook-dir=~/Proyectos/epsilon-y-beta"</span>
+<span id="cb8-7"></span>
+<span id="cb8-8"># Quarto para blog</span>
+<span id="cb8-9">alias qblog="conda activate econblog &amp;&amp; cd ~/Proyectos/epsilon-y-beta &amp;&amp; quarto preview"</span></code></pre></div></div>
+</section>
+</section>
+<section id="entorno-2-scripts-env-automatización" class="level1">
+<h1>Entorno 2: scripts-env (Automatización)</h1>
+<section id="propósito-1" class="level2">
+<h2 class="anchored" data-anchor-id="propósito-1">Propósito</h2>
+<p><strong>Scripts que usa este entorno:</strong></p>
+<ul>
+<li><code>scripts_for_quarto/</code> (sincronización, metadata, tags)</li>
+<li><code>scripts_for_calibre/</code> (gestión de PDFs)</li>
+<li><code>scripts_for_libreoffice/</code> (conversión de documentos)</li>
+<li><code>scripts_for_linux/</code> (utilidades del sistema)</li>
+<li><code>scripts_for_zotero/</code> (gestión bibliográfica)</li>
+</ul>
+</section>
+<section id="paso-1-crear-el-entorno-1" class="level2">
+<h2 class="anchored" data-anchor-id="paso-1-crear-el-entorno-1">Paso 1: Crear el Entorno</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Crear entorno ligero para scripts</span></span>
+<span id="cb9-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> create <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-n</span> scripts-env python=3.12 <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb9-3">  pyyaml <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb9-4">  pandas <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb9-5">  openpyxl <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb9-6">  python-docx <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb9-7">  pillow <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb9-8">  requests <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb9-9">  beautifulsoup4 <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb9-10">  lxml <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb9-11">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-c</span> conda-forge <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span></code></pre></div></div>
+</section>
+<section id="paso-2-activar-y-agregar-paquetes-adicionales-1" class="level2">
+<h2 class="anchored" data-anchor-id="paso-2-activar-y-agregar-paquetes-adicionales-1">Paso 2: Activar y Agregar Paquetes Adicionales</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Activar entorno</span></span>
+<span id="cb10-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate scripts-env</span>
+<span id="cb10-3"></span>
+<span id="cb10-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Paquetes adicionales</span></span>
+<span id="cb10-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> install <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-c</span> conda-forge <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb10-6">  black <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb10-7">  ruff <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb10-8">  pytest <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb10-9">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb10-10"></span>
+<span id="cb10-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Paquetes de PyPI</span></span>
+<span id="cb10-12"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pip</span> install <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb10-13">  pypdf2 <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb10-14">  pdfrw <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb10-15">  python-frontmatter <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb10-16">  watchdog</span></code></pre></div></div>
+</section>
+<section id="paso-3-verificar-instalación-1" class="level2">
+<h2 class="anchored" data-anchor-id="paso-3-verificar-instalación-1">Paso 3: Verificar Instalación</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Prueba rápida</span></span>
+<span id="cb11-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">python</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-c</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb11-3"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">import yaml</span></span>
+<span id="cb11-4"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">import pandas as pd</span></span>
+<span id="cb11-5"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">from docx import Document</span></span>
+<span id="cb11-6"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">print('Entorno de scripts listo')</span></span>
+<span id="cb11-7"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span></code></pre></div></div>
+</section>
+<section id="environment.yml-para-scripts-env" class="level2">
+<h2 class="anchored" data-anchor-id="environment.yml-para-scripts-env">environment.yml para scripts-env</h2>
+<p><strong>Crear archivo:</strong> <code>~/Proyectos/scripts/environment.yml</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ========================================================================</span></span>
+<span id="cb12-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ENTORNO: scripts-env</span></span>
+<span id="cb12-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Propósito: Scripts de automatización para Quarto, Calibre, LibreOffice, etc.</span></span>
+<span id="cb12-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Autor: Edison Achalma</span></span>
+<span id="cb12-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Fecha: Enero 2026</span></span>
+<span id="cb12-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ========================================================================</span></span>
+<span id="cb12-7"></span>
+<span id="cb12-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">name</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> scripts-env</span></span>
+<span id="cb12-9"></span>
+<span id="cb12-10"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">channels</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span></span>
+<span id="cb12-11"></span>
+<span id="cb12-12"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> conda-forge</span></span>
+<span id="cb12-13"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> defaults</span></span>
+<span id="cb12-14"></span>
+<span id="cb12-15"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dependencies</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span></span>
+<span id="cb12-16"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb12-17"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # Python</span></span>
+<span id="cb12-18"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb12-19"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> python=3.12</span></span>
+<span id="cb12-20"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span></span>
+<span id="cb12-21"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb12-22"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # Manipulación de Archivos</span></span>
+<span id="cb12-23"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb12-24"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pyyaml</span></span>
+<span id="cb12-25"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pandas</span></span>
+<span id="cb12-26"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> openpyxl</span></span>
+<span id="cb12-27"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> python-docx</span></span>
+<span id="cb12-28"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pillow</span></span>
+<span id="cb12-29"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span></span>
+<span id="cb12-30"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb12-31"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # Web Scraping y Requests</span></span>
+<span id="cb12-32"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb12-33"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> requests</span></span>
+<span id="cb12-34"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> beautifulsoup4</span></span>
+<span id="cb12-35"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> lxml</span></span>
+<span id="cb12-36"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span></span>
+<span id="cb12-37"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb12-38"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # Desarrollo y Testing</span></span>
+<span id="cb12-39"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb12-40"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> black</span></span>
+<span id="cb12-41"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> ruff</span></span>
+<span id="cb12-42"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pytest</span></span>
+<span id="cb12-43"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span></span>
+<span id="cb12-44"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb12-45"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # Utilidades</span></span>
+<span id="cb12-46"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb12-47"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pip</span></span>
+<span id="cb12-48"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span></span>
+<span id="cb12-49"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb12-50"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # Paquetes de PyPI</span></span>
+<span id="cb12-51"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # ----------------------------------------------------------------------</span></span>
+<span id="cb12-52"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pip</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span></span>
+<span id="cb12-53"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pypdf2</span></span>
+<span id="cb12-54"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pdfrw</span></span>
+<span id="cb12-55"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> python-frontmatter</span></span>
+<span id="cb12-56"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> watchdog</span></span></code></pre></div></div>
+</section>
+<section id="paso-4-crear-alias" class="level2">
+<h2 class="anchored" data-anchor-id="paso-4-crear-alias">Paso 4: Crear Alias</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode numberSource fish number-lines code-with-copy"><code class="sourceCode"><span id="cb13-1"># Alias para scripts</span>
+<span id="cb13-2">alias scripts="conda activate scripts-env &amp;&amp; cd ~/Proyectos/scripts"</span>
+<span id="cb13-3">alias soff="conda deactivate"</span></code></pre></div></div>
+</section>
+</section>
+<section id="entorno-3-datascience-análisis-avanzado" class="level1">
+<h1>Entorno 3: datascience (Análisis Avanzado)</h1>
+<section id="propósito-2" class="level2">
+<h2 class="anchored" data-anchor-id="propósito-2">Propósito</h2>
+<p>Análisis econométrico avanzado, machine learning, y visualizaciones complejas para investigaciones específicas.</p>
+</section>
+<section id="crear-el-entorno" class="level2">
+<h2 class="anchored" data-anchor-id="crear-el-entorno">Crear el Entorno</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Entorno completo de ciencia de datos</span></span>
+<span id="cb14-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> create <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-n</span> datascience python=3.12 <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb14-3">  jupyterlab <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb14-4">  pandas <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb14-5">  numpy <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb14-6">  scipy <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb14-7">  scikit-learn <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb14-8">  statsmodels <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb14-9">  xgboost <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb14-10">  lightgbm <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb14-11">  matplotlib <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb14-12">  seaborn <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb14-13">  plotly <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb14-14">  bokeh <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb14-15">  altair <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb14-16">  networkx <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb14-17">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-c</span> conda-forge <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb14-18"></span>
+<span id="cb14-19"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Activar y agregar más</span></span>
+<span id="cb14-20"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate datascience</span>
+<span id="cb14-21"></span>
+<span id="cb14-22"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Machine learning</span></span>
+<span id="cb14-23"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pip</span> install <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb14-24">  tensorflow <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb14-25">  torch <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb14-26">  shap <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb14-27">  optuna</span>
+<span id="cb14-28"></span>
+<span id="cb14-29"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Econometría avanzada</span></span>
+<span id="cb14-30"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pip</span> install <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb14-31">  linearmodels <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb14-32">  arch <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb14-33">  pymc <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb14-34">  arviz</span></code></pre></div></div>
+</section>
+<section id="environment.yml-para-datascience" class="level2">
+<h2 class="anchored" data-anchor-id="environment.yml-para-datascience">environment.yml para datascience</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">name</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> datascience</span></span>
+<span id="cb15-2"></span>
+<span id="cb15-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">channels</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span></span>
+<span id="cb15-4"></span>
+<span id="cb15-5"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> conda-forge</span></span>
+<span id="cb15-6"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> defaults</span></span>
+<span id="cb15-7"></span>
+<span id="cb15-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dependencies</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span></span>
+<span id="cb15-9"></span>
+<span id="cb15-10"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> python=3.12</span></span>
+<span id="cb15-11"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> jupyterlab</span></span>
+<span id="cb15-12"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pandas</span></span>
+<span id="cb15-13"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> numpy</span></span>
+<span id="cb15-14"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> scipy</span></span>
+<span id="cb15-15"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> scikit-learn</span></span>
+<span id="cb15-16"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> statsmodels</span></span>
+<span id="cb15-17"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> xgboost</span></span>
+<span id="cb15-18"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> lightgbm</span></span>
+<span id="cb15-19"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> matplotlib</span></span>
+<span id="cb15-20"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> seaborn</span></span>
+<span id="cb15-21"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> plotly</span></span>
+<span id="cb15-22"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> bokeh</span></span>
+<span id="cb15-23"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> altair</span></span>
+<span id="cb15-24"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> networkx</span></span>
+<span id="cb15-25"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pip</span></span>
+<span id="cb15-26"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pip</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span></span>
+<span id="cb15-27"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> tensorflow</span></span>
+<span id="cb15-28"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> torch</span></span>
+<span id="cb15-29"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> shap</span></span>
+<span id="cb15-30"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> optuna</span></span>
+<span id="cb15-31"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> linearmodels</span></span>
+<span id="cb15-32"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> arch</span></span>
+<span id="cb15-33"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pymc</span></span>
+<span id="cb15-34"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> arviz</span></span></code></pre></div></div>
+</section>
+</section>
+<section id="entorno-4-teaching-material-educativo" class="level1">
+<h1>Entorno 4: teaching (Material Educativo)</h1>
+<section id="propósito-3" class="level2">
+<h2 class="anchored" data-anchor-id="propósito-3">Propósito</h2>
+<p>Notebooks y material educativo para estudiantes con versiones estables y probadas.</p>
+</section>
+<section id="crear-el-entorno-1" class="level2">
+<h2 class="anchored" data-anchor-id="crear-el-entorno-1">Crear el Entorno</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Entorno simple y estable para enseñanza</span></span>
+<span id="cb16-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> create <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-n</span> teaching python=3.11 <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb16-3">  jupyterlab <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb16-4">  pandas=2.0 <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb16-5">  numpy=1.24 <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb16-6">  matplotlib=3.7 <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb16-7">  seaborn=0.12 <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb16-8">  scipy=1.11 <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb16-9">  statsmodels=0.14 <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb16-10">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-c</span> conda-forge <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb16-11"></span>
+<span id="cb16-12"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Activar</span></span>
+<span id="cb16-13"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate teaching</span>
+<span id="cb16-14"></span>
+<span id="cb16-15"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Paquetes educativos</span></span>
+<span id="cb16-16"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pip</span> install <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb16-17">  wooldridge <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb16-18">  jupyter-book <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb16-19">  jupyterlab-spellchecker</span></code></pre></div></div>
+</section>
+</section>
+<section id="gestión-diaria-de-entornos" class="level1">
+<h1>Gestión Diaria de Entornos</h1>
+<section id="comandos-esenciales" class="level2">
+<h2 class="anchored" data-anchor-id="comandos-esenciales">Comandos Esenciales</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ========================================================================</span></span>
+<span id="cb17-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># LISTAR Y ACTIVAR</span></span>
+<span id="cb17-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ========================================================================</span></span>
+<span id="cb17-4"></span>
+<span id="cb17-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Listar todos los entornos</span></span>
+<span id="cb17-6"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env list</span>
+<span id="cb17-7"></span>
+<span id="cb17-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Activar entorno</span></span>
+<span id="cb17-9"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate econblog</span>
+<span id="cb17-10"></span>
+<span id="cb17-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Desactivar entorno actual</span></span>
+<span id="cb17-12"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> deactivate</span>
+<span id="cb17-13"></span>
+<span id="cb17-14"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ========================================================================</span></span>
+<span id="cb17-15"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># INSTALAR Y ACTUALIZAR PAQUETES</span></span>
+<span id="cb17-16"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ========================================================================</span></span>
+<span id="cb17-17"></span>
+<span id="cb17-18"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Instalar paquete nuevo</span></span>
+<span id="cb17-19"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> install pandas <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb17-20"></span>
+<span id="cb17-21"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Instalar versión específica</span></span>
+<span id="cb17-22"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> install pandas=2.0.0 <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb17-23"></span>
+<span id="cb17-24"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Instalar desde canal específico</span></span>
+<span id="cb17-25"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> install <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-c</span> conda-forge paquete <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb17-26"></span>
+<span id="cb17-27"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Actualizar paquete</span></span>
+<span id="cb17-28"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> update pandas <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb17-29"></span>
+<span id="cb17-30"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Actualizar todos los paquetes</span></span>
+<span id="cb17-31"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> update <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--all</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb17-32"></span>
+<span id="cb17-33"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Instalar con pip (si no está en conda)</span></span>
+<span id="cb17-34"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pip</span> install wooldridge</span>
+<span id="cb17-35"></span>
+<span id="cb17-36"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ========================================================================</span></span>
+<span id="cb17-37"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># INFORMACIÓN Y BÚSQUEDA</span></span>
+<span id="cb17-38"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ========================================================================</span></span>
+<span id="cb17-39"></span>
+<span id="cb17-40"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Listar paquetes instalados</span></span>
+<span id="cb17-41"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> list</span>
+<span id="cb17-42"></span>
+<span id="cb17-43"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Buscar paquete</span></span>
+<span id="cb17-44"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> search pandas</span>
+<span id="cb17-45"></span>
+<span id="cb17-46"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Ver info de paquete específico</span></span>
+<span id="cb17-47"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> list pandas</span>
+<span id="cb17-48"></span>
+<span id="cb17-49"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Ver dependencias de paquete</span></span>
+<span id="cb17-50"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> search pandas <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--info</span></span>
+<span id="cb17-51"></span>
+<span id="cb17-52"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ========================================================================</span></span>
+<span id="cb17-53"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># LIMPIAR Y MANTENER</span></span>
+<span id="cb17-54"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ========================================================================</span></span>
+<span id="cb17-55"></span>
+<span id="cb17-56"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Limpiar caché de paquetes</span></span>
+<span id="cb17-57"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> clean <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--all</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb17-58"></span>
+<span id="cb17-59"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Ver espacio usado por entornos</span></span>
+<span id="cb17-60"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">du</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-sh</span> ~/miniconda3/envs/<span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">*</span></span>
+<span id="cb17-61"></span>
+<span id="cb17-62"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Eliminar entorno</span></span>
+<span id="cb17-63"><span class="ex" style="color: null;
 background-color: null;
 font-style: inherit;">conda</span> env remove <span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">--name</span> nombre_del_entorno</span></code></pre></div></div>
-<p>Asegúrate de reemplazar “nombre_del_entorno” con el nombre real del entorno que deseas eliminar.</p>
-<p><strong>Paso 6: Cambiar entorno</strong></p>
-<ol type="1">
-<li><p>Abre Anaconda Navigator o el Anaconda Prompt (puedes encontrarlo en el menú de inicio de tu sistema operativo).</p></li>
-<li><p>Una vez que hayas abierto el entorno de Anaconda, puedes verificar los entornos disponibles ejecutando el siguiente comando en el Anaconda Prompt:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><span class="ex" style="color: null;
+font-style: inherit;">-n</span> nombre-entorno <span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">conda</span> env list</span></code></pre></div></div>
-<p>Esto te mostrará una lista de todos los entornos existentes.</p></li>
-<li><p>Para cambiar al entorno de aprendizaje (llamado “learn” en este caso), utiliza el siguiente comando:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><span class="ex" style="color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb17-64"></span>
+<span id="cb17-65"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">conda</span> activate learn</span></code></pre></div></div>
-<p>Esto activará el entorno de aprendizaje y te permitirá trabajar en él.</p></li>
-<li><p>Una vez en el entorno de aprendizaje, es posible que notes que no tiene instalados otros paquetes, aparte de los paquetes oficiales que vienen con Python. Si deseas tener un entorno relativamente limpio, puedes seguir estos pasos:</p>
-<ul>
-<li><p>Ejecuta el siguiente comando para abrir el intérprete de Python:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><span class="ex" style="color: null;
+font-style: inherit;"># ========================================================================</span></span>
+<span id="cb17-66"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">python</span></span></code></pre></div></div></li>
-<li><p>Una vez dentro del intérprete de Python, ingresa el siguiente comando para importar el paquete “requests”:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><span class="im" style="color: #00769E;
+font-style: inherit;"># EXPORTAR E IMPORTAR</span></span>
+<span id="cb17-67"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">import</span> requests</span></code></pre></div></div>
-<p>Verás que se muestra un mensaje indicando que no se puede encontrar el paquete “requests”, lo cual es normal.</p></li>
-<li><p>Para salir del intérprete de Python, simplemente ingresa el siguiente comando:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1">exit()</span></code></pre></div></div>
-<p>Con esto, saldrás del intérprete de Python y volverás al Anaconda Prompt.</p></li>
-</ul></li>
-</ol>
-<p>¡Y eso es todo! Ahora tienes los pasos detallados para configurar y administrar entornos virtuales en Conda.</p>
-</section>
-<section id="instalación-de-paquetes-y-bibliotecas-en-un-entorno-virtual" class="level1">
-<h1>Instalación de paquetes y bibliotecas en un entorno virtual</h1>
-<p>Cuando trabajas en proyectos de Python, es esencial tener acceso a las herramientas y funcionalidades adecuadas.</p>
-<section id="uso-de-conda-install" class="level2">
-<h2 class="anchored" data-anchor-id="uso-de-conda-install">Uso de conda install</h2>
-<ol type="1">
-<li><p>Asegúrate de tener tu entorno virtual activado. Si aún no lo has hecho, consulta el artículo anterior para aprender cómo activar tu entorno virtual específico.</p></li>
-<li><p>Abre tu terminal o línea de comandos y ejecuta el siguiente comando para instalar un paquete desde el repositorio de Anaconda:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><span class="ex" style="color: null;
+font-style: inherit;"># ========================================================================</span></span>
+<span id="cb17-68"></span>
+<span id="cb17-69"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">conda</span> install nombre_del_paquete</span></code></pre></div></div>
-<p>Asegúrate de reemplazar “nombre_del_paquete” con el nombre real del paquete que deseas instalar.</p></li>
-<li><p>Conda buscará el paquete en el repositorio de Anaconda y gestionará las dependencias automáticamente. Sigue las instrucciones en la terminal para confirmar la instalación.</p></li>
-</ol>
-</section>
-<section id="uso-de-pip-install" class="level2">
-<h2 class="anchored" data-anchor-id="uso-de-pip-install">Uso de pip install</h2>
-<ol type="1">
-<li><p>Al igual que antes, asegúrate de tener tu entorno virtual activado.</p></li>
-<li><p>Ejecuta el siguiente comando en tu terminal para instalar un paquete desde el Python Package Index (PyPI):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><span class="ex" style="color: null;
+font-style: inherit;"># Exportar entorno actual</span></span>
+<span id="cb17-70"><span class="ex" style="color: null;
 background-color: null;
-font-style: inherit;">pip</span> install nombre_del_paquete</span></code></pre></div></div>
-<p>Asegúrate de reemplazar “nombre_del_paquete” con el nombre real del paquete que deseas instalar.</p></li>
-<li><p>Pip descargará el paquete desde PyPI y lo instalará en tu entorno virtual. Si el paquete tiene dependencias, pip también se encargará de resolverlas.</p></li>
-</ol>
-<p>Conda es especialmente útil para instalar paquetes que son parte del repositorio de Anaconda, mientras que pip es más adecuado para paquetes que se encuentran en PyPI. Ambas herramientas son poderosas y te permiten acceder a una amplia gama de paquetes y bibliotecas para tus proyectos.</p>
-</section>
-<section id="ver-información-del-paquete-de-entorno" class="level2">
-<h2 class="anchored" data-anchor-id="ver-información-del-paquete-de-entorno">Ver información del paquete de entorno:</h2>
-<p>Para ver todos los paquetes instalados en el entorno actual, puedes utilizar el siguiente comando:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><span class="ex" style="color: null;
+font-style: inherit;">conda</span> env export <span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">conda</span> list</span></code></pre></div></div>
-<p>Al ejecutar este comando en el Anaconda Prompt, se mostrará una lista de todos los paquetes instalados en el entorno activo. Esto te permitirá conocer los paquetes y sus respectivas versiones que están disponibles en ese entorno.</p>
-</section>
-<section id="importar-y-exportar-entornos" class="level2">
-<h2 class="anchored" data-anchor-id="importar-y-exportar-entornos">Importar y exportar entornos:</h2>
-<p>Si deseas exportar la información del paquete del entorno actual, puedes utilizar el siguiente comando:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><span class="ex" style="color: null;
+font-style: inherit;">--no-builds</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">conda</span> env export <span class="op" style="color: #5E5E5E;
+font-style: inherit;">&gt;</span> environment.yml</span>
+<span id="cb17-71"></span>
+<span id="cb17-72"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">&gt;</span> environment.yaml</span></code></pre></div></div>
-<p>Este comando guarda la información del paquete en un archivo YAML llamado “environment.yaml”. El archivo contendrá la lista de paquetes y sus versiones que están instalados en el entorno actual.</p>
-<p>Esta funcionalidad es útil cuando necesitas recrear el mismo entorno virtual en otro lugar. Para crear un nuevo entorno virtual utilizando el archivo de configuración, puedes utilizar el siguiente comando:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><span class="ex" style="color: null;
+font-style: inherit;"># Crear entorno desde archivo</span></span>
+<span id="cb17-73"><span class="ex" style="color: null;
 background-color: null;
 font-style: inherit;">conda</span> env create <span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">-f</span> environment.yaml</span></code></pre></div></div>
-<p>Este comando creará un nuevo entorno virtual utilizando el archivo de configuración “environment.yaml”. El nuevo entorno tendrá los mismos paquetes y versiones que el entorno original, lo que facilita la replicación del mismo entorno en diferentes sistemas.</p>
-<p>Estos pasos son útiles para compartir y recrear entornos virtuales con la misma configuración, lo que asegura que todos los paquetes necesarios estén disponibles.</p>
+font-style: inherit;">-f</span> environment.yml</span>
+<span id="cb17-74"></span>
+<span id="cb17-75"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Actualizar entorno desde archivo</span></span>
+<span id="cb17-76"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env update <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-f</span> environment.yml <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--prune</span></span></code></pre></div></div>
+</section>
+<section id="workflow-típico-diario" class="level2">
+<h2 class="anchored" data-anchor-id="workflow-típico-diario">Workflow Típico Diario</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1. Activar entorno de blogs</span></span>
+<span id="cb18-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate econblog</span>
+<span id="cb18-3"></span>
+<span id="cb18-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2. Navegar al proyecto</span></span>
+<span id="cb18-5"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">cd</span> ~/achalmaedison/publicaciones/epsilon-y-beta</span>
+<span id="cb18-6"></span>
+<span id="cb18-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 3. Iniciar Jupyter Lab</span></span>
+<span id="cb18-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">jupyter</span> lab</span>
+<span id="cb18-9"></span>
+<span id="cb18-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 4. O trabajar con Quarto</span></span>
+<span id="cb18-11"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">quarto</span> preview</span>
+<span id="cb18-12"></span>
+<span id="cb18-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 5. Al terminar, desactivar</span></span>
+<span id="cb18-14"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> deactivate</span></code></pre></div></div>
+</section>
+</section>
+<section id="archivos-de-requisitos" class="level1">
+<h1>Archivos de Requisitos</h1>
+<section id="tipos-de-archivos" class="level2">
+<h2 class="anchored" data-anchor-id="tipos-de-archivos">Tipos de Archivos</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 39%">
+<col style="width: 39%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Archivo</th>
+<th>Formato</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>environment.yml</code></td>
+<td>YAML (Conda)</td>
+<td>Reproducción exacta de entorno conda</td>
+</tr>
+<tr class="even">
+<td><code>requirements.txt</code></td>
+<td>Texto (pip)</td>
+<td>Solo paquetes de PyPI</td>
+</tr>
+<tr class="odd">
+<td><code>environment-minimal.yml</code></td>
+<td>YAML</td>
+<td>Solo paquetes esenciales (sin versiones)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="environment.yml-completo" class="level2">
+<h2 class="anchored" data-anchor-id="environment.yml-completo">1. environment.yml (Completo)</h2>
+<p><strong>Exportar automáticamente:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Activar entorno</span></span>
+<span id="cb19-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate econblog</span>
+<span id="cb19-3"></span>
+<span id="cb19-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Exportar </span><span class="al" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">TODO</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"> (incluye pip)</span></span>
+<span id="cb19-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env export <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--no-builds</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> environment.yml</span></code></pre></div></div>
+<p><strong>Resultado:</strong> Archivo con todas las dependencias exactas.</p>
+</section>
+<section id="environment-minimal.yml-simplificado" class="level2">
+<h2 class="anchored" data-anchor-id="environment-minimal.yml-simplificado">2. environment-minimal.yml (Simplificado)</h2>
+<p><strong>Crear manualmente:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb20-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">name</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> econblog</span></span>
+<span id="cb20-2"></span>
+<span id="cb20-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">channels</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span></span>
+<span id="cb20-4"></span>
+<span id="cb20-5"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> conda-forge</span></span>
+<span id="cb20-6"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> defaults</span></span>
+<span id="cb20-7"></span>
+<span id="cb20-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dependencies</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span></span>
+<span id="cb20-9"></span>
+<span id="cb20-10"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> python=3.12</span></span>
+<span id="cb20-11"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> jupyterlab</span></span>
+<span id="cb20-12"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pandas</span></span>
+<span id="cb20-13"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> statsmodels</span></span>
+<span id="cb20-14"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pip</span></span>
+<span id="cb20-15"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pip</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span></span>
+<span id="cb20-16"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> wooldridge</span></span></code></pre></div></div>
+<p><strong>Ventaja:</strong> Más portable, conda resuelve versiones compatibles.</p>
+</section>
+<section id="requirements.txt-solo-pip" class="level2">
+<h2 class="anchored" data-anchor-id="requirements.txt-solo-pip">3. requirements.txt (Solo pip)</h2>
+<p><strong>Exportar paquetes pip:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Activar entorno</span></span>
+<span id="cb21-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate econblog</span>
+<span id="cb21-3"></span>
+<span id="cb21-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Exportar solo pip</span></span>
+<span id="cb21-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pip</span> freeze <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> requirements.txt</span></code></pre></div></div>
+<p><strong>Instalar desde requirements.txt:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pip</span> install <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-r</span> requirements.txt</span></code></pre></div></div>
+</section>
+<section id="combinar-conda-pip" class="level2">
+<h2 class="anchored" data-anchor-id="combinar-conda-pip">4. Combinar Conda + Pip</h2>
+<p><strong>Mejor práctica:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb23-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">name</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> econblog</span></span>
+<span id="cb23-2"></span>
+<span id="cb23-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">channels</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span></span>
+<span id="cb23-4"></span>
+<span id="cb23-5"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> conda-forge</span></span>
+<span id="cb23-6"></span>
+<span id="cb23-7"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dependencies</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span></span>
+<span id="cb23-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # Paquetes de conda</span></span>
+<span id="cb23-9"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> python=3.12</span></span>
+<span id="cb23-10"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pandas</span></span>
+<span id="cb23-11"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> matplotlib</span></span>
+<span id="cb23-12"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span></span>
+<span id="cb23-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">  # Paquetes de pip</span></span>
+<span id="cb23-14"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pip</span></span>
+<span id="cb23-15"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pip</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span></span>
+<span id="cb23-16"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> -r file:requirements.txt</span></span></code></pre></div></div>
+<p><strong>Luego crear <code>requirements.txt</code> separado:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode numberSource txt number-lines code-with-copy"><code class="sourceCode default"><span id="cb24-1">wooldridge==0.4.4</span>
+<span id="cb24-2">econml==0.14.1</span>
+<span id="cb24-3">causalml==0.15.0</span></code></pre></div></div>
+</section>
+</section>
+<section id="reproducibilidad-y-colaboración" class="level1">
+<h1>Reproducibilidad y Colaboración</h1>
+<section id="escenario-1-replicar-entorno-en-otra-máquina" class="level2">
+<h2 class="anchored" data-anchor-id="escenario-1-replicar-entorno-en-otra-máquina">Escenario 1: Replicar Entorno en Otra Máquina</h2>
+<p><strong>En máquina original:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1. Activar entorno</span></span>
+<span id="cb25-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate econblog</span>
+<span id="cb25-3"></span>
+<span id="cb25-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2. Exportar</span></span>
+<span id="cb25-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env export <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--no-builds</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> environment.yml</span>
+<span id="cb25-6"></span>
+<span id="cb25-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 3. Subir a Git</span></span>
+<span id="cb25-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">git</span> add environment.yml</span>
+<span id="cb25-9"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">git</span> commit <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-m</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Add environment configuration"</span></span>
+<span id="cb25-10"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">git</span> push</span></code></pre></div></div>
+<p><strong>En máquina nueva:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1. Clonar repositorio</span></span>
+<span id="cb26-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">git</span> clone https://github.com/achalmed/epsilon-y-beta.git</span>
+<span id="cb26-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">cd</span> epsilon-y-beta</span>
+<span id="cb26-4"></span>
+<span id="cb26-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2. Crear entorno desde archivo</span></span>
+<span id="cb26-6"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env create <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-f</span> environment.yml</span>
+<span id="cb26-7"></span>
+<span id="cb26-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 3. Activar</span></span>
+<span id="cb26-9"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate econblog</span>
+<span id="cb26-10"></span>
+<span id="cb26-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 4. Verificar</span></span>
+<span id="cb26-12"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> list</span></code></pre></div></div>
+</section>
+<section id="escenario-2-compartir-con-colaboradores" class="level2">
+<h2 class="anchored" data-anchor-id="escenario-2-compartir-con-colaboradores">Escenario 2: Compartir con Colaboradores</h2>
+<p><strong>Crear archivo <code>README.md</code> con instrucciones:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27" style="background: #f1f3f5;"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"># Configuración del Entorno</span></span>
+<span id="cb27-2"></span>
+<span id="cb27-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"># Prerrequisitos</span></span>
+<span id="cb27-4"></span>
+<span id="cb27-5"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">- </span>Miniconda o Anaconda instalado</span>
+<span id="cb27-6"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">- </span>Git</span>
+<span id="cb27-7"></span>
+<span id="cb27-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"># Instalación</span></span>
+<span id="cb27-9"></span>
+<span id="cb27-10"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">1. </span>Clonar repositorio:</span>
+<span id="cb27-11"></span>
+<span id="cb27-12">   <span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```bash</span></span>
+<span id="cb27-13">   <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">git</span> clone https://github.com/achalmed/epsilon-y-beta.git</span>
+<span id="cb27-14">   <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">cd</span> epsilon-y-beta</span></code></pre></div></div>
+<ol start="2" type="1">
+<li><p>Crear entorno:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env create <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-f</span> environment.yml</span></code></pre></div></div></li>
+<li><p>Activar entorno:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate econblog</span></code></pre></div></div></li>
+<li><p>Verificar instalación:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">python</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-c</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"import pandas, statsmodels; print('Entorno listo')"</span></span></code></pre></div></div></li>
+</ol>
+</section>
+</section>
+<section id="uso" class="level1">
+<h1>Uso</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Activar entorno</span></span>
+<span id="cb31-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate econblog</span>
+<span id="cb31-3"></span>
+<span id="cb31-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Iniciar Jupyter Lab</span></span>
+<span id="cb31-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">jupyter</span> lab</span>
+<span id="cb31-6"></span>
+<span id="cb31-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># O previsualizar Quarto</span></span>
+<span id="cb31-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">quarto</span> preview</span></code></pre></div></div>
+<pre><code>
+## Escenario 3: Actualizar Entorno Existente
+
+**Cuando agregas paquetes nuevos:**
+
+```bash
+# 1. Instalar paquete nuevo
+mamba install nuevo-paquete -y
+
+# 2. Actualizar archivo
+conda env export --no-builds &gt; environment.yml
+
+# 3. Commit y push
+git add environment.yml
+git commit -m "Add nuevo-paquete dependency"
+git push</code></pre>
+<p><strong>En otras máquinas:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Actualizar entorno desde archivo</span></span>
+<span id="cb33-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env update <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-f</span> environment.yml <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--prune</span></span></code></pre></div></div>
+</section>
+<section id="integración-con-jupyter-lab" class="level1">
+<h1>Integración con Jupyter Lab</h1>
+<section id="instalar-jupyter-en-cada-entorno" class="level2">
+<h2 class="anchored" data-anchor-id="instalar-jupyter-en-cada-entorno">1. Instalar Jupyter en Cada Entorno</h2>
+<p><strong>Importante:</strong> Jupyter debe estar instalado en cada entorno que uses.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># En entorno econblog</span></span>
+<span id="cb34-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate econblog</span>
+<span id="cb34-3"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> install jupyterlab <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb34-4"></span>
+<span id="cb34-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># En entorno scripts-env</span></span>
+<span id="cb34-6"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate scripts-env</span>
+<span id="cb34-7"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> install jupyterlab <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span></code></pre></div></div>
+</section>
+<section id="configurar-kernels" class="level2">
+<h2 class="anchored" data-anchor-id="configurar-kernels">2. Configurar Kernels</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Activar entorno</span></span>
+<span id="cb35-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate econblog</span>
+<span id="cb35-3"></span>
+<span id="cb35-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Instalar kernel</span></span>
+<span id="cb35-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">python</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-m</span> ipykernel install <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--user</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--name</span> econblog <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--display-name</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Python (econblog)"</span></span>
+<span id="cb35-6"></span>
+<span id="cb35-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Verificar kernels disponibles</span></span>
+<span id="cb35-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">jupyter</span> kernelspec list</span></code></pre></div></div>
+<p><strong>Resultado:</strong> Podrás seleccionar “Python (econblog)” en Jupyter Lab.</p>
+</section>
+<section id="iniciar-jupyter-lab" class="level2">
+<h2 class="anchored" data-anchor-id="iniciar-jupyter-lab">3. Iniciar Jupyter Lab</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Desde entorno específico</span></span>
+<span id="cb36-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate econblog</span>
+<span id="cb36-3"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">jupyter</span> lab <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--notebook-dir</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>~/Proyectos/epsilon-y-beta</span>
+<span id="cb36-4"></span>
+<span id="cb36-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># O usar alias (configurado anteriormente)</span></span>
+<span id="cb36-6"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">jlab-blog</span></span></code></pre></div></div>
+</section>
+<section id="extensiones-útiles-para-jupyter-lab" class="level2">
+<h2 class="anchored" data-anchor-id="extensiones-útiles-para-jupyter-lab">4. Extensiones Útiles para Jupyter Lab</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Activar entorno</span></span>
+<span id="cb37-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate econblog</span>
+<span id="cb37-3"></span>
+<span id="cb37-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Extensiones recomendadas</span></span>
+<span id="cb37-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> install <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-c</span> conda-forge <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb37-6">  jupyterlab-git <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb37-7">  jupyterlab-lsp <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb37-8">  jupyterlab-spellchecker <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb37-9">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb37-10"></span>
+<span id="cb37-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Extensión para Quarto</span></span>
+<span id="cb37-12"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pip</span> install jupyterlab-quarto</span></code></pre></div></div>
+</section>
+<section id="configuración-de-jupyter" class="level2">
+<h2 class="anchored" data-anchor-id="configuración-de-jupyter">5. Configuración de Jupyter</h2>
+<p><strong>Crear archivo <code>~/.jupyter/jupyter_lab_config.py</code>:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Configuración personalizada de Jupyter Lab</span></span>
+<span id="cb38-2">c.ServerApp.open_browser <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span></span>
+<span id="cb38-3">c.ServerApp.notebook_dir <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'/home/achalmaedison/Proyectos'</span></span>
+<span id="cb38-4">c.ServerApp.terminado_settings <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'shell_command'</span>: [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'/usr/bin/fish'</span>]}</span></code></pre></div></div>
+</section>
+</section>
+<section id="integración-con-vs-code" class="level1">
+<h1>Integración con VS Code</h1>
+<section id="instalar-extensión-de-python" class="level2">
+<h2 class="anchored" data-anchor-id="instalar-extensión-de-python">1. Instalar Extensión de Python</h2>
+<p><strong>En VS Code:</strong> 1. Ir a Extensions (Ctrl+Shift+X) 2. Buscar “Python” 3. Instalar “Python” de Microsoft</p>
+</section>
+<section id="seleccionar-intérprete-de-conda" class="level2">
+<h2 class="anchored" data-anchor-id="seleccionar-intérprete-de-conda">2. Seleccionar Intérprete de Conda</h2>
+<p><strong>Método 1: Command Palette</strong></p>
+<ol type="1">
+<li>Abrir Command Palette (Ctrl+Shift+P)</li>
+<li>Escribir: “Python: Select Interpreter”</li>
+<li>Seleccionar: <code>Python 3.12.x ('econblog')</code></li>
+</ol>
+<p><strong>Método 2: Barra de Estado</strong></p>
+<ol type="1">
+<li>Click en la barra inferior (muestra Python actual)</li>
+<li>Seleccionar entorno deseado</li>
+</ol>
+</section>
+<section id="configurar-workspace" class="level2">
+<h2 class="anchored" data-anchor-id="configurar-workspace">3. Configurar Workspace</h2>
+<p><strong>Crear <code>.vscode/settings.json</code> en proyecto:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39" style="background: #f1f3f5;"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb39-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb39-2">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"python.defaultInterpreterPath"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"/home/achalmaedison/miniconda3/envs/econblog/bin/python"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb39-3">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"python.terminal.activateEnvironment"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">true</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb39-4">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"python.formatting.provider"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"black"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb39-5">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"python.linting.enabled"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">true</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb39-6">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"python.linting.ruffEnabled"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">true</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb39-7">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"[python]"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb39-8">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"editor.formatOnSave"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">true</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb39-9">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"editor.codeActionsOnSave"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb39-10">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"source.organizeImports"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">true</span></span>
+<span id="cb39-11">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb39-12">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb39-13"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div></div>
+</section>
+<section id="terminal-integrado" class="level2">
+<h2 class="anchored" data-anchor-id="terminal-integrado">4. Terminal Integrado</h2>
+<p><strong>VS Code activará automáticamente el entorno</strong> cuando abras una terminal.</p>
+<p><strong>Verificar:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># En terminal de VS Code</span></span>
+<span id="cb40-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">echo</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$CONDA_DEFAULT_ENV</span></span>
+<span id="cb40-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Debe mostrar: econblog</span></span></code></pre></div></div>
+</section>
+</section>
+<section id="resolución-de-problemas" class="level1">
+<h1>Resolución de Problemas</h1>
+<section id="problema-1-kernel-died-en-jupyter" class="level2">
+<h2 class="anchored" data-anchor-id="problema-1-kernel-died-en-jupyter">Problema 1: “Kernel died” en Jupyter</h2>
+<p><strong>Causa:</strong> Paquetes incompatibles o falta de memoria.</p>
+<p><strong>Solución:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Reinstalar kernel</span></span>
+<span id="cb41-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate econblog</span>
+<span id="cb41-3"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">python</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-m</span> ipykernel install <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--user</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--name</span> econblog <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--display-name</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Python (econblog)"</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--force</span></span>
+<span id="cb41-4"></span>
+<span id="cb41-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Verificar</span></span>
+<span id="cb41-6"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">jupyter</span> kernelspec list</span>
+<span id="cb41-7"></span>
+<span id="cb41-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Si persiste, recrear entorno</span></span>
+<span id="cb41-9"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env export <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--no-builds</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> backup-environment.yml</span>
+<span id="cb41-10"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> deactivate</span>
+<span id="cb41-11"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env remove <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-n</span> econblog <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb41-12"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env create <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-f</span> backup-environment.yml</span></code></pre></div></div>
+</section>
+<section id="problema-2-modulenotfounderror-en-jupyter" class="level2">
+<h2 class="anchored" data-anchor-id="problema-2-modulenotfounderror-en-jupyter">Problema 2: “ModuleNotFoundError” en Jupyter</h2>
+<p><strong>Causa:</strong> Jupyter usa kernel de otro entorno.</p>
+<p><strong>Solución:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Verificar qué kernel está activo</span></span>
+<span id="cb42-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># En Jupyter, ir a Kernel &gt; Change kernel &gt; Python (econblog)</span></span>
+<span id="cb42-3"></span>
+<span id="cb42-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># O reinstalar ipykernel</span></span>
+<span id="cb42-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate econblog</span>
+<span id="cb42-6"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> install ipykernel <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb42-7"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">python</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-m</span> ipykernel install <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--user</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--name</span> econblog <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--display-name</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Python (econblog)"</span></span></code></pre></div></div>
+</section>
+<section id="problema-3-conflictos-de-versiones" class="level2">
+<h2 class="anchored" data-anchor-id="problema-3-conflictos-de-versiones">Problema 3: Conflictos de Versiones</h2>
+<p><strong>Causa:</strong> Paquetes incompatibles entre sí.</p>
+<p><strong>Solución:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Opción 1: Usar mamba (mejor resolver)</span></span>
+<span id="cb43-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate econblog</span>
+<span id="cb43-3"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> install paquete-conflictivo <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb43-4"></span>
+<span id="cb43-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Opción 2: Especificar versiones compatibles</span></span>
+<span id="cb43-6"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> install paquete1=1.0 paquete2=2.0 <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb43-7"></span>
+<span id="cb43-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Opción 3: Recrear entorno limpio</span></span>
+<span id="cb43-9"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env remove <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-n</span> econblog <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb43-10"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> create <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-n</span> econblog <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-f</span> environment.yml</span></code></pre></div></div>
+</section>
+<section id="problema-4-entorno-muy-grande" class="level2">
+<h2 class="anchored" data-anchor-id="problema-4-entorno-muy-grande">Problema 4: Entorno Muy Grande</h2>
+<p><strong>Causa:</strong> Demasiados paquetes instalados.</p>
+<p><strong>Solución:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Ver tamaño de entorno</span></span>
+<span id="cb44-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">du</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-sh</span> ~/miniconda3/envs/econblog</span>
+<span id="cb44-3"></span>
+<span id="cb44-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Limpiar paquetes no usados</span></span>
+<span id="cb44-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> clean <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--all</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb44-6"></span>
+<span id="cb44-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Recrear entorno minimalista</span></span>
+<span id="cb44-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env export <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--no-builds</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> backup.yml</span>
+<span id="cb44-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Editar backup.yml y eliminar paquetes innecesarios</span></span>
+<span id="cb44-10"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env remove <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-n</span> econblog <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb44-11"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env create <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-f</span> backup.yml</span></code></pre></div></div>
+</section>
+<section id="problema-5-pip-vs-conda-conflicts" class="level2">
+<h2 class="anchored" data-anchor-id="problema-5-pip-vs-conda-conflicts">Problema 5: Pip vs Conda Conflicts</h2>
+<p><strong>Causa:</strong> Mezclar pip y conda incorrectamente.</p>
+<p><strong>Mejores Prácticas:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1. Siempre instalar con conda/mamba primero</span></span>
+<span id="cb45-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> install pandas matplotlib <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb45-3"></span>
+<span id="cb45-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2. Usar pip solo para paquetes no disponibles en conda</span></span>
+<span id="cb45-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pip</span> install wooldridge</span>
+<span id="cb45-6"></span>
+<span id="cb45-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 3. NUNCA mezclar en el mismo comando</span></span>
+<span id="cb45-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># INCORRECTO:</span></span>
+<span id="cb45-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># conda install pandas &amp;&amp; pip install wooldridge  #</span></span>
+<span id="cb45-10"></span>
+<span id="cb45-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># CORRECTO:</span></span>
+<span id="cb45-12"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> install pandas <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span>  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Primero conda</span></span>
+<span id="cb45-13"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pip</span> install wooldridge   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Luego pip</span></span></code></pre></div></div>
+</section>
+</section>
+<section id="workflows-completos" class="level1">
+<h1>Workflows Completos</h1>
+<section id="workflow-1-nuevo-post-de-blog" class="level2">
+<h2 class="anchored" data-anchor-id="workflow-1-nuevo-post-de-blog">Workflow 1: Nuevo Post de Blog</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1. Activar entorno</span></span>
+<span id="cb46-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate econblog</span>
+<span id="cb46-3"></span>
+<span id="cb46-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2. Ir al blog</span></span>
+<span id="cb46-5"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">cd</span> ~/Proyectos/epsilon-y-beta</span>
+<span id="cb46-6"></span>
+<span id="cb46-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 3. Crear carpeta de post</span></span>
+<span id="cb46-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mkdir</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-p</span> posts/2026-01-analisis-inflacion</span>
+<span id="cb46-9"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">cd</span> posts/2026-01-analisis-inflacion</span>
+<span id="cb46-10"></span>
+<span id="cb46-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 4. Crear archivo Quarto</span></span>
+<span id="cb46-12"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">nano</span> index.qmd</span></code></pre></div></div>
+<p><strong>Contenido de <code>index.qmd</code>:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47" style="background: #f1f3f5;"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb47-1"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">---</span></span>
+<span id="cb47-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">title</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Análisis de Inflación en Perú 2010-2025"</span></span>
+<span id="cb47-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">author</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Edison Achalma"</span></span>
+<span id="cb47-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">date</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2026-01-03"</span></span>
+<span id="cb47-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">categories</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">[</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">macroeconomía</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">,</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> inflación</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">,</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> análisis-temporal</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">]</span></span>
+<span id="cb47-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">jupyter</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> python3</span></span>
+<span id="cb47-7"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">---</span></span>
+<span id="cb47-8"></span>
+<span id="cb47-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Introducción</span></span>
+<span id="cb47-10"></span>
+<span id="cb47-11"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Análisis de la inflación en Perú usando datos del BCRP.</span></span>
+<span id="cb47-12"></span>
+<span id="cb47-13"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">``{python}</span></span>
+<span id="cb47-14"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">import pandas as pd</span></span>
+<span id="cb47-15"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">import matplotlib.pyplot as plt</span></span>
+<span id="cb47-16"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">import wooldridge as wd</span></span>
+<span id="cb47-17"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">``</span></span></code></pre></div></div>
+<p>Continuar</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 5. Previsualizar</span></span>
+<span id="cb48-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">quarto</span> preview</span>
+<span id="cb48-3"></span>
+<span id="cb48-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 6. O usar Jupyter para análisis exploratorio</span></span>
+<span id="cb48-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">jupyter</span> lab</span>
+<span id="cb48-6"></span>
+<span id="cb48-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 7. Renderizar final</span></span>
+<span id="cb48-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">quarto</span> render</span>
+<span id="cb48-9"></span>
+<span id="cb48-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 8. Commit y push</span></span>
+<span id="cb48-11"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">git</span> add .</span>
+<span id="cb48-12"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">git</span> commit <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-m</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Add: Análisis de inflación 2010-2025"</span></span>
+<span id="cb48-13"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">git</span> push</span></code></pre></div></div>
+</section>
+<section id="workflow-2-ejecutar-script-de-automatización" class="level2">
+<h2 class="anchored" data-anchor-id="workflow-2-ejecutar-script-de-automatización">Workflow 2: Ejecutar Script de Automatización</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1. Activar entorno de scripts</span></span>
+<span id="cb49-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate scripts-env</span>
+<span id="cb49-3"></span>
+<span id="cb49-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2. Ir al directorio de scripts</span></span>
+<span id="cb49-5"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">cd</span> ~/Proyectos/scripts/scripts_for_quarto</span>
+<span id="cb49-6"></span>
+<span id="cb49-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 3. Ejecutar script</span></span>
+<span id="cb49-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">python</span> 1_sincronizar_fecha_carpeta_en_index_qmd.py</span>
+<span id="cb49-9"></span>
+<span id="cb49-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 4. Verificar resultados</span></span>
+<span id="cb49-11"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cat</span> ../epsilon-y-beta/posts/2026-01-analisis-inflacion/index.qmd</span>
+<span id="cb49-12"></span>
+<span id="cb49-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 5. Desactivar entorno</span></span>
+<span id="cb49-14"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> deactivate</span></code></pre></div></div>
+</section>
+<section id="workflow-3-análisis-econométrico-completo" class="level2">
+<h2 class="anchored" data-anchor-id="workflow-3-análisis-econométrico-completo">Workflow 3: Análisis Econométrico Completo</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb50-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1. Activar entorno</span></span>
+<span id="cb50-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate econblog</span>
+<span id="cb50-3"></span>
+<span id="cb50-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2. Iniciar Jupyter Lab</span></span>
+<span id="cb50-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">jupyter</span> lab <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--notebook-dir</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>~/Proyectos/epsilon-y-beta/posts</span>
+<span id="cb50-6"></span>
+<span id="cb50-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 3. En Jupyter, crear nuevo notebook</span></span>
+<span id="cb50-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># - Kernel: Python (econblog)</span></span>
+<span id="cb50-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># - Nombre: analisis-econometrico.ipynb</span></span>
+<span id="cb50-10"></span>
+<span id="cb50-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 4. Desarrollar análisis completo</span></span>
+<span id="cb50-12"></span>
+<span id="cb50-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 5. Convertir notebook a Quarto</span></span>
+<span id="cb50-14"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">quarto</span> convert analisis-econometrico.ipynb</span>
+<span id="cb50-15"></span>
+<span id="cb50-16"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 6. Renderizar</span></span>
+<span id="cb50-17"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">quarto</span> render analisis-econometrico.qmd</span>
+<span id="cb50-18"></span>
+<span id="cb50-19"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 7. Revisar resultado</span></span>
+<span id="cb50-20"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">firefox</span> analisis-econometrico.html</span></code></pre></div></div>
+</section>
+<section id="workflow-4-actualizar-entorno-después-de-cambios" class="level2">
+<h2 class="anchored" data-anchor-id="workflow-4-actualizar-entorno-después-de-cambios">Workflow 4: Actualizar Entorno Después de Cambios</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb51-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1. Alguien actualizó environment.yml en GitHub</span></span>
+<span id="cb51-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">cd</span> ~/Proyectos/epsilon-y-beta</span>
+<span id="cb51-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">git</span> pull</span>
+<span id="cb51-4"></span>
+<span id="cb51-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2. Actualizar tu entorno local</span></span>
+<span id="cb51-6"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env update <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-f</span> environment.yml <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--prune</span></span>
+<span id="cb51-7"></span>
+<span id="cb51-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 3. Verificar que todo funcione</span></span>
+<span id="cb51-9"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate econblog</span>
+<span id="cb51-10"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">python</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-c</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"import pandas, statsmodels; print('Actualización exitosa')"</span></span></code></pre></div></div>
+</section>
+<section id="workflow-5-crear-entorno-temporal-para-experimento" class="level2">
+<h2 class="anchored" data-anchor-id="workflow-5-crear-entorno-temporal-para-experimento">Workflow 5: Crear Entorno Temporal para Experimento</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb52-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1. Crear entorno temporal rápido</span></span>
+<span id="cb52-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> create <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-n</span> temp-experiment python=3.12 pandas numpy matplotlib <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb52-3"></span>
+<span id="cb52-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2. Activar</span></span>
+<span id="cb52-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate temp-experiment</span>
+<span id="cb52-6"></span>
+<span id="cb52-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 3. Experimentar</span></span>
+<span id="cb52-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">python</span> mi_experimento.py</span>
+<span id="cb52-9"></span>
+<span id="cb52-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 4. Si funciona, agregar paquetes a entorno principal</span></span>
+<span id="cb52-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Si no, eliminar entorno sin afectar nada</span></span>
+<span id="cb52-12"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> deactivate</span>
+<span id="cb52-13"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env remove <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-n</span> temp-experiment <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span></code></pre></div></div>
+</section>
+</section>
+<section id="checklist-de-mejores-prácticas" class="level1">
+<h1>Checklist de Mejores Prácticas</h1>
+<section id="antes-de-crear-un-entorno" class="level2">
+<h2 class="anchored" data-anchor-id="antes-de-crear-un-entorno">Antes de Crear un Entorno</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">Definir propósito claro del entorno</label></li>
+<li><label><input type="checkbox">Listar paquetes necesarios</label></li>
+<li><label><input type="checkbox">Verificar disponibilidad en conda-forge</label></li>
+<li><label><input type="checkbox">Planificar estructura de archivos <code>environment.yml</code></label></li>
+</ul>
+</section>
+<section id="al-crear-un-entorno" class="level2">
+<h2 class="anchored" data-anchor-id="al-crear-un-entorno">Al Crear un Entorno</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">Usar <code>mamba</code> en lugar de <code>conda</code> (más rápido)</label></li>
+<li><label><input type="checkbox">Especificar versión de Python</label></li>
+<li><label><input type="checkbox">Instalar paquetes de conda primero</label></li>
+<li><label><input type="checkbox">Luego instalar paquetes de pip</label></li>
+<li><label><input type="checkbox">Verificar que todo funcione</label></li>
+<li><label><input type="checkbox">Exportar a <code>environment.yml</code></label></li>
+</ul>
+</section>
+<section id="uso-diario" class="level2">
+<h2 class="anchored" data-anchor-id="uso-diario">Uso Diario</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">Activar entorno apropiado para cada tarea</label></li>
+<li><label><input type="checkbox">NO instalar paquetes en <code>base</code></label></li>
+<li><label><input type="checkbox">Documentar cambios en <code>environment.yml</code></label></li>
+<li><label><input type="checkbox">Versionar archivos de configuración en Git</label></li>
+<li><label><input type="checkbox">Limpiar caché periódicamente</label></li>
+</ul>
+</section>
+<section id="colaboración" class="level2">
+<h2 class="anchored" data-anchor-id="colaboración">Colaboración</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">Mantener <code>environment.yml</code> actualizado</label></li>
+<li><label><input type="checkbox">Agregar instrucciones en <code>README.md</code></label></li>
+<li><label><input type="checkbox">Usar versiones específicas para reproducibilidad</label></li>
+<li><label><input type="checkbox">Probar entorno en máquina limpia antes de compartir</label></li>
+</ul>
+</section>
+</section>
+<section id="mis-comandos-de-referencia-rápida" class="level1">
+<h1>Mis Comandos de Referencia Rápida</h1>
+<section id="gestión-básica" class="level2">
+<h2 class="anchored" data-anchor-id="gestión-básica">Gestión Básica</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb53-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Crear entorno</span></span>
+<span id="cb53-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> create <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-n</span> nombre python=3.12 paquetes <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb53-3"></span>
+<span id="cb53-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Listar entornos</span></span>
+<span id="cb53-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env list</span>
+<span id="cb53-6"></span>
+<span id="cb53-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Activar</span></span>
+<span id="cb53-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate nombre</span>
+<span id="cb53-9"></span>
+<span id="cb53-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Desactivar</span></span>
+<span id="cb53-11"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> deactivate</span>
+<span id="cb53-12"></span>
+<span id="cb53-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Eliminar</span></span>
+<span id="cb53-14"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env remove <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-n</span> nombre <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span></code></pre></div></div>
+</section>
+<section id="paquetes" class="level2">
+<h2 class="anchored" data-anchor-id="paquetes">Paquetes</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb54-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Instalar</span></span>
+<span id="cb54-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> install paquete <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb54-3"></span>
+<span id="cb54-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Actualizar</span></span>
+<span id="cb54-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">mamba</span> update paquete <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb54-6"></span>
+<span id="cb54-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Desinstalar</span></span>
+<span id="cb54-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> remove paquete <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="cb54-9"></span>
+<span id="cb54-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Listar</span></span>
+<span id="cb54-11"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> list</span></code></pre></div></div>
+</section>
+<section id="exportarimportar" class="level2">
+<h2 class="anchored" data-anchor-id="exportarimportar">Exportar/Importar</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb55-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Exportar completo</span></span>
+<span id="cb55-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env export <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--no-builds</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> environment.yml</span>
+<span id="cb55-3"></span>
+<span id="cb55-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Exportar minimal</span></span>
+<span id="cb55-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env export <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--from-history</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> environment-minimal.yml</span>
+<span id="cb55-6"></span>
+<span id="cb55-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Crear desde archivo</span></span>
+<span id="cb55-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env create <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-f</span> environment.yml</span>
+<span id="cb55-9"></span>
+<span id="cb55-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Actualizar desde archivo</span></span>
+<span id="cb55-11"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> env update <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-f</span> environment.yml <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--prune</span></span></code></pre></div></div>
 </section>
 </section>
 <section id="coclusión" class="level1">
 <h1>Coclusión</h1>
-<p>En conclusión, el uso de Anaconda se presenta como una solución elegante y sencilla para abordar las desventajas de entorno de Python. A través de Anaconda, se puede gestionar de manera eficiente la instalación y actualización de paquetes, así como la creación y exportación de entornos virtuales. Sin embargo, es importante destacar que la implementación de estas funcionalidades no es mágica, requiere comprensión y familiaridad con los comandos y procesos asociados.</p>
-<p>Además de la gestión de paquetes, Anaconda ofrece una amplia gama de herramientas y paquetes para el análisis de datos, lo cual constituye otro aspecto valioso de su funcionalidad. Sin embargo, en este contexto, nos hemos enfocado en aprender cómo utilizar Anaconda para cambiar el entorno de desarrollo de manera efectiva, lo cual ha representado una mejora significativa en comparación con el enfoque tradicional.</p>
-<p><strong>¡Happy coding!</strong></p>
+<p>En conclusión, el uso de Anaconda o Miniconda se presenta como una solución elegante y sencilla para abordar las desventajas de entorno de Python. A través de miniconda, se puede gestionar de manera eficiente la instalación y actualización de paquetes, así como la creación y exportación de entornos virtuales. Sin embargo, la implementación de estas funcionalidades no es mágica, requiere comprensión y familiaridad con los comandos y procesos asociados.</p>
+<p>Además de la gestión de paquetes, Anaconda ofrece una amplia gama de herramientas y paquetes para el análisis de datos, lo cual constituye otro aspecto valioso de su funcionalidad.</p>
+</section>
+<section id="recursos-adicionales" class="level1">
+<h1>Recursos Adicionales</h1>
+<p><strong>Documentación:</strong></p>
+<ul>
+<li>Conda: https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html</li>
+<li>Mamba: https://mamba.readthedocs.io/en/latest/user_guide/mamba.html</li>
+<li>Jupyter: https://jupyter.org/documentation</li>
+</ul>
 </section>
 <section id="publicaciones-similares" class="level1">
 <h1>Publicaciones Similares</h1>

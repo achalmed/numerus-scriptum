@@ -179,7 +179,7 @@
     "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html",
     "title": "Entornos virtuales con Conda",
     "section": "",
-    "text": "¡Bienvenidos al blog! En esta ocasión, exploraremos un tema fundamental para cualquier desarrollador o entusiasta de Python: la configuración de un entorno virtual utilizando Anaconda. Si alguna vez te has preguntado cómo mantener tus proyectos de Python aislados, organizados y libres de conflictos de dependencias, estás en el lugar correcto.\n¿Alguna vez has encontrado problemas al trabajar en múltiples proyectos de Python, donde las diferentes versiones de las bibliotecas y paquetes interfieren entre sí? ¡No te preocupes! Configurar un entorno virtual es la solución perfecta para mantener todo bajo control.\nImagina tener la capacidad de crear espacios de trabajo aislados y personalizados para cada proyecto, sin preocuparte por conflictos entre las versiones de las bibliotecas o paquetes. Con Anaconda, una poderosa plataforma de gestión de paquetes y ambientes virtuales, puedes lograr precisamente eso.\nEn este blog, te guiaremos paso a paso en la configuración de tu primer entorno virtual utilizando Anaconda. Aprenderás cómo crear ambientes virtuales, instalar paquetes y bibliotecas específicos, y alternar fácilmente entre ellos para cada proyecto.\nYa sea que seas un desarrollador principiante o experimentado, este blog te brindará los conocimientos necesarios para dominar el arte de la configuración de entornos virtuales con Anaconda. ¡Prepárate para simplificar tu vida como desarrollador de Python y llevar tus proyectos al siguiente nivel!\n¡Comencemos esta emocionante aventura de configuración de entornos virtuales con Anaconda!"
+    "text": "Problema: Sin entornos, todos los paquetes comparten el mismo espacio.\nConsecuencias:\n\nConflictos de versiones (pandas 1.5 vs 2.0)\nDependencias rotas al actualizar\nImposible reproducir análisis antiguos\nProyectos diferentes interfieren entre sí\n\nSolución: Un entorno aislado por proyecto o tipo de trabajo.\n\n\n\n\nNUNCA instalar paquetes en base\n# INCORRECTO\nconda activate base\nmamba install pandas  # NO HACER ESTO\n\n# CORRECTO\nconda activate mi-proyecto\nmamba install pandas  # Instalar en entorno específico\nUn entorno por propósito\n\nBlog → entorno econblog\nScripts → entorno scripts-env\nAnálisis temporal → entorno desechable\n\nDocumentar dependencias\n\nSiempre crear environment.yml\nMantener actualizado el archivo\nVersionar en Git\n\nEntornos reproducibles\n\nEspecificar versiones exactas cuando sea crítico\nUsar canales consistentes (conda-forge)\nExportar entornos regularmente"
   },
   {
     "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#cuáles-son-los-beneficios-de-trabajar-con-entornos-virtuales-en-proyectos-de-python-en-linux",
@@ -551,5 +551,404 @@
     "title": "Instalación y Configuración de Miniconda",
     "section": "Método 1: Instalación Rápida",
     "text": "Método 1: Instalación Rápida\n# 1. Crear directorio temporal\nmkdir -p ~/miniconda3\n\n# 2. Descargar instalador (x86_64 para Arch Linux estándar)\ncurl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \\\n  -o ~/miniconda3/miniconda.sh\n\n# 3. Verificar integridad (RECOMENDADO)\nsha256sum ~/miniconda3/miniconda.sh\n# Comparar con el hash oficial en https://repo.anaconda.com/miniconda/\n\n# 4. Ejecutar instalador\nbash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3\n\n# 5. Eliminar instalador\nrm ~/miniconda3/miniconda.sh\nOpciones:\n\n-b: Modo batch (sin prompts interactivos)\n-u: Actualizar instalación existente si la hay\n-p ~/miniconda3: Ruta de instalación"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#por-qué-usar-entornos-separados",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#por-qué-usar-entornos-separados",
+    "title": "Entornos virtuales con Conda",
+    "section": "",
+    "text": "Problema: Sin entornos, todos los paquetes comparten el mismo espacio.\nConsecuencias:\n\nConflictos de versiones (pandas 1.5 vs 2.0)\nDependencias rotas al actualizar\nImposible reproducir análisis antiguos\nProyectos diferentes interfieren entre sí\n\nSolución: Un entorno aislado por proyecto o tipo de trabajo."
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#principios-fundamentales",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#principios-fundamentales",
+    "title": "Entornos virtuales con Conda",
+    "section": "",
+    "text": "NUNCA instalar paquetes en base\n# INCORRECTO\nconda activate base\nmamba install pandas  # NO HACER ESTO\n\n# CORRECTO\nconda activate mi-proyecto\nmamba install pandas  # Instalar en entorno específico\nUn entorno por propósito\n\nBlog → entorno econblog\nScripts → entorno scripts-env\nAnálisis temporal → entorno desechable\n\nDocumentar dependencias\n\nSiempre crear environment.yml\nMantener actualizado el archivo\nVersionar en Git\n\nEntornos reproducibles\n\nEspecificar versiones exactas cuando sea crítico\nUsar canales consistentes (conda-forge)\nExportar entornos regularmente"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#mapa-de-entornos-recomendado",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#mapa-de-entornos-recomendado",
+    "title": "Entornos virtuales con Conda",
+    "section": "Mapa de Entornos Recomendado",
+    "text": "Mapa de Entornos Recomendado\n~/miniconda3/\n├── envs/\n│   ├── econblog/          # Blogs académicos (epsilon-y-beta, axiomata, etc.)\n│   ├── scripts-env/       # Scripts de automatización\n│   ├── datascience/       # Análisis avanzado temporal\n│   └── teaching/          # Material educativo (notebooks para estudiantes)"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#matriz-de-decisión",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#matriz-de-decisión",
+    "title": "Entornos virtuales con Conda",
+    "section": "Matriz de Decisión",
+    "text": "Matriz de Decisión\n\n\n\n\n\n\n\n\nProyecto\nEntorno\nRazón\n\n\n\n\nepsilon-y-beta, axiomata, methodica\neconblog\nComparten dependencias: Quarto, pandas, statsmodels\n\n\nScripts Quarto, Calibre, Zotero\nscripts-env\nScripts de automatización compartidos\n\n\nAnálisis econométrico complejo\ndatascience\nPaquetes pesados (tensorflow, pytorch)\n\n\nNotebooks para clases\nteaching\nVersiones estables para estudiantes"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#propósito",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#propósito",
+    "title": "Entornos virtuales con Conda",
+    "section": "Propósito",
+    "text": "Propósito\nBlogs que usa este entorno:\n\nepsilon-y-beta (Econometría)\naxiomata (Matemáticas para economistas)\nmethodica (Metodología de investigación)\naequilibria (Macroeconomía)\noptimums (Microeconomía)\npecunia-fluxus (Finanzas)\nactus-mercator (Gestión empresarial)\nres-publica (Gestión pública)\ndialectica-y-mercado (Filosofía)\nnumerus-scriptum (Programación)"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#paso-1-crear-el-entorno",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#paso-1-crear-el-entorno",
+    "title": "Entornos virtuales con Conda",
+    "section": "Paso 1: Crear el Entorno",
+    "text": "Paso 1: Crear el Entorno\n# Crear entorno con paquetes fundamentales\nmamba create -n econblog python=3.12 \\\n  jupyterlab \\\n  pandas \\\n  numpy \\\n  matplotlib \\\n  seaborn \\\n  plotly \\\n  statsmodels \\\n  linearmodels \\\n  pingouin \\\n  scipy \\\n  scikit-learn \\\n  pyarrow \\\n  openpyxl \\\n  xlrd \\\n  -c conda-forge -y\nTiempo estimado: 5-10 minutos (con mamba)."
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#paso-2-activar-y-agregar-paquetes-adicionales",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#paso-2-activar-y-agregar-paquetes-adicionales",
+    "title": "Entornos virtuales con Conda",
+    "section": "Paso 2: Activar y Agregar Paquetes Adicionales",
+    "text": "Paso 2: Activar y Agregar Paquetes Adicionales\n# Activar entorno\nconda activate econblog\n\n# Paquetes de conda-forge\nmamba install -c conda-forge \\\n  jupyterlab-lsp \\\n  myst-parser \\\n  nbconvert \\\n  ipywidgets \\\n  notebook \\\n  -y\n\n# Paquetes solo disponibles en PyPI\npip install \\\n  wooldridge \\\n  econml \\\n  causalml \\\n  upsetplot \\\n  arch \\\n  pmdarima"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#paso-3-verificar-instalación",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#paso-3-verificar-instalación",
+    "title": "Entornos virtuales con Conda",
+    "section": "Paso 3: Verificar Instalación",
+    "text": "Paso 3: Verificar Instalación\n# Verificar que todo funcione\npython -c \"\nimport pandas as pd\nimport statsmodels.api as sm\nimport linearmodels as lm\nimport wooldridge as wd\nprint('Todos los paquetes cargados correctamente')\nprint(f'Pandas {pd.__version__}')\nprint(f'Statsmodels {sm.__version__}')\n\""
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#paso-4-exportar-configuración",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#paso-4-exportar-configuración",
+    "title": "Entornos virtuales con Conda",
+    "section": "Paso 4: Exportar Configuración",
+    "text": "Paso 4: Exportar Configuración\n# Exportar entorno completo\nconda env export --no-builds &gt; ~/achalmaedison/publicaciones/epsilon-y-beta/environment.yml\n\n# O crear manualmente (más limpio)"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#environment.yml-para-econblog",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#environment.yml-para-econblog",
+    "title": "Entornos virtuales con Conda",
+    "section": "environment.yml para econblog",
+    "text": "environment.yml para econblog\nCrear archivo: ~/achalmaedison/publicaciones/epsilon-y-beta/environment.yml\n# ========================================================================\n# ENTORNO: econblog\n# Propósito: Blogs académicos de economía, econometría y ciencia de datos\n# Autor: Edison Achalma (achalmaedison)\n# Institución: UNSCH\n# Fecha: Enero 2026\n# ========================================================================\n\nname: econblog\n\nchannels:\n\n  - conda-forge\n  - defaults\n\ndependencies:\n  # ----------------------------------------------------------------------\n  # Python\n  # ----------------------------------------------------------------------\n  - python=3.12\n  \n  # ----------------------------------------------------------------------\n  # Jupyter y Notebooks\n  # ----------------------------------------------------------------------\n  - jupyterlab&gt;=4.0\n  - jupyterlab-lsp\n  - ipywidgets\n  - notebook\n  - nbconvert\n  - myst-parser\n  \n  # ----------------------------------------------------------------------\n  # Manipulación de Datos\n  # ----------------------------------------------------------------------\n  - pandas&gt;=2.0\n  - numpy&gt;=1.24\n  - pyarrow\n  - openpyxl\n  - xlrd\n  \n  # ----------------------------------------------------------------------\n  # Visualización\n  # ----------------------------------------------------------------------\n  - matplotlib&gt;=3.7\n  - seaborn&gt;=0.12\n  - plotly&gt;=5.14\n  \n  # ----------------------------------------------------------------------\n  # Estadística y Econometría\n  # ----------------------------------------------------------------------\n  - statsmodels&gt;=0.14\n  - linearmodels\n  - pingouin\n  - scipy&gt;=1.11\n  - scikit-learn&gt;=1.3\n  \n  # ----------------------------------------------------------------------\n  # Utilidades\n  # ----------------------------------------------------------------------\n  - pip\n  \n  # ----------------------------------------------------------------------\n  # Paquetes de PyPI (solo disponibles con pip)\n  # ----------------------------------------------------------------------\n  - pip:\n    - wooldridge         # Datasets de econometría\n    - econml            # Machine learning causal\n    - causalml          # Inferencia causal\n    - upsetplot         # Gráficos de conjuntos\n    - arch              # Modelos ARCH/GARCH\n    - pmdarima          # ARIMA automático"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#paso-5-crear-alias-personalizados",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#paso-5-crear-alias-personalizados",
+    "title": "Entornos virtuales con Conda",
+    "section": "Paso 5: Crear Alias Personalizados",
+    "text": "Paso 5: Crear Alias Personalizados\nAgregar a ~/.config/fish/config.fish:\n# Alias para blog de econometría\nalias econblog=\"conda activate econblog && cd ~/Proyectos/epsilon-y-beta\"\nalias eboff=\"conda deactivate\"\n\n# Jupyter Lab para blog\nalias jlab-blog=\"conda activate econblog && jupyter lab --notebook-dir=~/Proyectos/epsilon-y-beta\"\n\n# Quarto para blog\nalias qblog=\"conda activate econblog && cd ~/Proyectos/epsilon-y-beta && quarto preview\""
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#propósito-1",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#propósito-1",
+    "title": "Entornos virtuales con Conda",
+    "section": "Propósito",
+    "text": "Propósito\nScripts que usa este entorno:\n\nscripts_for_quarto/ (sincronización, metadata, tags)\nscripts_for_calibre/ (gestión de PDFs)\nscripts_for_libreoffice/ (conversión de documentos)\nscripts_for_linux/ (utilidades del sistema)\nscripts_for_zotero/ (gestión bibliográfica)"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#paso-1-crear-el-entorno-1",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#paso-1-crear-el-entorno-1",
+    "title": "Entornos virtuales con Conda",
+    "section": "Paso 1: Crear el Entorno",
+    "text": "Paso 1: Crear el Entorno\n# Crear entorno ligero para scripts\nmamba create -n scripts-env python=3.12 \\\n  pyyaml \\\n  pandas \\\n  openpyxl \\\n  python-docx \\\n  pillow \\\n  requests \\\n  beautifulsoup4 \\\n  lxml \\\n  -c conda-forge -y"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#paso-2-activar-y-agregar-paquetes-adicionales-1",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#paso-2-activar-y-agregar-paquetes-adicionales-1",
+    "title": "Entornos virtuales con Conda",
+    "section": "Paso 2: Activar y Agregar Paquetes Adicionales",
+    "text": "Paso 2: Activar y Agregar Paquetes Adicionales\n# Activar entorno\nconda activate scripts-env\n\n# Paquetes adicionales\nmamba install -c conda-forge \\\n  black \\\n  ruff \\\n  pytest \\\n  -y\n\n# Paquetes de PyPI\npip install \\\n  pypdf2 \\\n  pdfrw \\\n  python-frontmatter \\\n  watchdog"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#paso-3-verificar-instalación-1",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#paso-3-verificar-instalación-1",
+    "title": "Entornos virtuales con Conda",
+    "section": "Paso 3: Verificar Instalación",
+    "text": "Paso 3: Verificar Instalación\n# Prueba rápida\npython -c \"\nimport yaml\nimport pandas as pd\nfrom docx import Document\nprint('Entorno de scripts listo')\n\""
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#environment.yml-para-scripts-env",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#environment.yml-para-scripts-env",
+    "title": "Entornos virtuales con Conda",
+    "section": "environment.yml para scripts-env",
+    "text": "environment.yml para scripts-env\nCrear archivo: ~/Proyectos/scripts/environment.yml\n# ========================================================================\n# ENTORNO: scripts-env\n# Propósito: Scripts de automatización para Quarto, Calibre, LibreOffice, etc.\n# Autor: Edison Achalma\n# Fecha: Enero 2026\n# ========================================================================\n\nname: scripts-env\n\nchannels:\n\n  - conda-forge\n  - defaults\n\ndependencies:\n  # ----------------------------------------------------------------------\n  # Python\n  # ----------------------------------------------------------------------\n  - python=3.12\n  \n  # ----------------------------------------------------------------------\n  # Manipulación de Archivos\n  # ----------------------------------------------------------------------\n  - pyyaml\n  - pandas\n  - openpyxl\n  - python-docx\n  - pillow\n  \n  # ----------------------------------------------------------------------\n  # Web Scraping y Requests\n  # ----------------------------------------------------------------------\n  - requests\n  - beautifulsoup4\n  - lxml\n  \n  # ----------------------------------------------------------------------\n  # Desarrollo y Testing\n  # ----------------------------------------------------------------------\n  - black\n  - ruff\n  - pytest\n  \n  # ----------------------------------------------------------------------\n  # Utilidades\n  # ----------------------------------------------------------------------\n  - pip\n  \n  # ----------------------------------------------------------------------\n  # Paquetes de PyPI\n  # ----------------------------------------------------------------------\n  - pip:\n    - pypdf2\n    - pdfrw\n    - python-frontmatter\n    - watchdog"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#paso-4-crear-alias",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#paso-4-crear-alias",
+    "title": "Entornos virtuales con Conda",
+    "section": "Paso 4: Crear Alias",
+    "text": "Paso 4: Crear Alias\n# Alias para scripts\nalias scripts=\"conda activate scripts-env && cd ~/Proyectos/scripts\"\nalias soff=\"conda deactivate\""
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#propósito-2",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#propósito-2",
+    "title": "Entornos virtuales con Conda",
+    "section": "Propósito",
+    "text": "Propósito\nAnálisis econométrico avanzado, machine learning, y visualizaciones complejas para investigaciones específicas."
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#crear-el-entorno",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#crear-el-entorno",
+    "title": "Entornos virtuales con Conda",
+    "section": "Crear el Entorno",
+    "text": "Crear el Entorno\n# Entorno completo de ciencia de datos\nmamba create -n datascience python=3.12 \\\n  jupyterlab \\\n  pandas \\\n  numpy \\\n  scipy \\\n  scikit-learn \\\n  statsmodels \\\n  xgboost \\\n  lightgbm \\\n  matplotlib \\\n  seaborn \\\n  plotly \\\n  bokeh \\\n  altair \\\n  networkx \\\n  -c conda-forge -y\n\n# Activar y agregar más\nconda activate datascience\n\n# Machine learning\npip install \\\n  tensorflow \\\n  torch \\\n  shap \\\n  optuna\n\n# Econometría avanzada\npip install \\\n  linearmodels \\\n  arch \\\n  pymc \\\n  arviz"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#environment.yml-para-datascience",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#environment.yml-para-datascience",
+    "title": "Entornos virtuales con Conda",
+    "section": "environment.yml para datascience",
+    "text": "environment.yml para datascience\nname: datascience\n\nchannels:\n\n  - conda-forge\n  - defaults\n\ndependencies:\n\n  - python=3.12\n  - jupyterlab\n  - pandas\n  - numpy\n  - scipy\n  - scikit-learn\n  - statsmodels\n  - xgboost\n  - lightgbm\n  - matplotlib\n  - seaborn\n  - plotly\n  - bokeh\n  - altair\n  - networkx\n  - pip\n  - pip:\n    - tensorflow\n    - torch\n    - shap\n    - optuna\n    - linearmodels\n    - arch\n    - pymc\n    - arviz"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#propósito-3",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#propósito-3",
+    "title": "Entornos virtuales con Conda",
+    "section": "Propósito",
+    "text": "Propósito\nNotebooks y material educativo para estudiantes con versiones estables y probadas."
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#crear-el-entorno-1",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#crear-el-entorno-1",
+    "title": "Entornos virtuales con Conda",
+    "section": "Crear el Entorno",
+    "text": "Crear el Entorno\n# Entorno simple y estable para enseñanza\nmamba create -n teaching python=3.11 \\\n  jupyterlab \\\n  pandas=2.0 \\\n  numpy=1.24 \\\n  matplotlib=3.7 \\\n  seaborn=0.12 \\\n  scipy=1.11 \\\n  statsmodels=0.14 \\\n  -c conda-forge -y\n\n# Activar\nconda activate teaching\n\n# Paquetes educativos\npip install \\\n  wooldridge \\\n  jupyter-book \\\n  jupyterlab-spellchecker"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#comandos-esenciales",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#comandos-esenciales",
+    "title": "Entornos virtuales con Conda",
+    "section": "Comandos Esenciales",
+    "text": "Comandos Esenciales\n# ========================================================================\n# LISTAR Y ACTIVAR\n# ========================================================================\n\n# Listar todos los entornos\nconda env list\n\n# Activar entorno\nconda activate econblog\n\n# Desactivar entorno actual\nconda deactivate\n\n# ========================================================================\n# INSTALAR Y ACTUALIZAR PAQUETES\n# ========================================================================\n\n# Instalar paquete nuevo\nmamba install pandas -y\n\n# Instalar versión específica\nmamba install pandas=2.0.0 -y\n\n# Instalar desde canal específico\nmamba install -c conda-forge paquete -y\n\n# Actualizar paquete\nmamba update pandas -y\n\n# Actualizar todos los paquetes\nmamba update --all -y\n\n# Instalar con pip (si no está en conda)\npip install wooldridge\n\n# ========================================================================\n# INFORMACIÓN Y BÚSQUEDA\n# ========================================================================\n\n# Listar paquetes instalados\nconda list\n\n# Buscar paquete\nconda search pandas\n\n# Ver info de paquete específico\nconda list pandas\n\n# Ver dependencias de paquete\nconda search pandas --info\n\n# ========================================================================\n# LIMPIAR Y MANTENER\n# ========================================================================\n\n# Limpiar caché de paquetes\nconda clean --all -y\n\n# Ver espacio usado por entornos\ndu -sh ~/miniconda3/envs/*\n\n# Eliminar entorno\nconda env remove -n nombre-entorno -y\n\n# ========================================================================\n# EXPORTAR E IMPORTAR\n# ========================================================================\n\n# Exportar entorno actual\nconda env export --no-builds &gt; environment.yml\n\n# Crear entorno desde archivo\nconda env create -f environment.yml\n\n# Actualizar entorno desde archivo\nconda env update -f environment.yml --prune"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#workflow-típico-diario",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#workflow-típico-diario",
+    "title": "Entornos virtuales con Conda",
+    "section": "Workflow Típico Diario",
+    "text": "Workflow Típico Diario\n# 1. Activar entorno de blogs\nconda activate econblog\n\n# 2. Navegar al proyecto\ncd ~/achalmaedison/publicaciones/epsilon-y-beta\n\n# 3. Iniciar Jupyter Lab\njupyter lab\n\n# 4. O trabajar con Quarto\nquarto preview\n\n# 5. Al terminar, desactivar\nconda deactivate"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#tipos-de-archivos",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#tipos-de-archivos",
+    "title": "Entornos virtuales con Conda",
+    "section": "Tipos de Archivos",
+    "text": "Tipos de Archivos\n\n\n\n\n\n\n\n\nArchivo\nFormato\nUso\n\n\n\n\nenvironment.yml\nYAML (Conda)\nReproducción exacta de entorno conda\n\n\nrequirements.txt\nTexto (pip)\nSolo paquetes de PyPI\n\n\nenvironment-minimal.yml\nYAML\nSolo paquetes esenciales (sin versiones)"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#environment.yml-completo",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#environment.yml-completo",
+    "title": "Entornos virtuales con Conda",
+    "section": "1. environment.yml (Completo)",
+    "text": "1. environment.yml (Completo)\nExportar automáticamente:\n# Activar entorno\nconda activate econblog\n\n# Exportar TODO (incluye pip)\nconda env export --no-builds &gt; environment.yml\nResultado: Archivo con todas las dependencias exactas."
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#environment-minimal.yml-simplificado",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#environment-minimal.yml-simplificado",
+    "title": "Entornos virtuales con Conda",
+    "section": "2. environment-minimal.yml (Simplificado)",
+    "text": "2. environment-minimal.yml (Simplificado)\nCrear manualmente:\nname: econblog\n\nchannels:\n\n  - conda-forge\n  - defaults\n\ndependencies:\n\n  - python=3.12\n  - jupyterlab\n  - pandas\n  - statsmodels\n  - pip\n  - pip:\n    - wooldridge\nVentaja: Más portable, conda resuelve versiones compatibles."
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#requirements.txt-solo-pip",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#requirements.txt-solo-pip",
+    "title": "Entornos virtuales con Conda",
+    "section": "3. requirements.txt (Solo pip)",
+    "text": "3. requirements.txt (Solo pip)\nExportar paquetes pip:\n# Activar entorno\nconda activate econblog\n\n# Exportar solo pip\npip freeze &gt; requirements.txt\nInstalar desde requirements.txt:\npip install -r requirements.txt"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#combinar-conda-pip",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#combinar-conda-pip",
+    "title": "Entornos virtuales con Conda",
+    "section": "4. Combinar Conda + Pip",
+    "text": "4. Combinar Conda + Pip\nMejor práctica:\nname: econblog\n\nchannels:\n\n  - conda-forge\n\ndependencies:\n  # Paquetes de conda\n  - python=3.12\n  - pandas\n  - matplotlib\n  \n  # Paquetes de pip\n  - pip\n  - pip:\n    - -r file:requirements.txt\nLuego crear requirements.txt separado:\nwooldridge==0.4.4\neconml==0.14.1\ncausalml==0.15.0"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#escenario-1-replicar-entorno-en-otra-máquina",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#escenario-1-replicar-entorno-en-otra-máquina",
+    "title": "Entornos virtuales con Conda",
+    "section": "Escenario 1: Replicar Entorno en Otra Máquina",
+    "text": "Escenario 1: Replicar Entorno en Otra Máquina\nEn máquina original:\n# 1. Activar entorno\nconda activate econblog\n\n# 2. Exportar\nconda env export --no-builds &gt; environment.yml\n\n# 3. Subir a Git\ngit add environment.yml\ngit commit -m \"Add environment configuration\"\ngit push\nEn máquina nueva:\n# 1. Clonar repositorio\ngit clone https://github.com/achalmed/epsilon-y-beta.git\ncd epsilon-y-beta\n\n# 2. Crear entorno desde archivo\nconda env create -f environment.yml\n\n# 3. Activar\nconda activate econblog\n\n# 4. Verificar\nconda list"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#escenario-2-compartir-con-colaboradores",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#escenario-2-compartir-con-colaboradores",
+    "title": "Entornos virtuales con Conda",
+    "section": "Escenario 2: Compartir con Colaboradores",
+    "text": "Escenario 2: Compartir con Colaboradores\nCrear archivo README.md con instrucciones:\n# Configuración del Entorno\n\n# Prerrequisitos\n\n- Miniconda o Anaconda instalado\n- Git\n\n# Instalación\n\n1. Clonar repositorio:\n\n   ```bash\n   git clone https://github.com/achalmed/epsilon-y-beta.git\n   cd epsilon-y-beta\n\nCrear entorno:\nconda env create -f environment.yml\nActivar entorno:\nconda activate econblog\nVerificar instalación:\npython -c \"import pandas, statsmodels; print('Entorno listo')\""
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#instalar-jupyter-en-cada-entorno",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#instalar-jupyter-en-cada-entorno",
+    "title": "Entornos virtuales con Conda",
+    "section": "1. Instalar Jupyter en Cada Entorno",
+    "text": "1. Instalar Jupyter en Cada Entorno\nImportante: Jupyter debe estar instalado en cada entorno que uses.\n# En entorno econblog\nconda activate econblog\nmamba install jupyterlab -y\n\n# En entorno scripts-env\nconda activate scripts-env\nmamba install jupyterlab -y"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#configurar-kernels",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#configurar-kernels",
+    "title": "Entornos virtuales con Conda",
+    "section": "2. Configurar Kernels",
+    "text": "2. Configurar Kernels\n# Activar entorno\nconda activate econblog\n\n# Instalar kernel\npython -m ipykernel install --user --name econblog --display-name \"Python (econblog)\"\n\n# Verificar kernels disponibles\njupyter kernelspec list\nResultado: Podrás seleccionar “Python (econblog)” en Jupyter Lab."
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#iniciar-jupyter-lab",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#iniciar-jupyter-lab",
+    "title": "Entornos virtuales con Conda",
+    "section": "3. Iniciar Jupyter Lab",
+    "text": "3. Iniciar Jupyter Lab\n# Desde entorno específico\nconda activate econblog\njupyter lab --notebook-dir=~/Proyectos/epsilon-y-beta\n\n# O usar alias (configurado anteriormente)\njlab-blog"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#extensiones-útiles-para-jupyter-lab",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#extensiones-útiles-para-jupyter-lab",
+    "title": "Entornos virtuales con Conda",
+    "section": "4. Extensiones Útiles para Jupyter Lab",
+    "text": "4. Extensiones Útiles para Jupyter Lab\n# Activar entorno\nconda activate econblog\n\n# Extensiones recomendadas\nmamba install -c conda-forge \\\n  jupyterlab-git \\\n  jupyterlab-lsp \\\n  jupyterlab-spellchecker \\\n  -y\n\n# Extensión para Quarto\npip install jupyterlab-quarto"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#configuración-de-jupyter",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#configuración-de-jupyter",
+    "title": "Entornos virtuales con Conda",
+    "section": "5. Configuración de Jupyter",
+    "text": "5. Configuración de Jupyter\nCrear archivo ~/.jupyter/jupyter_lab_config.py:\n# Configuración personalizada de Jupyter Lab\nc.ServerApp.open_browser = True\nc.ServerApp.notebook_dir = '/home/achalmaedison/Proyectos'\nc.ServerApp.terminado_settings = {'shell_command': ['/usr/bin/fish']}"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#instalar-extensión-de-python",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#instalar-extensión-de-python",
+    "title": "Entornos virtuales con Conda",
+    "section": "1. Instalar Extensión de Python",
+    "text": "1. Instalar Extensión de Python\nEn VS Code: 1. Ir a Extensions (Ctrl+Shift+X) 2. Buscar “Python” 3. Instalar “Python” de Microsoft"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#seleccionar-intérprete-de-conda",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#seleccionar-intérprete-de-conda",
+    "title": "Entornos virtuales con Conda",
+    "section": "2. Seleccionar Intérprete de Conda",
+    "text": "2. Seleccionar Intérprete de Conda\nMétodo 1: Command Palette\n\nAbrir Command Palette (Ctrl+Shift+P)\nEscribir: “Python: Select Interpreter”\nSeleccionar: Python 3.12.x ('econblog')\n\nMétodo 2: Barra de Estado\n\nClick en la barra inferior (muestra Python actual)\nSeleccionar entorno deseado"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#configurar-workspace",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#configurar-workspace",
+    "title": "Entornos virtuales con Conda",
+    "section": "3. Configurar Workspace",
+    "text": "3. Configurar Workspace\nCrear .vscode/settings.json en proyecto:\n{\n  \"python.defaultInterpreterPath\": \"/home/achalmaedison/miniconda3/envs/econblog/bin/python\",\n  \"python.terminal.activateEnvironment\": true,\n  \"python.formatting.provider\": \"black\",\n  \"python.linting.enabled\": true,\n  \"python.linting.ruffEnabled\": true,\n  \"[python]\": {\n    \"editor.formatOnSave\": true,\n    \"editor.codeActionsOnSave\": {\n      \"source.organizeImports\": true\n    }\n  }\n}"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#terminal-integrado",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#terminal-integrado",
+    "title": "Entornos virtuales con Conda",
+    "section": "4. Terminal Integrado",
+    "text": "4. Terminal Integrado\nVS Code activará automáticamente el entorno cuando abras una terminal.\nVerificar:\n# En terminal de VS Code\necho $CONDA_DEFAULT_ENV\n# Debe mostrar: econblog"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#problema-1-kernel-died-en-jupyter",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#problema-1-kernel-died-en-jupyter",
+    "title": "Entornos virtuales con Conda",
+    "section": "Problema 1: “Kernel died” en Jupyter",
+    "text": "Problema 1: “Kernel died” en Jupyter\nCausa: Paquetes incompatibles o falta de memoria.\nSolución:\n# Reinstalar kernel\nconda activate econblog\npython -m ipykernel install --user --name econblog --display-name \"Python (econblog)\" --force\n\n# Verificar\njupyter kernelspec list\n\n# Si persiste, recrear entorno\nconda env export --no-builds &gt; backup-environment.yml\nconda deactivate\nconda env remove -n econblog -y\nconda env create -f backup-environment.yml"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#problema-2-modulenotfounderror-en-jupyter",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#problema-2-modulenotfounderror-en-jupyter",
+    "title": "Entornos virtuales con Conda",
+    "section": "Problema 2: “ModuleNotFoundError” en Jupyter",
+    "text": "Problema 2: “ModuleNotFoundError” en Jupyter\nCausa: Jupyter usa kernel de otro entorno.\nSolución:\n# Verificar qué kernel está activo\n# En Jupyter, ir a Kernel &gt; Change kernel &gt; Python (econblog)\n\n# O reinstalar ipykernel\nconda activate econblog\nmamba install ipykernel -y\npython -m ipykernel install --user --name econblog --display-name \"Python (econblog)\""
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#problema-3-conflictos-de-versiones",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#problema-3-conflictos-de-versiones",
+    "title": "Entornos virtuales con Conda",
+    "section": "Problema 3: Conflictos de Versiones",
+    "text": "Problema 3: Conflictos de Versiones\nCausa: Paquetes incompatibles entre sí.\nSolución:\n# Opción 1: Usar mamba (mejor resolver)\nconda activate econblog\nmamba install paquete-conflictivo -y\n\n# Opción 2: Especificar versiones compatibles\nmamba install paquete1=1.0 paquete2=2.0 -y\n\n# Opción 3: Recrear entorno limpio\nconda env remove -n econblog -y\nmamba create -n econblog -f environment.yml"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#problema-4-entorno-muy-grande",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#problema-4-entorno-muy-grande",
+    "title": "Entornos virtuales con Conda",
+    "section": "Problema 4: Entorno Muy Grande",
+    "text": "Problema 4: Entorno Muy Grande\nCausa: Demasiados paquetes instalados.\nSolución:\n# Ver tamaño de entorno\ndu -sh ~/miniconda3/envs/econblog\n\n# Limpiar paquetes no usados\nconda clean --all -y\n\n# Recrear entorno minimalista\nconda env export --no-builds &gt; backup.yml\n# Editar backup.yml y eliminar paquetes innecesarios\nconda env remove -n econblog -y\nconda env create -f backup.yml"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#problema-5-pip-vs-conda-conflicts",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#problema-5-pip-vs-conda-conflicts",
+    "title": "Entornos virtuales con Conda",
+    "section": "Problema 5: Pip vs Conda Conflicts",
+    "text": "Problema 5: Pip vs Conda Conflicts\nCausa: Mezclar pip y conda incorrectamente.\nMejores Prácticas:\n# 1. Siempre instalar con conda/mamba primero\nmamba install pandas matplotlib -y\n\n# 2. Usar pip solo para paquetes no disponibles en conda\npip install wooldridge\n\n# 3. NUNCA mezclar en el mismo comando\n# INCORRECTO:\n# conda install pandas && pip install wooldridge  #\n\n# CORRECTO:\nmamba install pandas -y  # Primero conda\npip install wooldridge   # Luego pip"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#workflow-1-nuevo-post-de-blog",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#workflow-1-nuevo-post-de-blog",
+    "title": "Entornos virtuales con Conda",
+    "section": "Workflow 1: Nuevo Post de Blog",
+    "text": "Workflow 1: Nuevo Post de Blog\n# 1. Activar entorno\nconda activate econblog\n\n# 2. Ir al blog\ncd ~/Proyectos/epsilon-y-beta\n\n# 3. Crear carpeta de post\nmkdir -p posts/2026-01-analisis-inflacion\ncd posts/2026-01-analisis-inflacion\n\n# 4. Crear archivo Quarto\nnano index.qmd\nContenido de index.qmd:\n---\ntitle: \"Análisis de Inflación en Perú 2010-2025\"\nauthor: \"Edison Achalma\"\ndate: \"2026-01-03\"\ncategories: [macroeconomía, inflación, análisis-temporal]\njupyter: python3\n---\n\n# Introducción\n\nAnálisis de la inflación en Perú usando datos del BCRP.\n\n``{python}\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport wooldridge as wd\n``\nContinuar\n# 5. Previsualizar\nquarto preview\n\n# 6. O usar Jupyter para análisis exploratorio\njupyter lab\n\n# 7. Renderizar final\nquarto render\n\n# 8. Commit y push\ngit add .\ngit commit -m \"Add: Análisis de inflación 2010-2025\"\ngit push"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#workflow-2-ejecutar-script-de-automatización",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#workflow-2-ejecutar-script-de-automatización",
+    "title": "Entornos virtuales con Conda",
+    "section": "Workflow 2: Ejecutar Script de Automatización",
+    "text": "Workflow 2: Ejecutar Script de Automatización\n# 1. Activar entorno de scripts\nconda activate scripts-env\n\n# 2. Ir al directorio de scripts\ncd ~/Proyectos/scripts/scripts_for_quarto\n\n# 3. Ejecutar script\npython 1_sincronizar_fecha_carpeta_en_index_qmd.py\n\n# 4. Verificar resultados\ncat ../epsilon-y-beta/posts/2026-01-analisis-inflacion/index.qmd\n\n# 5. Desactivar entorno\nconda deactivate"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#workflow-3-análisis-econométrico-completo",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#workflow-3-análisis-econométrico-completo",
+    "title": "Entornos virtuales con Conda",
+    "section": "Workflow 3: Análisis Econométrico Completo",
+    "text": "Workflow 3: Análisis Econométrico Completo\n# 1. Activar entorno\nconda activate econblog\n\n# 2. Iniciar Jupyter Lab\njupyter lab --notebook-dir=~/Proyectos/epsilon-y-beta/posts\n\n# 3. En Jupyter, crear nuevo notebook\n# - Kernel: Python (econblog)\n# - Nombre: analisis-econometrico.ipynb\n\n# 4. Desarrollar análisis completo\n\n# 5. Convertir notebook a Quarto\nquarto convert analisis-econometrico.ipynb\n\n# 6. Renderizar\nquarto render analisis-econometrico.qmd\n\n# 7. Revisar resultado\nfirefox analisis-econometrico.html"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#workflow-4-actualizar-entorno-después-de-cambios",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#workflow-4-actualizar-entorno-después-de-cambios",
+    "title": "Entornos virtuales con Conda",
+    "section": "Workflow 4: Actualizar Entorno Después de Cambios",
+    "text": "Workflow 4: Actualizar Entorno Después de Cambios\n# 1. Alguien actualizó environment.yml en GitHub\ncd ~/Proyectos/epsilon-y-beta\ngit pull\n\n# 2. Actualizar tu entorno local\nconda env update -f environment.yml --prune\n\n# 3. Verificar que todo funcione\nconda activate econblog\npython -c \"import pandas, statsmodels; print('Actualización exitosa')\""
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#workflow-5-crear-entorno-temporal-para-experimento",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#workflow-5-crear-entorno-temporal-para-experimento",
+    "title": "Entornos virtuales con Conda",
+    "section": "Workflow 5: Crear Entorno Temporal para Experimento",
+    "text": "Workflow 5: Crear Entorno Temporal para Experimento\n# 1. Crear entorno temporal rápido\nmamba create -n temp-experiment python=3.12 pandas numpy matplotlib -y\n\n# 2. Activar\nconda activate temp-experiment\n\n# 3. Experimentar\npython mi_experimento.py\n\n# 4. Si funciona, agregar paquetes a entorno principal\n# Si no, eliminar entorno sin afectar nada\nconda deactivate\nconda env remove -n temp-experiment -y"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#antes-de-crear-un-entorno",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#antes-de-crear-un-entorno",
+    "title": "Entornos virtuales con Conda",
+    "section": "Antes de Crear un Entorno",
+    "text": "Antes de Crear un Entorno\n\nDefinir propósito claro del entorno\nListar paquetes necesarios\nVerificar disponibilidad en conda-forge\nPlanificar estructura de archivos environment.yml"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#al-crear-un-entorno",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#al-crear-un-entorno",
+    "title": "Entornos virtuales con Conda",
+    "section": "Al Crear un Entorno",
+    "text": "Al Crear un Entorno\n\nUsar mamba en lugar de conda (más rápido)\nEspecificar versión de Python\nInstalar paquetes de conda primero\nLuego instalar paquetes de pip\nVerificar que todo funcione\nExportar a environment.yml"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#uso-diario",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#uso-diario",
+    "title": "Entornos virtuales con Conda",
+    "section": "Uso Diario",
+    "text": "Uso Diario\n\nActivar entorno apropiado para cada tarea\nNO instalar paquetes en base\nDocumentar cambios en environment.yml\nVersionar archivos de configuración en Git\nLimpiar caché periódicamente"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#colaboración",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#colaboración",
+    "title": "Entornos virtuales con Conda",
+    "section": "Colaboración",
+    "text": "Colaboración\n\nMantener environment.yml actualizado\nAgregar instrucciones en README.md\nUsar versiones específicas para reproducibilidad\nProbar entorno en máquina limpia antes de compartir"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#gestión-básica",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#gestión-básica",
+    "title": "Entornos virtuales con Conda",
+    "section": "Gestión Básica",
+    "text": "Gestión Básica\n# Crear entorno\nmamba create -n nombre python=3.12 paquetes -y\n\n# Listar entornos\nconda env list\n\n# Activar\nconda activate nombre\n\n# Desactivar\nconda deactivate\n\n# Eliminar\nconda env remove -n nombre -y"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#paquetes",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#paquetes",
+    "title": "Entornos virtuales con Conda",
+    "section": "Paquetes",
+    "text": "Paquetes\n# Instalar\nmamba install paquete -y\n\n# Actualizar\nmamba update paquete -y\n\n# Desinstalar\nconda remove paquete -y\n\n# Listar\nconda list"
+  },
+  {
+    "objectID": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#exportarimportar",
+    "href": "python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.html#exportarimportar",
+    "title": "Entornos virtuales con Conda",
+    "section": "Exportar/Importar",
+    "text": "Exportar/Importar\n# Exportar completo\nconda env export --no-builds &gt; environment.yml\n\n# Exportar minimal\nconda env export --from-history &gt; environment-minimal.yml\n\n# Crear desde archivo\nconda env create -f environment.yml\n\n# Actualizar desde archivo\nconda env update -f environment.yml --prune"
   }
 ]

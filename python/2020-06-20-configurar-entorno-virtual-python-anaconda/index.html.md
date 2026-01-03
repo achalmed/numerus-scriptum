@@ -1,12 +1,13 @@
 ---
+documentmode: doc
 copyrightnotice: 2020
 copyrightext: All rights reserved
 title: Entornos virtuales con Conda
-abstract: Este abstract será actualizado una vez que se complete el contenido final
-  del artículo.
+abstract: Esta publicación presenta una guía práctica y detallada para la creación, gestión y mantenimiento de entornos virtuales aislados utilizando Conda (y Mamba como acelerador), orientada especialmente a economistas, investigadores y científicos de datos que manejan múltiples proyectos académicos y de automatización. Se explica la filosofía detrás de los entornos separados, se propone una estrategia concreta de entornos por propósito (econblog, scripts-env, datascience, teaching), y se documentan paso a paso; creación de entornos específicos, selección cuidadosa de paquetes (tanto de conda-forge como vía pip), generación y mantenimiento de archivos environment.yml reproducibles, integración óptima con JupyterLab, VS Code y Quarto, configuración de alias para flujos de trabajo eficientes, mejores prácticas para colaboración y reproducibilidad, y resolución de problemas frecuentes. El enfoque prioriza evitar conflictos de dependencias, garantizar la reproducibilidad de análisis econométricos y publicaciones académicas, y mantener un sistema ligero y organizado.
 keywords:
-- keyword1
-- keyword2
+- Entornos virtuales
+- Conda
+- Miniconda
 categories:
 - Python
 tags:
@@ -32,6 +33,7 @@ eval: false
 citation:
   type: article-journal
   author:
+
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf
 date: 06/20/2020
@@ -39,264 +41,1282 @@ draft: false
 image: ../featured.jpg
 ---
 
-# Introducción
+# Filosofía de Entornos Virtuales
 
-¡Bienvenidos al blog! En esta ocasión, exploraremos un tema fundamental para cualquier desarrollador o entusiasta de Python: la configuración de un entorno virtual utilizando Anaconda. Si alguna vez te has preguntado cómo mantener tus proyectos de Python aislados, organizados y libres de conflictos de dependencias, estás en el lugar correcto.
+## ¿Por Qué Usar Entornos Separados?
 
-¿Alguna vez has encontrado problemas al trabajar en múltiples proyectos de Python, donde las diferentes versiones de las bibliotecas y paquetes interfieren entre sí? ¡No te preocupes! Configurar un entorno virtual es la solución perfecta para mantener todo bajo control.
+**Problema:** Sin entornos, todos los paquetes comparten el mismo espacio.
 
-Imagina tener la capacidad de crear espacios de trabajo aislados y personalizados para cada proyecto, sin preocuparte por conflictos entre las versiones de las bibliotecas o paquetes. Con Anaconda, una poderosa plataforma de gestión de paquetes y ambientes virtuales, puedes lograr precisamente eso.
+**Consecuencias:**
 
-En este blog, te guiaremos paso a paso en la configuración de tu primer entorno virtual utilizando Anaconda. Aprenderás cómo crear ambientes virtuales, instalar paquetes y bibliotecas específicos, y alternar fácilmente entre ellos para cada proyecto.
+- Conflictos de versiones (pandas 1.5 vs 2.0)
+- Dependencias rotas al actualizar
+- Imposible reproducir análisis antiguos
+- Proyectos diferentes interfieren entre sí
 
-Ya sea que seas un desarrollador principiante o experimentado, este blog te brindará los conocimientos necesarios para dominar el arte de la configuración de entornos virtuales con Anaconda. ¡Prepárate para simplificar tu vida como desarrollador de Python y llevar tus proyectos al siguiente nivel!
+**Solución:** Un entorno aislado por proyecto o tipo de trabajo.
 
-¡Comencemos esta emocionante aventura de configuración de entornos virtuales con Anaconda!
+## Principios Fundamentales
 
-# ¿Qué es un entorno virtual?
+1. **NUNCA instalar paquetes en base**
 
-Si estas en el mundo de la programación en Python, es posible que hayas oído hablar del término "entorno virtual".
+   ```bash
+   # INCORRECTO
+   conda activate base
+   mamba install pandas  # NO HACER ESTO
+   
+   # CORRECTO
+   conda activate mi-proyecto
+   mamba install pandas  # Instalar en entorno específico
+   ```
 
-Cuando hablamos de un entorno virtual, nos referimos a un ambiente aislado y autónomo donde puedes desarrollar y ejecutar tus proyectos de Python de manera independiente. En otras palabras, es como tener una burbuja protegiendo tus proyectos y asegurándote de que las bibliotecas y paquetes que utilices no entren en conflicto con otras versiones o dependencias de Python que puedas tener instaladas en tu sistema operativo.
+2. **Un entorno por propósito**
 
-## ¿Cuáles son los beneficios de trabajar con entornos virtuales en proyectos de Python en Linux?
+   - Blog → entorno `econblog`
+   - Scripts → entorno `scripts-env`
+   - Análisis temporal → entorno desechable
 
-Permíteme destacar algunos puntos clave:
+3. **Documentar dependencias**
 
-1.  **Aislamiento:** Los entornos virtuales te permiten tener control total sobre las versiones de las bibliotecas y paquetes que utilizas en tus proyectos. Esto significa que puedes crear un ambiente aislado para cada proyecto, evitando conflictos y problemas de compatibilidad entre diferentes versiones de Python y sus dependencias.
+   - Siempre crear `environment.yml`
+   - Mantener actualizado el archivo
+   - Versionar en Git
 
-2.  **Portabilidad:** Al utilizar entornos virtuales, puedes compartir fácilmente tus proyectos con otros desarrolladores o ejecutarlos en diferentes máquinas sin preocuparte por las diferencias en las configuraciones del sistema. Todo lo que necesitas es compartir el archivo de requisitos del entorno virtual y cualquiera podrá recrear el mismo ambiente de trabajo en su propia máquina.
+4. **Entornos reproducibles**
 
-3.  **Mantenimiento sencillo:** Los entornos virtuales facilitan la gestión de tus proyectos. Puedes instalar y actualizar paquetes de forma independiente dentro de cada ambiente virtual, sin afectar a otros proyectos o al sistema operativo en sí. Además, si algo sale mal en un entorno virtual, puedes solucionarlo sin que afecte a tus otros proyectos.
+   - Especificar versiones exactas cuando sea crítico
+   - Usar canales consistentes (conda-forge)
+   - Exportar entornos regularmente
 
-4.  **Experimentación segura:** Si quieres probar una nueva biblioteca o una versión diferente de una dependencia en particular, un entorno virtual te proporciona un espacio seguro para hacerlo. Puedes instalar y probar nuevas bibliotecas sin preocuparte de que afecten a otros proyectos o rompan la funcionalidad existente.
 
-# Anaconda
+# Estrategia de Entornos para Tus Proyectos
 
-¿Qué es Anaconda? Es mucho más que una simple herramienta, es una plataforma completa de gestión de paquetes y entornos virtuales diseñada específicamente para los amantes de Python como tú.
+## Mapa de Entornos Recomendado
 
-Entonces, ¿por qué deberías elegir Anaconda frente a otras herramientas? Permíteme contarte algunas de las ventajas que hacen de Anaconda una elección excepcional:
-
-1.  **Gestión de paquetes simplificada:** Con Anaconda, olvídate de preocuparte por instalar y gestionar paquetes individualmente. Anaconda tiene su propio sistema de gestión de paquetes llamado "conda", que te permite instalar, actualizar y eliminar paquetes de manera sencilla y eficiente. Además, Anaconda cuenta con un amplio repositorio de paquetes precompilados que puedes explorar y utilizar en tus proyectos con un solo comando.
-
-2.  **Creación de entornos virtuales sin complicaciones:** ¿Recuerdas la importancia de los entornos virtuales que discutimos anteriormente? Bueno, con Anaconda, crear y gestionar entornos virtuales es pan comido. Puedes crear un entorno virtual aislado para cada proyecto en cuestión de segundos. Además, puedes especificar fácilmente la versión de Python y las dependencias requeridas para cada entorno virtual, manteniendo todo organizado y libre de conflictos.
-
-3.  **Multiplataforma:** Ya sea que estés utilizando Linux, Windows o macOS, Anaconda te tiene cubierto. Esta plataforma es compatible con múltiples sistemas operativos, lo que significa que puedes disfrutar de las mismas ventajas y características sin importar el entorno en el que te encuentres. Así que no importa si eres un entusiasta de Linux, un defensor de Windows o un fanático de macOS, Anaconda estará a tu lado.
-
-4.  **Integración con herramientas adicionales:** Anaconda no solo se detiene en la gestión de paquetes y entornos virtuales, sino que también ofrece una amplia gama de herramientas y utilidades adicionales que pueden mejorar tu flujo de trabajo. Desde el entorno de desarrollo integrado (IDE) llamado Anaconda Navigator, hasta la potencia de Jupyter Notebooks y la facilidad de distribución con Anaconda Cloud, hay muchas herramientas a tu disposición para mejorar tu productividad y simplificar tu desarrollo.
-
-# Instalación de Anaconda en Ubuntu Linux
-
-Si estás utilizando Ubuntu Linux y te emociona comenzar a trabajar con Anaconda. Te guiaré a través de los pasos para descargar e instalar Anaconda en tu sistema Ubuntu Linux.
-
-**Paso 1: Descargar el instalador de Anaconda**
-
-Para empezar, debes visitar el sitio web oficial de Anaconda [Descargar Anaconda](https://www.anaconda.com/download/) y descargar el instalador adecuado para tu versión de Ubuntu Linux. Asegúrate de seleccionar la versión de Python que deseas utilizar y si tu sistema operativo es de 32 o 64 bits.
-
-**Paso 2: Abrir la terminal**
-
-Una vez que hayas descargado el instalador de Anaconda, abre la terminal en tu sistema Ubuntu Linux. Puedes hacerlo utilizando el atajo de teclado Ctrl + Alt + T o buscando "Terminal" en el menú de aplicaciones.
-
-**Paso 3: Navegar a la ubicación del instalador**
-
-En la terminal, navega hasta la ubicación donde descargaste el instalador de Anaconda. Por ejemplo, si lo descargaste en la carpeta "Descargas", puedes usar el comando siguiente para ir a esa ubicación:
-
-``` bash
-cd Descargas
+```
+~/miniconda3/
+├── envs/
+│   ├── econblog/          # Blogs académicos (epsilon-y-beta, axiomata, etc.)
+│   ├── scripts-env/       # Scripts de automatización
+│   ├── datascience/       # Análisis avanzado temporal
+│   └── teaching/          # Material educativo (notebooks para estudiantes)
 ```
 
-Recuerda reemplazar "Descargas" con la carpeta en la que hayas guardado el archivo.
+## Matriz de Decisión
 
-**Paso 4: Ejecutar el instalador de Anaconda**
+| Proyecto | Entorno | Razón |
+|----------|---------|-------|
+| epsilon-y-beta, axiomata, methodica | `econblog` | Comparten dependencias: Quarto, pandas, statsmodels |
+| Scripts Quarto, Calibre, Zotero | `scripts-env` | Scripts de automatización compartidos |
+| Análisis econométrico complejo | `datascience` | Paquetes pesados (tensorflow, pytorch) |
+| Notebooks para clases | `teaching` | Versiones estables para estudiantes |
 
-Una vez que estés en la ubicación del instalador de Anaconda, puedes ejecutar el siguiente comando para iniciar el proceso de instalación:
 
-``` bash
-bash nombre_del_instalador.sh
+# Entorno 1: econblog (Blogs Académicos)
+
+## Propósito
+
+**Blogs que usa este entorno:**
+
+- epsilon-y-beta (Econometría)
+- axiomata (Matemáticas para economistas)
+- methodica (Metodología de investigación)
+- aequilibria (Macroeconomía)
+- optimums (Microeconomía)
+- pecunia-fluxus (Finanzas)
+- actus-mercator (Gestión empresarial)
+- res-publica (Gestión pública)
+- dialectica-y-mercado (Filosofía)
+- numerus-scriptum (Programación)
+
+## Paso 1: Crear el Entorno
+
+```bash
+# Crear entorno con paquetes fundamentales
+mamba create -n econblog python=3.12 \
+  jupyterlab \
+  pandas \
+  numpy \
+  matplotlib \
+  seaborn \
+  plotly \
+  statsmodels \
+  linearmodels \
+  pingouin \
+  scipy \
+  scikit-learn \
+  pyarrow \
+  openpyxl \
+  xlrd \
+  -c conda-forge -y
 ```
 
-Asegúrate de reemplazar "nombre_del_instalador.sh" con el nombre real del archivo que descargaste.
+**Tiempo estimado:** 5-10 minutos (con mamba).
 
-**Paso 5: Sigue las instrucciones de instalación**
+## Paso 2: Activar y Agregar Paquetes Adicionales
 
-Después de ejecutar el comando anterior, seguirás las instrucciones del instalador de Anaconda en la terminal. Acepta los términos de licencia, selecciona la ubicación de instalación y responde cualquier pregunta adicional que se te presente durante el proceso de instalación.
+```bash
+# Activar entorno
+conda activate econblog
 
-**Paso 6: Añadir Anaconda al PATH del sistema**
+# Paquetes de conda-forge
+mamba install -c conda-forge \
+  jupyterlab-lsp \
+  myst-parser \
+  nbconvert \
+  ipywidgets \
+  notebook \
+  -y
 
-Una vez que la instalación se complete, se te preguntará si deseas agregar Anaconda al PATH del sistema. Es recomendable seleccionar "yes" para que puedas acceder a los comandos de Anaconda desde cualquier ubicación en la terminal.
-
-
-# Configuración de un entorno virtual en Conda
-
-**Paso 1: Actualiza Conda**:
-
-Antes de empezar, es una buena práctica asegurarte de tener la versión más reciente de Conda. Abre tu terminal y ejecuta los siguientes comandos:
-
-``` bash
-conda update conda
-conda update --all
+# Paquetes solo disponibles en PyPI
+pip install \
+  wooldridge \
+  econml \
+  causalml \
+  upsetplot \
+  arch \
+  pmdarima
 ```
 
-Esto actualizará Conda y todos los paquetes asociados.
+## Paso 3: Verificar Instalación
 
-**Paso 2: Configura el entorno virtual:**
-
-Ahora, vamos a crear un nuevo entorno virtual. En tu terminal, ejecuta el siguiente comando:
-
-``` bash
-conda create --name nombre_del_entorno
+```bash
+# Verificar que todo funcione
+python -c "
+import pandas as pd
+import statsmodels.api as sm
+import linearmodels as lm
+import wooldridge as wd
+print('Todos los paquetes cargados correctamente')
+print(f'Pandas {pd.__version__}')
+print(f'Statsmodels {sm.__version__}')
+"
 ```
 
-Reemplaza "nombre_del_entorno" con el nombre que desees darle a tu entorno virtual.
+## Paso 4: Exportar Configuración
 
-**Paso 3: Activa el entorno virtual:**
+```bash
+# Exportar entorno completo
+conda env export --no-builds > ~/achalmaedison/publicaciones/epsilon-y-beta/environment.yml
 
-Una vez que hayas creado el entorno virtual, puedes activarlo con el siguiente comando:
-
-``` bash
-conda activate nombre_del_entorno
+# O crear manualmente (más limpio)
 ```
 
-Esto te permitirá trabajar en el entorno virtual específico.
+## environment.yml para econblog
 
-**Paso 4: Desactiva el entorno virtual:**
+**Crear archivo:** `~/achalmaedison/publicaciones/epsilon-y-beta/environment.yml`
 
-Cuando hayas terminado de trabajar en tu entorno virtual y desees volver al entorno base, simplemente ejecuta el siguiente comando:
+```yaml
+# ========================================================================
+# ENTORNO: econblog
+# Propósito: Blogs académicos de economía, econometría y ciencia de datos
+# Autor: Edison Achalma (achalmaedison)
+# Institución: UNSCH
+# Fecha: Enero 2026
+# ========================================================================
 
-``` bash
+name: econblog
+
+channels:
+
+  - conda-forge
+  - defaults
+
+dependencies:
+  # ----------------------------------------------------------------------
+  # Python
+  # ----------------------------------------------------------------------
+  - python=3.12
+  
+  # ----------------------------------------------------------------------
+  # Jupyter y Notebooks
+  # ----------------------------------------------------------------------
+  - jupyterlab>=4.0
+  - jupyterlab-lsp
+  - ipywidgets
+  - notebook
+  - nbconvert
+  - myst-parser
+  
+  # ----------------------------------------------------------------------
+  # Manipulación de Datos
+  # ----------------------------------------------------------------------
+  - pandas>=2.0
+  - numpy>=1.24
+  - pyarrow
+  - openpyxl
+  - xlrd
+  
+  # ----------------------------------------------------------------------
+  # Visualización
+  # ----------------------------------------------------------------------
+  - matplotlib>=3.7
+  - seaborn>=0.12
+  - plotly>=5.14
+  
+  # ----------------------------------------------------------------------
+  # Estadística y Econometría
+  # ----------------------------------------------------------------------
+  - statsmodels>=0.14
+  - linearmodels
+  - pingouin
+  - scipy>=1.11
+  - scikit-learn>=1.3
+  
+  # ----------------------------------------------------------------------
+  # Utilidades
+  # ----------------------------------------------------------------------
+  - pip
+  
+  # ----------------------------------------------------------------------
+  # Paquetes de PyPI (solo disponibles con pip)
+  # ----------------------------------------------------------------------
+  - pip:
+    - wooldridge         # Datasets de econometría
+    - econml            # Machine learning causal
+    - causalml          # Inferencia causal
+    - upsetplot         # Gráficos de conjuntos
+    - arch              # Modelos ARCH/GARCH
+    - pmdarima          # ARIMA automático
+```
+
+## Paso 5: Crear Alias Personalizados
+
+**Agregar a `~/.config/fish/config.fish`:**
+
+```fish
+# Alias para blog de econometría
+alias econblog="conda activate econblog && cd ~/Proyectos/epsilon-y-beta"
+alias eboff="conda deactivate"
+
+# Jupyter Lab para blog
+alias jlab-blog="conda activate econblog && jupyter lab --notebook-dir=~/Proyectos/epsilon-y-beta"
+
+# Quarto para blog
+alias qblog="conda activate econblog && cd ~/Proyectos/epsilon-y-beta && quarto preview"
+```
+
+# Entorno 2: scripts-env (Automatización)
+
+## Propósito
+
+**Scripts que usa este entorno:**
+
+- `scripts_for_quarto/` (sincronización, metadata, tags)
+- `scripts_for_calibre/` (gestión de PDFs)
+- `scripts_for_libreoffice/` (conversión de documentos)
+- `scripts_for_linux/` (utilidades del sistema)
+- `scripts_for_zotero/` (gestión bibliográfica)
+
+## Paso 1: Crear el Entorno
+
+```bash
+# Crear entorno ligero para scripts
+mamba create -n scripts-env python=3.12 \
+  pyyaml \
+  pandas \
+  openpyxl \
+  python-docx \
+  pillow \
+  requests \
+  beautifulsoup4 \
+  lxml \
+  -c conda-forge -y
+```
+
+## Paso 2: Activar y Agregar Paquetes Adicionales
+
+```bash
+# Activar entorno
+conda activate scripts-env
+
+# Paquetes adicionales
+mamba install -c conda-forge \
+  black \
+  ruff \
+  pytest \
+  -y
+
+# Paquetes de PyPI
+pip install \
+  pypdf2 \
+  pdfrw \
+  python-frontmatter \
+  watchdog
+```
+
+## Paso 3: Verificar Instalación
+
+```bash
+# Prueba rápida
+python -c "
+import yaml
+import pandas as pd
+from docx import Document
+print('Entorno de scripts listo')
+"
+```
+
+## environment.yml para scripts-env
+
+**Crear archivo:** `~/Proyectos/scripts/environment.yml`
+
+```yaml
+# ========================================================================
+# ENTORNO: scripts-env
+# Propósito: Scripts de automatización para Quarto, Calibre, LibreOffice, etc.
+# Autor: Edison Achalma
+# Fecha: Enero 2026
+# ========================================================================
+
+name: scripts-env
+
+channels:
+
+  - conda-forge
+  - defaults
+
+dependencies:
+  # ----------------------------------------------------------------------
+  # Python
+  # ----------------------------------------------------------------------
+  - python=3.12
+  
+  # ----------------------------------------------------------------------
+  # Manipulación de Archivos
+  # ----------------------------------------------------------------------
+  - pyyaml
+  - pandas
+  - openpyxl
+  - python-docx
+  - pillow
+  
+  # ----------------------------------------------------------------------
+  # Web Scraping y Requests
+  # ----------------------------------------------------------------------
+  - requests
+  - beautifulsoup4
+  - lxml
+  
+  # ----------------------------------------------------------------------
+  # Desarrollo y Testing
+  # ----------------------------------------------------------------------
+  - black
+  - ruff
+  - pytest
+  
+  # ----------------------------------------------------------------------
+  # Utilidades
+  # ----------------------------------------------------------------------
+  - pip
+  
+  # ----------------------------------------------------------------------
+  # Paquetes de PyPI
+  # ----------------------------------------------------------------------
+  - pip:
+    - pypdf2
+    - pdfrw
+    - python-frontmatter
+    - watchdog
+```
+
+## Paso 4: Crear Alias
+
+```fish
+# Alias para scripts
+alias scripts="conda activate scripts-env && cd ~/Proyectos/scripts"
+alias soff="conda deactivate"
+```
+
+# Entorno 3: datascience (Análisis Avanzado)
+
+## Propósito
+
+Análisis econométrico avanzado, machine learning, y visualizaciones complejas para investigaciones específicas.
+
+## Crear el Entorno
+
+```bash
+# Entorno completo de ciencia de datos
+mamba create -n datascience python=3.12 \
+  jupyterlab \
+  pandas \
+  numpy \
+  scipy \
+  scikit-learn \
+  statsmodels \
+  xgboost \
+  lightgbm \
+  matplotlib \
+  seaborn \
+  plotly \
+  bokeh \
+  altair \
+  networkx \
+  -c conda-forge -y
+
+# Activar y agregar más
+conda activate datascience
+
+# Machine learning
+pip install \
+  tensorflow \
+  torch \
+  shap \
+  optuna
+
+# Econometría avanzada
+pip install \
+  linearmodels \
+  arch \
+  pymc \
+  arviz
+```
+
+## environment.yml para datascience
+
+```yaml
+name: datascience
+
+channels:
+
+  - conda-forge
+  - defaults
+
+dependencies:
+
+  - python=3.12
+  - jupyterlab
+  - pandas
+  - numpy
+  - scipy
+  - scikit-learn
+  - statsmodels
+  - xgboost
+  - lightgbm
+  - matplotlib
+  - seaborn
+  - plotly
+  - bokeh
+  - altair
+  - networkx
+  - pip
+  - pip:
+    - tensorflow
+    - torch
+    - shap
+    - optuna
+    - linearmodels
+    - arch
+    - pymc
+    - arviz
+```
+
+# Entorno 4: teaching (Material Educativo)
+
+## Propósito
+
+Notebooks y material educativo para estudiantes con versiones estables y probadas.
+
+## Crear el Entorno
+
+```bash
+# Entorno simple y estable para enseñanza
+mamba create -n teaching python=3.11 \
+  jupyterlab \
+  pandas=2.0 \
+  numpy=1.24 \
+  matplotlib=3.7 \
+  seaborn=0.12 \
+  scipy=1.11 \
+  statsmodels=0.14 \
+  -c conda-forge -y
+
+# Activar
+conda activate teaching
+
+# Paquetes educativos
+pip install \
+  wooldridge \
+  jupyter-book \
+  jupyterlab-spellchecker
+```
+
+# Gestión Diaria de Entornos
+
+## Comandos Esenciales
+
+```bash
+# ========================================================================
+# LISTAR Y ACTIVAR
+# ========================================================================
+
+# Listar todos los entornos
+conda env list
+
+# Activar entorno
+conda activate econblog
+
+# Desactivar entorno actual
+conda deactivate
+
+# ========================================================================
+# INSTALAR Y ACTUALIZAR PAQUETES
+# ========================================================================
+
+# Instalar paquete nuevo
+mamba install pandas -y
+
+# Instalar versión específica
+mamba install pandas=2.0.0 -y
+
+# Instalar desde canal específico
+mamba install -c conda-forge paquete -y
+
+# Actualizar paquete
+mamba update pandas -y
+
+# Actualizar todos los paquetes
+mamba update --all -y
+
+# Instalar con pip (si no está en conda)
+pip install wooldridge
+
+# ========================================================================
+# INFORMACIÓN Y BÚSQUEDA
+# ========================================================================
+
+# Listar paquetes instalados
+conda list
+
+# Buscar paquete
+conda search pandas
+
+# Ver info de paquete específico
+conda list pandas
+
+# Ver dependencias de paquete
+conda search pandas --info
+
+# ========================================================================
+# LIMPIAR Y MANTENER
+# ========================================================================
+
+# Limpiar caché de paquetes
+conda clean --all -y
+
+# Ver espacio usado por entornos
+du -sh ~/miniconda3/envs/*
+
+# Eliminar entorno
+conda env remove -n nombre-entorno -y
+
+# ========================================================================
+# EXPORTAR E IMPORTAR
+# ========================================================================
+
+# Exportar entorno actual
+conda env export --no-builds > environment.yml
+
+# Crear entorno desde archivo
+conda env create -f environment.yml
+
+# Actualizar entorno desde archivo
+conda env update -f environment.yml --prune
+```
+
+## Workflow Típico Diario
+
+```bash
+# 1. Activar entorno de blogs
+conda activate econblog
+
+# 2. Navegar al proyecto
+cd ~/achalmaedison/publicaciones/epsilon-y-beta
+
+# 3. Iniciar Jupyter Lab
+jupyter lab
+
+# 4. O trabajar con Quarto
+quarto preview
+
+# 5. Al terminar, desactivar
 conda deactivate
 ```
 
-Esto te llevará de vuelta al entorno base de Conda.
+# Archivos de Requisitos
 
-**Paso 5: Elimina el entorno virtual:**
+## Tipos de Archivos
 
-Si en algún momento deseas eliminar un entorno virtual, ejecuta el siguiente comando:
+| Archivo | Formato | Uso |
+|---------|---------|-----|
+| `environment.yml` | YAML (Conda) | Reproducción exacta de entorno conda |
+| `requirements.txt` | Texto (pip) | Solo paquetes de PyPI |
+| `environment-minimal.yml` | YAML | Solo paquetes esenciales (sin versiones) |
 
-``` bash
-conda env remove --name nombre_del_entorno
+## 1. environment.yml (Completo)
+
+**Exportar automáticamente:**
+
+```bash
+# Activar entorno
+conda activate econblog
+
+# Exportar TODO (incluye pip)
+conda env export --no-builds > environment.yml
 ```
 
-Asegúrate de reemplazar "nombre_del_entorno" con el nombre real del entorno que deseas eliminar.
+**Resultado:** Archivo con todas las dependencias exactas.
 
+## 2. environment-minimal.yml (Simplificado)
 
-**Paso 6: Cambiar entorno**
+**Crear manualmente:**
 
-1. Abre Anaconda Navigator o el Anaconda Prompt (puedes encontrarlo en el menú de inicio de tu sistema operativo).
+```yaml
+name: econblog
 
-2. Una vez que hayas abierto el entorno de Anaconda, puedes verificar los entornos disponibles ejecutando el siguiente comando en el Anaconda Prompt:
+channels:
+
+  - conda-forge
+  - defaults
+
+dependencies:
+
+  - python=3.12
+  - jupyterlab
+  - pandas
+  - statsmodels
+  - pip
+  - pip:
+    - wooldridge
+```
+
+**Ventaja:** Más portable, conda resuelve versiones compatibles.
+
+## 3. requirements.txt (Solo pip)
+
+**Exportar paquetes pip:**
+
+```bash
+# Activar entorno
+conda activate econblog
+
+# Exportar solo pip
+pip freeze > requirements.txt
+```
+
+**Instalar desde requirements.txt:**
+
+```bash
+pip install -r requirements.txt
+```
+
+## 4. Combinar Conda + Pip
+
+**Mejor práctica:**
+
+```yaml
+name: econblog
+
+channels:
+
+  - conda-forge
+
+dependencies:
+  # Paquetes de conda
+  - python=3.12
+  - pandas
+  - matplotlib
+  
+  # Paquetes de pip
+  - pip
+  - pip:
+    - -r file:requirements.txt
+```
+
+**Luego crear `requirements.txt` separado:**
+
+```txt
+wooldridge==0.4.4
+econml==0.14.1
+causalml==0.15.0
+```
+
+# Reproducibilidad y Colaboración
+
+## Escenario 1: Replicar Entorno en Otra Máquina
+
+**En máquina original:**
+
+```bash
+# 1. Activar entorno
+conda activate econblog
+
+# 2. Exportar
+conda env export --no-builds > environment.yml
+
+# 3. Subir a Git
+git add environment.yml
+git commit -m "Add environment configuration"
+git push
+```
+
+**En máquina nueva:**
+
+```bash
+# 1. Clonar repositorio
+git clone https://github.com/achalmed/epsilon-y-beta.git
+cd epsilon-y-beta
+
+# 2. Crear entorno desde archivo
+conda env create -f environment.yml
+
+# 3. Activar
+conda activate econblog
+
+# 4. Verificar
+conda list
+```
+
+## Escenario 2: Compartir con Colaboradores
+
+**Crear archivo `README.md` con instrucciones:**
+
+```markdown
+# Configuración del Entorno
+
+# Prerrequisitos
+
+- Miniconda o Anaconda instalado
+- Git
+
+# Instalación
+
+1. Clonar repositorio:
 
    ```bash
-   conda env list
+   git clone https://github.com/achalmed/epsilon-y-beta.git
+   cd epsilon-y-beta
    ```
 
-   Esto te mostrará una lista de todos los entornos existentes.
-
-3. Para cambiar al entorno de aprendizaje (llamado "learn" en este caso), utiliza el siguiente comando:
+2. Crear entorno:
 
    ```bash
-   conda activate learn
+   conda env create -f environment.yml
    ```
 
-   Esto activará el entorno de aprendizaje y te permitirá trabajar en él.
-
-4. Una vez en el entorno de aprendizaje, es posible que notes que no tiene instalados otros paquetes, aparte de los paquetes oficiales que vienen con Python. Si deseas tener un entorno relativamente limpio, puedes seguir estos pasos:
-
-   - Ejecuta el siguiente comando para abrir el intérprete de Python:
-
-     ```bash
-     python
-     ```
-
-   - Una vez dentro del intérprete de Python, ingresa el siguiente comando para importar el paquete "requests":
-
-     ```python
-     import requests
-     ```
-
-     Verás que se muestra un mensaje indicando que no se puede encontrar el paquete "requests", lo cual es normal.
-
-   - Para salir del intérprete de Python, simplemente ingresa el siguiente comando:
-
-     ```python
-     exit()
-     ```
-
-     Con esto, saldrás del intérprete de Python y volverás al Anaconda Prompt.
-
-
-¡Y eso es todo! Ahora tienes los pasos detallados para configurar y administrar entornos virtuales en Conda.
-
-# Instalación de paquetes y bibliotecas en un entorno virtual
-
-Cuando trabajas en proyectos de Python, es esencial tener acceso a las herramientas y funcionalidades adecuadas.
-
-## Uso de conda install
-
-1.  Asegúrate de tener tu entorno virtual activado. Si aún no lo has hecho, consulta el artículo anterior para aprender cómo activar tu entorno virtual específico.
-
-2.  Abre tu terminal o línea de comandos y ejecuta el siguiente comando para instalar un paquete desde el repositorio de Anaconda:
-
-    ``` bash
-    conda install nombre_del_paquete
-    ```
-
-    Asegúrate de reemplazar "nombre_del_paquete" con el nombre real del paquete que deseas instalar.
-
-3.  Conda buscará el paquete en el repositorio de Anaconda y gestionará las dependencias automáticamente. Sigue las instrucciones en la terminal para confirmar la instalación.
-
-## Uso de pip install
-
-1.  Al igual que antes, asegúrate de tener tu entorno virtual activado.
-
-2.  Ejecuta el siguiente comando en tu terminal para instalar un paquete desde el Python Package Index (PyPI):
-
-    ``` bash
-    pip install nombre_del_paquete
-    ```
-
-    Asegúrate de reemplazar "nombre_del_paquete" con el nombre real del paquete que deseas instalar.
-
-3.  Pip descargará el paquete desde PyPI y lo instalará en tu entorno virtual. Si el paquete tiene dependencias, pip también se encargará de resolverlas.
-
-Conda es especialmente útil para instalar paquetes que son parte del repositorio de Anaconda, mientras que pip es más adecuado para paquetes que se encuentran en PyPI. Ambas herramientas son poderosas y te permiten acceder a una amplia gama de paquetes y bibliotecas para tus proyectos.
-
-## Ver información del paquete de entorno:
-
-   Para ver todos los paquetes instalados en el entorno actual, puedes utilizar el siguiente comando:
+3. Activar entorno:
 
    ```bash
-   conda list
+   conda activate econblog
    ```
 
-   Al ejecutar este comando en el Anaconda Prompt, se mostrará una lista de todos los paquetes instalados en el entorno activo. Esto te permitirá conocer los paquetes y sus respectivas versiones que están disponibles en ese entorno.
-
-## Importar y exportar entornos:
-   Si deseas exportar la información del paquete del entorno actual, puedes utilizar el siguiente comando:
+4. Verificar instalación:
 
    ```bash
-   conda env export > environment.yaml
+   python -c "import pandas, statsmodels; print('Entorno listo')"
    ```
 
-   Este comando guarda la información del paquete en un archivo YAML llamado "environment.yaml". El archivo contendrá la lista de paquetes y sus versiones que están instalados en el entorno actual.
+# Uso
 
-   Esta funcionalidad es útil cuando necesitas recrear el mismo entorno virtual en otro lugar. Para crear un nuevo entorno virtual utilizando el archivo de configuración, puedes utilizar el siguiente comando:
+```bash
+# Activar entorno
+conda activate econblog
 
-   ```bash
-   conda env create -f environment.yaml
-   ```
+# Iniciar Jupyter Lab
+jupyter lab
 
-   Este comando creará un nuevo entorno virtual utilizando el archivo de configuración "environment.yaml". El nuevo entorno tendrá los mismos paquetes y versiones que el entorno original, lo que facilita la replicación del mismo entorno en diferentes sistemas.
+# O previsualizar Quarto
+quarto preview
+```
+```
 
-   Estos pasos son útiles para compartir y recrear entornos virtuales con la misma configuración, lo que asegura que todos los paquetes necesarios estén disponibles.
+## Escenario 3: Actualizar Entorno Existente
+
+**Cuando agregas paquetes nuevos:**
+
+```bash
+# 1. Instalar paquete nuevo
+mamba install nuevo-paquete -y
+
+# 2. Actualizar archivo
+conda env export --no-builds > environment.yml
+
+# 3. Commit y push
+git add environment.yml
+git commit -m "Add nuevo-paquete dependency"
+git push
+```
+
+**En otras máquinas:**
+
+```bash
+# Actualizar entorno desde archivo
+conda env update -f environment.yml --prune
+```
+
+# Integración con Jupyter Lab
+
+## 1. Instalar Jupyter en Cada Entorno
+
+**Importante:** Jupyter debe estar instalado en cada entorno que uses.
+
+```bash
+# En entorno econblog
+conda activate econblog
+mamba install jupyterlab -y
+
+# En entorno scripts-env
+conda activate scripts-env
+mamba install jupyterlab -y
+```
+
+## 2. Configurar Kernels
+
+```bash
+# Activar entorno
+conda activate econblog
+
+# Instalar kernel
+python -m ipykernel install --user --name econblog --display-name "Python (econblog)"
+
+# Verificar kernels disponibles
+jupyter kernelspec list
+```
+
+**Resultado:** Podrás seleccionar "Python (econblog)" en Jupyter Lab.
+
+## 3. Iniciar Jupyter Lab
+
+```bash
+# Desde entorno específico
+conda activate econblog
+jupyter lab --notebook-dir=~/Proyectos/epsilon-y-beta
+
+# O usar alias (configurado anteriormente)
+jlab-blog
+```
+
+## 4. Extensiones Útiles para Jupyter Lab
+
+```bash
+# Activar entorno
+conda activate econblog
+
+# Extensiones recomendadas
+mamba install -c conda-forge \
+  jupyterlab-git \
+  jupyterlab-lsp \
+  jupyterlab-spellchecker \
+  -y
+
+# Extensión para Quarto
+pip install jupyterlab-quarto
+```
+
+## 5. Configuración de Jupyter
+
+**Crear archivo `~/.jupyter/jupyter_lab_config.py`:**
+
+```python
+# Configuración personalizada de Jupyter Lab
+c.ServerApp.open_browser = True
+c.ServerApp.notebook_dir = '/home/achalmaedison/Proyectos'
+c.ServerApp.terminado_settings = {'shell_command': ['/usr/bin/fish']}
+```
+
+# Integración con VS Code
+
+## 1. Instalar Extensión de Python
+
+**En VS Code:**
+1. Ir a Extensions (Ctrl+Shift+X)
+2. Buscar "Python"
+3. Instalar "Python" de Microsoft
+
+## 2. Seleccionar Intérprete de Conda
+
+**Método 1: Command Palette**
+
+1. Abrir Command Palette (Ctrl+Shift+P)
+2. Escribir: "Python: Select Interpreter"
+3. Seleccionar: `Python 3.12.x ('econblog')`
+
+**Método 2: Barra de Estado**
+
+1. Click en la barra inferior (muestra Python actual)
+2. Seleccionar entorno deseado
+
+## 3. Configurar Workspace
+
+**Crear `.vscode/settings.json` en proyecto:**
+
+```json
+{
+  "python.defaultInterpreterPath": "/home/achalmaedison/miniconda3/envs/econblog/bin/python",
+  "python.terminal.activateEnvironment": true,
+  "python.formatting.provider": "black",
+  "python.linting.enabled": true,
+  "python.linting.ruffEnabled": true,
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
+  }
+}
+```
+
+## 4. Terminal Integrado
+
+**VS Code activará automáticamente el entorno** cuando abras una terminal.
+
+**Verificar:**
+
+```bash
+# En terminal de VS Code
+echo $CONDA_DEFAULT_ENV
+# Debe mostrar: econblog
+```
+
+# Resolución de Problemas
+
+## Problema 1: "Kernel died" en Jupyter
+
+**Causa:** Paquetes incompatibles o falta de memoria.
+
+**Solución:**
+
+```bash
+# Reinstalar kernel
+conda activate econblog
+python -m ipykernel install --user --name econblog --display-name "Python (econblog)" --force
+
+# Verificar
+jupyter kernelspec list
+
+# Si persiste, recrear entorno
+conda env export --no-builds > backup-environment.yml
+conda deactivate
+conda env remove -n econblog -y
+conda env create -f backup-environment.yml
+```
+
+## Problema 2: "ModuleNotFoundError" en Jupyter
+
+**Causa:** Jupyter usa kernel de otro entorno.
+
+**Solución:**
+
+```bash
+# Verificar qué kernel está activo
+# En Jupyter, ir a Kernel > Change kernel > Python (econblog)
+
+# O reinstalar ipykernel
+conda activate econblog
+mamba install ipykernel -y
+python -m ipykernel install --user --name econblog --display-name "Python (econblog)"
+```
+
+## Problema 3: Conflictos de Versiones
+
+**Causa:** Paquetes incompatibles entre sí.
+
+**Solución:**
+
+```bash
+# Opción 1: Usar mamba (mejor resolver)
+conda activate econblog
+mamba install paquete-conflictivo -y
+
+# Opción 2: Especificar versiones compatibles
+mamba install paquete1=1.0 paquete2=2.0 -y
+
+# Opción 3: Recrear entorno limpio
+conda env remove -n econblog -y
+mamba create -n econblog -f environment.yml
+```
+
+## Problema 4: Entorno Muy Grande
+
+**Causa:** Demasiados paquetes instalados.
+
+**Solución:**
+
+```bash
+# Ver tamaño de entorno
+du -sh ~/miniconda3/envs/econblog
+
+# Limpiar paquetes no usados
+conda clean --all -y
+
+# Recrear entorno minimalista
+conda env export --no-builds > backup.yml
+# Editar backup.yml y eliminar paquetes innecesarios
+conda env remove -n econblog -y
+conda env create -f backup.yml
+```
+
+## Problema 5: Pip vs Conda Conflicts
+
+**Causa:** Mezclar pip y conda incorrectamente.
+
+**Mejores Prácticas:**
+
+```bash
+# 1. Siempre instalar con conda/mamba primero
+mamba install pandas matplotlib -y
+
+# 2. Usar pip solo para paquetes no disponibles en conda
+pip install wooldridge
+
+# 3. NUNCA mezclar en el mismo comando
+# INCORRECTO:
+# conda install pandas && pip install wooldridge  #
+
+# CORRECTO:
+mamba install pandas -y  # Primero conda
+pip install wooldridge   # Luego pip
+```
+
+# Workflows Completos
+
+## Workflow 1: Nuevo Post de Blog
+
+```bash
+# 1. Activar entorno
+conda activate econblog
+
+# 2. Ir al blog
+cd ~/Proyectos/epsilon-y-beta
+
+# 3. Crear carpeta de post
+mkdir -p posts/2026-01-analisis-inflacion
+cd posts/2026-01-analisis-inflacion
+
+# 4. Crear archivo Quarto
+nano index.qmd
+```
+
+**Contenido de `index.qmd`:**
+
+```yaml
+---
+title: "Análisis de Inflación en Perú 2010-2025"
+author: "Edison Achalma"
+date: "2026-01-03"
+categories: [macroeconomía, inflación, análisis-temporal]
+jupyter: python3
+---
+
+# Introducción
+
+Análisis de la inflación en Perú usando datos del BCRP.
+
+``{python}
+import pandas as pd
+import matplotlib.pyplot as plt
+import wooldridge as wd
+``
+```
+
+Continuar
+
+```bash
+# 5. Previsualizar
+quarto preview
+
+# 6. O usar Jupyter para análisis exploratorio
+jupyter lab
+
+# 7. Renderizar final
+quarto render
+
+# 8. Commit y push
+git add .
+git commit -m "Add: Análisis de inflación 2010-2025"
+git push
+```
+
+## Workflow 2: Ejecutar Script de Automatización
+
+```bash
+# 1. Activar entorno de scripts
+conda activate scripts-env
+
+# 2. Ir al directorio de scripts
+cd ~/Proyectos/scripts/scripts_for_quarto
+
+# 3. Ejecutar script
+python 1_sincronizar_fecha_carpeta_en_index_qmd.py
+
+# 4. Verificar resultados
+cat ../epsilon-y-beta/posts/2026-01-analisis-inflacion/index.qmd
+
+# 5. Desactivar entorno
+conda deactivate
+```
+
+## Workflow 3: Análisis Econométrico Completo
+
+```bash
+# 1. Activar entorno
+conda activate econblog
+
+# 2. Iniciar Jupyter Lab
+jupyter lab --notebook-dir=~/Proyectos/epsilon-y-beta/posts
+
+# 3. En Jupyter, crear nuevo notebook
+# - Kernel: Python (econblog)
+# - Nombre: analisis-econometrico.ipynb
+
+# 4. Desarrollar análisis completo
+
+# 5. Convertir notebook a Quarto
+quarto convert analisis-econometrico.ipynb
+
+# 6. Renderizar
+quarto render analisis-econometrico.qmd
+
+# 7. Revisar resultado
+firefox analisis-econometrico.html
+```
+
+## Workflow 4: Actualizar Entorno Después de Cambios
+
+```bash
+# 1. Alguien actualizó environment.yml en GitHub
+cd ~/Proyectos/epsilon-y-beta
+git pull
+
+# 2. Actualizar tu entorno local
+conda env update -f environment.yml --prune
+
+# 3. Verificar que todo funcione
+conda activate econblog
+python -c "import pandas, statsmodels; print('Actualización exitosa')"
+```
+
+## Workflow 5: Crear Entorno Temporal para Experimento
+
+```bash
+# 1. Crear entorno temporal rápido
+mamba create -n temp-experiment python=3.12 pandas numpy matplotlib -y
+
+# 2. Activar
+conda activate temp-experiment
+
+# 3. Experimentar
+python mi_experimento.py
+
+# 4. Si funciona, agregar paquetes a entorno principal
+# Si no, eliminar entorno sin afectar nada
+conda deactivate
+conda env remove -n temp-experiment -y
+```
+
+# Checklist de Mejores Prácticas
+
+## Antes de Crear un Entorno
+
+- [ ] Definir propósito claro del entorno
+- [ ] Listar paquetes necesarios
+- [ ] Verificar disponibilidad en conda-forge
+- [ ] Planificar estructura de archivos `environment.yml`
+
+## Al Crear un Entorno
+
+- [ ] Usar `mamba` en lugar de `conda` (más rápido)
+- [ ] Especificar versión de Python
+- [ ] Instalar paquetes de conda primero
+- [ ] Luego instalar paquetes de pip
+- [ ] Verificar que todo funcione
+- [ ] Exportar a `environment.yml`
+
+## Uso Diario
+
+- [ ] Activar entorno apropiado para cada tarea
+- [ ] NO instalar paquetes en `base`
+- [ ] Documentar cambios en `environment.yml`
+- [ ] Versionar archivos de configuración en Git
+- [ ] Limpiar caché periódicamente
+
+## Colaboración
+
+- [ ] Mantener `environment.yml` actualizado
+- [ ] Agregar instrucciones en `README.md`
+- [ ] Usar versiones específicas para reproducibilidad
+- [ ] Probar entorno en máquina limpia antes de compartir
+
+
+# Mis Comandos de Referencia Rápida
+
+## Gestión Básica
+
+```bash
+# Crear entorno
+mamba create -n nombre python=3.12 paquetes -y
+
+# Listar entornos
+conda env list
+
+# Activar
+conda activate nombre
+
+# Desactivar
+conda deactivate
+
+# Eliminar
+conda env remove -n nombre -y
+```
+
+## Paquetes
+
+```bash
+# Instalar
+mamba install paquete -y
+
+# Actualizar
+mamba update paquete -y
+
+# Desinstalar
+conda remove paquete -y
+
+# Listar
+conda list
+```
+
+## Exportar/Importar
+
+```bash
+# Exportar completo
+conda env export --no-builds > environment.yml
+
+# Exportar minimal
+conda env export --from-history > environment-minimal.yml
+
+# Crear desde archivo
+conda env create -f environment.yml
+
+# Actualizar desde archivo
+conda env update -f environment.yml --prune
+```
 
 # Coclusión
 
-En conclusión, el uso de Anaconda se presenta como una solución elegante y sencilla para abordar las desventajas de entorno de Python. A través de Anaconda, se puede gestionar de manera eficiente la instalación y actualización de paquetes, así como la creación y exportación de entornos virtuales. Sin embargo, es importante destacar que la implementación de estas funcionalidades no es mágica, requiere comprensión y familiaridad con los comandos y procesos asociados.
+En conclusión, el uso de Anaconda o Miniconda se presenta como una solución elegante y sencilla para abordar las desventajas de entorno de Python. A través de miniconda, se puede gestionar de manera eficiente la instalación y actualización de paquetes, así como la creación y exportación de entornos virtuales. Sin embargo, la implementación de estas funcionalidades no es mágica, requiere comprensión y familiaridad con los comandos y procesos asociados.
 
-Además de la gestión de paquetes, Anaconda ofrece una amplia gama de herramientas y paquetes para el análisis de datos, lo cual constituye otro aspecto valioso de su funcionalidad. Sin embargo, en este contexto, nos hemos enfocado en aprender cómo utilizar Anaconda para cambiar el entorno de desarrollo de manera efectiva, lo cual ha representado una mejora significativa en comparación con el enfoque tradicional.
+Además de la gestión de paquetes, Anaconda ofrece una amplia gama de herramientas y paquetes para el análisis de datos, lo cual constituye otro aspecto valioso de su funcionalidad.
 
-**¡Happy coding!**
+# Recursos Adicionales
+
+**Documentación:**
+
+- Conda: https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
+- Mamba: https://mamba.readthedocs.io/en/latest/user_guide/mamba.html
+- Jupyter: https://jupyter.org/documentation
+
+
 
 # Publicaciones Similares
 
