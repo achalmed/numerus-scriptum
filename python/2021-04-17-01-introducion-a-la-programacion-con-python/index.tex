@@ -1,5 +1,5 @@
 \documentclass[
-  jou,
+  doc,
   floatsintext,
   longtable,
   a4paper,
@@ -12,6 +12,8 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
+\geometry{inner=1in, outer=1in}
+\fancyhfoffset[LE,RO]{0cm}
 
 
 \usepackage[bidi=default]{babel}
@@ -78,6 +80,46 @@
 
 
 
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -123,10 +165,10 @@
 
 
 
-\title{Introducción práctica a Python}
+\title{Introducción a Python para Economistas}
 
 
-\shorttitle{MOTIVACIÓN Y FUNDAMENTOS}
+\shorttitle{INTRODUCCION A PYTHON}
 
 
 \usepackage{etoolbox}
@@ -163,51 +205,23 @@ contenido final del artículo. }
 \par{   El autor no tiene conflictos de interés que revelar.    Los
 roles de autor se clasificaron utilizando la taxonomía de roles de
 colaborador (CRediT; https://credit.niso.org/) de la siguiente
-manera:  Edison Achalma:   conceptualización, redacción}
+manera:  Edison Achalma:   conceptualización, metodología, análisis
+formal, investigación, recursos, curación de
+datos, redacción, visualización, supervisión, administración del
+proyecto}
 \par{La correspondencia relativa a este artículo debe dirigirse a Edison
-Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
+Achalma, Escuela Profesional de Economía, Universidad Nacional de San
+Cristóbal de Huamanga, Portal Independencia N°
+57, Ayacucho, AYA 5001, Perú, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
 }
-
-\usepackage{pbalance}
-% \usepackage{float}
-\makeatletter
-\let\oldtpt\ThreePartTable
-\let\endoldtpt\endThreePartTable
-\def\ThreePartTable{\@ifnextchar[\ThreePartTable@i \ThreePartTable@ii}
-\def\ThreePartTable@i[#1]{\begin{figure}[!htbp]
-\onecolumn
-\begin{minipage}{0.485\textwidth}
-\oldtpt[#1]
-}
-\def\ThreePartTable@ii{\begin{figure}[!htbp]
-\onecolumn
-\begin{minipage}{0.48\textwidth}
-\oldtpt
-}
-\def\endThreePartTable{
-\endoldtpt
-\end{minipage}
-\twocolumn
-\end{figure}}
-\makeatother
-
 
 \makeatletter
-\let\endoldlt\endlongtable		
+\let\endoldlt\endlongtable
 \def\endlongtable{
 \hline
-\endoldlt}
+\endoldlt
+}
 \makeatother
-
-\newenvironment{twocolumntable}% environment name
-{% begin code
-\begin{table*}[!htbp]%
-\onecolumn%
-}%
-{%
-\twocolumn%
-\end{table*}%
-}% end code
 
 \urlstyle{same}
 
@@ -245,8 +259,8 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 \@ifpackageloaded{float}{}{\usepackage{float}}
 \floatstyle{ruled}
 \@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
-\floatname{codelisting}{Listing}
-\newcommand*\listoflistings{\listof{codelisting}{Lista de Listings}}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listados}}
 \makeatother
 \makeatletter
 \makeatother
@@ -296,7 +310,7 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 \hypertarget{toc}{}
 \tableofcontents
 \newpage
-\section[Introduction]{Introducción práctica a Python}
+\section[Introduction]{Introducción a Python para Economistas}
 
 \setcounter{secnumdepth}{3}
 
@@ -305,8 +319,1651 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 
 
 
-Este artículo está actualmente en proceso de edición, y todas las
-secciones serán ampliadas y refinadas en futuras revisiones.
+\section{¿Por qué es importante aprender un lenguaje de
+programación?}\label{por-quuxe9-es-importante-aprender-un-lenguaje-de-programaciuxf3n}
+
+\subsection{La transformación digital de la
+economía}\label{la-transformaciuxf3n-digital-de-la-economuxeda}
+
+En las últimas décadas, la economía ha experimentado una revolución
+digital sin precedentes. Como economistas, nos enfrentamos diariamente
+a:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Grandes volúmenes de datos}: Series temporales
+  macroeconómicas, microdatos de encuestas de hogares, datos de
+  transacciones financieras, registros administrativos, entre otros.
+\item
+  \textbf{Análisis cada vez más complejos}: Modelos econométricos
+  avanzados, análisis de impacto, predicciones económicas, evaluación de
+  políticas públicas.
+\item
+  \textbf{Necesidad de reproducibilidad}: La investigación económica
+  moderna exige que nuestros análisis sean replicables y transparentes.
+\end{itemize}
+
+\subsection{Ventajas de programar como
+economista}\label{ventajas-de-programar-como-economista}
+
+\textbf{Automatización de tareas repetitivas}
+
+Imagina que necesitas calcular el índice de Gini para los 25
+departamentos del Perú utilizando la Encuesta Nacional de Hogares
+(ENAHO). Sin programación, esto implicaría:
+
+\begin{itemize}
+\tightlist
+\item
+  Abrir cada archivo de datos manualmente
+\item
+  Realizar cálculos en Excel repetidamente
+\item
+  Alto riesgo de errores humanos
+\item
+  Horas o días de trabajo
+\end{itemize}
+
+Con programación, este proceso se reduce a minutos y es 100\%
+reproducible.
+
+\textbf{Análisis de datos más sofisticados}
+
+La programación te permite:
+
+\begin{itemize}
+\tightlist
+\item
+  Implementar modelos econométricos avanzados (VAR, GARCH, modelos de
+  panel dinámico)
+\item
+  Realizar simulaciones de Monte Carlo para análisis de riesgo
+\item
+  Aplicar técnicas de machine learning para predicción económica
+\item
+  Crear visualizaciones interactivas de datos económicos
+\end{itemize}
+
+\textbf{Ventaja competitiva en el mercado laboral}
+
+Las instituciones que más demandan economistas hoy en día buscan
+profesionales con habilidades de programación:
+
+\begin{itemize}
+\tightlist
+\item
+  Banco Central de Reserva del Perú (BCRP)
+\item
+  Ministerio de Economía y Finanzas (MEF)
+\item
+  Instituciones financieras privadas
+\item
+  Consultorias económicas
+\item
+  Organismos internacionales (BID, Banco Mundial, FMI)
+\end{itemize}
+
+\subsection{Casos de uso en economía}\label{casos-de-uso-en-economuxeda}
+
+\textbf{Ejemplo 1: Análisis macroeconómico}
+
+Un economista del BCRP necesita analizar la relación entre la tasa de
+interés y la inflación en los últimos 20 años. Con Python puede:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Importar datos del BCRP}
+\CommentTok{\# Limpiar y transformar los datos}
+\CommentTok{\# Estimar modelos VAR}
+\CommentTok{\# Generar funciones impulso{-}respuesta}
+\CommentTok{\# Crear gráficos profesionales para reportes}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Ejemplo 2: Evaluación de impacto}
+
+Un investigador evalúa el impacto de un programa social en los ingresos
+familiares:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Cargar microdatos de encuestas}
+\CommentTok{\# Implementar matching propensity score}
+\CommentTok{\# Estimar diferencias en diferencias}
+\CommentTok{\# Calcular errores estándar robustos}
+\CommentTok{\# Generar tablas de resultados automáticas}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Ejemplo 3: Predicción económica}
+
+Un analista financiero predice el tipo de cambio:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Obtener datos históricos del tipo de cambio}
+\CommentTok{\# Aplicar modelos ARIMA y GARCH}
+\CommentTok{\# Comparar con modelos de machine learning}
+\CommentTok{\# Evaluar precisión de predicciones}
+\CommentTok{\# Automatizar reportes diarios}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Curva de aprendizaje y alcance de distintos
+lenguajes}\label{curva-de-aprendizaje-y-alcance-de-distintos-lenguajes}
+
+\subsection{Comparación de lenguajes para análisis
+económico}\label{comparaciuxf3n-de-lenguajes-para-anuxe1lisis-econuxf3mico}
+
+\subsubsection{\texorpdfstring{\textbf{Stata}}{Stata}}\label{stata}
+
+\textbf{Ventajas:}
+
+\begin{itemize}
+\tightlist
+\item
+  Diseñado específicamente para econometría
+\item
+  Sintaxis intuitiva para economistas
+\item
+  Excelente documentación de métodos econométricos
+\item
+  Ampliamente usado en investigación académica
+\end{itemize}
+
+\textbf{Desventajas:}
+
+\begin{itemize}
+\tightlist
+\item
+  Licencia costosa (aproximadamente \$1,200 USD para estudiantes)
+\item
+  Limitado para tareas fuera de econometría tradicional
+\item
+  Menos flexible para automatización compleja
+\item
+  Comunidad más pequeña que Python o R
+\end{itemize}
+
+\textbf{Curva de aprendizaje:} Baja-Media (2-3 meses para dominar lo
+básico)
+
+\textbf{Ejemplo en Stata:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{* Regresión simple}
+\KeywordTok{regress}\NormalTok{ ingreso educacion experiencia}
+
+\NormalTok{* Efectos fijos}
+\KeywordTok{xtreg}\NormalTok{ ingreso educacion, }\KeywordTok{fe}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{\texorpdfstring{\textbf{R}}{R}}\label{r}
+
+\textbf{Ventajas:}
+
+\begin{itemize}
+\tightlist
+\item
+  Gratuito y de código abierto
+\item
+  Excelente para estadística y visualización de datos
+\item
+  Gran cantidad de paquetes econométricos (plm, AER, forecast)
+\item
+  RStudio como entorno amigable
+\end{itemize}
+
+\textbf{Desventajas:}
+
+\begin{itemize}
+\tightlist
+\item
+  Sintaxis puede ser inconsistente entre paquetes
+\item
+  Menor rendimiento con grandes volúmenes de datos
+\item
+  Menos usado fuera del ámbito académico/estadístico
+\end{itemize}
+
+\textbf{Curva de aprendizaje:} Media (3-4 meses para dominar lo básico)
+
+\textbf{Ejemplo en R:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Regresión simple}
+\NormalTok{modelo }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(ingreso }\SpecialCharTok{\textasciitilde{}}\NormalTok{ educacion }\SpecialCharTok{+}\NormalTok{ experiencia, }\AttributeTok{data =}\NormalTok{ datos)}
+\FunctionTok{summary}\NormalTok{(modelo)}
+
+\CommentTok{\# Visualización}
+\FunctionTok{ggplot}\NormalTok{(datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ educacion, }\AttributeTok{y =}\NormalTok{ ingreso)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{\texorpdfstring{\textbf{Python}}{Python}}\label{python}
+
+\textbf{Ventajas:}
+
+\begin{itemize}
+\tightlist
+\item
+  Gratuito y de código abierto
+\item
+  Lenguaje de propósito general (útil más allá del análisis de datos)
+\item
+  Ecosistema completo: análisis, machine learning, web scraping,
+  automatización
+\item
+  Gran demanda en el mercado laboral
+\item
+  Comunidad masiva y en crecimiento
+\item
+  Integración con otras tecnologías
+\end{itemize}
+
+\textbf{Desventajas:}
+
+\begin{itemize}
+\tightlist
+\item
+  Curva de aprendizaje inicial más pronunciada
+\item
+  Requiere aprender varios paquetes (pandas, numpy, statsmodels)
+\item
+  Menos paquetes econométricos especializados que Stata o R
+\end{itemize}
+
+\textbf{Curva de aprendizaje:} Media-Alta (4-6 meses para dominar lo
+básico)
+
+\textbf{Ejemplo en Python:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\ImportTok{import}\NormalTok{ statsmodels.formula.api }\ImportTok{as}\NormalTok{ smf}
+
+\CommentTok{\# Regresión simple}
+\NormalTok{modelo }\OperatorTok{=}\NormalTok{ smf.ols(}\StringTok{\textquotesingle{}ingreso \textasciitilde{} educacion + experiencia\textquotesingle{}}\NormalTok{, data}\OperatorTok{=}\NormalTok{datos).fit()}
+\BuiltInTok{print}\NormalTok{(modelo.summary())}
+
+\CommentTok{\# Visualización}
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+\NormalTok{plt.scatter(datos[}\StringTok{\textquotesingle{}educacion\textquotesingle{}}\NormalTok{], datos[}\StringTok{\textquotesingle{}ingreso\textquotesingle{}}\NormalTok{])}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{\texorpdfstring{\textbf{C++}}{C++}}\label{c}
+
+\textbf{Ventajas:}
+
+\begin{itemize}
+\tightlist
+\item
+  Máximo rendimiento computacional
+\item
+  Control total sobre recursos del sistema
+\end{itemize}
+
+\textbf{Desventajas:}
+
+\begin{itemize}
+\tightlist
+\item
+  Curva de aprendizaje muy alta
+\item
+  Desarrollo lento
+\item
+  No diseñado para análisis de datos
+\item
+  Innecesario para la mayoría de aplicaciones en economía
+\end{itemize}
+
+\textbf{Curva de aprendizaje:} Muy Alta (12+ meses)
+
+\subsection{Tabla comparativa}\label{tabla-comparativa}
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule\noalign{}
+Característica & Stata & R & Python & C++ \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Costo & Alto & Gratis & Gratis & Gratis \\
+Curva de aprendizaje & Baja & Media & Media & Alta \\
+Econometría & Excelente & Muy buena & Buena & Baja \\
+Machine Learning & Básico & Muy buena & Excelente & Media \\
+Visualización & Buena & Excelente & Muy buena & Baja \\
+Automatización & Básica & Buena & Excelente & Muy buena \\
+Velocidad de ejecución & Media & Baja & Media & Excelente \\
+Demanda laboral & Media & Media & Muy alta & Alta \\
+Tamaño de comunidad & Media & Grande & Muy grande & Grande \\
+\end{longtable}
+
+\subsection{Recomendación para
+economistas}\label{recomendaciuxf3n-para-economistas}
+
+\textbf{Si eres estudiante de pregrado:}
+
+\begin{itemize}
+\tightlist
+\item
+  Comienza con \textbf{Python}. Te dará la mayor versatilidad y mejores
+  oportunidades laborales.
+\item
+  Aprende Stata si tu programa lo requiere (muchos cursos de econometría
+  lo usan).
+\end{itemize}
+
+\textbf{Si eres estudiante de posgrado en economía:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Python} o \textbf{R}, dependiendo de tu área de
+  especialización.
+\item
+  Macroeconomía/Finanzas: Python
+\item
+  Microeconometría/Evaluación de impacto: R o Python
+\item
+  Economía computacional: Python definitivamente
+\end{itemize}
+
+\textbf{Si trabajas en el sector público:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Python} o \textbf{Stata}, dependiendo de la institución.
+\item
+  MEF y BCRP están adoptando cada vez más Python.
+\end{itemize}
+
+\section{¿Qué es Data Science? ¿Qué es Machine
+Learning?}\label{quuxe9-es-data-science-quuxe9-es-machine-learning}
+
+\subsection{Data Science (Ciencia de
+Datos)}\label{data-science-ciencia-de-datos}
+
+\textbf{Definición:}
+
+Data Science es un campo interdisciplinario que utiliza métodos
+científicos, procesos, algoritmos y sistemas para extraer conocimiento e
+insights de datos estructurados y no estructurados.
+
+\textbf{En términos económicos:}
+
+Data Science es el conjunto de técnicas y herramientas que nos permiten:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Recolectar} datos económicos de múltiples fuentes
+\item
+  \textbf{Limpiar y procesar} datos (a menudo el 80\% del trabajo)
+\item
+  \textbf{Analizar} patrones y relaciones
+\item
+  \textbf{Visualizar} resultados de forma comprensible
+\item
+  \textbf{Comunicar} hallazgos para la toma de decisiones
+\end{enumerate}
+
+\textbf{Componentes del Data Science:}
+
+\begin{verbatim}
+Data Science = Matemáticas + Estadística + Programación + Conocimiento del dominio
+\end{verbatim}
+
+Para economistas:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Matemáticas}: Cálculo, álgebra lineal, optimización
+\item
+  \textbf{Estadística}: Inferencia, pruebas de hipótesis, econometría
+\item
+  \textbf{Programación}: Python, SQL, manejo de datos
+\item
+  \textbf{Conocimiento del dominio}: Teoría económica, instituciones,
+  contexto
+\end{itemize}
+
+\subsection{Machine Learning (Aprendizaje
+Automático)}\label{machine-learning-aprendizaje-automuxe1tico}
+
+\textbf{Definición:}
+
+Machine Learning es un subcampo de la inteligencia artificial que
+permite a las computadoras aprender patrones de los datos sin ser
+programadas explícitamente.
+
+\textbf{Diferencia con econometría tradicional:}
+
+\textbf{Econometría tradicional:}
+
+\begin{itemize}
+\tightlist
+\item
+  Enfoque: Inferencia causal y prueba de teorías
+\item
+  Objetivo: Entender \textbf{por qué} sucede algo
+\item
+  Ejemplo: ¿Cuál es el efecto causal de la educación sobre los ingresos?
+\item
+  Prioridad: Interpretabilidad y validez causal
+\end{itemize}
+
+\textbf{Machine Learning:}
+
+\begin{itemize}
+\tightlist
+\item
+  Enfoque: Predicción y reconocimiento de patrones
+\item
+  Objetivo: Predecir \textbf{qué} va a suceder
+\item
+  Ejemplo: ¿Cuál será el ingreso de una persona dado su perfil?
+\item
+  Prioridad: Precisión predictiva
+\end{itemize}
+
+\subsection{Tipos de Machine Learning}\label{tipos-de-machine-learning}
+
+\subsubsection{Aprendizaje Supervisado (Supervised
+Learning)}\label{aprendizaje-supervisado-supervised-learning}
+
+Aprendemos de datos etiquetados (conocemos la respuesta correcta).
+
+\textbf{Ejemplos:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Clasificación}: Predecir si una empresa caerá en default
+  (sí/no)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Variable objetivo: Binaria (default o no default)
+  \item
+    Algoritmos: Regresión logística, árboles de decisión, random forests
+  \end{itemize}
+\item
+  \textbf{Regresión}: Predecir el precio de una vivienda
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Variable objetivo: Continua (precio en soles)
+  \item
+    Algoritmos: Regresión lineal, regresión ridge, redes neuronales
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{Aprendizaje No Supervisado (Unsupervised
+Learning)}\label{aprendizaje-no-supervisado-unsupervised-learning}
+
+Encontramos patrones en datos sin etiquetas.
+
+\textbf{Ejemplos:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Clustering}: Segmentar consumidores en grupos similares
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Identificar perfiles de ahorradores
+  \item
+    Agrupar países por nivel de desarrollo
+  \end{itemize}
+\item
+  \textbf{Reducción de dimensionalidad}: Simplificar datos con muchas
+  variables
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Análisis de componentes principales (PCA)
+  \item
+    Crear índices sintéticos
+  \end{itemize}
+\end{enumerate}
+
+\subsection{Aplicaciones de Machine Learning en
+economía}\label{aplicaciones-de-machine-learning-en-economuxeda}
+
+\subsubsection{Caso 1: Predicción de morosidad
+bancaria}\label{caso-1-predicciuxf3n-de-morosidad-bancaria}
+
+Un banco necesita predecir qué clientes tienen mayor probabilidad de no
+pagar su préstamo.
+
+\textbf{Enfoque tradicional (Regresión logística):}
+
+\begin{verbatim}
+P(default) = f(ingresos, historial_crediticio, edad, educación)
+\end{verbatim}
+
+\textbf{Enfoque ML (Random Forest):}
+
+\begin{itemize}
+\tightlist
+\item
+  Considera interacciones complejas entre variables
+\item
+  Puede capturar relaciones no lineales
+\item
+  Mayor precisión predictiva (pero menos interpretable)
+\end{itemize}
+
+\subsubsection{Caso 2: Detección de fraude
+fiscal}\label{caso-2-detecciuxf3n-de-fraude-fiscal}
+
+SUNAT quiere identificar empresas con alta probabilidad de evasión
+tributaria.
+
+\textbf{Variables:}
+
+\begin{itemize}
+\tightlist
+\item
+  Ingresos declarados vs.~estimados por sector
+\item
+  Patrones inusuales en deducciones
+\item
+  Relaciones con proveedores
+\item
+  Historial de fiscalizaciones
+\end{itemize}
+
+\textbf{Algoritmo:} Anomaly detection o clasificación supervisada
+
+\subsubsection{Caso 3: Predicción del tipo de
+cambio}\label{caso-3-predicciuxf3n-del-tipo-de-cambio}
+
+\textbf{Modelos tradicionales:}
+
+\begin{itemize}
+\tightlist
+\item
+  ARIMA: Serie temporal univariada
+\item
+  VAR: Múltiples series, relaciones lineales
+\end{itemize}
+
+\textbf{Modelos ML:}
+
+\begin{itemize}
+\tightlist
+\item
+  Redes neuronales LSTM: Capturan patrones temporales complejos
+\item
+  Ensemble methods: Combinan múltiples modelos para mejor predicción
+\end{itemize}
+
+\subsection{La revolución del Big Data en
+economía}\label{la-revoluciuxf3n-del-big-data-en-economuxeda}
+
+\textbf{Nuevas fuentes de datos:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Datos transaccionales}: Compras con tarjetas de crédito en
+  tiempo real
+\item
+  \textbf{Web scraping}: Precios de e-commerce, anuncios de empleo
+\item
+  \textbf{Redes sociales}: Sentimiento económico, expectativas
+\item
+  \textbf{Imágenes satelitales}: Actividad económica nocturna,
+  agricultura
+\item
+  \textbf{Datos de telefonía}: Movilidad, redes sociales
+\end{enumerate}
+
+\textbf{Ejemplo: Medición de pobreza con imágenes satelitales}
+
+Investigadores han usado machine learning para:
+
+\begin{itemize}
+\tightlist
+\item
+  Analizar imágenes satelitales de luz nocturna
+\item
+  Predecir niveles de ingreso y pobreza
+\item
+  Útil en países con escasas encuestas de hogares
+\end{itemize}
+
+\textbf{Proceso:} 1. Recolectar imágenes satelitales 2. Entrenar modelos
+de visión computacional 3. Predecir indicadores económicos 4. Validar
+con encuestas tradicionales
+
+\section{¿Por qué Python?}\label{por-quuxe9-python}
+
+\subsection{Python en el ecosistema de Data
+Science}\label{python-en-el-ecosistema-de-data-science}
+
+Python se ha convertido en el lenguaje dominante para Data Science y
+Machine Learning. Según encuestas recientes:
+
+\begin{itemize}
+\tightlist
+\item
+  65\% de científicos de datos usan Python como lenguaje principal
+\item
+  9 de las 10 principales empresas tecnológicas usan Python
+\end{itemize}
+
+\subsection{Ventajas específicas de Python para
+economistas}\label{ventajas-especuxedficas-de-python-para-economistas}
+
+\subsubsection{1. Ecosistema completo para análisis
+económico}\label{ecosistema-completo-para-anuxe1lisis-econuxf3mico}
+
+\textbf{Librerías fundamentales:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{NumPy}: Computación numérica, álgebra lineal
+\item
+  \textbf{Pandas}: Manipulación de datos (como Excel pero programable)
+\item
+  \textbf{Matplotlib/Seaborn}: Visualización de datos
+\item
+  \textbf{Statsmodels}: Econometría tradicional
+\item
+  \textbf{Scikit-learn}: Machine Learning
+\item
+  \textbf{TensorFlow/PyTorch}: Deep Learning
+\end{itemize}
+
+\textbf{Ejemplo de workflow típico:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd                }\CommentTok{\# Cargar y limpiar datos}
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt    }\CommentTok{\# Visualizar}
+\ImportTok{import}\NormalTok{ statsmodels.api }\ImportTok{as}\NormalTok{ sm      }\CommentTok{\# Econometría}
+\ImportTok{from}\NormalTok{ sklearn.ensemble }\ImportTok{import}\NormalTok{ RandomForestRegressor  }\CommentTok{\# ML}
+
+\CommentTok{\# 1. Cargar datos}
+\NormalTok{datos }\OperatorTok{=}\NormalTok{ pd.read\_csv(}\StringTok{\textquotesingle{}enaho\_2023.csv\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# 2. Limpiar y transformar}
+\NormalTok{datos }\OperatorTok{=}\NormalTok{ datos.dropna()}
+\NormalTok{datos[}\StringTok{\textquotesingle{}log\_ingreso\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ np.log(datos[}\StringTok{\textquotesingle{}ingreso\textquotesingle{}}\NormalTok{])}
+
+\CommentTok{\# 3. Análisis estadístico}
+\NormalTok{modelo\_ols }\OperatorTok{=}\NormalTok{ sm.OLS(datos[}\StringTok{\textquotesingle{}log\_ingreso\textquotesingle{}}\NormalTok{], datos[[}\StringTok{\textquotesingle{}educacion\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}experiencia\textquotesingle{}}\NormalTok{]]).fit()}
+\BuiltInTok{print}\NormalTok{(modelo\_ols.summary())}
+
+\CommentTok{\# 4. Machine Learning}
+\NormalTok{modelo\_ml }\OperatorTok{=}\NormalTok{ RandomForestRegressor()}
+\NormalTok{modelo\_ml.fit(X\_train, y\_train)}
+
+\CommentTok{\# 5. Visualización}
+\NormalTok{plt.scatter(datos[}\StringTok{\textquotesingle{}educacion\textquotesingle{}}\NormalTok{], datos[}\StringTok{\textquotesingle{}ingreso\textquotesingle{}}\NormalTok{])}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{2. Automatización de reportes
+económicos}\label{automatizaciuxf3n-de-reportes-econuxf3micos}
+
+Python te permite crear reportes automatizados que se actualizan con
+nuevos datos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Script que corre automáticamente cada mes}
+\KeywordTok{def}\NormalTok{ generar\_reporte\_inflacion():}
+    \CommentTok{\# 1. Descargar datos del BCRP}
+\NormalTok{    inflacion }\OperatorTok{=}\NormalTok{ descargar\_datos\_bcrp()}
+    
+    \CommentTok{\# 2. Calcular estadísticas}
+\NormalTok{    inflacion\_mensual }\OperatorTok{=}\NormalTok{ calcular\_inflacion\_mensual(inflacion)}
+\NormalTok{    inflacion\_anual }\OperatorTok{=}\NormalTok{ calcular\_inflacion\_anual(inflacion)}
+    
+    \CommentTok{\# 3. Crear gráficos}
+\NormalTok{    crear\_graficos(inflacion\_mensual, inflacion\_anual)}
+    
+    \CommentTok{\# 4. Generar documento Word o PDF}
+\NormalTok{    crear\_reporte\_word(inflacion\_mensual, inflacion\_anual)}
+    
+    \CommentTok{\# 5. Enviar por email automáticamente}
+\NormalTok{    enviar\_email\_reporte()}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{3. Web scraping para investigación
+económica}\label{web-scraping-para-investigaciuxf3n-econuxf3mica}
+
+Recolecta datos económicos de internet automáticamente:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ requests}
+\ImportTok{from}\NormalTok{ bs4 }\ImportTok{import}\NormalTok{ BeautifulSoup}
+
+\CommentTok{\# Extraer precios de productos de supermercados online}
+\KeywordTok{def}\NormalTok{ scrape\_precios\_supermercado(url):}
+\NormalTok{    response }\OperatorTok{=}\NormalTok{ requests.get(url)}
+\NormalTok{    soup }\OperatorTok{=}\NormalTok{ BeautifulSoup(response.content, }\StringTok{\textquotesingle{}html.parser\textquotesingle{}}\NormalTok{)}
+    
+\NormalTok{    productos }\OperatorTok{=}\NormalTok{ []}
+    \ControlFlowTok{for}\NormalTok{ item }\KeywordTok{in}\NormalTok{ soup.find\_all(}\StringTok{\textquotesingle{}div\textquotesingle{}}\NormalTok{, class\_}\OperatorTok{=}\StringTok{\textquotesingle{}producto\textquotesingle{}}\NormalTok{):}
+\NormalTok{        nombre }\OperatorTok{=}\NormalTok{ item.find(}\StringTok{\textquotesingle{}h3\textquotesingle{}}\NormalTok{).text}
+\NormalTok{        precio }\OperatorTok{=} \BuiltInTok{float}\NormalTok{(item.find(}\StringTok{\textquotesingle{}span\textquotesingle{}}\NormalTok{, class\_}\OperatorTok{=}\StringTok{\textquotesingle{}precio\textquotesingle{}}\NormalTok{).text.replace(}\StringTok{\textquotesingle{}S/\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{))}
+\NormalTok{        productos.append(\{}\StringTok{\textquotesingle{}nombre\textquotesingle{}}\NormalTok{: nombre, }\StringTok{\textquotesingle{}precio\textquotesingle{}}\NormalTok{: precio\})}
+    
+    \ControlFlowTok{return}\NormalTok{ pd.DataFrame(productos)}
+
+\CommentTok{\# Crear tu propio índice de precios en tiempo real}
+\NormalTok{precios\_hoy }\OperatorTok{=}\NormalTok{ scrape\_precios\_supermercado(}\StringTok{\textquotesingle{}https://...\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{4. APIs para datos
+económicos}\label{apis-para-datos-econuxf3micos}
+
+Accede a bases de datos económicas programáticamente:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Ejemplo: Datos del Banco Mundial}
+\ImportTok{import}\NormalTok{ pandas\_datareader }\ImportTok{as}\NormalTok{ pdr}
+\ImportTok{from}\NormalTok{ datetime }\ImportTok{import}\NormalTok{ datetime}
+
+\CommentTok{\# PIB de Perú desde 2000}
+\NormalTok{pib\_peru }\OperatorTok{=}\NormalTok{ pdr.get\_data\_world\_bank(}
+    \StringTok{\textquotesingle{}NY.GDP.MKTP.CD\textquotesingle{}}\NormalTok{,  }\CommentTok{\# Código de PIB}
+\NormalTok{    countries}\OperatorTok{=}\NormalTok{[}\StringTok{\textquotesingle{}PER\textquotesingle{}}\NormalTok{],}
+\NormalTok{    start}\OperatorTok{=}\NormalTok{datetime(}\DecValTok{2000}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+\NormalTok{    end}\OperatorTok{=}\NormalTok{datetime.now()}
+\NormalTok{)}
+
+\CommentTok{\# Datos del BCRP}
+\ImportTok{import}\NormalTok{ requests}
+\NormalTok{url\_bcrp }\OperatorTok{=} \StringTok{\textquotesingle{}https://estadisticas.bcrp.gob.pe/estadisticas/series/api/...\textquotesingle{}}
+\NormalTok{response }\OperatorTok{=}\NormalTok{ requests.get(url\_bcrp)}
+\NormalTok{datos }\OperatorTok{=}\NormalTok{ response.json()}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{5. Reproducibilidad e investigación
+transparente}\label{reproducibilidad-e-investigaciuxf3n-transparente}
+
+Todo tu análisis queda documentado en código:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{"""}
+\CommentTok{Análisis de determinantes del ingreso en Perú}
+\CommentTok{Autor: Edison Achalma}
+\CommentTok{Fecha: Enero 2026}
+\CommentTok{Datos: ENAHO 2023}
+
+\CommentTok{Este script replica el análisis del paper:}
+\CommentTok{"Educación y retornos en el mercado laboral peruano"}
+\CommentTok{"""}
+
+\CommentTok{\# El código es tu metodología explícita}
+\CommentTok{\# Cualquiera puede replicar tus resultados}
+\CommentTok{\# Cambios en datos o método son fáciles de implementar}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Python vs otros lenguajes: Decisión
+informada}\label{python-vs-otros-lenguajes-decisiuxf3n-informada}
+
+\textbf{Elige Python si:}
+
+\begin{itemize}
+\tightlist
+\item
+  Quieres máxima versatilidad (análisis + automatización + machine
+  learning)
+\item
+  Planeas trabajar en sector privado o startups
+\item
+  Te interesa data science más allá de econometría
+\item
+  Quieres habilidades transferibles a otros campos
+\end{itemize}
+
+\textbf{Elige Stata si:}
+
+\begin{itemize}
+\tightlist
+\item
+  Tu departamento/institución lo usa exclusivamente
+\item
+  Haces principalmente econometría de panel y series de tiempo
+\item
+  Necesitas comandos econométricos muy específicos
+\item
+  Prefieres soluciones ``out of the box''
+\end{itemize}
+
+\textbf{Elige R si:}
+
+\begin{itemize}
+\tightlist
+\item
+  Te enfocas en estadística y visualización académica
+\item
+  Tu comunidad de investigación usa R
+\item
+  Trabajarás principalmente en investigación académica
+\end{itemize}
+
+\textbf{La mejor opción: Aprende Python + conocimientos básicos de
+Stata/R}
+
+\begin{itemize}
+\tightlist
+\item
+  Python como lenguaje principal
+\item
+  Stata/R para situaciones específicas
+\item
+  Maximiza tu empleabilidad
+\end{itemize}
+
+\subsection{Testimonios del mundo
+real}\label{testimonios-del-mundo-real}
+
+\textbf{Banco Central de Reserva del Perú (BCRP):}
+
+\begin{itemize}
+\tightlist
+\item
+  División de Modelamiento Macroeconómico usa Python para nowcasting
+\item
+  Scripts de Python automatizan extracción de datos de Bloomberg
+\item
+  Modelos DSGE implementados en Python
+\end{itemize}
+
+\textbf{Ministerio de Economía y Finanzas (MEF):}
+
+\begin{itemize}
+\tightlist
+\item
+  Uso creciente de Python para análisis de datos fiscales
+\item
+  Automatización de reportes presupuestarios
+\end{itemize}
+
+\textbf{Sector privado:}
+
+\begin{itemize}
+\tightlist
+\item
+  Bancos: Scoring de crédito con machine learning en Python
+\item
+  Consultoras: Análisis de mercado y predicciones en Python
+\item
+  Fintech: Toda su infraestructura en Python
+\end{itemize}
+
+\section{Preparando tu entorno de
+trabajo}\label{preparando-tu-entorno-de-trabajo}
+
+\subsection{Instalación de Python}\label{instalaciuxf3n-de-python}
+
+\subsubsection{Opción 1: Anaconda (Recomendada para
+principiantes)}\label{opciuxf3n-1-anaconda-recomendada-para-principiantes}
+
+Anaconda es una distribución de Python que incluye:
+
+\begin{itemize}
+\tightlist
+\item
+  Python
+\item
+  Jupyter Notebook (entorno interactivo)
+\item
+  Librerías principales pre-instaladas
+\item
+  Gestor de paquetes (conda)
+\end{itemize}
+
+\textbf{Pasos de instalación:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Visita \href{https://www.anaconda.com/download}{anaconda.com/download}
+\item
+  Descarga la versión para tu sistema operativo (Windows/Mac/Linux)
+\item
+  Ejecuta el instalador
+\item
+  Sigue las instrucciones (deja opciones por defecto)
+\item
+  Verifica la instalación:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Abre terminal o Anaconda Prompt}
+\ExtensionTok{python} \AttributeTok{{-}{-}version}
+\CommentTok{\# Debería mostrar: Python 3.11.x o similar}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Opción 2: Python.org (Instalación
+mínima)}\label{opciuxf3n-2-python.org-instalaciuxf3n-muxednima}
+
+Si prefieres una instalación más ligera:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Visita \href{https://www.python.org/downloads}{python.org/downloads}
+\item
+  Descarga Python 3.11 o superior
+\item
+  Durante instalación, marca ``Add Python to PATH''
+\item
+  Instala paquetes individualmente:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{pip}\NormalTok{ install numpy pandas matplotlib jupyter statsmodels scikit{-}learn}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Entornos de desarrollo}\label{entornos-de-desarrollo}
+
+\subsubsection{Jupyter Notebook (Recomendado para
+empezar)}\label{jupyter-notebook-recomendado-para-empezar}
+
+Jupyter es un entorno interactivo ideal para análisis exploratorio y
+aprendizaje.
+
+\textbf{Iniciar Jupyter:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Desde terminal o Anaconda Prompt}
+\ExtensionTok{jupyter}\NormalTok{ notebook}
+\end{Highlighting}
+\end{Shaded}
+
+Esto abrirá tu navegador con una interfaz donde puedes:
+
+\begin{itemize}
+\tightlist
+\item
+  Crear notebooks (.ipynb)
+\item
+  Combinar código, resultados y texto explicativo
+\item
+  Ver gráficos en línea
+\item
+  Exportar a PDF, HTML, etc.
+\end{itemize}
+
+\textbf{Estructura de un notebook:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Celda 1: Importar librerías}
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+
+\CommentTok{\# Celda 2: Cargar datos}
+\NormalTok{datos }\OperatorTok{=}\NormalTok{ pd.read\_csv(}\StringTok{\textquotesingle{}datos.csv\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Celda 3: Análisis}
+\BuiltInTok{print}\NormalTok{(datos.describe())}
+
+\CommentTok{\# Celda 4: Visualización}
+\NormalTok{datos[}\StringTok{\textquotesingle{}ingreso\textquotesingle{}}\NormalTok{].hist()}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Visual Studio Code (Para proyectos más
+grandes)}\label{visual-studio-code-para-proyectos-muxe1s-grandes}
+
+VS Code es un editor profesional con excelente soporte para Python.
+
+\textbf{Instalación:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Descarga desde
+  \href{https://code.visualstudio.com}{code.visualstudio.com}
+\item
+  Instala la extensión de Python
+\item
+  Configura tu intérprete de Python
+\end{enumerate}
+
+\textbf{Ventajas:}
+
+\begin{itemize}
+\tightlist
+\item
+  IntelliSense (autocompletado inteligente)
+\item
+  Depuración integrada
+\item
+  Control de versiones con Git
+\item
+  Extensiones para todo tipo de tareas
+\end{itemize}
+
+\subsubsection{Google Colab (Opción en la nube, sin
+instalación)}\label{google-colab-opciuxf3n-en-la-nube-sin-instalaciuxf3n}
+
+Si no quieres instalar nada en tu computadora:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Visita
+  \href{https://colab.research.google.com}{colab.research.google.com}
+\item
+  Inicia sesión con tu cuenta de Google
+\item
+  Crea un nuevo notebook
+\end{enumerate}
+
+\textbf{Ventajas:}
+
+\begin{itemize}
+\tightlist
+\item
+  No requiere instalación
+\item
+  GPU gratuita para cálculos pesados
+\item
+  Fácil compartir con colaboradores
+\end{itemize}
+
+\textbf{Desventajas:}
+
+\begin{itemize}
+\tightlist
+\item
+  Requiere internet
+\item
+  Sesiones limitadas en tiempo
+\item
+  Menos control sobre el entorno
+\end{itemize}
+
+\subsection{Organización de
+proyectos}\label{organizaciuxf3n-de-proyectos}
+
+\textbf{Estructura recomendada:}
+
+\begin{verbatim}
+mi_proyecto_economia/
+│
+├── datos/
+│   ├── raw/                 # Datos originales (NUNCA modificar)
+│   │   └── enaho_2023.csv
+│   ├── processed/           # Datos procesados
+│   │   └── enaho_limpia.csv
+│   └── external/            # Datos externos
+│       └── indicadores_bcrp.csv
+│
+├── notebooks/               # Jupyter notebooks para exploración
+│   ├── 01_exploracion.ipynb
+│   ├── 02_limpieza.ipynb
+│   └── 03_analisis.ipynb
+│
+├── src/                     # Scripts de Python
+│   ├── data_cleaning.py
+│   ├── analysis.py
+│   └── visualization.py
+│
+├── outputs/                 # Resultados
+│   ├── figuras/
+│   │   └── grafico_ingresos.png
+│   └── tablas/
+│       └── regresion_resultados.csv
+│
+├── requirements.txt         # Lista de paquetes necesarios
+└── README.md               # Descripción del proyecto
+\end{verbatim}
+
+\textbf{Ejemplo de requirements.txt:}
+
+\begin{verbatim}
+numpy==1.24.3
+pandas==2.0.3
+matplotlib==3.7.2
+seaborn==0.12.2
+statsmodels==0.14.0
+scikit-learn==1.3.0
+jupyter==1.0.0
+\end{verbatim}
+
+\textbf{Instalar dependencias:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{pip}\NormalTok{ install }\AttributeTok{{-}r}\NormalTok{ requirements.txt}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Primeros pasos en Jupyter}\label{primeros-pasos-en-jupyter}
+
+\textbf{Crear tu primer notebook:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Abre Jupyter Notebook
+\item
+  Click en ``New'' → ``Python 3''
+\item
+  Renombra el notebook: ``mi\_primer\_analisis.ipynb''
+\end{enumerate}
+
+\textbf{Atajos útiles:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Shift + Enter}: Ejecutar celda y avanzar
+\item
+  \textbf{Ctrl + Enter}: Ejecutar celda sin avanzar
+\item
+  \textbf{A}: Insertar celda arriba
+\item
+  \textbf{B}: Insertar celda abajo
+\item
+  \textbf{D, D}: Eliminar celda
+\item
+  \textbf{M}: Cambiar a celda de Markdown (texto)
+\item
+  \textbf{Y}: Cambiar a celda de código
+\end{itemize}
+
+\textbf{Celdas de Markdown para documentación:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{\# Análisis de Ingresos en Perú}
+
+\FunctionTok{\# Objetivo}
+\NormalTok{Analizar los determinantes del ingreso utilizando datos de la ENAHO 2023.}
+
+\FunctionTok{\# Metodología}
+\SpecialStringTok{1. }\NormalTok{Cargar y limpiar datos}
+\SpecialStringTok{2. }\NormalTok{Análisis descriptivo}
+\SpecialStringTok{3. }\NormalTok{Regresión lineal múltiple}
+\SpecialStringTok{4. }\NormalTok{Interpretación de resultados}
+
+\FunctionTok{\# Resultados preliminares}
+\SpecialStringTok{{-} }\NormalTok{Observaciones: 15,342}
+\SpecialStringTok{{-} }\NormalTok{Variable dependiente: Ingreso mensual (log)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Tu primer programa en
+Python}\label{tu-primer-programa-en-python}
+
+\subsection{Hola Mundo del economista}\label{hola-mundo-del-economista}
+
+Abre un nuevo notebook de Jupyter y escribe:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Mi primer programa en Python}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"¡Hola, mundo económico!"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Estudiante de economía de la UNSCH"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Ejecuta con \textbf{Shift + Enter}. Deberías ver:
+
+\begin{verbatim}
+¡Hola, mundo económico!
+Estudiante de economía de la UNSCH
+\end{verbatim}
+
+\subsection{Calculadora básica}\label{calculadora-buxe1sica}
+
+Python puede funcionar como calculadora:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Operaciones básicas}
+\BuiltInTok{print}\NormalTok{(}\DecValTok{2} \OperatorTok{+} \DecValTok{3}\NormalTok{)        }\CommentTok{\# Suma: 5}
+\BuiltInTok{print}\NormalTok{(}\DecValTok{10} \OperatorTok{{-}} \DecValTok{4}\NormalTok{)       }\CommentTok{\# Resta: 6}
+\BuiltInTok{print}\NormalTok{(}\DecValTok{3} \OperatorTok{*} \DecValTok{7}\NormalTok{)        }\CommentTok{\# Multiplicación: 21}
+\BuiltInTok{print}\NormalTok{(}\DecValTok{15} \OperatorTok{/} \DecValTok{3}\NormalTok{)       }\CommentTok{\# División: 5.0}
+\BuiltInTok{print}\NormalTok{(}\DecValTok{2} \OperatorTok{**} \DecValTok{3}\NormalTok{)       }\CommentTok{\# Potencia: 8}
+\BuiltInTok{print}\NormalTok{(}\DecValTok{17} \OperatorTok{//} \DecValTok{5}\NormalTok{)      }\CommentTok{\# División entera: 3}
+\BuiltInTok{print}\NormalTok{(}\DecValTok{17} \OperatorTok{\%} \DecValTok{5}\NormalTok{)       }\CommentTok{\# Módulo (residuo): 2}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Aplicación económica: Calcular IPC}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Calcular índice de precios al consumidor (IPC)}
+\NormalTok{precio\_canasta\_hoy }\OperatorTok{=} \FloatTok{850.50}
+\NormalTok{precio\_canasta\_base }\OperatorTok{=} \FloatTok{750.00}
+
+\CommentTok{\# IPC = (Precio actual / Precio base) * 100}
+\NormalTok{ipc }\OperatorTok{=}\NormalTok{ (precio\_canasta\_hoy }\OperatorTok{/}\NormalTok{ precio\_canasta\_base) }\OperatorTok{*} \DecValTok{100}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"El IPC es: }\SpecialCharTok{\{}\NormalTok{ipc}\SpecialCharTok{:.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# Salida: El IPC es: 113.40}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Variables y tipos de
+datos}\label{variables-y-tipos-de-datos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Variables numéricas}
+\NormalTok{pib\_peru }\OperatorTok{=} \DecValTok{242\_632}  \CommentTok{\# PIB en millones de USD (guiones bajos para legibilidad)}
+\NormalTok{poblacion }\OperatorTok{=} \DecValTok{33\_715\_471}
+\NormalTok{tasa\_inflacion }\OperatorTok{=} \FloatTok{3.25}  \CommentTok{\# Porcentaje}
+
+\CommentTok{\# Variables de texto (strings)}
+\NormalTok{pais }\OperatorTok{=} \StringTok{"Perú"}
+\NormalTok{moneda }\OperatorTok{=} \StringTok{"Sol"}
+
+\CommentTok{\# Variables booleanas (True/False)}
+\NormalTok{es\_pais\_emergente }\OperatorTok{=} \VariableTok{True}
+\NormalTok{esta\_en\_recesion }\OperatorTok{=} \VariableTok{False}
+
+\CommentTok{\# Imprimir información}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"País: }\SpecialCharTok{\{}\NormalTok{pais}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"PIB: $}\SpecialCharTok{\{}\NormalTok{pib\_peru}\SpecialCharTok{:,\}}\SpecialStringTok{ millones"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"PIB per cápita: $}\SpecialCharTok{\{}\NormalTok{pib\_peru }\OperatorTok{/}\NormalTok{ poblacion }\OperatorTok{*} \DecValTok{1\_000\_000}\SpecialCharTok{:.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Salida:}
+
+\begin{verbatim}
+País: Perú
+PIB: $242,632 millones
+PIB per cápita: $7,196.21
+\end{verbatim}
+
+\subsection{Listas: Colecciones de
+datos}\label{listas-colecciones-de-datos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Lista de tasas de crecimiento del PIB (últimos 5 años)}
+\NormalTok{crecimiento\_pib }\OperatorTok{=}\NormalTok{ [}\FloatTok{2.4}\NormalTok{, }\FloatTok{4.0}\NormalTok{, }\OperatorTok{{-}}\FloatTok{11.0}\NormalTok{, }\FloatTok{13.3}\NormalTok{, }\FloatTok{2.7}\NormalTok{]}
+
+\CommentTok{\# Acceder a elementos (índices empiezan en 0)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Crecimiento en 2020 (pandemia): }\SpecialCharTok{\{}\NormalTok{crecimiento\_pib[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{)}
+
+\CommentTok{\# Agregar nuevo dato}
+\NormalTok{crecimiento\_pib.append(}\FloatTok{3.5}\NormalTok{)  }\CommentTok{\# Proyección 2024}
+
+\CommentTok{\# Calcular promedio}
+\NormalTok{promedio }\OperatorTok{=} \BuiltInTok{sum}\NormalTok{(crecimiento\_pib) }\OperatorTok{/} \BuiltInTok{len}\NormalTok{(crecimiento\_pib)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Crecimiento promedio: }\SpecialCharTok{\{}\NormalTok{promedio}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Diccionarios: Datos
+etiquetados}\label{diccionarios-datos-etiquetados}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Información económica de un país}
+\NormalTok{economia\_peru }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{: }\DecValTok{242\_632}\NormalTok{,}
+    \StringTok{\textquotesingle{}poblacion\textquotesingle{}}\NormalTok{: }\DecValTok{33\_715\_471}\NormalTok{,}
+    \StringTok{\textquotesingle{}inflacion\textquotesingle{}}\NormalTok{: }\FloatTok{3.25}\NormalTok{,}
+    \StringTok{\textquotesingle{}desempleo\textquotesingle{}}\NormalTok{: }\FloatTok{7.1}\NormalTok{,}
+    \StringTok{\textquotesingle{}moneda\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}PEN\textquotesingle{}}
+\NormalTok{\}}
+
+\CommentTok{\# Acceder a datos}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Tasa de desempleo: }\SpecialCharTok{\{}\NormalTok{economia\_peru[}\StringTok{\textquotesingle{}desempleo\textquotesingle{}}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Inflación: }\SpecialCharTok{\{}\NormalTok{economia\_peru[}\StringTok{\textquotesingle{}inflacion\textquotesingle{}}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{)}
+
+\CommentTok{\# Agregar nuevo indicador}
+\NormalTok{economia\_peru[}\StringTok{\textquotesingle{}reservas\_internacionales\textquotesingle{}}\NormalTok{] }\OperatorTok{=} \DecValTok{74\_500}  \CommentTok{\# Millones USD}
+
+\CommentTok{\# Calcular PIB per cápita}
+\NormalTok{pib\_per\_capita }\OperatorTok{=}\NormalTok{ economia\_peru[}\StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{] }\OperatorTok{/}\NormalTok{ economia\_peru[}\StringTok{\textquotesingle{}poblacion\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \DecValTok{1\_000\_000}
+\NormalTok{economia\_peru[}\StringTok{\textquotesingle{}pib\_per\_capita\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ pib\_per\_capita}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"PIB per cápita: $}\SpecialCharTok{\{}\NormalTok{economia\_peru[}\StringTok{\textquotesingle{}pib\_per\_capita\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Tu primer análisis de datos con
+Pandas}\label{tu-primer-anuxe1lisis-de-datos-con-pandas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+
+\CommentTok{\# Crear un DataFrame con datos de regiones de Perú}
+\NormalTok{datos\_regiones }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Lima\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Arequipa\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Cusco\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}La Libertad\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Piura\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}poblacion\textquotesingle{}}\NormalTok{: [}\DecValTok{9\_674\_755}\NormalTok{, }\DecValTok{1\_497\_438}\NormalTok{, }\DecValTok{1\_357\_075}\NormalTok{, }\DecValTok{2\_016\_771}\NormalTok{, }\DecValTok{2\_047\_954}\NormalTok{],}
+    \StringTok{\textquotesingle{}pib\_millones\textquotesingle{}}\NormalTok{: [}\DecValTok{234\_000}\NormalTok{, }\DecValTok{18\_500}\NormalTok{, }\DecValTok{12\_300}\NormalTok{, }\DecValTok{24\_100}\NormalTok{, }\DecValTok{16\_800}\NormalTok{]}
+\NormalTok{\}}
+
+\NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(datos\_regiones)}
+
+\CommentTok{\# Calcular PIB per cápita}
+\NormalTok{df[}\StringTok{\textquotesingle{}pib\_per\_capita\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ df[}\StringTok{\textquotesingle{}pib\_millones\textquotesingle{}}\NormalTok{] }\OperatorTok{/}\NormalTok{ df[}\StringTok{\textquotesingle{}poblacion\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \DecValTok{1\_000\_000}
+
+\CommentTok{\# Mostrar resultados}
+\BuiltInTok{print}\NormalTok{(df)}
+
+\CommentTok{\# Estadísticas descriptivas}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Estadísticas descriptivas:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df[}\StringTok{\textquotesingle{}pib\_per\_capita\textquotesingle{}}\NormalTok{].describe())}
+
+\CommentTok{\# Región con mayor PIB per cápita}
+\NormalTok{region\_mas\_rica }\OperatorTok{=}\NormalTok{ df.loc[df[}\StringTok{\textquotesingle{}pib\_per\_capita\textquotesingle{}}\NormalTok{].idxmax(), }\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Región con mayor PIB per cápita: }\SpecialCharTok{\{}\NormalTok{region\_mas\_rica}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Salida:}
+
+\begin{verbatim}
+        region  poblacion  pib_millones  pib_per_capita
+0         Lima    9674755        234000    24192.831729
+1     Arequipa    1497438         18500    12353.806853
+2        Cusco    1357075         12300     9063.043478
+3  La Libertad    2016771         24100    11949.742268
+4        Piura    2047954         16800     8202.633428
+
+Estadísticas descriptivas:
+count        5.000000
+mean     13152.411551
+std       6406.398824
+min       8202.633428
+25%       9063.043478
+50%      11949.742268
+75%      12353.806853
+max      24192.831729
+Name: pib_per_capita, dtype: float64
+
+Región con mayor PIB per cápita: Lima
+\end{verbatim}
+
+\subsection{Visualización básica}\label{visualizaciuxf3n-buxe1sica}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+
+\CommentTok{\# Crear gráfico de barras}
+\NormalTok{plt.figure(figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{6}\NormalTok{))}
+\NormalTok{plt.bar(df[}\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{], df[}\StringTok{\textquotesingle{}pib\_per\_capita\textquotesingle{}}\NormalTok{], color}\OperatorTok{=}\StringTok{\textquotesingle{}steelblue\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.xlabel(}\StringTok{\textquotesingle{}Región\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.ylabel(}\StringTok{\textquotesingle{}PIB per cápita (USD)\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.title(}\StringTok{\textquotesingle{}PIB per cápita por región en Perú\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.xticks(rotation}\OperatorTok{=}\DecValTok{45}\NormalTok{)}
+\NormalTok{plt.grid(axis}\OperatorTok{=}\StringTok{\textquotesingle{}y\textquotesingle{}}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+\NormalTok{plt.tight\_layout()}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Ejercicios prácticos}\label{ejercicios-pruxe1cticos}
+
+\subsection{Ejercicio 1: Calculadora de inflación
+acumulada}\label{ejercicio-1-calculadora-de-inflaciuxf3n-acumulada}
+
+Crea un programa que calcule la inflación acumulada dados los índices de
+precios mensuales.
+
+\textbf{Datos:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ipc\_mensual }\OperatorTok{=}\NormalTok{ [}\FloatTok{100.0}\NormalTok{, }\FloatTok{100.5}\NormalTok{, }\FloatTok{101.2}\NormalTok{, }\FloatTok{101.8}\NormalTok{, }\FloatTok{102.5}\NormalTok{, }\FloatTok{103.0}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Tareas:} 1. Calcula la inflación mensual (variación porcentual)
+2. Calcula la inflación acumulada 3. Imprime los resultados
+
+\textbf{Solución esperada:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Tu código aquí}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ipc\_mensual }\OperatorTok{=}\NormalTok{ [}\FloatTok{100.0}\NormalTok{, }\FloatTok{100.5}\NormalTok{, }\FloatTok{101.2}\NormalTok{, }\FloatTok{101.8}\NormalTok{, }\FloatTok{102.5}\NormalTok{, }\FloatTok{103.0}\NormalTok{]}
+
+\CommentTok{\# Calcular inflación mensual}
+\NormalTok{inflacion\_mensual }\OperatorTok{=}\NormalTok{ []}
+\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{1}\NormalTok{, }\BuiltInTok{len}\NormalTok{(ipc\_mensual)):}
+\NormalTok{    inflacion }\OperatorTok{=}\NormalTok{ ((ipc\_mensual[i] }\OperatorTok{{-}}\NormalTok{ ipc\_mensual[i}\OperatorTok{{-}}\DecValTok{1}\NormalTok{]) }\OperatorTok{/}\NormalTok{ ipc\_mensual[i}\OperatorTok{{-}}\DecValTok{1}\NormalTok{]) }\OperatorTok{*} \DecValTok{100}
+\NormalTok{    inflacion\_mensual.append(inflacion)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Mes }\SpecialCharTok{\{}\NormalTok{i}\SpecialCharTok{\}}\SpecialStringTok{: }\SpecialCharTok{\{}\NormalTok{inflacion}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%"}\NormalTok{)}
+
+\CommentTok{\# Inflación acumulada}
+\NormalTok{inflacion\_acumulada }\OperatorTok{=}\NormalTok{ ((ipc\_mensual[}\OperatorTok{{-}}\DecValTok{1}\NormalTok{] }\OperatorTok{{-}}\NormalTok{ ipc\_mensual[}\DecValTok{0}\NormalTok{]) }\OperatorTok{/}\NormalTok{ ipc\_mensual[}\DecValTok{0}\NormalTok{]) }\OperatorTok{*} \DecValTok{100}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Inflación acumulada: }\SpecialCharTok{\{}\NormalTok{inflacion\_acumulada}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Ejercicio 2: Análisis de datos de
+exportaciones}\label{ejercicio-2-anuxe1lisis-de-datos-de-exportaciones}
+
+Tienes datos de exportaciones de Perú por sectores.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{exportaciones }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}sector\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Minería\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Agricultura\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Pesca\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Manufactura\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}valor\_2022\textquotesingle{}}\NormalTok{: [}\DecValTok{35\_600}\NormalTok{, }\DecValTok{7\_200}\NormalTok{, }\DecValTok{2\_800}\NormalTok{, }\DecValTok{12\_400}\NormalTok{],  }\CommentTok{\# Millones USD}
+    \StringTok{\textquotesingle{}valor\_2023\textquotesingle{}}\NormalTok{: [}\DecValTok{38\_100}\NormalTok{, }\DecValTok{7\_850}\NormalTok{, }\DecValTok{2\_950}\NormalTok{, }\DecValTok{13\_200}\NormalTok{]}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Tareas:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Crea un DataFrame con estos datos
+\item
+  Calcula la variación porcentual por sector
+\item
+  Identifica el sector con mayor crecimiento
+\item
+  Calcula el total exportado en cada año
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+
+\NormalTok{exportaciones }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}sector\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Minería\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Agricultura\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Pesca\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Manufactura\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}valor\_2022\textquotesingle{}}\NormalTok{: [}\DecValTok{35\_600}\NormalTok{, }\DecValTok{7\_200}\NormalTok{, }\DecValTok{2\_800}\NormalTok{, }\DecValTok{12\_400}\NormalTok{],}
+    \StringTok{\textquotesingle{}valor\_2023\textquotesingle{}}\NormalTok{: [}\DecValTok{38\_100}\NormalTok{, }\DecValTok{7\_850}\NormalTok{, }\DecValTok{2\_950}\NormalTok{, }\DecValTok{13\_200}\NormalTok{]}
+\NormalTok{\}}
+
+\NormalTok{df\_exp }\OperatorTok{=}\NormalTok{ pd.DataFrame(exportaciones)}
+
+\CommentTok{\# Calcular variación porcentual}
+\NormalTok{df\_exp[}\StringTok{\textquotesingle{}variacion\_\%\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ ((df\_exp[}\StringTok{\textquotesingle{}valor\_2023\textquotesingle{}}\NormalTok{] }\OperatorTok{{-}}\NormalTok{ df\_exp[}\StringTok{\textquotesingle{}valor\_2022\textquotesingle{}}\NormalTok{]) }\OperatorTok{/}\NormalTok{ df\_exp[}\StringTok{\textquotesingle{}valor\_2022\textquotesingle{}}\NormalTok{]) }\OperatorTok{*} \DecValTok{100}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Exportaciones por sector:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_exp)}
+
+\CommentTok{\# Sector con mayor crecimiento}
+\NormalTok{idx\_max }\OperatorTok{=}\NormalTok{ df\_exp[}\StringTok{\textquotesingle{}variacion\_\%\textquotesingle{}}\NormalTok{].idxmax()}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Sector con mayor crecimiento: }\SpecialCharTok{\{}\NormalTok{df\_exp}\SpecialCharTok{.}\NormalTok{loc[idx\_max, }\StringTok{\textquotesingle{}sector\textquotesingle{}}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{df\_exp}\SpecialCharTok{.}\NormalTok{loc[idx\_max, }\StringTok{\textquotesingle{}variacion\_\%\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%)"}\NormalTok{)}
+
+\CommentTok{\# Total exportado}
+\NormalTok{total\_2022 }\OperatorTok{=}\NormalTok{ df\_exp[}\StringTok{\textquotesingle{}valor\_2022\textquotesingle{}}\NormalTok{].}\BuiltInTok{sum}\NormalTok{()}
+\NormalTok{total\_2023 }\OperatorTok{=}\NormalTok{ df\_exp[}\StringTok{\textquotesingle{}valor\_2023\textquotesingle{}}\NormalTok{].}\BuiltInTok{sum}\NormalTok{()}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Total exportado 2022: $}\SpecialCharTok{\{}\NormalTok{total\_2022}\SpecialCharTok{:,\}}\SpecialStringTok{ millones"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Total exportado 2023: $}\SpecialCharTok{\{}\NormalTok{total\_2023}\SpecialCharTok{:,\}}\SpecialStringTok{ millones"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Crecimiento total: }\SpecialCharTok{\{}\NormalTok{((total\_2023 }\OperatorTok{{-}}\NormalTok{ total\_2022) }\OperatorTok{/}\NormalTok{ total\_2022) }\OperatorTok{*} \DecValTok{100}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Ejercicio 3: Función de
+utilidad}\label{ejercicio-3-funciuxf3n-de-utilidad}
+
+Crea una función que calcule la utilidad de un consumidor según la
+función Cobb-Douglas:
+
+U(x, y) = x\^{}α * y\^{}(1-α)
+
+Donde x e y son bienes consumidos y α es el parámetro de preferencia.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ utilidad\_cobb\_douglas(x, y, alpha):}
+    \CommentTok{"""}
+\CommentTok{    Calcula la utilidad según función Cobb{-}Douglas}
+\CommentTok{    }
+\CommentTok{    Parámetros:}
+\CommentTok{    x: cantidad del bien 1}
+\CommentTok{    y: cantidad del bien 2}
+\CommentTok{    alpha: parámetro de preferencia (0 \textless{} alpha \textless{} 1)}
+\CommentTok{    }
+\CommentTok{    Retorna:}
+\CommentTok{    Utilidad total}
+\CommentTok{    """}
+    \CommentTok{\# Tu código aquí}
+    \ControlFlowTok{pass}
+
+\CommentTok{\# Prueba la función}
+\NormalTok{u }\OperatorTok{=}\NormalTok{ utilidad\_cobb\_douglas(x}\OperatorTok{=}\DecValTok{10}\NormalTok{, y}\OperatorTok{=}\DecValTok{20}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.5}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Utilidad: }\SpecialCharTok{\{}\NormalTok{u}\SpecialCharTok{:.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ utilidad\_cobb\_douglas(x, y, alpha):}
+    \CommentTok{"""}
+\CommentTok{    Calcula la utilidad según función Cobb{-}Douglas}
+\CommentTok{    """}
+\NormalTok{    utilidad }\OperatorTok{=}\NormalTok{ (x }\OperatorTok{**}\NormalTok{ alpha) }\OperatorTok{*}\NormalTok{ (y }\OperatorTok{**}\NormalTok{ (}\DecValTok{1} \OperatorTok{{-}}\NormalTok{ alpha))}
+    \ControlFlowTok{return}\NormalTok{ utilidad}
+
+\CommentTok{\# Prueba con diferentes combinaciones}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Análisis de utilidad:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"{-}"} \OperatorTok{*} \DecValTok{40}\NormalTok{)}
+
+\NormalTok{combinaciones }\OperatorTok{=}\NormalTok{ [}
+\NormalTok{    (}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\FloatTok{0.3}\NormalTok{),}
+\NormalTok{    (}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\FloatTok{0.5}\NormalTok{),}
+\NormalTok{    (}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\FloatTok{0.7}\NormalTok{),}
+\NormalTok{    (}\DecValTok{20}\NormalTok{, }\DecValTok{10}\NormalTok{, }\FloatTok{0.5}\NormalTok{),}
+\NormalTok{]}
+
+\ControlFlowTok{for}\NormalTok{ x, y, alpha }\KeywordTok{in}\NormalTok{ combinaciones:}
+\NormalTok{    u }\OperatorTok{=}\NormalTok{ utilidad\_cobb\_douglas(x, y, alpha)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"U(}\SpecialCharTok{\{}\NormalTok{x}\SpecialCharTok{\}}\SpecialStringTok{, }\SpecialCharTok{\{}\NormalTok{y}\SpecialCharTok{\}}\SpecialStringTok{) con α=}\SpecialCharTok{\{}\NormalTok{alpha}\SpecialCharTok{\}}\SpecialStringTok{: }\SpecialCharTok{\{}\NormalTok{u}\SpecialCharTok{:.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Conclusión}\label{conclusiuxf3n}
+
+Has completado la primera guía de Python para economistas. Has
+aprendido:
+
+\begin{itemize}
+\tightlist
+\item
+  Por qué es importante programar como economista
+\item
+  Las diferencias entre lenguajes de programación
+\item
+  Qué son Data Science y Machine Learning
+\item
+  Por qué Python es ideal para economistas
+\item
+  Cómo configurar tu entorno de trabajo
+\item
+  Los fundamentos básicos de Python
+\end{itemize}
+
+\textbf{En la siguiente guía aprenderás:}
+
+\begin{itemize}
+\tightlist
+\item
+  Variables, expresiones y statements en profundidad
+\item
+  Tipos de datos y conversiones
+\item
+  Operadores y precedencia
+\item
+  Entrada de datos del usuario
+\item
+  Convenciones de nombres de variables
+\end{itemize}
+
+\textbf{Recursos adicionales recomendados:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Documentación oficial de Python:}
+  \href{https://docs.python.org}{docs.python.org}
+\item
+  \textbf{Pandas para análisis de datos:}
+  \href{https://pandas.pydata.org}{pandas.pydata.org}
+\item
+  \textbf{Statsmodels para econometría:}
+  \href{https://www.statsmodels.org}{statsmodels.org}
+\item
+  \textbf{Kaggle Learn:} Tutoriales interactivos gratuitos
+\end{enumerate}
+
+¡Nos vemos en la siguiente guía!
 
 \section{Publicaciones Similares}\label{publicaciones-similares}
 

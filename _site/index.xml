@@ -2514,6 +2514,2513 @@ Python,”</span> June. <a href="https://numerus-scriptum.netlify.app/python/202
   <media:content url="https://numerus-scriptum.netlify.app/python/featured.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
+  <title>Introducción a Python para Economistas</title>
+  <dc:creator>Edison Achalma</dc:creator>
+  <link>https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python/</link>
+  <description><![CDATA[ 
+
+<style>
+  :root {
+    --primary-color: ;
+  }
+
+  #title-block-header {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .title-block-content {
+    position: relative;
+    padding-top: 60px;
+    /* Reducido de 130px */
+    padding-bottom: 60px;
+    /* Reducido de 130px */
+    max-width: 752px;
+    margin: 0 auto;
+    z-index: 1;
+  }
+
+  #particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+</style>
+
+
+
+
+<section id="por-qué-es-importante-aprender-un-lenguaje-de-programación" class="level1">
+<h1>¿Por qué es importante aprender un lenguaje de programación?</h1>
+<section id="la-transformación-digital-de-la-economía" class="level2">
+<h2 class="anchored" data-anchor-id="la-transformación-digital-de-la-economía">La transformación digital de la economía</h2>
+<p>En las últimas décadas, la economía ha experimentado una revolución digital sin precedentes. Como economistas, nos enfrentamos diariamente a:</p>
+<ul>
+<li><strong>Grandes volúmenes de datos</strong>: Series temporales macroeconómicas, microdatos de encuestas de hogares, datos de transacciones financieras, registros administrativos, entre otros.</li>
+<li><strong>Análisis cada vez más complejos</strong>: Modelos econométricos avanzados, análisis de impacto, predicciones económicas, evaluación de políticas públicas.</li>
+<li><strong>Necesidad de reproducibilidad</strong>: La investigación económica moderna exige que nuestros análisis sean replicables y transparentes.</li>
+</ul>
+</section>
+<section id="ventajas-de-programar-como-economista" class="level2">
+<h2 class="anchored" data-anchor-id="ventajas-de-programar-como-economista">Ventajas de programar como economista</h2>
+<p><strong>Automatización de tareas repetitivas</strong></p>
+<p>Imagina que necesitas calcular el índice de Gini para los 25 departamentos del Perú utilizando la Encuesta Nacional de Hogares (ENAHO). Sin programación, esto implicaría:</p>
+<ul>
+<li>Abrir cada archivo de datos manualmente</li>
+<li>Realizar cálculos en Excel repetidamente</li>
+<li>Alto riesgo de errores humanos</li>
+<li>Horas o días de trabajo</li>
+</ul>
+<p>Con programación, este proceso se reduce a minutos y es 100% reproducible.</p>
+<p><strong>Análisis de datos más sofisticados</strong></p>
+<p>La programación te permite:</p>
+<ul>
+<li>Implementar modelos econométricos avanzados (VAR, GARCH, modelos de panel dinámico)</li>
+<li>Realizar simulaciones de Monte Carlo para análisis de riesgo</li>
+<li>Aplicar técnicas de machine learning para predicción económica</li>
+<li>Crear visualizaciones interactivas de datos económicos</li>
+</ul>
+<p><strong>Ventaja competitiva en el mercado laboral</strong></p>
+<p>Las instituciones que más demandan economistas hoy en día buscan profesionales con habilidades de programación:</p>
+<ul>
+<li>Banco Central de Reserva del Perú (BCRP)</li>
+<li>Ministerio de Economía y Finanzas (MEF)</li>
+<li>Instituciones financieras privadas</li>
+<li>Consultorias económicas</li>
+<li>Organismos internacionales (BID, Banco Mundial, FMI)</li>
+</ul>
+</section>
+<section id="casos-de-uso-en-economía" class="level2">
+<h2 class="anchored" data-anchor-id="casos-de-uso-en-economía">Casos de uso en economía</h2>
+<p><strong>Ejemplo 1: Análisis macroeconómico</strong></p>
+<p>Un economista del BCRP necesita analizar la relación entre la tasa de interés y la inflación en los últimos 20 años. Con Python puede:</p>
+<div id="d11c781e" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Importar datos del BCRP</span></span>
+<span id="cb1-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Limpiar y transformar los datos</span></span>
+<span id="cb1-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Estimar modelos VAR</span></span>
+<span id="cb1-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Generar funciones impulso-respuesta</span></span>
+<span id="cb1-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Crear gráficos profesionales para reportes</span></span></code></pre></div></div>
+</div>
+<p><strong>Ejemplo 2: Evaluación de impacto</strong></p>
+<p>Un investigador evalúa el impacto de un programa social en los ingresos familiares:</p>
+<div id="7a2a2365" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Cargar microdatos de encuestas</span></span>
+<span id="cb2-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Implementar matching propensity score</span></span>
+<span id="cb2-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Estimar diferencias en diferencias</span></span>
+<span id="cb2-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Calcular errores estándar robustos</span></span>
+<span id="cb2-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Generar tablas de resultados automáticas</span></span></code></pre></div></div>
+</div>
+<p><strong>Ejemplo 3: Predicción económica</strong></p>
+<p>Un analista financiero predice el tipo de cambio:</p>
+<div id="6a5ae968" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Obtener datos históricos del tipo de cambio</span></span>
+<span id="cb3-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Aplicar modelos ARIMA y GARCH</span></span>
+<span id="cb3-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Comparar con modelos de machine learning</span></span>
+<span id="cb3-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Evaluar precisión de predicciones</span></span>
+<span id="cb3-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Automatizar reportes diarios</span></span></code></pre></div></div>
+</div>
+</section>
+</section>
+<section id="curva-de-aprendizaje-y-alcance-de-distintos-lenguajes" class="level1">
+<h1>Curva de aprendizaje y alcance de distintos lenguajes</h1>
+<section id="comparación-de-lenguajes-para-análisis-económico" class="level2">
+<h2 class="anchored" data-anchor-id="comparación-de-lenguajes-para-análisis-económico">Comparación de lenguajes para análisis económico</h2>
+<section id="stata" class="level3">
+<h3 class="anchored" data-anchor-id="stata"><strong>Stata</strong></h3>
+<p><strong>Ventajas:</strong></p>
+<ul>
+<li>Diseñado específicamente para econometría</li>
+<li>Sintaxis intuitiva para economistas</li>
+<li>Excelente documentación de métodos econométricos</li>
+<li>Ampliamente usado en investigación académica</li>
+</ul>
+<p><strong>Desventajas:</strong></p>
+<ul>
+<li>Licencia costosa (aproximadamente $1,200 USD para estudiantes)</li>
+<li>Limitado para tareas fuera de econometría tradicional</li>
+<li>Menos flexible para automatización compleja</li>
+<li>Comunidad más pequeña que Python o R</li>
+</ul>
+<p><strong>Curva de aprendizaje:</strong> Baja-Media (2-3 meses para dominar lo básico)</p>
+<p><strong>Ejemplo en Stata:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb4-1">* Regresión simple</span>
+<span id="cb4-2"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">regress</span> ingreso educacion experiencia</span>
+<span id="cb4-3"></span>
+<span id="cb4-4">* Efectos fijos</span>
+<span id="cb4-5"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">xtreg</span> ingreso educacion, <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">fe</span></span></code></pre></div></div>
+</section>
+<section id="r" class="level3">
+<h3 class="anchored" data-anchor-id="r"><strong>R</strong></h3>
+<p><strong>Ventajas:</strong></p>
+<ul>
+<li>Gratuito y de código abierto</li>
+<li>Excelente para estadística y visualización de datos</li>
+<li>Gran cantidad de paquetes econométricos (plm, AER, forecast)</li>
+<li>RStudio como entorno amigable</li>
+</ul>
+<p><strong>Desventajas:</strong></p>
+<ul>
+<li>Sintaxis puede ser inconsistente entre paquetes</li>
+<li>Menor rendimiento con grandes volúmenes de datos</li>
+<li>Menos usado fuera del ámbito académico/estadístico</li>
+</ul>
+<p><strong>Curva de aprendizaje:</strong> Media (3-4 meses para dominar lo básico)</p>
+<p><strong>Ejemplo en R:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Regresión simple</span></span>
+<span id="cb5-2">modelo <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lm</span>(ingreso <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> educacion <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> experiencia, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> datos)</span>
+<span id="cb5-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summary</span>(modelo)</span>
+<span id="cb5-4"></span>
+<span id="cb5-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Visualización</span></span>
+<span id="cb5-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(datos, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> educacion, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> ingreso)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>()</span></code></pre></div></div>
+</section>
+<section id="python" class="level3">
+<h3 class="anchored" data-anchor-id="python"><strong>Python</strong></h3>
+<p><strong>Ventajas:</strong></p>
+<ul>
+<li>Gratuito y de código abierto</li>
+<li>Lenguaje de propósito general (útil más allá del análisis de datos)</li>
+<li>Ecosistema completo: análisis, machine learning, web scraping, automatización</li>
+<li>Gran demanda en el mercado laboral</li>
+<li>Comunidad masiva y en crecimiento</li>
+<li>Integración con otras tecnologías</li>
+</ul>
+<p><strong>Desventajas:</strong></p>
+<ul>
+<li>Curva de aprendizaje inicial más pronunciada</li>
+<li>Requiere aprender varios paquetes (pandas, numpy, statsmodels)</li>
+<li>Menos paquetes econométricos especializados que Stata o R</li>
+</ul>
+<p><strong>Curva de aprendizaje:</strong> Media-Alta (4-6 meses para dominar lo básico)</p>
+<p><strong>Ejemplo en Python:</strong></p>
+<div id="5ac41193" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> pd</span>
+<span id="cb6-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> statsmodels.formula.api <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> smf</span>
+<span id="cb6-3"></span>
+<span id="cb6-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Regresión simple</span></span>
+<span id="cb6-5">modelo <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> smf.ols(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'ingreso ~ educacion + experiencia'</span>, data<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>datos).fit()</span>
+<span id="cb6-6"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(modelo.summary())</span>
+<span id="cb6-7"></span>
+<span id="cb6-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Visualización</span></span>
+<span id="cb6-9"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> plt</span>
+<span id="cb6-10">plt.scatter(datos[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'educacion'</span>], datos[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'ingreso'</span>])</span>
+<span id="cb6-11">plt.show()</span></code></pre></div></div>
+</div>
+</section>
+<section id="c" class="level3">
+<h3 class="anchored" data-anchor-id="c"><strong>C++</strong></h3>
+<p><strong>Ventajas:</strong></p>
+<ul>
+<li>Máximo rendimiento computacional</li>
+<li>Control total sobre recursos del sistema</li>
+</ul>
+<p><strong>Desventajas:</strong></p>
+<ul>
+<li>Curva de aprendizaje muy alta</li>
+<li>Desarrollo lento</li>
+<li>No diseñado para análisis de datos</li>
+<li>Innecesario para la mayoría de aplicaciones en economía</li>
+</ul>
+<p><strong>Curva de aprendizaje:</strong> Muy Alta (12+ meses)</p>
+</section>
+</section>
+<section id="tabla-comparativa" class="level2">
+<h2 class="anchored" data-anchor-id="tabla-comparativa">Tabla comparativa</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Característica</th>
+<th>Stata</th>
+<th>R</th>
+<th>Python</th>
+<th>C++</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Costo</td>
+<td>Alto</td>
+<td>Gratis</td>
+<td>Gratis</td>
+<td>Gratis</td>
+</tr>
+<tr class="even">
+<td>Curva de aprendizaje</td>
+<td>Baja</td>
+<td>Media</td>
+<td>Media</td>
+<td>Alta</td>
+</tr>
+<tr class="odd">
+<td>Econometría</td>
+<td>Excelente</td>
+<td>Muy buena</td>
+<td>Buena</td>
+<td>Baja</td>
+</tr>
+<tr class="even">
+<td>Machine Learning</td>
+<td>Básico</td>
+<td>Muy buena</td>
+<td>Excelente</td>
+<td>Media</td>
+</tr>
+<tr class="odd">
+<td>Visualización</td>
+<td>Buena</td>
+<td>Excelente</td>
+<td>Muy buena</td>
+<td>Baja</td>
+</tr>
+<tr class="even">
+<td>Automatización</td>
+<td>Básica</td>
+<td>Buena</td>
+<td>Excelente</td>
+<td>Muy buena</td>
+</tr>
+<tr class="odd">
+<td>Velocidad de ejecución</td>
+<td>Media</td>
+<td>Baja</td>
+<td>Media</td>
+<td>Excelente</td>
+</tr>
+<tr class="even">
+<td>Demanda laboral</td>
+<td>Media</td>
+<td>Media</td>
+<td>Muy alta</td>
+<td>Alta</td>
+</tr>
+<tr class="odd">
+<td>Tamaño de comunidad</td>
+<td>Media</td>
+<td>Grande</td>
+<td>Muy grande</td>
+<td>Grande</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="recomendación-para-economistas" class="level2">
+<h2 class="anchored" data-anchor-id="recomendación-para-economistas">Recomendación para economistas</h2>
+<p><strong>Si eres estudiante de pregrado:</strong></p>
+<ul>
+<li>Comienza con <strong>Python</strong>. Te dará la mayor versatilidad y mejores oportunidades laborales.</li>
+<li>Aprende Stata si tu programa lo requiere (muchos cursos de econometría lo usan).</li>
+</ul>
+<p><strong>Si eres estudiante de posgrado en economía:</strong></p>
+<ul>
+<li><strong>Python</strong> o <strong>R</strong>, dependiendo de tu área de especialización.</li>
+<li>Macroeconomía/Finanzas: Python</li>
+<li>Microeconometría/Evaluación de impacto: R o Python</li>
+<li>Economía computacional: Python definitivamente</li>
+</ul>
+<p><strong>Si trabajas en el sector público:</strong></p>
+<ul>
+<li><strong>Python</strong> o <strong>Stata</strong>, dependiendo de la institución.</li>
+<li>MEF y BCRP están adoptando cada vez más Python.</li>
+</ul>
+</section>
+</section>
+<section id="qué-es-data-science-qué-es-machine-learning" class="level1">
+<h1>¿Qué es Data Science? ¿Qué es Machine Learning?</h1>
+<section id="data-science-ciencia-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="data-science-ciencia-de-datos">Data Science (Ciencia de Datos)</h2>
+<p><strong>Definición:</strong></p>
+<p>Data Science es un campo interdisciplinario que utiliza métodos científicos, procesos, algoritmos y sistemas para extraer conocimiento e insights de datos estructurados y no estructurados.</p>
+<p><strong>En términos económicos:</strong></p>
+<p>Data Science es el conjunto de técnicas y herramientas que nos permiten:</p>
+<ol type="1">
+<li><strong>Recolectar</strong> datos económicos de múltiples fuentes</li>
+<li><strong>Limpiar y procesar</strong> datos (a menudo el 80% del trabajo)</li>
+<li><strong>Analizar</strong> patrones y relaciones</li>
+<li><strong>Visualizar</strong> resultados de forma comprensible</li>
+<li><strong>Comunicar</strong> hallazgos para la toma de decisiones</li>
+</ol>
+<p><strong>Componentes del Data Science:</strong></p>
+<pre><code>Data Science = Matemáticas + Estadística + Programación + Conocimiento del dominio</code></pre>
+<p>Para economistas:</p>
+<ul>
+<li><strong>Matemáticas</strong>: Cálculo, álgebra lineal, optimización</li>
+<li><strong>Estadística</strong>: Inferencia, pruebas de hipótesis, econometría</li>
+<li><strong>Programación</strong>: Python, SQL, manejo de datos</li>
+<li><strong>Conocimiento del dominio</strong>: Teoría económica, instituciones, contexto</li>
+</ul>
+</section>
+<section id="machine-learning-aprendizaje-automático" class="level2">
+<h2 class="anchored" data-anchor-id="machine-learning-aprendizaje-automático">Machine Learning (Aprendizaje Automático)</h2>
+<p><strong>Definición:</strong></p>
+<p>Machine Learning es un subcampo de la inteligencia artificial que permite a las computadoras aprender patrones de los datos sin ser programadas explícitamente.</p>
+<p><strong>Diferencia con econometría tradicional:</strong></p>
+<p><strong>Econometría tradicional:</strong></p>
+<ul>
+<li>Enfoque: Inferencia causal y prueba de teorías</li>
+<li>Objetivo: Entender <strong>por qué</strong> sucede algo</li>
+<li>Ejemplo: ¿Cuál es el efecto causal de la educación sobre los ingresos?</li>
+<li>Prioridad: Interpretabilidad y validez causal</li>
+</ul>
+<p><strong>Machine Learning:</strong></p>
+<ul>
+<li>Enfoque: Predicción y reconocimiento de patrones</li>
+<li>Objetivo: Predecir <strong>qué</strong> va a suceder</li>
+<li>Ejemplo: ¿Cuál será el ingreso de una persona dado su perfil?</li>
+<li>Prioridad: Precisión predictiva</li>
+</ul>
+</section>
+<section id="tipos-de-machine-learning" class="level2">
+<h2 class="anchored" data-anchor-id="tipos-de-machine-learning">Tipos de Machine Learning</h2>
+<section id="aprendizaje-supervisado-supervised-learning" class="level3">
+<h3 class="anchored" data-anchor-id="aprendizaje-supervisado-supervised-learning">Aprendizaje Supervisado (Supervised Learning)</h3>
+<p>Aprendemos de datos etiquetados (conocemos la respuesta correcta).</p>
+<p><strong>Ejemplos:</strong></p>
+<ol type="1">
+<li><p><strong>Clasificación</strong>: Predecir si una empresa caerá en default (sí/no)</p>
+<ul>
+<li>Variable objetivo: Binaria (default o no default)</li>
+<li>Algoritmos: Regresión logística, árboles de decisión, random forests</li>
+</ul></li>
+<li><p><strong>Regresión</strong>: Predecir el precio de una vivienda</p>
+<ul>
+<li>Variable objetivo: Continua (precio en soles)</li>
+<li>Algoritmos: Regresión lineal, regresión ridge, redes neuronales</li>
+</ul></li>
+</ol>
+</section>
+<section id="aprendizaje-no-supervisado-unsupervised-learning" class="level3">
+<h3 class="anchored" data-anchor-id="aprendizaje-no-supervisado-unsupervised-learning">Aprendizaje No Supervisado (Unsupervised Learning)</h3>
+<p>Encontramos patrones en datos sin etiquetas.</p>
+<p><strong>Ejemplos:</strong></p>
+<ol type="1">
+<li><p><strong>Clustering</strong>: Segmentar consumidores en grupos similares</p>
+<ul>
+<li>Identificar perfiles de ahorradores</li>
+<li>Agrupar países por nivel de desarrollo</li>
+</ul></li>
+<li><p><strong>Reducción de dimensionalidad</strong>: Simplificar datos con muchas variables</p>
+<ul>
+<li>Análisis de componentes principales (PCA)</li>
+<li>Crear índices sintéticos</li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="aplicaciones-de-machine-learning-en-economía" class="level2">
+<h2 class="anchored" data-anchor-id="aplicaciones-de-machine-learning-en-economía">Aplicaciones de Machine Learning en economía</h2>
+<section id="caso-1-predicción-de-morosidad-bancaria" class="level3">
+<h3 class="anchored" data-anchor-id="caso-1-predicción-de-morosidad-bancaria">Caso 1: Predicción de morosidad bancaria</h3>
+<p>Un banco necesita predecir qué clientes tienen mayor probabilidad de no pagar su préstamo.</p>
+<p><strong>Enfoque tradicional (Regresión logística):</strong></p>
+<pre><code>P(default) = f(ingresos, historial_crediticio, edad, educación)</code></pre>
+<p><strong>Enfoque ML (Random Forest):</strong></p>
+<ul>
+<li>Considera interacciones complejas entre variables</li>
+<li>Puede capturar relaciones no lineales</li>
+<li>Mayor precisión predictiva (pero menos interpretable)</li>
+</ul>
+</section>
+<section id="caso-2-detección-de-fraude-fiscal" class="level3">
+<h3 class="anchored" data-anchor-id="caso-2-detección-de-fraude-fiscal">Caso 2: Detección de fraude fiscal</h3>
+<p>SUNAT quiere identificar empresas con alta probabilidad de evasión tributaria.</p>
+<p><strong>Variables:</strong></p>
+<ul>
+<li>Ingresos declarados vs.&nbsp;estimados por sector</li>
+<li>Patrones inusuales en deducciones</li>
+<li>Relaciones con proveedores</li>
+<li>Historial de fiscalizaciones</li>
+</ul>
+<p><strong>Algoritmo:</strong> Anomaly detection o clasificación supervisada</p>
+</section>
+<section id="caso-3-predicción-del-tipo-de-cambio" class="level3">
+<h3 class="anchored" data-anchor-id="caso-3-predicción-del-tipo-de-cambio">Caso 3: Predicción del tipo de cambio</h3>
+<p><strong>Modelos tradicionales:</strong></p>
+<ul>
+<li>ARIMA: Serie temporal univariada</li>
+<li>VAR: Múltiples series, relaciones lineales</li>
+</ul>
+<p><strong>Modelos ML:</strong></p>
+<ul>
+<li>Redes neuronales LSTM: Capturan patrones temporales complejos</li>
+<li>Ensemble methods: Combinan múltiples modelos para mejor predicción</li>
+</ul>
+</section>
+</section>
+<section id="la-revolución-del-big-data-en-economía" class="level2">
+<h2 class="anchored" data-anchor-id="la-revolución-del-big-data-en-economía">La revolución del Big Data en economía</h2>
+<p><strong>Nuevas fuentes de datos:</strong></p>
+<ol type="1">
+<li><strong>Datos transaccionales</strong>: Compras con tarjetas de crédito en tiempo real</li>
+<li><strong>Web scraping</strong>: Precios de e-commerce, anuncios de empleo</li>
+<li><strong>Redes sociales</strong>: Sentimiento económico, expectativas</li>
+<li><strong>Imágenes satelitales</strong>: Actividad económica nocturna, agricultura</li>
+<li><strong>Datos de telefonía</strong>: Movilidad, redes sociales</li>
+</ol>
+<p><strong>Ejemplo: Medición de pobreza con imágenes satelitales</strong></p>
+<p>Investigadores han usado machine learning para:</p>
+<ul>
+<li>Analizar imágenes satelitales de luz nocturna</li>
+<li>Predecir niveles de ingreso y pobreza</li>
+<li>Útil en países con escasas encuestas de hogares</li>
+</ul>
+<p><strong>Proceso:</strong> 1. Recolectar imágenes satelitales 2. Entrenar modelos de visión computacional 3. Predecir indicadores económicos 4. Validar con encuestas tradicionales</p>
+</section>
+</section>
+<section id="por-qué-python" class="level1">
+<h1>¿Por qué Python?</h1>
+<section id="python-en-el-ecosistema-de-data-science" class="level2">
+<h2 class="anchored" data-anchor-id="python-en-el-ecosistema-de-data-science">Python en el ecosistema de Data Science</h2>
+<p>Python se ha convertido en el lenguaje dominante para Data Science y Machine Learning. Según encuestas recientes:</p>
+<ul>
+<li>65% de científicos de datos usan Python como lenguaje principal</li>
+<li>9 de las 10 principales empresas tecnológicas usan Python</li>
+</ul>
+</section>
+<section id="ventajas-específicas-de-python-para-economistas" class="level2">
+<h2 class="anchored" data-anchor-id="ventajas-específicas-de-python-para-economistas">Ventajas específicas de Python para economistas</h2>
+<section id="ecosistema-completo-para-análisis-económico" class="level3">
+<h3 class="anchored" data-anchor-id="ecosistema-completo-para-análisis-económico">1. Ecosistema completo para análisis económico</h3>
+<p><strong>Librerías fundamentales:</strong></p>
+<ul>
+<li><strong>NumPy</strong>: Computación numérica, álgebra lineal</li>
+<li><strong>Pandas</strong>: Manipulación de datos (como Excel pero programable)</li>
+<li><strong>Matplotlib/Seaborn</strong>: Visualización de datos</li>
+<li><strong>Statsmodels</strong>: Econometría tradicional</li>
+<li><strong>Scikit-learn</strong>: Machine Learning</li>
+<li><strong>TensorFlow/PyTorch</strong>: Deep Learning</li>
+</ul>
+<p><strong>Ejemplo de workflow típico:</strong></p>
+<div id="4770001f" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> pd                <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Cargar y limpiar datos</span></span>
+<span id="cb9-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> plt    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Visualizar</span></span>
+<span id="cb9-3"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> statsmodels.api <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> sm      <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Econometría</span></span>
+<span id="cb9-4"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> sklearn.ensemble <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> RandomForestRegressor  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ML</span></span>
+<span id="cb9-5"></span>
+<span id="cb9-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1. Cargar datos</span></span>
+<span id="cb9-7">datos <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.read_csv(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'enaho_2023.csv'</span>)</span>
+<span id="cb9-8"></span>
+<span id="cb9-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2. Limpiar y transformar</span></span>
+<span id="cb9-10">datos <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> datos.dropna()</span>
+<span id="cb9-11">datos[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'log_ingreso'</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.log(datos[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'ingreso'</span>])</span>
+<span id="cb9-12"></span>
+<span id="cb9-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 3. Análisis estadístico</span></span>
+<span id="cb9-14">modelo_ols <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> sm.OLS(datos[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'log_ingreso'</span>], datos[[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'educacion'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'experiencia'</span>]]).fit()</span>
+<span id="cb9-15"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(modelo_ols.summary())</span>
+<span id="cb9-16"></span>
+<span id="cb9-17"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 4. Machine Learning</span></span>
+<span id="cb9-18">modelo_ml <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> RandomForestRegressor()</span>
+<span id="cb9-19">modelo_ml.fit(X_train, y_train)</span>
+<span id="cb9-20"></span>
+<span id="cb9-21"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 5. Visualización</span></span>
+<span id="cb9-22">plt.scatter(datos[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'educacion'</span>], datos[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'ingreso'</span>])</span>
+<span id="cb9-23">plt.show()</span></code></pre></div></div>
+</div>
+</section>
+<section id="automatización-de-reportes-económicos" class="level3">
+<h3 class="anchored" data-anchor-id="automatización-de-reportes-económicos">2. Automatización de reportes económicos</h3>
+<p>Python te permite crear reportes automatizados que se actualizan con nuevos datos:</p>
+<div id="cf4bffb0" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Script que corre automáticamente cada mes</span></span>
+<span id="cb10-2"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> generar_reporte_inflacion():</span>
+<span id="cb10-3">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1. Descargar datos del BCRP</span></span>
+<span id="cb10-4">    inflacion <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> descargar_datos_bcrp()</span>
+<span id="cb10-5">    </span>
+<span id="cb10-6">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2. Calcular estadísticas</span></span>
+<span id="cb10-7">    inflacion_mensual <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> calcular_inflacion_mensual(inflacion)</span>
+<span id="cb10-8">    inflacion_anual <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> calcular_inflacion_anual(inflacion)</span>
+<span id="cb10-9">    </span>
+<span id="cb10-10">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 3. Crear gráficos</span></span>
+<span id="cb10-11">    crear_graficos(inflacion_mensual, inflacion_anual)</span>
+<span id="cb10-12">    </span>
+<span id="cb10-13">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 4. Generar documento Word o PDF</span></span>
+<span id="cb10-14">    crear_reporte_word(inflacion_mensual, inflacion_anual)</span>
+<span id="cb10-15">    </span>
+<span id="cb10-16">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 5. Enviar por email automáticamente</span></span>
+<span id="cb10-17">    enviar_email_reporte()</span></code></pre></div></div>
+</div>
+</section>
+<section id="web-scraping-para-investigación-económica" class="level3">
+<h3 class="anchored" data-anchor-id="web-scraping-para-investigación-económica">3. Web scraping para investigación económica</h3>
+<p>Recolecta datos económicos de internet automáticamente:</p>
+<div id="e489364f" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> requests</span>
+<span id="cb11-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> bs4 <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> BeautifulSoup</span>
+<span id="cb11-3"></span>
+<span id="cb11-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Extraer precios de productos de supermercados online</span></span>
+<span id="cb11-5"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> scrape_precios_supermercado(url):</span>
+<span id="cb11-6">    response <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> requests.get(url)</span>
+<span id="cb11-7">    soup <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> BeautifulSoup(response.content, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'html.parser'</span>)</span>
+<span id="cb11-8">    </span>
+<span id="cb11-9">    productos <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> []</span>
+<span id="cb11-10">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> item <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> soup.find_all(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'div'</span>, class_<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'producto'</span>):</span>
+<span id="cb11-11">        nombre <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> item.find(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'h3'</span>).text</span>
+<span id="cb11-12">        precio <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">float</span>(item.find(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'span'</span>, class_<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'precio'</span>).text.replace(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'S/'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">''</span>))</span>
+<span id="cb11-13">        productos.append({<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'nombre'</span>: nombre, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'precio'</span>: precio})</span>
+<span id="cb11-14">    </span>
+<span id="cb11-15">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> pd.DataFrame(productos)</span>
+<span id="cb11-16"></span>
+<span id="cb11-17"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Crear tu propio índice de precios en tiempo real</span></span>
+<span id="cb11-18">precios_hoy <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> scrape_precios_supermercado(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'https://...'</span>)</span></code></pre></div></div>
+</div>
+</section>
+<section id="apis-para-datos-económicos" class="level3">
+<h3 class="anchored" data-anchor-id="apis-para-datos-económicos">4. APIs para datos económicos</h3>
+<p>Accede a bases de datos económicas programáticamente:</p>
+<div id="2e471780" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Ejemplo: Datos del Banco Mundial</span></span>
+<span id="cb12-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> pandas_datareader <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> pdr</span>
+<span id="cb12-3"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> datetime <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> datetime</span>
+<span id="cb12-4"></span>
+<span id="cb12-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># PIB de Perú desde 2000</span></span>
+<span id="cb12-6">pib_peru <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pdr.get_data_world_bank(</span>
+<span id="cb12-7">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'NY.GDP.MKTP.CD'</span>,  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Código de PIB</span></span>
+<span id="cb12-8">    countries<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'PER'</span>],</span>
+<span id="cb12-9">    start<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>datetime(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2000</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>),</span>
+<span id="cb12-10">    end<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>datetime.now()</span>
+<span id="cb12-11">)</span>
+<span id="cb12-12"></span>
+<span id="cb12-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Datos del BCRP</span></span>
+<span id="cb12-14"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> requests</span>
+<span id="cb12-15">url_bcrp <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'https://estadisticas.bcrp.gob.pe/estadisticas/series/api/...'</span></span>
+<span id="cb12-16">response <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> requests.get(url_bcrp)</span>
+<span id="cb12-17">datos <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> response.json()</span></code></pre></div></div>
+</div>
+</section>
+<section id="reproducibilidad-e-investigación-transparente" class="level3">
+<h3 class="anchored" data-anchor-id="reproducibilidad-e-investigación-transparente">5. Reproducibilidad e investigación transparente</h3>
+<p>Todo tu análisis queda documentado en código:</p>
+<div id="f5347c2e" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">"""</span></span>
+<span id="cb13-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">Análisis de determinantes del ingreso en Perú</span></span>
+<span id="cb13-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">Autor: Edison Achalma</span></span>
+<span id="cb13-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">Fecha: Enero 2026</span></span>
+<span id="cb13-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">Datos: ENAHO 2023</span></span>
+<span id="cb13-6"></span>
+<span id="cb13-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">Este script replica el análisis del paper:</span></span>
+<span id="cb13-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">"Educación y retornos en el mercado laboral peruano"</span></span>
+<span id="cb13-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">"""</span></span>
+<span id="cb13-10"></span>
+<span id="cb13-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># El código es tu metodología explícita</span></span>
+<span id="cb13-12"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Cualquiera puede replicar tus resultados</span></span>
+<span id="cb13-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Cambios en datos o método son fáciles de implementar</span></span></code></pre></div></div>
+</div>
+</section>
+</section>
+<section id="python-vs-otros-lenguajes-decisión-informada" class="level2">
+<h2 class="anchored" data-anchor-id="python-vs-otros-lenguajes-decisión-informada">Python vs otros lenguajes: Decisión informada</h2>
+<p><strong>Elige Python si:</strong></p>
+<ul>
+<li>Quieres máxima versatilidad (análisis + automatización + machine learning)</li>
+<li>Planeas trabajar en sector privado o startups</li>
+<li>Te interesa data science más allá de econometría</li>
+<li>Quieres habilidades transferibles a otros campos</li>
+</ul>
+<p><strong>Elige Stata si:</strong></p>
+<ul>
+<li>Tu departamento/institución lo usa exclusivamente</li>
+<li>Haces principalmente econometría de panel y series de tiempo</li>
+<li>Necesitas comandos econométricos muy específicos</li>
+<li>Prefieres soluciones “out of the box”</li>
+</ul>
+<p><strong>Elige R si:</strong></p>
+<ul>
+<li>Te enfocas en estadística y visualización académica</li>
+<li>Tu comunidad de investigación usa R</li>
+<li>Trabajarás principalmente en investigación académica</li>
+</ul>
+<p><strong>La mejor opción: Aprende Python + conocimientos básicos de Stata/R</strong></p>
+<ul>
+<li>Python como lenguaje principal</li>
+<li>Stata/R para situaciones específicas</li>
+<li>Maximiza tu empleabilidad</li>
+</ul>
+</section>
+<section id="testimonios-del-mundo-real" class="level2">
+<h2 class="anchored" data-anchor-id="testimonios-del-mundo-real">Testimonios del mundo real</h2>
+<p><strong>Banco Central de Reserva del Perú (BCRP):</strong></p>
+<ul>
+<li>División de Modelamiento Macroeconómico usa Python para nowcasting</li>
+<li>Scripts de Python automatizan extracción de datos de Bloomberg</li>
+<li>Modelos DSGE implementados en Python</li>
+</ul>
+<p><strong>Ministerio de Economía y Finanzas (MEF):</strong></p>
+<ul>
+<li>Uso creciente de Python para análisis de datos fiscales</li>
+<li>Automatización de reportes presupuestarios</li>
+</ul>
+<p><strong>Sector privado:</strong></p>
+<ul>
+<li>Bancos: Scoring de crédito con machine learning en Python</li>
+<li>Consultoras: Análisis de mercado y predicciones en Python</li>
+<li>Fintech: Toda su infraestructura en Python</li>
+</ul>
+</section>
+</section>
+<section id="preparando-tu-entorno-de-trabajo" class="level1">
+<h1>Preparando tu entorno de trabajo</h1>
+<section id="instalación-de-python" class="level2">
+<h2 class="anchored" data-anchor-id="instalación-de-python">Instalación de Python</h2>
+<section id="opción-1-anaconda-recomendada-para-principiantes" class="level3">
+<h3 class="anchored" data-anchor-id="opción-1-anaconda-recomendada-para-principiantes">Opción 1: Anaconda (Recomendada para principiantes)</h3>
+<p>Anaconda es una distribución de Python que incluye:</p>
+<ul>
+<li>Python</li>
+<li>Jupyter Notebook (entorno interactivo)</li>
+<li>Librerías principales pre-instaladas</li>
+<li>Gestor de paquetes (conda)</li>
+</ul>
+<p><strong>Pasos de instalación:</strong></p>
+<ol type="1">
+<li>Visita <a href="https://www.anaconda.com/download">anaconda.com/download</a></li>
+<li>Descarga la versión para tu sistema operativo (Windows/Mac/Linux)</li>
+<li>Ejecuta el instalador</li>
+<li>Sigue las instrucciones (deja opciones por defecto)</li>
+<li>Verifica la instalación:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Abre terminal o Anaconda Prompt</span></span>
+<span id="cb14-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">python</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--version</span></span>
+<span id="cb14-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Debería mostrar: Python 3.11.x o similar</span></span></code></pre></div></div>
+</section>
+<section id="opción-2-python.org-instalación-mínima" class="level3">
+<h3 class="anchored" data-anchor-id="opción-2-python.org-instalación-mínima">Opción 2: Python.org (Instalación mínima)</h3>
+<p>Si prefieres una instalación más ligera:</p>
+<ol type="1">
+<li>Visita <a href="https://www.python.org/downloads">python.org/downloads</a></li>
+<li>Descarga Python 3.11 o superior</li>
+<li>Durante instalación, marca “Add Python to PATH”</li>
+<li>Instala paquetes individualmente:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pip</span> install numpy pandas matplotlib jupyter statsmodels scikit-learn</span></code></pre></div></div>
+</section>
+</section>
+<section id="entornos-de-desarrollo" class="level2">
+<h2 class="anchored" data-anchor-id="entornos-de-desarrollo">Entornos de desarrollo</h2>
+<section id="jupyter-notebook-recomendado-para-empezar" class="level3">
+<h3 class="anchored" data-anchor-id="jupyter-notebook-recomendado-para-empezar">Jupyter Notebook (Recomendado para empezar)</h3>
+<p>Jupyter es un entorno interactivo ideal para análisis exploratorio y aprendizaje.</p>
+<p><strong>Iniciar Jupyter:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Desde terminal o Anaconda Prompt</span></span>
+<span id="cb16-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">jupyter</span> notebook</span></code></pre></div></div>
+<p>Esto abrirá tu navegador con una interfaz donde puedes:</p>
+<ul>
+<li>Crear notebooks (.ipynb)</li>
+<li>Combinar código, resultados y texto explicativo</li>
+<li>Ver gráficos en línea</li>
+<li>Exportar a PDF, HTML, etc.</li>
+</ul>
+<p><strong>Estructura de un notebook:</strong></p>
+<div id="d6dad7a9" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Celda 1: Importar librerías</span></span>
+<span id="cb17-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> pd</span>
+<span id="cb17-3"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> np</span>
+<span id="cb17-4"></span>
+<span id="cb17-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Celda 2: Cargar datos</span></span>
+<span id="cb17-6">datos <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.read_csv(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'datos.csv'</span>)</span>
+<span id="cb17-7"></span>
+<span id="cb17-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Celda 3: Análisis</span></span>
+<span id="cb17-9"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(datos.describe())</span>
+<span id="cb17-10"></span>
+<span id="cb17-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Celda 4: Visualización</span></span>
+<span id="cb17-12">datos[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'ingreso'</span>].hist()</span></code></pre></div></div>
+</div>
+</section>
+<section id="visual-studio-code-para-proyectos-más-grandes" class="level3">
+<h3 class="anchored" data-anchor-id="visual-studio-code-para-proyectos-más-grandes">Visual Studio Code (Para proyectos más grandes)</h3>
+<p>VS Code es un editor profesional con excelente soporte para Python.</p>
+<p><strong>Instalación:</strong></p>
+<ol type="1">
+<li>Descarga desde <a href="https://code.visualstudio.com">code.visualstudio.com</a></li>
+<li>Instala la extensión de Python</li>
+<li>Configura tu intérprete de Python</li>
+</ol>
+<p><strong>Ventajas:</strong></p>
+<ul>
+<li>IntelliSense (autocompletado inteligente)</li>
+<li>Depuración integrada</li>
+<li>Control de versiones con Git</li>
+<li>Extensiones para todo tipo de tareas</li>
+</ul>
+</section>
+<section id="google-colab-opción-en-la-nube-sin-instalación" class="level3">
+<h3 class="anchored" data-anchor-id="google-colab-opción-en-la-nube-sin-instalación">Google Colab (Opción en la nube, sin instalación)</h3>
+<p>Si no quieres instalar nada en tu computadora:</p>
+<ol type="1">
+<li>Visita <a href="https://colab.research.google.com">colab.research.google.com</a></li>
+<li>Inicia sesión con tu cuenta de Google</li>
+<li>Crea un nuevo notebook</li>
+</ol>
+<p><strong>Ventajas:</strong></p>
+<ul>
+<li>No requiere instalación</li>
+<li>GPU gratuita para cálculos pesados</li>
+<li>Fácil compartir con colaboradores</li>
+</ul>
+<p><strong>Desventajas:</strong></p>
+<ul>
+<li>Requiere internet</li>
+<li>Sesiones limitadas en tiempo</li>
+<li>Menos control sobre el entorno</li>
+</ul>
+</section>
+</section>
+<section id="organización-de-proyectos" class="level2">
+<h2 class="anchored" data-anchor-id="organización-de-proyectos">Organización de proyectos</h2>
+<p><strong>Estructura recomendada:</strong></p>
+<pre><code>mi_proyecto_economia/
+│
+├── datos/
+│   ├── raw/                 # Datos originales (NUNCA modificar)
+│   │   └── enaho_2023.csv
+│   ├── processed/           # Datos procesados
+│   │   └── enaho_limpia.csv
+│   └── external/            # Datos externos
+│       └── indicadores_bcrp.csv
+│
+├── notebooks/               # Jupyter notebooks para exploración
+│   ├── 01_exploracion.ipynb
+│   ├── 02_limpieza.ipynb
+│   └── 03_analisis.ipynb
+│
+├── src/                     # Scripts de Python
+│   ├── data_cleaning.py
+│   ├── analysis.py
+│   └── visualization.py
+│
+├── outputs/                 # Resultados
+│   ├── figuras/
+│   │   └── grafico_ingresos.png
+│   └── tablas/
+│       └── regresion_resultados.csv
+│
+├── requirements.txt         # Lista de paquetes necesarios
+└── README.md               # Descripción del proyecto</code></pre>
+<p><strong>Ejemplo de requirements.txt:</strong></p>
+<pre><code>numpy==1.24.3
+pandas==2.0.3
+matplotlib==3.7.2
+seaborn==0.12.2
+statsmodels==0.14.0
+scikit-learn==1.3.0
+jupyter==1.0.0</code></pre>
+<p><strong>Instalar dependencias:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pip</span> install <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-r</span> requirements.txt</span></code></pre></div></div>
+</section>
+<section id="primeros-pasos-en-jupyter" class="level2">
+<h2 class="anchored" data-anchor-id="primeros-pasos-en-jupyter">Primeros pasos en Jupyter</h2>
+<p><strong>Crear tu primer notebook:</strong></p>
+<ol type="1">
+<li>Abre Jupyter Notebook</li>
+<li>Click en “New” → “Python 3”</li>
+<li>Renombra el notebook: “mi_primer_analisis.ipynb”</li>
+</ol>
+<p><strong>Atajos útiles:</strong></p>
+<ul>
+<li><strong>Shift + Enter</strong>: Ejecutar celda y avanzar</li>
+<li><strong>Ctrl + Enter</strong>: Ejecutar celda sin avanzar</li>
+<li><strong>A</strong>: Insertar celda arriba</li>
+<li><strong>B</strong>: Insertar celda abajo</li>
+<li><strong>D, D</strong>: Eliminar celda</li>
+<li><strong>M</strong>: Cambiar a celda de Markdown (texto)</li>
+<li><strong>Y</strong>: Cambiar a celda de código</li>
+</ul>
+<p><strong>Celdas de Markdown para documentación:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"># Análisis de Ingresos en Perú</span></span>
+<span id="cb21-2"></span>
+<span id="cb21-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"># Objetivo</span></span>
+<span id="cb21-4">Analizar los determinantes del ingreso utilizando datos de la ENAHO 2023.</span>
+<span id="cb21-5"></span>
+<span id="cb21-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"># Metodología</span></span>
+<span id="cb21-7"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">1. </span>Cargar y limpiar datos</span>
+<span id="cb21-8"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">2. </span>Análisis descriptivo</span>
+<span id="cb21-9"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">3. </span>Regresión lineal múltiple</span>
+<span id="cb21-10"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">4. </span>Interpretación de resultados</span>
+<span id="cb21-11"></span>
+<span id="cb21-12"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"># Resultados preliminares</span></span>
+<span id="cb21-13"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">- </span>Observaciones: 15,342</span>
+<span id="cb21-14"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">- </span>Variable dependiente: Ingreso mensual (log)</span></code></pre></div></div>
+</section>
+</section>
+<section id="tu-primer-programa-en-python" class="level1">
+<h1>Tu primer programa en Python</h1>
+<section id="hola-mundo-del-economista" class="level2">
+<h2 class="anchored" data-anchor-id="hola-mundo-del-economista">Hola Mundo del economista</h2>
+<p>Abre un nuevo notebook de Jupyter y escribe:</p>
+<div id="67d993a0" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Mi primer programa en Python</span></span>
+<span id="cb22-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"¡Hola, mundo económico!"</span>)</span>
+<span id="cb22-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Estudiante de economía de la UNSCH"</span>)</span></code></pre></div></div>
+</div>
+<p>Ejecuta con <strong>Shift + Enter</strong>. Deberías ver:</p>
+<pre><code>¡Hola, mundo económico!
+Estudiante de economía de la UNSCH</code></pre>
+</section>
+<section id="calculadora-básica" class="level2">
+<h2 class="anchored" data-anchor-id="calculadora-básica">Calculadora básica</h2>
+<p>Python puede funcionar como calculadora:</p>
+<div id="2e9b733c" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Operaciones básicas</span></span>
+<span id="cb24-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>)        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Suma: 5</span></span>
+<span id="cb24-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>)       <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Resta: 6</span></span>
+<span id="cb24-4"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7</span>)        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Multiplicación: 21</span></span>
+<span id="cb24-5"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">15</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>)       <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># División: 5.0</span></span>
+<span id="cb24-6"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>)       <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Potencia: 8</span></span>
+<span id="cb24-7"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">17</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">//</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>)      <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># División entera: 3</span></span>
+<span id="cb24-8"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">17</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>)       <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Módulo (residuo): 2</span></span></code></pre></div></div>
+</div>
+<p><strong>Aplicación económica: Calcular IPC</strong></p>
+<div id="12cee874" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Calcular índice de precios al consumidor (IPC)</span></span>
+<span id="cb25-2">precio_canasta_hoy <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">850.50</span></span>
+<span id="cb25-3">precio_canasta_base <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">750.00</span></span>
+<span id="cb25-4"></span>
+<span id="cb25-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># IPC = (Precio actual / Precio base) * 100</span></span>
+<span id="cb25-6">ipc <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> (precio_canasta_hoy <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> precio_canasta_base) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span></span>
+<span id="cb25-7"></span>
+<span id="cb25-8"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"El IPC es: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>ipc<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.2f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb25-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Salida: El IPC es: 113.40</span></span></code></pre></div></div>
+</div>
+</section>
+<section id="variables-y-tipos-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="variables-y-tipos-de-datos">Variables y tipos de datos</h2>
+<div id="0b393069" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Variables numéricas</span></span>
+<span id="cb26-2">pib_peru <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">242_632</span>  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># PIB en millones de USD (guiones bajos para legibilidad)</span></span>
+<span id="cb26-3">poblacion <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">33_715_471</span></span>
+<span id="cb26-4">tasa_inflacion <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3.25</span>  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Porcentaje</span></span>
+<span id="cb26-5"></span>
+<span id="cb26-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Variables de texto (strings)</span></span>
+<span id="cb26-7">pais <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Perú"</span></span>
+<span id="cb26-8">moneda <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sol"</span></span>
+<span id="cb26-9"></span>
+<span id="cb26-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Variables booleanas (True/False)</span></span>
+<span id="cb26-11">es_pais_emergente <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span></span>
+<span id="cb26-12">esta_en_recesion <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span></span>
+<span id="cb26-13"></span>
+<span id="cb26-14"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Imprimir información</span></span>
+<span id="cb26-15"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"País: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>pais<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb26-16"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"PIB: $</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>pib_peru<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:,}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> millones"</span>)</span>
+<span id="cb26-17"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"PIB per cápita: $</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>pib_peru <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> poblacion <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1_000_000</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.2f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span></code></pre></div></div>
+</div>
+<p><strong>Salida:</strong></p>
+<pre><code>País: Perú
+PIB: $242,632 millones
+PIB per cápita: $7,196.21</code></pre>
+</section>
+<section id="listas-colecciones-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="listas-colecciones-de-datos">Listas: Colecciones de datos</h2>
+<div id="92b01628" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Lista de tasas de crecimiento del PIB (últimos 5 años)</span></span>
+<span id="cb28-2">crecimiento_pib <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.4</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4.0</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">11.0</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">13.3</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.7</span>]</span>
+<span id="cb28-3"></span>
+<span id="cb28-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Acceder a elementos (índices empiezan en 0)</span></span>
+<span id="cb28-5"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Crecimiento en 2020 (pandemia): </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>crecimiento_pib[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>]<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">%"</span>)</span>
+<span id="cb28-6"></span>
+<span id="cb28-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Agregar nuevo dato</span></span>
+<span id="cb28-8">crecimiento_pib.append(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3.5</span>)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Proyección 2024</span></span>
+<span id="cb28-9"></span>
+<span id="cb28-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Calcular promedio</span></span>
+<span id="cb28-11">promedio <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">sum</span>(crecimiento_pib) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(crecimiento_pib)</span>
+<span id="cb28-12"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Crecimiento promedio: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>promedio<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.2f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">%"</span>)</span></code></pre></div></div>
+</div>
+</section>
+<section id="diccionarios-datos-etiquetados" class="level2">
+<h2 class="anchored" data-anchor-id="diccionarios-datos-etiquetados">Diccionarios: Datos etiquetados</h2>
+<div id="18c4776b" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Información económica de un país</span></span>
+<span id="cb29-2">economia_peru <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {</span>
+<span id="cb29-3">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'pib'</span>: <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">242_632</span>,</span>
+<span id="cb29-4">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'poblacion'</span>: <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">33_715_471</span>,</span>
+<span id="cb29-5">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'inflacion'</span>: <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3.25</span>,</span>
+<span id="cb29-6">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'desempleo'</span>: <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7.1</span>,</span>
+<span id="cb29-7">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'moneda'</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'PEN'</span></span>
+<span id="cb29-8">}</span>
+<span id="cb29-9"></span>
+<span id="cb29-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Acceder a datos</span></span>
+<span id="cb29-11"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Tasa de desempleo: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>economia_peru[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'desempleo'</span>]<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">%"</span>)</span>
+<span id="cb29-12"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Inflación: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>economia_peru[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'inflacion'</span>]<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">%"</span>)</span>
+<span id="cb29-13"></span>
+<span id="cb29-14"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Agregar nuevo indicador</span></span>
+<span id="cb29-15">economia_peru[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'reservas_internacionales'</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">74_500</span>  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Millones USD</span></span>
+<span id="cb29-16"></span>
+<span id="cb29-17"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Calcular PIB per cápita</span></span>
+<span id="cb29-18">pib_per_capita <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> economia_peru[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'pib'</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> economia_peru[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'poblacion'</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1_000_000</span></span>
+<span id="cb29-19">economia_peru[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'pib_per_capita'</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pib_per_capita</span>
+<span id="cb29-20"></span>
+<span id="cb29-21"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"PIB per cápita: $</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>economia_peru[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'pib_per_capita'</span>]<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.2f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span></code></pre></div></div>
+</div>
+</section>
+<section id="tu-primer-análisis-de-datos-con-pandas" class="level2">
+<h2 class="anchored" data-anchor-id="tu-primer-análisis-de-datos-con-pandas">Tu primer análisis de datos con Pandas</h2>
+<div id="e88943e3" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> pd</span>
+<span id="cb30-2"></span>
+<span id="cb30-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Crear un DataFrame con datos de regiones de Perú</span></span>
+<span id="cb30-4">datos_regiones <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {</span>
+<span id="cb30-5">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'region'</span>: [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Lima'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Arequipa'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Cusco'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'La Libertad'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Piura'</span>],</span>
+<span id="cb30-6">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'poblacion'</span>: [<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">9_674_755</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1_497_438</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1_357_075</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2_016_771</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2_047_954</span>],</span>
+<span id="cb30-7">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'pib_millones'</span>: [<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">234_000</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">18_500</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12_300</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">24_100</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">16_800</span>]</span>
+<span id="cb30-8">}</span>
+<span id="cb30-9"></span>
+<span id="cb30-10">df <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.DataFrame(datos_regiones)</span>
+<span id="cb30-11"></span>
+<span id="cb30-12"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Calcular PIB per cápita</span></span>
+<span id="cb30-13">df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'pib_per_capita'</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'pib_millones'</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'poblacion'</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1_000_000</span></span>
+<span id="cb30-14"></span>
+<span id="cb30-15"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Mostrar resultados</span></span>
+<span id="cb30-16"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(df)</span>
+<span id="cb30-17"></span>
+<span id="cb30-18"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Estadísticas descriptivas</span></span>
+<span id="cb30-19"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Estadísticas descriptivas:"</span>)</span>
+<span id="cb30-20"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'pib_per_capita'</span>].describe())</span>
+<span id="cb30-21"></span>
+<span id="cb30-22"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Región con mayor PIB per cápita</span></span>
+<span id="cb30-23">region_mas_rica <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> df.loc[df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'pib_per_capita'</span>].idxmax(), <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'region'</span>]</span>
+<span id="cb30-24"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Región con mayor PIB per cápita: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>region_mas_rica<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span></code></pre></div></div>
+</div>
+<p><strong>Salida:</strong></p>
+<pre><code>        region  poblacion  pib_millones  pib_per_capita
+0         Lima    9674755        234000    24192.831729
+1     Arequipa    1497438         18500    12353.806853
+2        Cusco    1357075         12300     9063.043478
+3  La Libertad    2016771         24100    11949.742268
+4        Piura    2047954         16800     8202.633428
+
+Estadísticas descriptivas:
+count        5.000000
+mean     13152.411551
+std       6406.398824
+min       8202.633428
+25%       9063.043478
+50%      11949.742268
+75%      12353.806853
+max      24192.831729
+Name: pib_per_capita, dtype: float64
+
+Región con mayor PIB per cápita: Lima</code></pre>
+</section>
+<section id="visualización-básica" class="level2">
+<h2 class="anchored" data-anchor-id="visualización-básica">Visualización básica</h2>
+<div id="81ab5671" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> plt</span>
+<span id="cb32-2"></span>
+<span id="cb32-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Crear gráfico de barras</span></span>
+<span id="cb32-4">plt.figure(figsize<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>))</span>
+<span id="cb32-5">plt.bar(df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'region'</span>], df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'pib_per_capita'</span>], color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'steelblue'</span>)</span>
+<span id="cb32-6">plt.xlabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Región'</span>)</span>
+<span id="cb32-7">plt.ylabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'PIB per cápita (USD)'</span>)</span>
+<span id="cb32-8">plt.title(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'PIB per cápita por región en Perú'</span>)</span>
+<span id="cb32-9">plt.xticks(rotation<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">45</span>)</span>
+<span id="cb32-10">plt.grid(axis<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'y'</span>, alpha<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.3</span>)</span>
+<span id="cb32-11">plt.tight_layout()</span>
+<span id="cb32-12">plt.show()</span></code></pre></div></div>
+</div>
+</section>
+</section>
+<section id="ejercicios-prácticos" class="level1">
+<h1>Ejercicios prácticos</h1>
+<section id="ejercicio-1-calculadora-de-inflación-acumulada" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-1-calculadora-de-inflación-acumulada">Ejercicio 1: Calculadora de inflación acumulada</h2>
+<p>Crea un programa que calcule la inflación acumulada dados los índices de precios mensuales.</p>
+<p><strong>Datos:</strong></p>
+<div id="a04526c3" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1">ipc_mensual <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100.0</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100.5</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">101.2</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">101.8</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">102.5</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">103.0</span>]</span></code></pre></div></div>
+</div>
+<p><strong>Tareas:</strong> 1. Calcula la inflación mensual (variación porcentual) 2. Calcula la inflación acumulada 3. Imprime los resultados</p>
+<p><strong>Solución esperada:</strong></p>
+<div id="c0a9d50b" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Tu código aquí</span></span></code></pre></div></div>
+</div>
+<div id="61270f2e" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1">ipc_mensual <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100.0</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100.5</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">101.2</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">101.8</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">102.5</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">103.0</span>]</span>
+<span id="cb35-2"></span>
+<span id="cb35-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Calcular inflación mensual</span></span>
+<span id="cb35-4">inflacion_mensual <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> []</span>
+<span id="cb35-5"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> i <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">range</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(ipc_mensual)):</span>
+<span id="cb35-6">    inflacion <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ((ipc_mensual[i] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> ipc_mensual[i<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> ipc_mensual[i<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span></span>
+<span id="cb35-7">    inflacion_mensual.append(inflacion)</span>
+<span id="cb35-8">    <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Mes </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>i<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>inflacion<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.2f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">%"</span>)</span>
+<span id="cb35-9"></span>
+<span id="cb35-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Inflación acumulada</span></span>
+<span id="cb35-11">inflacion_acumulada <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ((ipc_mensual[<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> ipc_mensual[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> ipc_mensual[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span></span>
+<span id="cb35-12"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Inflación acumulada: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>inflacion_acumulada<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.2f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">%"</span>)</span></code></pre></div></div>
+</div>
+
+</section>
+<section id="ejercicio-2-análisis-de-datos-de-exportaciones" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-2-análisis-de-datos-de-exportaciones">Ejercicio 2: Análisis de datos de exportaciones</h2>
+<p>Tienes datos de exportaciones de Perú por sectores.</p>
+<div id="d5afe52f" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1">exportaciones <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {</span>
+<span id="cb36-2">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'sector'</span>: [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Minería'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Agricultura'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Pesca'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Manufactura'</span>],</span>
+<span id="cb36-3">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'valor_2022'</span>: [<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">35_600</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7_200</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2_800</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12_400</span>],  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Millones USD</span></span>
+<span id="cb36-4">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'valor_2023'</span>: [<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">38_100</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7_850</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2_950</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">13_200</span>]</span>
+<span id="cb36-5">}</span></code></pre></div></div>
+</div>
+<p><strong>Tareas:</strong></p>
+<ol type="1">
+<li>Crea un DataFrame con estos datos</li>
+<li>Calcula la variación porcentual por sector</li>
+<li>Identifica el sector con mayor crecimiento</li>
+<li>Calcula el total exportado en cada año</li>
+</ol>
+<div id="6e462060" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> pd</span>
+<span id="cb37-2"></span>
+<span id="cb37-3">exportaciones <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {</span>
+<span id="cb37-4">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'sector'</span>: [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Minería'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Agricultura'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Pesca'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Manufactura'</span>],</span>
+<span id="cb37-5">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'valor_2022'</span>: [<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">35_600</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7_200</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2_800</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12_400</span>],</span>
+<span id="cb37-6">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'valor_2023'</span>: [<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">38_100</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7_850</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2_950</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">13_200</span>]</span>
+<span id="cb37-7">}</span>
+<span id="cb37-8"></span>
+<span id="cb37-9">df_exp <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.DataFrame(exportaciones)</span>
+<span id="cb37-10"></span>
+<span id="cb37-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Calcular variación porcentual</span></span>
+<span id="cb37-12">df_exp[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'variacion_%'</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ((df_exp[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'valor_2023'</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> df_exp[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'valor_2022'</span>]) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> df_exp[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'valor_2022'</span>]) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span></span>
+<span id="cb37-13"></span>
+<span id="cb37-14"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Exportaciones por sector:"</span>)</span>
+<span id="cb37-15"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(df_exp)</span>
+<span id="cb37-16"></span>
+<span id="cb37-17"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Sector con mayor crecimiento</span></span>
+<span id="cb37-18">idx_max <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> df_exp[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'variacion_%'</span>].idxmax()</span>
+<span id="cb37-19"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Sector con mayor crecimiento: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>df_exp<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>loc[idx_max, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'sector'</span>]<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> (</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>df_exp<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>loc[idx_max, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'variacion_%'</span>]<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.2f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">%)"</span>)</span>
+<span id="cb37-20"></span>
+<span id="cb37-21"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Total exportado</span></span>
+<span id="cb37-22">total_2022 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> df_exp[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'valor_2022'</span>].<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">sum</span>()</span>
+<span id="cb37-23">total_2023 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> df_exp[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'valor_2023'</span>].<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">sum</span>()</span>
+<span id="cb37-24"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Total exportado 2022: $</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>total_2022<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:,}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> millones"</span>)</span>
+<span id="cb37-25"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Total exportado 2023: $</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>total_2023<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:,}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> millones"</span>)</span>
+<span id="cb37-26"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Crecimiento total: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>((total_2023 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> total_2022) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> total_2022) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.2f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">%"</span>)</span></code></pre></div></div>
+</div>
+
+</section>
+<section id="ejercicio-3-función-de-utilidad" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-3-función-de-utilidad">Ejercicio 3: Función de utilidad</h2>
+<p>Crea una función que calcule la utilidad de un consumidor según la función Cobb-Douglas:</p>
+<p>U(x, y) = x^α * y^(1-α)</p>
+<p>Donde x e y son bienes consumidos y α es el parámetro de preferencia.</p>
+<div id="cb115042" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> utilidad_cobb_douglas(x, y, alpha):</span>
+<span id="cb38-2">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">"""</span></span>
+<span id="cb38-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    Calcula la utilidad según función Cobb-Douglas</span></span>
+<span id="cb38-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    </span></span>
+<span id="cb38-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    Parámetros:</span></span>
+<span id="cb38-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    x: cantidad del bien 1</span></span>
+<span id="cb38-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    y: cantidad del bien 2</span></span>
+<span id="cb38-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    alpha: parámetro de preferencia (0 &lt; alpha &lt; 1)</span></span>
+<span id="cb38-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    </span></span>
+<span id="cb38-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    Retorna:</span></span>
+<span id="cb38-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    Utilidad total</span></span>
+<span id="cb38-12"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    """</span></span>
+<span id="cb38-13">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Tu código aquí</span></span>
+<span id="cb38-14">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">pass</span></span>
+<span id="cb38-15"></span>
+<span id="cb38-16"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Prueba la función</span></span>
+<span id="cb38-17">u <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> utilidad_cobb_douglas(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>, alpha<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb38-18"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Utilidad: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>u<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.2f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span></code></pre></div></div>
+</div>
+<div id="4df2479e" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> utilidad_cobb_douglas(x, y, alpha):</span>
+<span id="cb39-2">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">"""</span></span>
+<span id="cb39-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    Calcula la utilidad según función Cobb-Douglas</span></span>
+<span id="cb39-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    """</span></span>
+<span id="cb39-5">    utilidad <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> (x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span> alpha) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> (y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span> (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> alpha))</span>
+<span id="cb39-6">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> utilidad</span>
+<span id="cb39-7"></span>
+<span id="cb39-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Prueba con diferentes combinaciones</span></span>
+<span id="cb39-9"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Análisis de utilidad:"</span>)</span>
+<span id="cb39-10"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"-"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">40</span>)</span>
+<span id="cb39-11"></span>
+<span id="cb39-12">combinaciones <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [</span>
+<span id="cb39-13">    (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.3</span>),</span>
+<span id="cb39-14">    (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>),</span>
+<span id="cb39-15">    (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.7</span>),</span>
+<span id="cb39-16">    (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>),</span>
+<span id="cb39-17">]</span>
+<span id="cb39-18"></span>
+<span id="cb39-19"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> x, y, alpha <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> combinaciones:</span>
+<span id="cb39-20">    u <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> utilidad_cobb_douglas(x, y, alpha)</span>
+<span id="cb39-21">    <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"U(</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>x<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">, </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>y<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">) con α=</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>alpha<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>u<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.2f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span></code></pre></div></div>
+</div>
+
+</section>
+</section>
+<section id="conclusión" class="level1">
+<h1>Conclusión</h1>
+<p>Has completado la primera guía de Python para economistas. Has aprendido:</p>
+<ul>
+<li>Por qué es importante programar como economista</li>
+<li>Las diferencias entre lenguajes de programación</li>
+<li>Qué son Data Science y Machine Learning</li>
+<li>Por qué Python es ideal para economistas</li>
+<li>Cómo configurar tu entorno de trabajo</li>
+<li>Los fundamentos básicos de Python</li>
+</ul>
+<p><strong>En la siguiente guía aprenderás:</strong></p>
+<ul>
+<li>Variables, expresiones y statements en profundidad</li>
+<li>Tipos de datos y conversiones</li>
+<li>Operadores y precedencia</li>
+<li>Entrada de datos del usuario</li>
+<li>Convenciones de nombres de variables</li>
+</ul>
+<p><strong>Recursos adicionales recomendados:</strong></p>
+<ol type="1">
+<li><strong>Documentación oficial de Python:</strong> <a href="https://docs.python.org">docs.python.org</a></li>
+<li><strong>Pandas para análisis de datos:</strong> <a href="https://pandas.pydata.org">pandas.pydata.org</a></li>
+<li><strong>Statsmodels para econometría:</strong> <a href="https://www.statsmodels.org">statsmodels.org</a></li>
+<li><strong>Kaggle Learn:</strong> Tutoriales interactivos gratuitos</li>
+</ol>
+<p>¡Nos vemos en la siguiente guía!</p>
+</section>
+<section id="publicaciones-similares" class="level1">
+<h1>Publicaciones Similares</h1>
+<p>Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:</p>
+<ol type="1">
+<li><a href="https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda">Instalacion De Anaconda</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda">Configurar Entorno Virtual Python Anaconda</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python">01 Introducion A La Programacion Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python">02 Variables Expresiones Y Statements Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python">03 Objetos De Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python">04 Ejecucion Condicional Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python">05 Iteraciones Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python">06 Funciones Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python">07 Dataframes Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python">08 Prediccion Y Metrica De Performance Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python">09 Metodos De Machine Learning Para Clasificacion Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python">10 Metodos De Machine Learning Para Regresion Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2022-10-31-11-validacion-cruzada-y-composicion-del-modelo-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2022-10-31-11-validacion-cruzada-y-composicion-del-modelo-con-python">11 Validacion Cruzada Y Composicion Del Modelo Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python">Visualizacion De Datos Con Python</a></li>
+</ol>
+<p>Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reutilización</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-achalma2021" class="csl-entry quarto-appendix-citeas">
+Achalma, Edison. 2021. <span>“Introducción a Python para
+Economistas,”</span> April. <a href="https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python/">https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python/</a>.
+</div></div></section></div> ]]></description>
+  <category>Python</category>
+  <guid>https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python/</guid>
+  <pubDate>Sat, 17 Apr 2021 05:00:00 GMT</pubDate>
+  <media:content url="https://numerus-scriptum.netlify.app/python/featured.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
   <title>Entornos virtuales con Conda</title>
   <dc:creator>Edison Achalma</dc:creator>
   <link>https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/</link>
