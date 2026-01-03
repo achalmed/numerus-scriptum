@@ -1,5 +1,5 @@
 \documentclass[
-  jou,
+  doc,
   floatsintext,
   longtable,
   a4paper,
@@ -12,6 +12,8 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
+\geometry{inner=1in, outer=1in}
+\fancyhfoffset[LE,RO]{0cm}
 
 
 \usepackage[bidi=default]{babel}
@@ -78,6 +80,46 @@
 
 
 
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -168,46 +210,13 @@ manera:  Edison Achalma:   conceptualización, redacción}
 Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
 }
 
-\usepackage{pbalance}
-% \usepackage{float}
 \makeatletter
-\let\oldtpt\ThreePartTable
-\let\endoldtpt\endThreePartTable
-\def\ThreePartTable{\@ifnextchar[\ThreePartTable@i \ThreePartTable@ii}
-\def\ThreePartTable@i[#1]{\begin{figure}[!htbp]
-\onecolumn
-\begin{minipage}{0.485\textwidth}
-\oldtpt[#1]
-}
-\def\ThreePartTable@ii{\begin{figure}[!htbp]
-\onecolumn
-\begin{minipage}{0.48\textwidth}
-\oldtpt
-}
-\def\endThreePartTable{
-\endoldtpt
-\end{minipage}
-\twocolumn
-\end{figure}}
-\makeatother
-
-
-\makeatletter
-\let\endoldlt\endlongtable		
+\let\endoldlt\endlongtable
 \def\endlongtable{
 \hline
-\endoldlt}
+\endoldlt
+}
 \makeatother
-
-\newenvironment{twocolumntable}% environment name
-{% begin code
-\begin{table*}[!htbp]%
-\onecolumn%
-}%
-{%
-\twocolumn%
-\end{table*}%
-}% end code
 
 \urlstyle{same}
 
@@ -305,8 +314,309 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 
 
 
-Este artículo está actualmente en proceso de edición, y todas las
-secciones serán ampliadas y refinadas en futuras revisiones.
+\section{Listas}\label{listas}
+
+Las listas son objetos mutables e iterables en python. Son muy
+versátiles pues permiten coleccionar de manera ordenada cualquier objeto
+(incluso otras listas). Las listas además te permiten acceder a los
+elementos que contiene adentro utilizando índices.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{frutas }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}manzana\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}banana\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}durazno\textquotesingle{}}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(frutas)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{carnes }\OperatorTok{=} \BuiltInTok{list}\NormalTok{([}\StringTok{\textquotesingle{}cerdo\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}vaca\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}pollo\textquotesingle{}}\NormalTok{])}
+\BuiltInTok{print}\NormalTok{(carnes)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mix }\OperatorTok{=}\NormalTok{ [}\DecValTok{123}\NormalTok{, [}\StringTok{\textquotesingle{}Python\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Stata\textquotesingle{}}\NormalTok{], }\StringTok{\textquotesingle{}iPhone\textquotesingle{}}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(mix)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Asignación como referencia o como
+valor}\label{asignaciuxf3n-como-referencia-o-como-valor}
+
+Muchos cometen el error de `copiar' una lista de manera directa y luego
+editarla. El resultado es que todas las ediciones que hagamos en la
+lista referida se replicaran en la lista original. Esto ocurre cuando
+asignamos una lista como referencia en lugar de copiarla.
+
+Cuando la asignamos como referencia lo unico que hace python es usar el
+nuevo nombre de variable para referenciar la variable original. Esto
+permite a python salvar memoria ram porque no estamos creando más
+objetos en el ambiente de python.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ copy}
+
+\NormalTok{miPrimeraLista }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{]}
+\NormalTok{miPrimeraLista1 }\OperatorTok{=}\NormalTok{ miPrimeraLista }\CommentTok{\# Esto asigna como referencia}
+\NormalTok{miPrimeraLista2 }\OperatorTok{=}\NormalTok{ copy.copy(miPrimeraLista) }\CommentTok{\# Esto asigna como valor}
+\CommentTok{\#miPrimeraLista[0]}
+\NormalTok{miPrimeraLista[}\DecValTok{0}\NormalTok{] }\OperatorTok{=} \DecValTok{3}
+\NormalTok{miPrimeraLista[}\DecValTok{1}\NormalTok{] }\OperatorTok{=} \DecValTok{9}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}miPrimeraLista :\textquotesingle{}}\NormalTok{,miPrimeraLista)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}miPrimeraLista1:\textquotesingle{}}\NormalTok{,miPrimeraLista1)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}miPrimeraLista2:\textquotesingle{}}\NormalTok{,miPrimeraLista2)}
+\end{Highlighting}
+\end{Shaded}
+
+En el caso de listas de listas la función que nos permite copiar el
+objeto completo es la rutina deepcopy. Basicamente lo que hace deepcopy
+es copiar como valor no solo la lista inicial, sino tambien las listas
+que se contienen adentro.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#List of lists:}
+\NormalTok{miSegundaLista }\OperatorTok{=}\NormalTok{ [[}\StringTok{"Jose"}\NormalTok{, }\StringTok{"Pablo"}\NormalTok{], [}\DecValTok{26}\NormalTok{, }\DecValTok{25}\NormalTok{]]}
+\NormalTok{miSegundaListaNombres }\OperatorTok{=}\NormalTok{ miSegundaLista }\CommentTok{\# Esto asigna como referencia}
+\NormalTok{miSegundaListaNombres2 }\OperatorTok{=}\NormalTok{ copy.deepcopy(miSegundaLista) }\CommentTok{\# Deepcopy asigna como valor las listas y sublistas}
+\NormalTok{miSegundaLista[}\DecValTok{1}\NormalTok{][}\DecValTok{1}\NormalTok{] }\OperatorTok{=} \DecValTok{24}
+\BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}Lista original:\textquotesingle{}}\NormalTok{,miSegundaLista)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}Lista copiada como referencia:\textquotesingle{}}\NormalTok{,miSegundaListaNombres)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}Lista copiada como valor:\textquotesingle{}}\NormalTok{,miSegundaListaNombres2)}
+\end{Highlighting}
+\end{Shaded}
+
+Para eliminar elementos dentro de una lista, podemos indexar el objeto y
+con el comando del, podemos eliminar dicho objeto.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{del}\NormalTok{ miSegundaLista[}\DecValTok{1}\NormalTok{]}
+\NormalTok{miSegundaLista}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Combinar listas}
+\NormalTok{mylist }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{] }\OperatorTok{+}\NormalTok{ [}\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(mylist)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{[}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{]}\OperatorTok{*}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Evaluando la existencia de objetos en una
+lista}\label{evaluando-la-existencia-de-objetos-en-una-lista}
+
+En python es posible evaluar la membresía de un elemento en colecciones
+de elementos como listas, sets, diccionarios y tuplas. Para ello existen
+los comandos ``in'', ``not in''.
+
+Así mismo es posible evaluar si un objeto en python es identico a otro.
+Esta rutina evalúa si un objeto tiene el mismo valor y propiedades que
+otro, para ello se usa la rutina ``is''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Evaluar si un objeto se encuentra en una lista}
+\BuiltInTok{print}\NormalTok{(mylist)}
+\BuiltInTok{print}\NormalTok{(}\DecValTok{1} \KeywordTok{in}\NormalTok{ mylist)}
+\BuiltInTok{print}\NormalTok{(}\DecValTok{5} \KeywordTok{in}\NormalTok{ mylist)}
+\BuiltInTok{print}\NormalTok{(}\DecValTok{1} \KeywordTok{not} \KeywordTok{in}\NormalTok{ mylist)}
+\BuiltInTok{print}\NormalTok{(}\DecValTok{5} \KeywordTok{not} \KeywordTok{in}\NormalTok{ mylist)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\DecValTok{5} \KeywordTok{is} \DecValTok{5}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\DecValTok{5} \KeywordTok{is} \FloatTok{5.}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Otros metodos para modificar
+listas.}\label{otros-metodos-para-modificar-listas.}
+
+Existen además otros métodos que nos permiten modificar las listas. Por
+ejemplo, podemos obtener el valor máximo, el mínimo, el tamaño de la
+lista, así como tambien podemos agregar y remover elementos a una lista.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Metodos en listas}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{len}\NormalTok{(mylist)) }\CommentTok{\#Tamano de lista}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{min}\NormalTok{(mylist)) }\CommentTok{\#Valor minimo en la lista}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{max}\NormalTok{(mylist)) }\CommentTok{\#Valor maximo en la lista}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Metodos para agregar y eliminar elementos de una lista:}
+\NormalTok{mylist.append(}\DecValTok{5}\NormalTok{) }\CommentTok{\#Agregar elemento}
+\NormalTok{mylist}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mylist.append([}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{])}
+\NormalTok{mylist}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mylist.remove([}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{]) }\CommentTok{\# Remover elemento}
+\NormalTok{mylist}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mylist.extend([}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{]) }\CommentTok{\# Extender lista con mas elementos}
+\NormalTok{mylist}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mylist.insert(}\DecValTok{1}\NormalTok{,}\DecValTok{10}\NormalTok{) }\CommentTok{\# insert element to a list at a location other than the end}
+\NormalTok{mylist}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mylist.sort()}
+\BuiltInTok{print}\NormalTok{(mylist) }\CommentTok{\# Ordenar lista de menor a mayor}
+\NormalTok{mylist.index(}\DecValTok{2}\NormalTok{) }\CommentTok{\# Retorna el indice del valor que solicitamos}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mylistExample }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+\NormalTok{mylistExample.index(}\DecValTok{2}\NormalTok{) }\CommentTok{\# Retorna el indice del valor que solicitamos}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Trabajando con tuplas.}\label{trabajando-con-tuplas.}
+
+Las tuplas son colecciones ordenadas de elementos que son inmutables. El
+beneficio de que sea inmutable es que definir una tupla requiere poca
+memoria ram pues no tiene muchas rutinas asociadas a comparación de las
+listas. Usualmente definimos las tuplas entre paréntesis ``(,)''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ sys}
+
+\CommentTok{\# Uso de ram para tuplas vs listas:}
+\NormalTok{myTuple }\OperatorTok{=} \BuiltInTok{tuple}\NormalTok{([i }\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{1000}\NormalTok{)])}
+\NormalTok{myList  }\OperatorTok{=}\NormalTok{ [i }\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{1000}\NormalTok{)]}
+\BuiltInTok{print}\NormalTok{(sys.getsizeof(myTuple),}
+\NormalTok{      sys.getsizeof(myList))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Evaluando el tipo de elemento}
+\NormalTok{myTuple }\OperatorTok{=} \DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}
+\CommentTok{\#print(myTuple)}
+\BuiltInTok{type}\NormalTok{(myTuple)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Convirtiendo una lista en tupla}
+\BuiltInTok{tuple}\NormalTok{([}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Indexando una tupla}
+\NormalTok{myTuple[}\DecValTok{0}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Diccionarios:}\label{diccionarios}
+
+Los diccionarios son colecciones de elementos de manera no ordenada, son
+mutables y posibles de indexar. En python la forma de crear diccionarios
+es usando llaves ``\{\}''. Los diccionarios se utilizan para elaborar
+estructuras de datos que contienen multiples objetos y usualmente se
+pueden referenciar on un ``key name'' que suele ser un string. Por lo
+general los diccionarios siguen la siguiente estructura:
+
+\begin{verbatim}
+                                   dictorinary = { 'key1': obj1,
+                                                   'key2': obj2,
+                                                   'key3': obj3}
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Diccionarios}
+\NormalTok{miDict }\OperatorTok{=}\NormalTok{ \{\}}
+
+\NormalTok{miDict }\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{:}\StringTok{\textquotesingle{}perro\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{:}\StringTok{\textquotesingle{}gato\textquotesingle{}}\NormalTok{\}}
+\BuiltInTok{print}\NormalTok{(miDict[}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{miDict[}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{] }\OperatorTok{=} \StringTok{\textquotesingle{}canario\textquotesingle{}}
+\NormalTok{miDict[}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{] }\OperatorTok{=} \StringTok{\textquotesingle{}conejo\textquotesingle{}}
+
+\BuiltInTok{print}\NormalTok{(miDict)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Acceder a llaves (keys) en los diccionarios:}
+\BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}a\textquotesingle{}} \KeywordTok{in}\NormalTok{ miDict,}
+\StringTok{\textquotesingle{}canario\textquotesingle{}} \KeywordTok{in}\NormalTok{ miDict)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{list}\NormalTok{(miDict)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{miDict.keys()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{miDict.values()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{miDict.items()}
+\end{Highlighting}
+\end{Shaded}
 
 \section{Publicaciones Similares}\label{publicaciones-similares}
 
