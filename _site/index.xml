@@ -2244,7 +2244,7 @@ z-index: 0;
 <h2 class="anchored" data-anchor-id="ventajas">Ventajas</h2>
 <ol type="1">
 <li><strong>Control Total:</strong> Instalas solo lo que necesitas para cada proyecto</li>
-<li><strong>Múltiples Entornos:</strong> Ideal para tus 10+ blogs con dependencias diferentes</li>
+<li><strong>Múltiples Entornos:</strong> Ideal para mis 10+ blogs con dependencias diferentes</li>
 <li><strong>Reproducibilidad:</strong> Archivos <code>environment.yml</code> más pequeños y claros</li>
 <li><strong>Velocidad:</strong> Con Mamba, la resolución de dependencias es ultrarrápida</li>
 <li><strong>Integración con Sistema:</strong> Usa Quarto y R del sistema (pacman), Python de conda</li>
@@ -2278,8 +2278,8 @@ font-style: inherit;"># Verificar entornos existentes</span></span>
 background-color: null;
 font-style: inherit;">conda</span> env list</span></code></pre></div></div>
 </section>
-<section id="desinstalar-instalaciones-previas-si-es-necesario" class="level2">
-<h2 class="anchored" data-anchor-id="desinstalar-instalaciones-previas-si-es-necesario">2. Desinstalar Instalaciones Previas (Si Es Necesario)</h2>
+<section id="desinstalar-instalaciones-previas" class="level2">
+<h2 class="anchored" data-anchor-id="desinstalar-instalaciones-previas">2. Desinstalar Instalaciones Previas</h2>
 <p><strong>Si tienes Anaconda o Miniconda antiguo:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -2390,8 +2390,8 @@ font-style: inherit;">-S</span> quarto r texlive-most</span></code></pre></div><
 </section>
 <section id="instalación-de-miniconda" class="level1">
 <h1>Instalación de Miniconda</h1>
-<section id="método-1-instalación-rápida-recomendado" class="level2">
-<h2 class="anchored" data-anchor-id="método-1-instalación-rápida-recomendado">Método 1: Instalación Rápida (Recomendado)</h2>
+<section id="método-1-instalación-rápida" class="level2">
+<h2 class="anchored" data-anchor-id="método-1-instalación-rápida">Método 1: Instalación Rápida</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># 1. Crear directorio temporal</span></span>
@@ -2442,7 +2442,7 @@ font-style: inherit;"># 5. Eliminar instalador</span></span>
 <span id="cb4-16"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">rm</span> ~/miniconda3/miniconda.sh</span></code></pre></div></div>
-<p><strong>opciones:</strong></p>
+<p><strong>Opciones:</strong></p>
 <ul>
 <li><code>-b</code>: Modo batch (sin prompts interactivos)</li>
 <li><code>-u</code>: Actualizar instalación existente si la hay</li>
@@ -2508,14 +2508,22 @@ font-style: inherit;">--all</span></span>
 <span id="cb6-6"></span>
 <span id="cb6-7"><span class="co" style="color: #5E5E5E;
 background-color: null;
+font-style: inherit;"># O solo para fish</span></span>
+<span id="cb6-8"></span>
+<span id="cb6-9"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> init fish</span>
+<span id="cb6-10"></span>
+<span id="cb6-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
 font-style: inherit;"># Resultado: Modifica automáticamente:</span></span>
-<span id="cb6-8"><span class="co" style="color: #5E5E5E;
+<span id="cb6-12"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># - ~/.bashrc (Bash)</span></span>
-<span id="cb6-9"><span class="co" style="color: #5E5E5E;
+<span id="cb6-13"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># - ~/.zshrc (Zsh)</span></span>
-<span id="cb6-10"><span class="co" style="color: #5E5E5E;
+<span id="cb6-14"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># - ~/.config/fish/config.fish (Fish)</span></span></code></pre></div></div>
 </section>

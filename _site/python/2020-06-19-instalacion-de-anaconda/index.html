@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Edison Achalma">
-<meta name="keywords" content="keyword1, keyword2">
+<meta name="keywords" content="Miniconda, Mamba, Entornos conda">
 <meta name="description" content="Guía paso a paso para descargar e instalar Anaconda, gestionar entornos y paquetes en Windows, Linux y macOS.">
 
 <title>Instalación y Configuración de Miniconda – Edison Achalma B.Sc. Econ.</title>
@@ -9275,8 +9275,8 @@ grid-column: screen-start / screen-end;
 <meta name="twitter:creator" content="@achalmaedison">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="citation_title" content="Instalación y Configuración de Miniconda">
-<meta name="citation_abstract" content="Este abstract será actualizado una vez que se complete el contenido final del artículo.">
-<meta name="citation_keywords" content="keyword1,keyword2">
+<meta name="citation_abstract" content="Esta publicación detalla el proceso de instalación y configuración óptima de Miniconda (en lugar de la distribución completa de Anaconda) en sistemas Linux (con énfasis en Arch Linux), orientada a usuarios avanzados, economistas, investigadores y desarrolladores que trabajan con múltiples proyectos de ciencia de datos, econometría y publicación académica mediante Quarto. Se explican paso a paso; la preparación del sistema, instalación silenciosa o interactiva, configuración inicial con desactivación de auto-activación del entorno base, integración acelerada mediante Mamba, configuración recomendada del archivo .condarc, personalización del shell Fish, aliases útiles para flujos de trabajo con múltiples blogs/proyectos, integración con herramientas del sistema (Quarto, R y LaTeX) y resolución de problemas frecuentes. El enfoque prioriza ligereza (~50 MB), control total, reproducibilidad mediante environment.yml y máxima velocidad de instalación/resolución de dependencias.">
+<meta name="citation_keywords" content="Miniconda,Mamba,Entornos conda">
 <meta name="citation_author" content="Edison Achalma">
 <meta name="citation_publication_date" content="2020-06-19">
 <meta name="citation_cover_date" content="2020-06-19">
@@ -9466,14 +9466,14 @@ src: url(data:font/ttf;base64,AAEAAAAQAQAABAAAR0RFRkZlQIQAAASkAAAD7kdQT1O7qqlVAA
     <div>
       <div class="abstract">
         <div class="block-title">Resumen</div>
-        Este abstract será actualizado una vez que se complete el contenido final del artículo.
+        Esta publicación detalla el proceso de instalación y configuración óptima de Miniconda (en lugar de la distribución completa de Anaconda) en sistemas Linux (con énfasis en Arch Linux), orientada a usuarios avanzados, economistas, investigadores y desarrolladores que trabajan con múltiples proyectos de ciencia de datos, econometría y publicación académica mediante Quarto. Se explican paso a paso; la preparación del sistema, instalación silenciosa o interactiva, configuración inicial con desactivación de auto-activación del entorno base, integración acelerada mediante Mamba, configuración recomendada del archivo .condarc, personalización del shell Fish, aliases útiles para flujos de trabajo con múltiples blogs/proyectos, integración con herramientas del sistema (Quarto, R y LaTeX) y resolución de problemas frecuentes. El enfoque prioriza ligereza (~50 MB), control total, reproducibilidad mediante environment.yml y máxima velocidad de instalación/resolución de dependencias.
       </div>
     </div>
 
     <div>
       <div class="keywords">
         <div class="block-title">Palabras clave</div>
-        <p>keyword1, keyword2</p>
+        <p>Miniconda, Mamba, Entornos conda</p>
       </div>
     </div>
 
@@ -9628,7 +9628,7 @@ z-index: 0;
 <h2 class="anchored" data-anchor-id="ventajas">Ventajas</h2>
 <ol type="1">
 <li><strong>Control Total:</strong> Instalas solo lo que necesitas para cada proyecto</li>
-<li><strong>Múltiples Entornos:</strong> Ideal para tus 10+ blogs con dependencias diferentes</li>
+<li><strong>Múltiples Entornos:</strong> Ideal para mis 10+ blogs con dependencias diferentes</li>
 <li><strong>Reproducibilidad:</strong> Archivos <code>environment.yml</code> más pequeños y claros</li>
 <li><strong>Velocidad:</strong> Con Mamba, la resolución de dependencias es ultrarrápida</li>
 <li><strong>Integración con Sistema:</strong> Usa Quarto y R del sistema (pacman), Python de conda</li>
@@ -9648,8 +9648,8 @@ z-index: 0;
 <span id="cb1-7"><a href="#cb1-7"></a><span class="co"># Verificar entornos existentes</span></span>
 <span id="cb1-8"><a href="#cb1-8"></a><span class="ex">conda</span> env list</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="desinstalar-instalaciones-previas-si-es-necesario" class="level2">
-<h2 class="anchored" data-anchor-id="desinstalar-instalaciones-previas-si-es-necesario">2. Desinstalar Instalaciones Previas (Si Es Necesario)</h2>
+<section id="desinstalar-instalaciones-previas" class="level2">
+<h2 class="anchored" data-anchor-id="desinstalar-instalaciones-previas">2. Desinstalar Instalaciones Previas</h2>
 <p><strong>Si tienes Anaconda o Miniconda antiguo:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Desactivar entorno base</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="ex">conda</span> deactivate</span>
@@ -9690,8 +9690,8 @@ z-index: 0;
 </section>
 <section id="instalación-de-miniconda" class="level1">
 <h1>Instalación de Miniconda</h1>
-<section id="método-1-instalación-rápida-recomendado" class="level2">
-<h2 class="anchored" data-anchor-id="método-1-instalación-rápida-recomendado">Método 1: Instalación Rápida (Recomendado)</h2>
+<section id="método-1-instalación-rápida" class="level2">
+<h2 class="anchored" data-anchor-id="método-1-instalación-rápida">Método 1: Instalación Rápida</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># 1. Crear directorio temporal</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/miniconda3</span>
 <span id="cb4-3"><a href="#cb4-3"></a></span>
@@ -9708,7 +9708,7 @@ z-index: 0;
 <span id="cb4-14"><a href="#cb4-14"></a></span>
 <span id="cb4-15"><a href="#cb4-15"></a><span class="co"># 5. Eliminar instalador</span></span>
 <span id="cb4-16"><a href="#cb4-16"></a><span class="fu">rm</span> ~/miniconda3/miniconda.sh</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>opciones:</strong></p>
+<p><strong>Opciones:</strong></p>
 <ul>
 <li><code>-b</code>: Modo batch (sin prompts interactivos)</li>
 <li><code>-u</code>: Actualizar instalación existente si la hay</li>
@@ -9742,10 +9742,14 @@ z-index: 0;
 <span id="cb6-4"><a href="#cb6-4"></a><span class="co"># Inicializar para todos los shells disponibles</span></span>
 <span id="cb6-5"><a href="#cb6-5"></a><span class="ex">conda</span> init <span class="at">--all</span></span>
 <span id="cb6-6"><a href="#cb6-6"></a></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="co"># Resultado: Modifica automáticamente:</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="co"># - ~/.bashrc (Bash)</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="co"># - ~/.zshrc (Zsh)</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="co"># - ~/.config/fish/config.fish (Fish)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="co"># O solo para fish</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="ex">conda</span> init fish</span>
+<span id="cb6-10"><a href="#cb6-10"></a></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="co"># Resultado: Modifica automáticamente:</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co"># - ~/.bashrc (Bash)</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co"># - ~/.zshrc (Zsh)</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="co"># - ~/.config/fish/config.fish (Fish)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="recargar-shell" class="level2">
 <h2 class="anchored" data-anchor-id="recargar-shell">2. Recargar Shell</h2>

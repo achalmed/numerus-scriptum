@@ -195,10 +195,23 @@ de Huamanga}}
 \date{2020-06-19}
 
 
-\abstract{Este abstract será actualizado una vez que se complete el
-contenido final del artículo. }
+\abstract{Esta publicación detalla el proceso de instalación y
+configuración óptima de Miniconda (en lugar de la distribución completa
+de Anaconda) en sistemas Linux (con énfasis en Arch Linux), orientada a
+usuarios avanzados, economistas, investigadores y desarrolladores que
+trabajan con múltiples proyectos de ciencia de datos, econometría y
+publicación académica mediante Quarto. Se explican paso a paso; la
+preparación del sistema, instalación silenciosa o interactiva,
+configuración inicial con desactivación de auto-activación del entorno
+base, integración acelerada mediante Mamba, configuración recomendada
+del archivo .condarc, personalización del shell Fish, aliases útiles
+para flujos de trabajo con múltiples blogs/proyectos, integración con
+herramientas del sistema (Quarto, R y LaTeX) y resolución de problemas
+frecuentes. El enfoque prioriza ligereza (\textasciitilde50 MB), control
+total, reproducibilidad mediante environment.yml y máxima velocidad de
+instalación/resolución de dependencias. }
 
-\keywords{keyword1, keyword2}
+\keywords{Miniconda, Mamba, Entornos conda}
 
 \authornote{\par{\addORCIDlink{Edison Achalma}{0000-0001-6996-3364}} 
 \par{ }
@@ -379,7 +392,7 @@ Ideal para & Usuarios avanzados, servidores & Principiantes \\
   \textbf{Control Total:} Instalas solo lo que necesitas para cada
   proyecto
 \item
-  \textbf{Múltiples Entornos:} Ideal para tus 10+ blogs con dependencias
+  \textbf{Múltiples Entornos:} Ideal para mis 10+ blogs con dependencias
   diferentes
 \item
   \textbf{Reproducibilidad:} Archivos \texttt{environment.yml} más
@@ -410,8 +423,8 @@ Existentes}\label{verificar-instalaciones-existentes}
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{2. Desinstalar Instalaciones Previas (Si Es
-Necesario)}\label{desinstalar-instalaciones-previas-si-es-necesario}
+\subsection{2. Desinstalar Instalaciones
+Previas}\label{desinstalar-instalaciones-previas}
 
 \textbf{Si tienes Anaconda o Miniconda antiguo:}
 
@@ -462,8 +475,8 @@ Sistema}\label{verificar-herramientas-del-sistema}
 
 \section{Instalación de Miniconda}\label{instalaciuxf3n-de-miniconda}
 
-\subsection{Método 1: Instalación Rápida
-(Recomendado)}\label{muxe9todo-1-instalaciuxf3n-ruxe1pida-recomendado}
+\subsection{Método 1: Instalación
+Rápida}\label{muxe9todo-1-instalaciuxf3n-ruxe1pida}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -486,7 +499,7 @@ Sistema}\label{verificar-herramientas-del-sistema}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{opciones:}
+\textbf{Opciones:}
 
 \begin{itemize}
 \tightlist
@@ -531,6 +544,10 @@ Shells}\label{inicializar-conda-para-todos-los-shells}
 
 \CommentTok{\# Inicializar para todos los shells disponibles}
 \ExtensionTok{conda}\NormalTok{ init }\AttributeTok{{-}{-}all}
+
+\CommentTok{\# O solo para fish}
+
+\ExtensionTok{conda}\NormalTok{ init fish}
 
 \CommentTok{\# Resultado: Modifica automáticamente:}
 \CommentTok{\# {-} \textasciitilde{}/.bashrc (Bash)}

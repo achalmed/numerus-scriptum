@@ -298,7 +298,7 @@
     "href": "python/2020-06-19-instalacion-de-anaconda/index.html#ventajas",
     "title": "Instalación y Configuración de Miniconda",
     "section": "Ventajas",
-    "text": "Ventajas\n\nControl Total: Instalas solo lo que necesitas para cada proyecto\nMúltiples Entornos: Ideal para tus 10+ blogs con dependencias diferentes\nReproducibilidad: Archivos environment.yml más pequeños y claros\nVelocidad: Con Mamba, la resolución de dependencias es ultrarrápida\nIntegración con Sistema: Usa Quarto y R del sistema (pacman), Python de conda"
+    "text": "Ventajas\n\nControl Total: Instalas solo lo que necesitas para cada proyecto\nMúltiples Entornos: Ideal para mis 10+ blogs con dependencias diferentes\nReproducibilidad: Archivos environment.yml más pequeños y claros\nVelocidad: Con Mamba, la resolución de dependencias es ultrarrápida\nIntegración con Sistema: Usa Quarto y R del sistema (pacman), Python de conda"
   },
   {
     "objectID": "python/2020-06-19-instalacion-de-anaconda/index.html#verificar-instalaciones-existentes",
@@ -340,7 +340,7 @@
     "href": "python/2020-06-19-instalacion-de-anaconda/index.html#inicializar-conda-para-todos-los-shells",
     "title": "Instalación y Configuración de Miniconda",
     "section": "1. Inicializar Conda para Todos los Shells",
-    "text": "1. Inicializar Conda para Todos los Shells\n# Activar conda temporalmente\nsource ~/miniconda3/bin/activate\n\n# Inicializar para todos los shells disponibles\nconda init --all\n\n# Resultado: Modifica automáticamente:\n# - ~/.bashrc (Bash)\n# - ~/.zshrc (Zsh)\n# - ~/.config/fish/config.fish (Fish)"
+    "text": "1. Inicializar Conda para Todos los Shells\n# Activar conda temporalmente\nsource ~/miniconda3/bin/activate\n\n# Inicializar para todos los shells disponibles\nconda init --all\n\n# O solo para fish\n\nconda init fish\n\n# Resultado: Modifica automáticamente:\n# - ~/.bashrc (Bash)\n# - ~/.zshrc (Zsh)\n# - ~/.config/fish/config.fish (Fish)"
   },
   {
     "objectID": "python/2020-06-19-instalacion-de-anaconda/index.html#recargar-shell",
@@ -537,5 +537,19 @@
     "title": "Instalación y Configuración de Miniconda",
     "section": "Información y Debugging",
     "text": "Información y Debugging\n# Información de entorno activo\nconda info --envs\n\n# Información de paquete específico\nconda list nombre-paquete\n\n# Ver dependencias de paquete\nconda search nombre-paquete --info\n\n# Verificar integridad de entorno\nconda doctor\n\n# Modo verbose (más información)\nconda install --debug nombre-paquete"
+  },
+  {
+    "objectID": "python/2020-06-19-instalacion-de-anaconda/index.html#desinstalar-instalaciones-previas",
+    "href": "python/2020-06-19-instalacion-de-anaconda/index.html#desinstalar-instalaciones-previas",
+    "title": "Instalación y Configuración de Miniconda",
+    "section": "2. Desinstalar Instalaciones Previas",
+    "text": "2. Desinstalar Instalaciones Previas\nSi tienes Anaconda o Miniconda antiguo:\n# Desactivar entorno base\nconda deactivate\n\n# Eliminar directorio de instalación\nrm -rf ~/miniconda3\n# O si instalaste Anaconda:\nrm -rf ~/anaconda3\n\n# Limpiar configuraciones (OPCIONAL - solo si quieres empezar de cero)\nrm -rf ~/.conda\nrm -f ~/.condarc\n\n# Limpiar inicialización de shells\n# Fish\nnano ~/.config/fish/config.fish  # Eliminar bloque conda initialize\n\n# Bash\nnano ~/.bashrc  # Eliminar bloque conda initialize\n\n# Zsh\nnano ~/.zshrc  # Eliminar bloque conda initialize"
+  },
+  {
+    "objectID": "python/2020-06-19-instalacion-de-anaconda/index.html#método-1-instalación-rápida",
+    "href": "python/2020-06-19-instalacion-de-anaconda/index.html#método-1-instalación-rápida",
+    "title": "Instalación y Configuración de Miniconda",
+    "section": "Método 1: Instalación Rápida",
+    "text": "Método 1: Instalación Rápida\n# 1. Crear directorio temporal\nmkdir -p ~/miniconda3\n\n# 2. Descargar instalador (x86_64 para Arch Linux estándar)\ncurl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \\\n  -o ~/miniconda3/miniconda.sh\n\n# 3. Verificar integridad (RECOMENDADO)\nsha256sum ~/miniconda3/miniconda.sh\n# Comparar con el hash oficial en https://repo.anaconda.com/miniconda/\n\n# 4. Ejecutar instalador\nbash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3\n\n# 5. Eliminar instalador\nrm ~/miniconda3/miniconda.sh\nOpciones:\n\n-b: Modo batch (sin prompts interactivos)\n-u: Actualizar instalación existente si la hay\n-p ~/miniconda3: Ruta de instalación"
   }
 ]

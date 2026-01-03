@@ -3,15 +3,16 @@ documentmode: doc
 copyrightnotice: 2020
 copyrightext: All rights reserved
 title: Instalación y Configuración de Miniconda
-abstract: Este abstract será actualizado una vez que se complete el contenido final
-  del artículo.
+abstract: Esta publicación detalla el proceso de instalación y configuración óptima de Miniconda (en lugar de la distribución completa de Anaconda) en sistemas Linux (con énfasis en Arch Linux), orientada a usuarios avanzados, economistas, investigadores y desarrolladores que trabajan con múltiples proyectos de ciencia de datos, econometría y publicación académica mediante Quarto. Se explican paso a paso; la preparación del sistema, instalación silenciosa o interactiva, configuración inicial con desactivación de auto-activación del entorno base, integración acelerada mediante Mamba, configuración recomendada del archivo .condarc, personalización del shell Fish, aliases útiles para flujos de trabajo con múltiples blogs/proyectos, integración con herramientas del sistema (Quarto, R y LaTeX) y resolución de problemas frecuentes. El enfoque prioriza ligereza (~50 MB), control total, reproducibilidad mediante environment.yml y máxima velocidad de instalación/resolución de dependencias.
 keywords:
-- keyword1
-- keyword2
+- Miniconda
+- Mamba
+- Entornos conda
 categories:
 - Python
 tags:
 - anaconda
+- miniconda
 - python
 - conda
 - anaconda_instalacion
@@ -68,7 +69,7 @@ Esta guía está diseñada específicamente para mi flujo de trabajo como econom
 ## Ventajas
 
 1. **Control Total:** Instalas solo lo que necesitas para cada proyecto
-2. **Múltiples Entornos:** Ideal para tus 10+ blogs con dependencias diferentes
+2. **Múltiples Entornos:** Ideal para mis 10+ blogs con dependencias diferentes
 3. **Reproducibilidad:** Archivos `environment.yml` más pequeños y claros
 4. **Velocidad:** Con Mamba, la resolución de dependencias es ultrarrápida
 5. **Integración con Sistema:** Usa Quarto y R del sistema (pacman), Python de conda
@@ -88,7 +89,7 @@ conda --version
 conda env list
 ```
 
-## 2. Desinstalar Instalaciones Previas (Si Es Necesario)
+## 2. Desinstalar Instalaciones Previas
 
 **Si tienes Anaconda o Miniconda antiguo:**
 
@@ -134,7 +135,7 @@ sudo pacman -S quarto r texlive-most
 
 # Instalación de Miniconda
 
-## Método 1: Instalación Rápida (Recomendado)
+## Método 1: Instalación Rápida
 
 ```bash
 # 1. Crear directorio temporal
@@ -155,7 +156,7 @@ bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
 rm ~/miniconda3/miniconda.sh
 ```
 
-**opciones:**
+**Opciones:**
 
 - `-b`: Modo batch (sin prompts interactivos)
 - `-u`: Actualizar instalación existente si la hay
@@ -189,6 +190,10 @@ source ~/miniconda3/bin/activate
 
 # Inicializar para todos los shells disponibles
 conda init --all
+
+# O solo para fish
+
+conda init fish
 
 # Resultado: Modifica automáticamente:
 # - ~/.bashrc (Bash)
