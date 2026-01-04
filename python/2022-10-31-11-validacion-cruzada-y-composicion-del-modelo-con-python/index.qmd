@@ -1,4 +1,5 @@
 ---
+documentmode: doc
 copyrightnotice: 2022
 copyrightext: All rights reserved
 title: Validación cruzada y pipelines Python

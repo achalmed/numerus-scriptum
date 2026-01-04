@@ -10,10 +10,8 @@ keywords:
 - keyword1
 - keyword2
 categories:
-
 - Python
 tags:
-
 - python
 - python_intro
 author-note:

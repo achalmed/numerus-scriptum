@@ -1,4 +1,5 @@
 ---
+documentmode: doc
 copyrightnotice: 2021
 copyrightext: All rights reserved
 title: Algoritmos clasificación Machine Learning
