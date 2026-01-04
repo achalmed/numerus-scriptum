@@ -328,309 +328,1737 @@ Cristóbal de Huamanga, Portal Independencia N°
 
 
 
+En esta tercera guía exploraremos las estructuras de datos fundamentales
+de Python: listas, diccionarios y tuplas. Estas estructuras son
+esenciales para organizar y manipular datos económicos de manera
+eficiente.
+
 \section{Listas}\label{listas}
 
-Las listas son objetos mutables e iterables en python. Son muy
-versátiles pues permiten coleccionar de manera ordenada cualquier objeto
-(incluso otras listas). Las listas además te permiten acceder a los
-elementos que contiene adentro utilizando índices.
+Las listas son colecciones ordenadas y mutables de elementos en Python.
+Son uno de los tipos de datos más versátiles y utilizados, especialmente
+en análisis económico donde necesitamos trabajar con series de datos.
+
+\subsection{Creación de listas}\label{creaciuxf3n-de-listas}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{frutas }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}manzana\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}banana\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}durazno\textquotesingle{}}\NormalTok{]}
-\BuiltInTok{print}\NormalTok{(frutas)}
+\CommentTok{\# Lista de precios}
+\NormalTok{precios }\OperatorTok{=}\NormalTok{ [}\FloatTok{10.50}\NormalTok{, }\FloatTok{12.30}\NormalTok{, }\FloatTok{15.80}\NormalTok{, }\FloatTok{9.90}\NormalTok{, }\FloatTok{11.20}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(precios)}
+
+\CommentTok{\# Lista de sectores económicos}
+\NormalTok{sectores }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}Agricultura\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Minería\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Manufactura\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Servicios\textquotesingle{}}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(sectores)}
+
+\CommentTok{\# Lista de años}
+\NormalTok{anos }\OperatorTok{=}\NormalTok{ [}\DecValTok{2019}\NormalTok{, }\DecValTok{2020}\NormalTok{, }\DecValTok{2021}\NormalTok{, }\DecValTok{2022}\NormalTok{, }\DecValTok{2023}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(anos)}
+
+\CommentTok{\# Crear lista con la función list()}
+\NormalTok{tasas\_interes }\OperatorTok{=} \BuiltInTok{list}\NormalTok{([}\FloatTok{0.05}\NormalTok{, }\FloatTok{0.06}\NormalTok{, }\FloatTok{0.055}\NormalTok{, }\FloatTok{0.065}\NormalTok{, }\FloatTok{0.07}\NormalTok{])}
+\BuiltInTok{print}\NormalTok{(tasas\_interes)}
+
+\CommentTok{\# Lista vacía}
+\NormalTok{datos\_vacios }\OperatorTok{=}\NormalTok{ []}
+\BuiltInTok{print}\NormalTok{(datos\_vacios)}
 \end{Highlighting}
 \end{Shaded}
+
+\subsection{Listas heterogéneas}\label{listas-heteroguxe9neas}
+
+Las listas pueden contener elementos de diferentes tipos:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{carnes }\OperatorTok{=} \BuiltInTok{list}\NormalTok{([}\StringTok{\textquotesingle{}cerdo\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}vaca\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}pollo\textquotesingle{}}\NormalTok{])}
-\BuiltInTok{print}\NormalTok{(carnes)}
+\CommentTok{\# Lista mixta con datos económicos}
+\NormalTok{datos\_empresa }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}TechCorp\textquotesingle{}}\NormalTok{, }\DecValTok{2015}\NormalTok{, }\FloatTok{1500000.50}\NormalTok{, }\VariableTok{True}\NormalTok{, [}\StringTok{\textquotesingle{}Lima\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Arequipa\textquotesingle{}}\NormalTok{]]}
+\BuiltInTok{print}\NormalTok{(datos\_empresa)}
+\CommentTok{\# [\textquotesingle{}TechCorp\textquotesingle{}, 2015, 1500000.50, True, [\textquotesingle{}Lima\textquotesingle{}, \textquotesingle{}Arequipa\textquotesingle{}]]}
+
+\CommentTok{\# Estructura de datos compleja}
+\NormalTok{indicador\_economico }\OperatorTok{=}\NormalTok{ [}
+    \StringTok{\textquotesingle{}PIB\textquotesingle{}}\NormalTok{,}
+    \DecValTok{242632}\NormalTok{,  }\CommentTok{\# Millones de USD}
+    \DecValTok{2023}\NormalTok{,}
+\NormalTok{    [}\FloatTok{2.4}\NormalTok{, }\FloatTok{4.0}\NormalTok{, }\OperatorTok{{-}}\FloatTok{11.0}\NormalTok{, }\FloatTok{13.3}\NormalTok{, }\FloatTok{2.7}\NormalTok{],  }\CommentTok{\# Tasas de crecimiento histórico}
+\NormalTok{    \{}\StringTok{\textquotesingle{}moneda\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}USD\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}unidad\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}millones\textquotesingle{}}\NormalTok{\}}
+\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
+
+\subsection{Indexación de listas}\label{indexaciuxf3n-de-listas}
+
+Las listas en Python usan indexación de base cero (el primer elemento
+está en la posición 0):
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mix }\OperatorTok{=}\NormalTok{ [}\DecValTok{123}\NormalTok{, [}\StringTok{\textquotesingle{}Python\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Stata\textquotesingle{}}\NormalTok{], }\StringTok{\textquotesingle{}iPhone\textquotesingle{}}\NormalTok{]}
-\BuiltInTok{print}\NormalTok{(mix)}
+\CommentTok{\# Datos de inflación mensual}
+\NormalTok{inflacion\_mensual }\OperatorTok{=}\NormalTok{ [}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.3}\NormalTok{, }\FloatTok{0.4}\NormalTok{, }\FloatTok{0.6}\NormalTok{, }\FloatTok{0.2}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\FloatTok{0.7}\NormalTok{, }\FloatTok{0.4}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\FloatTok{0.6}\NormalTok{, }\FloatTok{0.3}\NormalTok{, }\FloatTok{0.4}\NormalTok{]}
+
+\CommentTok{\# Acceder a elementos individuales}
+\NormalTok{enero }\OperatorTok{=}\NormalTok{ inflacion\_mensual[}\DecValTok{0}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Inflación de enero: }\SpecialCharTok{\{}\NormalTok{enero}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{)  }\CommentTok{\# 0.5\%}
+
+\NormalTok{febrero }\OperatorTok{=}\NormalTok{ inflacion\_mensual[}\DecValTok{1}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Inflación de febrero: }\SpecialCharTok{\{}\NormalTok{febrero}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{)  }\CommentTok{\# 0.3\%}
+
+\NormalTok{diciembre }\OperatorTok{=}\NormalTok{ inflacion\_mensual[}\DecValTok{11}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Inflación de diciembre: }\SpecialCharTok{\{}\NormalTok{diciembre}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{)  }\CommentTok{\# 0.4\%}
+
+\CommentTok{\# Indexación negativa (desde el final)}
+\NormalTok{ultimo\_mes }\OperatorTok{=}\NormalTok{ inflacion\_mensual[}\OperatorTok{{-}}\DecValTok{1}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Último mes: }\SpecialCharTok{\{}\NormalTok{ultimo\_mes}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{)  }\CommentTok{\# 0.4\%}
+
+\NormalTok{penultimo\_mes }\OperatorTok{=}\NormalTok{ inflacion\_mensual[}\OperatorTok{{-}}\DecValTok{2}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Penúltimo mes: }\SpecialCharTok{\{}\NormalTok{penultimo\_mes}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{)  }\CommentTok{\# 0.3\%}
 \end{Highlighting}
 \end{Shaded}
 
-\section{Asignación como referencia o como
-valor}\label{asignaciuxf3n-como-referencia-o-como-valor}
+\subsection{Slicing de listas}\label{slicing-de-listas}
 
-Muchos cometen el error de `copiar' una lista de manera directa y luego
-editarla. El resultado es que todas las ediciones que hagamos en la
-lista referida se replicaran en la lista original. Esto ocurre cuando
-asignamos una lista como referencia en lugar de copiarla.
+El slicing permite extraer sublistas:
 
-Cuando la asignamos como referencia lo unico que hace python es usar el
-nuevo nombre de variable para referenciar la variable original. Esto
-permite a python salvar memoria ram porque no estamos creando más
-objetos en el ambiente de python.
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# PIB trimestral}
+\NormalTok{pib\_trimestral }\OperatorTok{=}\NormalTok{ [}\DecValTok{50000}\NormalTok{, }\DecValTok{52000}\NormalTok{, }\DecValTok{51500}\NormalTok{, }\DecValTok{53000}\NormalTok{, }\DecValTok{54000}\NormalTok{, }\DecValTok{55500}\NormalTok{, }\DecValTok{56000}\NormalTok{, }\DecValTok{57200}\NormalTok{]}
+
+\CommentTok{\# Sintaxis: lista[inicio:fin:paso]}
+\CommentTok{\# El índice \textquotesingle{}fin\textquotesingle{} no se incluye}
+
+\CommentTok{\# Primer trimestre del primer año}
+\NormalTok{q1\_ano1 }\OperatorTok{=}\NormalTok{ pib\_trimestral[}\DecValTok{0}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Q1 Año 1: }\SpecialCharTok{\{}\NormalTok{q1\_ano1}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Todos los trimestres del primer año}
+\NormalTok{ano1 }\OperatorTok{=}\NormalTok{ pib\_trimestral[}\DecValTok{0}\NormalTok{:}\DecValTok{4}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Año 1: }\SpecialCharTok{\{}\NormalTok{ano1}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# [50000, 52000, 51500, 53000]}
+
+\CommentTok{\# Todos los trimestres del segundo año}
+\NormalTok{ano2 }\OperatorTok{=}\NormalTok{ pib\_trimestral[}\DecValTok{4}\NormalTok{:}\DecValTok{8}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Año 2: }\SpecialCharTok{\{}\NormalTok{ano2}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# [54000, 55500, 56000, 57200]}
+
+\CommentTok{\# Primeros tres trimestres}
+\NormalTok{primeros\_tres }\OperatorTok{=}\NormalTok{ pib\_trimestral[:}\DecValTok{3}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Primeros 3 trimestres: }\SpecialCharTok{\{}\NormalTok{primeros\_tres}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Desde el cuarto trimestre hasta el final}
+\NormalTok{desde\_cuarto }\OperatorTok{=}\NormalTok{ pib\_trimestral[}\DecValTok{3}\NormalTok{:]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Desde Q4: }\SpecialCharTok{\{}\NormalTok{desde\_cuarto}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Todos los elementos (copia de la lista)}
+\NormalTok{todos }\OperatorTok{=}\NormalTok{ pib\_trimestral[:]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Todos: }\SpecialCharTok{\{}\NormalTok{todos}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Con paso: cada 2 elementos}
+\NormalTok{trimestres\_pares }\OperatorTok{=}\NormalTok{ pib\_trimestral[::}\DecValTok{2}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Trimestres impares (Q1, Q3): }\SpecialCharTok{\{}\NormalTok{trimestres\_pares}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Invertir lista}
+\NormalTok{invertido }\OperatorTok{=}\NormalTok{ pib\_trimestral[::}\OperatorTok{{-}}\DecValTok{1}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Invertido: }\SpecialCharTok{\{}\NormalTok{invertido}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Modificación de
+elementos}\label{modificaciuxf3n-de-elementos}
+
+Las listas son mutables, podemos cambiar sus elementos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Proyecciones de crecimiento}
+\NormalTok{crecimiento }\OperatorTok{=}\NormalTok{ [}\FloatTok{2.5}\NormalTok{, }\FloatTok{3.0}\NormalTok{, }\FloatTok{3.2}\NormalTok{, }\FloatTok{2.8}\NormalTok{, }\FloatTok{3.5}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Original: }\SpecialCharTok{\{}\NormalTok{crecimiento}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Modificar un elemento}
+\NormalTok{crecimiento[}\DecValTok{2}\NormalTok{] }\OperatorTok{=} \FloatTok{3.3}  \CommentTok{\# Actualizar proyección del tercer año}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Modificado: }\SpecialCharTok{\{}\NormalTok{crecimiento}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Modificar múltiples elementos con slicing}
+\NormalTok{crecimiento[}\DecValTok{3}\NormalTok{:}\DecValTok{5}\NormalTok{] }\OperatorTok{=}\NormalTok{ [}\FloatTok{2.9}\NormalTok{, }\FloatTok{3.6}\NormalTok{]  }\CommentTok{\# Actualizar últimos dos años}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Actualizado: }\SpecialCharTok{\{}\NormalTok{crecimiento}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Modificar usando indexación negativa}
+\NormalTok{crecimiento[}\OperatorTok{{-}}\DecValTok{1}\NormalTok{] }\OperatorTok{=} \FloatTok{3.7}  \CommentTok{\# Cambiar última proyección}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Final: }\SpecialCharTok{\{}\NormalTok{crecimiento}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Listas anidadas}\label{listas-anidadas}
+
+Las listas pueden contener otras listas, útil para representar matrices
+o datos multidimensionales:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Matriz de datos económicos por región y año}
+\CommentTok{\# Filas: regiones, Columnas: años}
+\NormalTok{pib\_regional }\OperatorTok{=}\NormalTok{ [}
+\NormalTok{    [}\DecValTok{100000}\NormalTok{, }\DecValTok{105000}\NormalTok{, }\DecValTok{110000}\NormalTok{],  }\CommentTok{\# Lima}
+\NormalTok{    [}\DecValTok{50000}\NormalTok{, }\DecValTok{52000}\NormalTok{, }\DecValTok{54500}\NormalTok{],     }\CommentTok{\# Arequipa}
+\NormalTok{    [}\DecValTok{30000}\NormalTok{, }\DecValTok{31500}\NormalTok{, }\DecValTok{33000}\NormalTok{],     }\CommentTok{\# Cusco}
+\NormalTok{    [}\DecValTok{45000}\NormalTok{, }\DecValTok{47000}\NormalTok{, }\DecValTok{49000}\NormalTok{]      }\CommentTok{\# La Libertad}
+\NormalTok{]}
+
+\CommentTok{\# Acceder a PIB de Lima en el segundo año}
+\NormalTok{lima\_ano2 }\OperatorTok{=}\NormalTok{ pib\_regional[}\DecValTok{0}\NormalTok{][}\DecValTok{1}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"PIB Lima año 2: }\SpecialCharTok{\{}\NormalTok{lima\_ano2}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# 105000}
+
+\CommentTok{\# Acceder a PIB de Cusco en el tercer año}
+\NormalTok{cusco\_ano3 }\OperatorTok{=}\NormalTok{ pib\_regional[}\DecValTok{2}\NormalTok{][}\DecValTok{2}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"PIB Cusco año 3: }\SpecialCharTok{\{}\NormalTok{cusco\_ano3}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# 33000}
+
+\CommentTok{\# Acceder a todos los datos de Arequipa}
+\NormalTok{arequipa\_todos }\OperatorTok{=}\NormalTok{ pib\_regional[}\DecValTok{1}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"PIB Arequipa todos los años: }\SpecialCharTok{\{}\NormalTok{arequipa\_todos}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Modificar un valor específico}
+\NormalTok{pib\_regional[}\DecValTok{1}\NormalTok{][}\DecValTok{2}\NormalTok{] }\OperatorTok{=} \DecValTok{55000}  \CommentTok{\# Actualizar Arequipa año 3}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"PIB Arequipa actualizado: }\SpecialCharTok{\{}\NormalTok{pib\_regional[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Asignación por referencia vs por
+valor}\label{asignaciuxf3n-por-referencia-vs-por-valor}
+
+Este es uno de los conceptos más importantes y frecuentemente
+malentendidos en Python. Entender la diferencia puede evitar errores
+difíciles de detectar.
+
+\subsection{Asignación por
+referencia}\label{asignaciuxf3n-por-referencia}
+
+Cuando asignamos una lista a otra variable, Python no crea una copia
+nueva. Ambas variables apuntan al mismo objeto en memoria:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Lista original de precios}
+\NormalTok{precios\_2023 }\OperatorTok{=}\NormalTok{ [}\DecValTok{100}\NormalTok{, }\DecValTok{105}\NormalTok{, }\DecValTok{110}\NormalTok{, }\DecValTok{108}\NormalTok{, }\DecValTok{112}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Precios 2023: }\SpecialCharTok{\{}\NormalTok{precios\_2023}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Asignación por referencia}
+\NormalTok{precios\_2024 }\OperatorTok{=}\NormalTok{ precios\_2023  }\CommentTok{\# ¡No es una copia!}
+
+\CommentTok{\# Modificar precios\_2024}
+\NormalTok{precios\_2024[}\DecValTok{0}\NormalTok{] }\OperatorTok{=} \DecValTok{120}
+
+\CommentTok{\# Ambas listas cambian}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Precios 2023: }\SpecialCharTok{\{}\NormalTok{precios\_2023}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# [120, 105, 110, 108, 112]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Precios 2024: }\SpecialCharTok{\{}\NormalTok{precios\_2024}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# [120, 105, 110, 108, 112]}
+
+\CommentTok{\# Verificar que son el mismo objeto}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"¿Son el mismo objeto? }\SpecialCharTok{\{}\NormalTok{precios\_2023 }\KeywordTok{is}\NormalTok{ precios\_2024}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# True}
+\end{Highlighting}
+\end{Shaded}
+
+Diagrama conceptual:
+
+\begin{verbatim}
+precios_2023 ──┐
+               ├──> [120, 105, 110, 108, 112] (un solo objeto en memoria)
+precios_2024 ──┘
+\end{verbatim}
+
+\subsection{Copia superficial (shallow
+copy)}\label{copia-superficial-shallow-copy}
+
+Para crear una copia independiente de una lista:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \ImportTok{import}\NormalTok{ copy}
 
-\NormalTok{miPrimeraLista }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{]}
-\NormalTok{miPrimeraLista1 }\OperatorTok{=}\NormalTok{ miPrimeraLista }\CommentTok{\# Esto asigna como referencia}
-\NormalTok{miPrimeraLista2 }\OperatorTok{=}\NormalTok{ copy.copy(miPrimeraLista) }\CommentTok{\# Esto asigna como valor}
-\CommentTok{\#miPrimeraLista[0]}
-\NormalTok{miPrimeraLista[}\DecValTok{0}\NormalTok{] }\OperatorTok{=} \DecValTok{3}
-\NormalTok{miPrimeraLista[}\DecValTok{1}\NormalTok{] }\OperatorTok{=} \DecValTok{9}
+\CommentTok{\# Lista original}
+\NormalTok{inflacion\_base }\OperatorTok{=}\NormalTok{ [}\FloatTok{2.5}\NormalTok{, }\FloatTok{3.0}\NormalTok{, }\FloatTok{2.8}\NormalTok{, }\FloatTok{3.2}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Inflación base: }\SpecialCharTok{\{}\NormalTok{inflacion\_base}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 
-\BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}miPrimeraLista :\textquotesingle{}}\NormalTok{,miPrimeraLista)}
-\BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}miPrimeraLista1:\textquotesingle{}}\NormalTok{,miPrimeraLista1)}
-\BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}miPrimeraLista2:\textquotesingle{}}\NormalTok{,miPrimeraLista2)}
+\CommentTok{\# Método 1: usando copy.copy()}
+\NormalTok{inflacion\_copia1 }\OperatorTok{=}\NormalTok{ copy.copy(inflacion\_base)}
+
+\CommentTok{\# Método 2: usando slicing [:]}
+\NormalTok{inflacion\_copia2 }\OperatorTok{=}\NormalTok{ inflacion\_base[:]}
+
+\CommentTok{\# Método 3: usando list()}
+\NormalTok{inflacion\_copia3 }\OperatorTok{=} \BuiltInTok{list}\NormalTok{(inflacion\_base)}
+
+\CommentTok{\# Modificar la copia}
+\NormalTok{inflacion\_copia1[}\DecValTok{0}\NormalTok{] }\OperatorTok{=} \FloatTok{2.7}
+
+\CommentTok{\# Solo cambia la copia}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Inflación base:   }\SpecialCharTok{\{}\NormalTok{inflacion\_base}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)   }\CommentTok{\# [2.5, 3.0, 2.8, 3.2]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Inflación copia1: }\SpecialCharTok{\{}\NormalTok{inflacion\_copia1}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{) }\CommentTok{\# [2.7, 3.0, 2.8, 3.2]}
+
+\CommentTok{\# Verificar que son objetos diferentes}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"¿Son el mismo objeto? }\SpecialCharTok{\{}\NormalTok{inflacion\_base }\KeywordTok{is}\NormalTok{ inflacion\_copia1}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# False}
 \end{Highlighting}
 \end{Shaded}
 
-En el caso de listas de listas la función que nos permite copiar el
-objeto completo es la rutina deepcopy. Basicamente lo que hace deepcopy
-es copiar como valor no solo la lista inicial, sino tambien las listas
-que se contienen adentro.
+\subsection{Problema con listas
+anidadas}\label{problema-con-listas-anidadas}
+
+La copia superficial no copia las listas internas:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#List of lists:}
-\NormalTok{miSegundaLista }\OperatorTok{=}\NormalTok{ [[}\StringTok{"Jose"}\NormalTok{, }\StringTok{"Pablo"}\NormalTok{], [}\DecValTok{26}\NormalTok{, }\DecValTok{25}\NormalTok{]]}
-\NormalTok{miSegundaListaNombres }\OperatorTok{=}\NormalTok{ miSegundaLista }\CommentTok{\# Esto asigna como referencia}
-\NormalTok{miSegundaListaNombres2 }\OperatorTok{=}\NormalTok{ copy.deepcopy(miSegundaLista) }\CommentTok{\# Deepcopy asigna como valor las listas y sublistas}
-\NormalTok{miSegundaLista[}\DecValTok{1}\NormalTok{][}\DecValTok{1}\NormalTok{] }\OperatorTok{=} \DecValTok{24}
-\BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}Lista original:\textquotesingle{}}\NormalTok{,miSegundaLista)}
-\BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}Lista copiada como referencia:\textquotesingle{}}\NormalTok{,miSegundaListaNombres)}
-\BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}Lista copiada como valor:\textquotesingle{}}\NormalTok{,miSegundaListaNombres2)}
+\ImportTok{import}\NormalTok{ copy}
+
+\CommentTok{\# Lista de listas}
+\NormalTok{datos\_economicos }\OperatorTok{=}\NormalTok{ [}
+\NormalTok{    [}\StringTok{\textquotesingle{}Lima\textquotesingle{}}\NormalTok{, }\DecValTok{100000}\NormalTok{],}
+\NormalTok{    [}\StringTok{\textquotesingle{}Arequipa\textquotesingle{}}\NormalTok{, }\DecValTok{50000}\NormalTok{],}
+\NormalTok{    [}\StringTok{\textquotesingle{}Cusco\textquotesingle{}}\NormalTok{, }\DecValTok{30000}\NormalTok{]}
+\NormalTok{]}
+
+\CommentTok{\# Copia superficial}
+\NormalTok{datos\_copia\_superficial }\OperatorTok{=}\NormalTok{ copy.copy(datos\_economicos)}
+
+\CommentTok{\# Modificar una sublista}
+\NormalTok{datos\_copia\_superficial[}\DecValTok{0}\NormalTok{][}\DecValTok{1}\NormalTok{] }\OperatorTok{=} \DecValTok{105000}
+
+\CommentTok{\# La lista original también cambia}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Original: }\SpecialCharTok{\{}\NormalTok{datos\_economicos}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# [[\textquotesingle{}Lima\textquotesingle{}, 105000], [\textquotesingle{}Arequipa\textquotesingle{}, 50000], [\textquotesingle{}Cusco\textquotesingle{}, 30000]]}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Copia: }\SpecialCharTok{\{}\NormalTok{datos\_copia\_superficial}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# [[\textquotesingle{}Lima\textquotesingle{}, 105000], [\textquotesingle{}Arequipa\textquotesingle{}, 50000], [\textquotesingle{}Cusco\textquotesingle{}, 30000]]}
 \end{Highlighting}
 \end{Shaded}
 
-Para eliminar elementos dentro de una lista, podemos indexar el objeto y
-con el comando del, podemos eliminar dicho objeto.
+\subsection{Copia profunda (deep copy)}\label{copia-profunda-deep-copy}
+
+Para copiar listas que contienen otras listas:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{del}\NormalTok{ miSegundaLista[}\DecValTok{1}\NormalTok{]}
-\NormalTok{miSegundaLista}
+\ImportTok{import}\NormalTok{ copy}
+
+\CommentTok{\# Lista de listas}
+\NormalTok{datos\_economicos }\OperatorTok{=}\NormalTok{ [}
+\NormalTok{    [}\StringTok{\textquotesingle{}Lima\textquotesingle{}}\NormalTok{, }\DecValTok{100000}\NormalTok{],}
+\NormalTok{    [}\StringTok{\textquotesingle{}Arequipa\textquotesingle{}}\NormalTok{, }\DecValTok{50000}\NormalTok{],}
+\NormalTok{    [}\StringTok{\textquotesingle{}Cusco\textquotesingle{}}\NormalTok{, }\DecValTok{30000}\NormalTok{]}
+\NormalTok{]}
+
+\CommentTok{\# Copia profunda}
+\NormalTok{datos\_copia\_profunda }\OperatorTok{=}\NormalTok{ copy.deepcopy(datos\_economicos)}
+
+\CommentTok{\# Modificar la copia}
+\NormalTok{datos\_copia\_profunda[}\DecValTok{0}\NormalTok{][}\DecValTok{1}\NormalTok{] }\OperatorTok{=} \DecValTok{105000}
+
+\CommentTok{\# Solo cambia la copia profunda}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Original: }\SpecialCharTok{\{}\NormalTok{datos\_economicos}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# [[\textquotesingle{}Lima\textquotesingle{}, 100000], [\textquotesingle{}Arequipa\textquotesingle{}, 50000], [\textquotesingle{}Cusco\textquotesingle{}, 30000]]}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Copia profunda: }\SpecialCharTok{\{}\NormalTok{datos\_copia\_profunda}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# [[\textquotesingle{}Lima\textquotesingle{}, 105000], [\textquotesingle{}Arequipa\textquotesingle{}, 50000], [\textquotesingle{}Cusco\textquotesingle{}, 30000]]}
 \end{Highlighting}
 \end{Shaded}
+
+\subsection{Ejemplo aplicado: Escenarios
+económicos}\label{ejemplo-aplicado-escenarios-econuxf3micos}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Combinar listas}
-\NormalTok{mylist }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{] }\OperatorTok{+}\NormalTok{ [}\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{]}
-\BuiltInTok{print}\NormalTok{(mylist)}
+\ImportTok{import}\NormalTok{ copy}
+
+\CommentTok{\# Escenario base}
+\NormalTok{escenario\_base }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{: }\DecValTok{242632}\NormalTok{,}
+    \StringTok{\textquotesingle{}inflacion\textquotesingle{}}\NormalTok{: }\FloatTok{3.5}\NormalTok{,}
+    \StringTok{\textquotesingle{}desempleo\textquotesingle{}}\NormalTok{: }\FloatTok{7.2}\NormalTok{,}
+    \StringTok{\textquotesingle{}sectores\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Minería\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Agricultura\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Manufactura\textquotesingle{}}\NormalTok{]}
+\NormalTok{\}}
+
+\CommentTok{\# Crear escenarios alternativos}
+\NormalTok{escenario\_optimista }\OperatorTok{=}\NormalTok{ copy.deepcopy(escenario\_base)}
+\NormalTok{escenario\_pesimista }\OperatorTok{=}\NormalTok{ copy.deepcopy(escenario\_base)}
+
+\CommentTok{\# Modificar escenarios}
+\NormalTok{escenario\_optimista[}\StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{] }\OperatorTok{=} \DecValTok{250000}
+\NormalTok{escenario\_optimista[}\StringTok{\textquotesingle{}inflacion\textquotesingle{}}\NormalTok{] }\OperatorTok{=} \FloatTok{3.0}
+\NormalTok{escenario\_optimista[}\StringTok{\textquotesingle{}sectores\textquotesingle{}}\NormalTok{].append(}\StringTok{\textquotesingle{}Tecnología\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{escenario\_pesimista[}\StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{] }\OperatorTok{=} \DecValTok{235000}
+\NormalTok{escenario\_pesimista[}\StringTok{\textquotesingle{}inflacion\textquotesingle{}}\NormalTok{] }\OperatorTok{=} \FloatTok{4.5}
+\NormalTok{escenario\_pesimista[}\StringTok{\textquotesingle{}sectores\textquotesingle{}}\NormalTok{].remove(}\StringTok{\textquotesingle{}Manufactura\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Cada escenario es independiente}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Escenario Base:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(escenario\_base)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Escenario Optimista:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(escenario\_optimista)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Escenario Pesimista:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(escenario\_pesimista)}
 \end{Highlighting}
 \end{Shaded}
+
+\section{Operaciones con listas}\label{operaciones-con-listas}
+
+\subsection{Concatenación y
+repetición}\label{concatenaciuxf3n-y-repeticiuxf3n}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{[}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{]}\OperatorTok{*}\DecValTok{2}
+\CommentTok{\# Datos del primer semestre}
+\NormalTok{primer\_semestre }\OperatorTok{=}\NormalTok{ [}\DecValTok{50000}\NormalTok{, }\DecValTok{52000}\NormalTok{, }\DecValTok{51500}\NormalTok{]}
+
+\CommentTok{\# Datos del segundo semestre}
+\NormalTok{segundo\_semestre }\OperatorTok{=}\NormalTok{ [}\DecValTok{53000}\NormalTok{, }\DecValTok{54500}\NormalTok{, }\DecValTok{55000}\NormalTok{]}
+
+\CommentTok{\# Concatenar listas}
+\NormalTok{ano\_completo }\OperatorTok{=}\NormalTok{ primer\_semestre }\OperatorTok{+}\NormalTok{ segundo\_semestre}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Año completo: }\SpecialCharTok{\{}\NormalTok{ano\_completo}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# [50000, 52000, 51500, 53000, 54500, 55000]}
+
+\CommentTok{\# Repetir listas}
+\NormalTok{patron\_base }\OperatorTok{=}\NormalTok{ [}\DecValTok{100}\NormalTok{, }\DecValTok{110}\NormalTok{]}
+\NormalTok{patron\_repetido }\OperatorTok{=}\NormalTok{ patron\_base }\OperatorTok{*} \DecValTok{3}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Patrón repetido: }\SpecialCharTok{\{}\NormalTok{patron\_repetido}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# [100, 110, 100, 110, 100, 110]}
+
+\CommentTok{\# Aplicación: Crear valores iniciales repetidos}
+\NormalTok{tasas\_iniciales }\OperatorTok{=}\NormalTok{ [}\FloatTok{0.05}\NormalTok{] }\OperatorTok{*} \DecValTok{12}  \CommentTok{\# Tasa fija para 12 meses}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Tasas iniciales: }\SpecialCharTok{\{}\NormalTok{tasas\_iniciales}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\section{Evaluando la existencia de objetos en una
-lista}\label{evaluando-la-existencia-de-objetos-en-una-lista}
-
-En python es posible evaluar la membresía de un elemento en colecciones
-de elementos como listas, sets, diccionarios y tuplas. Para ello existen
-los comandos ``in'', ``not in''.
-
-Así mismo es posible evaluar si un objeto en python es identico a otro.
-Esta rutina evalúa si un objeto tiene el mismo valor y propiedades que
-otro, para ello se usa la rutina ``is''.
+\subsection{Pertenencia a listas}\label{pertenencia-a-listas}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Evaluar si un objeto se encuentra en una lista}
-\BuiltInTok{print}\NormalTok{(mylist)}
-\BuiltInTok{print}\NormalTok{(}\DecValTok{1} \KeywordTok{in}\NormalTok{ mylist)}
-\BuiltInTok{print}\NormalTok{(}\DecValTok{5} \KeywordTok{in}\NormalTok{ mylist)}
-\BuiltInTok{print}\NormalTok{(}\DecValTok{1} \KeywordTok{not} \KeywordTok{in}\NormalTok{ mylist)}
-\BuiltInTok{print}\NormalTok{(}\DecValTok{5} \KeywordTok{not} \KeywordTok{in}\NormalTok{ mylist)}
+\CommentTok{\# Sectores económicos}
+\NormalTok{sectores\_primarios }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}Agricultura\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Pesca\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Minería\textquotesingle{}}\NormalTok{]}
+
+\CommentTok{\# Verificar pertenencia}
+\BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}Minería\textquotesingle{}} \KeywordTok{in}\NormalTok{ sectores\_primarios)        }\CommentTok{\# True}
+\BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}Manufactura\textquotesingle{}} \KeywordTok{in}\NormalTok{ sectores\_primarios)    }\CommentTok{\# False}
+\BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}Pesca\textquotesingle{}} \KeywordTok{not} \KeywordTok{in}\NormalTok{ sectores\_primarios)      }\CommentTok{\# False}
+\BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}Tecnología\textquotesingle{}} \KeywordTok{not} \KeywordTok{in}\NormalTok{ sectores\_primarios) }\CommentTok{\# True}
+
+\CommentTok{\# Aplicación práctica}
+\NormalTok{sector\_analizar }\OperatorTok{=} \StringTok{\textquotesingle{}Agricultura\textquotesingle{}}
+
+\ControlFlowTok{if}\NormalTok{ sector\_analizar }\KeywordTok{in}\NormalTok{ sectores\_primarios:}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{sector\_analizar}\SpecialCharTok{\}}\SpecialStringTok{ es un sector primario"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{sector\_analizar}\SpecialCharTok{\}}\SpecialStringTok{ no es un sector primario"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\subsection{Comparación de listas}\label{comparaciuxf3n-de-listas}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\DecValTok{5} \KeywordTok{is} \DecValTok{5}\NormalTok{)}
-\BuiltInTok{print}\NormalTok{(}\DecValTok{5} \KeywordTok{is} \FloatTok{5.}\NormalTok{)}
+\CommentTok{\# PIB por trimestre de dos años}
+\NormalTok{pib\_2022 }\OperatorTok{=}\NormalTok{ [}\DecValTok{50000}\NormalTok{, }\DecValTok{52000}\NormalTok{, }\DecValTok{51500}\NormalTok{, }\DecValTok{53000}\NormalTok{]}
+\NormalTok{pib\_2023 }\OperatorTok{=}\NormalTok{ [}\DecValTok{54000}\NormalTok{, }\DecValTok{55000}\NormalTok{, }\DecValTok{54500}\NormalTok{, }\DecValTok{56000}\NormalTok{]}
+\NormalTok{pib\_2023\_copia }\OperatorTok{=}\NormalTok{ [}\DecValTok{54000}\NormalTok{, }\DecValTok{55000}\NormalTok{, }\DecValTok{54500}\NormalTok{, }\DecValTok{56000}\NormalTok{]}
+
+\CommentTok{\# Igualdad}
+\BuiltInTok{print}\NormalTok{(pib\_2022 }\OperatorTok{==}\NormalTok{ pib\_2023)        }\CommentTok{\# False}
+\BuiltInTok{print}\NormalTok{(pib\_2023 }\OperatorTok{==}\NormalTok{ pib\_2023\_copia)  }\CommentTok{\# True}
+
+\CommentTok{\# Identidad (mismo objeto en memoria)}
+\BuiltInTok{print}\NormalTok{(pib\_2023 }\KeywordTok{is}\NormalTok{ pib\_2023\_copia)  }\CommentTok{\# False}
+
+\CommentTok{\# Comparación elemento por elemento}
+\BuiltInTok{print}\NormalTok{(pib\_2022 }\OperatorTok{\textless{}}\NormalTok{ pib\_2023)  }\CommentTok{\# True (compara primer elemento diferente)}
 \end{Highlighting}
 \end{Shaded}
 
-\section{Otros metodos para modificar
-listas.}\label{otros-metodos-para-modificar-listas.}
-
-Existen además otros métodos que nos permiten modificar las listas. Por
-ejemplo, podemos obtener el valor máximo, el mínimo, el tamaño de la
-lista, así como tambien podemos agregar y remover elementos a una lista.
+\subsection{Eliminar elementos}\label{eliminar-elementos}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Metodos en listas}
-\BuiltInTok{print}\NormalTok{(}\BuiltInTok{len}\NormalTok{(mylist)) }\CommentTok{\#Tamano de lista}
-\BuiltInTok{print}\NormalTok{(}\BuiltInTok{min}\NormalTok{(mylist)) }\CommentTok{\#Valor minimo en la lista}
-\BuiltInTok{print}\NormalTok{(}\BuiltInTok{max}\NormalTok{(mylist)) }\CommentTok{\#Valor maximo en la lista}
+\CommentTok{\# Lista de sectores}
+\NormalTok{sectores }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}Agricultura\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Minería\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Manufactura\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Construcción\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Servicios\textquotesingle{}}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Original: }\SpecialCharTok{\{}\NormalTok{sectores}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Método 1: del (eliminar por índice)}
+\KeywordTok{del}\NormalTok{ sectores[}\DecValTok{2}\NormalTok{]  }\CommentTok{\# Elimina \textquotesingle{}Manufactura\textquotesingle{}}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Después de del: }\SpecialCharTok{\{}\NormalTok{sectores}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Método 2: remove() (eliminar por valor)}
+\NormalTok{sectores.remove(}\StringTok{\textquotesingle{}Construcción\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Después de remove: }\SpecialCharTok{\{}\NormalTok{sectores}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Método 3: pop() (eliminar y retornar elemento)}
+\NormalTok{sector\_eliminado }\OperatorTok{=}\NormalTok{ sectores.pop(}\DecValTok{1}\NormalTok{)  }\CommentTok{\# Elimina y retorna \textquotesingle{}Minería\textquotesingle{}}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Sector eliminado: }\SpecialCharTok{\{}\NormalTok{sector\_eliminado}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Lista actual: }\SpecialCharTok{\{}\NormalTok{sectores}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# pop() sin argumentos elimina el último elemento}
+\NormalTok{ultimo }\OperatorTok{=}\NormalTok{ sectores.pop()}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Último eliminado: }\SpecialCharTok{\{}\NormalTok{ultimo}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Lista final: }\SpecialCharTok{\{}\NormalTok{sectores}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Método 4: clear() (vaciar toda la lista)}
+\NormalTok{sectores.clear()}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Lista vacía: }\SpecialCharTok{\{}\NormalTok{sectores}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\section{Métodos de listas}\label{muxe9todos-de-listas}
+
+\subsection{Funciones básicas}\label{funciones-buxe1sicas}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Metodos para agregar y eliminar elementos de una lista:}
-\NormalTok{mylist.append(}\DecValTok{5}\NormalTok{) }\CommentTok{\#Agregar elemento}
-\NormalTok{mylist}
+\CommentTok{\# Datos de ventas mensuales (en miles)}
+\NormalTok{ventas }\OperatorTok{=}\NormalTok{ [}\DecValTok{45}\NormalTok{, }\DecValTok{52}\NormalTok{, }\DecValTok{48}\NormalTok{, }\DecValTok{55}\NormalTok{, }\DecValTok{60}\NormalTok{, }\DecValTok{58}\NormalTok{, }\DecValTok{62}\NormalTok{, }\DecValTok{59}\NormalTok{, }\DecValTok{65}\NormalTok{, }\DecValTok{70}\NormalTok{, }\DecValTok{68}\NormalTok{, }\DecValTok{75}\NormalTok{]}
+
+\CommentTok{\# Longitud de la lista}
+\NormalTok{num\_meses }\OperatorTok{=} \BuiltInTok{len}\NormalTok{(ventas)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Número de meses: }\SpecialCharTok{\{}\NormalTok{num\_meses}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# 12}
+
+\CommentTok{\# Valor mínimo}
+\NormalTok{venta\_minima }\OperatorTok{=} \BuiltInTok{min}\NormalTok{(ventas)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Venta mínima: }\SpecialCharTok{\{}\NormalTok{venta\_minima}\SpecialCharTok{\}}\SpecialStringTok{ mil"}\NormalTok{)  }\CommentTok{\# 45}
+
+\CommentTok{\# Valor máximo}
+\NormalTok{venta\_maxima }\OperatorTok{=} \BuiltInTok{max}\NormalTok{(ventas)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Venta máxima: }\SpecialCharTok{\{}\NormalTok{venta\_maxima}\SpecialCharTok{\}}\SpecialStringTok{ mil"}\NormalTok{)  }\CommentTok{\# 75}
+
+\CommentTok{\# Suma total}
+\NormalTok{ventas\_totales }\OperatorTok{=} \BuiltInTok{sum}\NormalTok{(ventas)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Ventas totales: }\SpecialCharTok{\{}\NormalTok{ventas\_totales}\SpecialCharTok{\}}\SpecialStringTok{ mil"}\NormalTok{)  }\CommentTok{\# 717}
+
+\CommentTok{\# Promedio}
+\NormalTok{ventas\_promedio }\OperatorTok{=} \BuiltInTok{sum}\NormalTok{(ventas) }\OperatorTok{/} \BuiltInTok{len}\NormalTok{(ventas)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Venta promedio: }\SpecialCharTok{\{}\NormalTok{ventas\_promedio}\SpecialCharTok{:.2f\}}\SpecialStringTok{ mil"}\NormalTok{)  }\CommentTok{\# 59.75}
 \end{Highlighting}
 \end{Shaded}
+
+\subsection{Método append()}\label{muxe9todo-append}
+
+Agrega un elemento al final de la lista:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mylist.append([}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{])}
-\NormalTok{mylist}
+\CommentTok{\# Registro de inflación mensual}
+\NormalTok{inflacion }\OperatorTok{=}\NormalTok{ [}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.3}\NormalTok{, }\FloatTok{0.4}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Inflación inicial: }\SpecialCharTok{\{}\NormalTok{inflacion}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Agregar nuevos meses}
+\NormalTok{inflacion.append(}\FloatTok{0.6}\NormalTok{)}
+\NormalTok{inflacion.append(}\FloatTok{0.5}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Inflación actualizada: }\SpecialCharTok{\{}\NormalTok{inflacion}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Agregar una lista como elemento único}
+\NormalTok{inflacion.append([}\FloatTok{0.7}\NormalTok{, }\FloatTok{0.8}\NormalTok{])}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Con lista anidada: }\SpecialCharTok{\{}\NormalTok{inflacion}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# [0.5, 0.3, 0.4, 0.6, 0.5, [0.7, 0.8]]}
 \end{Highlighting}
 \end{Shaded}
+
+\subsection{Método extend()}\label{muxe9todo-extend}
+
+Extiende la lista agregando elementos de un iterable:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mylist.remove([}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{]) }\CommentTok{\# Remover elemento}
-\NormalTok{mylist}
+\CommentTok{\# PIB trimestral}
+\NormalTok{pib\_q1\_q2 }\OperatorTok{=}\NormalTok{ [}\DecValTok{50000}\NormalTok{, }\DecValTok{52000}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"PIB Q1{-}Q2: }\SpecialCharTok{\{}\NormalTok{pib\_q1\_q2}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Extender con más trimestres}
+\NormalTok{pib\_q3\_q4 }\OperatorTok{=}\NormalTok{ [}\DecValTok{51500}\NormalTok{, }\DecValTok{53000}\NormalTok{]}
+\NormalTok{pib\_q1\_q2.extend(pib\_q3\_q4)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"PIB año completo: }\SpecialCharTok{\{}\NormalTok{pib\_q1\_q2}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# [50000, 52000, 51500, 53000]}
+
+\CommentTok{\# Diferencia entre extend y append}
+\NormalTok{lista1 }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{]}
+\NormalTok{lista2 }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{]}
+
+\NormalTok{lista1.extend([}\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{])}
+\NormalTok{lista2.append([}\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{])}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Con extend: }\SpecialCharTok{\{}\NormalTok{lista1}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# [1, 2, 3, 4, 5]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Con append: }\SpecialCharTok{\{}\NormalTok{lista2}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# [1, 2, 3, [4, 5]]}
 \end{Highlighting}
 \end{Shaded}
+
+\subsection{Método insert()}\label{muxe9todo-insert}
+
+Inserta un elemento en una posición específica:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mylist.extend([}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{]) }\CommentTok{\# Extender lista con mas elementos}
-\NormalTok{mylist}
+\CommentTok{\# Tasas de crecimiento}
+\NormalTok{crecimiento }\OperatorTok{=}\NormalTok{ [}\FloatTok{2.5}\NormalTok{, }\FloatTok{3.0}\NormalTok{, }\FloatTok{3.5}\NormalTok{, }\FloatTok{4.0}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Original: }\SpecialCharTok{\{}\NormalTok{crecimiento}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Insertar en posición específica}
+\NormalTok{crecimiento.insert(}\DecValTok{2}\NormalTok{, }\FloatTok{3.2}\NormalTok{)  }\CommentTok{\# Insertar 3.2 en índice 2}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Después de insert: }\SpecialCharTok{\{}\NormalTok{crecimiento}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# [2.5, 3.0, 3.2, 3.5, 4.0]}
+
+\CommentTok{\# Insertar al inicio}
+\NormalTok{crecimiento.insert(}\DecValTok{0}\NormalTok{, }\FloatTok{2.0}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Con valor inicial: }\SpecialCharTok{\{}\NormalTok{crecimiento}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# [2.0, 2.5, 3.0, 3.2, 3.5, 4.0]}
 \end{Highlighting}
 \end{Shaded}
+
+\subsection{Método remove()}\label{muxe9todo-remove}
+
+Elimina la primera ocurrencia de un valor:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mylist.insert(}\DecValTok{1}\NormalTok{,}\DecValTok{10}\NormalTok{) }\CommentTok{\# insert element to a list at a location other than the end}
-\NormalTok{mylist}
+\CommentTok{\# Sectores para análisis}
+\NormalTok{sectores }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}Minería\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Agricultura\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Minería\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Manufactura\textquotesingle{}}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Original: }\SpecialCharTok{\{}\NormalTok{sectores}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Eliminar primera ocurrencia de \textquotesingle{}Minería\textquotesingle{}}
+\NormalTok{sectores.remove(}\StringTok{\textquotesingle{}Minería\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Después de remove: }\SpecialCharTok{\{}\NormalTok{sectores}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# [\textquotesingle{}Agricultura\textquotesingle{}, \textquotesingle{}Minería\textquotesingle{}, \textquotesingle{}Manufactura\textquotesingle{}]}
+
+\CommentTok{\# Intento de eliminar valor inexistente genera error}
+\ControlFlowTok{try}\NormalTok{:}
+\NormalTok{    sectores.remove(}\StringTok{\textquotesingle{}Tecnología\textquotesingle{}}\NormalTok{)}
+\ControlFlowTok{except} \PreprocessorTok{ValueError}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Error: \textquotesingle{}Tecnología\textquotesingle{} no está en la lista"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\subsection{Método pop()}\label{muxe9todo-pop}
+
+Elimina y retorna un elemento:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mylist.sort()}
-\BuiltInTok{print}\NormalTok{(mylist) }\CommentTok{\# Ordenar lista de menor a mayor}
-\NormalTok{mylist.index(}\DecValTok{2}\NormalTok{) }\CommentTok{\# Retorna el indice del valor que solicitamos}
+\CommentTok{\# Cola de proyectos}
+\NormalTok{proyectos }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}Proyecto A\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Proyecto B\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Proyecto C\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Proyecto D\textquotesingle{}}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Proyectos: }\SpecialCharTok{\{}\NormalTok{proyectos}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Eliminar y obtener el último proyecto}
+\NormalTok{ultimo\_proyecto }\OperatorTok{=}\NormalTok{ proyectos.pop()}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Proyecto completado: }\SpecialCharTok{\{}\NormalTok{ultimo\_proyecto}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Proyectos restantes: }\SpecialCharTok{\{}\NormalTok{proyectos}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Eliminar y obtener un proyecto específico}
+\NormalTok{proyecto\_siguiente }\OperatorTok{=}\NormalTok{ proyectos.pop(}\DecValTok{0}\NormalTok{)  }\CommentTok{\# Primer proyecto}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Proyecto en ejecución: }\SpecialCharTok{\{}\NormalTok{proyecto\_siguiente}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Proyectos pendientes: }\SpecialCharTok{\{}\NormalTok{proyectos}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\subsection{Método index()}\label{muxe9todo-index}
+
+Retorna el índice de la primera ocurrencia de un valor:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mylistExample }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{2}\NormalTok{]}
-\NormalTok{mylistExample.index(}\DecValTok{2}\NormalTok{) }\CommentTok{\# Retorna el indice del valor que solicitamos}
+\CommentTok{\# Sectores económicos}
+\NormalTok{sectores }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}Agricultura\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Minería\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Manufactura\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Servicios\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Construcción\textquotesingle{}}\NormalTok{]}
+
+\CommentTok{\# Encontrar índice de un sector}
+\NormalTok{indice\_mineria }\OperatorTok{=}\NormalTok{ sectores.index(}\StringTok{\textquotesingle{}Minería\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Índice de Minería: }\SpecialCharTok{\{}\NormalTok{indice\_mineria}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# 1}
+
+\NormalTok{indice\_servicios }\OperatorTok{=}\NormalTok{ sectores.index(}\StringTok{\textquotesingle{}Servicios\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Índice de Servicios: }\SpecialCharTok{\{}\NormalTok{indice\_servicios}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# 3}
+
+\CommentTok{\# Búsqueda en rango específico}
+\NormalTok{lista\_numeros }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{5}\NormalTok{]}
+\NormalTok{indice }\OperatorTok{=}\NormalTok{ lista\_numeros.index(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{)  }\CommentTok{\# Buscar 2 desde índice 2}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Índice de 2 desde posición 2: }\SpecialCharTok{\{}\NormalTok{indice}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# 3}
 \end{Highlighting}
 \end{Shaded}
 
-\section{Trabajando con tuplas.}\label{trabajando-con-tuplas.}
+\subsection{Método count()}\label{muxe9todo-count}
 
-Las tuplas son colecciones ordenadas de elementos que son inmutables. El
-beneficio de que sea inmutable es que definir una tupla requiere poca
-memoria ram pues no tiene muchas rutinas asociadas a comparación de las
-listas. Usualmente definimos las tuplas entre paréntesis ``(,)''.
+Cuenta las ocurrencias de un valor:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Calificaciones de riesgo}
+\NormalTok{calificaciones }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}AAA\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}AA\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}BBB\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}AA\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}AAA\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}AAA\textquotesingle{}}\NormalTok{]}
+
+\CommentTok{\# Contar ocurrencias}
+\NormalTok{num\_aaa }\OperatorTok{=}\NormalTok{ calificaciones.count(}\StringTok{\textquotesingle{}AAA\textquotesingle{}}\NormalTok{)}
+\NormalTok{num\_aa }\OperatorTok{=}\NormalTok{ calificaciones.count(}\StringTok{\textquotesingle{}AA\textquotesingle{}}\NormalTok{)}
+\NormalTok{num\_a }\OperatorTok{=}\NormalTok{ calificaciones.count(}\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Calificación AAA: }\SpecialCharTok{\{}\NormalTok{num\_aaa}\SpecialCharTok{\}}\SpecialStringTok{ veces"}\NormalTok{)  }\CommentTok{\# 3}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Calificación AA: }\SpecialCharTok{\{}\NormalTok{num\_aa}\SpecialCharTok{\}}\SpecialStringTok{ veces"}\NormalTok{)    }\CommentTok{\# 2}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Calificación A: }\SpecialCharTok{\{}\NormalTok{num\_a}\SpecialCharTok{\}}\SpecialStringTok{ veces"}\NormalTok{)      }\CommentTok{\# 2}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Método sort()}\label{muxe9todo-sort}
+
+Ordena la lista in-place (modifica la lista original):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Tasas de interés desordenadas}
+\NormalTok{tasas }\OperatorTok{=}\NormalTok{ [}\FloatTok{0.065}\NormalTok{, }\FloatTok{0.045}\NormalTok{, }\FloatTok{0.075}\NormalTok{, }\FloatTok{0.055}\NormalTok{, }\FloatTok{0.050}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Tasas desordenadas: }\SpecialCharTok{\{}\NormalTok{tasas}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Ordenar ascendentemente}
+\NormalTok{tasas.sort()}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Tasas ordenadas (asc): }\SpecialCharTok{\{}\NormalTok{tasas}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# [0.045, 0.05, 0.055, 0.065, 0.075]}
+
+\CommentTok{\# Ordenar descendentemente}
+\NormalTok{tasas.sort(reverse}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Tasas ordenadas (desc): }\SpecialCharTok{\{}\NormalTok{tasas}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# [0.075, 0.065, 0.055, 0.05, 0.045]}
+
+\CommentTok{\# Ordenar strings}
+\NormalTok{paises }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}Perú\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Argentina\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Chile\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Brasil\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Colombia\textquotesingle{}}\NormalTok{]}
+\NormalTok{paises.sort()}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Países ordenados: }\SpecialCharTok{\{}\NormalTok{paises}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# [\textquotesingle{}Argentina\textquotesingle{}, \textquotesingle{}Brasil\textquotesingle{}, \textquotesingle{}Chile\textquotesingle{}, \textquotesingle{}Colombia\textquotesingle{}, \textquotesingle{}Perú\textquotesingle{}]}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Función sorted()}\label{funciuxf3n-sorted}
+
+Retorna una nueva lista ordenada (no modifica la original):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# PIB de regiones}
+\NormalTok{pib\_regiones }\OperatorTok{=}\NormalTok{ [}\DecValTok{100000}\NormalTok{, }\DecValTok{50000}\NormalTok{, }\DecValTok{75000}\NormalTok{, }\DecValTok{30000}\NormalTok{, }\DecValTok{45000}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"PIB original: }\SpecialCharTok{\{}\NormalTok{pib\_regiones}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Crear lista ordenada sin modificar original}
+\NormalTok{pib\_ordenado }\OperatorTok{=} \BuiltInTok{sorted}\NormalTok{(pib\_regiones)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"PIB ordenado: }\SpecialCharTok{\{}\NormalTok{pib\_ordenado}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"PIB original (sin cambios): }\SpecialCharTok{\{}\NormalTok{pib\_regiones}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Ordenar en reversa}
+\NormalTok{pib\_descendente }\OperatorTok{=} \BuiltInTok{sorted}\NormalTok{(pib\_regiones, reverse}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"PIB descendente: }\SpecialCharTok{\{}\NormalTok{pib\_descendente}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Método reverse()}\label{muxe9todo-reverse}
+
+Invierte el orden de los elementos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Años en orden cronológico}
+\NormalTok{anos }\OperatorTok{=}\NormalTok{ [}\DecValTok{2019}\NormalTok{, }\DecValTok{2020}\NormalTok{, }\DecValTok{2021}\NormalTok{, }\DecValTok{2022}\NormalTok{, }\DecValTok{2023}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Años cronológicos: }\SpecialCharTok{\{}\NormalTok{anos}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Invertir orden}
+\NormalTok{anos.reverse()}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Años invertidos: }\SpecialCharTok{\{}\NormalTok{anos}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# [2023, 2022, 2021, 2020, 2019]}
+
+\CommentTok{\# Alternativa con slicing}
+\NormalTok{anos\_originales }\OperatorTok{=}\NormalTok{ [}\DecValTok{2019}\NormalTok{, }\DecValTok{2020}\NormalTok{, }\DecValTok{2021}\NormalTok{, }\DecValTok{2022}\NormalTok{, }\DecValTok{2023}\NormalTok{]}
+\NormalTok{anos\_invertidos }\OperatorTok{=}\NormalTok{ anos\_originales[::}\OperatorTok{{-}}\DecValTok{1}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Invertidos con slicing: }\SpecialCharTok{\{}\NormalTok{anos\_invertidos}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Diccionarios}\label{diccionarios}
+
+Los diccionarios son colecciones de pares clave-valor, desordenadas
+(hasta Python 3.6) u ordenadas por inserción (Python 3.7+), mutables e
+indexables por claves. Son ideales para representar datos estructurados
+en economía.
+
+\subsection{Creación de diccionarios}\label{creaciuxf3n-de-diccionarios}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Diccionario vacío}
+\NormalTok{pais\_vacio }\OperatorTok{=}\NormalTok{ \{\}}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(pais\_vacio))  }\CommentTok{\# \textless{}class \textquotesingle{}dict\textquotesingle{}\textgreater{}}
+
+\CommentTok{\# Diccionario con datos económicos de un país}
+\NormalTok{peru }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}nombre\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Perú\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{: }\DecValTok{242632}\NormalTok{,}
+    \StringTok{\textquotesingle{}poblacion\textquotesingle{}}\NormalTok{: }\DecValTok{33715471}\NormalTok{,}
+    \StringTok{\textquotesingle{}moneda\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Sol\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}codigo\_iso\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}PER\textquotesingle{}}
+\NormalTok{\}}
+\BuiltInTok{print}\NormalTok{(peru)}
+
+\CommentTok{\# Diccionario con diferentes tipos de valores}
+\NormalTok{indicadores }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{: }\DecValTok{242632}\NormalTok{,              }\CommentTok{\# int}
+    \StringTok{\textquotesingle{}crecimiento\textquotesingle{}}\NormalTok{: }\FloatTok{2.7}\NormalTok{,          }\CommentTok{\# float}
+    \StringTok{\textquotesingle{}moneda\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}PEN\textquotesingle{}}\NormalTok{,             }\CommentTok{\# string}
+    \StringTok{\textquotesingle{}emergente\textquotesingle{}}\NormalTok{: }\VariableTok{True}\NormalTok{,           }\CommentTok{\# boolean}
+    \StringTok{\textquotesingle{}sectores\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Minería\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Agricultura\textquotesingle{}}\NormalTok{],  }\CommentTok{\# lista}
+    \StringTok{\textquotesingle{}comercio\textquotesingle{}}\NormalTok{: \{}\StringTok{\textquotesingle{}exp\textquotesingle{}}\NormalTok{: }\DecValTok{63200}\NormalTok{, }\StringTok{\textquotesingle{}imp\textquotesingle{}}\NormalTok{: }\DecValTok{53800}\NormalTok{\}  }\CommentTok{\# diccionario anidado}
+\NormalTok{\}}
+\BuiltInTok{print}\NormalTok{(indicadores)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Acceso a elementos}\label{acceso-a-elementos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Datos macroeconómicos}
+\NormalTok{macro }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{: }\DecValTok{242632}\NormalTok{,}
+    \StringTok{\textquotesingle{}inflacion\textquotesingle{}}\NormalTok{: }\FloatTok{3.5}\NormalTok{,}
+    \StringTok{\textquotesingle{}desempleo\textquotesingle{}}\NormalTok{: }\FloatTok{7.2}\NormalTok{,}
+    \StringTok{\textquotesingle{}tipo\_cambio\textquotesingle{}}\NormalTok{: }\FloatTok{3.75}
+\NormalTok{\}}
+
+\CommentTok{\# Acceder usando corchetes}
+\NormalTok{pib\_actual }\OperatorTok{=}\NormalTok{ macro[}\StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"PIB: }\SpecialCharTok{\{}\NormalTok{pib\_actual}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\NormalTok{inflacion\_actual }\OperatorTok{=}\NormalTok{ macro[}\StringTok{\textquotesingle{}inflacion\textquotesingle{}}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Inflación: }\SpecialCharTok{\{}\NormalTok{inflacion\_actual}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{)}
+
+\CommentTok{\# Método get() (más seguro)}
+\NormalTok{desempleo }\OperatorTok{=}\NormalTok{ macro.get(}\StringTok{\textquotesingle{}desempleo\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Desempleo: }\SpecialCharTok{\{}\NormalTok{desempleo}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{)}
+
+\CommentTok{\# get() con valor por defecto}
+\NormalTok{reservas }\OperatorTok{=}\NormalTok{ macro.get(}\StringTok{\textquotesingle{}reservas\textquotesingle{}}\NormalTok{, }\DecValTok{0}\NormalTok{)  }\CommentTok{\# Retorna 0 si no existe}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Reservas: }\SpecialCharTok{\{}\NormalTok{reservas}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Intentar acceder a clave inexistente con []}
+\ControlFlowTok{try}\NormalTok{:}
+\NormalTok{    deuda }\OperatorTok{=}\NormalTok{ macro[}\StringTok{\textquotesingle{}deuda\textquotesingle{}}\NormalTok{]}
+\ControlFlowTok{except} \PreprocessorTok{KeyError}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Error: \textquotesingle{}deuda\textquotesingle{} no existe en el diccionario"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Modificación de
+diccionarios}\label{modificaciuxf3n-de-diccionarios}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Indicadores económicos}
+\NormalTok{indicadores }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{: }\DecValTok{240000}\NormalTok{,}
+    \StringTok{\textquotesingle{}inflacion\textquotesingle{}}\NormalTok{: }\FloatTok{3.2}\NormalTok{,}
+    \StringTok{\textquotesingle{}desempleo\textquotesingle{}}\NormalTok{: }\FloatTok{7.5}
+\NormalTok{\}}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Original: }\SpecialCharTok{\{}\NormalTok{indicadores}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Modificar valores existentes}
+\NormalTok{indicadores[}\StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{] }\OperatorTok{=} \DecValTok{242632}
+\NormalTok{indicadores[}\StringTok{\textquotesingle{}inflacion\textquotesingle{}}\NormalTok{] }\OperatorTok{=} \FloatTok{3.5}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Actualizado: }\SpecialCharTok{\{}\NormalTok{indicadores}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Agregar nuevas claves}
+\NormalTok{indicadores[}\StringTok{\textquotesingle{}tipo\_cambio\textquotesingle{}}\NormalTok{] }\OperatorTok{=} \FloatTok{3.75}
+\NormalTok{indicadores[}\StringTok{\textquotesingle{}reservas\textquotesingle{}}\NormalTok{] }\OperatorTok{=} \DecValTok{74500}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Expandido: }\SpecialCharTok{\{}\NormalTok{indicadores}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Eliminar elementos}
+\KeywordTok{del}\NormalTok{ indicadores[}\StringTok{\textquotesingle{}desempleo\textquotesingle{}}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Después de eliminar: }\SpecialCharTok{\{}\NormalTok{indicadores}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Verificación de claves}\label{verificaciuxf3n-de-claves}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Datos de un sector económico}
+\NormalTok{sector }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}nombre\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Minería\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}contribucion\_pib\textquotesingle{}}\NormalTok{: }\FloatTok{10.5}\NormalTok{,}
+    \StringTok{\textquotesingle{}empleo\textquotesingle{}}\NormalTok{: }\DecValTok{250000}\NormalTok{,}
+    \StringTok{\textquotesingle{}exportaciones\textquotesingle{}}\NormalTok{: }\DecValTok{30000}
+\NormalTok{\}}
+
+\CommentTok{\# Verificar si una clave existe}
+\BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}nombre\textquotesingle{}} \KeywordTok{in}\NormalTok{ sector)          }\CommentTok{\# True}
+\BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}importaciones\textquotesingle{}} \KeywordTok{in}\NormalTok{ sector)   }\CommentTok{\# False}
+
+\CommentTok{\# Verificar valores (menos eficiente)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}Minería\textquotesingle{}} \KeywordTok{in}\NormalTok{ sector.values())  }\CommentTok{\# True}
+\BuiltInTok{print}\NormalTok{(}\FloatTok{10.5} \KeywordTok{in}\NormalTok{ sector.values())       }\CommentTok{\# True}
+
+\CommentTok{\# Uso práctico con condicionales}
+\ControlFlowTok{if} \StringTok{\textquotesingle{}contribucion\_pib\textquotesingle{}} \KeywordTok{in}\NormalTok{ sector:}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Contribución al PIB: }\SpecialCharTok{\{}\NormalTok{sector[}\StringTok{\textquotesingle{}contribucion\_pib\textquotesingle{}}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"No hay datos de contribución al PIB"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Operaciones con
+diccionarios}\label{operaciones-con-diccionarios}
+
+\subsection{Métodos keys(), values(),
+items()}\label{muxe9todos-keys-values-items}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Exportaciones por sector (millones USD)}
+\NormalTok{exportaciones }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}Minería\textquotesingle{}}\NormalTok{: }\DecValTok{30000}\NormalTok{,}
+    \StringTok{\textquotesingle{}Agricultura\textquotesingle{}}\NormalTok{: }\DecValTok{7500}\NormalTok{,}
+    \StringTok{\textquotesingle{}Pesca\textquotesingle{}}\NormalTok{: }\DecValTok{2800}\NormalTok{,}
+    \StringTok{\textquotesingle{}Manufactura\textquotesingle{}}\NormalTok{: }\DecValTok{12500}
+\NormalTok{\}}
+
+\CommentTok{\# Obtener todas las claves}
+\NormalTok{sectores }\OperatorTok{=}\NormalTok{ exportaciones.keys()}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Sectores: }\SpecialCharTok{\{}\BuiltInTok{list}\NormalTok{(sectores)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# [\textquotesingle{}Minería\textquotesingle{}, \textquotesingle{}Agricultura\textquotesingle{}, \textquotesingle{}Pesca\textquotesingle{}, \textquotesingle{}Manufactura\textquotesingle{}]}
+
+\CommentTok{\# Obtener todos los valores}
+\NormalTok{valores }\OperatorTok{=}\NormalTok{ exportaciones.values()}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Valores: }\SpecialCharTok{\{}\BuiltInTok{list}\NormalTok{(valores)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# [30000, 7500, 2800, 12500]}
+
+\CommentTok{\# Calcular total de exportaciones}
+\NormalTok{total\_exportaciones }\OperatorTok{=} \BuiltInTok{sum}\NormalTok{(exportaciones.values())}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Total exportaciones: USD }\SpecialCharTok{\{}\NormalTok{total\_exportaciones}\SpecialCharTok{:,\}}\SpecialStringTok{ millones"}\NormalTok{)}
+
+\CommentTok{\# Obtener pares clave{-}valor}
+\NormalTok{items }\OperatorTok{=}\NormalTok{ exportaciones.items()}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Items: }\SpecialCharTok{\{}\BuiltInTok{list}\NormalTok{(items)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# [(\textquotesingle{}Minería\textquotesingle{}, 30000), (\textquotesingle{}Agricultura\textquotesingle{}, 7500), ...]}
+
+\CommentTok{\# Iterar sobre items}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Detalle de exportaciones:"}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ sector, valor }\KeywordTok{in}\NormalTok{ exportaciones.items():}
+\NormalTok{    porcentaje }\OperatorTok{=}\NormalTok{ (valor }\OperatorTok{/}\NormalTok{ total\_exportaciones) }\OperatorTok{*} \DecValTok{100}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  }\SpecialCharTok{\{}\NormalTok{sector}\SpecialCharTok{\}}\SpecialStringTok{: USD }\SpecialCharTok{\{}\NormalTok{valor}\SpecialCharTok{:,\}}\SpecialStringTok{ M (}\SpecialCharTok{\{}\NormalTok{porcentaje}\SpecialCharTok{:.1f\}}\SpecialStringTok{\%)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Método update()}\label{muxe9todo-update}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Datos base}
+\NormalTok{datos\_2022 }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{: }\DecValTok{240000}\NormalTok{,}
+    \StringTok{\textquotesingle{}inflacion\textquotesingle{}}\NormalTok{: }\FloatTok{3.0}\NormalTok{,}
+    \StringTok{\textquotesingle{}desempleo\textquotesingle{}}\NormalTok{: }\FloatTok{7.8}
+\NormalTok{\}}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Datos 2022: }\SpecialCharTok{\{}\NormalTok{datos\_2022}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Actualizar con nuevos datos}
+\NormalTok{nuevos\_datos }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{: }\DecValTok{242632}\NormalTok{,}
+    \StringTok{\textquotesingle{}tipo\_cambio\textquotesingle{}}\NormalTok{: }\FloatTok{3.75}\NormalTok{,}
+    \StringTok{\textquotesingle{}reservas\textquotesingle{}}\NormalTok{: }\DecValTok{74500}
+\NormalTok{\}}
+
+\NormalTok{datos\_2022.update(nuevos\_datos)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Datos actualizados: }\SpecialCharTok{\{}\NormalTok{datos\_2022}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# \{\textquotesingle{}pib\textquotesingle{}: 242632, \textquotesingle{}inflacion\textquotesingle{}: 3.0, \textquotesingle{}desempleo\textquotesingle{}: 7.8, }
+\CommentTok{\#  \textquotesingle{}tipo\_cambio\textquotesingle{}: 3.75, \textquotesingle{}reservas\textquotesingle{}: 74500\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Método pop()}\label{muxe9todo-pop-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Indicadores trimestrales}
+\NormalTok{indicadores }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}Q1\textquotesingle{}}\NormalTok{: }\DecValTok{50000}\NormalTok{,}
+    \StringTok{\textquotesingle{}Q2\textquotesingle{}}\NormalTok{: }\DecValTok{52000}\NormalTok{,}
+    \StringTok{\textquotesingle{}Q3\textquotesingle{}}\NormalTok{: }\DecValTok{51500}\NormalTok{,}
+    \StringTok{\textquotesingle{}Q4\textquotesingle{}}\NormalTok{: }\DecValTok{53000}
+\NormalTok{\}}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Original: }\SpecialCharTok{\{}\NormalTok{indicadores}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Eliminar y obtener un valor}
+\NormalTok{valor\_q1 }\OperatorTok{=}\NormalTok{ indicadores.pop(}\StringTok{\textquotesingle{}Q1\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Valor Q1 eliminado: }\SpecialCharTok{\{}\NormalTok{valor\_q1}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Indicadores restantes: }\SpecialCharTok{\{}\NormalTok{indicadores}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# pop() con valor por defecto}
+\NormalTok{valor\_q5 }\OperatorTok{=}\NormalTok{ indicadores.pop(}\StringTok{\textquotesingle{}Q5\textquotesingle{}}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Valor Q5: }\SpecialCharTok{\{}\NormalTok{valor\_q5}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# 0 (no existe)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Método copy()}\label{muxe9todo-copy}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ copy}
+
+\CommentTok{\# Datos originales}
+\NormalTok{datos\_base }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{: }\DecValTok{242632}\NormalTok{,}
+    \StringTok{\textquotesingle{}inflacion\textquotesingle{}}\NormalTok{: }\FloatTok{3.5}\NormalTok{,}
+    \StringTok{\textquotesingle{}sectores\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Minería\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Agricultura\textquotesingle{}}\NormalTok{]}
+\NormalTok{\}}
+
+\CommentTok{\# Copia superficial}
+\NormalTok{datos\_copia }\OperatorTok{=}\NormalTok{ datos\_base.copy()}
+\NormalTok{datos\_copia[}\StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{] }\OperatorTok{=} \DecValTok{250000}
+\NormalTok{datos\_copia[}\StringTok{\textquotesingle{}sectores\textquotesingle{}}\NormalTok{].append(}\StringTok{\textquotesingle{}Manufactura\textquotesingle{}}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Base: }\SpecialCharTok{\{}\NormalTok{datos\_base}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Copia: }\SpecialCharTok{\{}\NormalTok{datos\_copia}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# Nota: \textquotesingle{}sectores\textquotesingle{} se modifica en ambos}
+
+\CommentTok{\# Copia profunda para diccionarios anidados}
+\NormalTok{datos\_profunda }\OperatorTok{=}\NormalTok{ copy.deepcopy(datos\_base)}
+\NormalTok{datos\_profunda[}\StringTok{\textquotesingle{}sectores\textquotesingle{}}\NormalTok{].append(}\StringTok{\textquotesingle{}Servicios\textquotesingle{}}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Base después de deepcopy: }\SpecialCharTok{\{}\NormalTok{datos\_base}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Copia profunda: }\SpecialCharTok{\{}\NormalTok{datos\_profunda}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Método clear()}\label{muxe9todo-clear}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Datos temporales}
+\NormalTok{temp }\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{1}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{: }\DecValTok{2}\NormalTok{, }\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{: }\DecValTok{3}\NormalTok{\}}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Original: }\SpecialCharTok{\{}\NormalTok{temp}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\NormalTok{temp.clear()}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Después de clear: }\SpecialCharTok{\{}\NormalTok{temp}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# \{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Diccionarios anidados}\label{diccionarios-anidados}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Datos económicos por país}
+\NormalTok{america\_latina }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}Peru\textquotesingle{}}\NormalTok{: \{}
+        \StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{: }\DecValTok{242632}\NormalTok{,}
+        \StringTok{\textquotesingle{}poblacion\textquotesingle{}}\NormalTok{: }\DecValTok{33715471}\NormalTok{,}
+        \StringTok{\textquotesingle{}moneda\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}PEN\textquotesingle{}}\NormalTok{,}
+        \StringTok{\textquotesingle{}capital\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Lima\textquotesingle{}}
+\NormalTok{    \},}
+    \StringTok{\textquotesingle{}Chile\textquotesingle{}}\NormalTok{: \{}
+        \StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{: }\DecValTok{301000}\NormalTok{,}
+        \StringTok{\textquotesingle{}poblacion\textquotesingle{}}\NormalTok{: }\DecValTok{19493184}\NormalTok{,}
+        \StringTok{\textquotesingle{}moneda\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}CLP\textquotesingle{}}\NormalTok{,}
+        \StringTok{\textquotesingle{}capital\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Santiago\textquotesingle{}}
+\NormalTok{    \},}
+    \StringTok{\textquotesingle{}Colombia\textquotesingle{}}\NormalTok{: \{}
+        \StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{: }\DecValTok{314000}\NormalTok{,}
+        \StringTok{\textquotesingle{}poblacion\textquotesingle{}}\NormalTok{: }\DecValTok{51516562}\NormalTok{,}
+        \StringTok{\textquotesingle{}moneda\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}COP\textquotesingle{}}\NormalTok{,}
+        \StringTok{\textquotesingle{}capital\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Bogotá\textquotesingle{}}
+\NormalTok{    \}}
+\NormalTok{\}}
+
+\CommentTok{\# Acceder a datos anidados}
+\NormalTok{pib\_peru }\OperatorTok{=}\NormalTok{ america\_latina[}\StringTok{\textquotesingle{}Peru\textquotesingle{}}\NormalTok{][}\StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"PIB de Perú: USD }\SpecialCharTok{\{}\NormalTok{pib\_peru}\SpecialCharTok{:,\}}\SpecialStringTok{ millones"}\NormalTok{)}
+
+\NormalTok{capital\_chile }\OperatorTok{=}\NormalTok{ america\_latina[}\StringTok{\textquotesingle{}Chile\textquotesingle{}}\NormalTok{][}\StringTok{\textquotesingle{}capital\textquotesingle{}}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Capital de Chile: }\SpecialCharTok{\{}\NormalTok{capital\_chile}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Calcular PIB per cápita}
+\ControlFlowTok{for}\NormalTok{ pais, datos }\KeywordTok{in}\NormalTok{ america\_latina.items():}
+\NormalTok{    pib\_pc }\OperatorTok{=}\NormalTok{ (datos[}\StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{] }\OperatorTok{/}\NormalTok{ datos[}\StringTok{\textquotesingle{}poblacion\textquotesingle{}}\NormalTok{]) }\OperatorTok{*} \DecValTok{1000000}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"PIB per cápita }\SpecialCharTok{\{}\NormalTok{pais}\SpecialCharTok{\}}\SpecialStringTok{: USD }\SpecialCharTok{\{}\NormalTok{pib\_pc}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Tuplas}\label{tuplas}
+
+Las tuplas son colecciones ordenadas e inmutables. Son más eficientes en
+memoria que las listas y se usan cuando los datos no deben cambiar.
+
+\subsection{Creación de tuplas}\label{creaciuxf3n-de-tuplas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Tupla con paréntesis}
+\NormalTok{coordenadas }\OperatorTok{=}\NormalTok{ (}\FloatTok{10.5}\NormalTok{, }\FloatTok{15.3}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(coordenadas)}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(coordenadas))  }\CommentTok{\# \textless{}class \textquotesingle{}tuple\textquotesingle{}\textgreater{}}
+
+\CommentTok{\# Tupla sin paréntesis (empaquetado de tupla)}
+\NormalTok{punto }\OperatorTok{=} \DecValTok{5}\NormalTok{, }\DecValTok{10}
+\BuiltInTok{print}\NormalTok{(punto)}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(punto))  }\CommentTok{\# \textless{}class \textquotesingle{}tuple\textquotesingle{}\textgreater{}}
+
+\CommentTok{\# Tupla de un elemento (requiere coma)}
+\NormalTok{tupla\_un\_elemento }\OperatorTok{=}\NormalTok{ (}\DecValTok{5}\NormalTok{,)}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(tupla\_un\_elemento))  }\CommentTok{\# \textless{}class \textquotesingle{}tuple\textquotesingle{}\textgreater{}}
+
+\NormalTok{no\_es\_tupla }\OperatorTok{=}\NormalTok{ (}\DecValTok{5}\NormalTok{)  }\CommentTok{\# Sin coma, es un int}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(no\_es\_tupla))  }\CommentTok{\# \textless{}class \textquotesingle{}int\textquotesingle{}\textgreater{}}
+
+\CommentTok{\# Tupla vacía}
+\NormalTok{tupla\_vacia }\OperatorTok{=}\NormalTok{ ()}
+\BuiltInTok{print}\NormalTok{(tupla\_vacia)}
+
+\CommentTok{\# Crear tupla desde lista}
+\NormalTok{lista\_tasas }\OperatorTok{=}\NormalTok{ [}\FloatTok{0.05}\NormalTok{, }\FloatTok{0.06}\NormalTok{, }\FloatTok{0.055}\NormalTok{, }\FloatTok{0.065}\NormalTok{]}
+\NormalTok{tupla\_tasas }\OperatorTok{=} \BuiltInTok{tuple}\NormalTok{(lista\_tasas)}
+\BuiltInTok{print}\NormalTok{(tupla\_tasas)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Características de
+tuplas}\label{caracteruxedsticas-de-tuplas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Datos macroeconómicos como tupla}
+\NormalTok{macro\_2023 }\OperatorTok{=}\NormalTok{ (}\StringTok{\textquotesingle{}Peru\textquotesingle{}}\NormalTok{, }\DecValTok{242632}\NormalTok{, }\FloatTok{3.5}\NormalTok{, }\FloatTok{7.2}\NormalTok{)}
+
+\CommentTok{\# Indexación (igual que listas)}
+\NormalTok{pais }\OperatorTok{=}\NormalTok{ macro\_2023[}\DecValTok{0}\NormalTok{]}
+\NormalTok{pib }\OperatorTok{=}\NormalTok{ macro\_2023[}\DecValTok{1}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"País: }\SpecialCharTok{\{}\NormalTok{pais}\SpecialCharTok{\}}\SpecialStringTok{, PIB: }\SpecialCharTok{\{}\NormalTok{pib}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Slicing}
+\NormalTok{indicadores }\OperatorTok{=}\NormalTok{ macro\_2023[}\DecValTok{2}\NormalTok{:]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Indicadores: }\SpecialCharTok{\{}\NormalTok{indicadores}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# (3.5, 7.2)}
+
+\CommentTok{\# Las tuplas son inmutables}
+\ControlFlowTok{try}\NormalTok{:}
+\NormalTok{    macro\_2023[}\DecValTok{1}\NormalTok{] }\OperatorTok{=} \DecValTok{250000}
+\ControlFlowTok{except} \PreprocessorTok{TypeError}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Error: Las tuplas no se pueden modificar"}\NormalTok{)}
+
+\CommentTok{\# Pero pueden contener objetos mutables}
+\NormalTok{tupla\_con\_lista }\OperatorTok{=}\NormalTok{ (}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, [}\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{])}
+\NormalTok{tupla\_con\_lista[}\DecValTok{2}\NormalTok{].append(}\DecValTok{5}\NormalTok{)  }\CommentTok{\# Modificar la lista interna}
+\BuiltInTok{print}\NormalTok{(tupla\_con\_lista)  }\CommentTok{\# (1, 2, [3, 4, 5])}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Ventajas de tuplas}\label{ventajas-de-tuplas}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \ImportTok{import}\NormalTok{ sys}
 
-\CommentTok{\# Uso de ram para tuplas vs listas:}
-\NormalTok{myTuple }\OperatorTok{=} \BuiltInTok{tuple}\NormalTok{([i }\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{1000}\NormalTok{)])}
-\NormalTok{myList  }\OperatorTok{=}\NormalTok{ [i }\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{1000}\NormalTok{)]}
-\BuiltInTok{print}\NormalTok{(sys.getsizeof(myTuple),}
-\NormalTok{      sys.getsizeof(myList))}
+\CommentTok{\# Comparar uso de memoria}
+\NormalTok{lista\_grande }\OperatorTok{=}\NormalTok{ [i }\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{1000}\NormalTok{)]}
+\NormalTok{tupla\_grande }\OperatorTok{=} \BuiltInTok{tuple}\NormalTok{(i }\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{1000}\NormalTok{))}
+
+\NormalTok{memoria\_lista }\OperatorTok{=}\NormalTok{ sys.getsizeof(lista\_grande)}
+\NormalTok{memoria\_tupla }\OperatorTok{=}\NormalTok{ sys.getsizeof(tupla\_grande)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Memoria lista: }\SpecialCharTok{\{}\NormalTok{memoria\_lista}\SpecialCharTok{\}}\SpecialStringTok{ bytes"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Memoria tupla: }\SpecialCharTok{\{}\NormalTok{memoria\_tupla}\SpecialCharTok{\}}\SpecialStringTok{ bytes"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Tupla usa }\SpecialCharTok{\{}\NormalTok{memoria\_lista }\OperatorTok{{-}}\NormalTok{ memoria\_tupla}\SpecialCharTok{\}}\SpecialStringTok{ bytes menos"}\NormalTok{)}
+
+\CommentTok{\# Tuplas como claves de diccionarios}
+\CommentTok{\# (listas no pueden ser claves)}
+\NormalTok{coordenadas\_ciudades }\OperatorTok{=}\NormalTok{ \{}
+\NormalTok{    (}\StringTok{\textquotesingle{}Lima\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Peru\textquotesingle{}}\NormalTok{): (}\FloatTok{12.0464}\NormalTok{, }\FloatTok{77.0428}\NormalTok{),}
+\NormalTok{    (}\StringTok{\textquotesingle{}Arequipa\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Peru\textquotesingle{}}\NormalTok{): (}\FloatTok{16.4090}\NormalTok{, }\FloatTok{71.5375}\NormalTok{),}
+\NormalTok{    (}\StringTok{\textquotesingle{}Cusco\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Peru\textquotesingle{}}\NormalTok{): (}\FloatTok{13.5319}\NormalTok{, }\FloatTok{71.9675}\NormalTok{)}
+\NormalTok{\}}
+
+\NormalTok{lima\_coords }\OperatorTok{=}\NormalTok{ coordenadas\_ciudades[(}\StringTok{\textquotesingle{}Lima\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Peru\textquotesingle{}}\NormalTok{)]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Coordenadas de Lima: }\SpecialCharTok{\{}\NormalTok{lima\_coords}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\subsection{Desempaquetado de tuplas}\label{desempaquetado-de-tuplas}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Evaluando el tipo de elemento}
-\NormalTok{myTuple }\OperatorTok{=} \DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}
-\CommentTok{\#print(myTuple)}
-\BuiltInTok{type}\NormalTok{(myTuple)}
+\CommentTok{\# Datos de una transacción}
+\NormalTok{transaccion }\OperatorTok{=}\NormalTok{ (}\StringTok{\textquotesingle{}Compra\textquotesingle{}}\NormalTok{, }\DecValTok{1000}\NormalTok{, }\FloatTok{3.75}\NormalTok{, }\StringTok{\textquotesingle{}USD\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Desempaquetado simple}
+\NormalTok{tipo, cantidad, precio, moneda }\OperatorTok{=}\NormalTok{ transaccion}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Tipo: }\SpecialCharTok{\{}\NormalTok{tipo}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Cantidad: }\SpecialCharTok{\{}\NormalTok{cantidad}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Precio: }\SpecialCharTok{\{}\NormalTok{precio}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Moneda: }\SpecialCharTok{\{}\NormalTok{moneda}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Intercambiar valores sin variable temporal}
+\NormalTok{a }\OperatorTok{=} \DecValTok{10}
+\NormalTok{b }\OperatorTok{=} \DecValTok{20}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Antes: a=}\SpecialCharTok{\{}\NormalTok{a}\SpecialCharTok{\}}\SpecialStringTok{, b=}\SpecialCharTok{\{}\NormalTok{b}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\NormalTok{a, b }\OperatorTok{=}\NormalTok{ b, a  }\CommentTok{\# Intercambio usando tuplas}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Después: a=}\SpecialCharTok{\{}\NormalTok{a}\SpecialCharTok{\}}\SpecialStringTok{, b=}\SpecialCharTok{\{}\NormalTok{b}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Desempaquetado extendido}
+\NormalTok{numeros }\OperatorTok{=}\NormalTok{ (}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{)}
+\NormalTok{primero, }\OperatorTok{*}\NormalTok{medio, ultimo }\OperatorTok{=}\NormalTok{ numeros}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Primero: }\SpecialCharTok{\{}\NormalTok{primero}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)    }\CommentTok{\# 1}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Medio: }\SpecialCharTok{\{}\NormalTok{medio}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)        }\CommentTok{\# [2, 3, 4]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Último: }\SpecialCharTok{\{}\NormalTok{ultimo}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)      }\CommentTok{\# 5}
 \end{Highlighting}
 \end{Shaded}
+
+\subsection{Métodos de tuplas}\label{muxe9todos-de-tuplas}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Convirtiendo una lista en tupla}
-\BuiltInTok{tuple}\NormalTok{([}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{])}
+\CommentTok{\# Tuplas tienen pocos métodos (porque son inmutables)}
+\NormalTok{calificaciones }\OperatorTok{=}\NormalTok{ (}\StringTok{\textquotesingle{}AAA\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}AA\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}BBB\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}AA\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}AAA\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}AAA\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# count() {-} contar ocurrencias}
+\NormalTok{num\_aaa }\OperatorTok{=}\NormalTok{ calificaciones.count(}\StringTok{\textquotesingle{}AAA\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Número de AAA: }\SpecialCharTok{\{}\NormalTok{num\_aaa}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# 3}
+
+\CommentTok{\# index() {-} encontrar índice}
+\NormalTok{indice\_bbb }\OperatorTok{=}\NormalTok{ calificaciones.index(}\StringTok{\textquotesingle{}BBB\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Índice de BBB: }\SpecialCharTok{\{}\NormalTok{indice\_bbb}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# 3}
+
+\CommentTok{\# Funciones estándar}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Longitud: }\SpecialCharTok{\{}\BuiltInTok{len}\NormalTok{(calificaciones)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# 8}
+
+\CommentTok{\# Tuplas numéricas}
+\NormalTok{precios }\OperatorTok{=}\NormalTok{ (}\DecValTok{100}\NormalTok{, }\DecValTok{105}\NormalTok{, }\DecValTok{98}\NormalTok{, }\DecValTok{110}\NormalTok{, }\DecValTok{95}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Máximo: }\SpecialCharTok{\{}\BuiltInTok{max}\NormalTok{(precios)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)   }\CommentTok{\# 110}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Mínimo: }\SpecialCharTok{\{}\BuiltInTok{min}\NormalTok{(precios)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)   }\CommentTok{\# 95}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Suma: }\SpecialCharTok{\{}\BuiltInTok{sum}\NormalTok{(precios)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)     }\CommentTok{\# 508}
 \end{Highlighting}
 \end{Shaded}
+
+\section{Asignación múltiple con
+diccionarios}\label{asignaciuxf3n-muxfaltiple-con-diccionarios}
+
+El desempaquetado funciona con diccionarios también:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Indexando una tupla}
-\NormalTok{myTuple[}\DecValTok{0}\NormalTok{]}
+\CommentTok{\# Desempaquetar claves}
+\NormalTok{datos }\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}nombre\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Peru\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{: }\DecValTok{242632}\NormalTok{, }\StringTok{\textquotesingle{}moneda\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}PEN\textquotesingle{}}\NormalTok{\}}
+
+\CommentTok{\# Obtener claves}
+\NormalTok{nombre, pib, moneda }\OperatorTok{=}\NormalTok{ datos  }\CommentTok{\# Solo las claves}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Claves: }\SpecialCharTok{\{}\NormalTok{nombre}\SpecialCharTok{\}}\SpecialStringTok{, }\SpecialCharTok{\{}\NormalTok{pib}\SpecialCharTok{\}}\SpecialStringTok{, }\SpecialCharTok{\{}\NormalTok{moneda}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# nombre, pib, moneda (strings de las claves)}
+
+\CommentTok{\# Obtener valores}
+\NormalTok{nombre\_v, pib\_v, moneda\_v }\OperatorTok{=}\NormalTok{ datos.values()}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Valores: }\SpecialCharTok{\{}\NormalTok{nombre\_v}\SpecialCharTok{\}}\SpecialStringTok{, }\SpecialCharTok{\{}\NormalTok{pib\_v}\SpecialCharTok{\}}\SpecialStringTok{, }\SpecialCharTok{\{}\NormalTok{moneda\_v}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# Peru, 242632, PEN}
+
+\CommentTok{\# Desempaquetar items (mejor opción)}
+\ControlFlowTok{for}\NormalTok{ clave, valor }\KeywordTok{in}\NormalTok{ datos.items():}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{clave}\SpecialCharTok{\}}\SpecialStringTok{: }\SpecialCharTok{\{}\NormalTok{valor}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\section{Diccionarios:}\label{diccionarios}
-
-Los diccionarios son colecciones de elementos de manera no ordenada, son
-mutables y posibles de indexar. En python la forma de crear diccionarios
-es usando llaves ``\{\}''. Los diccionarios se utilizan para elaborar
-estructuras de datos que contienen multiples objetos y usualmente se
-pueden referenciar on un ``key name'' que suele ser un string. Por lo
-general los diccionarios siguen la siguiente estructura:
-
-\begin{verbatim}
-                                   dictorinary = { 'key1': obj1,
-                                                   'key2': obj2,
-                                                   'key3': obj3}
-\end{verbatim}
+\subsection{Retorno múltiple de
+funciones}\label{retorno-muxfaltiple-de-funciones}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Diccionarios}
-\NormalTok{miDict }\OperatorTok{=}\NormalTok{ \{\}}
+\KeywordTok{def}\NormalTok{ calcular\_estadisticas(valores):}
+    \CommentTok{"""Retorna múltiples estadísticas como tupla"""}
+\NormalTok{    minimo }\OperatorTok{=} \BuiltInTok{min}\NormalTok{(valores)}
+\NormalTok{    maximo }\OperatorTok{=} \BuiltInTok{max}\NormalTok{(valores)}
+\NormalTok{    promedio }\OperatorTok{=} \BuiltInTok{sum}\NormalTok{(valores) }\OperatorTok{/} \BuiltInTok{len}\NormalTok{(valores)}
+    \ControlFlowTok{return}\NormalTok{ minimo, maximo, promedio}
 
-\NormalTok{miDict }\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{:}\StringTok{\textquotesingle{}perro\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{:}\StringTok{\textquotesingle{}gato\textquotesingle{}}\NormalTok{\}}
-\BuiltInTok{print}\NormalTok{(miDict[}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{])}
+\CommentTok{\# Datos de ventas}
+\NormalTok{ventas }\OperatorTok{=}\NormalTok{ [}\DecValTok{45}\NormalTok{, }\DecValTok{52}\NormalTok{, }\DecValTok{48}\NormalTok{, }\DecValTok{55}\NormalTok{, }\DecValTok{60}\NormalTok{, }\DecValTok{58}\NormalTok{, }\DecValTok{62}\NormalTok{]}
+
+\CommentTok{\# Desempaquetar retorno}
+\NormalTok{min\_venta, max\_venta, prom\_venta }\OperatorTok{=}\NormalTok{ calcular\_estadisticas(ventas)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Venta mínima: }\SpecialCharTok{\{}\NormalTok{min\_venta}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Venta máxima: }\SpecialCharTok{\{}\NormalTok{max\_venta}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Venta promedio: }\SpecialCharTok{\{}\NormalTok{prom\_venta}\SpecialCharTok{:.2f\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\section{Aplicaciones económicas}\label{aplicaciones-econuxf3micas}
+
+\subsection{Ejemplo 1: Análisis de cartera de
+inversiones}\label{ejemplo-1-anuxe1lisis-de-cartera-de-inversiones}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{miDict[}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{] }\OperatorTok{=} \StringTok{\textquotesingle{}canario\textquotesingle{}}
-\NormalTok{miDict[}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{] }\OperatorTok{=} \StringTok{\textquotesingle{}conejo\textquotesingle{}}
+\CommentTok{\# Cartera de inversiones}
+\NormalTok{cartera }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}BBVA\textquotesingle{}}\NormalTok{: \{}\StringTok{\textquotesingle{}cantidad\textquotesingle{}}\NormalTok{: }\DecValTok{100}\NormalTok{, }\StringTok{\textquotesingle{}precio\_compra\textquotesingle{}}\NormalTok{: }\FloatTok{25.50}\NormalTok{, }\StringTok{\textquotesingle{}precio\_actual\textquotesingle{}}\NormalTok{: }\FloatTok{27.80}\NormalTok{\},}
+    \StringTok{\textquotesingle{}BCP\textquotesingle{}}\NormalTok{: \{}\StringTok{\textquotesingle{}cantidad\textquotesingle{}}\NormalTok{: }\DecValTok{150}\NormalTok{, }\StringTok{\textquotesingle{}precio\_compra\textquotesingle{}}\NormalTok{: }\FloatTok{180.00}\NormalTok{, }\StringTok{\textquotesingle{}precio\_actual\textquotesingle{}}\NormalTok{: }\FloatTok{195.50}\NormalTok{\},}
+    \StringTok{\textquotesingle{}Credicorp\textquotesingle{}}\NormalTok{: \{}\StringTok{\textquotesingle{}cantidad\textquotesingle{}}\NormalTok{: }\DecValTok{50}\NormalTok{, }\StringTok{\textquotesingle{}precio\_compra\textquotesingle{}}\NormalTok{: }\FloatTok{150.00}\NormalTok{, }\StringTok{\textquotesingle{}precio\_actual\textquotesingle{}}\NormalTok{: }\FloatTok{148.00}\NormalTok{\}}
+\NormalTok{\}}
 
-\BuiltInTok{print}\NormalTok{(miDict)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"ANÁLISIS DE CARTERA DE INVERSIONES"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{60}\NormalTok{)}
+
+\NormalTok{inversion\_total }\OperatorTok{=} \DecValTok{0}
+\NormalTok{valor\_actual\_total }\OperatorTok{=} \DecValTok{0}
+\NormalTok{ganancia\_total }\OperatorTok{=} \DecValTok{0}
+
+\ControlFlowTok{for}\NormalTok{ accion, datos }\KeywordTok{in}\NormalTok{ cartera.items():}
+\NormalTok{    cantidad }\OperatorTok{=}\NormalTok{ datos[}\StringTok{\textquotesingle{}cantidad\textquotesingle{}}\NormalTok{]}
+\NormalTok{    precio\_compra }\OperatorTok{=}\NormalTok{ datos[}\StringTok{\textquotesingle{}precio\_compra\textquotesingle{}}\NormalTok{]}
+\NormalTok{    precio\_actual }\OperatorTok{=}\NormalTok{ datos[}\StringTok{\textquotesingle{}precio\_actual\textquotesingle{}}\NormalTok{]}
+    
+\NormalTok{    inversion }\OperatorTok{=}\NormalTok{ cantidad }\OperatorTok{*}\NormalTok{ precio\_compra}
+\NormalTok{    valor\_actual }\OperatorTok{=}\NormalTok{ cantidad }\OperatorTok{*}\NormalTok{ precio\_actual}
+\NormalTok{    ganancia }\OperatorTok{=}\NormalTok{ valor\_actual }\OperatorTok{{-}}\NormalTok{ inversion}
+\NormalTok{    rentabilidad }\OperatorTok{=}\NormalTok{ (ganancia }\OperatorTok{/}\NormalTok{ inversion) }\OperatorTok{*} \DecValTok{100}
+    
+\NormalTok{    inversion\_total }\OperatorTok{+=}\NormalTok{ inversion}
+\NormalTok{    valor\_actual\_total }\OperatorTok{+=}\NormalTok{ valor\_actual}
+\NormalTok{    ganancia\_total }\OperatorTok{+=}\NormalTok{ ganancia}
+    
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialCharTok{\{}\NormalTok{accion}\SpecialCharTok{\}}\SpecialStringTok{:"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Cantidad: }\SpecialCharTok{\{}\NormalTok{cantidad}\SpecialCharTok{\}}\SpecialStringTok{ acciones"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Precio compra: S/ }\SpecialCharTok{\{}\NormalTok{precio\_compra}\SpecialCharTok{:.2f\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Precio actual: S/ }\SpecialCharTok{\{}\NormalTok{precio\_actual}\SpecialCharTok{:.2f\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Inversión: S/ }\SpecialCharTok{\{}\NormalTok{inversion}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Valor actual: S/ }\SpecialCharTok{\{}\NormalTok{valor\_actual}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Ganancia/Pérdida: S/ }\SpecialCharTok{\{}\NormalTok{ganancia}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Rentabilidad: }\SpecialCharTok{\{}\NormalTok{rentabilidad}\SpecialCharTok{:+.2f\}}\SpecialStringTok{\%"}\NormalTok{)}
+
+\NormalTok{rentabilidad\_total }\OperatorTok{=}\NormalTok{ (ganancia\_total }\OperatorTok{/}\NormalTok{ inversion\_total) }\OperatorTok{*} \DecValTok{100}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"} \OperatorTok{+} \StringTok{"="} \OperatorTok{*} \DecValTok{60}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"RESUMEN TOTAL:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Inversión total: S/ }\SpecialCharTok{\{}\NormalTok{inversion\_total}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Valor actual total: S/ }\SpecialCharTok{\{}\NormalTok{valor\_actual\_total}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Ganancia/Pérdida total: S/ }\SpecialCharTok{\{}\NormalTok{ganancia\_total}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Rentabilidad total: }\SpecialCharTok{\{}\NormalTok{rentabilidad\_total}\SpecialCharTok{:+.2f\}}\SpecialStringTok{\%"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\subsection{Ejemplo 2: Análisis de comercio
+exterior}\label{ejemplo-2-anuxe1lisis-de-comercio-exterior}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Acceder a llaves (keys) en los diccionarios:}
-\BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}a\textquotesingle{}} \KeywordTok{in}\NormalTok{ miDict,}
-\StringTok{\textquotesingle{}canario\textquotesingle{}} \KeywordTok{in}\NormalTok{ miDict)}
+\CommentTok{\# Datos de comercio por país (millones USD)}
+\NormalTok{comercio\_exterior }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}China\textquotesingle{}}\NormalTok{: \{}\StringTok{\textquotesingle{}exportaciones\textquotesingle{}}\NormalTok{: }\DecValTok{15000}\NormalTok{, }\StringTok{\textquotesingle{}importaciones\textquotesingle{}}\NormalTok{: }\DecValTok{12000}\NormalTok{\},}
+    \StringTok{\textquotesingle{}USA\textquotesingle{}}\NormalTok{: \{}\StringTok{\textquotesingle{}exportaciones\textquotesingle{}}\NormalTok{: }\DecValTok{8500}\NormalTok{, }\StringTok{\textquotesingle{}importaciones\textquotesingle{}}\NormalTok{: }\DecValTok{10500}\NormalTok{\},}
+    \StringTok{\textquotesingle{}Brasil\textquotesingle{}}\NormalTok{: \{}\StringTok{\textquotesingle{}exportaciones\textquotesingle{}}\NormalTok{: }\DecValTok{2500}\NormalTok{, }\StringTok{\textquotesingle{}importaciones\textquotesingle{}}\NormalTok{: }\DecValTok{3000}\NormalTok{\},}
+    \StringTok{\textquotesingle{}Chile\textquotesingle{}}\NormalTok{: \{}\StringTok{\textquotesingle{}exportaciones\textquotesingle{}}\NormalTok{: }\DecValTok{1800}\NormalTok{, }\StringTok{\textquotesingle{}importaciones\textquotesingle{}}\NormalTok{: }\DecValTok{2200}\NormalTok{\}}
+\NormalTok{\}}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"ANÁLISIS DE COMERCIO EXTERIOR"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{60}\NormalTok{)}
+
+\NormalTok{total\_exp }\OperatorTok{=} \DecValTok{0}
+\NormalTok{total\_imp }\OperatorTok{=} \DecValTok{0}
+
+\NormalTok{resultados }\OperatorTok{=}\NormalTok{ []}
+
+\ControlFlowTok{for}\NormalTok{ pais, datos }\KeywordTok{in}\NormalTok{ comercio\_exterior.items():}
+\NormalTok{    exp }\OperatorTok{=}\NormalTok{ datos[}\StringTok{\textquotesingle{}exportaciones\textquotesingle{}}\NormalTok{]}
+\NormalTok{    imp }\OperatorTok{=}\NormalTok{ datos[}\StringTok{\textquotesingle{}importaciones\textquotesingle{}}\NormalTok{]}
+\NormalTok{    balanza }\OperatorTok{=}\NormalTok{ exp }\OperatorTok{{-}}\NormalTok{ imp}
+\NormalTok{    comercio\_total }\OperatorTok{=}\NormalTok{ exp }\OperatorTok{+}\NormalTok{ imp}
+    
+\NormalTok{    total\_exp }\OperatorTok{+=}\NormalTok{ exp}
+\NormalTok{    total\_imp }\OperatorTok{+=}\NormalTok{ imp}
+    
+\NormalTok{    resultados.append((pais, exp, imp, balanza, comercio\_total))}
+
+\CommentTok{\# Ordenar por volumen de comercio total}
+\NormalTok{resultados.sort(key}\OperatorTok{=}\KeywordTok{lambda}\NormalTok{ x: x[}\DecValTok{4}\NormalTok{], reverse}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+
+\CommentTok{\# Mostrar resultados}
+\ControlFlowTok{for}\NormalTok{ pais, exp, imp, balanza, comercio }\KeywordTok{in}\NormalTok{ resultados:}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialCharTok{\{}\NormalTok{pais}\SpecialCharTok{\}}\SpecialStringTok{:"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Exportaciones: USD }\SpecialCharTok{\{}\NormalTok{exp}\SpecialCharTok{:,\}}\SpecialStringTok{ M"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Importaciones: USD }\SpecialCharTok{\{}\NormalTok{imp}\SpecialCharTok{:,\}}\SpecialStringTok{ M"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Balanza comercial: USD }\SpecialCharTok{\{}\NormalTok{balanza}\SpecialCharTok{:+,\}}\SpecialStringTok{ M"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Comercio total: USD }\SpecialCharTok{\{}\NormalTok{comercio}\SpecialCharTok{:,\}}\SpecialStringTok{ M"}\NormalTok{)}
+    
+    \ControlFlowTok{if}\NormalTok{ balanza }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Estado: Superávit"}\NormalTok{)}
+    \ControlFlowTok{elif}\NormalTok{ balanza }\OperatorTok{\textless{}} \DecValTok{0}\NormalTok{:}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Estado: Déficit"}\NormalTok{)}
+    \ControlFlowTok{else}\NormalTok{:}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Estado: Equilibrio"}\NormalTok{)}
+
+\NormalTok{balanza\_total }\OperatorTok{=}\NormalTok{ total\_exp }\OperatorTok{{-}}\NormalTok{ total\_imp}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"} \OperatorTok{+} \StringTok{"="} \OperatorTok{*} \DecValTok{60}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"TOTALES:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Exportaciones totales: USD }\SpecialCharTok{\{}\NormalTok{total\_exp}\SpecialCharTok{:,\}}\SpecialStringTok{ M"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Importaciones totales: USD }\SpecialCharTok{\{}\NormalTok{total\_imp}\SpecialCharTok{:,\}}\SpecialStringTok{ M"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Balanza comercial total: USD }\SpecialCharTok{\{}\NormalTok{balanza\_total}\SpecialCharTok{:+,\}}\SpecialStringTok{ M"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{list}\NormalTok{(miDict)}
-\end{Highlighting}
-\end{Shaded}
+\subsection{Ejemplo 3: Sistema de calificación de
+riesgo}\label{ejemplo-3-sistema-de-calificaciuxf3n-de-riesgo}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{miDict.keys()}
+\CommentTok{\# Empresas y sus indicadores financieros}
+\NormalTok{empresas }\OperatorTok{=}\NormalTok{ [}
+\NormalTok{    (}\StringTok{\textquotesingle{}TechCorp\textquotesingle{}}\NormalTok{, \{}\StringTok{\textquotesingle{}liquidez\textquotesingle{}}\NormalTok{: }\FloatTok{1.8}\NormalTok{, }\StringTok{\textquotesingle{}endeudamiento\textquotesingle{}}\NormalTok{: }\FloatTok{0.45}\NormalTok{, }\StringTok{\textquotesingle{}rentabilidad\textquotesingle{}}\NormalTok{: }\FloatTok{0.15}\NormalTok{\}),}
+\NormalTok{    (}\StringTok{\textquotesingle{}IndusPeru\textquotesingle{}}\NormalTok{, \{}\StringTok{\textquotesingle{}liquidez\textquotesingle{}}\NormalTok{: }\FloatTok{1.2}\NormalTok{, }\StringTok{\textquotesingle{}endeudamiento\textquotesingle{}}\NormalTok{: }\FloatTok{0.65}\NormalTok{, }\StringTok{\textquotesingle{}rentabilidad\textquotesingle{}}\NormalTok{: }\FloatTok{0.08}\NormalTok{\}),}
+\NormalTok{    (}\StringTok{\textquotesingle{}AgroSur\textquotesingle{}}\NormalTok{, \{}\StringTok{\textquotesingle{}liquidez\textquotesingle{}}\NormalTok{: }\FloatTok{2.5}\NormalTok{, }\StringTok{\textquotesingle{}endeudamiento\textquotesingle{}}\NormalTok{: }\FloatTok{0.30}\NormalTok{, }\StringTok{\textquotesingle{}rentabilidad\textquotesingle{}}\NormalTok{: }\FloatTok{0.12}\NormalTok{\}),}
+\NormalTok{    (}\StringTok{\textquotesingle{}MineroX\textquotesingle{}}\NormalTok{, \{}\StringTok{\textquotesingle{}liquidez\textquotesingle{}}\NormalTok{: }\FloatTok{1.5}\NormalTok{, }\StringTok{\textquotesingle{}endeudamiento\textquotesingle{}}\NormalTok{: }\FloatTok{0.55}\NormalTok{, }\StringTok{\textquotesingle{}rentabilidad\textquotesingle{}}\NormalTok{: }\FloatTok{0.18}\NormalTok{\})}
+\NormalTok{]}
+
+\KeywordTok{def}\NormalTok{ calificar\_empresa(indicadores):}
+    \CommentTok{"""Califica una empresa según sus indicadores"""}
+\NormalTok{    liquidez }\OperatorTok{=}\NormalTok{ indicadores[}\StringTok{\textquotesingle{}liquidez\textquotesingle{}}\NormalTok{]}
+\NormalTok{    endeudamiento }\OperatorTok{=}\NormalTok{ indicadores[}\StringTok{\textquotesingle{}endeudamiento\textquotesingle{}}\NormalTok{]}
+\NormalTok{    rentabilidad }\OperatorTok{=}\NormalTok{ indicadores[}\StringTok{\textquotesingle{}rentabilidad\textquotesingle{}}\NormalTok{]}
+    
+\NormalTok{    puntos }\OperatorTok{=} \DecValTok{0}
+    
+    \CommentTok{\# Evaluar liquidez}
+    \ControlFlowTok{if}\NormalTok{ liquidez }\OperatorTok{\textgreater{}=} \FloatTok{2.0}\NormalTok{:}
+\NormalTok{        puntos }\OperatorTok{+=} \DecValTok{3}
+    \ControlFlowTok{elif}\NormalTok{ liquidez }\OperatorTok{\textgreater{}=} \FloatTok{1.5}\NormalTok{:}
+\NormalTok{        puntos }\OperatorTok{+=} \DecValTok{2}
+    \ControlFlowTok{elif}\NormalTok{ liquidez }\OperatorTok{\textgreater{}=} \FloatTok{1.0}\NormalTok{:}
+\NormalTok{        puntos }\OperatorTok{+=} \DecValTok{1}
+    
+    \CommentTok{\# Evaluar endeudamiento (menor es mejor)}
+    \ControlFlowTok{if}\NormalTok{ endeudamiento }\OperatorTok{\textless{}=} \FloatTok{0.3}\NormalTok{:}
+\NormalTok{        puntos }\OperatorTok{+=} \DecValTok{3}
+    \ControlFlowTok{elif}\NormalTok{ endeudamiento }\OperatorTok{\textless{}=} \FloatTok{0.5}\NormalTok{:}
+\NormalTok{        puntos }\OperatorTok{+=} \DecValTok{2}
+    \ControlFlowTok{elif}\NormalTok{ endeudamiento }\OperatorTok{\textless{}=} \FloatTok{0.7}\NormalTok{:}
+\NormalTok{        puntos }\OperatorTok{+=} \DecValTok{1}
+    
+    \CommentTok{\# Evaluar rentabilidad}
+    \ControlFlowTok{if}\NormalTok{ rentabilidad }\OperatorTok{\textgreater{}=} \FloatTok{0.15}\NormalTok{:}
+\NormalTok{        puntos }\OperatorTok{+=} \DecValTok{3}
+    \ControlFlowTok{elif}\NormalTok{ rentabilidad }\OperatorTok{\textgreater{}=} \FloatTok{0.10}\NormalTok{:}
+\NormalTok{        puntos }\OperatorTok{+=} \DecValTok{2}
+    \ControlFlowTok{elif}\NormalTok{ rentabilidad }\OperatorTok{\textgreater{}=} \FloatTok{0.05}\NormalTok{:}
+\NormalTok{        puntos }\OperatorTok{+=} \DecValTok{1}
+    
+    \CommentTok{\# Determinar calificación}
+    \ControlFlowTok{if}\NormalTok{ puntos }\OperatorTok{\textgreater{}=} \DecValTok{8}\NormalTok{:}
+        \ControlFlowTok{return} \StringTok{\textquotesingle{}AAA\textquotesingle{}}\NormalTok{, puntos}
+    \ControlFlowTok{elif}\NormalTok{ puntos }\OperatorTok{\textgreater{}=} \DecValTok{6}\NormalTok{:}
+        \ControlFlowTok{return} \StringTok{\textquotesingle{}AA\textquotesingle{}}\NormalTok{, puntos}
+    \ControlFlowTok{elif}\NormalTok{ puntos }\OperatorTok{\textgreater{}=} \DecValTok{4}\NormalTok{:}
+        \ControlFlowTok{return} \StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{, puntos}
+    \ControlFlowTok{elif}\NormalTok{ puntos }\OperatorTok{\textgreater{}=} \DecValTok{2}\NormalTok{:}
+        \ControlFlowTok{return} \StringTok{\textquotesingle{}BBB\textquotesingle{}}\NormalTok{, puntos}
+    \ControlFlowTok{else}\NormalTok{:}
+        \ControlFlowTok{return} \StringTok{\textquotesingle{}BB\textquotesingle{}}\NormalTok{, puntos}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"SISTEMA DE CALIFICACIÓN DE RIESGO"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{calificaciones }\OperatorTok{=}\NormalTok{ []}
+
+\ControlFlowTok{for}\NormalTok{ empresa, indicadores }\KeywordTok{in}\NormalTok{ empresas:}
+\NormalTok{    calificacion, puntos }\OperatorTok{=}\NormalTok{ calificar\_empresa(indicadores)}
+\NormalTok{    calificaciones.append((empresa, calificacion, puntos, indicadores))}
+    
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialCharTok{\{}\NormalTok{empresa}\SpecialCharTok{\}}\SpecialStringTok{:"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Liquidez: }\SpecialCharTok{\{}\NormalTok{indicadores[}\StringTok{\textquotesingle{}liquidez\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:.2f\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Endeudamiento: }\SpecialCharTok{\{}\NormalTok{indicadores[}\StringTok{\textquotesingle{}endeudamiento\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:.2\%\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Rentabilidad: }\SpecialCharTok{\{}\NormalTok{indicadores[}\StringTok{\textquotesingle{}rentabilidad\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:.2\%\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Puntos: }\SpecialCharTok{\{}\NormalTok{puntos}\SpecialCharTok{\}}\SpecialStringTok{/9"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Calificación: }\SpecialCharTok{\{}\NormalTok{calificacion}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Ordenar por calificación}
+\NormalTok{calificaciones.sort(key}\OperatorTok{=}\KeywordTok{lambda}\NormalTok{ x: x[}\DecValTok{2}\NormalTok{], reverse}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"} \OperatorTok{+} \StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"RANKING DE EMPRESAS:"}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ i, (empresa, calif, puntos, \_) }\KeywordTok{in} \BuiltInTok{enumerate}\NormalTok{(calificaciones, }\DecValTok{1}\NormalTok{):}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{i}\SpecialCharTok{\}}\SpecialStringTok{. }\SpecialCharTok{\{}\NormalTok{empresa}\SpecialCharTok{\}}\SpecialStringTok{: }\SpecialCharTok{\{}\NormalTok{calif}\SpecialCharTok{\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{puntos}\SpecialCharTok{\}}\SpecialStringTok{ puntos)"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{miDict.values()}
-\end{Highlighting}
-\end{Shaded}
+\section{Ejercicios prácticos}\label{ejercicios-pruxe1cticos}
+
+\subsection{Ejercicio 1: Administrador de presupuesto
+familiar}\label{ejercicio-1-administrador-de-presupuesto-familiar}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{miDict.items()}
+\CommentTok{\# Sistema de presupuesto mensual}
+\NormalTok{presupuesto }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}Alimentos\textquotesingle{}}\NormalTok{: }\DecValTok{1200}\NormalTok{,}
+    \StringTok{\textquotesingle{}Transporte\textquotesingle{}}\NormalTok{: }\DecValTok{300}\NormalTok{,}
+    \StringTok{\textquotesingle{}Vivienda\textquotesingle{}}\NormalTok{: }\DecValTok{800}\NormalTok{,}
+    \StringTok{\textquotesingle{}Servicios\textquotesingle{}}\NormalTok{: }\DecValTok{250}\NormalTok{,}
+    \StringTok{\textquotesingle{}Educación\textquotesingle{}}\NormalTok{: }\DecValTok{400}\NormalTok{,}
+    \StringTok{\textquotesingle{}Salud\textquotesingle{}}\NormalTok{: }\DecValTok{200}\NormalTok{,}
+    \StringTok{\textquotesingle{}Entretenimiento\textquotesingle{}}\NormalTok{: }\DecValTok{150}
+\NormalTok{\}}
+
+\NormalTok{gastos\_reales }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}Alimentos\textquotesingle{}}\NormalTok{: }\DecValTok{1250}\NormalTok{,}
+    \StringTok{\textquotesingle{}Transporte\textquotesingle{}}\NormalTok{: }\DecValTok{280}\NormalTok{,}
+    \StringTok{\textquotesingle{}Vivienda\textquotesingle{}}\NormalTok{: }\DecValTok{800}\NormalTok{,}
+    \StringTok{\textquotesingle{}Servicios\textquotesingle{}}\NormalTok{: }\DecValTok{270}\NormalTok{,}
+    \StringTok{\textquotesingle{}Educación\textquotesingle{}}\NormalTok{: }\DecValTok{400}\NormalTok{,}
+    \StringTok{\textquotesingle{}Salud\textquotesingle{}}\NormalTok{: }\DecValTok{180}\NormalTok{,}
+    \StringTok{\textquotesingle{}Entretenimiento\textquotesingle{}}\NormalTok{: }\DecValTok{200}
+\NormalTok{\}}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"ANÁLISIS DE PRESUPUESTO FAMILIAR"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{presupuesto\_total }\OperatorTok{=} \BuiltInTok{sum}\NormalTok{(presupuesto.values())}
+\NormalTok{gastos\_totales }\OperatorTok{=} \BuiltInTok{sum}\NormalTok{(gastos\_reales.values())}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Presupuesto total: S/ }\SpecialCharTok{\{}\NormalTok{presupuesto\_total}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Gastos totales: S/ }\SpecialCharTok{\{}\NormalTok{gastos\_totales}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Diferencia: S/ }\SpecialCharTok{\{}\NormalTok{presupuesto\_total }\OperatorTok{{-}}\NormalTok{ gastos\_totales}\SpecialCharTok{:+,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{DETALLE POR CATEGORÍA:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"{-}"} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{categorias\_excedidas }\OperatorTok{=}\NormalTok{ []}
+\NormalTok{categorias\_dentro }\OperatorTok{=}\NormalTok{ []}
+\NormalTok{ahorros\_por\_categoria }\OperatorTok{=}\NormalTok{ []}
+
+\ControlFlowTok{for}\NormalTok{ categoria }\KeywordTok{in}\NormalTok{ presupuesto.keys():}
+\NormalTok{    presu }\OperatorTok{=}\NormalTok{ presupuesto[categoria]}
+\NormalTok{    gasto }\OperatorTok{=}\NormalTok{ gastos\_reales[categoria]}
+\NormalTok{    diferencia }\OperatorTok{=}\NormalTok{ presu }\OperatorTok{{-}}\NormalTok{ gasto}
+\NormalTok{    porcentaje }\OperatorTok{=}\NormalTok{ (gasto }\OperatorTok{/}\NormalTok{ presu) }\OperatorTok{*} \DecValTok{100}
+    
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialCharTok{\{}\NormalTok{categoria}\SpecialCharTok{\}}\SpecialStringTok{:"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Presupuestado: S/ }\SpecialCharTok{\{}\NormalTok{presu}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Gastado: S/ }\SpecialCharTok{\{}\NormalTok{gasto}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Diferencia: S/ }\SpecialCharTok{\{}\NormalTok{diferencia}\SpecialCharTok{:+,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Ejecución: }\SpecialCharTok{\{}\NormalTok{porcentaje}\SpecialCharTok{:.1f\}}\SpecialStringTok{\%"}\NormalTok{)}
+    
+    \ControlFlowTok{if}\NormalTok{ diferencia }\OperatorTok{\textless{}} \DecValTok{0}\NormalTok{:}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Estado: ⚠️ EXCEDIDO"}\NormalTok{)}
+\NormalTok{        categorias\_excedidas.append((categoria, }\BuiltInTok{abs}\NormalTok{(diferencia)))}
+    \ControlFlowTok{else}\NormalTok{:}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Estado: ✓ Dentro del presupuesto"}\NormalTok{)}
+\NormalTok{        categorias\_dentro.append((categoria, diferencia))}
+\NormalTok{        ahorros\_por\_categoria.append(diferencia)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"} \OperatorTok{+} \StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"RESUMEN:"}\NormalTok{)}
+
+\ControlFlowTok{if}\NormalTok{ categorias\_excedidas:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Categorías excedidas:"}\NormalTok{)}
+    \ControlFlowTok{for}\NormalTok{ cat, exceso }\KeywordTok{in}\NormalTok{ categorias\_excedidas:}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  {-} }\SpecialCharTok{\{}\NormalTok{cat}\SpecialCharTok{\}}\SpecialStringTok{: S/ }\SpecialCharTok{\{}\NormalTok{exceso}\SpecialCharTok{:,.2f\}}\SpecialStringTok{ de exceso"}\NormalTok{)}
+
+\ControlFlowTok{if}\NormalTok{ categorias\_dentro:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Categorías con ahorro:"}\NormalTok{)}
+    \ControlFlowTok{for}\NormalTok{ cat, ahorro }\KeywordTok{in}\NormalTok{ categorias\_dentro:}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  {-} }\SpecialCharTok{\{}\NormalTok{cat}\SpecialCharTok{\}}\SpecialStringTok{: S/ }\SpecialCharTok{\{}\NormalTok{ahorro}\SpecialCharTok{:,.2f\}}\SpecialStringTok{ de ahorro"}\NormalTok{)}
+
+\ControlFlowTok{if}\NormalTok{ gastos\_totales }\OperatorTok{\textgreater{}}\NormalTok{ presupuesto\_total:}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{⚠️ Déficit total: S/ }\SpecialCharTok{\{}\BuiltInTok{abs}\NormalTok{(presupuesto\_total }\OperatorTok{{-}}\NormalTok{ gastos\_totales)}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{✓ Ahorro total: S/ }\SpecialCharTok{\{}\NormalTok{presupuesto\_total }\OperatorTok{{-}}\NormalTok{ gastos\_totales}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\subsection{Ejercicio 2: Análisis de series de tiempo
+económicas}\label{ejercicio-2-anuxe1lisis-de-series-de-tiempo-econuxf3micas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# PIB trimestral de múltiples años}
+\NormalTok{pib\_trimestral }\OperatorTok{=}\NormalTok{ \{}
+    \DecValTok{2021}\NormalTok{: [}\DecValTok{48000}\NormalTok{, }\DecValTok{49500}\NormalTok{, }\DecValTok{50000}\NormalTok{, }\DecValTok{51000}\NormalTok{],}
+    \DecValTok{2022}\NormalTok{: [}\DecValTok{51500}\NormalTok{, }\DecValTok{52500}\NormalTok{, }\DecValTok{53000}\NormalTok{, }\DecValTok{54000}\NormalTok{],}
+    \DecValTok{2023}\NormalTok{: [}\DecValTok{54500}\NormalTok{, }\DecValTok{55500}\NormalTok{, }\DecValTok{56000}\NormalTok{, }\DecValTok{57000}\NormalTok{]}
+\NormalTok{\}}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"ANÁLISIS DE SERIES DE TIEMPO {-} PIB TRIMESTRAL"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\CommentTok{\# Calcular PIB anual}
+\ControlFlowTok{for}\NormalTok{ ano, trimestres }\KeywordTok{in}\NormalTok{ pib\_trimestral.items():}
+\NormalTok{    pib\_anual }\OperatorTok{=} \BuiltInTok{sum}\NormalTok{(trimestres)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Año }\SpecialCharTok{\{}\NormalTok{ano}\SpecialCharTok{\}}\SpecialStringTok{:"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  PIB anual: S/ }\SpecialCharTok{\{}\NormalTok{pib\_anual}\SpecialCharTok{:,\}}\SpecialStringTok{ millones"}\NormalTok{)}
+    
+    \CommentTok{\# PIB por trimestre}
+    \ControlFlowTok{for}\NormalTok{ i, pib }\KeywordTok{in} \BuiltInTok{enumerate}\NormalTok{(trimestres, }\DecValTok{1}\NormalTok{):}
+\NormalTok{        porcentaje }\OperatorTok{=}\NormalTok{ (pib }\OperatorTok{/}\NormalTok{ pib\_anual) }\OperatorTok{*} \DecValTok{100}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Q}\SpecialCharTok{\{}\NormalTok{i}\SpecialCharTok{\}}\SpecialStringTok{: S/ }\SpecialCharTok{\{}\NormalTok{pib}\SpecialCharTok{:,\}}\SpecialStringTok{ M (}\SpecialCharTok{\{}\NormalTok{porcentaje}\SpecialCharTok{:.1f\}}\SpecialStringTok{\%)"}\NormalTok{)}
+    
+    \CommentTok{\# Crecimiento intertrimestral}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{  Crecimiento intertrimestral:"}\NormalTok{)}
+    \ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{1}\NormalTok{, }\BuiltInTok{len}\NormalTok{(trimestres)):}
+\NormalTok{        crecimiento }\OperatorTok{=}\NormalTok{ ((trimestres[i] }\OperatorTok{{-}}\NormalTok{ trimestres[i}\OperatorTok{{-}}\DecValTok{1}\NormalTok{]) }\OperatorTok{/}\NormalTok{ trimestres[i}\OperatorTok{{-}}\DecValTok{1}\NormalTok{]) }\OperatorTok{*} \DecValTok{100}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"    Q}\SpecialCharTok{\{}\NormalTok{i}\SpecialCharTok{\}}\SpecialStringTok{ a Q}\SpecialCharTok{\{}\NormalTok{i}\OperatorTok{+}\DecValTok{1}\SpecialCharTok{\}}\SpecialStringTok{: }\SpecialCharTok{\{}\NormalTok{crecimiento}\SpecialCharTok{:+.2f\}}\SpecialStringTok{\%"}\NormalTok{)}
+
+\CommentTok{\# Análisis interanual}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"} \OperatorTok{+} \StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"CRECIMIENTO INTERANUAL:"}\NormalTok{)}
+
+\NormalTok{anos }\OperatorTok{=} \BuiltInTok{sorted}\NormalTok{(pib\_trimestral.keys())}
+\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{1}\NormalTok{, }\BuiltInTok{len}\NormalTok{(anos)):}
+\NormalTok{    ano\_anterior }\OperatorTok{=}\NormalTok{ anos[i}\OperatorTok{{-}}\DecValTok{1}\NormalTok{]}
+\NormalTok{    ano\_actual }\OperatorTok{=}\NormalTok{ anos[i]}
+    
+\NormalTok{    pib\_ant }\OperatorTok{=} \BuiltInTok{sum}\NormalTok{(pib\_trimestral[ano\_anterior])}
+\NormalTok{    pib\_act }\OperatorTok{=} \BuiltInTok{sum}\NormalTok{(pib\_trimestral[ano\_actual])}
+    
+\NormalTok{    crecimiento }\OperatorTok{=}\NormalTok{ ((pib\_act }\OperatorTok{{-}}\NormalTok{ pib\_ant) }\OperatorTok{/}\NormalTok{ pib\_ant) }\OperatorTok{*} \DecValTok{100}
+    
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{ano\_anterior}\SpecialCharTok{\}}\SpecialStringTok{ a }\SpecialCharTok{\{}\NormalTok{ano\_actual}\SpecialCharTok{\}}\SpecialStringTok{: }\SpecialCharTok{\{}\NormalTok{crecimiento}\SpecialCharTok{:+.2f\}}\SpecialStringTok{\%"}\NormalTok{)}
+
+\CommentTok{\# Identificar mejor y peor trimestre}
+\NormalTok{todos\_trimestres }\OperatorTok{=}\NormalTok{ []}
+\ControlFlowTok{for}\NormalTok{ ano, trimestres }\KeywordTok{in}\NormalTok{ pib\_trimestral.items():}
+    \ControlFlowTok{for}\NormalTok{ i, pib }\KeywordTok{in} \BuiltInTok{enumerate}\NormalTok{(trimestres, }\DecValTok{1}\NormalTok{):}
+\NormalTok{        todos\_trimestres.append((ano, i, pib))}
+
+\NormalTok{mejor\_trimestre }\OperatorTok{=} \BuiltInTok{max}\NormalTok{(todos\_trimestres, key}\OperatorTok{=}\KeywordTok{lambda}\NormalTok{ x: x[}\DecValTok{2}\NormalTok{])}
+\NormalTok{peor\_trimestre }\OperatorTok{=} \BuiltInTok{min}\NormalTok{(todos\_trimestres, key}\OperatorTok{=}\KeywordTok{lambda}\NormalTok{ x: x[}\DecValTok{2}\NormalTok{])}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"} \OperatorTok{+} \StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Mejor trimestre: Q}\SpecialCharTok{\{}\NormalTok{mejor\_trimestre[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{mejor\_trimestre[}\DecValTok{0}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{ {-} S/ }\SpecialCharTok{\{}\NormalTok{mejor\_trimestre[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{:,\}}\SpecialStringTok{ M"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Peor trimestre: Q}\SpecialCharTok{\{}\NormalTok{peor\_trimestre[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{peor\_trimestre[}\DecValTok{0}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{ {-} S/ }\SpecialCharTok{\{}\NormalTok{peor\_trimestre[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{:,\}}\SpecialStringTok{ M"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Ejercicio 3: Sistema de
+inventario}\label{ejercicio-3-sistema-de-inventario}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Inventario de productos}
+\NormalTok{inventario }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}PROD001\textquotesingle{}}\NormalTok{: \{}\StringTok{\textquotesingle{}nombre\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Laptop\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}cantidad\textquotesingle{}}\NormalTok{: }\DecValTok{25}\NormalTok{, }\StringTok{\textquotesingle{}precio\textquotesingle{}}\NormalTok{: }\DecValTok{2500}\NormalTok{, }\StringTok{\textquotesingle{}minimo\textquotesingle{}}\NormalTok{: }\DecValTok{10}\NormalTok{\},}
+    \StringTok{\textquotesingle{}PROD002\textquotesingle{}}\NormalTok{: \{}\StringTok{\textquotesingle{}nombre\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Mouse\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}cantidad\textquotesingle{}}\NormalTok{: }\DecValTok{100}\NormalTok{, }\StringTok{\textquotesingle{}precio\textquotesingle{}}\NormalTok{: }\DecValTok{25}\NormalTok{, }\StringTok{\textquotesingle{}minimo\textquotesingle{}}\NormalTok{: }\DecValTok{50}\NormalTok{\},}
+    \StringTok{\textquotesingle{}PROD003\textquotesingle{}}\NormalTok{: \{}\StringTok{\textquotesingle{}nombre\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Teclado\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}cantidad\textquotesingle{}}\NormalTok{: }\DecValTok{8}\NormalTok{, }\StringTok{\textquotesingle{}precio\textquotesingle{}}\NormalTok{: }\DecValTok{80}\NormalTok{, }\StringTok{\textquotesingle{}minimo\textquotesingle{}}\NormalTok{: }\DecValTok{15}\NormalTok{\},}
+    \StringTok{\textquotesingle{}PROD004\textquotesingle{}}\NormalTok{: \{}\StringTok{\textquotesingle{}nombre\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Monitor\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}cantidad\textquotesingle{}}\NormalTok{: }\DecValTok{30}\NormalTok{, }\StringTok{\textquotesingle{}precio\textquotesingle{}}\NormalTok{: }\DecValTok{800}\NormalTok{, }\StringTok{\textquotesingle{}minimo\textquotesingle{}}\NormalTok{: }\DecValTok{20}\NormalTok{\},}
+    \StringTok{\textquotesingle{}PROD005\textquotesingle{}}\NormalTok{: \{}\StringTok{\textquotesingle{}nombre\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Impresora\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}cantidad\textquotesingle{}}\NormalTok{: }\DecValTok{5}\NormalTok{, }\StringTok{\textquotesingle{}precio\textquotesingle{}}\NormalTok{: }\DecValTok{450}\NormalTok{, }\StringTok{\textquotesingle{}minimo\textquotesingle{}}\NormalTok{: }\DecValTok{8}\NormalTok{\}}
+\NormalTok{\}}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"SISTEMA DE GESTIÓN DE INVENTARIO"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{valor\_total\_inventario }\OperatorTok{=} \DecValTok{0}
+\NormalTok{productos\_bajo\_stock }\OperatorTok{=}\NormalTok{ []}
+\NormalTok{productos\_ok }\OperatorTok{=}\NormalTok{ []}
+
+\ControlFlowTok{for}\NormalTok{ codigo, producto }\KeywordTok{in}\NormalTok{ inventario.items():}
+\NormalTok{    nombre }\OperatorTok{=}\NormalTok{ producto[}\StringTok{\textquotesingle{}nombre\textquotesingle{}}\NormalTok{]}
+\NormalTok{    cantidad }\OperatorTok{=}\NormalTok{ producto[}\StringTok{\textquotesingle{}cantidad\textquotesingle{}}\NormalTok{]}
+\NormalTok{    precio }\OperatorTok{=}\NormalTok{ producto[}\StringTok{\textquotesingle{}precio\textquotesingle{}}\NormalTok{]}
+\NormalTok{    minimo }\OperatorTok{=}\NormalTok{ producto[}\StringTok{\textquotesingle{}minimo\textquotesingle{}}\NormalTok{]}
+    
+\NormalTok{    valor\_producto }\OperatorTok{=}\NormalTok{ cantidad }\OperatorTok{*}\NormalTok{ precio}
+\NormalTok{    valor\_total\_inventario }\OperatorTok{+=}\NormalTok{ valor\_producto}
+    
+\NormalTok{    estado }\OperatorTok{=} \StringTok{"✓ Stock OK"} \ControlFlowTok{if}\NormalTok{ cantidad }\OperatorTok{\textgreater{}=}\NormalTok{ minimo }\ControlFlowTok{else} \StringTok{"⚠️ BAJO STOCK"}
+    
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Código: }\SpecialCharTok{\{}\NormalTok{codigo}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Producto: }\SpecialCharTok{\{}\NormalTok{nombre}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Cantidad: }\SpecialCharTok{\{}\NormalTok{cantidad}\SpecialCharTok{\}}\SpecialStringTok{ unidades"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Precio unitario: S/ }\SpecialCharTok{\{}\NormalTok{precio}\SpecialCharTok{:.2f\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Valor en inventario: S/ }\SpecialCharTok{\{}\NormalTok{valor\_producto}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Stock mínimo: }\SpecialCharTok{\{}\NormalTok{minimo}\SpecialCharTok{\}}\SpecialStringTok{ unidades"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Estado: }\SpecialCharTok{\{}\NormalTok{estado}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+    
+    \ControlFlowTok{if}\NormalTok{ cantidad }\OperatorTok{\textless{}}\NormalTok{ minimo:}
+\NormalTok{        faltante }\OperatorTok{=}\NormalTok{ minimo }\OperatorTok{{-}}\NormalTok{ cantidad}
+\NormalTok{        productos\_bajo\_stock.append((nombre, cantidad, minimo, faltante))}
+    \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{        productos\_ok.append((nombre, cantidad))}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"} \OperatorTok{+} \StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"RESUMEN DE INVENTARIO:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Valor total del inventario: S/ }\SpecialCharTok{\{}\NormalTok{valor\_total\_inventario}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Productos en stock adecuado: }\SpecialCharTok{\{}\BuiltInTok{len}\NormalTok{(productos\_ok)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Productos bajo stock mínimo: }\SpecialCharTok{\{}\BuiltInTok{len}\NormalTok{(productos\_bajo\_stock)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\ControlFlowTok{if}\NormalTok{ productos\_bajo\_stock:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{⚠️ ALERTA {-} Productos que requieren reposición:"}\NormalTok{)}
+    \ControlFlowTok{for}\NormalTok{ nombre, actual, minimo, faltante }\KeywordTok{in}\NormalTok{ productos\_bajo\_stock:}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  {-} }\SpecialCharTok{\{}\NormalTok{nombre}\SpecialCharTok{\}}\SpecialStringTok{: }\SpecialCharTok{\{}\NormalTok{actual}\SpecialCharTok{\}}\SpecialStringTok{ unidades (faltante: }\SpecialCharTok{\{}\NormalTok{faltante}\SpecialCharTok{\}}\SpecialStringTok{ unidades)"}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"} \OperatorTok{+} \StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"PRODUCTOS POR VALOR:"}\NormalTok{)}
+\NormalTok{productos\_valor }\OperatorTok{=}\NormalTok{ [(codigo, prod[}\StringTok{\textquotesingle{}nombre\textquotesingle{}}\NormalTok{], prod[}\StringTok{\textquotesingle{}cantidad\textquotesingle{}}\NormalTok{] }\OperatorTok{*}\NormalTok{ prod[}\StringTok{\textquotesingle{}precio\textquotesingle{}}\NormalTok{]) }
+                   \ControlFlowTok{for}\NormalTok{ codigo, prod }\KeywordTok{in}\NormalTok{ inventario.items()]}
+\NormalTok{productos\_valor.sort(key}\OperatorTok{=}\KeywordTok{lambda}\NormalTok{ x: x[}\DecValTok{2}\NormalTok{], reverse}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ i, (codigo, nombre, valor) }\KeywordTok{in} \BuiltInTok{enumerate}\NormalTok{(productos\_valor, }\DecValTok{1}\NormalTok{):}
+\NormalTok{    porcentaje }\OperatorTok{=}\NormalTok{ (valor }\OperatorTok{/}\NormalTok{ valor\_total\_inventario) }\OperatorTok{*} \DecValTok{100}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{i}\SpecialCharTok{\}}\SpecialStringTok{. }\SpecialCharTok{\{}\NormalTok{nombre}\SpecialCharTok{\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{codigo}\SpecialCharTok{\}}\SpecialStringTok{): S/ }\SpecialCharTok{\{}\NormalTok{valor}\SpecialCharTok{:,.2f\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{porcentaje}\SpecialCharTok{:.1f\}}\SpecialStringTok{\%)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Conclusión}\label{conclusiuxf3n}
+
+En esta guía hemos explorado las estructuras de datos fundamentales de
+Python:
+
+\textbf{Listas}
+
+Colecciones ordenadas y mutables. Ideales para secuencias de datos que
+pueden cambiar. Métodos importantes: append(), extend(), insert(),
+remove(), pop(), sort().
+
+\textbf{Diccionarios}
+
+Colecciones de pares clave-valor. Perfectos para datos estructurados y
+búsquedas rápidas. Métodos importantes: keys(), values(), items(),
+get(), update(), pop().
+
+\textbf{Tuplas}
+
+Colecciones ordenadas e inmutables. Más eficientes en memoria que las
+listas. Útiles para datos que no deben cambiar y como claves de
+diccionarios.
+
+\textbf{Conceptos importantes}
+
+La diferencia entre asignación por referencia y por valor es crucial.
+Usar copy.copy() para copias superficiales y copy.deepcopy() para copias
+profundas de estructuras anidadas.
+
+\section{Próximos pasos}\label{pruxf3ximos-pasos}
+
+En la siguiente guía (Guía 4: Ejecución Condicional) exploraremos:
+
+\begin{itemize}
+\tightlist
+\item
+  Expresiones booleanas
+\item
+  Operadores lógicos
+\item
+  Ejecuciones condicionales (if, elif, else)
+\item
+  Condicionales anidados
+\item
+  Manejo de excepciones con try-except
+\item
+  Evaluación de cortocircuito
+\end{itemize}
+
+Estos conceptos nos permitirán crear programas que tomen decisiones
+basadas en condiciones, esenciales para análisis económico automatizado.
+
+\section{Recursos adicionales}\label{recursos-adicionales}
+
+Para profundizar en estructuras de datos:
+
+\begin{itemize}
+\tightlist
+\item
+  Python Data Structures: docs.python.org/tutorial/datastructures.html
+\item
+  Práctica con ejercicios económicos reales
+\item
+  Exploración de bibliotecas como Pandas para análisis avanzado
+\end{itemize}
+
+La práctica constante con datos económicos reales consolidará estos
+conceptos. Se recomienda trabajar con datos de fuentes como BCRP, INEI,
+o Banco Mundial para aplicar estas estructuras en contextos realistas.
 
 \section{Publicaciones Similares}\label{publicaciones-similares}
 
