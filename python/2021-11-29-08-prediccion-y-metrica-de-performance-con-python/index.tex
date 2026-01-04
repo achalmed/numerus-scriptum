@@ -1,5 +1,5 @@
 \documentclass[
-  jou,
+  doc,
   floatsintext,
   longtable,
   a4paper,
@@ -12,6 +12,8 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
+\geometry{inner=1in, outer=1in}
+\fancyhfoffset[LE,RO]{0cm}
 
 
 \usepackage[bidi=default]{babel}
@@ -78,6 +80,46 @@
 
 
 
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -163,51 +205,23 @@ contenido final del artículo. }
 \par{   El autor no tiene conflictos de interés que revelar.    Los
 roles de autor se clasificaron utilizando la taxonomía de roles de
 colaborador (CRediT; https://credit.niso.org/) de la siguiente
-manera:  Edison Achalma:   conceptualización, redacción}
+manera:  Edison Achalma:   conceptualización, metodología, análisis
+formal, investigación, recursos, curación de
+datos, redacción, visualización, supervisión, administración del
+proyecto}
 \par{La correspondencia relativa a este artículo debe dirigirse a Edison
-Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
+Achalma, Escuela Profesional de Economía, Universidad Nacional de San
+Cristóbal de Huamanga, Portal Independencia N°
+57, Ayacucho, AYA 5001, Perú, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
 }
-
-\usepackage{pbalance}
-% \usepackage{float}
-\makeatletter
-\let\oldtpt\ThreePartTable
-\let\endoldtpt\endThreePartTable
-\def\ThreePartTable{\@ifnextchar[\ThreePartTable@i \ThreePartTable@ii}
-\def\ThreePartTable@i[#1]{\begin{figure}[!htbp]
-\onecolumn
-\begin{minipage}{0.485\textwidth}
-\oldtpt[#1]
-}
-\def\ThreePartTable@ii{\begin{figure}[!htbp]
-\onecolumn
-\begin{minipage}{0.48\textwidth}
-\oldtpt
-}
-\def\endThreePartTable{
-\endoldtpt
-\end{minipage}
-\twocolumn
-\end{figure}}
-\makeatother
-
 
 \makeatletter
-\let\endoldlt\endlongtable		
+\let\endoldlt\endlongtable
 \def\endlongtable{
 \hline
-\endoldlt}
+\endoldlt
+}
 \makeatother
-
-\newenvironment{twocolumntable}% environment name
-{% begin code
-\begin{table*}[!htbp]%
-\onecolumn%
-}%
-{%
-\twocolumn%
-\end{table*}%
-}% end code
 
 \urlstyle{same}
 
@@ -245,8 +259,8 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 \@ifpackageloaded{float}{}{\usepackage{float}}
 \floatstyle{ruled}
 \@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
-\floatname{codelisting}{Listing}
-\newcommand*\listoflistings{\listof{codelisting}{Lista de Listings}}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listados}}
 \makeatother
 \makeatletter
 \makeatother
@@ -305,8 +319,1301 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 
 
 
-Este artículo está actualmente en proceso de edición, y todas las
-secciones serán ampliadas y refinadas en futuras revisiones.
+En esta octava guía exploraremos el problema de predicción y las
+métricas fundamentales para evaluar modelos de clasificación. Estos
+conceptos son esenciales para evaluar modelos de machine learning
+aplicados a problemas económicos como predicción de incumplimiento
+crediticio, clasificación de empresas, predicción de pobreza, entre
+otros.
+
+\section{El problema de predicción}\label{el-problema-de-predicciuxf3n}
+
+\subsection{Concepto fundamental}\label{concepto-fundamental}
+
+En economía y ciencias sociales frecuentemente necesitamos predecir
+eventos futuros basándonos en información histórica:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Un cliente pagará o no pagará su crédito?
+\item
+  ¿Una empresa quebrará o sobrevivirá?
+\item
+  ¿Un hogar saldrá o permanecerá en pobreza?
+\item
+  ¿Un estudiante completará o abandonará sus estudios?
+\item
+  ¿Un producto se venderá o no se venderá?
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+\ImportTok{from}\NormalTok{ sklearn.linear\_model }\ImportTok{import}\NormalTok{ LogisticRegression}
+\ImportTok{from}\NormalTok{ sklearn.metrics }\ImportTok{import}\NormalTok{ confusion\_matrix, classification\_report}
+\ImportTok{from}\NormalTok{ sklearn.metrics }\ImportTok{import}\NormalTok{ roc\_curve, auc, precision\_recall\_curve}
+\ImportTok{from}\NormalTok{ sklearn.model\_selection }\ImportTok{import}\NormalTok{ train\_test\_split}
+
+\CommentTok{\# Configuración de gráficos}
+\NormalTok{plt.style.use(}\StringTok{\textquotesingle{}seaborn{-}v0\_8{-}darkgrid\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.rcParams[}\StringTok{\textquotesingle{}figure.figsize\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ (}\DecValTok{10}\NormalTok{, }\DecValTok{6}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Flujo de decisión con
+predicción}\label{flujo-de-decisiuxf3n-con-predicciuxf3n}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
+\StringTok{FLUJO DE TOMA DE DECISIONES CON PREDICCIÓN}
+
+\StringTok{1. RECOLECCIÓN DE DATOS}
+\StringTok{   ├─ Variables explicativas (características)}
+\StringTok{   └─ Variable objetivo (lo que queremos predecir)}
+\StringTok{   }
+\StringTok{2. ENTRENAMIENTO DEL MODELO}
+\StringTok{   ├─ Aprender patrones de los datos históricos}
+\StringTok{   └─ Establecer relación entre X (predictores) y Y (objetivo)}
+\StringTok{   }
+\StringTok{3. PREDICCIÓN}
+\StringTok{   ├─ Aplicar modelo a nuevos casos}
+\StringTok{   └─ Obtener probabilidades o clasificaciones}
+\StringTok{   }
+\StringTok{4. EVALUACIÓN}
+\StringTok{   ├─ Medir qué tan buenas son las predicciones}
+\StringTok{   └─ Usar métricas apropiadas}
+\StringTok{   }
+\StringTok{5. DECISIÓN}
+\StringTok{   ├─ Usar predicción para tomar acción}
+\StringTok{   └─ Ej: Aprobar/rechazar crédito, intervenir/no intervenir}
+\StringTok{"""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Clasificación binaria}\label{clasificaciuxf3n-binaria}
+
+\subsection{Problema de admisión
+académica}\label{problema-de-admisiuxf3n-acaduxe9mica}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear dataset de ejemplo: admisión a programa de posgrado}
+\NormalTok{np.random.seed(}\DecValTok{42}\NormalTok{)}
+
+\CommentTok{\# Datos simulados}
+\NormalTok{n\_estudiantes }\OperatorTok{=} \DecValTok{200}
+
+\NormalTok{datos\_admision }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}puntaje\_examen\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{500}\NormalTok{, }\DecValTok{800}\NormalTok{, n\_estudiantes),}
+    \StringTok{\textquotesingle{}gpa\textquotesingle{}}\NormalTok{: np.random.uniform(}\FloatTok{2.0}\NormalTok{, }\FloatTok{4.0}\NormalTok{, n\_estudiantes),}
+    \StringTok{\textquotesingle{}experiencia\_laboral\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{0}\NormalTok{, }\DecValTok{8}\NormalTok{, n\_estudiantes),}
+    \StringTok{\textquotesingle{}publicaciones\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{, n\_estudiantes)}
+\NormalTok{\})}
+
+\CommentTok{\# Generar variable de admisión (1 = admitido, 0 = no admitido)}
+\CommentTok{\# Basado en una combinación de factores}
+\NormalTok{score }\OperatorTok{=}\NormalTok{ (datos\_admision[}\StringTok{\textquotesingle{}puntaje\_examen\textquotesingle{}}\NormalTok{] }\OperatorTok{{-}} \DecValTok{500}\NormalTok{) }\OperatorTok{*} \FloatTok{0.002} \OperatorTok{+} \OperatorTok{\textbackslash{}}
+\NormalTok{        datos\_admision[}\StringTok{\textquotesingle{}gpa\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \FloatTok{0.15} \OperatorTok{+} \OperatorTok{\textbackslash{}}
+\NormalTok{        datos\_admision[}\StringTok{\textquotesingle{}experiencia\_laboral\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \FloatTok{0.08} \OperatorTok{+} \OperatorTok{\textbackslash{}}
+\NormalTok{        datos\_admision[}\StringTok{\textquotesingle{}publicaciones\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \FloatTok{0.10} \OperatorTok{+} \OperatorTok{\textbackslash{}}
+\NormalTok{        np.random.normal(}\DecValTok{0}\NormalTok{, }\FloatTok{0.2}\NormalTok{, n\_estudiantes)}
+
+\NormalTok{datos\_admision[}\StringTok{\textquotesingle{}admitido\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ (score }\OperatorTok{\textgreater{}} \FloatTok{1.0}\NormalTok{).astype(}\BuiltInTok{int}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Dataset de admisiones:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(datos\_admision.head(}\DecValTok{10}\NormalTok{))}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Distribución de admisiones:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(datos\_admision[}\StringTok{\textquotesingle{}admitido\textquotesingle{}}\NormalTok{].value\_counts())}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Tasa de admisión: }\SpecialCharTok{\{}\NormalTok{datos\_admision[}\StringTok{\textquotesingle{}admitido\textquotesingle{}}\NormalTok{]}\SpecialCharTok{.}\NormalTok{mean()}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.1f\}}\SpecialStringTok{\%"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Entrenar modelo de
+clasificación}\label{entrenar-modelo-de-clasificaciuxf3n}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Separar variables predictoras y objetivo}
+\NormalTok{X }\OperatorTok{=}\NormalTok{ datos\_admision[[}\StringTok{\textquotesingle{}puntaje\_examen\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}gpa\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}experiencia\_laboral\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}publicaciones\textquotesingle{}}\NormalTok{]]}
+\NormalTok{y }\OperatorTok{=}\NormalTok{ datos\_admision[}\StringTok{\textquotesingle{}admitido\textquotesingle{}}\NormalTok{]}
+
+\CommentTok{\# Dividir en conjunto de entrenamiento y prueba}
+\NormalTok{X\_train, X\_test, y\_train, y\_test }\OperatorTok{=}\NormalTok{ train\_test\_split(}
+\NormalTok{    X, y, test\_size}\OperatorTok{=}\FloatTok{0.3}\NormalTok{, random\_state}\OperatorTok{=}\DecValTok{42}
+\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Tamaño conjunto entrenamiento: }\SpecialCharTok{\{}\BuiltInTok{len}\NormalTok{(X\_train)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Tamaño conjunto prueba: }\SpecialCharTok{\{}\BuiltInTok{len}\NormalTok{(X\_test)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Entrenar modelo de regresión logística}
+\NormalTok{modelo }\OperatorTok{=}\NormalTok{ LogisticRegression(random\_state}\OperatorTok{=}\DecValTok{42}\NormalTok{)}
+\NormalTok{modelo.fit(X\_train, y\_train)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Modelo entrenado exitosamente"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Coeficientes del modelo:"}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ variable, coef }\KeywordTok{in} \BuiltInTok{zip}\NormalTok{(X.columns, modelo.coef\_[}\DecValTok{0}\NormalTok{]):}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  }\SpecialCharTok{\{}\NormalTok{variable}\SpecialCharTok{\}}\SpecialStringTok{: }\SpecialCharTok{\{}\NormalTok{coef}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Thresholding
+(Umbralización)}\label{thresholding-umbralizaciuxf3n}
+
+\subsection{Concepto de
+probabilidades}\label{concepto-de-probabilidades}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Obtener probabilidades de predicción}
+\NormalTok{probabilidades }\OperatorTok{=}\NormalTok{ modelo.predict\_proba(X\_test)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Probabilidades de predicción (primeras 10 observaciones):"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Índice | P(No admitido) | P(Admitido) | Predicción"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"{-}"} \OperatorTok{*} \DecValTok{55}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{10}\NormalTok{):}
+\NormalTok{    pred }\OperatorTok{=} \StringTok{"Admitido"} \ControlFlowTok{if}\NormalTok{ probabilidades[i, }\DecValTok{1}\NormalTok{] }\OperatorTok{\textgreater{}} \FloatTok{0.5} \ControlFlowTok{else} \StringTok{"No admitido"}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{i}\SpecialCharTok{:6d\}}\SpecialStringTok{ | }\SpecialCharTok{\{}\NormalTok{probabilidades[i, }\DecValTok{0}\NormalTok{]}\SpecialCharTok{:14.4f\}}\SpecialStringTok{ | }\SpecialCharTok{\{}\NormalTok{probabilidades[i, }\DecValTok{1}\NormalTok{]}\SpecialCharTok{:11.4f\}}\SpecialStringTok{ | }\SpecialCharTok{\{}\NormalTok{pred}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Crear DataFrame con resultados}
+\NormalTok{resultados }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}prob\_no\_admitido\textquotesingle{}}\NormalTok{: probabilidades[:, }\DecValTok{0}\NormalTok{],}
+    \StringTok{\textquotesingle{}prob\_admitido\textquotesingle{}}\NormalTok{: probabilidades[:, }\DecValTok{1}\NormalTok{],}
+    \StringTok{\textquotesingle{}real\textquotesingle{}}\NormalTok{: y\_test.values}
+\NormalTok{\})}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{Estadísticas de probabilidades:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(resultados[}\StringTok{\textquotesingle{}prob\_admitido\textquotesingle{}}\NormalTok{].describe())}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Efecto del umbral}\label{efecto-del-umbral}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Experimentar con diferentes umbrales}
+\NormalTok{umbrales }\OperatorTok{=}\NormalTok{ [}\FloatTok{0.3}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\FloatTok{0.7}\NormalTok{, }\FloatTok{0.9}\NormalTok{]}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"EFECTO DEL UMBRAL EN LA CLASIFICACIÓN"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ umbral }\KeywordTok{in}\NormalTok{ umbrales:}
+    \CommentTok{\# Aplicar umbral}
+\NormalTok{    predicciones }\OperatorTok{=}\NormalTok{ (probabilidades[:, }\DecValTok{1}\NormalTok{] }\OperatorTok{\textgreater{}}\NormalTok{ umbral).astype(}\BuiltInTok{int}\NormalTok{)}
+    
+    \CommentTok{\# Contar predicciones}
+\NormalTok{    n\_positivos }\OperatorTok{=}\NormalTok{ predicciones.}\BuiltInTok{sum}\NormalTok{()}
+\NormalTok{    tasa\_positivos }\OperatorTok{=}\NormalTok{ (n\_positivos }\OperatorTok{/} \BuiltInTok{len}\NormalTok{(predicciones)) }\OperatorTok{*} \DecValTok{100}
+    
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Umbral: }\SpecialCharTok{\{}\NormalTok{umbral}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Predicciones positivas: }\SpecialCharTok{\{}\NormalTok{n\_positivos}\SpecialCharTok{\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{tasa\_positivos}\SpecialCharTok{:.1f\}}\SpecialStringTok{\%)"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Predicciones negativas: }\SpecialCharTok{\{}\BuiltInTok{len}\NormalTok{(predicciones) }\OperatorTok{{-}}\NormalTok{ n\_positivos}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Visualizar distribución de
+probabilidades}\label{visualizar-distribuciuxf3n-de-probabilidades}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear gráfico de distribución de probabilidades}
+\NormalTok{fig, axes }\OperatorTok{=}\NormalTok{ plt.subplots(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{14}\NormalTok{, }\DecValTok{5}\NormalTok{))}
+
+\CommentTok{\# Histograma por clase real}
+\ControlFlowTok{for}\NormalTok{ clase, nombre }\KeywordTok{in}\NormalTok{ [(}\DecValTok{0}\NormalTok{, }\StringTok{\textquotesingle{}No admitido\textquotesingle{}}\NormalTok{), (}\DecValTok{1}\NormalTok{, }\StringTok{\textquotesingle{}Admitido\textquotesingle{}}\NormalTok{)]:}
+\NormalTok{    mask }\OperatorTok{=}\NormalTok{ resultados[}\StringTok{\textquotesingle{}real\textquotesingle{}}\NormalTok{] }\OperatorTok{==}\NormalTok{ clase}
+\NormalTok{    axes[}\DecValTok{0}\NormalTok{].hist(resultados.loc[mask, }\StringTok{\textquotesingle{}prob\_admitido\textquotesingle{}}\NormalTok{], }
+\NormalTok{                 bins}\OperatorTok{=}\DecValTok{20}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.6}\NormalTok{, label}\OperatorTok{=}\NormalTok{nombre)}
+
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].axvline(x}\OperatorTok{=}\FloatTok{0.5}\NormalTok{, color}\OperatorTok{=}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{\textquotesingle{}{-}{-}\textquotesingle{}}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Umbral = 0.5\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].set\_xlabel(}\StringTok{\textquotesingle{}Probabilidad de admisión\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].set\_ylabel(}\StringTok{\textquotesingle{}Frecuencia\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}Distribución de probabilidades por clase real\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].legend()}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\CommentTok{\# Scatter plot}
+\NormalTok{colores }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}red\textquotesingle{}} \ControlFlowTok{if}\NormalTok{ x }\OperatorTok{==} \DecValTok{0} \ControlFlowTok{else} \StringTok{\textquotesingle{}green\textquotesingle{}} \ControlFlowTok{for}\NormalTok{ x }\KeywordTok{in}\NormalTok{ resultados[}\StringTok{\textquotesingle{}real\textquotesingle{}}\NormalTok{]]}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].scatter(}\BuiltInTok{range}\NormalTok{(}\BuiltInTok{len}\NormalTok{(resultados)), }
+\NormalTok{                resultados[}\StringTok{\textquotesingle{}prob\_admitido\textquotesingle{}}\NormalTok{],}
+\NormalTok{                c}\OperatorTok{=}\NormalTok{colores, alpha}\OperatorTok{=}\FloatTok{0.6}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].axhline(y}\OperatorTok{=}\FloatTok{0.5}\NormalTok{, color}\OperatorTok{=}\StringTok{\textquotesingle{}blue\textquotesingle{}}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{\textquotesingle{}{-}{-}\textquotesingle{}}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Umbral = 0.5\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].set\_xlabel(}\StringTok{\textquotesingle{}Índice de observación\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].set\_ylabel(}\StringTok{\textquotesingle{}Probabilidad de admisión\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}Probabilidades predichas vs clase real\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].legend([}\StringTok{\textquotesingle{}Umbral 0.5\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}No admitido\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Admitido\textquotesingle{}}\NormalTok{])}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\NormalTok{plt.tight\_layout()}
+\NormalTok{plt.savefig(}\StringTok{\textquotesingle{}distribucion\_probabilidades.png\textquotesingle{}}\NormalTok{, dpi}\OperatorTok{=}\DecValTok{300}\NormalTok{, bbox\_inches}\OperatorTok{=}\StringTok{\textquotesingle{}tight\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Gráfico guardado como \textquotesingle{}distribucion\_probabilidades.png\textquotesingle{}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Matriz de confusión}\label{matriz-de-confusiuxf3n}
+
+\subsection{Concepto y estructura}\label{concepto-y-estructura}
+
+La matriz de confusión es una tabla que describe el desempeño de un
+modelo de clasificación.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
+\StringTok{MATRIZ DE CONFUSIÓN {-} ESTRUCTURA}
+
+\StringTok{                    Predicción}
+\StringTok{                 Negativo  Positivo}
+\StringTok{               ┌──────────┬──────────┐}
+\StringTok{Real  Negativo │    TN    │    FP    │}
+\StringTok{               ├──────────┼──────────┤}
+\StringTok{      Positivo │    FN    │    TP    │}
+\StringTok{               └──────────┴──────────┘}
+
+\StringTok{Donde:}
+\StringTok{{-} TN (True Negative): Negativos correctamente identificados}
+\StringTok{{-} FP (False Positive): Negativos incorrectamente clasificados como positivos}
+\StringTok{{-} FN (False Negative): Positivos incorrectamente clasificados como negativos}
+\StringTok{{-} TP (True Positive): Positivos correctamente identificados}
+\StringTok{"""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Calcular matriz de
+confusión}\label{calcular-matriz-de-confusiuxf3n}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Predicciones con umbral 0.5}
+\NormalTok{y\_pred }\OperatorTok{=}\NormalTok{ modelo.predict(X\_test)}
+
+\CommentTok{\# Calcular matriz de confusión}
+\NormalTok{cm }\OperatorTok{=}\NormalTok{ confusion\_matrix(y\_test, y\_pred)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"MATRIZ DE CONFUSIÓN"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{50}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{                 Predicción"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"              No admitido  Admitido"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Real No admitido    }\SpecialCharTok{\{}\NormalTok{cm[}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{]}\SpecialCharTok{:4d\}}\SpecialStringTok{       }\SpecialCharTok{\{}\NormalTok{cm[}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{]}\SpecialCharTok{:4d\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"     Admitido       }\SpecialCharTok{\{}\NormalTok{cm[}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{]}\SpecialCharTok{:4d\}}\SpecialStringTok{       }\SpecialCharTok{\{}\NormalTok{cm[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{]}\SpecialCharTok{:4d\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Extraer componentes}
+\NormalTok{TN, FP, FN, TP }\OperatorTok{=}\NormalTok{ cm.ravel()}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{Componentes de la matriz:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Verdaderos Negativos (TN): }\SpecialCharTok{\{}\NormalTok{TN}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Falsos Positivos (FP): }\SpecialCharTok{\{}\NormalTok{FP}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Falsos Negativos (FN): }\SpecialCharTok{\{}\NormalTok{FN}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Verdaderos Positivos (TP): }\SpecialCharTok{\{}\NormalTok{TP}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Función personalizada para matriz de
+confusión}\label{funciuxf3n-personalizada-para-matriz-de-confusiuxf3n}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ calcular\_matriz\_confusion(y\_real, y\_pred):}
+    \CommentTok{"""}
+\CommentTok{    Calcula matriz de confusión y sus componentes}
+\CommentTok{    """}
+    \CommentTok{\# Convertir a arrays booleanos}
+\NormalTok{    y\_real }\OperatorTok{=}\NormalTok{ np.array(y\_real).astype(}\BuiltInTok{bool}\NormalTok{)}
+\NormalTok{    y\_pred }\OperatorTok{=}\NormalTok{ np.array(y\_pred).astype(}\BuiltInTok{bool}\NormalTok{)}
+    
+    \CommentTok{\# Calcular componentes}
+\NormalTok{    TP }\OperatorTok{=}\NormalTok{ (y\_real }\OperatorTok{\&}\NormalTok{ y\_pred).}\BuiltInTok{sum}\NormalTok{()}
+\NormalTok{    TN }\OperatorTok{=}\NormalTok{ (}\OperatorTok{\textasciitilde{}}\NormalTok{y\_real }\OperatorTok{\&} \OperatorTok{\textasciitilde{}}\NormalTok{y\_pred).}\BuiltInTok{sum}\NormalTok{()}
+\NormalTok{    FP }\OperatorTok{=}\NormalTok{ (}\OperatorTok{\textasciitilde{}}\NormalTok{y\_real }\OperatorTok{\&}\NormalTok{ y\_pred).}\BuiltInTok{sum}\NormalTok{()}
+\NormalTok{    FN }\OperatorTok{=}\NormalTok{ (y\_real }\OperatorTok{\&} \OperatorTok{\textasciitilde{}}\NormalTok{y\_pred).}\BuiltInTok{sum}\NormalTok{()}
+    
+    \CommentTok{\# Crear matriz}
+\NormalTok{    matriz }\OperatorTok{=}\NormalTok{ np.array([[TN, FP],}
+\NormalTok{                       [FN, TP]])}
+    
+    \ControlFlowTok{return}\NormalTok{ matriz, TP, TN, FP, FN}
+
+\CommentTok{\# Usar función personalizada}
+\NormalTok{matriz, TP, TN, FP, FN }\OperatorTok{=}\NormalTok{ calcular\_matriz\_confusion(y\_test, y\_pred)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Matriz de confusión (función personalizada):"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(matriz)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Verificación: TP=}\SpecialCharTok{\{}\NormalTok{TP}\SpecialCharTok{\}}\SpecialStringTok{, TN=}\SpecialCharTok{\{}\NormalTok{TN}\SpecialCharTok{\}}\SpecialStringTok{, FP=}\SpecialCharTok{\{}\NormalTok{FP}\SpecialCharTok{\}}\SpecialStringTok{, FN=}\SpecialCharTok{\{}\NormalTok{FN}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Visualizar matriz de
+confusión}\label{visualizar-matriz-de-confusiuxf3n}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ graficar\_matriz\_confusion(cm, nombres\_clases}\OperatorTok{=}\NormalTok{[}\StringTok{\textquotesingle{}No\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Sí\textquotesingle{}}\NormalTok{]):}
+    \CommentTok{"""}
+\CommentTok{    Visualiza la matriz de confusión}
+\CommentTok{    """}
+\NormalTok{    fig, ax }\OperatorTok{=}\NormalTok{ plt.subplots(figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{8}\NormalTok{, }\DecValTok{6}\NormalTok{))}
+    
+\NormalTok{    im }\OperatorTok{=}\NormalTok{ ax.imshow(cm, interpolation}\OperatorTok{=}\StringTok{\textquotesingle{}nearest\textquotesingle{}}\NormalTok{, cmap}\OperatorTok{=}\NormalTok{plt.cm.Blues)}
+\NormalTok{    ax.figure.colorbar(im, ax}\OperatorTok{=}\NormalTok{ax)}
+    
+\NormalTok{    ax.}\BuiltInTok{set}\NormalTok{(xticks}\OperatorTok{=}\NormalTok{np.arange(cm.shape[}\DecValTok{1}\NormalTok{]),}
+\NormalTok{           yticks}\OperatorTok{=}\NormalTok{np.arange(cm.shape[}\DecValTok{0}\NormalTok{]),}
+\NormalTok{           xticklabels}\OperatorTok{=}\NormalTok{nombres\_clases,}
+\NormalTok{           yticklabels}\OperatorTok{=}\NormalTok{nombres\_clases,}
+\NormalTok{           ylabel}\OperatorTok{=}\StringTok{\textquotesingle{}Clase Real\textquotesingle{}}\NormalTok{,}
+\NormalTok{           xlabel}\OperatorTok{=}\StringTok{\textquotesingle{}Clase Predicha\textquotesingle{}}\NormalTok{,}
+\NormalTok{           title}\OperatorTok{=}\StringTok{\textquotesingle{}Matriz de Confusión\textquotesingle{}}\NormalTok{)}
+    
+    \CommentTok{\# Anotar celdas con valores}
+\NormalTok{    fmt }\OperatorTok{=} \StringTok{\textquotesingle{}d\textquotesingle{}}
+\NormalTok{    thresh }\OperatorTok{=}\NormalTok{ cm.}\BuiltInTok{max}\NormalTok{() }\OperatorTok{/} \FloatTok{2.}
+    \ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(cm.shape[}\DecValTok{0}\NormalTok{]):}
+        \ControlFlowTok{for}\NormalTok{ j }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(cm.shape[}\DecValTok{1}\NormalTok{]):}
+\NormalTok{            ax.text(j, i, }\BuiltInTok{format}\NormalTok{(cm[i, j], fmt),}
+\NormalTok{                   ha}\OperatorTok{=}\StringTok{"center"}\NormalTok{, va}\OperatorTok{=}\StringTok{"center"}\NormalTok{,}
+\NormalTok{                   color}\OperatorTok{=}\StringTok{"white"} \ControlFlowTok{if}\NormalTok{ cm[i, j] }\OperatorTok{\textgreater{}}\NormalTok{ thresh }\ControlFlowTok{else} \StringTok{"black"}\NormalTok{,}
+\NormalTok{                   fontsize}\OperatorTok{=}\DecValTok{20}\NormalTok{)}
+    
+\NormalTok{    plt.tight\_layout()}
+    \ControlFlowTok{return}\NormalTok{ fig}
+
+\CommentTok{\# Graficar}
+\NormalTok{fig }\OperatorTok{=}\NormalTok{ graficar\_matriz\_confusion(cm, nombres\_clases}\OperatorTok{=}\NormalTok{[}\StringTok{\textquotesingle{}No admitido\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Admitido\textquotesingle{}}\NormalTok{])}
+\NormalTok{plt.savefig(}\StringTok{\textquotesingle{}matriz\_confusion.png\textquotesingle{}}\NormalTok{, dpi}\OperatorTok{=}\DecValTok{300}\NormalTok{, bbox\_inches}\OperatorTok{=}\StringTok{\textquotesingle{}tight\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Matriz de confusión guardada como \textquotesingle{}matriz\_confusion.png\textquotesingle{}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Métricas de
+clasificación}\label{muxe9tricas-de-clasificaciuxf3n}
+
+\subsection{Resumen de métricas
+principales}\label{resumen-de-muxe9tricas-principales}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
+\StringTok{MÉTRICAS DE CLASIFICACIÓN}
+
+\StringTok{1. ACCURACY (Exactitud)}
+\StringTok{   {-} Proporción total de predicciones correctas}
+\StringTok{   {-} Fórmula: (TP + TN) / (TP + TN + FP + FN)}
+\StringTok{   {-} Cuándo usar: Clases balanceadas}
+\StringTok{   }
+\StringTok{2. PRECISION (Precisión)}
+\StringTok{   {-} De las predicciones positivas, cuántas son correctas}
+\StringTok{   {-} Fórmula: TP / (TP + FP)}
+\StringTok{   {-} Cuándo usar: Costo alto de falsos positivos}
+\StringTok{   {-} Ejemplo: Diagnóstico médico (evitar alarmas falsas)}
+\StringTok{   }
+\StringTok{3. RECALL (Sensibilidad/Exhaustividad)}
+\StringTok{   {-} De los casos positivos reales, cuántos detectamos}
+\StringTok{   {-} Fórmula: TP / (TP + FN)}
+\StringTok{   {-} Cuándo usar: Costo alto de falsos negativos}
+\StringTok{   {-} Ejemplo: Detección de fraude (no perder casos reales)}
+\StringTok{   }
+\StringTok{4. F1{-}SCORE}
+\StringTok{   {-} Media armónica de precision y recall}
+\StringTok{   {-} Fórmula: 2 * (Precision * Recall) / (Precision + Recall)}
+\StringTok{   {-} Cuándo usar: Balance entre precision y recall}
+\StringTok{   }
+\StringTok{5. SPECIFICITY (Especificidad)}
+\StringTok{   {-} De los casos negativos reales, cuántos detectamos}
+\StringTok{   {-} Fórmula: TN / (TN + FP)}
+\StringTok{"""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Accuracy (Exactitud)}\label{accuracy-exactitud}
+
+\subsection{Cálculo e
+interpretación}\label{cuxe1lculo-e-interpretaciuxf3n}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ calcular\_accuracy(y\_real, y\_pred):}
+    \CommentTok{"""Calcula accuracy"""}
+\NormalTok{    \_, TP, TN, FP, FN }\OperatorTok{=}\NormalTok{ calcular\_matriz\_confusion(y\_real, y\_pred)}
+\NormalTok{    accuracy }\OperatorTok{=}\NormalTok{ (TP }\OperatorTok{+}\NormalTok{ TN) }\OperatorTok{/}\NormalTok{ (TP }\OperatorTok{+}\NormalTok{ TN }\OperatorTok{+}\NormalTok{ FP }\OperatorTok{+}\NormalTok{ FN)}
+    \ControlFlowTok{return}\NormalTok{ accuracy}
+
+\CommentTok{\# Calcular accuracy}
+\NormalTok{accuracy }\OperatorTok{=}\NormalTok{ calcular\_accuracy(y\_test, y\_pred)}
+\NormalTok{accuracy\_sklearn }\OperatorTok{=}\NormalTok{ modelo.score(X\_test, y\_test)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Accuracy (función propia): }\SpecialCharTok{\{}\NormalTok{accuracy}\SpecialCharTok{:.4f\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{accuracy}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%)"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Accuracy (sklearn): }\SpecialCharTok{\{}\NormalTok{accuracy\_sklearn}\SpecialCharTok{:.4f\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{accuracy\_sklearn}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%)"}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Interpretación:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"El modelo clasifica correctamente el }\SpecialCharTok{\{}\NormalTok{accuracy}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.1f\}}\SpecialStringTok{\% de los casos"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Limitaciones del accuracy}\label{limitaciones-del-accuracy}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Ejemplo con dataset desbalanceado}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{EJEMPLO: LIMITACIÓN DEL ACCURACY CON CLASES DESBALANCEADAS"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\CommentTok{\# Dataset muy desbalanceado (95\% negativos, 5\% positivos)}
+\NormalTok{n }\OperatorTok{=} \DecValTok{1000}
+\NormalTok{y\_desbalanceado }\OperatorTok{=}\NormalTok{ np.array([}\DecValTok{0}\NormalTok{]}\OperatorTok{*}\DecValTok{950} \OperatorTok{+}\NormalTok{ [}\DecValTok{1}\NormalTok{]}\OperatorTok{*}\DecValTok{50}\NormalTok{)}
+
+\CommentTok{\# Modelo que siempre predice negativo}
+\NormalTok{y\_pred\_siempre\_negativo }\OperatorTok{=}\NormalTok{ np.zeros(n)}
+
+\NormalTok{acc }\OperatorTok{=}\NormalTok{ calcular\_accuracy(y\_desbalanceado, y\_pred\_siempre\_negativo)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Modelo que predice siempre \textquotesingle{}No\textquotesingle{}:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Accuracy: }\SpecialCharTok{\{}\NormalTok{acc}\SpecialCharTok{:.4f\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{acc}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.1f\}}\SpecialStringTok{\%)"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{¡Accuracy alto pero modelo inútil!"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"No detecta ningún caso positivo."}\NormalTok{)}
+
+\CommentTok{\# Matriz de confusión}
+\NormalTok{cm\_desbalanceado }\OperatorTok{=}\NormalTok{ confusion\_matrix(y\_desbalanceado, y\_pred\_siempre\_negativo)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Matriz de confusión:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(cm\_desbalanceado)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Observación: TP = 0 (no detecta ningún positivo)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Precision (Precisión)}\label{precision-precisiuxf3n}
+
+\subsection{Cálculo e
+interpretación}\label{cuxe1lculo-e-interpretaciuxf3n-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ calcular\_precision(y\_real, y\_pred):}
+    \CommentTok{"""Calcula precision"""}
+\NormalTok{    \_, TP, TN, FP, FN }\OperatorTok{=}\NormalTok{ calcular\_matriz\_confusion(y\_real, y\_pred)}
+    
+    \ControlFlowTok{if}\NormalTok{ TP }\OperatorTok{+}\NormalTok{ FP }\OperatorTok{==} \DecValTok{0}\NormalTok{:}
+        \ControlFlowTok{return} \FloatTok{0.0}
+    
+\NormalTok{    precision }\OperatorTok{=}\NormalTok{ TP }\OperatorTok{/}\NormalTok{ (TP }\OperatorTok{+}\NormalTok{ FP)}
+    \ControlFlowTok{return}\NormalTok{ precision}
+
+\CommentTok{\# Calcular precision}
+\NormalTok{precision }\OperatorTok{=}\NormalTok{ calcular\_precision(y\_test, y\_pred)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Precision: }\SpecialCharTok{\{}\NormalTok{precision}\SpecialCharTok{:.4f\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{precision}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%)"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Interpretación:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"De los estudiantes que el modelo predice como \textquotesingle{}admitidos\textquotesingle{},"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"el }\SpecialCharTok{\{}\NormalTok{precision}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.1f\}}\SpecialStringTok{\% realmente son admitidos."}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Falsos positivos: }\SpecialCharTok{\{}\NormalTok{FP}\SpecialCharTok{\}}\SpecialStringTok{ estudiantes"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"(Predichos como admitidos pero en realidad no lo fueron)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Ejemplo económico: Aprobación de
+créditos}\label{ejemplo-econuxf3mico-aprobaciuxf3n-de-cruxe9ditos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{EJEMPLO ECONÓMICO: APROBACIÓN DE CRÉDITOS"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\CommentTok{\# Simular decisiones de crédito}
+\NormalTok{n\_creditos }\OperatorTok{=} \DecValTok{1000}
+\NormalTok{y\_real\_pagara }\OperatorTok{=}\NormalTok{ np.random.choice([}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{], n\_creditos, p}\OperatorTok{=}\NormalTok{[}\FloatTok{0.2}\NormalTok{, }\FloatTok{0.8}\NormalTok{])  }\CommentTok{\# 80\% pagan}
+\NormalTok{y\_pred\_aprobar }\OperatorTok{=}\NormalTok{ np.random.choice([}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{], n\_creditos, p}\OperatorTok{=}\NormalTok{[}\FloatTok{0.15}\NormalTok{, }\FloatTok{0.85}\NormalTok{])  }\CommentTok{\# Modelo aprueba 85\%}
+
+\CommentTok{\# Calcular métricas}
+\NormalTok{\_, TP, TN, FP, FN }\OperatorTok{=}\NormalTok{ calcular\_matriz\_confusion(y\_real\_pagara, y\_pred\_aprobar)}
+\NormalTok{precision\_credito }\OperatorTok{=}\NormalTok{ calcular\_precision(y\_real\_pagara, y\_pred\_aprobar)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Resultados de }\SpecialCharTok{\{}\NormalTok{n\_creditos}\SpecialCharTok{\}}\SpecialStringTok{ solicitudes:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Créditos aprobados por modelo: }\SpecialCharTok{\{}\NormalTok{TP }\OperatorTok{+}\NormalTok{ FP}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  De estos, pagarán: }\SpecialCharTok{\{}\NormalTok{TP}\SpecialCharTok{\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{precision\_credito}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.1f\}}\SpecialStringTok{\%)"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  De estos, NO pagarán: }\SpecialCharTok{\{}\NormalTok{FP}\SpecialCharTok{\}}\SpecialStringTok{ (Pérdida por falsos positivos)"}\NormalTok{)}
+
+\CommentTok{\# Calcular pérdida}
+\NormalTok{monto\_promedio }\OperatorTok{=} \DecValTok{10000}
+\NormalTok{perdida\_por\_fp }\OperatorTok{=}\NormalTok{ FP }\OperatorTok{*}\NormalTok{ monto\_promedio}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{Análisis financiero:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Monto promedio por crédito: S/ }\SpecialCharTok{\{}\NormalTok{monto\_promedio}\SpecialCharTok{:,\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Falsos positivos: }\SpecialCharTok{\{}\NormalTok{FP}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Pérdida estimada: S/ }\SpecialCharTok{\{}\NormalTok{perdida\_por\_fp}\SpecialCharTok{:,\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Conlusión: Alta precision reduce pérdidas por morosidad"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Recall (Sensibilidad)}\label{recall-sensibilidad}
+
+\subsection{Cálculo e
+interpretación}\label{cuxe1lculo-e-interpretaciuxf3n-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ calcular\_recall(y\_real, y\_pred):}
+    \CommentTok{"""Calcula recall (sensibilidad)"""}
+\NormalTok{    \_, TP, TN, FP, FN }\OperatorTok{=}\NormalTok{ calcular\_matriz\_confusion(y\_real, y\_pred)}
+    
+    \ControlFlowTok{if}\NormalTok{ TP }\OperatorTok{+}\NormalTok{ FN }\OperatorTok{==} \DecValTok{0}\NormalTok{:}
+        \ControlFlowTok{return} \FloatTok{0.0}
+    
+\NormalTok{    recall }\OperatorTok{=}\NormalTok{ TP }\OperatorTok{/}\NormalTok{ (TP }\OperatorTok{+}\NormalTok{ FN)}
+    \ControlFlowTok{return}\NormalTok{ recall}
+
+\CommentTok{\# Calcular recall}
+\NormalTok{recall }\OperatorTok{=}\NormalTok{ calcular\_recall(y\_test, y\_pred)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Recall: }\SpecialCharTok{\{}\NormalTok{recall}\SpecialCharTok{:.4f\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{recall}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%)"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Interpretación:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"De los estudiantes que realmente fueron admitidos,"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"el modelo detectó correctamente al }\SpecialCharTok{\{}\NormalTok{recall}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.1f\}}\SpecialStringTok{\%."}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Falsos negativos: }\SpecialCharTok{\{}\NormalTok{FN}\SpecialCharTok{\}}\SpecialStringTok{ estudiantes"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"(No fueron identificados como admitidos cuando sí lo fueron)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Ejemplo económico: Detección de
+fraude}\label{ejemplo-econuxf3mico-detecciuxf3n-de-fraude}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{EJEMPLO ECONÓMICO: DETECCIÓN DE FRAUDE"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\CommentTok{\# Simular transacciones}
+\NormalTok{n\_trans }\OperatorTok{=} \DecValTok{10000}
+\NormalTok{y\_real\_fraude }\OperatorTok{=}\NormalTok{ np.random.choice([}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{], n\_trans, p}\OperatorTok{=}\NormalTok{[}\FloatTok{0.98}\NormalTok{, }\FloatTok{0.02}\NormalTok{])  }\CommentTok{\# 2\% fraude}
+\NormalTok{y\_pred\_fraude }\OperatorTok{=}\NormalTok{ np.random.choice([}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{], n\_trans, p}\OperatorTok{=}\NormalTok{[}\FloatTok{0.97}\NormalTok{, }\FloatTok{0.03}\NormalTok{])  }\CommentTok{\# Modelo detecta 3\%}
+
+\CommentTok{\# Calcular métricas}
+\NormalTok{\_, TP, TN, FP, FN }\OperatorTok{=}\NormalTok{ calcular\_matriz\_confusion(y\_real\_fraude, y\_pred\_fraude)}
+\NormalTok{recall\_fraude }\OperatorTok{=}\NormalTok{ calcular\_recall(y\_real\_fraude, y\_pred\_fraude)}
+\NormalTok{precision\_fraude }\OperatorTok{=}\NormalTok{ calcular\_precision(y\_real\_fraude, y\_pred\_fraude)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Resultados de }\SpecialCharTok{\{}\NormalTok{n\_trans}\SpecialCharTok{:,\}}\SpecialStringTok{ transacciones:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Fraudes reales: }\SpecialCharTok{\{}\NormalTok{TP }\OperatorTok{+}\NormalTok{ FN}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Fraudes detectados: }\SpecialCharTok{\{}\NormalTok{TP}\SpecialCharTok{\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{recall\_fraude}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.1f\}}\SpecialStringTok{\% de los reales)"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Fraudes no detectados: }\SpecialCharTok{\{}\NormalTok{FN}\SpecialCharTok{\}}\SpecialStringTok{ ¡CRÍTICO!"}\NormalTok{)}
+
+\CommentTok{\# Calcular pérdida}
+\NormalTok{monto\_promedio\_fraude }\OperatorTok{=} \DecValTok{5000}
+\NormalTok{perdida\_por\_fn }\OperatorTok{=}\NormalTok{ FN }\OperatorTok{*}\NormalTok{ monto\_promedio\_fraude}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{Análisis financiero:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Monto promedio por fraude: S/ }\SpecialCharTok{\{}\NormalTok{monto\_promedio\_fraude}\SpecialCharTok{:,\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Fraudes no detectados (FN): }\SpecialCharTok{\{}\NormalTok{FN}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Pérdida por fraudes no detectados: S/ }\SpecialCharTok{\{}\NormalTok{perdida\_por\_fn}\SpecialCharTok{:,\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Costo de investigar falsos positivos}
+\NormalTok{costo\_investigacion }\OperatorTok{=} \DecValTok{100}
+\NormalTok{costo\_fp }\OperatorTok{=}\NormalTok{ FP }\OperatorTok{*}\NormalTok{ costo\_investigacion}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{  Alertas falsas (FP): }\SpecialCharTok{\{}\NormalTok{FP}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Costo de investigar falsas alarmas: S/ }\SpecialCharTok{\{}\NormalTok{costo\_fp}\SpecialCharTok{:,\}}\SpecialStringTok{"}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{Conclusión: En detección de fraude, es MÁS IMPORTANTE el Recall"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"(No queremos perder fraudes reales, aunque tengamos falsas alarmas)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{F1-Score}\label{f1-score}
+
+\subsection{Cálculo e
+interpretación}\label{cuxe1lculo-e-interpretaciuxf3n-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ calcular\_f1(y\_real, y\_pred):}
+    \CommentTok{"""Calcula F1{-}score"""}
+\NormalTok{    precision }\OperatorTok{=}\NormalTok{ calcular\_precision(y\_real, y\_pred)}
+\NormalTok{    recall }\OperatorTok{=}\NormalTok{ calcular\_recall(y\_real, y\_pred)}
+    
+    \ControlFlowTok{if}\NormalTok{ precision }\OperatorTok{+}\NormalTok{ recall }\OperatorTok{==} \DecValTok{0}\NormalTok{:}
+        \ControlFlowTok{return} \FloatTok{0.0}
+    
+\NormalTok{    f1 }\OperatorTok{=} \DecValTok{2} \OperatorTok{*}\NormalTok{ (precision }\OperatorTok{*}\NormalTok{ recall) }\OperatorTok{/}\NormalTok{ (precision }\OperatorTok{+}\NormalTok{ recall)}
+    \ControlFlowTok{return}\NormalTok{ f1}
+
+\CommentTok{\# Calcular F1}
+\NormalTok{f1 }\OperatorTok{=}\NormalTok{ calcular\_f1(y\_test, y\_pred)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Métricas del modelo:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Precision: }\SpecialCharTok{\{}\NormalTok{precision}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Recall: }\SpecialCharTok{\{}\NormalTok{recall}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  F1{-}Score: }\SpecialCharTok{\{}\NormalTok{f1}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{Interpretación del F1{-}Score:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"El F1{-}Score es la media armónica de Precision y Recall."}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Un F1 de }\SpecialCharTok{\{}\NormalTok{f1}\SpecialCharTok{:.2f\}}\SpecialStringTok{ indica un }\SpecialCharTok{\{}\StringTok{\textquotesingle{}buen\textquotesingle{}} \ControlFlowTok{if}\NormalTok{ f1 }\OperatorTok{\textgreater{}} \FloatTok{0.7} \ControlFlowTok{else} \StringTok{\textquotesingle{}regular\textquotesingle{}} \ControlFlowTok{if}\NormalTok{ f1 }\OperatorTok{\textgreater{}} \FloatTok{0.5} \ControlFlowTok{else} \StringTok{\textquotesingle{}bajo\textquotesingle{}}\SpecialCharTok{\}}\SpecialStringTok{ balance entre ambas métricas."}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Trade-off entre Precision y
+Recall}\label{trade-off-entre-precision-y-recall}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Demostrar trade{-}off}
+\NormalTok{umbrales }\OperatorTok{=}\NormalTok{ [}\FloatTok{0.1}\NormalTok{, }\FloatTok{0.3}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\FloatTok{0.7}\NormalTok{, }\FloatTok{0.9}\NormalTok{]}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{TRADE{-}OFF: PRECISION VS RECALL"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\StringTok{\textquotesingle{}Umbral\textquotesingle{}}\SpecialCharTok{:\textless{}10\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}Precision\textquotesingle{}}\SpecialCharTok{:\textless{}12\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}Recall\textquotesingle{}}\SpecialCharTok{:\textless{}12\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}F1{-}Score\textquotesingle{}}\SpecialCharTok{:\textless{}12\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"{-}"} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ umbral }\KeywordTok{in}\NormalTok{ umbrales:}
+\NormalTok{    y\_pred\_umbral }\OperatorTok{=}\NormalTok{ (probabilidades[:, }\DecValTok{1}\NormalTok{] }\OperatorTok{\textgreater{}}\NormalTok{ umbral).astype(}\BuiltInTok{int}\NormalTok{)}
+    
+\NormalTok{    prec }\OperatorTok{=}\NormalTok{ calcular\_precision(y\_test, y\_pred\_umbral)}
+\NormalTok{    rec }\OperatorTok{=}\NormalTok{ calcular\_recall(y\_test, y\_pred\_umbral)}
+\NormalTok{    f1\_temp }\OperatorTok{=}\NormalTok{ calcular\_f1(y\_test, y\_pred\_umbral)}
+    
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{umbral}\SpecialCharTok{:\textless{}10.1f\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{prec}\SpecialCharTok{:\textless{}12.4f\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{rec}\SpecialCharTok{:\textless{}12.4f\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{f1\_temp}\SpecialCharTok{:\textless{}12.4f\}}\SpecialStringTok{"}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Observación:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"{-} Umbral bajo → Mayor Recall (detecta más positivos) pero menor Precision"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"{-} Umbral alto → Mayor Precision (menos falsas alarmas) pero menor Recall"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Curva Precision-Recall}\label{curva-precision-recall}
+
+\subsection{Generar curva
+Precision-Recall}\label{generar-curva-precision-recall}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ calcular\_curva\_precision\_recall(y\_real, probabilidades):}
+    \CommentTok{"""}
+\CommentTok{    Calcula curva Precision{-}Recall para diferentes umbrales}
+\CommentTok{    """}
+    \CommentTok{\# Obtener umbrales únicos}
+\NormalTok{    umbrales }\OperatorTok{=}\NormalTok{ np.sort(np.unique(probabilidades))}
+    
+\NormalTok{    precision\_list }\OperatorTok{=}\NormalTok{ []}
+\NormalTok{    recall\_list }\OperatorTok{=}\NormalTok{ []}
+    
+    \ControlFlowTok{for}\NormalTok{ umbral }\KeywordTok{in}\NormalTok{ umbrales:}
+\NormalTok{        y\_pred }\OperatorTok{=}\NormalTok{ (probabilidades }\OperatorTok{\textgreater{}=}\NormalTok{ umbral).astype(}\BuiltInTok{int}\NormalTok{)}
+        
+\NormalTok{        prec }\OperatorTok{=}\NormalTok{ calcular\_precision(y\_real, y\_pred)}
+\NormalTok{        rec }\OperatorTok{=}\NormalTok{ calcular\_recall(y\_real, y\_pred)}
+        
+\NormalTok{        precision\_list.append(prec)}
+\NormalTok{        recall\_list.append(rec)}
+    
+    \ControlFlowTok{return}\NormalTok{ np.array(recall\_list), np.array(precision\_list), umbrales}
+
+\CommentTok{\# Calcular curva}
+\NormalTok{recall\_curva, precision\_curva, umbrales\_pr }\OperatorTok{=}\NormalTok{ calcular\_curva\_precision\_recall(}
+\NormalTok{    y\_test, probabilidades[:, }\DecValTok{1}\NormalTok{]}
+\NormalTok{)}
+
+\CommentTok{\# También usar sklearn}
+\NormalTok{precision\_sklearn, recall\_sklearn, \_ }\OperatorTok{=}\NormalTok{ precision\_recall\_curve(}
+\NormalTok{    y\_test, probabilidades[:, }\DecValTok{1}\NormalTok{]}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Visualizar curva
+Precision-Recall}\label{visualizar-curva-precision-recall}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear gráfico}
+\NormalTok{fig, ax }\OperatorTok{=}\NormalTok{ plt.subplots(figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{8}\NormalTok{))}
+
+\CommentTok{\# Curva propia}
+\NormalTok{ax.plot(recall\_curva, precision\_curva, }\StringTok{\textquotesingle{}b{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, }
+\NormalTok{        label}\OperatorTok{=}\StringTok{\textquotesingle{}Curva PR (implementación propia)\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Curva sklearn}
+\NormalTok{ax.plot(recall\_sklearn, precision\_sklearn, }\StringTok{\textquotesingle{}r{-}{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.7}\NormalTok{,}
+\NormalTok{        label}\OperatorTok{=}\StringTok{\textquotesingle{}Curva PR (sklearn)\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Línea de referencia (clasificador aleatorio)}
+\NormalTok{proporcion\_positivos }\OperatorTok{=}\NormalTok{ y\_test.mean()}
+\NormalTok{ax.axhline(y}\OperatorTok{=}\NormalTok{proporcion\_positivos, color}\OperatorTok{=}\StringTok{\textquotesingle{}gray\textquotesingle{}}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{\textquotesingle{}{-}{-}\textquotesingle{}}\NormalTok{, }
+\NormalTok{           label}\OperatorTok{=}\SpecialStringTok{f\textquotesingle{}Clasificador aleatorio (}\SpecialCharTok{\{}\NormalTok{proporcion\_positivos}\SpecialCharTok{:.2f\}}\SpecialStringTok{)\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Punto del modelo actual (umbral 0.5)}
+\NormalTok{ax.plot(recall, precision, }\StringTok{\textquotesingle{}go\textquotesingle{}}\NormalTok{, markersize}\OperatorTok{=}\DecValTok{12}\NormalTok{, }
+\NormalTok{        label}\OperatorTok{=}\SpecialStringTok{f\textquotesingle{}Umbral 0.5 (P=}\SpecialCharTok{\{}\NormalTok{precision}\SpecialCharTok{:.2f\}}\SpecialStringTok{, R=}\SpecialCharTok{\{}\NormalTok{recall}\SpecialCharTok{:.2f\}}\SpecialStringTok{)\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{ax.set\_xlabel(}\StringTok{\textquotesingle{}Recall (Sensibilidad)\textquotesingle{}}\NormalTok{, fontsize}\OperatorTok{=}\DecValTok{12}\NormalTok{)}
+\NormalTok{ax.set\_ylabel(}\StringTok{\textquotesingle{}Precision (Precisión)\textquotesingle{}}\NormalTok{, fontsize}\OperatorTok{=}\DecValTok{12}\NormalTok{)}
+\NormalTok{ax.set\_title(}\StringTok{\textquotesingle{}Curva Precision{-}Recall\textquotesingle{}}\NormalTok{, fontsize}\OperatorTok{=}\DecValTok{14}\NormalTok{, fontweight}\OperatorTok{=}\StringTok{\textquotesingle{}bold\textquotesingle{}}\NormalTok{)}
+\NormalTok{ax.legend(loc}\OperatorTok{=}\StringTok{\textquotesingle{}best\textquotesingle{}}\NormalTok{)}
+\NormalTok{ax.grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+\NormalTok{ax.set\_xlim([}\DecValTok{0}\NormalTok{, }\FloatTok{1.05}\NormalTok{])}
+\NormalTok{ax.set\_ylim([}\DecValTok{0}\NormalTok{, }\FloatTok{1.05}\NormalTok{])}
+
+\NormalTok{plt.tight\_layout()}
+\NormalTok{plt.savefig(}\StringTok{\textquotesingle{}curva\_precision\_recall.png\textquotesingle{}}\NormalTok{, dpi}\OperatorTok{=}\DecValTok{300}\NormalTok{, bbox\_inches}\OperatorTok{=}\StringTok{\textquotesingle{}tight\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Curva Precision{-}Recall guardada como \textquotesingle{}curva\_precision\_recall.png\textquotesingle{}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Curva ROC y AUC}\label{curva-roc-y-auc}
+
+\subsection{Concepto de ROC}\label{concepto-de-roc}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
+\StringTok{CURVA ROC (Receiver Operating Characteristic)}
+
+\StringTok{La curva ROC grafica:}
+\StringTok{{-} Eje X: False Positive Rate (FPR) = FP / (FP + TN)}
+\StringTok{{-} Eje Y: True Positive Rate (TPR) = TP / (TP + FN)  [mismo que Recall]}
+
+\StringTok{Interpretación:}
+\StringTok{{-} Diagonal (línea punteada): Clasificador aleatorio (AUC = 0.5)}
+\StringTok{{-} Curva sobre diagonal: Mejor que aleatorio}
+\StringTok{{-} Más cerca de esquina superior izquierda: Mejor modelo}
+\StringTok{{-} AUC (Area Under Curve): Métrica resumen}
+\StringTok{  * AUC = 1.0: Clasificador perfecto}
+\StringTok{  * AUC = 0.5: Clasificador aleatorio}
+\StringTok{  * AUC \textless{} 0.5: Peor que aleatorio}
+\StringTok{"""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Calcular TPR y FPR}\label{calcular-tpr-y-fpr}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ calcular\_tpr(y\_real, y\_pred):}
+    \CommentTok{"""Calcula True Positive Rate (TPR) = Recall"""}
+    \ControlFlowTok{return}\NormalTok{ calcular\_recall(y\_real, y\_pred)}
+
+\KeywordTok{def}\NormalTok{ calcular\_fpr(y\_real, y\_pred):}
+    \CommentTok{"""Calcula False Positive Rate (FPR)"""}
+\NormalTok{    \_, TP, TN, FP, FN }\OperatorTok{=}\NormalTok{ calcular\_matriz\_confusion(y\_real, y\_pred)}
+    
+    \ControlFlowTok{if}\NormalTok{ FP }\OperatorTok{+}\NormalTok{ TN }\OperatorTok{==} \DecValTok{0}\NormalTok{:}
+        \ControlFlowTok{return} \FloatTok{0.0}
+    
+\NormalTok{    fpr }\OperatorTok{=}\NormalTok{ FP }\OperatorTok{/}\NormalTok{ (FP }\OperatorTok{+}\NormalTok{ TN)}
+    \ControlFlowTok{return}\NormalTok{ fpr}
+
+\KeywordTok{def}\NormalTok{ calcular\_curva\_roc(y\_real, probabilidades):}
+    \CommentTok{"""}
+\CommentTok{    Calcula curva ROC para diferentes umbrales}
+\CommentTok{    """}
+\NormalTok{    umbrales }\OperatorTok{=}\NormalTok{ np.sort(np.unique(probabilidades))}
+    
+\NormalTok{    tpr\_list }\OperatorTok{=}\NormalTok{ []}
+\NormalTok{    fpr\_list }\OperatorTok{=}\NormalTok{ []}
+    
+    \ControlFlowTok{for}\NormalTok{ umbral }\KeywordTok{in}\NormalTok{ umbrales:}
+\NormalTok{        y\_pred }\OperatorTok{=}\NormalTok{ (probabilidades }\OperatorTok{\textgreater{}=}\NormalTok{ umbral).astype(}\BuiltInTok{int}\NormalTok{)}
+        
+\NormalTok{        tpr }\OperatorTok{=}\NormalTok{ calcular\_tpr(y\_real, y\_pred)}
+\NormalTok{        fpr }\OperatorTok{=}\NormalTok{ calcular\_fpr(y\_real, y\_pred)}
+        
+\NormalTok{        tpr\_list.append(tpr)}
+\NormalTok{        fpr\_list.append(fpr)}
+    
+    \ControlFlowTok{return}\NormalTok{ np.array(fpr\_list), np.array(tpr\_list), umbrales}
+
+\CommentTok{\# Calcular curva ROC}
+\NormalTok{fpr\_curva, tpr\_curva, umbrales\_roc }\OperatorTok{=}\NormalTok{ calcular\_curva\_roc(}
+\NormalTok{    y\_test, probabilidades[:, }\DecValTok{1}\NormalTok{]}
+\NormalTok{)}
+
+\CommentTok{\# También usar sklearn}
+\NormalTok{fpr\_sklearn, tpr\_sklearn, \_ }\OperatorTok{=}\NormalTok{ roc\_curve(y\_test, probabilidades[:, }\DecValTok{1}\NormalTok{])}
+
+\CommentTok{\# Calcular AUC}
+\NormalTok{roc\_auc }\OperatorTok{=}\NormalTok{ auc(fpr\_sklearn, tpr\_sklearn)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"AUC (Area Under Curve): }\SpecialCharTok{\{}\NormalTok{roc\_auc}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Visualizar curva ROC}\label{visualizar-curva-roc}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear gráfico}
+\NormalTok{fig, ax }\OperatorTok{=}\NormalTok{ plt.subplots(figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{8}\NormalTok{))}
+
+\CommentTok{\# Curva ROC}
+\NormalTok{ax.plot(fpr\_sklearn, tpr\_sklearn, }\StringTok{\textquotesingle{}b{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{,}
+\NormalTok{        label}\OperatorTok{=}\SpecialStringTok{f\textquotesingle{}Curva ROC (AUC = }\SpecialCharTok{\{}\NormalTok{roc\_auc}\SpecialCharTok{:.3f\}}\SpecialStringTok{)\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Línea diagonal (clasificador aleatorio)}
+\NormalTok{ax.plot([}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{], [}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{], }\StringTok{\textquotesingle{}r{-}{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Clasificador aleatorio (AUC = 0.5)\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Punto del modelo actual}
+\NormalTok{fpr\_actual }\OperatorTok{=}\NormalTok{ calcular\_fpr(y\_test, y\_pred)}
+\NormalTok{tpr\_actual }\OperatorTok{=}\NormalTok{ calcular\_tpr(y\_test, y\_pred)}
+\NormalTok{ax.plot(fpr\_actual, tpr\_actual, }\StringTok{\textquotesingle{}go\textquotesingle{}}\NormalTok{, markersize}\OperatorTok{=}\DecValTok{12}\NormalTok{,}
+\NormalTok{        label}\OperatorTok{=}\SpecialStringTok{f\textquotesingle{}Umbral 0.5 (FPR=}\SpecialCharTok{\{}\NormalTok{fpr\_actual}\SpecialCharTok{:.2f\}}\SpecialStringTok{, TPR=}\SpecialCharTok{\{}\NormalTok{tpr\_actual}\SpecialCharTok{:.2f\}}\SpecialStringTok{)\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{ax.set\_xlabel(}\StringTok{\textquotesingle{}False Positive Rate (FPR)\textquotesingle{}}\NormalTok{, fontsize}\OperatorTok{=}\DecValTok{12}\NormalTok{)}
+\NormalTok{ax.set\_ylabel(}\StringTok{\textquotesingle{}True Positive Rate (TPR)\textquotesingle{}}\NormalTok{, fontsize}\OperatorTok{=}\DecValTok{12}\NormalTok{)}
+\NormalTok{ax.set\_title(}\StringTok{\textquotesingle{}Curva ROC\textquotesingle{}}\NormalTok{, fontsize}\OperatorTok{=}\DecValTok{14}\NormalTok{, fontweight}\OperatorTok{=}\StringTok{\textquotesingle{}bold\textquotesingle{}}\NormalTok{)}
+\NormalTok{ax.legend(loc}\OperatorTok{=}\StringTok{\textquotesingle{}lower right\textquotesingle{}}\NormalTok{)}
+\NormalTok{ax.grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+\NormalTok{ax.set\_xlim([}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{])}
+\NormalTok{ax.set\_ylim([}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{])}
+
+\CommentTok{\# Área sombreada bajo la curva}
+\NormalTok{ax.fill\_between(fpr\_sklearn, tpr\_sklearn, alpha}\OperatorTok{=}\FloatTok{0.2}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}AUC\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{plt.tight\_layout()}
+\NormalTok{plt.savefig(}\StringTok{\textquotesingle{}curva\_roc.png\textquotesingle{}}\NormalTok{, dpi}\OperatorTok{=}\DecValTok{300}\NormalTok{, bbox\_inches}\OperatorTok{=}\StringTok{\textquotesingle{}tight\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Curva ROC guardada como \textquotesingle{}curva\_roc.png\textquotesingle{}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Interpretación del AUC}\label{interpretaciuxf3n-del-auc}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ interpretar\_auc(auc\_score):}
+    \CommentTok{"""Interpreta el valor de AUC"""}
+    \ControlFlowTok{if}\NormalTok{ auc\_score }\OperatorTok{\textgreater{}=} \FloatTok{0.9}\NormalTok{:}
+        \ControlFlowTok{return} \StringTok{"Excelente"}
+    \ControlFlowTok{elif}\NormalTok{ auc\_score }\OperatorTok{\textgreater{}=} \FloatTok{0.8}\NormalTok{:}
+        \ControlFlowTok{return} \StringTok{"Muy bueno"}
+    \ControlFlowTok{elif}\NormalTok{ auc\_score }\OperatorTok{\textgreater{}=} \FloatTok{0.7}\NormalTok{:}
+        \ControlFlowTok{return} \StringTok{"Bueno"}
+    \ControlFlowTok{elif}\NormalTok{ auc\_score }\OperatorTok{\textgreater{}=} \FloatTok{0.6}\NormalTok{:}
+        \ControlFlowTok{return} \StringTok{"Regular"}
+    \ControlFlowTok{else}\NormalTok{:}
+        \ControlFlowTok{return} \StringTok{"Pobre"}
+
+\NormalTok{interpretacion }\OperatorTok{=}\NormalTok{ interpretar\_auc(roc\_auc)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{INTERPRETACIÓN DEL MODELO"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"AUC: }\SpecialCharTok{\{}\NormalTok{roc\_auc}\SpecialCharTok{:.4f\}}\SpecialStringTok{ {-} }\SpecialCharTok{\{}\NormalTok{interpretacion}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Significado:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Si tomamos un caso positivo y uno negativo al azar,"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"el modelo asignará una probabilidad mayor al caso positivo"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"el }\SpecialCharTok{\{}\NormalTok{roc\_auc}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.1f\}}\SpecialStringTok{\% de las veces."}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Aplicaciones económicas}\label{aplicaciones-econuxf3micas}
+
+\subsection{Aplicación 1: Predicción de incumplimiento
+crediticio}\label{aplicaciuxf3n-1-predicciuxf3n-de-incumplimiento-crediticio}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{APLICACIÓN: PREDICCIÓN DE INCUMPLIMIENTO CREDITICIO"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\CommentTok{\# Generar datos simulados}
+\NormalTok{np.random.seed(}\DecValTok{42}\NormalTok{)}
+\NormalTok{n\_clientes }\OperatorTok{=} \DecValTok{1000}
+
+\NormalTok{datos\_credito }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}edad\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{18}\NormalTok{, }\DecValTok{70}\NormalTok{, n\_clientes),}
+    \StringTok{\textquotesingle{}ingreso\_mensual\textquotesingle{}}\NormalTok{: np.random.uniform(}\DecValTok{1000}\NormalTok{, }\DecValTok{10000}\NormalTok{, n\_clientes),}
+    \StringTok{\textquotesingle{}monto\_credito\textquotesingle{}}\NormalTok{: np.random.uniform(}\DecValTok{5000}\NormalTok{, }\DecValTok{100000}\NormalTok{, n\_clientes),}
+    \StringTok{\textquotesingle{}historial\_pagos\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{1}\NormalTok{, }\DecValTok{10}\NormalTok{, n\_clientes),}
+    \StringTok{\textquotesingle{}num\_creditos\_activos\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{, n\_clientes),}
+    \StringTok{\textquotesingle{}ratio\_deuda\_ingreso\textquotesingle{}}\NormalTok{: np.random.uniform(}\FloatTok{0.1}\NormalTok{, }\FloatTok{0.8}\NormalTok{, n\_clientes)}
+\NormalTok{\})}
+
+\CommentTok{\# Variable objetivo: incumplimiento (1 = sí, 0 = no)}
+\NormalTok{score\_riesgo }\OperatorTok{=}\NormalTok{ (}
+    \OperatorTok{{-}}\NormalTok{datos\_credito[}\StringTok{\textquotesingle{}ingreso\_mensual\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \FloatTok{0.0001} \OperatorTok{+}
+\NormalTok{    datos\_credito[}\StringTok{\textquotesingle{}monto\_credito\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \FloatTok{0.00001} \OperatorTok{+}
+\NormalTok{    datos\_credito[}\StringTok{\textquotesingle{}ratio\_deuda\_ingreso\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \DecValTok{2} \OperatorTok{+}
+    \OperatorTok{{-}}\NormalTok{datos\_credito[}\StringTok{\textquotesingle{}historial\_pagos\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \FloatTok{0.15} \OperatorTok{+}
+\NormalTok{    datos\_credito[}\StringTok{\textquotesingle{}num\_creditos\_activos\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \FloatTok{0.2} \OperatorTok{+}
+\NormalTok{    np.random.normal(}\DecValTok{0}\NormalTok{, }\FloatTok{0.3}\NormalTok{, n\_clientes)}
+\NormalTok{)}
+
+\NormalTok{datos\_credito[}\StringTok{\textquotesingle{}incumplimiento\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ (score\_riesgo }\OperatorTok{\textgreater{}} \FloatTok{0.5}\NormalTok{).astype(}\BuiltInTok{int}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Dataset de créditos:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Total clientes: }\SpecialCharTok{\{}\NormalTok{n\_clientes}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Incumplimientos: }\SpecialCharTok{\{}\NormalTok{datos\_credito[}\StringTok{\textquotesingle{}incumplimiento\textquotesingle{}}\NormalTok{]}\SpecialCharTok{.}\BuiltInTok{sum}\NormalTok{()}\SpecialCharTok{\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{datos\_credito[}\StringTok{\textquotesingle{}incumplimiento\textquotesingle{}}\NormalTok{]}\SpecialCharTok{.}\NormalTok{mean()}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.1f\}}\SpecialStringTok{\%)"}\NormalTok{)}
+
+\CommentTok{\# Dividir datos}
+\NormalTok{X\_credito }\OperatorTok{=}\NormalTok{ datos\_credito.drop(}\StringTok{\textquotesingle{}incumplimiento\textquotesingle{}}\NormalTok{, axis}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+\NormalTok{y\_credito }\OperatorTok{=}\NormalTok{ datos\_credito[}\StringTok{\textquotesingle{}incumplimiento\textquotesingle{}}\NormalTok{]}
+
+\NormalTok{X\_train\_c, X\_test\_c, y\_train\_c, y\_test\_c }\OperatorTok{=}\NormalTok{ train\_test\_split(}
+\NormalTok{    X\_credito, y\_credito, test\_size}\OperatorTok{=}\FloatTok{0.3}\NormalTok{, random\_state}\OperatorTok{=}\DecValTok{42}
+\NormalTok{)}
+
+\CommentTok{\# Entrenar modelo}
+\NormalTok{modelo\_credito }\OperatorTok{=}\NormalTok{ LogisticRegression(random\_state}\OperatorTok{=}\DecValTok{42}\NormalTok{, max\_iter}\OperatorTok{=}\DecValTok{1000}\NormalTok{)}
+\NormalTok{modelo\_credito.fit(X\_train\_c, y\_train\_c)}
+
+\CommentTok{\# Predecir}
+\NormalTok{y\_pred\_c }\OperatorTok{=}\NormalTok{ modelo\_credito.predict(X\_test\_c)}
+\NormalTok{prob\_incumplimiento }\OperatorTok{=}\NormalTok{ modelo\_credito.predict\_proba(X\_test\_c)}
+
+\CommentTok{\# Calcular métricas}
+\NormalTok{cm\_credito }\OperatorTok{=}\NormalTok{ confusion\_matrix(y\_test\_c, y\_pred\_c)}
+\NormalTok{\_, TP\_c, TN\_c, FP\_c, FN\_c }\OperatorTok{=}\NormalTok{ calcular\_matriz\_confusion(y\_test\_c, y\_pred\_c)}
+
+\NormalTok{accuracy\_c }\OperatorTok{=}\NormalTok{ calcular\_accuracy(y\_test\_c, y\_pred\_c)}
+\NormalTok{precision\_c }\OperatorTok{=}\NormalTok{ calcular\_precision(y\_test\_c, y\_pred\_c)}
+\NormalTok{recall\_c }\OperatorTok{=}\NormalTok{ calcular\_recall(y\_test\_c, y\_pred\_c)}
+\NormalTok{f1\_c }\OperatorTok{=}\NormalTok{ calcular\_f1(y\_test\_c, y\_pred\_c)}
+
+\CommentTok{\# Curva ROC}
+\NormalTok{fpr\_c, tpr\_c, \_ }\OperatorTok{=}\NormalTok{ roc\_curve(y\_test\_c, prob\_incumplimiento[:, }\DecValTok{1}\NormalTok{])}
+\NormalTok{auc\_c }\OperatorTok{=}\NormalTok{ auc(fpr\_c, tpr\_c)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{RESULTADOS DEL MODELO"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Matriz de Confusión:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"                    Predicción"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"              Pagará  Incumplirá"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Real  Pagará    }\SpecialCharTok{\{}\NormalTok{TN\_c}\SpecialCharTok{:4d\}}\SpecialStringTok{      }\SpecialCharTok{\{}\NormalTok{FP\_c}\SpecialCharTok{:4d\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"   Incumplirá   }\SpecialCharTok{\{}\NormalTok{FN\_c}\SpecialCharTok{:4d\}}\SpecialStringTok{      }\SpecialCharTok{\{}\NormalTok{TP\_c}\SpecialCharTok{:4d\}}\SpecialStringTok{"}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{Métricas:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Accuracy:  }\SpecialCharTok{\{}\NormalTok{accuracy\_c}\SpecialCharTok{:.4f\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{accuracy\_c}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.1f\}}\SpecialStringTok{\%)"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Precision: }\SpecialCharTok{\{}\NormalTok{precision\_c}\SpecialCharTok{:.4f\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{precision\_c}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.1f\}}\SpecialStringTok{\%)"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Recall:    }\SpecialCharTok{\{}\NormalTok{recall\_c}\SpecialCharTok{:.4f\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{recall\_c}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.1f\}}\SpecialStringTok{\%)"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  F1{-}Score:  }\SpecialCharTok{\{}\NormalTok{f1\_c}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  AUC:       }\SpecialCharTok{\{}\NormalTok{auc\_c}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Análisis de costos}
+\NormalTok{monto\_promedio }\OperatorTok{=}\NormalTok{ datos\_credito[}\StringTok{\textquotesingle{}monto\_credito\textquotesingle{}}\NormalTok{].mean()}
+\NormalTok{tasa\_recuperacion }\OperatorTok{=} \FloatTok{0.30}  \CommentTok{\# Se recupera 30\% en promedio}
+
+\NormalTok{costo\_fn }\OperatorTok{=}\NormalTok{ FN\_c }\OperatorTok{*}\NormalTok{ monto\_promedio }\OperatorTok{*}\NormalTok{ (}\DecValTok{1} \OperatorTok{{-}}\NormalTok{ tasa\_recuperacion)  }\CommentTok{\# No detectar incumplimiento}
+\NormalTok{costo\_fp }\OperatorTok{=}\NormalTok{ FP\_c }\OperatorTok{*} \DecValTok{500}  \CommentTok{\# Costo de revisar caso que no es incumplimiento}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{ANÁLISIS DE COSTOS"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Monto promedio por crédito: S/ }\SpecialCharTok{\{}\NormalTok{monto\_promedio}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{  Falsos Negativos (FN): }\SpecialCharTok{\{}\NormalTok{FN\_c}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"    → Incumplimientos no detectados"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"    → Pérdida estimada: S/ }\SpecialCharTok{\{}\NormalTok{costo\_fn}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{  Falsos Positivos (FP): }\SpecialCharTok{\{}\NormalTok{FP\_c}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"    → Clientes buenos rechazados o revisados"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"    → Costo de revisión: S/ }\SpecialCharTok{\{}\NormalTok{costo\_fp}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{  Costo total: S/ }\SpecialCharTok{\{}\NormalTok{costo\_fn }\OperatorTok{+}\NormalTok{ costo\_fp}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{RECOMENDACIÓN:"}\NormalTok{)}
+\ControlFlowTok{if}\NormalTok{ recall\_c }\OperatorTok{\textless{}} \FloatTok{0.7}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"⚠ RECALL BAJO: Estamos perdiendo muchos incumplimientos."}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"  Considerar reducir umbral para detectar más casos de riesgo."}\NormalTok{)}
+\ControlFlowTok{if}\NormalTok{ precision\_c }\OperatorTok{\textless{}} \FloatTok{0.5}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"⚠ PRECISION BAJA: Muchas falsas alarmas."}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"  Considerar aumentar umbral o mejorar features."}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Aplicación 2: Clasificación de empresas por riesgo de
+quiebra}\label{aplicaciuxf3n-2-clasificaciuxf3n-de-empresas-por-riesgo-de-quiebra}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n\textbackslash{}n}\StringTok{APLICACIÓN: CLASIFICACIÓN DE RIESGO DE QUIEBRA EMPRESARIAL"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\CommentTok{\# Generar datos de empresas}
+\NormalTok{np.random.seed(}\DecValTok{42}\NormalTok{)}
+\NormalTok{n\_empresas }\OperatorTok{=} \DecValTok{500}
+
+\NormalTok{datos\_empresas }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}activos\_totales\textquotesingle{}}\NormalTok{: np.random.uniform(}\DecValTok{100000}\NormalTok{, }\DecValTok{10000000}\NormalTok{, n\_empresas),}
+    \StringTok{\textquotesingle{}pasivos\_totales\textquotesingle{}}\NormalTok{: np.random.uniform(}\DecValTok{50000}\NormalTok{, }\DecValTok{8000000}\NormalTok{, n\_empresas),}
+    \StringTok{\textquotesingle{}ventas\_anuales\textquotesingle{}}\NormalTok{: np.random.uniform(}\DecValTok{200000}\NormalTok{, }\DecValTok{15000000}\NormalTok{, n\_empresas),}
+    \StringTok{\textquotesingle{}utilidad\_neta\textquotesingle{}}\NormalTok{: np.random.uniform(}\OperatorTok{{-}}\DecValTok{500000}\NormalTok{, }\DecValTok{2000000}\NormalTok{, n\_empresas),}
+    \StringTok{\textquotesingle{}flujo\_caja\textquotesingle{}}\NormalTok{: np.random.uniform(}\OperatorTok{{-}}\DecValTok{200000}\NormalTok{, }\DecValTok{1000000}\NormalTok{, n\_empresas),}
+    \StringTok{\textquotesingle{}años\_operacion\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{1}\NormalTok{, }\DecValTok{30}\NormalTok{, n\_empresas)}
+\NormalTok{\})}
+
+\CommentTok{\# Calcular ratios financieros}
+\NormalTok{datos\_empresas[}\StringTok{\textquotesingle{}ratio\_liquidez\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ datos\_empresas[}\StringTok{\textquotesingle{}activos\_totales\textquotesingle{}}\NormalTok{] }\OperatorTok{/}\NormalTok{ datos\_empresas[}\StringTok{\textquotesingle{}pasivos\_totales\textquotesingle{}}\NormalTok{]}
+\NormalTok{datos\_empresas[}\StringTok{\textquotesingle{}margen\_utilidad\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ datos\_empresas[}\StringTok{\textquotesingle{}utilidad\_neta\textquotesingle{}}\NormalTok{] }\OperatorTok{/}\NormalTok{ datos\_empresas[}\StringTok{\textquotesingle{}ventas\_anuales\textquotesingle{}}\NormalTok{]}
+\NormalTok{datos\_empresas[}\StringTok{\textquotesingle{}ratio\_endeudamiento\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ datos\_empresas[}\StringTok{\textquotesingle{}pasivos\_totales\textquotesingle{}}\NormalTok{] }\OperatorTok{/}\NormalTok{ datos\_empresas[}\StringTok{\textquotesingle{}activos\_totales\textquotesingle{}}\NormalTok{]}
+
+\CommentTok{\# Variable objetivo: quiebra (1 = sí, 0 = no)}
+\NormalTok{score\_quiebra }\OperatorTok{=}\NormalTok{ (}
+    \OperatorTok{{-}}\NormalTok{datos\_empresas[}\StringTok{\textquotesingle{}ratio\_liquidez\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \FloatTok{0.5} \OperatorTok{+}
+    \OperatorTok{{-}}\NormalTok{datos\_empresas[}\StringTok{\textquotesingle{}margen\_utilidad\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \DecValTok{2} \OperatorTok{+}
+\NormalTok{    datos\_empresas[}\StringTok{\textquotesingle{}ratio\_endeudamiento\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \DecValTok{3} \OperatorTok{+}
+    \OperatorTok{{-}}\NormalTok{datos\_empresas[}\StringTok{\textquotesingle{}flujo\_caja\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \FloatTok{0.000001} \OperatorTok{+}
+    \OperatorTok{{-}}\NormalTok{datos\_empresas[}\StringTok{\textquotesingle{}años\_operacion\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \FloatTok{0.05} \OperatorTok{+}
+\NormalTok{    np.random.normal(}\DecValTok{0}\NormalTok{, }\FloatTok{0.5}\NormalTok{, n\_empresas)}
+\NormalTok{)}
+
+\NormalTok{datos\_empresas[}\StringTok{\textquotesingle{}quiebra\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ (score\_quiebra }\OperatorTok{\textgreater{}} \FloatTok{1.0}\NormalTok{).astype(}\BuiltInTok{int}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Dataset de empresas:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Total empresas: }\SpecialCharTok{\{}\NormalTok{n\_empresas}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Quiebras: }\SpecialCharTok{\{}\NormalTok{datos\_empresas[}\StringTok{\textquotesingle{}quiebra\textquotesingle{}}\NormalTok{]}\SpecialCharTok{.}\BuiltInTok{sum}\NormalTok{()}\SpecialCharTok{\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{datos\_empresas[}\StringTok{\textquotesingle{}quiebra\textquotesingle{}}\NormalTok{]}\SpecialCharTok{.}\NormalTok{mean()}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.1f\}}\SpecialStringTok{\%)"}\NormalTok{)}
+
+\CommentTok{\# Seleccionar features}
+\NormalTok{features\_empresas }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}ratio\_liquidez\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}margen\_utilidad\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}ratio\_endeudamiento\textquotesingle{}}\NormalTok{,}
+                     \StringTok{\textquotesingle{}flujo\_caja\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}años\_operacion\textquotesingle{}}\NormalTok{]}
+
+\NormalTok{X\_empresas }\OperatorTok{=}\NormalTok{ datos\_empresas[features\_empresas]}
+\NormalTok{y\_empresas }\OperatorTok{=}\NormalTok{ datos\_empresas[}\StringTok{\textquotesingle{}quiebra\textquotesingle{}}\NormalTok{]}
+
+\CommentTok{\# Dividir datos}
+\NormalTok{X\_train\_e, X\_test\_e, y\_train\_e, y\_test\_e }\OperatorTok{=}\NormalTok{ train\_test\_split(}
+\NormalTok{    X\_empresas, y\_empresas, test\_size}\OperatorTok{=}\FloatTok{0.3}\NormalTok{, random\_state}\OperatorTok{=}\DecValTok{42}
+\NormalTok{)}
+
+\CommentTok{\# Entrenar modelo}
+\NormalTok{modelo\_quiebra }\OperatorTok{=}\NormalTok{ LogisticRegression(random\_state}\OperatorTok{=}\DecValTok{42}\NormalTok{, max\_iter}\OperatorTok{=}\DecValTok{1000}\NormalTok{)}
+\NormalTok{modelo\_quiebra.fit(X\_train\_e, y\_train\_e)}
+
+\CommentTok{\# Evaluar}
+\NormalTok{y\_pred\_e }\OperatorTok{=}\NormalTok{ modelo\_quiebra.predict(X\_test\_e)}
+\NormalTok{prob\_quiebra }\OperatorTok{=}\NormalTok{ modelo\_quiebra.predict\_proba(X\_test\_e)}
+
+\CommentTok{\# Métricas}
+\NormalTok{accuracy\_e }\OperatorTok{=}\NormalTok{ calcular\_accuracy(y\_test\_e, y\_pred\_e)}
+\NormalTok{precision\_e }\OperatorTok{=}\NormalTok{ calcular\_precision(y\_test\_e, y\_pred\_e)}
+\NormalTok{recall\_e }\OperatorTok{=}\NormalTok{ calcular\_recall(y\_test\_e, y\_pred\_e)}
+\NormalTok{f1\_e }\OperatorTok{=}\NormalTok{ calcular\_f1(y\_test\_e, y\_pred\_e)}
+
+\NormalTok{fpr\_e, tpr\_e, \_ }\OperatorTok{=}\NormalTok{ roc\_curve(y\_test\_e, prob\_quiebra[:, }\DecValTok{1}\NormalTok{])}
+\NormalTok{auc\_e }\OperatorTok{=}\NormalTok{ auc(fpr\_e, tpr\_e)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{MÉTRICAS DEL MODELO"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Accuracy:  }\SpecialCharTok{\{}\NormalTok{accuracy\_e}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Precision: }\SpecialCharTok{\{}\NormalTok{precision\_e}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Recall:    }\SpecialCharTok{\{}\NormalTok{recall\_e}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  F1{-}Score:  }\SpecialCharTok{\{}\NormalTok{f1\_e}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  AUC:       }\SpecialCharTok{\{}\NormalTok{auc\_e}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Importancia de variables}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{IMPORTANCIA DE VARIABLES (Coeficientes)"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\NormalTok{coeficientes }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}Variable\textquotesingle{}}\NormalTok{: features\_empresas,}
+    \StringTok{\textquotesingle{}Coeficiente\textquotesingle{}}\NormalTok{: modelo\_quiebra.coef\_[}\DecValTok{0}\NormalTok{]}
+\NormalTok{\}).sort\_values(}\StringTok{\textquotesingle{}Coeficiente\textquotesingle{}}\NormalTok{, key}\OperatorTok{=}\BuiltInTok{abs}\NormalTok{, ascending}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ \_, row }\KeywordTok{in}\NormalTok{ coeficientes.iterrows():}
+\NormalTok{    signo }\OperatorTok{=} \StringTok{"↑ Mayor riesgo"} \ControlFlowTok{if}\NormalTok{ row[}\StringTok{\textquotesingle{}Coeficiente\textquotesingle{}}\NormalTok{] }\OperatorTok{\textgreater{}} \DecValTok{0} \ControlFlowTok{else} \StringTok{"↓ Menor riesgo"}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  }\SpecialCharTok{\{}\NormalTok{row[}\StringTok{\textquotesingle{}Variable\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:\textless{}25\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{row[}\StringTok{\textquotesingle{}Coeficiente\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:\textgreater{}8.4f\}}\SpecialStringTok{  }\SpecialCharTok{\{}\NormalTok{signo}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{APLICACIÓN PRÁCTICA:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Este modelo puede usarse para:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"  1. Sistema de alerta temprana de quiebra"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"  2. Decisiones de inversión o préstamos corporativos"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"  3. Priorización de auditorías o intervenciones"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"  4. Análisis de cartera de inversiones"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Ejercicios prácticos}\label{ejercicios-pruxe1cticos}
+
+\subsection{Ejercicio 1: Optimizar umbral según
+costo}\label{ejercicio-1-optimizar-umbral-seguxfan-costo}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n\textbackslash{}n}\StringTok{EJERCICIO: OPTIMIZACIÓN DE UMBRAL SEGÚN COSTOS"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\KeywordTok{def}\NormalTok{ encontrar\_umbral\_optimo(y\_real, probabilidades, costo\_fp, costo\_fn):}
+    \CommentTok{"""}
+\CommentTok{    Encuentra el umbral óptimo que minimiza costos totales}
+\CommentTok{    """}
+\NormalTok{    umbrales }\OperatorTok{=}\NormalTok{ np.linspace(}\FloatTok{0.1}\NormalTok{, }\FloatTok{0.9}\NormalTok{, }\DecValTok{50}\NormalTok{)}
+    
+\NormalTok{    mejores\_resultados }\OperatorTok{=}\NormalTok{ \{}
+        \StringTok{\textquotesingle{}umbral\textquotesingle{}}\NormalTok{: }\VariableTok{None}\NormalTok{,}
+        \StringTok{\textquotesingle{}costo\_total\textquotesingle{}}\NormalTok{: }\BuiltInTok{float}\NormalTok{(}\StringTok{\textquotesingle{}inf\textquotesingle{}}\NormalTok{),}
+        \StringTok{\textquotesingle{}precision\textquotesingle{}}\NormalTok{: }\DecValTok{0}\NormalTok{,}
+        \StringTok{\textquotesingle{}recall\textquotesingle{}}\NormalTok{: }\DecValTok{0}\NormalTok{,}
+        \StringTok{\textquotesingle{}fp\textquotesingle{}}\NormalTok{: }\DecValTok{0}\NormalTok{,}
+        \StringTok{\textquotesingle{}fn\textquotesingle{}}\NormalTok{: }\DecValTok{0}
+\NormalTok{    \}}
+    
+\NormalTok{    resultados }\OperatorTok{=}\NormalTok{ []}
+    
+    \ControlFlowTok{for}\NormalTok{ umbral }\KeywordTok{in}\NormalTok{ umbrales:}
+\NormalTok{        y\_pred }\OperatorTok{=}\NormalTok{ (probabilidades }\OperatorTok{\textgreater{}=}\NormalTok{ umbral).astype(}\BuiltInTok{int}\NormalTok{)}
+        
+\NormalTok{        \_, TP, TN, FP, FN }\OperatorTok{=}\NormalTok{ calcular\_matriz\_confusion(y\_real, y\_pred)}
+        
+\NormalTok{        costo\_total }\OperatorTok{=}\NormalTok{ FP }\OperatorTok{*}\NormalTok{ costo\_fp }\OperatorTok{+}\NormalTok{ FN }\OperatorTok{*}\NormalTok{ costo\_fn}
+        
+\NormalTok{        prec }\OperatorTok{=}\NormalTok{ calcular\_precision(y\_real, y\_pred)}
+\NormalTok{        rec }\OperatorTok{=}\NormalTok{ calcular\_recall(y\_real, y\_pred)}
+        
+\NormalTok{        resultados.append(\{}
+            \StringTok{\textquotesingle{}umbral\textquotesingle{}}\NormalTok{: umbral,}
+            \StringTok{\textquotesingle{}costo\_total\textquotesingle{}}\NormalTok{: costo\_total,}
+            \StringTok{\textquotesingle{}precision\textquotesingle{}}\NormalTok{: prec,}
+            \StringTok{\textquotesingle{}recall\textquotesingle{}}\NormalTok{: rec,}
+            \StringTok{\textquotesingle{}fp\textquotesingle{}}\NormalTok{: FP,}
+            \StringTok{\textquotesingle{}fn\textquotesingle{}}\NormalTok{: FN}
+\NormalTok{        \})}
+        
+        \ControlFlowTok{if}\NormalTok{ costo\_total }\OperatorTok{\textless{}}\NormalTok{ mejores\_resultados[}\StringTok{\textquotesingle{}costo\_total\textquotesingle{}}\NormalTok{]:}
+\NormalTok{            mejores\_resultados }\OperatorTok{=}\NormalTok{ \{}
+                \StringTok{\textquotesingle{}umbral\textquotesingle{}}\NormalTok{: umbral,}
+                \StringTok{\textquotesingle{}costo\_total\textquotesingle{}}\NormalTok{: costo\_total,}
+                \StringTok{\textquotesingle{}precision\textquotesingle{}}\NormalTok{: prec,}
+                \StringTok{\textquotesingle{}recall\textquotesingle{}}\NormalTok{: rec,}
+                \StringTok{\textquotesingle{}fp\textquotesingle{}}\NormalTok{: FP,}
+                \StringTok{\textquotesingle{}fn\textquotesingle{}}\NormalTok{: FN}
+\NormalTok{            \}}
+    
+    \ControlFlowTok{return}\NormalTok{ mejores\_resultados, pd.DataFrame(resultados)}
+
+\CommentTok{\# Aplicar al modelo de crédito}
+\NormalTok{costo\_por\_fp }\OperatorTok{=} \DecValTok{500}  \CommentTok{\# Costo de revisar un caso falso positivo}
+\NormalTok{costo\_por\_fn }\OperatorTok{=}\NormalTok{ monto\_promedio }\OperatorTok{*} \FloatTok{0.7}  \CommentTok{\# 70\% del monto no recuperado}
+
+\NormalTok{resultado\_optimo, df\_resultados }\OperatorTok{=}\NormalTok{ encontrar\_umbral\_optimo(}
+\NormalTok{    y\_test\_c, }
+\NormalTok{    prob\_incumplimiento[:, }\DecValTok{1}\NormalTok{],}
+\NormalTok{    costo\_por\_fp,}
+\NormalTok{    costo\_por\_fn}
+\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Costos considerados:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Costo por Falso Positivo: S/ }\SpecialCharTok{\{}\NormalTok{costo\_por\_fp}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Costo por Falso Negativo: S/ }\SpecialCharTok{\{}\NormalTok{costo\_por\_fn}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{UMBRAL ÓPTIMO ENCONTRADO:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Umbral óptimo: }\SpecialCharTok{\{}\NormalTok{resultado\_optimo[}\StringTok{\textquotesingle{}umbral\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:.3f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Costo total: S/ }\SpecialCharTok{\{}\NormalTok{resultado\_optimo[}\StringTok{\textquotesingle{}costo\_total\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Precision: }\SpecialCharTok{\{}\NormalTok{resultado\_optimo[}\StringTok{\textquotesingle{}precision\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Recall: }\SpecialCharTok{\{}\NormalTok{resultado\_optimo[}\StringTok{\textquotesingle{}recall\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Falsos Positivos: }\SpecialCharTok{\{}\NormalTok{resultado\_optimo[}\StringTok{\textquotesingle{}fp\textquotesingle{}}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Falsos Negativos: }\SpecialCharTok{\{}\NormalTok{resultado\_optimo[}\StringTok{\textquotesingle{}fn\textquotesingle{}}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Comparar con umbral 0.5}
+\NormalTok{\_, TP\_05, TN\_05, FP\_05, FN\_05 }\OperatorTok{=}\NormalTok{ calcular\_matriz\_confusion(y\_test\_c, y\_pred\_c)}
+\NormalTok{costo\_umbral\_05 }\OperatorTok{=}\NormalTok{ FP\_05 }\OperatorTok{*}\NormalTok{ costo\_por\_fp }\OperatorTok{+}\NormalTok{ FN\_05 }\OperatorTok{*}\NormalTok{ costo\_por\_fn}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{COMPARACIÓN CON UMBRAL 0.5:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Costo con umbral 0.5: S/ }\SpecialCharTok{\{}\NormalTok{costo\_umbral\_05}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Ahorro con umbral óptimo: S/ }\SpecialCharTok{\{}\NormalTok{costo\_umbral\_05 }\OperatorTok{{-}}\NormalTok{ resultado\_optimo[}\StringTok{\textquotesingle{}costo\_total\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Graficar}
+\NormalTok{fig, (ax1, ax2) }\OperatorTok{=}\NormalTok{ plt.subplots(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{15}\NormalTok{, }\DecValTok{5}\NormalTok{))}
+
+\CommentTok{\# Gráfico de costos}
+\NormalTok{ax1.plot(df\_resultados[}\StringTok{\textquotesingle{}umbral\textquotesingle{}}\NormalTok{], df\_resultados[}\StringTok{\textquotesingle{}costo\_total\textquotesingle{}}\NormalTok{], }\StringTok{\textquotesingle{}b{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{)}
+\NormalTok{ax1.axvline(x}\OperatorTok{=}\NormalTok{resultado\_optimo[}\StringTok{\textquotesingle{}umbral\textquotesingle{}}\NormalTok{], color}\OperatorTok{=}\StringTok{\textquotesingle{}r\textquotesingle{}}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{\textquotesingle{}{-}{-}\textquotesingle{}}\NormalTok{, }
+\NormalTok{            label}\OperatorTok{=}\SpecialStringTok{f"Umbral óptimo (}\SpecialCharTok{\{}\NormalTok{resultado\_optimo[}\StringTok{\textquotesingle{}umbral\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:.3f\}}\SpecialStringTok{)"}\NormalTok{)}
+\NormalTok{ax1.axvline(x}\OperatorTok{=}\FloatTok{0.5}\NormalTok{, color}\OperatorTok{=}\StringTok{\textquotesingle{}g\textquotesingle{}}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{\textquotesingle{}{-}{-}\textquotesingle{}}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.5}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Umbral 0.5\textquotesingle{}}\NormalTok{)}
+\NormalTok{ax1.set\_xlabel(}\StringTok{\textquotesingle{}Umbral\textquotesingle{}}\NormalTok{)}
+\NormalTok{ax1.set\_ylabel(}\StringTok{\textquotesingle{}Costo Total (S/)\textquotesingle{}}\NormalTok{)}
+\NormalTok{ax1.set\_title(}\StringTok{\textquotesingle{}Costo Total vs Umbral\textquotesingle{}}\NormalTok{)}
+\NormalTok{ax1.legend()}
+\NormalTok{ax1.grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\CommentTok{\# Gráfico de Precision vs Recall}
+\NormalTok{ax2.plot(df\_resultados[}\StringTok{\textquotesingle{}umbral\textquotesingle{}}\NormalTok{], df\_resultados[}\StringTok{\textquotesingle{}precision\textquotesingle{}}\NormalTok{], }\StringTok{\textquotesingle{}b{-}\textquotesingle{}}\NormalTok{, }
+\NormalTok{         linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Precision\textquotesingle{}}\NormalTok{)}
+\NormalTok{ax2.plot(df\_resultados[}\StringTok{\textquotesingle{}umbral\textquotesingle{}}\NormalTok{], df\_resultados[}\StringTok{\textquotesingle{}recall\textquotesingle{}}\NormalTok{], }\StringTok{\textquotesingle{}r{-}\textquotesingle{}}\NormalTok{, }
+\NormalTok{         linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Recall\textquotesingle{}}\NormalTok{)}
+\NormalTok{ax2.axvline(x}\OperatorTok{=}\NormalTok{resultado\_optimo[}\StringTok{\textquotesingle{}umbral\textquotesingle{}}\NormalTok{], color}\OperatorTok{=}\StringTok{\textquotesingle{}g\textquotesingle{}}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{\textquotesingle{}{-}{-}\textquotesingle{}}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.5}\NormalTok{,}
+\NormalTok{            label}\OperatorTok{=}\StringTok{\textquotesingle{}Umbral óptimo\textquotesingle{}}\NormalTok{)}
+\NormalTok{ax2.set\_xlabel(}\StringTok{\textquotesingle{}Umbral\textquotesingle{}}\NormalTok{)}
+\NormalTok{ax2.set\_ylabel(}\StringTok{\textquotesingle{}Métrica\textquotesingle{}}\NormalTok{)}
+\NormalTok{ax2.set\_title(}\StringTok{\textquotesingle{}Precision y Recall vs Umbral\textquotesingle{}}\NormalTok{)}
+\NormalTok{ax2.legend()}
+\NormalTok{ax2.grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\NormalTok{plt.tight\_layout()}
+\NormalTok{plt.savefig(}\StringTok{\textquotesingle{}optimizacion\_umbral.png\textquotesingle{}}\NormalTok{, dpi}\OperatorTok{=}\DecValTok{300}\NormalTok{, bbox\_inches}\OperatorTok{=}\StringTok{\textquotesingle{}tight\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Gráfico guardado como \textquotesingle{}optimizacion\_umbral.png\textquotesingle{}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Conclusión}\label{conclusiuxf3n}
+
+En esta guía hemos explorado predicción y métricas de performance:
+
+\textbf{El problema de predicción}
+
+Predecir eventos futuros basándose en datos históricos para tomar
+mejores decisiones.
+
+\textbf{Matriz de confusión}
+
+Herramienta fundamental que muestra TP, TN, FP, FN para evaluar
+clasificadores.
+
+\textbf{Métricas de clasificación}
+
+\begin{itemize}
+\tightlist
+\item
+  Accuracy: Proporción de predicciones correctas
+\item
+  Precision: De las predicciones positivas, cuántas son correctas
+\item
+  Recall: De los casos positivos reales, cuántos detectamos
+\item
+  F1-Score: Balance entre precision y recall
+\end{itemize}
+
+\textbf{Curvas de evaluación}
+
+\begin{itemize}
+\tightlist
+\item
+  Curva Precision-Recall: Para evaluar trade-off entre precision y
+  recall
+\item
+  Curva ROC: Para evaluar capacidad discriminativa del modelo
+\item
+  AUC: Métrica resumen de la curva ROC
+\end{itemize}
+
+\section{Próximos pasos}\label{pruxf3ximos-pasos}
+
+En la siguiente guía (Guía 9: Métodos de ML para Clasificación)
+exploraremos:
+
+\begin{itemize}
+\tightlist
+\item
+  Regresión logística
+\item
+  K-Nearest Neighbors (KNN)
+\item
+  Árboles de decisión
+\item
+  Random Forests
+\item
+  Clasificación multi-clase
+\end{itemize}
+
+Estos algoritmos nos permitirán construir modelos predictivos más
+sofisticados para problemas económicos complejos.
+
+\section{Recursos adicionales}\label{recursos-adicionales}
+
+Para profundizar en métricas de clasificación:
+
+\begin{itemize}
+\tightlist
+\item
+  Scikit-learn Metrics:
+  scikit-learn.org/stable/modules/model\_evaluation.html
+\item
+  Understanding ROC Curves:
+  developers.google.com/machine-learning/crash-course/classification/roc-and-auc
+\item
+  Precision-Recall trade-off: machinelearningmastery.com
+\item
+  Aplicaciones en economía: papers en credit scoring, fraud detection
+\end{itemize}
 
 \section{Publicaciones Similares}\label{publicaciones-similares}
 
