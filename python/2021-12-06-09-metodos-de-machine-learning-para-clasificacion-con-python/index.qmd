@@ -28,7 +28,7 @@ author-note:
     authorship-agreements: null
 description: Implementación de KNN, árboles decisión, SVM y ensembles para problemas
   de clasificación en Python.
-eval: false
+eval: true
 citation:
   type: article-journal
   author:

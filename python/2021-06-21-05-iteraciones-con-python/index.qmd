@@ -28,7 +28,7 @@ author-note:
     authorship-agreements: null
 description: For, while, comprehensions y técnicas de iteración eficiente sobre secuencias
   y contenedores en Python.
-eval: false
+eval: true
 citation:
   type: article-journal
   author:

@@ -28,7 +28,7 @@ author-note:
     authorship-agreements: null
 description: Funciones, parámetros, retorno, scope y buenas prácticas para código
   modular y reutilizable en Python.
-eval: false
+eval: true
 citation:
   type: article-journal
   author:

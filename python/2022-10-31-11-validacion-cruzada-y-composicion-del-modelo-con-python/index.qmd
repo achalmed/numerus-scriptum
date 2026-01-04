@@ -28,7 +28,7 @@ author-note:
     authorship-agreements: null
 description: Técnicas de cross-validation, grid search y construcción de pipelines
   para modelos robustos en ML.
-eval: false
+eval: true
 citation:
   type: article-journal
   author:

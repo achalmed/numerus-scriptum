@@ -409,6 +409,13 @@ Python nos permite verificar el tipo de cualquier valor con la función
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+<class 'int'>
+<class 'float'>
+<class 'str'>
+<class 'bool'>
+\end{verbatim}
+
 \subsection{Conversión entre tipos}\label{conversiuxf3n-entre-tipos}
 
 Frecuentemente necesitamos convertir datos de un tipo a otro. Python
@@ -435,6 +442,13 @@ proporciona funciones para esto:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+3
+7.0
+El año es: 2023
+3.75
+\end{verbatim}
+
 Nota importante sobre conversión de float a int:
 
 \begin{Shaded}
@@ -449,6 +463,14 @@ Nota importante sobre conversión de float a int:
 \BuiltInTok{print}\NormalTok{(}\BuiltInTok{round}\NormalTok{(}\FloatTok{4.1}\NormalTok{))  }\CommentTok{\# Resultado: 4}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+4
+4
+-4
+5
+4
+\end{verbatim}
 
 \subsection{Ejemplo aplicado: Cálculo del
 IPC}\label{ejemplo-aplicado-cuxe1lculo-del-ipc}
@@ -472,6 +494,15 @@ IPC}\label{ejemplo-aplicado-cuxe1lculo-del-ipc}
 \BuiltInTok{print}\NormalTok{(}\StringTok{"Tipo de dato del IPC:"}\NormalTok{, }\BuiltInTok{type}\NormalTok{(ipc))}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Cálculo del Índice de Precios al Consumidor
+Año base: 2020
+Precio canasta base: S/ 750.0
+Precio canasta actual: S/ 850.5
+IPC: 113.4
+Tipo de dato del IPC: <class 'float'>
+\end{verbatim}
 
 \section{Nombres de variables y palabras
 reservadas}\label{nombres-de-variables-y-palabras-reservadas}
@@ -569,11 +600,28 @@ Python sigue convenciones (no obligatorias pero recomendadas):
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Variable que indica uso interno}
-\NormalTok{\_dato\_temporal }\OperatorTok{=} \DecValTok{100}
-\NormalTok{\_calculo\_intermedio }\OperatorTok{=}\NormalTok{ precio }\OperatorTok{*}\NormalTok{ cantidad}
+\CommentTok{\# Primero definimos las variables necesarias}
+\NormalTok{precio\_unitario }\OperatorTok{=} \FloatTok{25.50}  \CommentTok{\# precio de venta por unidad}
+\NormalTok{cantidad\_vendida }\OperatorTok{=} \DecValTok{120}  \CommentTok{\# unidades vendidas}
+
+\CommentTok{\# Ahora sí podemos calcular}
+\NormalTok{\_calculo\_intermedio }\OperatorTok{=}\NormalTok{ precio\_unitario }\OperatorTok{*}\NormalTok{ cantidad\_vendida}
+\NormalTok{\_dato\_temporal }\OperatorTok{=} \DecValTok{100}  \CommentTok{\# variable que solo usamos internamente}
+
+\CommentTok{\# Mostramos resultados (opcional, para que el lector vea)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Precio unitario: S/ }\SpecialCharTok{\{}\NormalTok{precio\_unitario}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Cantidad vendida: }\SpecialCharTok{\{}\NormalTok{cantidad\_vendida}\SpecialCharTok{\}}\SpecialStringTok{ unidades"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Subtotal (cálculo intermedio): S/ }\SpecialCharTok{\{}\NormalTok{\_calculo\_intermedio}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Valor temporal interno: }\SpecialCharTok{\{}\NormalTok{\_dato\_temporal}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Precio unitario: S/ 25.50
+Cantidad vendida: 120 unidades
+Subtotal (cálculo intermedio): S/ 3,060.00
+Valor temporal interno: 100
+\end{verbatim}
 
 \subsection{Nombres descriptivos
 vs.~cortos}\label{nombres-descriptivos-vs.-cortos}
@@ -598,6 +646,19 @@ código auto-documentado:
     \BuiltInTok{print}\NormalTok{(i)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+\end{verbatim}
 
 \subsection{Ejemplo económico
 completo}\label{ejemplo-econuxf3mico-completo}
@@ -631,6 +692,14 @@ completo}\label{ejemplo-econuxf3mico-completo}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Economía emergente: }\SpecialCharTok{\{}\NormalTok{es\_economia\_emergente}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Análisis Económico - Perú (PER)
+PIB nominal: USD 242,632 millones
+Población: 33,715,471 habitantes
+PIB per cápita: USD 7,196.46
+Economía emergente: True
+\end{verbatim}
 
 \section{Operadores y operandos}\label{operadores-y-operandos}
 
@@ -683,6 +752,16 @@ los valores sobre los que se opera.
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Ingreso total: 10500
+Ahorro: 1000
+Valor de venta: 2550.0
+PIB per cápita: 10.0
+Capital final: 11576.25
+Lotes completos: 13
+Unidades restantes: 25
+\end{verbatim}
+
 \subsection{Operadores de
 comparación}\label{operadores-de-comparaciuxf3n}
 
@@ -716,6 +795,15 @@ Estos operadores comparan valores y devuelven True o False:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+False
+True
+True
+False
+True
+False
+\end{verbatim}
+
 \subsection{Operadores lógicos}\label{operadores-luxf3gicos}
 
 Los operadores lógicos combinan expresiones booleanas:
@@ -743,6 +831,12 @@ Los operadores lógicos combinan expresiones booleanas:
 \BuiltInTok{print}\NormalTok{(}\StringTok{"En recesión:"}\NormalTok{, en\_recesion)  }\CommentTok{\# False}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Economía estable: True
+Hay problema económico: False
+En recesión: False
+\end{verbatim}
 
 \subsection{Operadores de asignación}\label{operadores-de-asignaciuxf3n}
 
@@ -777,6 +871,14 @@ compuestos:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Capital después de aporte: 11500
+Capital después de retiro: 9500
+Capital con interés: 9975.0
+Capital dividido: 4987.5
+Tasa al cubo: 8
+\end{verbatim}
+
 \subsection{Ejemplo económico: Cálculo de interés
 compuesto}\label{ejemplo-econuxf3mico-cuxe1lculo-de-interuxe9s-compuesto}
 
@@ -806,6 +908,16 @@ compuesto}\label{ejemplo-econuxf3mico-cuxe1lculo-de-interuxe9s-compuesto}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Préstamo con Interés Compuesto
+Capital inicial: S/ 50,000.00
+Tasa anual: 8.0%
+Periodo: 5 años
+Capital final (método 1): S/ 73,466.40
+Capital final (método 2): S/ 73,466.40
+Intereses ganados: S/ 23,466.40
+\end{verbatim}
+
 \section{Expresiones}\label{expresiones}
 
 Una expresión es una combinación de valores, variables y operadores que
@@ -815,6 +927,10 @@ Python puede evaluar para producir un resultado.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Primero definimos las variables que vamos a usar}
+\NormalTok{precio }\OperatorTok{=} \FloatTok{25.50}
+\NormalTok{cantidad }\OperatorTok{=} \DecValTok{100}
+
 \CommentTok{\# Expresiones numéricas}
 \DecValTok{5} \OperatorTok{+} \DecValTok{3}  \CommentTok{\# Evalúa a 8}
 \NormalTok{precio }\OperatorTok{*}\NormalTok{ cantidad  }\CommentTok{\# Evalúa al producto}
@@ -845,6 +961,11 @@ Python puede evaluar para producir un resultado.
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Multiplicador keynesiano: }\SpecialCharTok{\{}\NormalTok{multiplicador}\SpecialCharTok{:.2f\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# 2.00}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Propensión marginal al consumo: 0.5
+Multiplicador keynesiano: 2.00
+\end{verbatim}
 
 \subsection{Expresiones en contexto
 económico}\label{expresiones-en-contexto-econuxf3mico}
@@ -881,6 +1002,13 @@ económico}\label{expresiones-en-contexto-econuxf3mico}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"La demanda es }\SpecialCharTok{\{}\NormalTok{tipo\_demanda}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Variación del precio: 10.00%
+Variación de la cantidad: -5.00%
+Elasticidad precio de la demanda: -0.50
+La demanda es inelástica
+\end{verbatim}
 
 \section{Orden de operaciones}\label{orden-de-operaciones}
 
@@ -937,6 +1065,13 @@ De mayor a menor precedencia:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+14
+20
+50
+50
+\end{verbatim}
+
 \subsection{Aplicación económica: Valor presente neto
 (VPN)}\label{aplicaciuxf3n-econuxf3mica-valor-presente-neto-vpn}
 
@@ -970,6 +1105,12 @@ De mayor a menor precedencia:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Inversión inicial: S/ 100,000.00
+VPN del proyecto: S/ -2,103.68
+Decisión: Rechazar el proyecto
+\end{verbatim}
+
 \subsection{Uso de paréntesis para
 claridad}\label{uso-de-paruxe9ntesis-para-claridad}
 
@@ -991,6 +1132,10 @@ legible:
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Tasa efectiva anual: }\SpecialCharTok{\{}\NormalTok{tasa\_efectiva }\OperatorTok{*} \DecValTok{100}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Tasa efectiva anual: 12.68%
+\end{verbatim}
 
 \section{Operaciones con strings}\label{operaciones-con-strings}
 
@@ -1016,6 +1161,11 @@ economía: nombres de países, descripciones de sectores, códigos, etc.
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Perú está ubicado en América del Sur
+Edison Achalma, Economista
+\end{verbatim}
+
 \subsection{Repetición de strings}\label{repeticiuxf3n-de-strings}
 
 \begin{Shaded}
@@ -1030,6 +1180,13 @@ economía: nombres de países, descripciones de sectores, códigos, etc.
 \BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{40}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+--------------------------------------------------
+========================================
+           REPORTE ECONÓMICO            
+========================================
+\end{verbatim}
 
 \subsection{Formato de strings}\label{formato-de-strings}
 
@@ -1055,6 +1212,12 @@ Python ofrece varias formas de formatear strings:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+El PIB de Perú es USD 242632 millones
+La inflación es 3.25%
+Edison tiene 30 años
+\end{verbatim}
+
 \textbf{Método format()}
 
 \begin{Shaded}
@@ -1079,6 +1242,14 @@ Python ofrece varias formas de formatear strings:
 \BuiltInTok{print}\NormalTok{(}\StringTok{"PIB: USD }\SpecialCharTok{\{:,\}}\StringTok{"}\NormalTok{.}\BuiltInTok{format}\NormalTok{(pib\_grande))  }\CommentTok{\# Con comas}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+El PIB de Perú es USD 242632 millones
+El PIB de Perú es USD 242632 millones. Perú es un país emergente.
+El PIB de Perú es USD 242632 millones
+Inflación: 3.25%
+PIB: USD 242,632,000,000
+\end{verbatim}
 
 \textbf{F-strings (Recomendado, Python 3.6+)}
 
@@ -1109,6 +1280,14 @@ Python ofrece varias formas de formatear strings:
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Valor total: S/ }\SpecialCharTok{\{}\NormalTok{precio }\OperatorTok{*}\NormalTok{ cantidad}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+El PIB de Perú es USD 242632 millones
+PIB per cápita: USD 7196.46
+Inflación: 3.25%
+Población: 33,715,471 habitantes
+Valor total: S/ 5,000.00
+\end{verbatim}
 
 \subsection{Métodos de strings}\label{muxe9todos-de-strings}
 
@@ -1152,6 +1331,17 @@ Python ofrece varias formas de formatear strings:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+AGRICULTURA, GANADERÍA Y PESCA
+producto bruto interno
+Agricultura, Ganadería Y Pesca
+Agricultura, ganadería y pesca
+La tasa de interés es 6%
+['Minería', 'Agricultura', 'Manufactura', 'Servicios']
+Producto Bruto Interno
+'PIB'
+\end{verbatim}
+
 \subsection{Indexación y slicing de
 strings}\label{indexaciuxf3n-y-slicing-de-strings}
 
@@ -1180,6 +1370,20 @@ Los strings son secuencias de caracteres que pueden ser indexados:
 \BuiltInTok{print}\NormalTok{(indicador[::}\OperatorTok{{-}}\DecValTok{1}\NormalTok{])  }\CommentTok{\# ONRETNI OTURB OTCUDORP (invertido)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+P
+R
+O
+N
+PRODUCTO
+PRODUCTO
+BRUTO
+INTERNO
+PRODUCTO BRUTO INTERNO
+POUT RT NEN
+ONRETNI OTURB OTCUDORP
+\end{verbatim}
 
 \subsection{Verificación de
 contenido}\label{verificaciuxf3n-de-contenido}
@@ -1214,6 +1418,18 @@ contenido}\label{verificaciuxf3n-de-contenido}
 \BuiltInTok{print}\NormalTok{(moneda.isalpha())  }\CommentTok{\# True}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+True
+False
+True
+True
+True
+False
+True
+False
+True
+\end{verbatim}
 
 \subsection{Ejemplo aplicado: Procesamiento de datos
 económicos}\label{ejemplo-aplicado-procesamiento-de-datos-econuxf3micos}
@@ -1250,6 +1466,17 @@ económicos}\label{ejemplo-aplicado-procesamiento-de-datos-econuxf3micos}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\StringTok{\textquotesingle{}TOTAL\textquotesingle{}}\SpecialCharTok{:15\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{total}\SpecialCharTok{:6.1f\}}\SpecialStringTok{\%"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+CONTRIBUCIÓN SECTORIAL AL PIB
+========================================
+Minería           45.2% ██████████████████████
+Agricultura       12.8% ██████
+Manufactura       23.5% ███████████
+Servicios         67.9% █████████████████████████████████
+========================================
+TOTAL            149.4%
+\end{verbatim}
 
 \section{Solicitando entrada del
 usuario}\label{solicitando-entrada-del-usuario}
@@ -1499,6 +1726,10 @@ debugging}\label{comentarios-para-debugging}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Elasticidad: -0.50
+\end{verbatim}
+
 \section{Nombres de variables
 mnemotécnicos}\label{nombres-de-variables-mnemotuxe9cnicos}
 
@@ -1656,7 +1887,7 @@ cápita y la línea de pobreza.
 
 \CommentTok{\# Línea de pobreza (valor oficial)}
 \NormalTok{linea\_pobreza\_monetaria }\OperatorTok{=} \FloatTok{378.00}  \CommentTok{\# S/ mensuales (valor hipotético)}
-\NormalTok{linea\_pobreza\_extrema }\OperatorTok{=} \FloatTok{201.00}    \CommentTok{\# S/ mensuales (valor hipotético)}
+\NormalTok{linea\_pobreza\_extrema }\OperatorTok{=} \FloatTok{201.00}  \CommentTok{\# S/ mensuales (valor hipotético)}
 
 \CommentTok{\# Clasificación}
 \ControlFlowTok{if}\NormalTok{ ingreso\_per\_capita }\OperatorTok{\textless{}}\NormalTok{ linea\_pobreza\_extrema:}
@@ -1711,11 +1942,13 @@ simplificado}\label{ejercicio-2-cuxe1lculo-del-uxedndice-de-gini-simplificado}
 \NormalTok{prop\_5 }\OperatorTok{=} \FloatTok{1.0}
 
 \CommentTok{\# Cálculo simplificado del Gini (método trapezoidal)}
-\NormalTok{area\_bajo\_lorenz }\OperatorTok{=}\NormalTok{ (}\FloatTok{0.2} \OperatorTok{*}\NormalTok{ prop\_1) }\OperatorTok{+} \OperatorTok{\textbackslash{}}
-\NormalTok{                   (}\FloatTok{0.2} \OperatorTok{*}\NormalTok{ (prop\_1 }\OperatorTok{+}\NormalTok{ prop\_2)) }\OperatorTok{/} \DecValTok{2} \OperatorTok{+} \OperatorTok{\textbackslash{}}
-\NormalTok{                   (}\FloatTok{0.2} \OperatorTok{*}\NormalTok{ (prop\_2 }\OperatorTok{+}\NormalTok{ prop\_3)) }\OperatorTok{/} \DecValTok{2} \OperatorTok{+} \OperatorTok{\textbackslash{}}
-\NormalTok{                   (}\FloatTok{0.2} \OperatorTok{*}\NormalTok{ (prop\_3 }\OperatorTok{+}\NormalTok{ prop\_4)) }\OperatorTok{/} \DecValTok{2} \OperatorTok{+} \OperatorTok{\textbackslash{}}
-\NormalTok{                   (}\FloatTok{0.2} \OperatorTok{*}\NormalTok{ (prop\_4 }\OperatorTok{+}\NormalTok{ prop\_5)) }\OperatorTok{/} \DecValTok{2}
+\NormalTok{area\_bajo\_lorenz }\OperatorTok{=}\NormalTok{ (}
+\NormalTok{    (}\FloatTok{0.2} \OperatorTok{*}\NormalTok{ prop\_1)}
+    \OperatorTok{+}\NormalTok{ (}\FloatTok{0.2} \OperatorTok{*}\NormalTok{ (prop\_1 }\OperatorTok{+}\NormalTok{ prop\_2)) }\OperatorTok{/} \DecValTok{2}
+    \OperatorTok{+}\NormalTok{ (}\FloatTok{0.2} \OperatorTok{*}\NormalTok{ (prop\_2 }\OperatorTok{+}\NormalTok{ prop\_3)) }\OperatorTok{/} \DecValTok{2}
+    \OperatorTok{+}\NormalTok{ (}\FloatTok{0.2} \OperatorTok{*}\NormalTok{ (prop\_3 }\OperatorTok{+}\NormalTok{ prop\_4)) }\OperatorTok{/} \DecValTok{2}
+    \OperatorTok{+}\NormalTok{ (}\FloatTok{0.2} \OperatorTok{*}\NormalTok{ (prop\_4 }\OperatorTok{+}\NormalTok{ prop\_5)) }\OperatorTok{/} \DecValTok{2}
+\NormalTok{)}
 
 \NormalTok{gini }\OperatorTok{=}\NormalTok{ (}\FloatTok{0.5} \OperatorTok{{-}}\NormalTok{ area\_bajo\_lorenz) }\OperatorTok{/} \FloatTok{0.5}
 
@@ -1763,11 +1996,13 @@ equilibrio}\label{ejercicio-3-anuxe1lisis-de-punto-de-equilibrio}
 \ControlFlowTok{else}\NormalTok{:}
     \CommentTok{\# Cálculo del punto de equilibrio}
 \NormalTok{    margen\_contribucion\_unitario }\OperatorTok{=}\NormalTok{ precio\_venta\_unitario }\OperatorTok{{-}}\NormalTok{ costo\_variable\_unitario}
-\NormalTok{    margen\_contribucion\_porcentaje }\OperatorTok{=}\NormalTok{ (margen\_contribucion\_unitario }\OperatorTok{/}\NormalTok{ precio\_venta\_unitario) }\OperatorTok{*} \DecValTok{100}
-    
+\NormalTok{    margen\_contribucion\_porcentaje }\OperatorTok{=}\NormalTok{ (}
+\NormalTok{        margen\_contribucion\_unitario }\OperatorTok{/}\NormalTok{ precio\_venta\_unitario}
+\NormalTok{    ) }\OperatorTok{*} \DecValTok{100}
+
 \NormalTok{    punto\_equilibrio\_unidades }\OperatorTok{=}\NormalTok{ costos\_fijos }\OperatorTok{/}\NormalTok{ margen\_contribucion\_unitario}
 \NormalTok{    punto\_equilibrio\_soles }\OperatorTok{=}\NormalTok{ punto\_equilibrio\_unidades }\OperatorTok{*}\NormalTok{ precio\_venta\_unitario}
-    
+
     \CommentTok{\# Resultados}
     \BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"} \OperatorTok{+} \StringTok{"="} \OperatorTok{*} \DecValTok{50}\NormalTok{)}
     \BuiltInTok{print}\NormalTok{(}\StringTok{"RESULTADOS DEL ANÁLISIS"}\NormalTok{)}
@@ -1781,11 +2016,11 @@ equilibrio}\label{ejercicio-3-anuxe1lisis-de-punto-de-equilibrio}
     \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Punto de equilibrio:          }\SpecialCharTok{\{}\NormalTok{punto\_equilibrio\_unidades}\SpecialCharTok{:.0f\}}\SpecialStringTok{ unidades"}\NormalTok{)}
     \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Punto de equilibrio:          S/ }\SpecialCharTok{\{}\NormalTok{punto\_equilibrio\_soles}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
     \BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{50}\NormalTok{)}
-    
+
     \CommentTok{\# Análisis adicional}
     \BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Análisis de sensibilidad:"}\NormalTok{)}
 \NormalTok{    unidades\_vender }\OperatorTok{=} \BuiltInTok{float}\NormalTok{(}\BuiltInTok{input}\NormalTok{(}\StringTok{"¿Cuántas unidades espera vender? "}\NormalTok{))}
-    
+
     \ControlFlowTok{if}\NormalTok{ unidades\_vender }\OperatorTok{\textgreater{}}\NormalTok{ punto\_equilibrio\_unidades:}
 \NormalTok{        diferencia }\OperatorTok{=}\NormalTok{ unidades\_vender }\OperatorTok{{-}}\NormalTok{ punto\_equilibrio\_unidades}
 \NormalTok{        utilidad }\OperatorTok{=}\NormalTok{ diferencia }\OperatorTok{*}\NormalTok{ margen\_contribucion\_unitario}
@@ -1797,7 +2032,9 @@ equilibrio}\label{ejercicio-3-anuxe1lisis-de-punto-de-equilibrio}
         \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Pérdida esperada: S/ }\SpecialCharTok{\{}\NormalTok{perdida}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
         \BuiltInTok{print}\NormalTok{(}\StringTok{"La empresa tendría pérdidas."}\NormalTok{)}
     \ControlFlowTok{else}\NormalTok{:}
-        \BuiltInTok{print}\NormalTok{(}\StringTok{"La empresa estaría en el punto de equilibrio (sin ganancias ni pérdidas)."}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}
+            \StringTok{"La empresa estaría en el punto de equilibrio (sin ganancias ni pérdidas)."}
+\NormalTok{        )}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1926,7 +2163,7 @@ divisas}\label{ejercicio-5-conversor-de-monedas-con-muxfaltiples-divisas}
         \BuiltInTok{print}\NormalTok{(}\StringTok{"Moneda de destino inválida"}\NormalTok{)}
 \NormalTok{        monto\_final }\OperatorTok{=} \DecValTok{0}
 \NormalTok{        simbolo\_destino }\OperatorTok{=} \StringTok{""}
-    
+
     \CommentTok{\# Resultados}
     \ControlFlowTok{if}\NormalTok{ monto\_final }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
         \BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"} \OperatorTok{+} \StringTok{"="} \OperatorTok{*} \DecValTok{50}\NormalTok{)}
@@ -1978,7 +2215,7 @@ importante recordar convertir la entrada a números cuando sea necesario.
 Los comentarios documentan el código. Son esenciales para mantener
 código legible y mantenible.
 
-\section{Próximos pasos}\label{pruxf3ximos-pasos}
+\subsection{Próximos pasos}\label{pruxf3ximos-pasos}
 
 En la siguiente guía (Guía 3: Objetos de Python) exploraremos
 estructuras de datos más complejas:
@@ -1995,7 +2232,7 @@ estructuras de datos más complejas:
   Operaciones con estas estructuras aplicadas a economía
 \end{itemize}
 
-\section{Recursos adicionales}\label{recursos-adicionales}
+\subsection{Recursos adicionales}\label{recursos-adicionales}
 
 Para profundizar en estos conceptos, se recomienda:
 

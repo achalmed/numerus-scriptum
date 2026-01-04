@@ -28,7 +28,7 @@ author-note:
     authorship-agreements: null
 description: Creación, selección, filtrado y operaciones básicas con DataFrames usando
   la biblioteca pandas en Python.
-eval: false
+eval: true
 citation:
   type: article-journal
   author:

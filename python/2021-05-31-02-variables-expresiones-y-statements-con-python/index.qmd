@@ -28,7 +28,7 @@ author-note:
     authorship-agreements: null
 description: Tipos de datos, asignación, operadores y construcción de expresiones
   válidas en el lenguaje Python.
-eval: false
+eval: true
 citation:
   type: article-journal
   author:
@@ -38,7 +38,6 @@ date: 05/31/2021
 draft: false
 image: ../featured.jpg
 ---
-
 
 En esta segunda guía exploraremos en profundidad los elementos fundamentales de Python: variables, expresiones y statements. Estos conceptos son la base para cualquier programa que escribamos y son esenciales para el análisis económico con Python.
 
@@ -237,9 +236,19 @@ año_BASE_IPC = 2020
 **Variables privadas con guión bajo:**
 
 ```{python}
-# Variable que indica uso interno
-_dato_temporal = 100
-_calculo_intermedio = precio * cantidad
+# Primero definimos las variables necesarias
+precio_unitario = 25.50  # precio de venta por unidad
+cantidad_vendida = 120  # unidades vendidas
+
+# Ahora sí podemos calcular
+_calculo_intermedio = precio_unitario * cantidad_vendida
+_dato_temporal = 100  # variable que solo usamos internamente
+
+# Mostramos resultados (opcional, para que el lector vea)
+print(f"Precio unitario: S/ {precio_unitario:,.2f}")
+print(f"Cantidad vendida: {cantidad_vendida} unidades")
+print(f"Subtotal (cálculo intermedio): S/ {_calculo_intermedio:,.2f}")
+print(f"Valor temporal interno: {_dato_temporal}")
 ```
 
 ## Nombres descriptivos vs. cortos
@@ -459,6 +468,10 @@ Una expresión es una combinación de valores, variables y operadores que Python
 ## Expresiones simples
 
 ```{python}
+# Primero definimos las variables que vamos a usar
+precio = 25.50
+cantidad = 100
+
 # Expresiones numéricas
 5 + 3  # Evalúa a 8
 precio * cantidad  # Evalúa al producto
@@ -849,6 +862,9 @@ La función `input()` permite interactuar con el usuario, solicitando datos dura
 ## Uso básico de input()
 
 ```{python}
+# | eval: false
+# | echo: true
+
 # Solicitar nombre
 nombre = input("Ingrese su nombre: ")
 print(f"Hola, {nombre}!")
@@ -863,6 +879,9 @@ print(f"Interesante, {pais} es un gran país.")
 Importante: `input()` siempre devuelve un string. Para trabajar con números, debemos convertir:
 
 ```{python}
+# | eval: false
+# | echo: true
+
 # Solicitar edad (necesita conversión a int)
 edad_texto = input("Ingrese su edad: ")
 edad = int(edad_texto)
@@ -881,6 +900,9 @@ print(f"Total a pagar: S/ {total:.2f}")
 ## Manejo de errores en la entrada
 
 ```{python}
+# | eval: false
+# | echo: true
+
 # Si el usuario ingresa texto cuando esperamos número
 try:
     edad = int(input("Ingrese su edad: "))
@@ -892,6 +914,9 @@ except ValueError:
 ## Aplicación económica: Calculadora de interés simple
 
 ```{python}
+# | eval: false
+# | echo: true
+
 # Calculadora interactiva de interés simple
 print("=" * 50)
 print("CALCULADORA DE INTERÉS SIMPLE")
@@ -922,6 +947,9 @@ print("=" * 50)
 ## Ejemplo: Calculadora de elasticidad
 
 ```{python}
+# | eval: false
+# | echo: true
+
 # Calculadora de elasticidad precio de la demanda
 print("CALCULADORA DE ELASTICIDAD PRECIO DE LA DEMANDA")
 print("-" * 50)
@@ -1014,6 +1042,9 @@ def calcular_pib_per_capita(pib, poblacion):
 ## Buenas prácticas en comentarios
 
 ```{python}
+# | eval: false
+# | echo: true
+
 # Mal: comentario obvio
 x = 5  # asignar 5 a x
 
@@ -1193,12 +1224,15 @@ precio_dolar_interbancario_soles = 3.75
 Crea un programa que calcule el índice de pobreza dado el ingreso per cápita y la línea de pobreza.
 
 ```{python}
+# | eval: false
+# | echo: true
+
 # Ingreso per cápita mensual del hogar
 ingreso_per_capita = float(input("Ingrese el ingreso per cápita mensual (S/): "))
 
 # Línea de pobreza (valor oficial)
 linea_pobreza_monetaria = 378.00  # S/ mensuales (valor hipotético)
-linea_pobreza_extrema = 201.00    # S/ mensuales (valor hipotético)
+linea_pobreza_extrema = 201.00  # S/ mensuales (valor hipotético)
 
 # Clasificación
 if ingreso_per_capita < linea_pobreza_extrema:
@@ -1231,6 +1265,9 @@ if brecha > 0:
 ## Ejercicio 2: Cálculo del índice de Gini simplificado
 
 ```{python}
+# | eval: false
+# | echo: true
+
 # Datos de ingreso de 5 hogares (del más pobre al más rico)
 print("Ingrese los ingresos de 5 hogares (de menor a mayor):")
 ingreso_1 = float(input("Hogar 1 (más pobre): "))
@@ -1250,11 +1287,13 @@ prop_4 = (ingreso_1 + ingreso_2 + ingreso_3 + ingreso_4) / total_ingresos
 prop_5 = 1.0
 
 # Cálculo simplificado del Gini (método trapezoidal)
-area_bajo_lorenz = (0.2 * prop_1) + \
-                   (0.2 * (prop_1 + prop_2)) / 2 + \
-                   (0.2 * (prop_2 + prop_3)) / 2 + \
-                   (0.2 * (prop_3 + prop_4)) / 2 + \
-                   (0.2 * (prop_4 + prop_5)) / 2
+area_bajo_lorenz = (
+    (0.2 * prop_1)
+    + (0.2 * (prop_1 + prop_2)) / 2
+    + (0.2 * (prop_2 + prop_3)) / 2
+    + (0.2 * (prop_3 + prop_4)) / 2
+    + (0.2 * (prop_4 + prop_5)) / 2
+)
 
 gini = (0.5 - area_bajo_lorenz) / 0.5
 
@@ -1284,6 +1323,9 @@ print(f"Interpretación: {interpretacion}")
 ## Ejercicio 3: Análisis de punto de equilibrio
 
 ```{python}
+# | eval: false
+# | echo: true
+
 # Análisis de punto de equilibrio para una empresa
 print("ANÁLISIS DE PUNTO DE EQUILIBRIO")
 print("=" * 50)
@@ -1299,11 +1341,13 @@ if precio_venta_unitario <= costo_variable_unitario:
 else:
     # Cálculo del punto de equilibrio
     margen_contribucion_unitario = precio_venta_unitario - costo_variable_unitario
-    margen_contribucion_porcentaje = (margen_contribucion_unitario / precio_venta_unitario) * 100
-    
+    margen_contribucion_porcentaje = (
+        margen_contribucion_unitario / precio_venta_unitario
+    ) * 100
+
     punto_equilibrio_unidades = costos_fijos / margen_contribucion_unitario
     punto_equilibrio_soles = punto_equilibrio_unidades * precio_venta_unitario
-    
+
     # Resultados
     print("\n" + "=" * 50)
     print("RESULTADOS DEL ANÁLISIS")
@@ -1317,11 +1361,11 @@ else:
     print(f"Punto de equilibrio:          {punto_equilibrio_unidades:.0f} unidades")
     print(f"Punto de equilibrio:          S/ {punto_equilibrio_soles:,.2f}")
     print("=" * 50)
-    
+
     # Análisis adicional
     print("\nAnálisis de sensibilidad:")
     unidades_vender = float(input("¿Cuántas unidades espera vender? "))
-    
+
     if unidades_vender > punto_equilibrio_unidades:
         diferencia = unidades_vender - punto_equilibrio_unidades
         utilidad = diferencia * margen_contribucion_unitario
@@ -1333,12 +1377,17 @@ else:
         print(f"Pérdida esperada: S/ {perdida:,.2f}")
         print("La empresa tendría pérdidas.")
     else:
-        print("La empresa estaría en el punto de equilibrio (sin ganancias ni pérdidas).")
+        print(
+            "La empresa estaría en el punto de equilibrio (sin ganancias ni pérdidas)."
+        )
 ```
 
 ## Ejercicio 4: Cálculo de la tasa de actividad y desempleo
 
 ```{python}
+# | eval: false
+# | echo: true
+
 # Indicadores del mercado laboral
 print("CÁLCULO DE INDICADORES DEL MERCADO LABORAL")
 print("=" * 50)
@@ -1397,6 +1446,9 @@ else:
 ## Ejercicio 5: Conversor de monedas con múltiples divisas
 
 ```{python}
+# | eval: false
+# | echo: true
+
 # Conversor de monedas
 print("CONVERSOR DE MONEDAS")
 print("=" * 50)
@@ -1456,7 +1508,7 @@ if monto_en_soles > 0:
         print("Moneda de destino inválida")
         monto_final = 0
         simbolo_destino = ""
-    
+
     # Resultados
     if monto_final > 0:
         print("\n" + "=" * 50)
@@ -1498,7 +1550,7 @@ La función `input()` permite crear programas interactivos. Es importante record
 
 Los comentarios documentan el código. Son esenciales para mantener código legible y mantenible.
 
-# Próximos pasos
+## Próximos pasos
 
 En la siguiente guía (Guía 3: Objetos de Python) exploraremos estructuras de datos más complejas:
 
@@ -1507,7 +1559,7 @@ En la siguiente guía (Guía 3: Objetos de Python) exploraremos estructuras de d
 - Tuplas: colecciones inmutables
 - Operaciones con estas estructuras aplicadas a economía
 
-# Recursos adicionales
+## Recursos adicionales
 
 Para profundizar en estos conceptos, se recomienda:
 

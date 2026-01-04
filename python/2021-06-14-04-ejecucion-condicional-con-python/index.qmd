@@ -28,7 +28,7 @@ author-note:
     authorship-agreements: null
 description: Sentencias if, elif, else y expresiones condicionales para control de
   flujo lógico en programas Python.
-eval: false
+eval: true
 citation:
   type: article-journal
   author:

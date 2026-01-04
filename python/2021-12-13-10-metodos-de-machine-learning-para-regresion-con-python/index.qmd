@@ -28,7 +28,7 @@ author-note:
     authorship-agreements: null
 description: Regresión lineal, polinómica, ridge, lasso y árboles de regresión usando
   scikit-learn en Python.
-eval: false
+eval: true
 citation:
   type: article-journal
   author:

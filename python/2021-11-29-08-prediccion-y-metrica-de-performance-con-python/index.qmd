@@ -28,7 +28,7 @@ author-note:
     authorship-agreements: null
 description: Evaluación de modelos predictivos con métricas de regresión y clasificación
   implementadas en scikit-learn.
-eval: false
+eval: true
 citation:
   type: article-journal
   author:
