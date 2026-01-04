@@ -368,7 +368,7 @@ execute:
   # --- CACHÉ ---
   # Instalar
   # python3 -m pip install jupyter-cache o, conda install -c conda-forge jupyter-cache
-  #cache: true                     # Usar caché para resultados
+  cache: false                     # Usar caché para resultados
   # Para limpiar caché: quarto render --cache-refresh
   # Mantén cache: true si te gusta trabajar con caché incremental
   # O cambia a freeze: true si estás preparando para publicación estática (muy común en blogs de Quarto)
