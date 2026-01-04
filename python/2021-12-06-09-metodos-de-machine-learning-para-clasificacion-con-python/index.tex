@@ -1,5 +1,5 @@
 \documentclass[
-  jou,
+  doc,
   floatsintext,
   longtable,
   a4paper,
@@ -12,6 +12,8 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
+\geometry{inner=1in, outer=1in}
+\fancyhfoffset[LE,RO]{0cm}
 
 
 \usepackage[bidi=default]{babel}
@@ -78,6 +80,46 @@
 
 
 
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -123,7 +165,7 @@
 
 
 
-\title{Algoritmos clasificación Machine Learning}
+\title{Métodos de Machine Learning para Clasificación}
 
 
 \shorttitle{ML PARA CLASIFICACIÓN}
@@ -163,51 +205,23 @@ contenido final del artículo. }
 \par{   El autor no tiene conflictos de interés que revelar.    Los
 roles de autor se clasificaron utilizando la taxonomía de roles de
 colaborador (CRediT; https://credit.niso.org/) de la siguiente
-manera:  Edison Achalma:   conceptualización, redacción}
+manera:  Edison Achalma:   conceptualización, metodología, análisis
+formal, investigación, recursos, curación de
+datos, redacción, visualización, supervisión, administración del
+proyecto}
 \par{La correspondencia relativa a este artículo debe dirigirse a Edison
-Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
+Achalma, Escuela Profesional de Economía, Universidad Nacional de San
+Cristóbal de Huamanga, Portal Independencia N°
+57, Ayacucho, AYA 5001, Perú, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
 }
-
-\usepackage{pbalance}
-% \usepackage{float}
-\makeatletter
-\let\oldtpt\ThreePartTable
-\let\endoldtpt\endThreePartTable
-\def\ThreePartTable{\@ifnextchar[\ThreePartTable@i \ThreePartTable@ii}
-\def\ThreePartTable@i[#1]{\begin{figure}[!htbp]
-\onecolumn
-\begin{minipage}{0.485\textwidth}
-\oldtpt[#1]
-}
-\def\ThreePartTable@ii{\begin{figure}[!htbp]
-\onecolumn
-\begin{minipage}{0.48\textwidth}
-\oldtpt
-}
-\def\endThreePartTable{
-\endoldtpt
-\end{minipage}
-\twocolumn
-\end{figure}}
-\makeatother
-
 
 \makeatletter
-\let\endoldlt\endlongtable		
+\let\endoldlt\endlongtable
 \def\endlongtable{
 \hline
-\endoldlt}
+\endoldlt
+}
 \makeatother
-
-\newenvironment{twocolumntable}% environment name
-{% begin code
-\begin{table*}[!htbp]%
-\onecolumn%
-}%
-{%
-\twocolumn%
-\end{table*}%
-}% end code
 
 \urlstyle{same}
 
@@ -245,8 +259,8 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 \@ifpackageloaded{float}{}{\usepackage{float}}
 \floatstyle{ruled}
 \@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
-\floatname{codelisting}{Listing}
-\newcommand*\listoflistings{\listof{codelisting}{Lista de Listings}}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listados}}
 \makeatother
 \makeatletter
 \makeatother
@@ -296,7 +310,7 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 \hypertarget{toc}{}
 \tableofcontents
 \newpage
-\section[Introduction]{Algoritmos clasificación Machine Learning}
+\section[Introduction]{Métodos de Machine Learning para Clasificación}
 
 \setcounter{secnumdepth}{3}
 
@@ -305,8 +319,1378 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 
 
 
-Este artículo está actualmente en proceso de edición, y todas las
-secciones serán ampliadas y refinadas en futuras revisiones.
+En esta novena guía exploraremos los principales algoritmos de machine
+learning para problemas de clasificación. Estos métodos son
+fundamentales para resolver problemas económicos como clasificación de
+riesgo crediticio, predicción de comportamiento de consumidores,
+segmentación de mercados, entre otros.
+
+\section{Introducción al aprendizaje
+supervisado}\label{introducciuxf3n-al-aprendizaje-supervisado}
+
+\subsection{Concepto fundamental}\label{concepto-fundamental}
+
+El aprendizaje supervisado es un tipo de machine learning donde el
+modelo aprende de datos etiquetados (con respuestas conocidas) para
+predecir etiquetas de nuevos datos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+\ImportTok{import}\NormalTok{ seaborn }\ImportTok{as}\NormalTok{ sns}
+\ImportTok{from}\NormalTok{ matplotlib.colors }\ImportTok{import}\NormalTok{ ListedColormap}
+
+\CommentTok{\# Scikit{-}learn}
+\ImportTok{from}\NormalTok{ sklearn.datasets }\ImportTok{import}\NormalTok{ load\_iris, make\_classification}
+\ImportTok{from}\NormalTok{ sklearn.model\_selection }\ImportTok{import}\NormalTok{ train\_test\_split, cross\_val\_score}
+\ImportTok{from}\NormalTok{ sklearn.preprocessing }\ImportTok{import}\NormalTok{ StandardScaler}
+\ImportTok{from}\NormalTok{ sklearn.metrics }\ImportTok{import}\NormalTok{ (confusion\_matrix, classification\_report, }
+\NormalTok{                             roc\_curve, auc, accuracy\_score)}
+
+\CommentTok{\# Modelos}
+\ImportTok{from}\NormalTok{ sklearn.linear\_model }\ImportTok{import}\NormalTok{ LogisticRegression}
+\ImportTok{from}\NormalTok{ sklearn.neighbors }\ImportTok{import}\NormalTok{ KNeighborsClassifier}
+\ImportTok{from}\NormalTok{ sklearn.tree }\ImportTok{import}\NormalTok{ DecisionTreeClassifier}
+\ImportTok{from}\NormalTok{ sklearn.ensemble }\ImportTok{import}\NormalTok{ RandomForestClassifier}
+
+\CommentTok{\# Visualización de árboles}
+\ImportTok{from}\NormalTok{ sklearn }\ImportTok{import}\NormalTok{ tree}
+
+\CommentTok{\# Configuración}
+\NormalTok{plt.style.use(}\StringTok{\textquotesingle{}seaborn{-}v0\_8{-}darkgrid\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.rcParams[}\StringTok{\textquotesingle{}figure.figsize\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ (}\DecValTok{12}\NormalTok{, }\DecValTok{6}\NormalTok{)}
+\NormalTok{np.random.seed(}\DecValTok{42}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Librerías importadas exitosamente"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Tipos de problemas de
+clasificación}\label{tipos-de-problemas-de-clasificaciuxf3n}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
+\StringTok{TIPOS DE PROBLEMAS DE CLASIFICACIÓN}
+
+\StringTok{1. CLASIFICACIÓN BINARIA}
+\StringTok{   {-} Dos clases posibles}
+\StringTok{   {-} Ejemplos económicos:}
+\StringTok{     * Aprobado/Rechazado (crédito)}
+\StringTok{     * Paga/No paga (incumplimiento)}
+\StringTok{     * Éxito/Fracaso (empresa)}
+\StringTok{     * Compra/No compra (marketing)}
+
+\StringTok{2. CLASIFICACIÓN MULTI{-}CLASE}
+\StringTok{   {-} Más de dos clases}
+\StringTok{   {-} Ejemplos económicos:}
+\StringTok{     * Clasificación de riesgo (AAA, AA, A, BBB, etc.)}
+\StringTok{     * Segmentación de clientes (bajo, medio, alto valor)}
+\StringTok{     * Categorías de productos}
+\StringTok{     * Niveles socioeconómicos (A, B, C, D, E)}
+
+\StringTok{3. CLASIFICACIÓN MULTI{-}ETIQUETA}
+\StringTok{   {-} Múltiples etiquetas simultáneas}
+\StringTok{   {-} Ejemplos económicos:}
+\StringTok{     * Características de consumidor (múltiples intereses)}
+\StringTok{     * Atributos de producto (múltiples categorías)}
+\StringTok{"""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Dataset de ejemplo: Iris}\label{dataset-de-ejemplo-iris}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Cargar dataset clásico}
+\NormalTok{iris }\OperatorTok{=}\NormalTok{ load\_iris()}
+
+\CommentTok{\# Crear DataFrame}
+\NormalTok{df\_iris }\OperatorTok{=}\NormalTok{ pd.DataFrame(}
+\NormalTok{    data}\OperatorTok{=}\NormalTok{iris.data,}
+\NormalTok{    columns}\OperatorTok{=}\NormalTok{iris.feature\_names}
+\NormalTok{)}
+\NormalTok{df\_iris[}\StringTok{\textquotesingle{}especie\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ iris.target}
+\NormalTok{df\_iris[}\StringTok{\textquotesingle{}especie\_nombre\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ df\_iris[}\StringTok{\textquotesingle{}especie\textquotesingle{}}\NormalTok{].}\BuiltInTok{map}\NormalTok{(\{}
+    \DecValTok{0}\NormalTok{: }\StringTok{\textquotesingle{}Setosa\textquotesingle{}}\NormalTok{,}
+    \DecValTok{1}\NormalTok{: }\StringTok{\textquotesingle{}Versicolor\textquotesingle{}}\NormalTok{, }
+    \DecValTok{2}\NormalTok{: }\StringTok{\textquotesingle{}Virginica\textquotesingle{}}
+\NormalTok{\})}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Dataset Iris:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_iris.head())}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Forma: }\SpecialCharTok{\{}\NormalTok{df\_iris}\SpecialCharTok{.}\NormalTok{shape}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Distribución de especies:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_iris[}\StringTok{\textquotesingle{}especie\_nombre\textquotesingle{}}\NormalTok{].value\_counts())}
+
+\CommentTok{\# Visualizar (usar solo 2 características)}
+\NormalTok{plt.figure(figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{6}\NormalTok{))}
+\ControlFlowTok{for}\NormalTok{ especie }\KeywordTok{in}\NormalTok{ df\_iris[}\StringTok{\textquotesingle{}especie\textquotesingle{}}\NormalTok{].unique():}
+\NormalTok{    mask }\OperatorTok{=}\NormalTok{ df\_iris[}\StringTok{\textquotesingle{}especie\textquotesingle{}}\NormalTok{] }\OperatorTok{==}\NormalTok{ especie}
+\NormalTok{    plt.scatter(}
+\NormalTok{        df\_iris.loc[mask, }\StringTok{\textquotesingle{}sepal length (cm)\textquotesingle{}}\NormalTok{],}
+\NormalTok{        df\_iris.loc[mask, }\StringTok{\textquotesingle{}sepal width (cm)\textquotesingle{}}\NormalTok{],}
+\NormalTok{        label}\OperatorTok{=}\NormalTok{df\_iris.loc[mask, }\StringTok{\textquotesingle{}especie\_nombre\textquotesingle{}}\NormalTok{].iloc[}\DecValTok{0}\NormalTok{],}
+\NormalTok{        alpha}\OperatorTok{=}\FloatTok{0.7}\NormalTok{,}
+\NormalTok{        s}\OperatorTok{=}\DecValTok{100}
+\NormalTok{    )}
+
+\NormalTok{plt.xlabel(}\StringTok{\textquotesingle{}Largo del sépalo (cm)\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.ylabel(}\StringTok{\textquotesingle{}Ancho del sépalo (cm)\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.title(}\StringTok{\textquotesingle{}Dataset Iris {-} Clasificación de especies\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.legend()}
+\NormalTok{plt.grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+\NormalTok{plt.savefig(}\StringTok{\textquotesingle{}iris\_scatter.png\textquotesingle{}}\NormalTok{, dpi}\OperatorTok{=}\DecValTok{300}\NormalTok{, bbox\_inches}\OperatorTok{=}\StringTok{\textquotesingle{}tight\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Gráfico guardado como \textquotesingle{}iris\_scatter.png\textquotesingle{}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Regresión logística}\label{regresiuxf3n-loguxedstica}
+
+\subsection{Fundamento matemático}\label{fundamento-matemuxe1tico}
+
+La regresión logística es un modelo lineal para clasificación que estima
+probabilidades usando la función logística (sigmoide).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
+\StringTok{REGRESIÓN LOGÍSTICA}
+
+\StringTok{Modelo matemático:}
+\StringTok{    y = β₀ + β₁x₁ + β₂x₂ + ... + βₙxₙ + ε}
+\StringTok{    }
+\StringTok{    p = 1 / (1 + e\^{}({-}y))}
+
+\StringTok{Donde:}
+\StringTok{{-} y: Combinación lineal de características}
+\StringTok{{-} p: Probabilidad de pertenecer a la clase positiva}
+\StringTok{{-} β: Coeficientes (pesos) del modelo}
+\StringTok{{-} e: Base del logaritmo natural (≈2.718)}
+
+\StringTok{Características:}
+\StringTok{✓ Simple e interpretable}
+\StringTok{✓ Rápido de entrenar}
+\StringTok{✓ Funciona bien con características linealmente separables}
+\StringTok{✓ Proporciona probabilidades calibradas}
+\StringTok{✗ Asume relación lineal}
+\StringTok{✗ Sensible a outliers}
+
+\StringTok{Aplicaciones económicas:}
+\StringTok{{-} Predicción de incumplimiento crediticio}
+\StringTok{{-} Clasificación de riesgo empresarial}
+\StringTok{{-} Predicción de compra de producto}
+\StringTok{{-} Churn (abandono de clientes)}
+\StringTok{"""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Implementación}\label{implementaciuxf3n}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Preparar datos (clasificación binaria: Virginica vs resto)}
+\NormalTok{X }\OperatorTok{=}\NormalTok{ iris.data[:, :}\DecValTok{2}\NormalTok{]  }\CommentTok{\# Solo usar 2 características para visualización}
+\NormalTok{y }\OperatorTok{=}\NormalTok{ (iris.target }\OperatorTok{==} \DecValTok{2}\NormalTok{).astype(}\BuiltInTok{int}\NormalTok{)  }\CommentTok{\# 1 si es Virginica, 0 si no}
+
+\CommentTok{\# Dividir datos}
+\NormalTok{X\_train, X\_test, y\_train, y\_test }\OperatorTok{=}\NormalTok{ train\_test\_split(}
+\NormalTok{    X, y, test\_size}\OperatorTok{=}\FloatTok{0.3}\NormalTok{, random\_state}\OperatorTok{=}\DecValTok{42}
+\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Conjunto de entrenamiento: }\SpecialCharTok{\{}\NormalTok{X\_train}\SpecialCharTok{.}\NormalTok{shape[}\DecValTok{0}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{ muestras"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Conjunto de prueba: }\SpecialCharTok{\{}\NormalTok{X\_test}\SpecialCharTok{.}\NormalTok{shape[}\DecValTok{0}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{ muestras"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Distribución en entrenamiento:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Clase 0 (No Virginica): }\SpecialCharTok{\{}\NormalTok{(y\_train }\OperatorTok{==} \DecValTok{0}\NormalTok{)}\SpecialCharTok{.}\BuiltInTok{sum}\NormalTok{()}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Clase 1 (Virginica): }\SpecialCharTok{\{}\NormalTok{(y\_train }\OperatorTok{==} \DecValTok{1}\NormalTok{)}\SpecialCharTok{.}\BuiltInTok{sum}\NormalTok{()}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Entrenar modelo}
+\NormalTok{modelo\_logit }\OperatorTok{=}\NormalTok{ LogisticRegression(random\_state}\OperatorTok{=}\DecValTok{42}\NormalTok{)}
+\NormalTok{modelo\_logit.fit(X\_train, y\_train)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{MODELO ENTRENADO"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Intercepto (β₀): }\SpecialCharTok{\{}\NormalTok{modelo\_logit}\SpecialCharTok{.}\NormalTok{intercept\_[}\DecValTok{0}\NormalTok{]}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Coeficientes:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  β₁ (largo sépalo): }\SpecialCharTok{\{}\NormalTok{modelo\_logit}\SpecialCharTok{.}\NormalTok{coef\_[}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{]}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  β₂ (ancho sépalo): }\SpecialCharTok{\{}\NormalTok{modelo\_logit}\SpecialCharTok{.}\NormalTok{coef\_[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{]}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Predicción e
+interpretación}\label{predicciuxf3n-e-interpretaciuxf3n}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Predecir probabilidades}
+\NormalTok{probs\_train }\OperatorTok{=}\NormalTok{ modelo\_logit.predict\_proba(X\_train)[:, }\DecValTok{1}\NormalTok{]}
+\NormalTok{probs\_test }\OperatorTok{=}\NormalTok{ modelo\_logit.predict\_proba(X\_test)[:, }\DecValTok{1}\NormalTok{]}
+
+\CommentTok{\# Predecir clases}
+\NormalTok{y\_pred }\OperatorTok{=}\NormalTok{ modelo\_logit.predict(X\_test)}
+
+\CommentTok{\# Evaluar}
+\NormalTok{accuracy }\OperatorTok{=}\NormalTok{ accuracy\_score(y\_test, y\_pred)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Accuracy en test: }\SpecialCharTok{\{}\NormalTok{accuracy}\SpecialCharTok{:.4f\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{accuracy}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.1f\}}\SpecialStringTok{\%)"}\NormalTok{)}
+
+\CommentTok{\# Matriz de confusión}
+\NormalTok{cm }\OperatorTok{=}\NormalTok{ confusion\_matrix(y\_test, y\_pred)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Matriz de confusión:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(cm)}
+
+\CommentTok{\# Reporte de clasificación}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Reporte de clasificación:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(classification\_report(y\_test, y\_pred, }
+\NormalTok{                          target\_names}\OperatorTok{=}\NormalTok{[}\StringTok{\textquotesingle{}No Virginica\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Virginica\textquotesingle{}}\NormalTok{]))}
+
+\CommentTok{\# Ejemplo de predicción}
+\NormalTok{ejemplo }\OperatorTok{=}\NormalTok{ np.array([[}\FloatTok{6.5}\NormalTok{, }\FloatTok{3.0}\NormalTok{]])  }\CommentTok{\# Nuevo ejemplo}
+\NormalTok{prob }\OperatorTok{=}\NormalTok{ modelo\_logit.predict\_proba(ejemplo)[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{]}
+\NormalTok{pred }\OperatorTok{=}\NormalTok{ modelo\_logit.predict(ejemplo)[}\DecValTok{0}\NormalTok{]}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{EJEMPLO DE PREDICCIÓN"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Características: Largo=}\SpecialCharTok{\{}\NormalTok{ejemplo[}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{ cm, Ancho=}\SpecialCharTok{\{}\NormalTok{ejemplo[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{ cm"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Probabilidad de ser Virginica: }\SpecialCharTok{\{}\NormalTok{prob}\SpecialCharTok{:.4f\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{prob}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.1f\}}\SpecialStringTok{\%)"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Predicción: }\SpecialCharTok{\{}\StringTok{\textquotesingle{}Virginica\textquotesingle{}} \ControlFlowTok{if}\NormalTok{ pred }\OperatorTok{==} \DecValTok{1} \ControlFlowTok{else} \StringTok{\textquotesingle{}No Virginica\textquotesingle{}}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Visualización del modelo}\label{visualizaciuxf3n-del-modelo}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ plot\_decision\_boundary(modelo, X, y, title, filename):}
+    \CommentTok{"""Visualiza la frontera de decisión del modelo"""}
+    
+\NormalTok{    h }\OperatorTok{=} \FloatTok{0.02}  \CommentTok{\# Tamaño del paso en la malla}
+    
+    \CommentTok{\# Crear malla}
+\NormalTok{    x\_min, x\_max }\OperatorTok{=}\NormalTok{ X[:, }\DecValTok{0}\NormalTok{].}\BuiltInTok{min}\NormalTok{() }\OperatorTok{{-}} \FloatTok{0.5}\NormalTok{, X[:, }\DecValTok{0}\NormalTok{].}\BuiltInTok{max}\NormalTok{() }\OperatorTok{+} \FloatTok{0.5}
+\NormalTok{    y\_min, y\_max }\OperatorTok{=}\NormalTok{ X[:, }\DecValTok{1}\NormalTok{].}\BuiltInTok{min}\NormalTok{() }\OperatorTok{{-}} \FloatTok{0.5}\NormalTok{, X[:, }\DecValTok{1}\NormalTok{].}\BuiltInTok{max}\NormalTok{() }\OperatorTok{+} \FloatTok{0.5}
+\NormalTok{    xx, yy }\OperatorTok{=}\NormalTok{ np.meshgrid(np.arange(x\_min, x\_max, h),}
+\NormalTok{                         np.arange(y\_min, y\_max, h))}
+    
+    \CommentTok{\# Predecir para cada punto en la malla}
+\NormalTok{    Z }\OperatorTok{=}\NormalTok{ modelo.predict\_proba(np.c\_[xx.ravel(), yy.ravel()])[:, }\DecValTok{1}\NormalTok{]}
+\NormalTok{    Z }\OperatorTok{=}\NormalTok{ Z.reshape(xx.shape)}
+    
+    \CommentTok{\# Graficar}
+\NormalTok{    plt.figure(figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{12}\NormalTok{, }\DecValTok{8}\NormalTok{))}
+    
+    \CommentTok{\# Contorno de probabilidades}
+\NormalTok{    contour }\OperatorTok{=}\NormalTok{ plt.contourf(xx, yy, Z, levels}\OperatorTok{=}\DecValTok{20}\NormalTok{, cmap}\OperatorTok{=}\StringTok{\textquotesingle{}RdYlBu\_r\textquotesingle{}}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.6}\NormalTok{)}
+\NormalTok{    plt.colorbar(contour, label}\OperatorTok{=}\StringTok{\textquotesingle{}Probabilidad clase positiva\textquotesingle{}}\NormalTok{)}
+    
+    \CommentTok{\# Frontera de decisión (probabilidad = 0.5)}
+\NormalTok{    plt.contour(xx, yy, Z, levels}\OperatorTok{=}\NormalTok{[}\FloatTok{0.5}\NormalTok{], colors}\OperatorTok{=}\StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, linewidths}\OperatorTok{=}\DecValTok{2}\NormalTok{)}
+    
+    \CommentTok{\# Puntos de datos}
+\NormalTok{    scatter }\OperatorTok{=}\NormalTok{ plt.scatter(X[:, }\DecValTok{0}\NormalTok{], X[:, }\DecValTok{1}\NormalTok{], c}\OperatorTok{=}\NormalTok{y, }
+\NormalTok{                         cmap}\OperatorTok{=}\StringTok{\textquotesingle{}RdYlBu\_r\textquotesingle{}}\NormalTok{, edgecolors}\OperatorTok{=}\StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, }
+\NormalTok{                         s}\OperatorTok{=}\DecValTok{100}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.9}\NormalTok{)}
+    
+\NormalTok{    plt.xlabel(}\StringTok{\textquotesingle{}Largo del sépalo (cm)\textquotesingle{}}\NormalTok{, fontsize}\OperatorTok{=}\DecValTok{12}\NormalTok{)}
+\NormalTok{    plt.ylabel(}\StringTok{\textquotesingle{}Ancho del sépalo (cm)\textquotesingle{}}\NormalTok{, fontsize}\OperatorTok{=}\DecValTok{12}\NormalTok{)}
+\NormalTok{    plt.title(title, fontsize}\OperatorTok{=}\DecValTok{14}\NormalTok{, fontweight}\OperatorTok{=}\StringTok{\textquotesingle{}bold\textquotesingle{}}\NormalTok{)}
+\NormalTok{    plt.grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+    
+\NormalTok{    plt.tight\_layout()}
+\NormalTok{    plt.savefig(filename, dpi}\OperatorTok{=}\DecValTok{300}\NormalTok{, bbox\_inches}\OperatorTok{=}\StringTok{\textquotesingle{}tight\textquotesingle{}}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Gráfico guardado como \textquotesingle{}}\SpecialCharTok{\{}\NormalTok{filename}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}"}\NormalTok{)}
+
+\CommentTok{\# Visualizar}
+\NormalTok{plot\_decision\_boundary(}
+\NormalTok{    modelo\_logit, X\_train, y\_train,}
+    \StringTok{\textquotesingle{}Regresión Logística {-} Frontera de Decisión\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}logistic\_regression\_boundary.png\textquotesingle{}}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{K-Nearest Neighbors (KNN)}\label{k-nearest-neighbors-knn}
+
+\subsection{Fundamento del algoritmo}\label{fundamento-del-algoritmo}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
+\StringTok{K{-}NEAREST NEIGHBORS (KNN)}
+
+\StringTok{Principio:}
+\StringTok{"Dime quiénes son tus vecinos y te diré quién eres"}
+
+\StringTok{Funcionamiento:}
+\StringTok{1. Para clasificar un nuevo punto:}
+\StringTok{   a. Calcula distancia a todos los puntos de entrenamiento}
+\StringTok{   b. Selecciona los K vecinos más cercanos}
+\StringTok{   c. Vota por mayoría: clase más común entre vecinos}
+
+\StringTok{Parámetros clave:}
+\StringTok{{-} k: Número de vecinos a considerar}
+\StringTok{  * k pequeño: Más flexible, sensible a ruido}
+\StringTok{  * k grande: Más suave, puede perder detalles}
+
+\StringTok{Métricas de distancia:}
+\StringTok{{-} Euclidiana: √Σ(xi {-} yi)²}
+\StringTok{{-} Manhattan: Σ|xi {-} yi|}
+\StringTok{{-} Minkowski: (Σ|xi {-} yi|\^{}p)\^{}(1/p)}
+
+\StringTok{Características:}
+\StringTok{✓ No paramétrico (no asume distribución)}
+\StringTok{✓ Simple de entender}
+\StringTok{✓ Funciona bien con fronteras complejas}
+\StringTok{✗ Lento en predicción con datasets grandes}
+\StringTok{✗ Sensible a la escala de características}
+\StringTok{✗ Sufre con alta dimensionalidad}
+
+\StringTok{Aplicaciones económicas:}
+\StringTok{{-} Sistema de recomendación de productos}
+\StringTok{{-} Clasificación de clientes similares}
+\StringTok{{-} Detección de anomalías en transacciones}
+\StringTok{{-} Valuación de propiedades (casas similares)}
+\StringTok{"""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Implementación}\label{implementaciuxf3n-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Estandarizar características (importante para KNN)}
+\NormalTok{scaler }\OperatorTok{=}\NormalTok{ StandardScaler()}
+\NormalTok{X\_train\_scaled }\OperatorTok{=}\NormalTok{ scaler.fit\_transform(X\_train)}
+\NormalTok{X\_test\_scaled }\OperatorTok{=}\NormalTok{ scaler.transform(X\_test)}
+
+\CommentTok{\# Entrenar modelos con diferentes valores de k}
+\NormalTok{k\_values }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{20}\NormalTok{]}
+\NormalTok{resultados\_knn }\OperatorTok{=}\NormalTok{ []}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"EVALUACIÓN DE KNN CON DIFERENTES VALORES DE K"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\StringTok{\textquotesingle{}K\textquotesingle{}}\SpecialCharTok{:\textless{}5\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}Accuracy Train\textquotesingle{}}\SpecialCharTok{:\textless{}15\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}Accuracy Test\textquotesingle{}}\SpecialCharTok{:\textless{}15\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}Diferencia\textquotesingle{}}\SpecialCharTok{:\textless{}12\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"{-}"} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ k }\KeywordTok{in}\NormalTok{ k\_values:}
+    \CommentTok{\# Entrenar modelo}
+\NormalTok{    modelo\_knn }\OperatorTok{=}\NormalTok{ KNeighborsClassifier(n\_neighbors}\OperatorTok{=}\NormalTok{k)}
+\NormalTok{    modelo\_knn.fit(X\_train\_scaled, y\_train)}
+    
+    \CommentTok{\# Evaluar}
+\NormalTok{    acc\_train }\OperatorTok{=}\NormalTok{ modelo\_knn.score(X\_train\_scaled, y\_train)}
+\NormalTok{    acc\_test }\OperatorTok{=}\NormalTok{ modelo\_knn.score(X\_test\_scaled, y\_test)}
+\NormalTok{    diff }\OperatorTok{=}\NormalTok{ acc\_train }\OperatorTok{{-}}\NormalTok{ acc\_test}
+    
+\NormalTok{    resultados\_knn.append(\{}
+        \StringTok{\textquotesingle{}k\textquotesingle{}}\NormalTok{: k,}
+        \StringTok{\textquotesingle{}acc\_train\textquotesingle{}}\NormalTok{: acc\_train,}
+        \StringTok{\textquotesingle{}acc\_test\textquotesingle{}}\NormalTok{: acc\_test,}
+        \StringTok{\textquotesingle{}diff\textquotesingle{}}\NormalTok{: diff}
+\NormalTok{    \})}
+    
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{k}\SpecialCharTok{:\textless{}5\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{acc\_train}\SpecialCharTok{:\textless{}15.4f\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{acc\_test}\SpecialCharTok{:\textless{}15.4f\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{diff}\SpecialCharTok{:\textless{}12.4f\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Encontrar mejor k}
+\NormalTok{df\_knn }\OperatorTok{=}\NormalTok{ pd.DataFrame(resultados\_knn)}
+\NormalTok{mejor\_k }\OperatorTok{=}\NormalTok{ df\_knn.loc[df\_knn[}\StringTok{\textquotesingle{}acc\_test\textquotesingle{}}\NormalTok{].idxmax(), }\StringTok{\textquotesingle{}k\textquotesingle{}}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{Mejor k: }\SpecialCharTok{\{}\BuiltInTok{int}\NormalTok{(mejor\_k)}\SpecialCharTok{\}}\SpecialStringTok{ (mayor accuracy en test)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Visualización del efecto de
+k}\label{visualizaciuxf3n-del-efecto-de-k}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Entrenar modelo con mejor k}
+\NormalTok{modelo\_knn\_final }\OperatorTok{=}\NormalTok{ KNeighborsClassifier(n\_neighbors}\OperatorTok{=}\BuiltInTok{int}\NormalTok{(mejor\_k))}
+\NormalTok{modelo\_knn\_final.fit(X\_train\_scaled, y\_train)}
+
+\CommentTok{\# Graficar accuracy vs k}
+\NormalTok{fig, axes }\OperatorTok{=}\NormalTok{ plt.subplots(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{15}\NormalTok{, }\DecValTok{5}\NormalTok{))}
+
+\CommentTok{\# Accuracy}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].plot(df\_knn[}\StringTok{\textquotesingle{}k\textquotesingle{}}\NormalTok{], df\_knn[}\StringTok{\textquotesingle{}acc\_train\textquotesingle{}}\NormalTok{], }\StringTok{\textquotesingle{}o{-}\textquotesingle{}}\NormalTok{, }
+\NormalTok{             label}\OperatorTok{=}\StringTok{\textquotesingle{}Training\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, markersize}\OperatorTok{=}\DecValTok{8}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].plot(df\_knn[}\StringTok{\textquotesingle{}k\textquotesingle{}}\NormalTok{], df\_knn[}\StringTok{\textquotesingle{}acc\_test\textquotesingle{}}\NormalTok{], }\StringTok{\textquotesingle{}s{-}\textquotesingle{}}\NormalTok{, }
+\NormalTok{             label}\OperatorTok{=}\StringTok{\textquotesingle{}Test\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, markersize}\OperatorTok{=}\DecValTok{8}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].axvline(x}\OperatorTok{=}\NormalTok{mejor\_k, color}\OperatorTok{=}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{\textquotesingle{}{-}{-}\textquotesingle{}}\NormalTok{, }
+\NormalTok{                label}\OperatorTok{=}\SpecialStringTok{f\textquotesingle{}Mejor k=}\SpecialCharTok{\{}\BuiltInTok{int}\NormalTok{(mejor\_k)}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].set\_xlabel(}\StringTok{\textquotesingle{}Número de vecinos (k)\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].set\_ylabel(}\StringTok{\textquotesingle{}Accuracy\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}Accuracy vs K\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].legend()}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\CommentTok{\# Overfitting}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].plot(df\_knn[}\StringTok{\textquotesingle{}k\textquotesingle{}}\NormalTok{], df\_knn[}\StringTok{\textquotesingle{}diff\textquotesingle{}}\NormalTok{], }\StringTok{\textquotesingle{}o{-}\textquotesingle{}}\NormalTok{, }
+\NormalTok{             linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, markersize}\OperatorTok{=}\DecValTok{8}\NormalTok{, color}\OperatorTok{=}\StringTok{\textquotesingle{}purple\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].axhline(y}\OperatorTok{=}\DecValTok{0}\NormalTok{, color}\OperatorTok{=}\StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{\textquotesingle{}{-}{-}\textquotesingle{}}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].axvline(x}\OperatorTok{=}\NormalTok{mejor\_k, color}\OperatorTok{=}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{\textquotesingle{}{-}{-}\textquotesingle{}}\NormalTok{, }
+\NormalTok{                label}\OperatorTok{=}\SpecialStringTok{f\textquotesingle{}Mejor k=}\SpecialCharTok{\{}\BuiltInTok{int}\NormalTok{(mejor\_k)}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].set\_xlabel(}\StringTok{\textquotesingle{}Número de vecinos (k)\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].set\_ylabel(}\StringTok{\textquotesingle{}Train Accuracy {-} Test Accuracy\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}Diferencia Train{-}Test (Indicador de Overfitting)\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].legend()}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\NormalTok{plt.tight\_layout()}
+\NormalTok{plt.savefig(}\StringTok{\textquotesingle{}knn\_k\_selection.png\textquotesingle{}}\NormalTok{, dpi}\OperatorTok{=}\DecValTok{300}\NormalTok{, bbox\_inches}\OperatorTok{=}\StringTok{\textquotesingle{}tight\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Gráfico guardado como \textquotesingle{}knn\_k\_selection.png\textquotesingle{}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Visualización de fronteras de
+decisión}\label{visualizaciuxf3n-de-fronteras-de-decisiuxf3n}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Comparar diferentes valores de k}
+\NormalTok{fig, axes }\OperatorTok{=}\NormalTok{ plt.subplots(}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{18}\NormalTok{, }\DecValTok{12}\NormalTok{))}
+\NormalTok{axes }\OperatorTok{=}\NormalTok{ axes.ravel()}
+
+\NormalTok{h }\OperatorTok{=} \FloatTok{0.02}
+\NormalTok{x\_min, x\_max }\OperatorTok{=}\NormalTok{ X\_train\_scaled[:, }\DecValTok{0}\NormalTok{].}\BuiltInTok{min}\NormalTok{() }\OperatorTok{{-}} \DecValTok{1}\NormalTok{, X\_train\_scaled[:, }\DecValTok{0}\NormalTok{].}\BuiltInTok{max}\NormalTok{() }\OperatorTok{+} \DecValTok{1}
+\NormalTok{y\_min, y\_max }\OperatorTok{=}\NormalTok{ X\_train\_scaled[:, }\DecValTok{1}\NormalTok{].}\BuiltInTok{min}\NormalTok{() }\OperatorTok{{-}} \DecValTok{1}\NormalTok{, X\_train\_scaled[:, }\DecValTok{1}\NormalTok{].}\BuiltInTok{max}\NormalTok{() }\OperatorTok{+} \DecValTok{1}
+\NormalTok{xx, yy }\OperatorTok{=}\NormalTok{ np.meshgrid(np.arange(x\_min, x\_max, h),}
+\NormalTok{                     np.arange(y\_min, y\_max, h))}
+
+\ControlFlowTok{for}\NormalTok{ idx, k }\KeywordTok{in} \BuiltInTok{enumerate}\NormalTok{([}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{20}\NormalTok{]):}
+    \CommentTok{\# Entrenar modelo}
+\NormalTok{    knn }\OperatorTok{=}\NormalTok{ KNeighborsClassifier(n\_neighbors}\OperatorTok{=}\NormalTok{k)}
+\NormalTok{    knn.fit(X\_train\_scaled, y\_train)}
+    
+    \CommentTok{\# Predecir}
+\NormalTok{    Z }\OperatorTok{=}\NormalTok{ knn.predict(np.c\_[xx.ravel(), yy.ravel()])}
+\NormalTok{    Z }\OperatorTok{=}\NormalTok{ Z.reshape(xx.shape)}
+    
+    \CommentTok{\# Graficar}
+\NormalTok{    axes[idx].contourf(xx, yy, Z, alpha}\OperatorTok{=}\FloatTok{0.4}\NormalTok{, cmap}\OperatorTok{=}\StringTok{\textquotesingle{}RdYlBu\_r\textquotesingle{}}\NormalTok{)}
+\NormalTok{    axes[idx].scatter(X\_train\_scaled[:, }\DecValTok{0}\NormalTok{], X\_train\_scaled[:, }\DecValTok{1}\NormalTok{], }
+\NormalTok{                     c}\OperatorTok{=}\NormalTok{y\_train, cmap}\OperatorTok{=}\StringTok{\textquotesingle{}RdYlBu\_r\textquotesingle{}}\NormalTok{, }
+\NormalTok{                     edgecolors}\OperatorTok{=}\StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, s}\OperatorTok{=}\DecValTok{50}\NormalTok{)}
+    
+\NormalTok{    acc }\OperatorTok{=}\NormalTok{ knn.score(X\_test\_scaled, y\_test)}
+\NormalTok{    axes[idx].set\_title(}\SpecialStringTok{f\textquotesingle{}k=}\SpecialCharTok{\{}\NormalTok{k}\SpecialCharTok{\}}\SpecialStringTok{, Accuracy=}\SpecialCharTok{\{}\NormalTok{acc}\SpecialCharTok{:.3f\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\NormalTok{    axes[idx].set\_xlabel(}\StringTok{\textquotesingle{}Feature 1 (escalado)\textquotesingle{}}\NormalTok{)}
+\NormalTok{    axes[idx].set\_ylabel(}\StringTok{\textquotesingle{}Feature 2 (escalado)\textquotesingle{}}\NormalTok{)}
+\NormalTok{    axes[idx].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\NormalTok{plt.tight\_layout()}
+\NormalTok{plt.savefig(}\StringTok{\textquotesingle{}knn\_comparison.png\textquotesingle{}}\NormalTok{, dpi}\OperatorTok{=}\DecValTok{300}\NormalTok{, bbox\_inches}\OperatorTok{=}\StringTok{\textquotesingle{}tight\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Comparación guardada como \textquotesingle{}knn\_comparison.png\textquotesingle{}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Árboles de decisión}\label{uxe1rboles-de-decisiuxf3n}
+
+\subsection{Fundamento del algoritmo}\label{fundamento-del-algoritmo-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
+\StringTok{ÁRBOLES DE DECISIÓN (DECISION TREES)}
+
+\StringTok{Funcionamiento:}
+\StringTok{El algoritmo construye un árbol de decisiones mediante:}
+\StringTok{1. Selección de la mejor característica para dividir datos}
+\StringTok{2. División de datos en subgrupos}
+\StringTok{3. Repetición recursiva hasta cumplir criterio de parada}
+
+\StringTok{Criterios de división:}
+\StringTok{{-} Gini Impurity: Mide impureza de un nodo}
+\StringTok{  Gini = 1 {-} Σ(pi²), donde pi = proporción de clase i}
+\StringTok{  }
+\StringTok{{-} Entropy (Information Gain): Mide desorden}
+\StringTok{  Entropy = {-}Σ(pi * log2(pi))}
+
+\StringTok{Parámetros importantes:}
+\StringTok{{-} max\_depth: Profundidad máxima del árbol}
+\StringTok{{-} min\_samples\_split: Mínimo de muestras para dividir nodo}
+\StringTok{{-} min\_samples\_leaf: Mínimo de muestras en hoja}
+\StringTok{{-} max\_features: Número de características a considerar}
+
+\StringTok{Ventajas:}
+\StringTok{✓ Fácil de interpretar y visualizar}
+\StringTok{✓ No requiere normalización de datos}
+\StringTok{✓ Maneja características numéricas y categóricas}
+\StringTok{✓ Captura relaciones no lineales}
+\StringTok{✓ Puede manejar missing values}
+
+\StringTok{Desventajas:}
+\StringTok{✗ Propenso a overfitting}
+\StringTok{✗ Inestable (pequeños cambios → árbol diferente)}
+\StringTok{✗ Puede crear árboles sesgados con clases desbalanceadas}
+
+\StringTok{Aplicaciones económicas:}
+\StringTok{{-} Aprobación de créditos (reglas claras)}
+\StringTok{{-} Segmentación de clientes}
+\StringTok{{-} Detección de fraude}
+\StringTok{{-} Valuación de riesgo}
+\StringTok{{-} Decisiones de inversión}
+\StringTok{"""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Implementación básica}\label{implementaciuxf3n-buxe1sica}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Entrenar árbol de decisión}
+\NormalTok{modelo\_tree }\OperatorTok{=}\NormalTok{ DecisionTreeClassifier(}
+\NormalTok{    max\_depth}\OperatorTok{=}\DecValTok{3}\NormalTok{,}
+\NormalTok{    min\_samples\_split}\OperatorTok{=}\DecValTok{10}\NormalTok{,}
+\NormalTok{    min\_samples\_leaf}\OperatorTok{=}\DecValTok{5}\NormalTok{,}
+\NormalTok{    random\_state}\OperatorTok{=}\DecValTok{42}
+\NormalTok{)}
+
+\NormalTok{modelo\_tree.fit(X\_train, y\_train)}
+
+\CommentTok{\# Evaluar}
+\NormalTok{y\_pred\_tree }\OperatorTok{=}\NormalTok{ modelo\_tree.predict(X\_test)}
+\NormalTok{acc\_tree }\OperatorTok{=}\NormalTok{ accuracy\_score(y\_test, y\_pred\_tree)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"ÁRBOL DE DECISIÓN"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Profundidad del árbol: }\SpecialCharTok{\{}\NormalTok{modelo\_tree}\SpecialCharTok{.}\NormalTok{get\_depth()}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Número de hojas: }\SpecialCharTok{\{}\NormalTok{modelo\_tree}\SpecialCharTok{.}\NormalTok{get\_n\_leaves()}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Accuracy en test: }\SpecialCharTok{\{}\NormalTok{acc\_tree}\SpecialCharTok{:.4f\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{acc\_tree}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.1f\}}\SpecialStringTok{\%)"}\NormalTok{)}
+
+\CommentTok{\# Importancia de características}
+\NormalTok{importancias }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}caracteristica\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Largo sépalo\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Ancho sépalo\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}importancia\textquotesingle{}}\NormalTok{: modelo\_tree.feature\_importances\_}
+\NormalTok{\}).sort\_values(}\StringTok{\textquotesingle{}importancia\textquotesingle{}}\NormalTok{, ascending}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Importancia de características:"}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ \_, row }\KeywordTok{in}\NormalTok{ importancias.iterrows():}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  }\SpecialCharTok{\{}\NormalTok{row[}\StringTok{\textquotesingle{}caracteristica\textquotesingle{}}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{: }\SpecialCharTok{\{}\NormalTok{row[}\StringTok{\textquotesingle{}importancia\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Visualización del
+árbol}\label{visualizaciuxf3n-del-uxe1rbol}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Visualizar árbol}
+\NormalTok{plt.figure(figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{20}\NormalTok{, }\DecValTok{10}\NormalTok{))}
+\NormalTok{tree.plot\_tree(}
+\NormalTok{    modelo\_tree,}
+\NormalTok{    feature\_names}\OperatorTok{=}\NormalTok{[}\StringTok{\textquotesingle{}Largo sépalo\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Ancho sépalo\textquotesingle{}}\NormalTok{],}
+\NormalTok{    class\_names}\OperatorTok{=}\NormalTok{[}\StringTok{\textquotesingle{}No Virginica\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Virginica\textquotesingle{}}\NormalTok{],}
+\NormalTok{    filled}\OperatorTok{=}\VariableTok{True}\NormalTok{,}
+\NormalTok{    rounded}\OperatorTok{=}\VariableTok{True}\NormalTok{,}
+\NormalTok{    fontsize}\OperatorTok{=}\DecValTok{10}
+\NormalTok{)}
+\NormalTok{plt.title(}\StringTok{\textquotesingle{}Árbol de Decisión {-} Clasificación de Iris\textquotesingle{}}\NormalTok{, }
+\NormalTok{          fontsize}\OperatorTok{=}\DecValTok{16}\NormalTok{, fontweight}\OperatorTok{=}\StringTok{\textquotesingle{}bold\textquotesingle{}}\NormalTok{, pad}\OperatorTok{=}\DecValTok{20}\NormalTok{)}
+\NormalTok{plt.tight\_layout()}
+\NormalTok{plt.savefig(}\StringTok{\textquotesingle{}decision\_tree.png\textquotesingle{}}\NormalTok{, dpi}\OperatorTok{=}\DecValTok{300}\NormalTok{, bbox\_inches}\OperatorTok{=}\StringTok{\textquotesingle{}tight\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Árbol visualizado y guardado como \textquotesingle{}decision\_tree.png\textquotesingle{}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Efecto de la profundidad}\label{efecto-de-la-profundidad}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Evaluar diferentes profundidades}
+\NormalTok{profundidades }\OperatorTok{=} \BuiltInTok{range}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{11}\NormalTok{)}
+\NormalTok{resultados\_depth }\OperatorTok{=}\NormalTok{ []}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{EFECTO DE LA PROFUNDIDAD DEL ÁRBOL"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\StringTok{\textquotesingle{}Profundidad\textquotesingle{}}\SpecialCharTok{:\textless{}12\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}Accuracy Train\textquotesingle{}}\SpecialCharTok{:\textless{}15\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}Accuracy Test\textquotesingle{}}\SpecialCharTok{:\textless{}15\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}Hojas\textquotesingle{}}\SpecialCharTok{:\textless{}10\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"{-}"} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ depth }\KeywordTok{in}\NormalTok{ profundidades:}
+\NormalTok{    tree\_model }\OperatorTok{=}\NormalTok{ DecisionTreeClassifier(max\_depth}\OperatorTok{=}\NormalTok{depth, random\_state}\OperatorTok{=}\DecValTok{42}\NormalTok{)}
+\NormalTok{    tree\_model.fit(X\_train, y\_train)}
+    
+\NormalTok{    acc\_train }\OperatorTok{=}\NormalTok{ tree\_model.score(X\_train, y\_train)}
+\NormalTok{    acc\_test }\OperatorTok{=}\NormalTok{ tree\_model.score(X\_test, y\_test)}
+\NormalTok{    n\_hojas }\OperatorTok{=}\NormalTok{ tree\_model.get\_n\_leaves()}
+    
+\NormalTok{    resultados\_depth.append(\{}
+        \StringTok{\textquotesingle{}depth\textquotesingle{}}\NormalTok{: depth,}
+        \StringTok{\textquotesingle{}acc\_train\textquotesingle{}}\NormalTok{: acc\_train,}
+        \StringTok{\textquotesingle{}acc\_test\textquotesingle{}}\NormalTok{: acc\_test,}
+        \StringTok{\textquotesingle{}n\_leaves\textquotesingle{}}\NormalTok{: n\_hojas}
+\NormalTok{    \})}
+    
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{depth}\SpecialCharTok{:\textless{}12\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{acc\_train}\SpecialCharTok{:\textless{}15.4f\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{acc\_test}\SpecialCharTok{:\textless{}15.4f\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{n\_hojas}\SpecialCharTok{:\textless{}10\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Graficar}
+\NormalTok{df\_depth }\OperatorTok{=}\NormalTok{ pd.DataFrame(resultados\_depth)}
+
+\NormalTok{fig, axes }\OperatorTok{=}\NormalTok{ plt.subplots(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{15}\NormalTok{, }\DecValTok{5}\NormalTok{))}
+
+\CommentTok{\# Accuracy}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].plot(df\_depth[}\StringTok{\textquotesingle{}depth\textquotesingle{}}\NormalTok{], df\_depth[}\StringTok{\textquotesingle{}acc\_train\textquotesingle{}}\NormalTok{], }
+             \StringTok{\textquotesingle{}o{-}\textquotesingle{}}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Training\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].plot(df\_depth[}\StringTok{\textquotesingle{}depth\textquotesingle{}}\NormalTok{], df\_depth[}\StringTok{\textquotesingle{}acc\_test\textquotesingle{}}\NormalTok{], }
+             \StringTok{\textquotesingle{}s{-}\textquotesingle{}}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Test\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].set\_xlabel(}\StringTok{\textquotesingle{}Profundidad máxima\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].set\_ylabel(}\StringTok{\textquotesingle{}Accuracy\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}Accuracy vs Profundidad del Árbol\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].legend()}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\CommentTok{\# Complejidad}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].plot(df\_depth[}\StringTok{\textquotesingle{}depth\textquotesingle{}}\NormalTok{], df\_depth[}\StringTok{\textquotesingle{}n\_leaves\textquotesingle{}}\NormalTok{], }
+             \StringTok{\textquotesingle{}o{-}\textquotesingle{}}\NormalTok{, color}\OperatorTok{=}\StringTok{\textquotesingle{}green\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].set\_xlabel(}\StringTok{\textquotesingle{}Profundidad máxima\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].set\_ylabel(}\StringTok{\textquotesingle{}Número de hojas\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}Complejidad del Árbol\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\NormalTok{plt.tight\_layout()}
+\NormalTok{plt.savefig(}\StringTok{\textquotesingle{}tree\_depth\_analysis.png\textquotesingle{}}\NormalTok{, dpi}\OperatorTok{=}\DecValTok{300}\NormalTok{, bbox\_inches}\OperatorTok{=}\StringTok{\textquotesingle{}tight\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Análisis guardado como \textquotesingle{}tree\_depth\_analysis.png\textquotesingle{}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Random Forests}\label{random-forests}
+
+\subsection{Fundamento del algoritmo}\label{fundamento-del-algoritmo-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
+\StringTok{RANDOM FORESTS (BOSQUES ALEATORIOS)}
+
+\StringTok{Concepto:}
+\StringTok{"La sabiduría de las multitudes"}
+\StringTok{Ensemble de múltiples árboles de decisión}
+
+\StringTok{Funcionamiento:}
+\StringTok{1. Bootstrap: Crear múltiples muestras aleatorias con reemplazo}
+\StringTok{2. Para cada muestra:}
+\StringTok{   a. Entrenar árbol de decisión}
+\StringTok{   b. En cada división, considerar solo subset aleatorio de características}
+\StringTok{3. Predicción final: Votación mayoritaria de todos los árboles}
+
+\StringTok{Parámetros clave:}
+\StringTok{{-} n\_estimators: Número de árboles (más = mejor, pero más lento)}
+\StringTok{{-} max\_depth: Profundidad de cada árbol}
+\StringTok{{-} max\_features: Características a considerar en cada división}
+\StringTok{{-} min\_samples\_split: Mínimo para dividir nodo}
+\StringTok{{-} bootstrap: Usar bootstrap o no}
+
+\StringTok{Ventajas:}
+\StringTok{✓ Reduce overfitting vs árbol único}
+\StringTok{✓ Más robusto y preciso}
+\StringTok{✓ Proporciona importancia de características}
+\StringTok{✓ Funciona bien out{-}of{-}the{-}box}
+\StringTok{✓ Maneja grandes dimensiones}
+
+\StringTok{Desventajas:}
+\StringTok{✗ Menos interpretable que árbol único}
+\StringTok{✗ Más lento para entrenar y predecir}
+\StringTok{✗ Requiere más memoria}
+
+\StringTok{Aplicaciones económicas:}
+\StringTok{{-} Credit scoring (alta precisión)}
+\StringTok{{-} Predicción de precios (inmuebles, acciones)}
+\StringTok{{-} Detección de fraude}
+\StringTok{{-} Churn prediction}
+\StringTok{{-} Segmentación avanzada de clientes}
+\StringTok{"""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Implementación}\label{implementaciuxf3n-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Entrenar Random Forest}
+\NormalTok{modelo\_rf }\OperatorTok{=}\NormalTok{ RandomForestClassifier(}
+\NormalTok{    n\_estimators}\OperatorTok{=}\DecValTok{100}\NormalTok{,}
+\NormalTok{    max\_depth}\OperatorTok{=}\DecValTok{5}\NormalTok{,}
+\NormalTok{    min\_samples\_split}\OperatorTok{=}\DecValTok{10}\NormalTok{,}
+\NormalTok{    min\_samples\_leaf}\OperatorTok{=}\DecValTok{5}\NormalTok{,}
+\NormalTok{    random\_state}\OperatorTok{=}\DecValTok{42}\NormalTok{,}
+\NormalTok{    n\_jobs}\OperatorTok{={-}}\DecValTok{1}  \CommentTok{\# Usar todos los procesadores}
+\NormalTok{)}
+
+\NormalTok{modelo\_rf.fit(X\_train, y\_train)}
+
+\CommentTok{\# Evaluar}
+\NormalTok{y\_pred\_rf }\OperatorTok{=}\NormalTok{ modelo\_rf.predict(X\_test)}
+\NormalTok{acc\_rf }\OperatorTok{=}\NormalTok{ accuracy\_score(y\_test, y\_pred\_rf)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"RANDOM FOREST"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Número de árboles: }\SpecialCharTok{\{}\NormalTok{modelo\_rf}\SpecialCharTok{.}\NormalTok{n\_estimators}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Accuracy en test: }\SpecialCharTok{\{}\NormalTok{acc\_rf}\SpecialCharTok{:.4f\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{acc\_rf}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.1f\}}\SpecialStringTok{\%)"}\NormalTok{)}
+
+\CommentTok{\# Importancia de características}
+\NormalTok{importancias\_rf }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}caracteristica\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Largo sépalo\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Ancho sépalo\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}importancia\textquotesingle{}}\NormalTok{: modelo\_rf.feature\_importances\_,}
+    \StringTok{\textquotesingle{}std\textquotesingle{}}\NormalTok{: np.std([tree.feature\_importances\_ }
+                   \ControlFlowTok{for}\NormalTok{ tree }\KeywordTok{in}\NormalTok{ modelo\_rf.estimators\_], axis}\OperatorTok{=}\DecValTok{0}\NormalTok{)}
+\NormalTok{\}).sort\_values(}\StringTok{\textquotesingle{}importancia\textquotesingle{}}\NormalTok{, ascending}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Importancia de características:"}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ \_, row }\KeywordTok{in}\NormalTok{ importancias\_rf.iterrows():}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  }\SpecialCharTok{\{}\NormalTok{row[}\StringTok{\textquotesingle{}caracteristica\textquotesingle{}}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{: }\SpecialCharTok{\{}\NormalTok{row[}\StringTok{\textquotesingle{}importancia\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:.4f\}}\SpecialStringTok{ (±}\SpecialCharTok{\{}\NormalTok{row[}\StringTok{\textquotesingle{}std\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:.4f\}}\SpecialStringTok{)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Efecto del número de
+árboles}\label{efecto-del-nuxfamero-de-uxe1rboles}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Evaluar diferentes números de árboles}
+\NormalTok{n\_trees\_list }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{200}\NormalTok{]}
+\NormalTok{resultados\_trees }\OperatorTok{=}\NormalTok{ []}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{EFECTO DEL NÚMERO DE ÁRBOLES"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\StringTok{\textquotesingle{}N Árboles\textquotesingle{}}\SpecialCharTok{:\textless{}12\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}Accuracy Train\textquotesingle{}}\SpecialCharTok{:\textless{}15\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}Accuracy Test\textquotesingle{}}\SpecialCharTok{:\textless{}15\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"{-}"} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ n\_trees }\KeywordTok{in}\NormalTok{ n\_trees\_list:}
+\NormalTok{    rf }\OperatorTok{=}\NormalTok{ RandomForestClassifier(}
+\NormalTok{        n\_estimators}\OperatorTok{=}\NormalTok{n\_trees,}
+\NormalTok{        max\_depth}\OperatorTok{=}\DecValTok{5}\NormalTok{,}
+\NormalTok{        random\_state}\OperatorTok{=}\DecValTok{42}
+\NormalTok{    )}
+\NormalTok{    rf.fit(X\_train, y\_train)}
+    
+\NormalTok{    acc\_train }\OperatorTok{=}\NormalTok{ rf.score(X\_train, y\_train)}
+\NormalTok{    acc\_test }\OperatorTok{=}\NormalTok{ rf.score(X\_test, y\_test)}
+    
+\NormalTok{    resultados\_trees.append(\{}
+        \StringTok{\textquotesingle{}n\_trees\textquotesingle{}}\NormalTok{: n\_trees,}
+        \StringTok{\textquotesingle{}acc\_train\textquotesingle{}}\NormalTok{: acc\_train,}
+        \StringTok{\textquotesingle{}acc\_test\textquotesingle{}}\NormalTok{: acc\_test}
+\NormalTok{    \})}
+    
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{n\_trees}\SpecialCharTok{:\textless{}12\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{acc\_train}\SpecialCharTok{:\textless{}15.4f\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{acc\_test}\SpecialCharTok{:\textless{}15.4f\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Graficar}
+\NormalTok{df\_trees }\OperatorTok{=}\NormalTok{ pd.DataFrame(resultados\_trees)}
+
+\NormalTok{plt.figure(figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{6}\NormalTok{))}
+\NormalTok{plt.plot(df\_trees[}\StringTok{\textquotesingle{}n\_trees\textquotesingle{}}\NormalTok{], df\_trees[}\StringTok{\textquotesingle{}acc\_train\textquotesingle{}}\NormalTok{], }
+         \StringTok{\textquotesingle{}o{-}\textquotesingle{}}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Training\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, markersize}\OperatorTok{=}\DecValTok{8}\NormalTok{)}
+\NormalTok{plt.plot(df\_trees[}\StringTok{\textquotesingle{}n\_trees\textquotesingle{}}\NormalTok{], df\_trees[}\StringTok{\textquotesingle{}acc\_test\textquotesingle{}}\NormalTok{], }
+         \StringTok{\textquotesingle{}s{-}\textquotesingle{}}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Test\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, markersize}\OperatorTok{=}\DecValTok{8}\NormalTok{)}
+\NormalTok{plt.xlabel(}\StringTok{\textquotesingle{}Número de árboles\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.ylabel(}\StringTok{\textquotesingle{}Accuracy\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.title(}\StringTok{\textquotesingle{}Accuracy vs Número de Árboles en Random Forest\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.legend()}
+\NormalTok{plt.grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+\NormalTok{plt.xscale(}\StringTok{\textquotesingle{}log\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.tight\_layout()}
+\NormalTok{plt.savefig(}\StringTok{\textquotesingle{}random\_forest\_ntrees.png\textquotesingle{}}\NormalTok{, dpi}\OperatorTok{=}\DecValTok{300}\NormalTok{, bbox\_inches}\OperatorTok{=}\StringTok{\textquotesingle{}tight\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Gráfico guardado como \textquotesingle{}random\_forest\_ntrees.png\textquotesingle{}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Clasificación multi-clase}\label{clasificaciuxf3n-multi-clase}
+
+\subsection{Dataset con 3 clases}\label{dataset-con-3-clases}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Usar todas las especies de Iris (3 clases)}
+\NormalTok{X\_multiclass }\OperatorTok{=}\NormalTok{ iris.data[:, :}\DecValTok{2}\NormalTok{]}
+\NormalTok{y\_multiclass }\OperatorTok{=}\NormalTok{ iris.target}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"CLASIFICACIÓN MULTI{-}CLASE"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Número de clases: }\SpecialCharTok{\{}\BuiltInTok{len}\NormalTok{(np.unique(y\_multiclass))}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Clases: }\SpecialCharTok{\{}\NormalTok{iris}\SpecialCharTok{.}\NormalTok{target\_names}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Distribución:"}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ i, nombre }\KeywordTok{in} \BuiltInTok{enumerate}\NormalTok{(iris.target\_names):}
+\NormalTok{    count }\OperatorTok{=}\NormalTok{ (y\_multiclass }\OperatorTok{==}\NormalTok{ i).}\BuiltInTok{sum}\NormalTok{()}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  }\SpecialCharTok{\{}\NormalTok{nombre}\SpecialCharTok{\}}\SpecialStringTok{: }\SpecialCharTok{\{}\NormalTok{count}\SpecialCharTok{\}}\SpecialStringTok{ muestras"}\NormalTok{)}
+
+\CommentTok{\# Dividir datos}
+\NormalTok{X\_train\_mc, X\_test\_mc, y\_train\_mc, y\_test\_mc }\OperatorTok{=}\NormalTok{ train\_test\_split(}
+\NormalTok{    X\_multiclass, y\_multiclass, test\_size}\OperatorTok{=}\FloatTok{0.3}\NormalTok{, random\_state}\OperatorTok{=}\DecValTok{42}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Entrenar modelos
+multi-clase}\label{entrenar-modelos-multi-clase}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Entrenar cada modelo}
+\NormalTok{modelos\_mc }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}Logistic Regression\textquotesingle{}}\NormalTok{: LogisticRegression(random\_state}\OperatorTok{=}\DecValTok{42}\NormalTok{, max\_iter}\OperatorTok{=}\DecValTok{200}\NormalTok{),}
+    \StringTok{\textquotesingle{}KNN\textquotesingle{}}\NormalTok{: KNeighborsClassifier(n\_neighbors}\OperatorTok{=}\DecValTok{5}\NormalTok{),}
+    \StringTok{\textquotesingle{}Decision Tree\textquotesingle{}}\NormalTok{: DecisionTreeClassifier(max\_depth}\OperatorTok{=}\DecValTok{5}\NormalTok{, random\_state}\OperatorTok{=}\DecValTok{42}\NormalTok{),}
+    \StringTok{\textquotesingle{}Random Forest\textquotesingle{}}\NormalTok{: RandomForestClassifier(n\_estimators}\OperatorTok{=}\DecValTok{100}\NormalTok{, random\_state}\OperatorTok{=}\DecValTok{42}\NormalTok{)}
+\NormalTok{\}}
+
+\NormalTok{resultados\_mc }\OperatorTok{=}\NormalTok{ \{\}}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{RESULTADOS CLASIFICACIÓN MULTI{-}CLASE"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ nombre, modelo }\KeywordTok{in}\NormalTok{ modelos\_mc.items():}
+    \CommentTok{\# Entrenar}
+\NormalTok{    modelo.fit(X\_train\_mc, y\_train\_mc)}
+    
+    \CommentTok{\# Predecir}
+\NormalTok{    y\_pred }\OperatorTok{=}\NormalTok{ modelo.predict(X\_test\_mc)}
+    
+    \CommentTok{\# Evaluar}
+\NormalTok{    acc }\OperatorTok{=}\NormalTok{ accuracy\_score(y\_test\_mc, y\_pred)}
+    
+\NormalTok{    resultados\_mc[nombre] }\OperatorTok{=}\NormalTok{ \{}
+        \StringTok{\textquotesingle{}modelo\textquotesingle{}}\NormalTok{: modelo,}
+        \StringTok{\textquotesingle{}accuracy\textquotesingle{}}\NormalTok{: acc}
+\NormalTok{    \}}
+    
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialCharTok{\{}\NormalTok{nombre}\SpecialCharTok{\}}\SpecialStringTok{:"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Accuracy: }\SpecialCharTok{\{}\NormalTok{acc}\SpecialCharTok{:.4f\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{acc}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.1f\}}\SpecialStringTok{\%)"}\NormalTok{)}
+    
+    \CommentTok{\# Matriz de confusión}
+\NormalTok{    cm }\OperatorTok{=}\NormalTok{ confusion\_matrix(y\_test\_mc, y\_pred)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Matriz de confusión:"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  }\SpecialCharTok{\{}\NormalTok{cm}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Encontrar mejor modelo}
+\NormalTok{mejor\_modelo\_mc }\OperatorTok{=} \BuiltInTok{max}\NormalTok{(resultados\_mc, key}\OperatorTok{=}\KeywordTok{lambda}\NormalTok{ x: resultados\_mc[x][}\StringTok{\textquotesingle{}accuracy\textquotesingle{}}\NormalTok{])}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{Mejor modelo: }\SpecialCharTok{\{}\NormalTok{mejor\_modelo\_mc}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Accuracy: }\SpecialCharTok{\{}\NormalTok{resultados\_mc[mejor\_modelo\_mc][}\StringTok{\textquotesingle{}accuracy\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Visualización
+multi-clase}\label{visualizaciuxf3n-multi-clase}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Visualizar fronteras de decisión para cada modelo}
+\NormalTok{fig, axes }\OperatorTok{=}\NormalTok{ plt.subplots(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{16}\NormalTok{, }\DecValTok{14}\NormalTok{))}
+\NormalTok{axes }\OperatorTok{=}\NormalTok{ axes.ravel()}
+
+\NormalTok{h }\OperatorTok{=} \FloatTok{0.02}
+\NormalTok{x\_min, x\_max }\OperatorTok{=}\NormalTok{ X\_multiclass[:, }\DecValTok{0}\NormalTok{].}\BuiltInTok{min}\NormalTok{() }\OperatorTok{{-}} \FloatTok{0.5}\NormalTok{, X\_multiclass[:, }\DecValTok{0}\NormalTok{].}\BuiltInTok{max}\NormalTok{() }\OperatorTok{+} \FloatTok{0.5}
+\NormalTok{y\_min, y\_max }\OperatorTok{=}\NormalTok{ X\_multiclass[:, }\DecValTok{1}\NormalTok{].}\BuiltInTok{min}\NormalTok{() }\OperatorTok{{-}} \FloatTok{0.5}\NormalTok{, X\_multiclass[:, }\DecValTok{1}\NormalTok{].}\BuiltInTok{max}\NormalTok{() }\OperatorTok{+} \FloatTok{0.5}
+\NormalTok{xx, yy }\OperatorTok{=}\NormalTok{ np.meshgrid(np.arange(x\_min, x\_max, h),}
+\NormalTok{                     np.arange(y\_min, y\_max, h))}
+
+\ControlFlowTok{for}\NormalTok{ idx, (nombre, resultado) }\KeywordTok{in} \BuiltInTok{enumerate}\NormalTok{(resultados\_mc.items()):}
+\NormalTok{    modelo }\OperatorTok{=}\NormalTok{ resultado[}\StringTok{\textquotesingle{}modelo\textquotesingle{}}\NormalTok{]}
+\NormalTok{    acc }\OperatorTok{=}\NormalTok{ resultado[}\StringTok{\textquotesingle{}accuracy\textquotesingle{}}\NormalTok{]}
+    
+    \CommentTok{\# Predecir para malla}
+\NormalTok{    Z }\OperatorTok{=}\NormalTok{ modelo.predict(np.c\_[xx.ravel(), yy.ravel()])}
+\NormalTok{    Z }\OperatorTok{=}\NormalTok{ Z.reshape(xx.shape)}
+    
+    \CommentTok{\# Graficar}
+\NormalTok{    axes[idx].contourf(xx, yy, Z, alpha}\OperatorTok{=}\FloatTok{0.4}\NormalTok{, cmap}\OperatorTok{=}\StringTok{\textquotesingle{}viridis\textquotesingle{}}\NormalTok{)}
+\NormalTok{    scatter }\OperatorTok{=}\NormalTok{ axes[idx].scatter(X\_multiclass[:, }\DecValTok{0}\NormalTok{], X\_multiclass[:, }\DecValTok{1}\NormalTok{],}
+\NormalTok{                               c}\OperatorTok{=}\NormalTok{y\_multiclass, cmap}\OperatorTok{=}\StringTok{\textquotesingle{}viridis\textquotesingle{}}\NormalTok{,}
+\NormalTok{                               edgecolors}\OperatorTok{=}\StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, s}\OperatorTok{=}\DecValTok{50}\NormalTok{)}
+    
+\NormalTok{    axes[idx].set\_xlabel(}\StringTok{\textquotesingle{}Largo del sépalo (cm)\textquotesingle{}}\NormalTok{)}
+\NormalTok{    axes[idx].set\_ylabel(}\StringTok{\textquotesingle{}Ancho del sépalo (cm)\textquotesingle{}}\NormalTok{)}
+\NormalTok{    axes[idx].set\_title(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{nombre}\SpecialCharTok{\}}\CharTok{\textbackslash{}n}\SpecialStringTok{Accuracy=}\SpecialCharTok{\{}\NormalTok{acc}\SpecialCharTok{:.3f\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\NormalTok{    axes[idx].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\CommentTok{\# Leyenda común}
+\NormalTok{plt.colorbar(scatter, ax}\OperatorTok{=}\NormalTok{axes, label}\OperatorTok{=}\StringTok{\textquotesingle{}Especie\textquotesingle{}}\NormalTok{, ticks}\OperatorTok{=}\NormalTok{[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{])}
+
+\NormalTok{plt.tight\_layout()}
+\NormalTok{plt.savefig(}\StringTok{\textquotesingle{}multiclass\_comparison.png\textquotesingle{}}\NormalTok{, dpi}\OperatorTok{=}\DecValTok{300}\NormalTok{, bbox\_inches}\OperatorTok{=}\StringTok{\textquotesingle{}tight\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Comparación guardada como \textquotesingle{}multiclass\_comparison.png\textquotesingle{}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Comparación de modelos}\label{comparaciuxf3n-de-modelos}
+
+\subsection{Curvas ROC para cada
+modelo}\label{curvas-roc-para-cada-modelo}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Calcular curvas ROC para clasificación binaria}
+\KeywordTok{def}\NormalTok{ calcular\_roc\_multimodelo(modelos\_dict, X\_test, y\_test):}
+    \CommentTok{"""Calcula curvas ROC para múltiples modelos"""}
+    
+\NormalTok{    plt.figure(figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{8}\NormalTok{))}
+    
+    \ControlFlowTok{for}\NormalTok{ nombre, modelo }\KeywordTok{in}\NormalTok{ modelos\_dict.items():}
+        \CommentTok{\# Obtener probabilidades}
+        \ControlFlowTok{if} \BuiltInTok{hasattr}\NormalTok{(modelo, }\StringTok{\textquotesingle{}predict\_proba\textquotesingle{}}\NormalTok{):}
+\NormalTok{            probs }\OperatorTok{=}\NormalTok{ modelo.predict\_proba(X\_test)[:, }\DecValTok{1}\NormalTok{]}
+        \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{            probs }\OperatorTok{=}\NormalTok{ modelo.decision\_function(X\_test)}
+        
+        \CommentTok{\# Calcular curva ROC}
+\NormalTok{        fpr, tpr, \_ }\OperatorTok{=}\NormalTok{ roc\_curve(y\_test, probs)}
+\NormalTok{        roc\_auc }\OperatorTok{=}\NormalTok{ auc(fpr, tpr)}
+        
+        \CommentTok{\# Graficar}
+\NormalTok{        plt.plot(fpr, tpr, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, }
+\NormalTok{                label}\OperatorTok{=}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{nombre}\SpecialCharTok{\}}\SpecialStringTok{ (AUC=}\SpecialCharTok{\{}\NormalTok{roc\_auc}\SpecialCharTok{:.3f\}}\SpecialStringTok{)\textquotesingle{}}\NormalTok{)}
+    
+    \CommentTok{\# Línea diagonal}
+\NormalTok{    plt.plot([}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{], [}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{], }\StringTok{\textquotesingle{}k{-}{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Azar (AUC=0.5)\textquotesingle{}}\NormalTok{)}
+    
+\NormalTok{    plt.xlabel(}\StringTok{\textquotesingle{}False Positive Rate\textquotesingle{}}\NormalTok{, fontsize}\OperatorTok{=}\DecValTok{12}\NormalTok{)}
+\NormalTok{    plt.ylabel(}\StringTok{\textquotesingle{}True Positive Rate\textquotesingle{}}\NormalTok{, fontsize}\OperatorTok{=}\DecValTok{12}\NormalTok{)}
+\NormalTok{    plt.title(}\StringTok{\textquotesingle{}Curvas ROC {-} Comparación de Modelos\textquotesingle{}}\NormalTok{, }
+\NormalTok{              fontsize}\OperatorTok{=}\DecValTok{14}\NormalTok{, fontweight}\OperatorTok{=}\StringTok{\textquotesingle{}bold\textquotesingle{}}\NormalTok{)}
+\NormalTok{    plt.legend(loc}\OperatorTok{=}\StringTok{\textquotesingle{}lower right\textquotesingle{}}\NormalTok{)}
+\NormalTok{    plt.grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+\NormalTok{    plt.tight\_layout()}
+\NormalTok{    plt.savefig(}\StringTok{\textquotesingle{}roc\_comparison.png\textquotesingle{}}\NormalTok{, dpi}\OperatorTok{=}\DecValTok{300}\NormalTok{, bbox\_inches}\OperatorTok{=}\StringTok{\textquotesingle{}tight\textquotesingle{}}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Curvas ROC guardadas como \textquotesingle{}roc\_comparison.png\textquotesingle{}"}\NormalTok{)}
+
+\CommentTok{\# Preparar modelos para comparación (clasificación binaria)}
+\NormalTok{modelos\_binarios }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}Logistic Regression\textquotesingle{}}\NormalTok{: LogisticRegression(random\_state}\OperatorTok{=}\DecValTok{42}\NormalTok{),}
+    \StringTok{\textquotesingle{}KNN (k=5)\textquotesingle{}}\NormalTok{: KNeighborsClassifier(n\_neighbors}\OperatorTok{=}\DecValTok{5}\NormalTok{),}
+    \StringTok{\textquotesingle{}Decision Tree\textquotesingle{}}\NormalTok{: DecisionTreeClassifier(max\_depth}\OperatorTok{=}\DecValTok{5}\NormalTok{, random\_state}\OperatorTok{=}\DecValTok{42}\NormalTok{),}
+    \StringTok{\textquotesingle{}Random Forest\textquotesingle{}}\NormalTok{: RandomForestClassifier(n\_estimators}\OperatorTok{=}\DecValTok{100}\NormalTok{, random\_state}\OperatorTok{=}\DecValTok{42}\NormalTok{)}
+\NormalTok{\}}
+
+\CommentTok{\# Entrenar modelos}
+\ControlFlowTok{for}\NormalTok{ modelo }\KeywordTok{in}\NormalTok{ modelos\_binarios.values():}
+\NormalTok{    modelo.fit(X\_train, y\_train)}
+
+\CommentTok{\# Calcular y graficar ROC}
+\NormalTok{calcular\_roc\_multimodelo(modelos\_binarios, X\_test, y\_test)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Tabla comparativa de
+métricas}\label{tabla-comparativa-de-muxe9tricas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Compilar todas las métricas}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{TABLA COMPARATIVA DE MODELOS"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{resultados\_comparacion }\OperatorTok{=}\NormalTok{ []}
+
+\ControlFlowTok{for}\NormalTok{ nombre, modelo }\KeywordTok{in}\NormalTok{ modelos\_binarios.items():}
+    \CommentTok{\# Predicciones}
+\NormalTok{    y\_pred }\OperatorTok{=}\NormalTok{ modelo.predict(X\_test)}
+    
+    \CommentTok{\# Probabilidades}
+    \ControlFlowTok{if} \BuiltInTok{hasattr}\NormalTok{(modelo, }\StringTok{\textquotesingle{}predict\_proba\textquotesingle{}}\NormalTok{):}
+\NormalTok{        probs }\OperatorTok{=}\NormalTok{ modelo.predict\_proba(X\_test)[:, }\DecValTok{1}\NormalTok{]}
+    \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{        probs }\OperatorTok{=}\NormalTok{ modelo.decision\_function(X\_test)}
+    
+    \CommentTok{\# Métricas}
+    \ImportTok{from}\NormalTok{ sklearn.metrics }\ImportTok{import}\NormalTok{ precision\_score, recall\_score, f1\_score}
+    
+\NormalTok{    acc }\OperatorTok{=}\NormalTok{ accuracy\_score(y\_test, y\_pred)}
+\NormalTok{    precision }\OperatorTok{=}\NormalTok{ precision\_score(y\_test, y\_pred)}
+\NormalTok{    recall }\OperatorTok{=}\NormalTok{ recall\_score(y\_test, y\_pred)}
+\NormalTok{    f1 }\OperatorTok{=}\NormalTok{ f1\_score(y\_test, y\_pred)}
+    
+    \CommentTok{\# ROC AUC}
+\NormalTok{    fpr, tpr, \_ }\OperatorTok{=}\NormalTok{ roc\_curve(y\_test, probs)}
+\NormalTok{    roc\_auc }\OperatorTok{=}\NormalTok{ auc(fpr, tpr)}
+    
+\NormalTok{    resultados\_comparacion.append(\{}
+        \StringTok{\textquotesingle{}Modelo\textquotesingle{}}\NormalTok{: nombre,}
+        \StringTok{\textquotesingle{}Accuracy\textquotesingle{}}\NormalTok{: acc,}
+        \StringTok{\textquotesingle{}Precision\textquotesingle{}}\NormalTok{: precision,}
+        \StringTok{\textquotesingle{}Recall\textquotesingle{}}\NormalTok{: recall,}
+        \StringTok{\textquotesingle{}F1{-}Score\textquotesingle{}}\NormalTok{: f1,}
+        \StringTok{\textquotesingle{}AUC\textquotesingle{}}\NormalTok{: roc\_auc}
+\NormalTok{    \})}
+
+\CommentTok{\# Crear DataFrame}
+\NormalTok{df\_comparacion }\OperatorTok{=}\NormalTok{ pd.DataFrame(resultados\_comparacion)}
+\NormalTok{df\_comparacion }\OperatorTok{=}\NormalTok{ df\_comparacion.}\BuiltInTok{round}\NormalTok{(}\DecValTok{4}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(df\_comparacion.to\_string(index}\OperatorTok{=}\VariableTok{False}\NormalTok{))}
+
+\CommentTok{\# Guardar}
+\NormalTok{df\_comparacion.to\_csv(}\StringTok{\textquotesingle{}comparacion\_modelos.csv\textquotesingle{}}\NormalTok{, index}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{Tabla guardada como \textquotesingle{}comparacion\_modelos.csv\textquotesingle{}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Aplicaciones económicas}\label{aplicaciones-econuxf3micas}
+
+\subsection{Aplicación 1: Clasificación de riesgo
+crediticio}\label{aplicaciuxf3n-1-clasificaciuxf3n-de-riesgo-crediticio}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n\textbackslash{}n}\StringTok{APLICACIÓN: CLASIFICACIÓN DE RIESGO CREDITICIO"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\CommentTok{\# Generar datos sintéticos}
+\NormalTok{np.random.seed(}\DecValTok{42}\NormalTok{)}
+\NormalTok{n\_clientes }\OperatorTok{=} \DecValTok{2000}
+
+\NormalTok{datos\_credito }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}edad\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{18}\NormalTok{, }\DecValTok{70}\NormalTok{, n\_clientes),}
+    \StringTok{\textquotesingle{}ingreso\_anual\textquotesingle{}}\NormalTok{: np.random.uniform(}\DecValTok{10000}\NormalTok{, }\DecValTok{150000}\NormalTok{, n\_clientes),}
+    \StringTok{\textquotesingle{}monto\_solicitado\textquotesingle{}}\NormalTok{: np.random.uniform(}\DecValTok{5000}\NormalTok{, }\DecValTok{200000}\NormalTok{, n\_clientes),}
+    \StringTok{\textquotesingle{}antiguedad\_laboral\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{0}\NormalTok{, }\DecValTok{30}\NormalTok{, n\_clientes),}
+    \StringTok{\textquotesingle{}num\_creditos\_previos\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{, n\_clientes),}
+    \StringTok{\textquotesingle{}ratio\_deuda\_ingreso\textquotesingle{}}\NormalTok{: np.random.uniform(}\DecValTok{0}\NormalTok{, }\FloatTok{1.5}\NormalTok{, n\_clientes),}
+    \StringTok{\textquotesingle{}tiene\_hipoteca\textquotesingle{}}\NormalTok{: np.random.choice([}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{], n\_clientes),}
+    \StringTok{\textquotesingle{}score\_crediticio\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{300}\NormalTok{, }\DecValTok{850}\NormalTok{, n\_clientes)}
+\NormalTok{\})}
+
+\CommentTok{\# Variable objetivo: riesgo (0=bajo, 1=medio, 2=alto)}
+\NormalTok{score\_riesgo }\OperatorTok{=}\NormalTok{ (}
+    \OperatorTok{{-}}\NormalTok{datos\_credito[}\StringTok{\textquotesingle{}score\_crediticio\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \FloatTok{0.003} \OperatorTok{+}
+\NormalTok{    datos\_credito[}\StringTok{\textquotesingle{}ratio\_deuda\_ingreso\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \DecValTok{2} \OperatorTok{+}
+    \OperatorTok{{-}}\NormalTok{datos\_credito[}\StringTok{\textquotesingle{}antiguedad\_laboral\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \FloatTok{0.05} \OperatorTok{+}
+\NormalTok{    datos\_credito[}\StringTok{\textquotesingle{}num\_creditos\_previos\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \FloatTok{0.2} \OperatorTok{+}
+\NormalTok{    np.random.normal(}\DecValTok{0}\NormalTok{, }\FloatTok{0.5}\NormalTok{, n\_clientes)}
+\NormalTok{)}
+
+\CommentTok{\# Clasificar en 3 niveles}
+\NormalTok{datos\_credito[}\StringTok{\textquotesingle{}riesgo\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ pd.cut(}
+\NormalTok{    score\_riesgo,}
+\NormalTok{    bins}\OperatorTok{=}\DecValTok{3}\NormalTok{,}
+\NormalTok{    labels}\OperatorTok{=}\NormalTok{[}\StringTok{\textquotesingle{}Bajo\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Medio\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Alto\textquotesingle{}}\NormalTok{]}
+\NormalTok{)}
+
+\CommentTok{\# Convertir a numérico}
+\NormalTok{datos\_credito[}\StringTok{\textquotesingle{}riesgo\_num\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ datos\_credito[}\StringTok{\textquotesingle{}riesgo\textquotesingle{}}\NormalTok{].}\BuiltInTok{map}\NormalTok{(\{}
+    \StringTok{\textquotesingle{}Bajo\textquotesingle{}}\NormalTok{: }\DecValTok{0}\NormalTok{,}
+    \StringTok{\textquotesingle{}Medio\textquotesingle{}}\NormalTok{: }\DecValTok{1}\NormalTok{,}
+    \StringTok{\textquotesingle{}Alto\textquotesingle{}}\NormalTok{: }\DecValTok{2}
+\NormalTok{\})}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Dataset de crédito:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Total clientes: }\SpecialCharTok{\{}\NormalTok{n\_clientes}\SpecialCharTok{:,\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Distribución de riesgo:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(datos\_credito[}\StringTok{\textquotesingle{}riesgo\textquotesingle{}}\NormalTok{].value\_counts())}
+
+\CommentTok{\# Preparar datos}
+\NormalTok{X\_credito }\OperatorTok{=}\NormalTok{ datos\_credito.drop([}\StringTok{\textquotesingle{}riesgo\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}riesgo\_num\textquotesingle{}}\NormalTok{], axis}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+\NormalTok{y\_credito }\OperatorTok{=}\NormalTok{ datos\_credito[}\StringTok{\textquotesingle{}riesgo\_num\textquotesingle{}}\NormalTok{]}
+
+\NormalTok{X\_train\_cr, X\_test\_cr, y\_train\_cr, y\_test\_cr }\OperatorTok{=}\NormalTok{ train\_test\_split(}
+\NormalTok{    X\_credito, y\_credito, test\_size}\OperatorTok{=}\FloatTok{0.3}\NormalTok{, random\_state}\OperatorTok{=}\DecValTok{42}\NormalTok{, stratify}\OperatorTok{=}\NormalTok{y\_credito}
+\NormalTok{)}
+
+\CommentTok{\# Estandarizar}
+\NormalTok{scaler\_credito }\OperatorTok{=}\NormalTok{ StandardScaler()}
+\NormalTok{X\_train\_cr\_scaled }\OperatorTok{=}\NormalTok{ scaler\_credito.fit\_transform(X\_train\_cr)}
+\NormalTok{X\_test\_cr\_scaled }\OperatorTok{=}\NormalTok{ scaler\_credito.transform(X\_test\_cr)}
+
+\CommentTok{\# Entrenar modelos}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{ENTRENAMIENTO DE MODELOS"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{modelos\_credito }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}Random Forest\textquotesingle{}}\NormalTok{: RandomForestClassifier(n\_estimators}\OperatorTok{=}\DecValTok{200}\NormalTok{, max\_depth}\OperatorTok{=}\DecValTok{10}\NormalTok{, random\_state}\OperatorTok{=}\DecValTok{42}\NormalTok{),}
+    \StringTok{\textquotesingle{}Decision Tree\textquotesingle{}}\NormalTok{: DecisionTreeClassifier(max\_depth}\OperatorTok{=}\DecValTok{8}\NormalTok{, random\_state}\OperatorTok{=}\DecValTok{42}\NormalTok{),}
+    \StringTok{\textquotesingle{}KNN\textquotesingle{}}\NormalTok{: KNeighborsClassifier(n\_neighbors}\OperatorTok{=}\DecValTok{10}\NormalTok{),}
+    \StringTok{\textquotesingle{}Logistic Regression\textquotesingle{}}\NormalTok{: LogisticRegression(max\_iter}\OperatorTok{=}\DecValTok{1000}\NormalTok{, random\_state}\OperatorTok{=}\DecValTok{42}\NormalTok{)}
+\NormalTok{\}}
+
+\ControlFlowTok{for}\NormalTok{ nombre, modelo }\KeywordTok{in}\NormalTok{ modelos\_credito.items():}
+    \CommentTok{\# Entrenar}
+    \ControlFlowTok{if}\NormalTok{ nombre }\KeywordTok{in}\NormalTok{ [}\StringTok{\textquotesingle{}KNN\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Logistic Regression\textquotesingle{}}\NormalTok{]:}
+\NormalTok{        modelo.fit(X\_train\_cr\_scaled, y\_train\_cr)}
+\NormalTok{        y\_pred }\OperatorTok{=}\NormalTok{ modelo.predict(X\_test\_cr\_scaled)}
+    \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{        modelo.fit(X\_train\_cr, y\_train\_cr)}
+\NormalTok{        y\_pred }\OperatorTok{=}\NormalTok{ modelo.predict(X\_test\_cr)}
+    
+    \CommentTok{\# Evaluar}
+\NormalTok{    acc }\OperatorTok{=}\NormalTok{ accuracy\_score(y\_test\_cr, y\_pred)}
+    
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialCharTok{\{}\NormalTok{nombre}\SpecialCharTok{\}}\SpecialStringTok{:"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Accuracy: }\SpecialCharTok{\{}\NormalTok{acc}\SpecialCharTok{:.4f\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{acc}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.1f\}}\SpecialStringTok{\%)"}\NormalTok{)}
+    
+    \CommentTok{\# Reporte por clase}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{  Reporte de clasificación:"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(classification\_report(}
+\NormalTok{        y\_test\_cr, y\_pred,}
+\NormalTok{        target\_names}\OperatorTok{=}\NormalTok{[}\StringTok{\textquotesingle{}Bajo\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Medio\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Alto\textquotesingle{}}\NormalTok{],}
+\NormalTok{        digits}\OperatorTok{=}\DecValTok{3}
+\NormalTok{    ))}
+
+\CommentTok{\# Importancia de características (Random Forest)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{IMPORTANCIA DE CARACTERÍSTICAS (Random Forest)"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{rf\_final }\OperatorTok{=}\NormalTok{ modelos\_credito[}\StringTok{\textquotesingle{}Random Forest\textquotesingle{}}\NormalTok{]}
+\NormalTok{importancias }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}caracteristica\textquotesingle{}}\NormalTok{: X\_credito.columns,}
+    \StringTok{\textquotesingle{}importancia\textquotesingle{}}\NormalTok{: rf\_final.feature\_importances\_}
+\NormalTok{\}).sort\_values(}\StringTok{\textquotesingle{}importancia\textquotesingle{}}\NormalTok{, ascending}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ \_, row }\KeywordTok{in}\NormalTok{ importancias.iterrows():}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  }\SpecialCharTok{\{}\NormalTok{row[}\StringTok{\textquotesingle{}caracteristica\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:\textless{}25\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{row[}\StringTok{\textquotesingle{}importancia\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:.4f\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}█\textquotesingle{}} \OperatorTok{*} \BuiltInTok{int}\NormalTok{(row[}\StringTok{\textquotesingle{}importancia\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \DecValTok{100}\NormalTok{)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Aplicación 2: Segmentación de
+clientes}\label{aplicaciuxf3n-2-segmentaciuxf3n-de-clientes}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n\textbackslash{}n}\StringTok{APLICACIÓN: SEGMENTACIÓN DE CLIENTES"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\CommentTok{\# Generar datos de clientes}
+\NormalTok{np.random.seed(}\DecValTok{42}\NormalTok{)}
+\NormalTok{n\_clientes\_seg }\OperatorTok{=} \DecValTok{1500}
+
+\NormalTok{datos\_clientes }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}edad\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{18}\NormalTok{, }\DecValTok{80}\NormalTok{, n\_clientes\_seg),}
+    \StringTok{\textquotesingle{}ingreso\_mensual\textquotesingle{}}\NormalTok{: np.random.uniform(}\DecValTok{1000}\NormalTok{, }\DecValTok{20000}\NormalTok{, n\_clientes\_seg),}
+    \StringTok{\textquotesingle{}gasto\_mensual\textquotesingle{}}\NormalTok{: np.random.uniform(}\DecValTok{500}\NormalTok{, }\DecValTok{15000}\NormalTok{, n\_clientes\_seg),}
+    \StringTok{\textquotesingle{}num\_compras\_mes\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{0}\NormalTok{, }\DecValTok{30}\NormalTok{, n\_clientes\_seg),}
+    \StringTok{\textquotesingle{}antiguedad\_meses\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{1}\NormalTok{, }\DecValTok{120}\NormalTok{, n\_clientes\_seg),}
+    \StringTok{\textquotesingle{}ticket\_promedio\textquotesingle{}}\NormalTok{: np.random.uniform(}\DecValTok{20}\NormalTok{, }\DecValTok{500}\NormalTok{, n\_clientes\_seg),}
+    \StringTok{\textquotesingle{}visitas\_web\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{0}\NormalTok{, }\DecValTok{100}\NormalTok{, n\_clientes\_seg)}
+\NormalTok{\})}
+
+\CommentTok{\# Calcular características adicionales}
+\NormalTok{datos\_clientes[}\StringTok{\textquotesingle{}frecuencia\_compra\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ datos\_clientes[}\StringTok{\textquotesingle{}num\_compras\_mes\textquotesingle{}}\NormalTok{] }\OperatorTok{/} \DecValTok{4}
+\NormalTok{datos\_clientes[}\StringTok{\textquotesingle{}ratio\_gasto\_ingreso\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ datos\_clientes[}\StringTok{\textquotesingle{}gasto\_mensual\textquotesingle{}}\NormalTok{] }\OperatorTok{/}\NormalTok{ datos\_clientes[}\StringTok{\textquotesingle{}ingreso\_mensual\textquotesingle{}}\NormalTok{]}
+
+\CommentTok{\# Crear segmentos (0=Bronce, 1=Plata, 2=Oro, 3=Platino)}
+\NormalTok{score\_valor }\OperatorTok{=}\NormalTok{ (}
+\NormalTok{    datos\_clientes[}\StringTok{\textquotesingle{}gasto\_mensual\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \FloatTok{0.0003} \OperatorTok{+}
+\NormalTok{    datos\_clientes[}\StringTok{\textquotesingle{}num\_compras\_mes\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \FloatTok{0.1} \OperatorTok{+}
+\NormalTok{    datos\_clientes[}\StringTok{\textquotesingle{}ticket\_promedio\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \FloatTok{0.005} \OperatorTok{+}
+\NormalTok{    np.random.normal(}\DecValTok{0}\NormalTok{, }\FloatTok{0.3}\NormalTok{, n\_clientes\_seg)}
+\NormalTok{)}
+
+\NormalTok{datos\_clientes[}\StringTok{\textquotesingle{}segmento\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ pd.cut(}
+\NormalTok{    score\_valor,}
+\NormalTok{    bins}\OperatorTok{=}\DecValTok{4}\NormalTok{,}
+\NormalTok{    labels}\OperatorTok{=}\NormalTok{[}\StringTok{\textquotesingle{}Bronce\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Plata\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Oro\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Platino\textquotesingle{}}\NormalTok{]}
+\NormalTok{)}
+
+\NormalTok{datos\_clientes[}\StringTok{\textquotesingle{}segmento\_num\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ datos\_clientes[}\StringTok{\textquotesingle{}segmento\textquotesingle{}}\NormalTok{].}\BuiltInTok{map}\NormalTok{(\{}
+    \StringTok{\textquotesingle{}Bronce\textquotesingle{}}\NormalTok{: }\DecValTok{0}\NormalTok{,}
+    \StringTok{\textquotesingle{}Plata\textquotesingle{}}\NormalTok{: }\DecValTok{1}\NormalTok{,}
+    \StringTok{\textquotesingle{}Oro\textquotesingle{}}\NormalTok{: }\DecValTok{2}\NormalTok{,}
+    \StringTok{\textquotesingle{}Platino\textquotesingle{}}\NormalTok{: }\DecValTok{3}
+\NormalTok{\})}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Distribución de segmentos:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(datos\_clientes[}\StringTok{\textquotesingle{}segmento\textquotesingle{}}\NormalTok{].value\_counts().sort\_index())}
+
+\CommentTok{\# Preparar datos}
+\NormalTok{features\_seg }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}edad\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}ingreso\_mensual\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}gasto\_mensual\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}num\_compras\_mes\textquotesingle{}}\NormalTok{,}
+                \StringTok{\textquotesingle{}antiguedad\_meses\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}ticket\_promedio\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}visitas\_web\textquotesingle{}}\NormalTok{,}
+                \StringTok{\textquotesingle{}frecuencia\_compra\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}ratio\_gasto\_ingreso\textquotesingle{}}\NormalTok{]}
+
+\NormalTok{X\_seg }\OperatorTok{=}\NormalTok{ datos\_clientes[features\_seg]}
+\NormalTok{y\_seg }\OperatorTok{=}\NormalTok{ datos\_clientes[}\StringTok{\textquotesingle{}segmento\_num\textquotesingle{}}\NormalTok{]}
+
+\NormalTok{X\_train\_seg, X\_test\_seg, y\_train\_seg, y\_test\_seg }\OperatorTok{=}\NormalTok{ train\_test\_split(}
+\NormalTok{    X\_seg, y\_seg, test\_size}\OperatorTok{=}\FloatTok{0.3}\NormalTok{, random\_state}\OperatorTok{=}\DecValTok{42}\NormalTok{, stratify}\OperatorTok{=}\NormalTok{y\_seg}
+\NormalTok{)}
+
+\CommentTok{\# Entrenar Random Forest (mejor modelo típicamente)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{MODELO DE SEGMENTACIÓN"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{rf\_segmentacion }\OperatorTok{=}\NormalTok{ RandomForestClassifier(}
+\NormalTok{    n\_estimators}\OperatorTok{=}\DecValTok{200}\NormalTok{,}
+\NormalTok{    max\_depth}\OperatorTok{=}\DecValTok{12}\NormalTok{,}
+\NormalTok{    min\_samples\_split}\OperatorTok{=}\DecValTok{20}\NormalTok{,}
+\NormalTok{    random\_state}\OperatorTok{=}\DecValTok{42}
+\NormalTok{)}
+
+\NormalTok{rf\_segmentacion.fit(X\_train\_seg, y\_train\_seg)}
+
+\CommentTok{\# Evaluar}
+\NormalTok{y\_pred\_seg }\OperatorTok{=}\NormalTok{ rf\_segmentacion.predict(X\_test\_seg)}
+\NormalTok{acc\_seg }\OperatorTok{=}\NormalTok{ accuracy\_score(y\_test\_seg, y\_pred\_seg)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Accuracy: }\SpecialCharTok{\{}\NormalTok{acc\_seg}\SpecialCharTok{:.4f\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{acc\_seg}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.1f\}}\SpecialStringTok{\%)"}\NormalTok{)}
+
+\CommentTok{\# Matriz de confusión}
+\NormalTok{cm\_seg }\OperatorTok{=}\NormalTok{ confusion\_matrix(y\_test\_seg, y\_pred\_seg)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Matriz de confusión:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"                    Predicho"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"             Bronce  Plata   Oro  Platino"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Real Bronce    }\SpecialCharTok{\{}\NormalTok{cm\_seg[}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{]}\SpecialCharTok{:4d\}}\SpecialStringTok{   }\SpecialCharTok{\{}\NormalTok{cm\_seg[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{]}\SpecialCharTok{:4d\}}\SpecialStringTok{  }\SpecialCharTok{\{}\NormalTok{cm\_seg[}\DecValTok{0}\NormalTok{, }\DecValTok{2}\NormalTok{]}\SpecialCharTok{:4d\}}\SpecialStringTok{    }\SpecialCharTok{\{}\NormalTok{cm\_seg[}\DecValTok{0}\NormalTok{, }\DecValTok{3}\NormalTok{]}\SpecialCharTok{:4d\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"     Plata     }\SpecialCharTok{\{}\NormalTok{cm\_seg[}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{]}\SpecialCharTok{:4d\}}\SpecialStringTok{   }\SpecialCharTok{\{}\NormalTok{cm\_seg[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{]}\SpecialCharTok{:4d\}}\SpecialStringTok{  }\SpecialCharTok{\{}\NormalTok{cm\_seg[}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{]}\SpecialCharTok{:4d\}}\SpecialStringTok{    }\SpecialCharTok{\{}\NormalTok{cm\_seg[}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{]}\SpecialCharTok{:4d\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"     Oro       }\SpecialCharTok{\{}\NormalTok{cm\_seg[}\DecValTok{2}\NormalTok{, }\DecValTok{0}\NormalTok{]}\SpecialCharTok{:4d\}}\SpecialStringTok{   }\SpecialCharTok{\{}\NormalTok{cm\_seg[}\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{]}\SpecialCharTok{:4d\}}\SpecialStringTok{  }\SpecialCharTok{\{}\NormalTok{cm\_seg[}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{]}\SpecialCharTok{:4d\}}\SpecialStringTok{    }\SpecialCharTok{\{}\NormalTok{cm\_seg[}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{]}\SpecialCharTok{:4d\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"     Platino   }\SpecialCharTok{\{}\NormalTok{cm\_seg[}\DecValTok{3}\NormalTok{, }\DecValTok{0}\NormalTok{]}\SpecialCharTok{:4d\}}\SpecialStringTok{   }\SpecialCharTok{\{}\NormalTok{cm\_seg[}\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{]}\SpecialCharTok{:4d\}}\SpecialStringTok{  }\SpecialCharTok{\{}\NormalTok{cm\_seg[}\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{]}\SpecialCharTok{:4d\}}\SpecialStringTok{    }\SpecialCharTok{\{}\NormalTok{cm\_seg[}\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{]}\SpecialCharTok{:4d\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Características más importantes}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{CARACTERÍSTICAS MÁS IMPORTANTES PARA SEGMENTACIÓN"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{importancias\_seg }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}caracteristica\textquotesingle{}}\NormalTok{: features\_seg,}
+    \StringTok{\textquotesingle{}importancia\textquotesingle{}}\NormalTok{: rf\_segmentacion.feature\_importances\_}
+\NormalTok{\}).sort\_values(}\StringTok{\textquotesingle{}importancia\textquotesingle{}}\NormalTok{, ascending}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ \_, row }\KeywordTok{in}\NormalTok{ importancias\_seg.iterrows():}
+\NormalTok{    barra }\OperatorTok{=} \StringTok{\textquotesingle{}█\textquotesingle{}} \OperatorTok{*} \BuiltInTok{int}\NormalTok{(row[}\StringTok{\textquotesingle{}importancia\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \DecValTok{100}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  }\SpecialCharTok{\{}\NormalTok{row[}\StringTok{\textquotesingle{}caracteristica\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:\textless{}25\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{row[}\StringTok{\textquotesingle{}importancia\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:.4f\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{barra}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{APLICACIÓN PRÁCTICA:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Este modelo permite:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"  1. Clasificar automáticamente nuevos clientes"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"  2. Personalizar ofertas según segmento"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"  3. Identificar clientes con potencial de upgrade"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"  4. Optimizar estrategias de retención"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Ejercicios prácticos}\label{ejercicios-pruxe1cticos}
+
+\subsection{Ejercicio: Optimización de
+hiperparámetros}\label{ejercicio-optimizaciuxf3n-de-hiperparuxe1metros}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n\textbackslash{}n}\StringTok{EJERCICIO: OPTIMIZACIÓN DE HIPERPARÁMETROS"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\CommentTok{\# Grid search manual para Random Forest}
+\NormalTok{param\_grid }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}n\_estimators\textquotesingle{}}\NormalTok{: [}\DecValTok{50}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{200}\NormalTok{],}
+    \StringTok{\textquotesingle{}max\_depth\textquotesingle{}}\NormalTok{: [}\DecValTok{5}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{15}\NormalTok{, }\VariableTok{None}\NormalTok{],}
+    \StringTok{\textquotesingle{}min\_samples\_split\textquotesingle{}}\NormalTok{: [}\DecValTok{2}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{]}
+\NormalTok{\}}
+
+\NormalTok{mejores\_params }\OperatorTok{=} \VariableTok{None}
+\NormalTok{mejor\_score }\OperatorTok{=} \DecValTok{0}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Buscando mejores hiperparámetros..."}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Total combinaciones: }\SpecialCharTok{\{}\BuiltInTok{len}\NormalTok{(param\_grid[}\StringTok{\textquotesingle{}n\_estimators\textquotesingle{}}\NormalTok{]) }\OperatorTok{*} \BuiltInTok{len}\NormalTok{(param\_grid[}\StringTok{\textquotesingle{}max\_depth\textquotesingle{}}\NormalTok{]) }\OperatorTok{*} \BuiltInTok{len}\NormalTok{(param\_grid[}\StringTok{\textquotesingle{}min\_samples\_split\textquotesingle{}}\NormalTok{])}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\NormalTok{resultados\_grid }\OperatorTok{=}\NormalTok{ []}
+
+\ControlFlowTok{for}\NormalTok{ n\_est }\KeywordTok{in}\NormalTok{ param\_grid[}\StringTok{\textquotesingle{}n\_estimators\textquotesingle{}}\NormalTok{]:}
+    \ControlFlowTok{for}\NormalTok{ max\_d }\KeywordTok{in}\NormalTok{ param\_grid[}\StringTok{\textquotesingle{}max\_depth\textquotesingle{}}\NormalTok{]:}
+        \ControlFlowTok{for}\NormalTok{ min\_split }\KeywordTok{in}\NormalTok{ param\_grid[}\StringTok{\textquotesingle{}min\_samples\_split\textquotesingle{}}\NormalTok{]:}
+            
+            \CommentTok{\# Entrenar modelo}
+\NormalTok{            rf }\OperatorTok{=}\NormalTok{ RandomForestClassifier(}
+\NormalTok{                n\_estimators}\OperatorTok{=}\NormalTok{n\_est,}
+\NormalTok{                max\_depth}\OperatorTok{=}\NormalTok{max\_d,}
+\NormalTok{                min\_samples\_split}\OperatorTok{=}\NormalTok{min\_split,}
+\NormalTok{                random\_state}\OperatorTok{=}\DecValTok{42}
+\NormalTok{            )}
+            
+            \CommentTok{\# Validación cruzada}
+\NormalTok{            scores }\OperatorTok{=}\NormalTok{ cross\_val\_score(rf, X\_train, y\_train, cv}\OperatorTok{=}\DecValTok{5}\NormalTok{)}
+\NormalTok{            score\_mean }\OperatorTok{=}\NormalTok{ scores.mean()}
+            
+\NormalTok{            resultados\_grid.append(\{}
+                \StringTok{\textquotesingle{}n\_estimators\textquotesingle{}}\NormalTok{: n\_est,}
+                \StringTok{\textquotesingle{}max\_depth\textquotesingle{}}\NormalTok{: max\_d }\ControlFlowTok{if}\NormalTok{ max\_d }\ControlFlowTok{else} \StringTok{\textquotesingle{}None\textquotesingle{}}\NormalTok{,}
+                \StringTok{\textquotesingle{}min\_samples\_split\textquotesingle{}}\NormalTok{: min\_split,}
+                \StringTok{\textquotesingle{}cv\_score\textquotesingle{}}\NormalTok{: score\_mean}
+\NormalTok{            \})}
+            
+            \ControlFlowTok{if}\NormalTok{ score\_mean }\OperatorTok{\textgreater{}}\NormalTok{ mejor\_score:}
+\NormalTok{                mejor\_score }\OperatorTok{=}\NormalTok{ score\_mean}
+\NormalTok{                mejores\_params }\OperatorTok{=}\NormalTok{ \{}
+                    \StringTok{\textquotesingle{}n\_estimators\textquotesingle{}}\NormalTok{: n\_est,}
+                    \StringTok{\textquotesingle{}max\_depth\textquotesingle{}}\NormalTok{: max\_d,}
+                    \StringTok{\textquotesingle{}min\_samples\_split\textquotesingle{}}\NormalTok{: min\_split}
+\NormalTok{                \}}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{MEJORES HIPERPARÁMETROS"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  n\_estimators: }\SpecialCharTok{\{}\NormalTok{mejores\_params[}\StringTok{\textquotesingle{}n\_estimators\textquotesingle{}}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  max\_depth: }\SpecialCharTok{\{}\NormalTok{mejores\_params[}\StringTok{\textquotesingle{}max\_depth\textquotesingle{}}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  min\_samples\_split: }\SpecialCharTok{\{}\NormalTok{mejores\_params[}\StringTok{\textquotesingle{}min\_samples\_split\textquotesingle{}}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  CV Score: }\SpecialCharTok{\{}\NormalTok{mejor\_score}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Entrenar modelo final}
+\NormalTok{rf\_optimo }\OperatorTok{=}\NormalTok{ RandomForestClassifier(}\OperatorTok{**}\NormalTok{mejores\_params, random\_state}\OperatorTok{=}\DecValTok{42}\NormalTok{)}
+\NormalTok{rf\_optimo.fit(X\_train, y\_train)}
+
+\NormalTok{acc\_optimo }\OperatorTok{=}\NormalTok{ rf\_optimo.score(X\_test, y\_test)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Accuracy en test: }\SpecialCharTok{\{}\NormalTok{acc\_optimo}\SpecialCharTok{:.4f\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{acc\_optimo}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.1f\}}\SpecialStringTok{\%)"}\NormalTok{)}
+
+\CommentTok{\# Top 10 combinaciones}
+\NormalTok{df\_grid }\OperatorTok{=}\NormalTok{ pd.DataFrame(resultados\_grid).sort\_values(}\StringTok{\textquotesingle{}cv\_score\textquotesingle{}}\NormalTok{, ascending}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{Top 10 combinaciones:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_grid.head(}\DecValTok{10}\NormalTok{).to\_string(index}\OperatorTok{=}\VariableTok{False}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Conclusión}\label{conclusiuxf3n}
+
+En esta guía hemos explorado los principales algoritmos de
+clasificación:
+
+\textbf{Regresión Logística}
+
+Modelo lineal simple y rápido. Usa función sigmoide para probabilidades.
+Interpretable. Bueno como baseline.
+
+\textbf{K-Nearest Neighbors (KNN)}
+
+No paramétrico. Clasifica según vecinos más cercanos. Sensible a escala.
+Bueno para fronteras complejas.
+
+\textbf{Árboles de Decisión}
+
+Reglas interpretables. No requiere normalización. Propenso a
+overfitting. Base para métodos ensemble.
+
+\textbf{Random Forests}
+
+Ensemble de árboles. Reduce overfitting. Alta precisión. Menos
+interpretable que árbol único.
+
+\textbf{Comparación de modelos}
+
+Importancia de evaluar múltiples algoritmos. Usar validación cruzada.
+Considerar trade-offs interpretabilidad vs precisión.
+
+\section{Próximos pasos}\label{pruxf3ximos-pasos}
+
+En la siguiente guía (Guía 10: Métodos de ML para Regresión)
+exploraremos:
+
+\begin{itemize}
+\tightlist
+\item
+  Regresión lineal
+\item
+  Ridge y Lasso
+\item
+  Regresión polinomial
+\item
+  Métricas: R², MSE, MAE
+\item
+  Aplicaciones económicas
+\end{itemize}
+
+\section{Recursos adicionales}\label{recursos-adicionales}
+
+Para profundizar en clasificación:
+
+\begin{itemize}
+\tightlist
+\item
+  Scikit-learn Documentation: scikit-learn.org
+\item
+  Introduction to Statistical Learning (ISLR)
+\item
+  Hands-On Machine Learning (Aurélien Géron)
+\item
+  Papers en credit scoring y risk management
+\end{itemize}
 
 \section{Publicaciones Similares}\label{publicaciones-similares}
 
