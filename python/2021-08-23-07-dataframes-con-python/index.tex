@@ -1,5 +1,5 @@
 \documentclass[
-  jou,
+  doc,
   floatsintext,
   longtable,
   a4paper,
@@ -12,6 +12,8 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
+\geometry{inner=1in, outer=1in}
+\fancyhfoffset[LE,RO]{0cm}
 
 
 \usepackage[bidi=default]{babel}
@@ -78,6 +80,46 @@
 
 
 
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -123,7 +165,7 @@
 
 
 
-\title{Manipulación de DataFrames Pandas}
+\title{Manipulación de DataFrames con Pandas}
 
 
 \shorttitle{DATAFRAMES EN PYTHON}
@@ -163,51 +205,23 @@ contenido final del artículo. }
 \par{   El autor no tiene conflictos de interés que revelar.    Los
 roles de autor se clasificaron utilizando la taxonomía de roles de
 colaborador (CRediT; https://credit.niso.org/) de la siguiente
-manera:  Edison Achalma:   conceptualización, redacción}
+manera:  Edison Achalma:   conceptualización, metodología, análisis
+formal, investigación, recursos, curación de
+datos, redacción, visualización, supervisión, administración del
+proyecto}
 \par{La correspondencia relativa a este artículo debe dirigirse a Edison
-Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
+Achalma, Escuela Profesional de Economía, Universidad Nacional de San
+Cristóbal de Huamanga, Portal Independencia N°
+57, Ayacucho, AYA 5001, Perú, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
 }
-
-\usepackage{pbalance}
-% \usepackage{float}
-\makeatletter
-\let\oldtpt\ThreePartTable
-\let\endoldtpt\endThreePartTable
-\def\ThreePartTable{\@ifnextchar[\ThreePartTable@i \ThreePartTable@ii}
-\def\ThreePartTable@i[#1]{\begin{figure}[!htbp]
-\onecolumn
-\begin{minipage}{0.485\textwidth}
-\oldtpt[#1]
-}
-\def\ThreePartTable@ii{\begin{figure}[!htbp]
-\onecolumn
-\begin{minipage}{0.48\textwidth}
-\oldtpt
-}
-\def\endThreePartTable{
-\endoldtpt
-\end{minipage}
-\twocolumn
-\end{figure}}
-\makeatother
-
 
 \makeatletter
-\let\endoldlt\endlongtable		
+\let\endoldlt\endlongtable
 \def\endlongtable{
 \hline
-\endoldlt}
+\endoldlt
+}
 \makeatother
-
-\newenvironment{twocolumntable}% environment name
-{% begin code
-\begin{table*}[!htbp]%
-\onecolumn%
-}%
-{%
-\twocolumn%
-\end{table*}%
-}% end code
 
 \urlstyle{same}
 
@@ -245,8 +259,8 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 \@ifpackageloaded{float}{}{\usepackage{float}}
 \floatstyle{ruled}
 \@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
-\floatname{codelisting}{Listing}
-\newcommand*\listoflistings{\listof{codelisting}{Lista de Listings}}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listados}}
 \makeatother
 \makeatletter
 \makeatother
@@ -296,7 +310,7 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 \hypertarget{toc}{}
 \tableofcontents
 \newpage
-\section[Introduction]{Manipulación de DataFrames Pandas}
+\section[Introduction]{Manipulación de DataFrames con Pandas}
 
 \setcounter{secnumdepth}{3}
 
@@ -305,8 +319,1501 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 
 
 
-Este artículo está actualmente en proceso de edición, y todas las
-secciones serán ampliadas y refinadas en futuras revisiones.
+En esta séptima guía profundizaremos en el uso de DataFrames de Pandas,
+la estructura de datos más importante para análisis económico en Python.
+Los DataFrames nos permiten trabajar con datos tabulares de manera
+similar a Excel o Stata, pero con mucho más poder y flexibilidad.
+
+\section{DataFrames}\label{dataframes}
+
+Un DataFrame es una estructura de datos bidimensional similar a una
+tabla de Excel o una base de datos SQL. Consiste en:
+
+\begin{itemize}
+\tightlist
+\item
+  Filas (observaciones)
+\item
+  Columnas (variables)
+\item
+  Índices (etiquetas de filas)
+\item
+  Tipos de datos por columna
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+
+\CommentTok{\# Estructura básica de un DataFrame}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Estructura de un DataFrame:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
+\StringTok{    ┌─────────┬──────────┬──────────┬──────────┐}
+\StringTok{    │ Index   │ Column 1 │ Column 2 │ Column 3 │}
+\StringTok{    ├─────────┼──────────┼──────────┼──────────┤}
+\StringTok{    │ 0       │ valor    │ valor    │ valor    │}
+\StringTok{    │ 1       │ valor    │ valor    │ valor    │}
+\StringTok{    │ 2       │ valor    │ valor    │ valor    │}
+\StringTok{    └─────────┴──────────┴──────────┴──────────┘}
+\StringTok{"""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Creación de DataFrames}\label{creaciuxf3n-de-dataframes}
+
+\subsection{Desde diccionarios}\label{desde-diccionarios}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear DataFrame desde diccionario}
+\NormalTok{datos }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}pais\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Perú\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Chile\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Argentina\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Colombia\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Brasil\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{: [}\DecValTok{242632}\NormalTok{, }\DecValTok{301000}\NormalTok{, }\DecValTok{487000}\NormalTok{, }\DecValTok{314000}\NormalTok{, }\DecValTok{1920000}\NormalTok{],}
+    \StringTok{\textquotesingle{}poblacion\textquotesingle{}}\NormalTok{: [}\DecValTok{33715471}\NormalTok{, }\DecValTok{19493184}\NormalTok{, }\DecValTok{45810000}\NormalTok{, }\DecValTok{51516562}\NormalTok{, }\DecValTok{214326223}\NormalTok{],}
+    \StringTok{\textquotesingle{}continente\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}América del Sur\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \DecValTok{5}
+\NormalTok{\}}
+
+\NormalTok{df\_paises }\OperatorTok{=}\NormalTok{ pd.DataFrame(datos)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"DataFrame de países:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_paises)}
+
+\CommentTok{\# Información del DataFrame}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Forma: }\SpecialCharTok{\{}\NormalTok{df\_paises}\SpecialCharTok{.}\NormalTok{shape}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Columnas: }\SpecialCharTok{\{}\NormalTok{df\_paises}\SpecialCharTok{.}\NormalTok{columns}\SpecialCharTok{.}\NormalTok{tolist()}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Tipos de datos:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_paises.dtypes)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Desde listas de listas}\label{desde-listas-de-listas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear DataFrame desde listas}
+\NormalTok{datos }\OperatorTok{=}\NormalTok{ [}
+\NormalTok{    [}\StringTok{\textquotesingle{}Perú\textquotesingle{}}\NormalTok{, }\DecValTok{242632}\NormalTok{, }\DecValTok{33715471}\NormalTok{],}
+\NormalTok{    [}\StringTok{\textquotesingle{}Chile\textquotesingle{}}\NormalTok{, }\DecValTok{301000}\NormalTok{, }\DecValTok{19493184}\NormalTok{],}
+\NormalTok{    [}\StringTok{\textquotesingle{}Argentina\textquotesingle{}}\NormalTok{, }\DecValTok{487000}\NormalTok{, }\DecValTok{45810000}\NormalTok{]}
+\NormalTok{]}
+
+\NormalTok{columnas }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}pais\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}poblacion\textquotesingle{}}\NormalTok{]}
+
+\NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(datos, columns}\OperatorTok{=}\NormalTok{columnas)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{DataFrame desde listas:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Desde Series}\label{desde-series}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear DataFrame desde Series}
+\NormalTok{paises }\OperatorTok{=}\NormalTok{ pd.Series([}\StringTok{\textquotesingle{}Perú\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Chile\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Argentina\textquotesingle{}}\NormalTok{], name}\OperatorTok{=}\StringTok{\textquotesingle{}pais\textquotesingle{}}\NormalTok{)}
+\NormalTok{pib }\OperatorTok{=}\NormalTok{ pd.Series([}\DecValTok{242632}\NormalTok{, }\DecValTok{301000}\NormalTok{, }\DecValTok{487000}\NormalTok{], name}\OperatorTok{=}\StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}\StringTok{\textquotesingle{}pais\textquotesingle{}}\NormalTok{: paises, }\StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{: pib\})}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{DataFrame desde Series:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Con índice personalizado}\label{con-uxedndice-personalizado}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# DataFrame con índice personalizado}
+\NormalTok{datos }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}producto\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Laptop\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Mouse\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Teclado\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Monitor\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}precio\textquotesingle{}}\NormalTok{: [}\DecValTok{2500}\NormalTok{, }\DecValTok{25}\NormalTok{, }\DecValTok{80}\NormalTok{, }\DecValTok{800}\NormalTok{],}
+    \StringTok{\textquotesingle{}stock\textquotesingle{}}\NormalTok{: [}\DecValTok{15}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{25}\NormalTok{]}
+\NormalTok{\}}
+
+\NormalTok{df\_productos }\OperatorTok{=}\NormalTok{ pd.DataFrame(datos, index}\OperatorTok{=}\NormalTok{[}\StringTok{\textquotesingle{}PROD001\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}PROD002\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}PROD003\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}PROD004\textquotesingle{}}\NormalTok{])}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{DataFrame con índice personalizado:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_productos)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{DataFrames de ejemplo}\label{dataframes-de-ejemplo}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear DataFrame de ejemplo económico}
+\NormalTok{np.random.seed(}\DecValTok{42}\NormalTok{)}
+
+\NormalTok{n }\OperatorTok{=} \DecValTok{100}
+\NormalTok{df\_transacciones }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}fecha\textquotesingle{}}\NormalTok{: pd.date\_range(}\StringTok{\textquotesingle{}2023{-}01{-}01\textquotesingle{}}\NormalTok{, periods}\OperatorTok{=}\NormalTok{n, freq}\OperatorTok{=}\StringTok{\textquotesingle{}D\textquotesingle{}}\NormalTok{),}
+    \StringTok{\textquotesingle{}monto\textquotesingle{}}\NormalTok{: np.random.uniform(}\DecValTok{100}\NormalTok{, }\DecValTok{1000}\NormalTok{, n),}
+    \StringTok{\textquotesingle{}tipo\textquotesingle{}}\NormalTok{: np.random.choice([}\StringTok{\textquotesingle{}ingreso\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}gasto\textquotesingle{}}\NormalTok{], n),}
+    \StringTok{\textquotesingle{}categoria\textquotesingle{}}\NormalTok{: np.random.choice([}\StringTok{\textquotesingle{}Ventas\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Servicios\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Costos\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Gastos\textquotesingle{}}\NormalTok{], n),}
+    \StringTok{\textquotesingle{}cliente\_id\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{1}\NormalTok{, }\DecValTok{20}\NormalTok{, n)}
+\NormalTok{\})}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{DataFrame de transacciones:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_transacciones.head(}\DecValTok{10}\NormalTok{))}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Forma: }\SpecialCharTok{\{}\NormalTok{df\_transacciones}\SpecialCharTok{.}\NormalTok{shape}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Importación y exportación de
+datos}\label{importaciuxf3n-y-exportaciuxf3n-de-datos}
+
+\subsection{Leer archivos CSV}\label{leer-archivos-csv}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Leer CSV}
+\CommentTok{\# df = pd.read\_csv(\textquotesingle{}datos.csv\textquotesingle{})}
+
+\CommentTok{\# Leer CSV con opciones}
+\CommentTok{\# df = pd.read\_csv(\textquotesingle{}datos.csv\textquotesingle{},}
+\CommentTok{\#                  sep=\textquotesingle{};\textquotesingle{},              \# Separador}
+\CommentTok{\#                  encoding=\textquotesingle{}utf{-}8\textquotesingle{},     \# Codificación}
+\CommentTok{\#                  decimal=\textquotesingle{},\textquotesingle{},          \# Separador decimal}
+\CommentTok{\#                  thousands=\textquotesingle{}.\textquotesingle{},        \# Separador de miles}
+\CommentTok{\#                  na\_values=[\textquotesingle{}NA\textquotesingle{}, \textquotesingle{}\textquotesingle{}])  \# Valores que representan NA}
+
+\CommentTok{\# Ejemplo con datos de INEI o BCRP}
+\CommentTok{\# df\_pib = pd.read\_csv(\textquotesingle{}pib\_regional.csv\textquotesingle{}, }
+\CommentTok{\#                      encoding=\textquotesingle{}latin1\textquotesingle{},}
+\CommentTok{\#                      thousands=\textquotesingle{},\textquotesingle{})}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Leer archivos Excel}\label{leer-archivos-excel}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Leer Excel}
+\CommentTok{\# df = pd.read\_excel(\textquotesingle{}datos.xlsx\textquotesingle{})}
+
+\CommentTok{\# Leer hoja específica}
+\CommentTok{\# df = pd.read\_excel(\textquotesingle{}datos.xlsx\textquotesingle{}, sheet\_name=\textquotesingle{}Hoja1\textquotesingle{})}
+
+\CommentTok{\# Leer múltiples hojas}
+\CommentTok{\# df\_dict = pd.read\_excel(\textquotesingle{}datos.xlsx\textquotesingle{}, sheet\_name=None)}
+
+\CommentTok{\# Leer rango específico}
+\CommentTok{\# df = pd.read\_excel(\textquotesingle{}datos.xlsx\textquotesingle{}, }
+\CommentTok{\#                    sheet\_name=\textquotesingle{}Datos\textquotesingle{},}
+\CommentTok{\#                    usecols=\textquotesingle{}A:D\textquotesingle{},}
+\CommentTok{\#                    skiprows=2)}
+
+\CommentTok{\# Ejemplo con datos del INEI}
+\CommentTok{\# df\_inei = pd.read\_excel(\textquotesingle{}informacion\_de\_distritos\_2020.xlsx\textquotesingle{},}
+\CommentTok{\#                         sheet\_name=\textquotesingle{}Nivel Distrital\textquotesingle{},}
+\CommentTok{\#                         skiprows=0)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Exportar datos}\label{exportar-datos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear DataFrame de ejemplo para exportar}
+\NormalTok{df\_ejemplo }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}año\textquotesingle{}}\NormalTok{: [}\DecValTok{2019}\NormalTok{, }\DecValTok{2020}\NormalTok{, }\DecValTok{2021}\NormalTok{, }\DecValTok{2022}\NormalTok{, }\DecValTok{2023}\NormalTok{],}
+    \StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{: [}\DecValTok{230000}\NormalTok{, }\DecValTok{225000}\NormalTok{, }\DecValTok{245000}\NormalTok{, }\DecValTok{250000}\NormalTok{, }\DecValTok{258000}\NormalTok{],}
+    \StringTok{\textquotesingle{}inflacion\textquotesingle{}}\NormalTok{: [}\FloatTok{2.1}\NormalTok{, }\FloatTok{1.8}\NormalTok{, }\FloatTok{3.5}\NormalTok{, }\FloatTok{8.3}\NormalTok{, }\FloatTok{6.5}\NormalTok{]}
+\NormalTok{\})}
+
+\CommentTok{\# Exportar a CSV}
+\NormalTok{df\_ejemplo.to\_csv(}\StringTok{\textquotesingle{}datos\_macro.csv\textquotesingle{}}\NormalTok{, index}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Archivo CSV creado: datos\_macro.csv"}\NormalTok{)}
+
+\CommentTok{\# Exportar a CSV con opciones}
+\NormalTok{df\_ejemplo.to\_csv(}\StringTok{\textquotesingle{}datos\_macro\_esp.csv\textquotesingle{}}\NormalTok{, }
+\NormalTok{                  index}\OperatorTok{=}\VariableTok{False}\NormalTok{,}
+\NormalTok{                  sep}\OperatorTok{=}\StringTok{\textquotesingle{};\textquotesingle{}}\NormalTok{,}
+\NormalTok{                  decimal}\OperatorTok{=}\StringTok{\textquotesingle{},\textquotesingle{}}\NormalTok{,}
+\NormalTok{                  encoding}\OperatorTok{=}\StringTok{\textquotesingle{}utf{-}8\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Exportar a Excel}
+\NormalTok{df\_ejemplo.to\_excel(}\StringTok{\textquotesingle{}datos\_macro.xlsx\textquotesingle{}}\NormalTok{, }
+\NormalTok{                    sheet\_name}\OperatorTok{=}\StringTok{\textquotesingle{}Datos\textquotesingle{}}\NormalTok{,}
+\NormalTok{                    index}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Archivo Excel creado: datos\_macro.xlsx"}\NormalTok{)}
+
+\CommentTok{\# Exportar múltiples DataFrames a Excel}
+\CommentTok{\# with pd.ExcelWriter(\textquotesingle{}reporte\_completo.xlsx\textquotesingle{}) as writer:}
+\CommentTok{\#     df\_pib.to\_excel(writer, sheet\_name=\textquotesingle{}PIB\textquotesingle{}, index=False)}
+\CommentTok{\#     df\_inflacion.to\_excel(writer, sheet\_name=\textquotesingle{}Inflación\textquotesingle{}, index=False)}
+\CommentTok{\#     df\_empleo.to\_excel(writer, sheet\_name=\textquotesingle{}Empleo\textquotesingle{}, index=False)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Leer desde otras fuentes}\label{leer-desde-otras-fuentes}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Desde JSON}
+\CommentTok{\# df = pd.read\_json(\textquotesingle{}datos.json\textquotesingle{})}
+
+\CommentTok{\# Desde SQL}
+\CommentTok{\# import sqlite3}
+\CommentTok{\# conn = sqlite3.connect(\textquotesingle{}database.db\textquotesingle{})}
+\CommentTok{\# df = pd.read\_sql(\textquotesingle{}SELECT * FROM tabla\textquotesingle{}, conn)}
+
+\CommentTok{\# Desde clipboard (copiar desde Excel)}
+\CommentTok{\# df = pd.read\_clipboard()}
+
+\CommentTok{\# Desde URL}
+\CommentTok{\# url = \textquotesingle{}https://datos.gob.pe/dataset/datos.csv\textquotesingle{}}
+\CommentTok{\# df = pd.read\_csv(url)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Selección y filtrado de
+datos}\label{selecciuxf3n-y-filtrado-de-datos}
+
+\subsection{Información básica del
+DataFrame}\label{informaciuxf3n-buxe1sica-del-dataframe}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear DataFrame de ejemplo}
+\NormalTok{datos\_economicos }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Lima\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Arequipa\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Cusco\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}La Libertad\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Piura\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Lambayeque\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}pib\_millones\textquotesingle{}}\NormalTok{: [}\DecValTok{100000}\NormalTok{, }\DecValTok{15000}\NormalTok{, }\DecValTok{8000}\NormalTok{, }\DecValTok{12000}\NormalTok{, }\DecValTok{10000}\NormalTok{, }\DecValTok{7000}\NormalTok{],}
+    \StringTok{\textquotesingle{}poblacion\textquotesingle{}}\NormalTok{: [}\DecValTok{9500000}\NormalTok{, }\DecValTok{1300000}\NormalTok{, }\DecValTok{1200000}\NormalTok{, }\DecValTok{1900000}\NormalTok{, }\DecValTok{2000000}\NormalTok{, }\DecValTok{1300000}\NormalTok{],}
+    \StringTok{\textquotesingle{}pobreza\textquotesingle{}}\NormalTok{: [}\FloatTok{14.2}\NormalTok{, }\FloatTok{8.5}\NormalTok{, }\FloatTok{12.3}\NormalTok{, }\FloatTok{18.5}\NormalTok{, }\FloatTok{20.1}\NormalTok{, }\FloatTok{15.8}\NormalTok{],}
+    \StringTok{\textquotesingle{}sector\_principal\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Servicios\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Minería\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Turismo\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Agricultura\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Pesca\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Comercio\textquotesingle{}}\NormalTok{]}
+\NormalTok{\}}
+
+\NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(datos\_economicos)}
+
+\CommentTok{\# Primeras filas}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Primeras 3 filas:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df.head(}\DecValTok{3}\NormalTok{))}
+
+\CommentTok{\# Últimas filas}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Últimas 3 filas:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df.tail(}\DecValTok{3}\NormalTok{))}
+
+\CommentTok{\# Información general}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Información del DataFrame:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df.info())}
+
+\CommentTok{\# Estadísticas descriptivas}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Estadísticas descriptivas:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df.describe())}
+
+\CommentTok{\# Columnas}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Columnas: }\SpecialCharTok{\{}\NormalTok{df}\SpecialCharTok{.}\NormalTok{columns}\SpecialCharTok{.}\NormalTok{tolist()}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Forma (filas, columnas)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Forma: }\SpecialCharTok{\{}\NormalTok{df}\SpecialCharTok{.}\NormalTok{shape}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Índice}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Índice: }\SpecialCharTok{\{}\NormalTok{df}\SpecialCharTok{.}\NormalTok{index}\SpecialCharTok{.}\NormalTok{tolist()}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Seleccionar columnas}\label{seleccionar-columnas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Seleccionar una columna (retorna Series)}
+\NormalTok{pib }\OperatorTok{=}\NormalTok{ df[}\StringTok{\textquotesingle{}pib\_millones\textquotesingle{}}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"PIB (Series):"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(pib))}
+\BuiltInTok{print}\NormalTok{(pib)}
+
+\CommentTok{\# Seleccionar una columna (retorna DataFrame)}
+\NormalTok{pib\_df }\OperatorTok{=}\NormalTok{ df[[}\StringTok{\textquotesingle{}pib\_millones\textquotesingle{}}\NormalTok{]]}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{PIB (DataFrame):"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(pib\_df))}
+\BuiltInTok{print}\NormalTok{(pib\_df)}
+
+\CommentTok{\# Seleccionar múltiples columnas}
+\NormalTok{columnas }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}pib\_millones\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}poblacion\textquotesingle{}}\NormalTok{]}
+\NormalTok{df\_seleccionado }\OperatorTok{=}\NormalTok{ df[columnas]}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Columnas seleccionadas:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_seleccionado)}
+
+\CommentTok{\# Con notación de punto (solo para nombres sin espacios)}
+\NormalTok{regiones }\OperatorTok{=}\NormalTok{ df.region}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Regiones con notación de punto:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(regiones)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Seleccionar filas con loc e
+iloc}\label{seleccionar-filas-con-loc-e-iloc}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# loc: selección por etiquetas}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Fila 0 con loc:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df.loc[}\DecValTok{0}\NormalTok{])}
+
+\CommentTok{\# Múltiples filas}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Filas 0 a 2:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df.loc[}\DecValTok{0}\NormalTok{:}\DecValTok{2}\NormalTok{])}
+
+\CommentTok{\# Filas y columnas específicas}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Filas 0{-}2, columnas específicas:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df.loc[}\DecValTok{0}\NormalTok{:}\DecValTok{2}\NormalTok{, [}\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}pib\_millones\textquotesingle{}}\NormalTok{]])}
+
+\CommentTok{\# iloc: selección por posición}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Primeras 3 filas con iloc:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df.iloc[}\DecValTok{0}\NormalTok{:}\DecValTok{3}\NormalTok{])}
+
+\CommentTok{\# Selección de celdas específicas}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Celda [0, 1]:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df.iloc[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{])}
+
+\CommentTok{\# Combinaciones}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Filas 1{-}3, columnas 0{-}2:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df.iloc[}\DecValTok{1}\NormalTok{:}\DecValTok{4}\NormalTok{, }\DecValTok{0}\NormalTok{:}\DecValTok{3}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Filtrado por condiciones}\label{filtrado-por-condiciones}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Filtro simple}
+\NormalTok{regiones\_grandes }\OperatorTok{=}\NormalTok{ df[df[}\StringTok{\textquotesingle{}poblacion\textquotesingle{}}\NormalTok{] }\OperatorTok{\textgreater{}} \DecValTok{1500000}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Regiones con población \textgreater{} 1.5M:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(regiones\_grandes)}
+
+\CommentTok{\# Filtro con múltiples condiciones (AND)}
+\NormalTok{economias\_grandes }\OperatorTok{=}\NormalTok{ df[(df[}\StringTok{\textquotesingle{}pib\_millones\textquotesingle{}}\NormalTok{] }\OperatorTok{\textgreater{}} \DecValTok{10000}\NormalTok{) }\OperatorTok{\&}\NormalTok{ (df[}\StringTok{\textquotesingle{}poblacion\textquotesingle{}}\NormalTok{] }\OperatorTok{\textgreater{}} \DecValTok{1500000}\NormalTok{)]}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Economías grandes:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(economias\_grandes)}
+
+\CommentTok{\# Filtro con múltiples condiciones (OR)}
+\NormalTok{extremos\_pobreza }\OperatorTok{=}\NormalTok{ df[(df[}\StringTok{\textquotesingle{}pobreza\textquotesingle{}}\NormalTok{] }\OperatorTok{\textless{}} \DecValTok{10}\NormalTok{) }\OperatorTok{|}\NormalTok{ (df[}\StringTok{\textquotesingle{}pobreza\textquotesingle{}}\NormalTok{] }\OperatorTok{\textgreater{}} \DecValTok{18}\NormalTok{)]}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Extremos de pobreza:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(extremos\_pobreza)}
+
+\CommentTok{\# Filtro con isin()}
+\NormalTok{sectores\_interes }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}Minería\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Turismo\textquotesingle{}}\NormalTok{]}
+\NormalTok{df\_sectores }\OperatorTok{=}\NormalTok{ df[df[}\StringTok{\textquotesingle{}sector\_principal\textquotesingle{}}\NormalTok{].isin(sectores\_interes)]}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Sectores de interés:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_sectores)}
+
+\CommentTok{\# Filtro con contains (strings)}
+\NormalTok{df\_con\_a }\OperatorTok{=}\NormalTok{ df[df[}\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{].}\BuiltInTok{str}\NormalTok{.contains(}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{, case}\OperatorTok{=}\VariableTok{False}\NormalTok{)]}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Regiones que contienen \textquotesingle{}a\textquotesingle{}:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_con\_a)}
+
+\CommentTok{\# Filtro negado}
+\NormalTok{no\_lima }\OperatorTok{=}\NormalTok{ df[}\OperatorTok{\textasciitilde{}}\NormalTok{(df[}\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{] }\OperatorTok{==} \StringTok{\textquotesingle{}Lima\textquotesingle{}}\NormalTok{)]}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Regiones excepto Lima:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(no\_lima)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Query (consultas tipo SQL)}\label{query-consultas-tipo-sql}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Query simple}
+\NormalTok{resultado }\OperatorTok{=}\NormalTok{ df.query(}\StringTok{\textquotesingle{}pib\_millones \textgreater{} 10000\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Query: PIB \textgreater{} 10000"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(resultado)}
+
+\CommentTok{\# Query con múltiples condiciones}
+\NormalTok{resultado }\OperatorTok{=}\NormalTok{ df.query(}\StringTok{\textquotesingle{}pib\_millones \textgreater{} 10000 and pobreza \textless{} 15\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Query con AND:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(resultado)}
+
+\CommentTok{\# Query con variables}
+\NormalTok{umbral\_pib }\OperatorTok{=} \DecValTok{10000}
+\NormalTok{resultado }\OperatorTok{=}\NormalTok{ df.query(}\StringTok{\textquotesingle{}pib\_millones \textgreater{} @umbral\_pib\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Query con variable externa:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(resultado)}
+
+\CommentTok{\# Query con strings}
+\NormalTok{resultado }\OperatorTok{=}\NormalTok{ df.query(}\StringTok{\textquotesingle{}sector\_principal == "Minería"\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Query con string:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(resultado)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Modificación de columnas}\label{modificaciuxf3n-de-columnas}
+
+\subsection{Crear nuevas columnas}\label{crear-nuevas-columnas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear columna calculada}
+\NormalTok{df[}\StringTok{\textquotesingle{}pib\_per\_capita\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ (df[}\StringTok{\textquotesingle{}pib\_millones\textquotesingle{}}\NormalTok{] }\OperatorTok{/}\NormalTok{ df[}\StringTok{\textquotesingle{}poblacion\textquotesingle{}}\NormalTok{]) }\OperatorTok{*} \DecValTok{1000000}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"DataFrame con PIB per cápita:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df)}
+
+\CommentTok{\# Columna con operaciones}
+\NormalTok{df[}\StringTok{\textquotesingle{}pobreza\_categoria\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ df[}\StringTok{\textquotesingle{}pobreza\textquotesingle{}}\NormalTok{].}\BuiltInTok{apply}\NormalTok{(}
+    \KeywordTok{lambda}\NormalTok{ x: }\StringTok{\textquotesingle{}Alta\textquotesingle{}} \ControlFlowTok{if}\NormalTok{ x }\OperatorTok{\textgreater{}} \DecValTok{15} \ControlFlowTok{else} \StringTok{\textquotesingle{}Media\textquotesingle{}} \ControlFlowTok{if}\NormalTok{ x }\OperatorTok{\textgreater{}} \DecValTok{10} \ControlFlowTok{else} \StringTok{\textquotesingle{}Baja\textquotesingle{}}
+\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Con categoría de pobreza:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df[[}\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}pobreza\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}pobreza\_categoria\textquotesingle{}}\NormalTok{]])}
+
+\CommentTok{\# Columna condicional con np.where}
+\NormalTok{df[}\StringTok{\textquotesingle{}es\_costa\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ np.where(}
+\NormalTok{    df[}\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{].isin([}\StringTok{\textquotesingle{}Piura\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}La Libertad\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Lambayeque\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Lima\textquotesingle{}}\NormalTok{]),}
+    \StringTok{\textquotesingle{}Sí\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}No\textquotesingle{}}
+\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Con indicador de costa:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df[[}\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}es\_costa\textquotesingle{}}\NormalTok{]])}
+
+\CommentTok{\# Múltiples condiciones con np.select}
+\NormalTok{condiciones }\OperatorTok{=}\NormalTok{ [}
+\NormalTok{    df[}\StringTok{\textquotesingle{}pib\_millones\textquotesingle{}}\NormalTok{] }\OperatorTok{\textgreater{}} \DecValTok{50000}\NormalTok{,}
+\NormalTok{    df[}\StringTok{\textquotesingle{}pib\_millones\textquotesingle{}}\NormalTok{] }\OperatorTok{\textgreater{}} \DecValTok{10000}\NormalTok{,}
+\NormalTok{    df[}\StringTok{\textquotesingle{}pib\_millones\textquotesingle{}}\NormalTok{] }\OperatorTok{\textgreater{}} \DecValTok{5000}
+\NormalTok{]}
+\NormalTok{categorias }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}Muy grande\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Grande\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Mediana\textquotesingle{}}\NormalTok{]}
+
+\NormalTok{df[}\StringTok{\textquotesingle{}tamaño\_economia\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ np.select(condiciones, categorias, default}\OperatorTok{=}\StringTok{\textquotesingle{}Pequeña\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Con tamaño de economía:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df[[}\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}pib\_millones\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}tamaño\_economia\textquotesingle{}}\NormalTok{]])}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Modificar columnas
+existentes}\label{modificar-columnas-existentes}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Modificar valores}
+\NormalTok{df[}\StringTok{\textquotesingle{}pib\_millones\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ df[}\StringTok{\textquotesingle{}pib\_millones\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \FloatTok{1.05}  \CommentTok{\# Incremento 5\%}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"PIB incrementado 5\%:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df[[}\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}pib\_millones\textquotesingle{}}\NormalTok{]])}
+
+\CommentTok{\# Modificar con condición}
+\NormalTok{df.loc[df[}\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{] }\OperatorTok{==} \StringTok{\textquotesingle{}Lima\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}pobreza\textquotesingle{}}\NormalTok{] }\OperatorTok{=} \FloatTok{13.5}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Pobreza de Lima modificada:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df[[}\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}pobreza\textquotesingle{}}\NormalTok{]])}
+
+\CommentTok{\# Aplicar función}
+\NormalTok{df[}\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ df[}\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{].}\BuiltInTok{str}\NormalTok{.upper()}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Regiones en mayúsculas:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df[}\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{])}
+
+\CommentTok{\# Replace}
+\NormalTok{df[}\StringTok{\textquotesingle{}sector\_principal\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ df[}\StringTok{\textquotesingle{}sector\_principal\textquotesingle{}}\NormalTok{].replace(\{}
+    \StringTok{\textquotesingle{}Servicios\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Sector Terciario\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}Minería\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Sector Primario\textquotesingle{}}
+\NormalTok{\})}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Sectores renombrados:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df[[}\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}sector\_principal\textquotesingle{}}\NormalTok{]])}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Eliminar columnas}\label{eliminar-columnas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Eliminar una columna}
+\NormalTok{df\_sin\_columna }\OperatorTok{=}\NormalTok{ df.drop(}\StringTok{\textquotesingle{}es\_costa\textquotesingle{}}\NormalTok{, axis}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Sin columna \textquotesingle{}es\_costa\textquotesingle{}:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_sin\_columna.columns.tolist())}
+
+\CommentTok{\# Eliminar múltiples columnas}
+\NormalTok{df\_reducido }\OperatorTok{=}\NormalTok{ df.drop([}\StringTok{\textquotesingle{}pobreza\_categoria\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}tamaño\_economia\textquotesingle{}}\NormalTok{], axis}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Columnas restantes:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_reducido.columns.tolist())}
+
+\CommentTok{\# Eliminar in{-}place (modifica el original)}
+\CommentTok{\# df.drop(\textquotesingle{}columna\textquotesingle{}, axis=1, inplace=True)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Renombrar columnas}\label{renombrar-columnas}
+
+\subsection{Métodos de renombrado}\label{muxe9todos-de-renombrado}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear DataFrame de ejemplo}
+\NormalTok{df\_original }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}col1\textquotesingle{}}\NormalTok{: [}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{],}
+    \StringTok{\textquotesingle{}col2\textquotesingle{}}\NormalTok{: [}\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{],}
+    \StringTok{\textquotesingle{}col3\textquotesingle{}}\NormalTok{: [}\DecValTok{7}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{9}\NormalTok{]}
+\NormalTok{\})}
+
+\CommentTok{\# Método 1: rename con diccionario}
+\NormalTok{df\_renamed }\OperatorTok{=}\NormalTok{ df\_original.rename(columns}\OperatorTok{=}\NormalTok{\{}
+    \StringTok{\textquotesingle{}col1\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}columna\_uno\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}col2\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}columna\_dos\textquotesingle{}}
+\NormalTok{\})}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Renombrado con rename:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_renamed)}
+
+\CommentTok{\# Método 2: asignar lista de nombres}
+\NormalTok{df\_renamed2 }\OperatorTok{=}\NormalTok{ df\_original.copy()}
+\NormalTok{df\_renamed2.columns }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}primera\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}segunda\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}tercera\textquotesingle{}}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Renombrado con lista:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_renamed2)}
+
+\CommentTok{\# Método 3: modificar todos los nombres}
+\NormalTok{df\_renamed3 }\OperatorTok{=}\NormalTok{ df\_original.copy()}
+\NormalTok{df\_renamed3.columns }\OperatorTok{=}\NormalTok{ df\_renamed3.columns.}\BuiltInTok{str}\NormalTok{.upper()}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Columnas en mayúsculas:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_renamed3)}
+
+\CommentTok{\# Método 4: función para transformar nombres}
+\NormalTok{df\_renamed4 }\OperatorTok{=}\NormalTok{ df\_original.copy()}
+\NormalTok{df\_renamed4.columns }\OperatorTok{=}\NormalTok{ df\_renamed4.columns.}\BuiltInTok{str}\NormalTok{.replace(}\StringTok{\textquotesingle{}col\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}variable\_\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Reemplazo de prefijo:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_renamed4)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Aplicaciones económicas}\label{aplicaciones-econuxf3micas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# DataFrame con nombres en inglés}
+\NormalTok{df\_english }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}country\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Peru\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Chile\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Argentina\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}gdp\textquotesingle{}}\NormalTok{: [}\DecValTok{242632}\NormalTok{, }\DecValTok{301000}\NormalTok{, }\DecValTok{487000}\NormalTok{],}
+    \StringTok{\textquotesingle{}population\textquotesingle{}}\NormalTok{: [}\DecValTok{33715471}\NormalTok{, }\DecValTok{19493184}\NormalTok{, }\DecValTok{45810000}\NormalTok{],}
+    \StringTok{\textquotesingle{}poverty\_rate\textquotesingle{}}\NormalTok{: [}\FloatTok{20.5}\NormalTok{, }\FloatTok{10.8}\NormalTok{, }\FloatTok{37.5}\NormalTok{]}
+\NormalTok{\})}
+
+\CommentTok{\# Traducir a español}
+\NormalTok{traducciones }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}country\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}pais\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}gdp\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}population\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}poblacion\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}poverty\_rate\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}tasa\_pobreza\textquotesingle{}}
+\NormalTok{\}}
+
+\NormalTok{df\_spanish }\OperatorTok{=}\NormalTok{ df\_english.rename(columns}\OperatorTok{=}\NormalTok{traducciones)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Columnas traducidas:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_spanish)}
+
+\CommentTok{\# Limpiar nombres de columnas problemáticos}
+\NormalTok{df\_sucio }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}Región \textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Lima\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Cusco\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}PIB (millones)\textquotesingle{}}\NormalTok{: [}\DecValTok{100000}\NormalTok{, }\DecValTok{8000}\NormalTok{],}
+    \StringTok{\textquotesingle{}Tasa de Pobreza \%\textquotesingle{}}\NormalTok{: [}\FloatTok{14.2}\NormalTok{, }\FloatTok{12.3}\NormalTok{]}
+\NormalTok{\})}
+
+\CommentTok{\# Limpiar espacios y caracteres especiales}
+\NormalTok{df\_limpio }\OperatorTok{=}\NormalTok{ df\_sucio.copy()}
+\NormalTok{df\_limpio.columns }\OperatorTok{=}\NormalTok{ (df\_limpio.columns}
+\NormalTok{                     .}\BuiltInTok{str}\NormalTok{.strip()  }\CommentTok{\# Eliminar espacios}
+\NormalTok{                     .}\BuiltInTok{str}\NormalTok{.lower()  }\CommentTok{\# A minúsculas}
+\NormalTok{                     .}\BuiltInTok{str}\NormalTok{.replace(}\StringTok{\textquotesingle{} \textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}\_\textquotesingle{}}\NormalTok{)  }\CommentTok{\# Espacios a guiones bajos}
+\NormalTok{                     .}\BuiltInTok{str}\NormalTok{.replace(}\StringTok{\textquotesingle{}(\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{)  }\CommentTok{\# Eliminar paréntesis}
+\NormalTok{                     .}\BuiltInTok{str}\NormalTok{.replace(}\StringTok{\textquotesingle{})\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{)}
+\NormalTok{                     .}\BuiltInTok{str}\NormalTok{.replace(}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}porcentaje\textquotesingle{}}\NormalTok{))}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Columnas limpias:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_limpio)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Operaciones con DataFrames}\label{operaciones-con-dataframes}
+
+\subsection{Operaciones aritméticas}\label{operaciones-aritmuxe9ticas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear DataFrame de ventas}
+\NormalTok{ventas }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}producto\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}B\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}C\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}D\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}ene\textquotesingle{}}\NormalTok{: [}\DecValTok{1000}\NormalTok{, }\DecValTok{1500}\NormalTok{, }\DecValTok{800}\NormalTok{, }\DecValTok{1200}\NormalTok{],}
+    \StringTok{\textquotesingle{}feb\textquotesingle{}}\NormalTok{: [}\DecValTok{1100}\NormalTok{, }\DecValTok{1400}\NormalTok{, }\DecValTok{850}\NormalTok{, }\DecValTok{1300}\NormalTok{],}
+    \StringTok{\textquotesingle{}mar\textquotesingle{}}\NormalTok{: [}\DecValTok{1200}\NormalTok{, }\DecValTok{1600}\NormalTok{, }\DecValTok{900}\NormalTok{, }\DecValTok{1250}\NormalTok{]}
+\NormalTok{\})}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Ventas originales:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(ventas)}
+
+\CommentTok{\# Sumar columnas}
+\NormalTok{ventas[}\StringTok{\textquotesingle{}total\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ ventas[}\StringTok{\textquotesingle{}ene\textquotesingle{}}\NormalTok{] }\OperatorTok{+}\NormalTok{ ventas[}\StringTok{\textquotesingle{}feb\textquotesingle{}}\NormalTok{] }\OperatorTok{+}\NormalTok{ ventas[}\StringTok{\textquotesingle{}mar\textquotesingle{}}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Con total:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(ventas)}
+
+\CommentTok{\# Promedio}
+\NormalTok{ventas[}\StringTok{\textquotesingle{}promedio\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ ventas[[}\StringTok{\textquotesingle{}ene\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}feb\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}mar\textquotesingle{}}\NormalTok{]].mean(axis}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Con promedio:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(ventas)}
+
+\CommentTok{\# Operaciones por fila}
+\NormalTok{ventas[}\StringTok{\textquotesingle{}total\_sum\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ ventas[[}\StringTok{\textquotesingle{}ene\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}feb\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}mar\textquotesingle{}}\NormalTok{]].}\BuiltInTok{sum}\NormalTok{(axis}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+\NormalTok{ventas[}\StringTok{\textquotesingle{}max\_mes\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ ventas[[}\StringTok{\textquotesingle{}ene\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}feb\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}mar\textquotesingle{}}\NormalTok{]].}\BuiltInTok{max}\NormalTok{(axis}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+\NormalTok{ventas[}\StringTok{\textquotesingle{}min\_mes\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ ventas[[}\StringTok{\textquotesingle{}ene\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}feb\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}mar\textquotesingle{}}\NormalTok{]].}\BuiltInTok{min}\NormalTok{(axis}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Estadísticas por fila:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(ventas)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Aplicar funciones}\label{aplicar-funciones}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# apply(): aplicar función a columnas o filas}
+\KeywordTok{def}\NormalTok{ calcular\_igv(monto):}
+    \ControlFlowTok{return}\NormalTok{ monto }\OperatorTok{*} \FloatTok{0.18}
+
+\NormalTok{ventas[}\StringTok{\textquotesingle{}igv\_ene\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ ventas[}\StringTok{\textquotesingle{}ene\textquotesingle{}}\NormalTok{].}\BuiltInTok{apply}\NormalTok{(calcular\_igv)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Con IGV de enero:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(ventas[[}\StringTok{\textquotesingle{}producto\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}ene\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}igv\_ene\textquotesingle{}}\NormalTok{]])}
+
+\CommentTok{\# Lambda functions}
+\NormalTok{ventas[}\StringTok{\textquotesingle{}ene\_con\_igv\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ ventas[}\StringTok{\textquotesingle{}ene\textquotesingle{}}\NormalTok{].}\BuiltInTok{apply}\NormalTok{(}\KeywordTok{lambda}\NormalTok{ x: x }\OperatorTok{*} \FloatTok{1.18}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Enero con IGV:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(ventas[[}\StringTok{\textquotesingle{}producto\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}ene\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}ene\_con\_igv\textquotesingle{}}\NormalTok{]])}
+
+\CommentTok{\# apply() a múltiples columnas}
+\KeywordTok{def}\NormalTok{ calcular\_variacion(row):}
+    \ControlFlowTok{return}\NormalTok{ ((row[}\StringTok{\textquotesingle{}mar\textquotesingle{}}\NormalTok{] }\OperatorTok{{-}}\NormalTok{ row[}\StringTok{\textquotesingle{}ene\textquotesingle{}}\NormalTok{]) }\OperatorTok{/}\NormalTok{ row[}\StringTok{\textquotesingle{}ene\textquotesingle{}}\NormalTok{]) }\OperatorTok{*} \DecValTok{100}
+
+\NormalTok{ventas[}\StringTok{\textquotesingle{}variacion\_porcentual\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ ventas.}\BuiltInTok{apply}\NormalTok{(calcular\_variacion, axis}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Con variación porcentual:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(ventas[[}\StringTok{\textquotesingle{}producto\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}ene\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}mar\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}variacion\_porcentual\textquotesingle{}}\NormalTok{]])}
+
+\CommentTok{\# applymap(): aplicar función a todo el DataFrame}
+\NormalTok{df\_numerico }\OperatorTok{=}\NormalTok{ ventas[[}\StringTok{\textquotesingle{}ene\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}feb\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}mar\textquotesingle{}}\NormalTok{]].applymap(}\KeywordTok{lambda}\NormalTok{ x: x }\OperatorTok{*} \FloatTok{1.18}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Todo con IGV:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_numerico)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Operaciones de
+agregación}\label{operaciones-de-agregaciuxf3n}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear datos de ventas por sucursal}
+\NormalTok{datos\_sucursales }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}sucursal\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Lima\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Lima\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Lima\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Arequipa\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Arequipa\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Cusco\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}producto\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}B\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}C\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}B\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}ventas\textquotesingle{}}\NormalTok{: [}\DecValTok{10000}\NormalTok{, }\DecValTok{15000}\NormalTok{, }\DecValTok{8000}\NormalTok{, }\DecValTok{12000}\NormalTok{, }\DecValTok{9000}\NormalTok{, }\DecValTok{7000}\NormalTok{],}
+    \StringTok{\textquotesingle{}unidades\textquotesingle{}}\NormalTok{: [}\DecValTok{100}\NormalTok{, }\DecValTok{150}\NormalTok{, }\DecValTok{80}\NormalTok{, }\DecValTok{120}\NormalTok{, }\DecValTok{90}\NormalTok{, }\DecValTok{70}\NormalTok{]}
+\NormalTok{\}}
+
+\NormalTok{df\_sucursales }\OperatorTok{=}\NormalTok{ pd.DataFrame(datos\_sucursales)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Ventas por sucursal:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_sucursales)}
+
+\CommentTok{\# Suma total}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Ventas totales: S/ }\SpecialCharTok{\{}\NormalTok{df\_sucursales[}\StringTok{\textquotesingle{}ventas\textquotesingle{}}\NormalTok{]}\SpecialCharTok{.}\BuiltInTok{sum}\NormalTok{()}\SpecialCharTok{:,\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Estadísticas básicas}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Promedio ventas: S/ }\SpecialCharTok{\{}\NormalTok{df\_sucursales[}\StringTok{\textquotesingle{}ventas\textquotesingle{}}\NormalTok{]}\SpecialCharTok{.}\NormalTok{mean()}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Mediana ventas: S/ }\SpecialCharTok{\{}\NormalTok{df\_sucursales[}\StringTok{\textquotesingle{}ventas\textquotesingle{}}\NormalTok{]}\SpecialCharTok{.}\NormalTok{median()}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Desviación estándar: S/ }\SpecialCharTok{\{}\NormalTok{df\_sucursales[}\StringTok{\textquotesingle{}ventas\textquotesingle{}}\NormalTok{]}\SpecialCharTok{.}\NormalTok{std()}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Mínimo: S/ }\SpecialCharTok{\{}\NormalTok{df\_sucursales[}\StringTok{\textquotesingle{}ventas\textquotesingle{}}\NormalTok{]}\SpecialCharTok{.}\BuiltInTok{min}\NormalTok{()}\SpecialCharTok{:,\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Máximo: S/ }\SpecialCharTok{\{}\NormalTok{df\_sucursales[}\StringTok{\textquotesingle{}ventas\textquotesingle{}}\NormalTok{]}\SpecialCharTok{.}\BuiltInTok{max}\NormalTok{()}\SpecialCharTok{:,\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# value\_counts(): contar ocurrencias}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Productos más vendidos:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_sucursales[}\StringTok{\textquotesingle{}producto\textquotesingle{}}\NormalTok{].value\_counts())}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Ventas por sucursal:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_sucursales.groupby(}\StringTok{\textquotesingle{}sucursal\textquotesingle{}}\NormalTok{)[}\StringTok{\textquotesingle{}ventas\textquotesingle{}}\NormalTok{].}\BuiltInTok{sum}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Merge y Join}\label{merge-y-join}
+
+El merge es una de las operaciones más importantes en análisis de datos,
+permite combinar DataFrames.
+
+\subsection{Tipos de merge}\label{tipos-de-merge}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear DataFrames de ejemplo}
+\NormalTok{df\_ventas }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}producto\_id\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}P001\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}P002\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}P003\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}P004\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}ventas\textquotesingle{}}\NormalTok{: [}\DecValTok{10000}\NormalTok{, }\DecValTok{15000}\NormalTok{, }\DecValTok{8000}\NormalTok{, }\DecValTok{12000}\NormalTok{],}
+    \StringTok{\textquotesingle{}unidades\textquotesingle{}}\NormalTok{: [}\DecValTok{100}\NormalTok{, }\DecValTok{150}\NormalTok{, }\DecValTok{80}\NormalTok{, }\DecValTok{120}\NormalTok{]}
+\NormalTok{\})}
+
+\NormalTok{df\_productos }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}producto\_id\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}P001\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}P002\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}P003\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}P005\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}nombre\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Laptop\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Mouse\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Teclado\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Monitor\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}precio\textquotesingle{}}\NormalTok{: [}\DecValTok{2500}\NormalTok{, }\DecValTok{25}\NormalTok{, }\DecValTok{80}\NormalTok{, }\DecValTok{800}\NormalTok{]}
+\NormalTok{\})}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"DataFrame de ventas:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_ventas)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{DataFrame de productos:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_productos)}
+
+\CommentTok{\# Inner join (solo coincidencias)}
+\NormalTok{df\_inner }\OperatorTok{=}\NormalTok{ pd.merge(df\_ventas, df\_productos, on}\OperatorTok{=}\StringTok{\textquotesingle{}producto\_id\textquotesingle{}}\NormalTok{, how}\OperatorTok{=}\StringTok{\textquotesingle{}inner\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Inner join:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_inner)}
+
+\CommentTok{\# Left join (todas las ventas)}
+\NormalTok{df\_left }\OperatorTok{=}\NormalTok{ pd.merge(df\_ventas, df\_productos, on}\OperatorTok{=}\StringTok{\textquotesingle{}producto\_id\textquotesingle{}}\NormalTok{, how}\OperatorTok{=}\StringTok{\textquotesingle{}left\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Left join:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_left)}
+
+\CommentTok{\# Right join (todos los productos)}
+\NormalTok{df\_right }\OperatorTok{=}\NormalTok{ pd.merge(df\_ventas, df\_productos, on}\OperatorTok{=}\StringTok{\textquotesingle{}producto\_id\textquotesingle{}}\NormalTok{, how}\OperatorTok{=}\StringTok{\textquotesingle{}right\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Right join:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_right)}
+
+\CommentTok{\# Outer join (todos)}
+\NormalTok{df\_outer }\OperatorTok{=}\NormalTok{ pd.merge(df\_ventas, df\_productos, on}\OperatorTok{=}\StringTok{\textquotesingle{}producto\_id\textquotesingle{}}\NormalTok{, how}\OperatorTok{=}\StringTok{\textquotesingle{}outer\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Outer join:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_outer)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Merge con indicador}\label{merge-con-indicador}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Merge con indicador para rastrear coincidencias}
+\NormalTok{df\_merged }\OperatorTok{=}\NormalTok{ pd.merge(}
+\NormalTok{    df\_ventas, }
+\NormalTok{    df\_productos, }
+\NormalTok{    on}\OperatorTok{=}\StringTok{\textquotesingle{}producto\_id\textquotesingle{}}\NormalTok{, }
+\NormalTok{    how}\OperatorTok{=}\StringTok{\textquotesingle{}outer\textquotesingle{}}\NormalTok{,}
+\NormalTok{    indicator}\OperatorTok{=}\VariableTok{True}
+\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Merge con indicador:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_merged)}
+
+\CommentTok{\# Analizar coincidencias}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Análisis de merge:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_merged[}\StringTok{\textquotesingle{}\_merge\textquotesingle{}}\NormalTok{].value\_counts())}
+
+\CommentTok{\# Filtrar por tipo de coincidencia}
+\NormalTok{solo\_ventas }\OperatorTok{=}\NormalTok{ df\_merged[df\_merged[}\StringTok{\textquotesingle{}\_merge\textquotesingle{}}\NormalTok{] }\OperatorTok{==} \StringTok{\textquotesingle{}left\_only\textquotesingle{}}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Productos solo en ventas:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(solo\_ventas)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Merge con diferentes nombres de
+columna}\label{merge-con-diferentes-nombres-de-columna}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# DataFrames con diferentes nombres de clave}
+\NormalTok{df1 }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}cliente\_id\textquotesingle{}}\NormalTok{: [}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{],}
+    \StringTok{\textquotesingle{}ventas\textquotesingle{}}\NormalTok{: [}\DecValTok{1000}\NormalTok{, }\DecValTok{1500}\NormalTok{, }\DecValTok{800}\NormalTok{]}
+\NormalTok{\})}
+
+\NormalTok{df2 }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}id\textquotesingle{}}\NormalTok{: [}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{],}
+    \StringTok{\textquotesingle{}nombre\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Juan\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}María\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Pedro\textquotesingle{}}\NormalTok{]}
+\NormalTok{\})}
+
+\CommentTok{\# Merge especificando columnas diferentes}
+\NormalTok{df\_merged }\OperatorTok{=}\NormalTok{ pd.merge(}
+\NormalTok{    df1, }
+\NormalTok{    df2, }
+\NormalTok{    left\_on}\OperatorTok{=}\StringTok{\textquotesingle{}cliente\_id\textquotesingle{}}\NormalTok{,}
+\NormalTok{    right\_on}\OperatorTok{=}\StringTok{\textquotesingle{}id\textquotesingle{}}\NormalTok{,}
+\NormalTok{    how}\OperatorTok{=}\StringTok{\textquotesingle{}left\textquotesingle{}}
+\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Merge con diferentes nombres:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_merged)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Merge múltiple}\label{merge-muxfaltiple}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Merge de tres DataFrames}
+\NormalTok{df\_ventas }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}venta\_id\textquotesingle{}}\NormalTok{: [}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{],}
+    \StringTok{\textquotesingle{}producto\_id\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}P001\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}P002\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}P001\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}monto\textquotesingle{}}\NormalTok{: [}\DecValTok{2500}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{2500}\NormalTok{]}
+\NormalTok{\})}
+
+\NormalTok{df\_productos }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}producto\_id\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}P001\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}P002\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}categoria\_id\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}C001\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}C002\textquotesingle{}}\NormalTok{]}
+\NormalTok{\})}
+
+\NormalTok{df\_categorias }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}categoria\_id\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}C001\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}C002\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}categoria\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Computadoras\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Accesorios\textquotesingle{}}\NormalTok{]}
+\NormalTok{\})}
+
+\CommentTok{\# Primer merge}
+\NormalTok{df\_temp }\OperatorTok{=}\NormalTok{ pd.merge(df\_ventas, df\_productos, on}\OperatorTok{=}\StringTok{\textquotesingle{}producto\_id\textquotesingle{}}\NormalTok{)}
+\CommentTok{\# Segundo merge}
+\NormalTok{df\_completo }\OperatorTok{=}\NormalTok{ pd.merge(df\_temp, df\_categorias, on}\OperatorTok{=}\StringTok{\textquotesingle{}categoria\_id\textquotesingle{}}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Merge de tres DataFrames:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_completo)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Append y Concatenación}\label{append-y-concatenaciuxf3n}
+
+\subsection{Append (agregar filas)}\label{append-agregar-filas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear DataFrames para concatenar}
+\NormalTok{df1 }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}mes\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Enero\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Febrero\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}ventas\textquotesingle{}}\NormalTok{: [}\DecValTok{10000}\NormalTok{, }\DecValTok{11000}\NormalTok{]}
+\NormalTok{\})}
+
+\NormalTok{df2 }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}mes\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Marzo\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Abril\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}ventas\textquotesingle{}}\NormalTok{: [}\DecValTok{12000}\NormalTok{, }\DecValTok{11500}\NormalTok{]}
+\NormalTok{\})}
+
+\CommentTok{\# Append (deprecado, usar concat)}
+\CommentTok{\# df\_append = df1.append(df2, ignore\_index=True)}
+
+\CommentTok{\# Método recomendado: concat}
+\NormalTok{df\_concatenado }\OperatorTok{=}\NormalTok{ pd.concat([df1, df2], ignore\_index}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"DataFrames concatenados:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_concatenado)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Concatenación vertical y
+horizontal}\label{concatenaciuxf3n-vertical-y-horizontal}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Concatenación vertical (apilar filas)}
+\NormalTok{df\_2022 }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}trimestre\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Q1\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Q2\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Q3\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Q4\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{: [}\DecValTok{50000}\NormalTok{, }\DecValTok{51000}\NormalTok{, }\DecValTok{52000}\NormalTok{, }\DecValTok{53000}\NormalTok{]}
+\NormalTok{\})}
+
+\NormalTok{df\_2023 }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}trimestre\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Q1\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Q2\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Q3\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Q4\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{: [}\DecValTok{54000}\NormalTok{, }\DecValTok{55000}\NormalTok{, }\DecValTok{56000}\NormalTok{, }\DecValTok{57000}\NormalTok{]}
+\NormalTok{\})}
+
+\NormalTok{df\_vertical }\OperatorTok{=}\NormalTok{ pd.concat([df\_2022, df\_2023], ignore\_index}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Concatenación vertical:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_vertical)}
+
+\CommentTok{\# Añadir etiqueta de año}
+\NormalTok{df\_2022[}\StringTok{\textquotesingle{}año\textquotesingle{}}\NormalTok{] }\OperatorTok{=} \DecValTok{2022}
+\NormalTok{df\_2023[}\StringTok{\textquotesingle{}año\textquotesingle{}}\NormalTok{] }\OperatorTok{=} \DecValTok{2023}
+\NormalTok{df\_con\_año }\OperatorTok{=}\NormalTok{ pd.concat([df\_2022, df\_2023], ignore\_index}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Con identificador de año:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_con\_año)}
+
+\CommentTok{\# Concatenación horizontal (agregar columnas)}
+\NormalTok{df\_ingresos }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}mes\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Ene\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Feb\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Mar\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}ingresos\textquotesingle{}}\NormalTok{: [}\DecValTok{10000}\NormalTok{, }\DecValTok{11000}\NormalTok{, }\DecValTok{12000}\NormalTok{]}
+\NormalTok{\})}
+
+\NormalTok{df\_gastos }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}gastos\textquotesingle{}}\NormalTok{: [}\DecValTok{7000}\NormalTok{, }\DecValTok{7500}\NormalTok{, }\DecValTok{8000}\NormalTok{],}
+    \StringTok{\textquotesingle{}utilidad\textquotesingle{}}\NormalTok{: [}\DecValTok{3000}\NormalTok{, }\DecValTok{3500}\NormalTok{, }\DecValTok{4000}\NormalTok{]}
+\NormalTok{\})}
+
+\NormalTok{df\_horizontal }\OperatorTok{=}\NormalTok{ pd.concat([df\_ingresos, df\_gastos], axis}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Concatenación horizontal:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_horizontal)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Agrupación y agregación}\label{agrupaciuxf3n-y-agregaciuxf3n}
+
+\subsection{GroupBy básico}\label{groupby-buxe1sico}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear datos de ventas por región y producto}
+\NormalTok{datos }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Lima\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Lima\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Lima\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Arequipa\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Arequipa\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Cusco\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Cusco\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}producto\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}B\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}B\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}B\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}ventas\textquotesingle{}}\NormalTok{: [}\DecValTok{10000}\NormalTok{, }\DecValTok{15000}\NormalTok{, }\DecValTok{11000}\NormalTok{, }\DecValTok{8000}\NormalTok{, }\DecValTok{9000}\NormalTok{, }\DecValTok{7000}\NormalTok{, }\DecValTok{6500}\NormalTok{],}
+    \StringTok{\textquotesingle{}unidades\textquotesingle{}}\NormalTok{: [}\DecValTok{100}\NormalTok{, }\DecValTok{150}\NormalTok{, }\DecValTok{110}\NormalTok{, }\DecValTok{80}\NormalTok{, }\DecValTok{90}\NormalTok{, }\DecValTok{70}\NormalTok{, }\DecValTok{65}\NormalTok{]}
+\NormalTok{\}}
+
+\NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(datos)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Datos originales:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df)}
+
+\CommentTok{\# Agrupar y sumar}
+\NormalTok{ventas\_por\_region }\OperatorTok{=}\NormalTok{ df.groupby(}\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{)[}\StringTok{\textquotesingle{}ventas\textquotesingle{}}\NormalTok{].}\BuiltInTok{sum}\NormalTok{()}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Ventas por región:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(ventas\_por\_region)}
+
+\CommentTok{\# Múltiples agregaciones}
+\NormalTok{resumen }\OperatorTok{=}\NormalTok{ df.groupby(}\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{).agg(\{}
+    \StringTok{\textquotesingle{}ventas\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}sum\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}mean\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}count\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}unidades\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}sum\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}mean\textquotesingle{}}\NormalTok{]}
+\NormalTok{\})}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Resumen por región:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(resumen)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{GroupBy con múltiples
+columnas}\label{groupby-con-muxfaltiples-columnas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Agrupar por región y producto}
+\NormalTok{ventas\_region\_producto }\OperatorTok{=}\NormalTok{ df.groupby([}\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}producto\textquotesingle{}}\NormalTok{])[}\StringTok{\textquotesingle{}ventas\textquotesingle{}}\NormalTok{].}\BuiltInTok{sum}\NormalTok{()}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Ventas por región y producto:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(ventas\_region\_producto)}
+
+\CommentTok{\# Desagrupar (unstack)}
+\NormalTok{tabla\_pivot }\OperatorTok{=}\NormalTok{ ventas\_region\_producto.unstack(fill\_value}\OperatorTok{=}\DecValTok{0}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Tabla pivoteable:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(tabla\_pivot)}
+
+\CommentTok{\# Agregaciones personalizadas}
+\NormalTok{resumen\_completo }\OperatorTok{=}\NormalTok{ df.groupby([}\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}producto\textquotesingle{}}\NormalTok{]).agg(\{}
+    \StringTok{\textquotesingle{}ventas\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}sum\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}mean\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}unidades\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}sum\textquotesingle{}}
+\NormalTok{\}).}\BuiltInTok{round}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Resumen completo:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(resumen\_completo)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Funciones de agregación
+personalizadas}\label{funciones-de-agregaciuxf3n-personalizadas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Definir función personalizada}
+\KeywordTok{def}\NormalTok{ rango(x):}
+    \ControlFlowTok{return}\NormalTok{ x.}\BuiltInTok{max}\NormalTok{() }\OperatorTok{{-}}\NormalTok{ x.}\BuiltInTok{min}\NormalTok{()}
+
+\CommentTok{\# Aplicar múltiples funciones}
+\NormalTok{resumen }\OperatorTok{=}\NormalTok{ df.groupby(}\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{)[}\StringTok{\textquotesingle{}ventas\textquotesingle{}}\NormalTok{].agg([}
+    \StringTok{\textquotesingle{}count\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}sum\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}mean\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}std\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}min\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}max\textquotesingle{}}\NormalTok{,}
+\NormalTok{    rango}
+\NormalTok{])}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Resumen con función personalizada:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(resumen)}
+
+\CommentTok{\# Transform: mantener tamaño original}
+\NormalTok{df[}\StringTok{\textquotesingle{}ventas\_region\_promedio\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ df.groupby(}\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{)[}\StringTok{\textquotesingle{}ventas\textquotesingle{}}\NormalTok{].transform(}\StringTok{\textquotesingle{}mean\textquotesingle{}}\NormalTok{)}
+\NormalTok{df[}\StringTok{\textquotesingle{}ventas\_vs\_promedio\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ df[}\StringTok{\textquotesingle{}ventas\textquotesingle{}}\NormalTok{] }\OperatorTok{{-}}\NormalTok{ df[}\StringTok{\textquotesingle{}ventas\_region\_promedio\textquotesingle{}}\NormalTok{]}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Con comparación vs promedio regional:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Aplicaciones económicas}\label{aplicaciones-econuxf3micas-1}
+
+\subsection{Aplicación 1: Análisis de datos
+COVID-19}\label{aplicaciuxf3n-1-anuxe1lisis-de-datos-covid-19}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Simular datos de COVID{-}19 por región}
+\NormalTok{np.random.seed(}\DecValTok{42}\NormalTok{)}
+
+\NormalTok{regiones }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}Lima\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Arequipa\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Cusco\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}La Libertad\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Piura\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \DecValTok{20}
+\NormalTok{fechas }\OperatorTok{=}\NormalTok{ pd.date\_range(}\StringTok{\textquotesingle{}2020{-}03{-}01\textquotesingle{}}\NormalTok{, periods}\OperatorTok{=}\DecValTok{100}\NormalTok{, freq}\OperatorTok{=}\StringTok{\textquotesingle{}D\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{df\_covid }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}fecha\textquotesingle{}}\NormalTok{: np.random.choice(fechas, }\DecValTok{100}\NormalTok{),}
+    \StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{: regiones,}
+    \StringTok{\textquotesingle{}casos\_positivos\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{10}\NormalTok{, }\DecValTok{500}\NormalTok{, }\DecValTok{100}\NormalTok{),}
+    \StringTok{\textquotesingle{}fallecidos\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{0}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{100}\NormalTok{),}
+    \StringTok{\textquotesingle{}pruebas\_realizadas\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{50}\NormalTok{, }\DecValTok{1000}\NormalTok{, }\DecValTok{100}\NormalTok{),}
+    \StringTok{\textquotesingle{}grupo\_edad\textquotesingle{}}\NormalTok{: np.random.choice([}\StringTok{\textquotesingle{}0{-}19\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}20{-}44\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}45{-}64\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}65+\textquotesingle{}}\NormalTok{], }\DecValTok{100}\NormalTok{)}
+\NormalTok{\})}
+
+\CommentTok{\# Agregar datos demográficos}
+\NormalTok{df\_poblacion }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Lima\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Arequipa\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Cusco\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}La Libertad\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Piura\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}poblacion\textquotesingle{}}\NormalTok{: [}\DecValTok{9500000}\NormalTok{, }\DecValTok{1300000}\NormalTok{, }\DecValTok{1200000}\NormalTok{, }\DecValTok{1900000}\NormalTok{, }\DecValTok{2000000}\NormalTok{]}
+\NormalTok{\})}
+
+\CommentTok{\# Merge de datos}
+\NormalTok{df\_analisis }\OperatorTok{=}\NormalTok{ pd.merge(df\_covid, df\_poblacion, on}\OperatorTok{=}\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Calcular métricas}
+\NormalTok{df\_analisis[}\StringTok{\textquotesingle{}tasa\_positividad\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ (}
+\NormalTok{    df\_analisis[}\StringTok{\textquotesingle{}casos\_positivos\textquotesingle{}}\NormalTok{] }\OperatorTok{/}\NormalTok{ df\_analisis[}\StringTok{\textquotesingle{}pruebas\_realizadas\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \DecValTok{100}
+\NormalTok{)}
+
+\NormalTok{df\_analisis[}\StringTok{\textquotesingle{}casos\_por\_100k\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ (}
+\NormalTok{    df\_analisis[}\StringTok{\textquotesingle{}casos\_positivos\textquotesingle{}}\NormalTok{] }\OperatorTok{/}\NormalTok{ df\_analisis[}\StringTok{\textquotesingle{}poblacion\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \DecValTok{100000}
+\NormalTok{)}
+
+\CommentTok{\# Análisis por región}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"ANÁLISIS COVID{-}19 POR REGIÓN"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{resumen\_regional }\OperatorTok{=}\NormalTok{ df\_analisis.groupby(}\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{).agg(\{}
+    \StringTok{\textquotesingle{}casos\_positivos\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}sum\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}fallecidos\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}sum\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}pruebas\_realizadas\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}sum\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}tasa\_positividad\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}mean\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}casos\_por\_100k\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}sum\textquotesingle{}}
+\NormalTok{\}).}\BuiltInTok{round}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+
+\NormalTok{resumen\_regional[}\StringTok{\textquotesingle{}tasa\_letalidad\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ (}
+\NormalTok{    resumen\_regional[}\StringTok{\textquotesingle{}fallecidos\textquotesingle{}}\NormalTok{] }\OperatorTok{/}\NormalTok{ resumen\_regional[}\StringTok{\textquotesingle{}casos\_positivos\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \DecValTok{100}
+\NormalTok{).}\BuiltInTok{round}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(resumen\_regional)}
+
+\CommentTok{\# Análisis por grupo de edad}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{ANÁLISIS POR GRUPO DE EDAD"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{resumen\_edad }\OperatorTok{=}\NormalTok{ df\_analisis.groupby(}\StringTok{\textquotesingle{}grupo\_edad\textquotesingle{}}\NormalTok{).agg(\{}
+    \StringTok{\textquotesingle{}casos\_positivos\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}sum\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}fallecidos\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}sum\textquotesingle{}}
+\NormalTok{\})}
+
+\NormalTok{resumen\_edad[}\StringTok{\textquotesingle{}tasa\_letalidad\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ (}
+\NormalTok{    resumen\_edad[}\StringTok{\textquotesingle{}fallecidos\textquotesingle{}}\NormalTok{] }\OperatorTok{/}\NormalTok{ resumen\_edad[}\StringTok{\textquotesingle{}casos\_positivos\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \DecValTok{100}
+\NormalTok{).}\BuiltInTok{round}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(resumen\_edad.sort\_values(}\StringTok{\textquotesingle{}tasa\_letalidad\textquotesingle{}}\NormalTok{, ascending}\OperatorTok{=}\VariableTok{False}\NormalTok{))}
+
+\CommentTok{\# Serie de tiempo}
+\NormalTok{df\_serie }\OperatorTok{=}\NormalTok{ df\_analisis.groupby(}\StringTok{\textquotesingle{}fecha\textquotesingle{}}\NormalTok{).agg(\{}
+    \StringTok{\textquotesingle{}casos\_positivos\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}sum\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}fallecidos\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}sum\textquotesingle{}}
+\NormalTok{\}).sort\_index()}
+
+\CommentTok{\# Promedio móvil de 7 días}
+\NormalTok{df\_serie[}\StringTok{\textquotesingle{}casos\_ma7\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ df\_serie[}\StringTok{\textquotesingle{}casos\_positivos\textquotesingle{}}\NormalTok{].rolling(window}\OperatorTok{=}\DecValTok{7}\NormalTok{).mean()}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{SERIE DE TIEMPO (últimos 10 días)"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_serie.tail(}\DecValTok{10}\NormalTok{).}\BuiltInTok{round}\NormalTok{(}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Aplicación 2: Análisis de comercio
+internacional}\label{aplicaciuxf3n-2-anuxe1lisis-de-comercio-internacional}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Simular datos de exportaciones}
+\NormalTok{productos }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}Cobre\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Oro\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Zinc\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Plomo\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Plata\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Café\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Espárragos\textquotesingle{}}\NormalTok{]}
+\NormalTok{paises }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}China\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}USA\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Canadá\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Japón\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Corea del Sur\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Brasil\textquotesingle{}}\NormalTok{]}
+\NormalTok{años }\OperatorTok{=}\NormalTok{ [}\DecValTok{2019}\NormalTok{, }\DecValTok{2020}\NormalTok{, }\DecValTok{2021}\NormalTok{, }\DecValTok{2022}\NormalTok{, }\DecValTok{2023}\NormalTok{]}
+
+\NormalTok{np.random.seed(}\DecValTok{42}\NormalTok{)}
+
+\NormalTok{n\_registros }\OperatorTok{=} \DecValTok{500}
+
+\NormalTok{df\_exportaciones }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}año\textquotesingle{}}\NormalTok{: np.random.choice(años, n\_registros),}
+    \StringTok{\textquotesingle{}mes\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{1}\NormalTok{, }\DecValTok{13}\NormalTok{, n\_registros),}
+    \StringTok{\textquotesingle{}producto\textquotesingle{}}\NormalTok{: np.random.choice(productos, n\_registros),}
+    \StringTok{\textquotesingle{}pais\_destino\textquotesingle{}}\NormalTok{: np.random.choice(paises, n\_registros),}
+    \StringTok{\textquotesingle{}valor\_fob\_usd\textquotesingle{}}\NormalTok{: np.random.uniform(}\DecValTok{100000}\NormalTok{, }\DecValTok{10000000}\NormalTok{, n\_registros),}
+    \StringTok{\textquotesingle{}peso\_kg\textquotesingle{}}\NormalTok{: np.random.uniform(}\DecValTok{1000}\NormalTok{, }\DecValTok{100000}\NormalTok{, n\_registros)}
+\NormalTok{\})}
+
+\CommentTok{\# Calcular precio por kg}
+\NormalTok{df\_exportaciones[}\StringTok{\textquotesingle{}precio\_kg\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ (}
+\NormalTok{    df\_exportaciones[}\StringTok{\textquotesingle{}valor\_fob\_usd\textquotesingle{}}\NormalTok{] }\OperatorTok{/}\NormalTok{ df\_exportaciones[}\StringTok{\textquotesingle{}peso\_kg\textquotesingle{}}\NormalTok{]}
+\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"ANÁLISIS DE EXPORTACIONES"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\CommentTok{\# Top 10 exportaciones por valor}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Top 10 exportaciones individuales:"}\NormalTok{)}
+\NormalTok{top10 }\OperatorTok{=}\NormalTok{ df\_exportaciones.nlargest(}\DecValTok{10}\NormalTok{, }\StringTok{\textquotesingle{}valor\_fob\_usd\textquotesingle{}}\NormalTok{)[}
+\NormalTok{    [}\StringTok{\textquotesingle{}año\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}mes\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}producto\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}pais\_destino\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}valor\_fob\_usd\textquotesingle{}}\NormalTok{]}
+\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(top10.to\_string(index}\OperatorTok{=}\VariableTok{False}\NormalTok{))}
+
+\CommentTok{\# Exportaciones por producto}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{EXPORTACIONES POR PRODUCTO"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{por\_producto }\OperatorTok{=}\NormalTok{ df\_exportaciones.groupby(}\StringTok{\textquotesingle{}producto\textquotesingle{}}\NormalTok{).agg(\{}
+    \StringTok{\textquotesingle{}valor\_fob\_usd\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}sum\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}mean\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}count\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}peso\_kg\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}sum\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}precio\_kg\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}mean\textquotesingle{}}
+\NormalTok{\}).}\BuiltInTok{round}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+
+\NormalTok{por\_producto.columns }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}\_\textquotesingle{}}\NormalTok{.join(col).strip() }\ControlFlowTok{for}\NormalTok{ col }\KeywordTok{in}\NormalTok{ por\_producto.columns]}
+\NormalTok{por\_producto }\OperatorTok{=}\NormalTok{ por\_producto.sort\_values(}\StringTok{\textquotesingle{}valor\_fob\_usd\_sum\textquotesingle{}}\NormalTok{, ascending}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(por\_producto)}
+
+\CommentTok{\# Exportaciones por destino}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{EXPORTACIONES POR PAÍS DESTINO"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{por\_pais }\OperatorTok{=}\NormalTok{ df\_exportaciones.groupby(}\StringTok{\textquotesingle{}pais\_destino\textquotesingle{}}\NormalTok{).agg(\{}
+    \StringTok{\textquotesingle{}valor\_fob\_usd\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}sum\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}producto\textquotesingle{}}\NormalTok{: }\KeywordTok{lambda}\NormalTok{ x: x.value\_counts().index[}\DecValTok{0}\NormalTok{]  }\CommentTok{\# Producto más exportado}
+\NormalTok{\}).}\BuiltInTok{round}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+
+\NormalTok{por\_pais.columns }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}valor\_total\_usd\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}producto\_principal\textquotesingle{}}\NormalTok{]}
+\NormalTok{por\_pais }\OperatorTok{=}\NormalTok{ por\_pais.sort\_values(}\StringTok{\textquotesingle{}valor\_total\_usd\textquotesingle{}}\NormalTok{, ascending}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(por\_pais)}
+
+\CommentTok{\# Evolución anual}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{EVOLUCIÓN ANUAL DE EXPORTACIONES"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{evolucion }\OperatorTok{=}\NormalTok{ df\_exportaciones.groupby(}\StringTok{\textquotesingle{}año\textquotesingle{}}\NormalTok{)[}\StringTok{\textquotesingle{}valor\_fob\_usd\textquotesingle{}}\NormalTok{].}\BuiltInTok{sum}\NormalTok{()}
+\NormalTok{evolucion\_pct }\OperatorTok{=}\NormalTok{ evolucion.pct\_change() }\OperatorTok{*} \DecValTok{100}
+
+\NormalTok{resumen\_anual }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}exportaciones\_usd\textquotesingle{}}\NormalTok{: evolucion,}
+    \StringTok{\textquotesingle{}variacion\_pct\textquotesingle{}}\NormalTok{: evolucion\_pct}
+\NormalTok{\}).}\BuiltInTok{round}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(resumen\_anual)}
+
+\CommentTok{\# Matriz de exportaciones: producto x destino}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{MATRIZ: PRODUCTO X DESTINO (Millones USD)"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{matriz }\OperatorTok{=}\NormalTok{ df\_exportaciones.pivot\_table(}
+\NormalTok{    values}\OperatorTok{=}\StringTok{\textquotesingle{}valor\_fob\_usd\textquotesingle{}}\NormalTok{,}
+\NormalTok{    index}\OperatorTok{=}\StringTok{\textquotesingle{}producto\textquotesingle{}}\NormalTok{,}
+\NormalTok{    columns}\OperatorTok{=}\StringTok{\textquotesingle{}pais\_destino\textquotesingle{}}\NormalTok{,}
+\NormalTok{    aggfunc}\OperatorTok{=}\StringTok{\textquotesingle{}sum\textquotesingle{}}\NormalTok{,}
+\NormalTok{    fill\_value}\OperatorTok{=}\DecValTok{0}
+\NormalTok{) }\OperatorTok{/} \DecValTok{1000000}  \CommentTok{\# Convertir a millones}
+
+\BuiltInTok{print}\NormalTok{(matriz.}\BuiltInTok{round}\NormalTok{(}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Ejercicios prácticos}\label{ejercicios-pruxe1cticos}
+
+\subsection{Ejercicio 1: Análisis de indicadores
+macroeconómicos}\label{ejercicio-1-anuxe1lisis-de-indicadores-macroeconuxf3micos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear dataset de indicadores macroeconómicos}
+\NormalTok{años }\OperatorTok{=} \BuiltInTok{list}\NormalTok{(}\BuiltInTok{range}\NormalTok{(}\DecValTok{2010}\NormalTok{, }\DecValTok{2024}\NormalTok{))}
+\NormalTok{n\_años }\OperatorTok{=} \BuiltInTok{len}\NormalTok{(años)}
+
+\NormalTok{df\_macro }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}año\textquotesingle{}}\NormalTok{: años,}
+    \StringTok{\textquotesingle{}pib\_millones\textquotesingle{}}\NormalTok{: [}\DecValTok{190000}\NormalTok{, }\DecValTok{200000}\NormalTok{, }\DecValTok{208000}\NormalTok{, }\DecValTok{215000}\NormalTok{, }\DecValTok{210000}\NormalTok{, }\DecValTok{220000}\NormalTok{, }
+                     \DecValTok{225000}\NormalTok{, }\DecValTok{218000}\NormalTok{, }\DecValTok{225000}\NormalTok{, }\DecValTok{235000}\NormalTok{, }\DecValTok{220000}\NormalTok{, }\DecValTok{240000}\NormalTok{, }
+                     \DecValTok{250000}\NormalTok{, }\DecValTok{258000}\NormalTok{],}
+    \StringTok{\textquotesingle{}inflacion\textquotesingle{}}\NormalTok{: [}\FloatTok{2.1}\NormalTok{, }\FloatTok{2.5}\NormalTok{, }\FloatTok{2.8}\NormalTok{, }\FloatTok{2.9}\NormalTok{, }\FloatTok{3.2}\NormalTok{, }\FloatTok{3.5}\NormalTok{, }\FloatTok{3.2}\NormalTok{, }\FloatTok{2.8}\NormalTok{, }\FloatTok{1.8}\NormalTok{, }\FloatTok{2.1}\NormalTok{, }
+                  \FloatTok{2.5}\NormalTok{, }\FloatTok{3.5}\NormalTok{, }\FloatTok{8.3}\NormalTok{, }\FloatTok{6.5}\NormalTok{],}
+    \StringTok{\textquotesingle{}desempleo\textquotesingle{}}\NormalTok{: [}\FloatTok{7.8}\NormalTok{, }\FloatTok{7.5}\NormalTok{, }\FloatTok{6.8}\NormalTok{, }\FloatTok{6.5}\NormalTok{, }\FloatTok{6.2}\NormalTok{, }\FloatTok{6.7}\NormalTok{, }\FloatTok{6.9}\NormalTok{, }\FloatTok{7.2}\NormalTok{, }\FloatTok{13.0}\NormalTok{, }\FloatTok{11.9}\NormalTok{, }
+                  \FloatTok{9.8}\NormalTok{, }\FloatTok{7.8}\NormalTok{, }\FloatTok{7.2}\NormalTok{, }\FloatTok{7.5}\NormalTok{],}
+    \StringTok{\textquotesingle{}tipo\_cambio\textquotesingle{}}\NormalTok{: [}\FloatTok{2.80}\NormalTok{, }\FloatTok{2.82}\NormalTok{, }\FloatTok{2.79}\NormalTok{, }\FloatTok{2.84}\NormalTok{, }\FloatTok{3.18}\NormalTok{, }\FloatTok{3.38}\NormalTok{, }\FloatTok{3.37}\NormalTok{, }\FloatTok{3.36}\NormalTok{, }
+                    \FloatTok{3.49}\NormalTok{, }\FloatTok{3.88}\NormalTok{, }\FloatTok{3.83}\NormalTok{, }\FloatTok{3.82}\NormalTok{, }\FloatTok{3.75}\NormalTok{, }\FloatTok{3.72}\NormalTok{],}
+    \StringTok{\textquotesingle{}exportaciones\textquotesingle{}}\NormalTok{: [}\DecValTok{35000}\NormalTok{, }\DecValTok{46000}\NormalTok{, }\DecValTok{45600}\NormalTok{, }\DecValTok{42800}\NormalTok{, }\DecValTok{34200}\NormalTok{, }\DecValTok{34000}\NormalTok{, }
+                      \DecValTok{37000}\NormalTok{, }\DecValTok{44900}\NormalTok{, }\DecValTok{42900}\NormalTok{, }\DecValTok{47600}\NormalTok{, }\DecValTok{42900}\NormalTok{, }\DecValTok{63200}\NormalTok{, }
+                      \DecValTok{68000}\NormalTok{, }\DecValTok{72000}\NormalTok{],}
+    \StringTok{\textquotesingle{}importaciones\textquotesingle{}}\NormalTok{: [}\DecValTok{28800}\NormalTok{, }\DecValTok{37000}\NormalTok{, }\DecValTok{41000}\NormalTok{, }\DecValTok{42300}\NormalTok{, }\DecValTok{41100}\NormalTok{, }\DecValTok{37000}\NormalTok{, }
+                      \DecValTok{35000}\NormalTok{, }\DecValTok{38700}\NormalTok{, }\DecValTok{33900}\NormalTok{, }\DecValTok{36000}\NormalTok{, }\DecValTok{35600}\NormalTok{, }\DecValTok{53800}\NormalTok{, }
+                      \DecValTok{58000}\NormalTok{, }\DecValTok{62000}\NormalTok{]}
+\NormalTok{\})}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"ANÁLISIS DE INDICADORES MACROECONÓMICOS"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\CommentTok{\# Calcular indicadores derivados}
+\NormalTok{df\_macro[}\StringTok{\textquotesingle{}crecimiento\_pib\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ df\_macro[}\StringTok{\textquotesingle{}pib\_millones\textquotesingle{}}\NormalTok{].pct\_change() }\OperatorTok{*} \DecValTok{100}
+\NormalTok{df\_macro[}\StringTok{\textquotesingle{}balanza\_comercial\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ df\_macro[}\StringTok{\textquotesingle{}exportaciones\textquotesingle{}}\NormalTok{] }\OperatorTok{{-}}\NormalTok{ df\_macro[}\StringTok{\textquotesingle{}importaciones\textquotesingle{}}\NormalTok{]}
+\NormalTok{df\_macro[}\StringTok{\textquotesingle{}coeficiente\_apertura\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ (}
+\NormalTok{    (df\_macro[}\StringTok{\textquotesingle{}exportaciones\textquotesingle{}}\NormalTok{] }\OperatorTok{+}\NormalTok{ df\_macro[}\StringTok{\textquotesingle{}importaciones\textquotesingle{}}\NormalTok{]) }\OperatorTok{/} 
+\NormalTok{    df\_macro[}\StringTok{\textquotesingle{}pib\_millones\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \DecValTok{100}
+\NormalTok{)}
+
+\CommentTok{\# Estadísticas descriptivas}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Estadísticas descriptivas:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_macro[[}\StringTok{\textquotesingle{}crecimiento\_pib\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}inflacion\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}desempleo\textquotesingle{}}\NormalTok{]].describe().}\BuiltInTok{round}\NormalTok{(}\DecValTok{2}\NormalTok{))}
+
+\CommentTok{\# Años con mayor/menor crecimiento}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{Años con mayor crecimiento:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_macro.nlargest(}\DecValTok{3}\NormalTok{, }\StringTok{\textquotesingle{}crecimiento\_pib\textquotesingle{}}\NormalTok{)[[}\StringTok{\textquotesingle{}año\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}crecimiento\_pib\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}pib\_millones\textquotesingle{}}\NormalTok{]])}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Años con menor crecimiento:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_macro.nsmallest(}\DecValTok{3}\NormalTok{, }\StringTok{\textquotesingle{}crecimiento\_pib\textquotesingle{}}\NormalTok{)[[}\StringTok{\textquotesingle{}año\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}crecimiento\_pib\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}pib\_millones\textquotesingle{}}\NormalTok{]])}
+
+\CommentTok{\# Correlaciones}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{Correlación entre variables:"}\NormalTok{)}
+\NormalTok{correlaciones }\OperatorTok{=}\NormalTok{ df\_macro[[}\StringTok{\textquotesingle{}crecimiento\_pib\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}inflacion\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}desempleo\textquotesingle{}}\NormalTok{, }
+                          \StringTok{\textquotesingle{}balanza\_comercial\textquotesingle{}}\NormalTok{]].corr().}\BuiltInTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(correlaciones)}
+
+\CommentTok{\# Períodos de crisis (crecimiento negativo)}
+\NormalTok{crisis }\OperatorTok{=}\NormalTok{ df\_macro[df\_macro[}\StringTok{\textquotesingle{}crecimiento\_pib\textquotesingle{}}\NormalTok{] }\OperatorTok{\textless{}} \DecValTok{0}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{Períodos de contracción económica:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(crisis[[}\StringTok{\textquotesingle{}año\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}crecimiento\_pib\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}desempleo\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}inflacion\textquotesingle{}}\NormalTok{]])}
+
+\CommentTok{\# Promedios por década}
+\NormalTok{df\_macro[}\StringTok{\textquotesingle{}decada\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ (df\_macro[}\StringTok{\textquotesingle{}año\textquotesingle{}}\NormalTok{] }\OperatorTok{//} \DecValTok{10}\NormalTok{) }\OperatorTok{*} \DecValTok{10}
+\NormalTok{promedios\_decada }\OperatorTok{=}\NormalTok{ df\_macro.groupby(}\StringTok{\textquotesingle{}decada\textquotesingle{}}\NormalTok{)[}
+\NormalTok{    [}\StringTok{\textquotesingle{}crecimiento\_pib\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}inflacion\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}desempleo\textquotesingle{}}\NormalTok{]}
+\NormalTok{].mean().}\BuiltInTok{round}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{Promedios por década:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(promedios\_decada)}
+
+\CommentTok{\# Guardar resultados}
+\NormalTok{df\_macro.to\_csv(}\StringTok{\textquotesingle{}analisis\_macroeconomico.csv\textquotesingle{}}\NormalTok{, index}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{Resultados guardados en \textquotesingle{}analisis\_macroeconomico.csv\textquotesingle{}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Ejercicio 2: Sistema de gestión de
+inventarios}\label{ejercicio-2-sistema-de-gestiuxf3n-de-inventarios}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear sistema de inventarios}
+\NormalTok{np.random.seed(}\DecValTok{42}\NormalTok{)}
+
+\CommentTok{\# Catálogo de productos}
+\NormalTok{df\_productos }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}producto\_id\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}PROD\textquotesingle{}} \OperatorTok{+} \BuiltInTok{str}\NormalTok{(i).zfill(}\DecValTok{3}\NormalTok{) }\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{21}\NormalTok{)],}
+    \StringTok{\textquotesingle{}nombre\textquotesingle{}}\NormalTok{: [}\SpecialStringTok{f\textquotesingle{}Producto }\SpecialCharTok{\{}\NormalTok{i}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}} \ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{21}\NormalTok{)],}
+    \StringTok{\textquotesingle{}categoria\textquotesingle{}}\NormalTok{: np.random.choice([}\StringTok{\textquotesingle{}Electrónica\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Ropa\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Alimentos\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Hogar\textquotesingle{}}\NormalTok{], }\DecValTok{20}\NormalTok{),}
+    \StringTok{\textquotesingle{}precio\_costo\textquotesingle{}}\NormalTok{: np.random.uniform(}\DecValTok{10}\NormalTok{, }\DecValTok{500}\NormalTok{, }\DecValTok{20}\NormalTok{).}\BuiltInTok{round}\NormalTok{(}\DecValTok{2}\NormalTok{),}
+    \StringTok{\textquotesingle{}precio\_venta\textquotesingle{}}\NormalTok{: np.random.uniform(}\DecValTok{15}\NormalTok{, }\DecValTok{750}\NormalTok{, }\DecValTok{20}\NormalTok{).}\BuiltInTok{round}\NormalTok{(}\DecValTok{2}\NormalTok{),}
+    \StringTok{\textquotesingle{}stock\_actual\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{0}\NormalTok{, }\DecValTok{200}\NormalTok{, }\DecValTok{20}\NormalTok{),}
+    \StringTok{\textquotesingle{}stock\_minimo\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{10}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{20}\NormalTok{)}
+\NormalTok{\})}
+
+\CommentTok{\# Ajustar precio\_venta para que sea mayor que costo}
+\NormalTok{df\_productos[}\StringTok{\textquotesingle{}precio\_venta\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ (df\_productos[}\StringTok{\textquotesingle{}precio\_costo\textquotesingle{}}\NormalTok{] }\OperatorTok{*} 
+\NormalTok{                                 np.random.uniform(}\FloatTok{1.2}\NormalTok{, }\FloatTok{2.0}\NormalTok{, }\DecValTok{20}\NormalTok{)).}\BuiltInTok{round}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+
+\CommentTok{\# Transacciones de ventas}
+\NormalTok{n\_transacciones }\OperatorTok{=} \DecValTok{500}
+\NormalTok{fechas }\OperatorTok{=}\NormalTok{ pd.date\_range(}\StringTok{\textquotesingle{}2023{-}01{-}01\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}2023{-}12{-}31\textquotesingle{}}\NormalTok{, freq}\OperatorTok{=}\StringTok{\textquotesingle{}D\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{df\_ventas }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}fecha\textquotesingle{}}\NormalTok{: np.random.choice(fechas, n\_transacciones),}
+    \StringTok{\textquotesingle{}producto\_id\textquotesingle{}}\NormalTok{: np.random.choice(df\_productos[}\StringTok{\textquotesingle{}producto\_id\textquotesingle{}}\NormalTok{], n\_transacciones),}
+    \StringTok{\textquotesingle{}cantidad\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{1}\NormalTok{, }\DecValTok{20}\NormalTok{, n\_transacciones),}
+    \StringTok{\textquotesingle{}tipo\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}venta\textquotesingle{}}
+\NormalTok{\})}
+
+\CommentTok{\# Transacciones de compras (reposición)}
+\NormalTok{df\_compras }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}fecha\textquotesingle{}}\NormalTok{: np.random.choice(fechas, }\DecValTok{100}\NormalTok{),}
+    \StringTok{\textquotesingle{}producto\_id\textquotesingle{}}\NormalTok{: np.random.choice(df\_productos[}\StringTok{\textquotesingle{}producto\_id\textquotesingle{}}\NormalTok{], }\DecValTok{100}\NormalTok{),}
+    \StringTok{\textquotesingle{}cantidad\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{10}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{100}\NormalTok{),}
+    \StringTok{\textquotesingle{}tipo\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}compra\textquotesingle{}}
+\NormalTok{\})}
+
+\CommentTok{\# Combinar transacciones}
+\NormalTok{df\_transacciones }\OperatorTok{=}\NormalTok{ pd.concat([df\_ventas, df\_compras], ignore\_index}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+\NormalTok{df\_transacciones }\OperatorTok{=}\NormalTok{ df\_transacciones.sort\_values(}\StringTok{\textquotesingle{}fecha\textquotesingle{}}\NormalTok{).reset\_index(drop}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+
+\CommentTok{\# Merge con información de productos}
+\NormalTok{df\_transacciones }\OperatorTok{=}\NormalTok{ pd.merge(}
+\NormalTok{    df\_transacciones,}
+\NormalTok{    df\_productos[[}\StringTok{\textquotesingle{}producto\_id\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}nombre\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}categoria\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}precio\_costo\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}precio\_venta\textquotesingle{}}\NormalTok{]],}
+\NormalTok{    on}\OperatorTok{=}\StringTok{\textquotesingle{}producto\_id\textquotesingle{}}
+\NormalTok{)}
+
+\CommentTok{\# Calcular valores}
+\NormalTok{df\_transacciones[}\StringTok{\textquotesingle{}valor\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ np.where(}
+\NormalTok{    df\_transacciones[}\StringTok{\textquotesingle{}tipo\textquotesingle{}}\NormalTok{] }\OperatorTok{==} \StringTok{\textquotesingle{}venta\textquotesingle{}}\NormalTok{,}
+\NormalTok{    df\_transacciones[}\StringTok{\textquotesingle{}cantidad\textquotesingle{}}\NormalTok{] }\OperatorTok{*}\NormalTok{ df\_transacciones[}\StringTok{\textquotesingle{}precio\_venta\textquotesingle{}}\NormalTok{],}
+\NormalTok{    df\_transacciones[}\StringTok{\textquotesingle{}cantidad\textquotesingle{}}\NormalTok{] }\OperatorTok{*}\NormalTok{ df\_transacciones[}\StringTok{\textquotesingle{}precio\_costo\textquotesingle{}}\NormalTok{]}
+\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"SISTEMA DE GESTIÓN DE INVENTARIOS"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\CommentTok{\# 1. Análisis de ventas por categoría}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{1. VENTAS POR CATEGORÍA"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"{-}"} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{ventas\_categoria }\OperatorTok{=}\NormalTok{ df\_transacciones[df\_transacciones[}\StringTok{\textquotesingle{}tipo\textquotesingle{}}\NormalTok{] }\OperatorTok{==} \StringTok{\textquotesingle{}venta\textquotesingle{}}\NormalTok{].groupby(}\StringTok{\textquotesingle{}categoria\textquotesingle{}}\NormalTok{).agg(\{}
+    \StringTok{\textquotesingle{}valor\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}sum\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}cantidad\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}sum\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}producto\_id\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}count\textquotesingle{}}
+\NormalTok{\}).}\BuiltInTok{round}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+
+\NormalTok{ventas\_categoria.columns }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}valor\_total\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}unidades\_vendidas\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}num\_transacciones\textquotesingle{}}\NormalTok{]}
+\NormalTok{ventas\_categoria }\OperatorTok{=}\NormalTok{ ventas\_categoria.sort\_values(}\StringTok{\textquotesingle{}valor\_total\textquotesingle{}}\NormalTok{, ascending}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(ventas\_categoria)}
+
+\CommentTok{\# 2. Top 10 productos más vendidos}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{2. TOP 10 PRODUCTOS MÁS VENDIDOS"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"{-}"} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{top\_productos }\OperatorTok{=}\NormalTok{ df\_transacciones[df\_transacciones[}\StringTok{\textquotesingle{}tipo\textquotesingle{}}\NormalTok{] }\OperatorTok{==} \StringTok{\textquotesingle{}venta\textquotesingle{}}\NormalTok{].groupby(}
+\NormalTok{    [}\StringTok{\textquotesingle{}producto\_id\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}nombre\textquotesingle{}}\NormalTok{]}
+\NormalTok{).agg(\{}
+    \StringTok{\textquotesingle{}cantidad\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}sum\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}valor\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}sum\textquotesingle{}}
+\NormalTok{\}).}\BuiltInTok{round}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+
+\NormalTok{top\_productos.columns }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}unidades\_vendidas\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}ingresos\_totales\textquotesingle{}}\NormalTok{]}
+\NormalTok{top\_productos }\OperatorTok{=}\NormalTok{ top\_productos.sort\_values(}\StringTok{\textquotesingle{}ingresos\_totales\textquotesingle{}}\NormalTok{, ascending}\OperatorTok{=}\VariableTok{False}\NormalTok{).head(}\DecValTok{10}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(top\_productos)}
+
+\CommentTok{\# 3. Productos bajo stock mínimo}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{3. ALERTA: PRODUCTOS BAJO STOCK MÍNIMO"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"{-}"} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{productos\_bajo\_stock }\OperatorTok{=}\NormalTok{ df\_productos[}
+\NormalTok{    df\_productos[}\StringTok{\textquotesingle{}stock\_actual\textquotesingle{}}\NormalTok{] }\OperatorTok{\textless{}}\NormalTok{ df\_productos[}\StringTok{\textquotesingle{}stock\_minimo\textquotesingle{}}\NormalTok{]}
+\NormalTok{].copy()}
+
+\NormalTok{productos\_bajo\_stock[}\StringTok{\textquotesingle{}faltante\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ (}
+\NormalTok{    productos\_bajo\_stock[}\StringTok{\textquotesingle{}stock\_minimo\textquotesingle{}}\NormalTok{] }\OperatorTok{{-}}\NormalTok{ productos\_bajo\_stock[}\StringTok{\textquotesingle{}stock\_actual\textquotesingle{}}\NormalTok{]}
+\NormalTok{)}
+
+\NormalTok{productos\_bajo\_stock }\OperatorTok{=}\NormalTok{ productos\_bajo\_stock[[}
+    \StringTok{\textquotesingle{}producto\_id\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}nombre\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}categoria\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}stock\_actual\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}stock\_minimo\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}faltante\textquotesingle{}}
+\NormalTok{]].sort\_values(}\StringTok{\textquotesingle{}faltante\textquotesingle{}}\NormalTok{, ascending}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(productos\_bajo\_stock)}
+
+\CommentTok{\# 4. Análisis de rentabilidad}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{4. ANÁLISIS DE RENTABILIDAD POR PRODUCTO"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"{-}"} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{ventas\_por\_producto }\OperatorTok{=}\NormalTok{ df\_transacciones[df\_transacciones[}\StringTok{\textquotesingle{}tipo\textquotesingle{}}\NormalTok{] }\OperatorTok{==} \StringTok{\textquotesingle{}venta\textquotesingle{}}\NormalTok{].groupby(}
+    \StringTok{\textquotesingle{}producto\_id\textquotesingle{}}
+\NormalTok{).agg(\{}
+    \StringTok{\textquotesingle{}cantidad\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}sum\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}precio\_costo\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}first\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}precio\_venta\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}first\textquotesingle{}}
+\NormalTok{\})}
+
+\NormalTok{ventas\_por\_producto[}\StringTok{\textquotesingle{}costo\_total\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ (}
+\NormalTok{    ventas\_por\_producto[}\StringTok{\textquotesingle{}cantidad\textquotesingle{}}\NormalTok{] }\OperatorTok{*}\NormalTok{ ventas\_por\_producto[}\StringTok{\textquotesingle{}precio\_costo\textquotesingle{}}\NormalTok{]}
+\NormalTok{)}
+\NormalTok{ventas\_por\_producto[}\StringTok{\textquotesingle{}ingresos\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ (}
+\NormalTok{    ventas\_por\_producto[}\StringTok{\textquotesingle{}cantidad\textquotesingle{}}\NormalTok{] }\OperatorTok{*}\NormalTok{ ventas\_por\_producto[}\StringTok{\textquotesingle{}precio\_venta\textquotesingle{}}\NormalTok{]}
+\NormalTok{)}
+\NormalTok{ventas\_por\_producto[}\StringTok{\textquotesingle{}utilidad\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ (}
+\NormalTok{    ventas\_por\_producto[}\StringTok{\textquotesingle{}ingresos\textquotesingle{}}\NormalTok{] }\OperatorTok{{-}}\NormalTok{ ventas\_por\_producto[}\StringTok{\textquotesingle{}costo\_total\textquotesingle{}}\NormalTok{]}
+\NormalTok{)}
+\NormalTok{ventas\_por\_producto[}\StringTok{\textquotesingle{}margen\_pct\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ (}
+\NormalTok{    ventas\_por\_producto[}\StringTok{\textquotesingle{}utilidad\textquotesingle{}}\NormalTok{] }\OperatorTok{/}\NormalTok{ ventas\_por\_producto[}\StringTok{\textquotesingle{}ingresos\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \DecValTok{100}
+\NormalTok{)}
+
+\NormalTok{rentabilidad }\OperatorTok{=}\NormalTok{ ventas\_por\_producto[[}\StringTok{\textquotesingle{}cantidad\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}utilidad\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}margen\_pct\textquotesingle{}}\NormalTok{]].sort\_values(}
+    \StringTok{\textquotesingle{}utilidad\textquotesingle{}}\NormalTok{, ascending}\OperatorTok{=}\VariableTok{False}
+\NormalTok{).head(}\DecValTok{10}\NormalTok{).}\BuiltInTok{round}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(rentabilidad)}
+
+\CommentTok{\# 5. Evolución mensual de ventas}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{5. EVOLUCIÓN MENSUAL DE VENTAS"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"{-}"} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{df\_transacciones[}\StringTok{\textquotesingle{}año\_mes\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ df\_transacciones[}\StringTok{\textquotesingle{}fecha\textquotesingle{}}\NormalTok{].dt.to\_period(}\StringTok{\textquotesingle{}M\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{ventas\_mensuales }\OperatorTok{=}\NormalTok{ df\_transacciones[df\_transacciones[}\StringTok{\textquotesingle{}tipo\textquotesingle{}}\NormalTok{] }\OperatorTok{==} \StringTok{\textquotesingle{}venta\textquotesingle{}}\NormalTok{].groupby(}\StringTok{\textquotesingle{}año\_mes\textquotesingle{}}\NormalTok{).agg(\{}
+    \StringTok{\textquotesingle{}valor\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}sum\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}cantidad\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}sum\textquotesingle{}}
+\NormalTok{\}).}\BuiltInTok{round}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+
+\NormalTok{ventas\_mensuales.columns }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}ventas\_soles\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}unidades\textquotesingle{}}\NormalTok{]}
+\NormalTok{ventas\_mensuales[}\StringTok{\textquotesingle{}variacion\_pct\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ ventas\_mensuales[}\StringTok{\textquotesingle{}ventas\_soles\textquotesingle{}}\NormalTok{].pct\_change() }\OperatorTok{*} \DecValTok{100}
+
+\BuiltInTok{print}\NormalTok{(ventas\_mensuales.}\BuiltInTok{round}\NormalTok{(}\DecValTok{2}\NormalTok{))}
+
+\CommentTok{\# Guardar reportes}
+\NormalTok{df\_transacciones.to\_csv(}\StringTok{\textquotesingle{}transacciones\_inventario.csv\textquotesingle{}}\NormalTok{, index}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+\NormalTok{productos\_bajo\_stock.to\_csv(}\StringTok{\textquotesingle{}alerta\_stock\_bajo.csv\textquotesingle{}}\NormalTok{, index}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{Reportes guardados:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"  {-} transacciones\_inventario.csv"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"  {-} alerta\_stock\_bajo.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Conclusión}\label{conclusiuxf3n}
+
+En esta guía hemos explorado DataFrames con Pandas:
+
+\textbf{Creación de DataFrames}
+
+Desde diccionarios, listas, Series y con índices personalizados.
+
+\textbf{Importación y exportación}
+
+Lectura y escritura de CSV, Excel, JSON y otras fuentes de datos.
+
+\textbf{Selección y filtrado}
+
+Uso de loc, iloc, condiciones booleanas y query para filtrar datos.
+
+\textbf{Modificación de datos}
+
+Crear, modificar y eliminar columnas. Renombrar columnas eficientemente.
+
+\textbf{Operaciones}
+
+Aplicar funciones, agregaciones y transformaciones a los datos.
+
+\textbf{Merge y Join}
+
+Combinar DataFrames con diferentes tipos de joins (inner, left, right,
+outer).
+
+\textbf{Agrupación}
+
+GroupBy para análisis agregado y cálculo de estadísticas por grupos.
+
+\section{Próximos pasos}\label{pruxf3ximos-pasos}
+
+En la siguiente guía (Guía 8: Predicción y Métricas de Performance)
+exploraremos:
+
+\begin{itemize}
+\tightlist
+\item
+  El problema de predicción
+\item
+  Matriz de confusión
+\item
+  Métricas: Accuracy, Precision, Recall
+\item
+  Curva ROC y AUC
+\item
+  Evaluación de modelos de clasificación
+\end{itemize}
+
+Estas herramientas son fundamentales para evaluar modelos de machine
+learning aplicados a problemas económicos.
+
+\section{Recursos adicionales}\label{recursos-adicionales}
+
+Para profundizar en Pandas:
+
+\begin{itemize}
+\tightlist
+\item
+  Pandas Documentation: pandas.pydata.org/docs
+\item
+  Pandas Cheat Sheet: pandas.pydata.org/Pandas\_Cheat\_Sheet.pdf
+\item
+  Python for Data Analysis (Wes McKinney)
+\item
+  Ejercicios con datos del INEI, BCRP y Banco Mundial
+\end{itemize}
 
 \section{Publicaciones Similares}\label{publicaciones-similares}
 
