@@ -1,5 +1,5 @@
 \documentclass[
-  jou,
+  doc,
   floatsintext,
   longtable,
   a4paper,
@@ -12,6 +12,8 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
+\geometry{inner=1in, outer=1in}
+\fancyhfoffset[LE,RO]{0cm}
 
 
 \usepackage[bidi=default]{babel}
@@ -78,6 +80,46 @@
 
 
 
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -163,51 +205,23 @@ contenido final del artículo. }
 \par{   El autor no tiene conflictos de interés que revelar.    Los
 roles de autor se clasificaron utilizando la taxonomía de roles de
 colaborador (CRediT; https://credit.niso.org/) de la siguiente
-manera:  Edison Achalma:   conceptualización, redacción}
+manera:  Edison Achalma:   conceptualización, metodología, análisis
+formal, investigación, recursos, curación de
+datos, redacción, visualización, supervisión, administración del
+proyecto}
 \par{La correspondencia relativa a este artículo debe dirigirse a Edison
-Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
+Achalma, Escuela Profesional de Economía, Universidad Nacional de San
+Cristóbal de Huamanga, Portal Independencia N°
+57, Ayacucho, AYA 5001, Perú, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
 }
-
-\usepackage{pbalance}
-% \usepackage{float}
-\makeatletter
-\let\oldtpt\ThreePartTable
-\let\endoldtpt\endThreePartTable
-\def\ThreePartTable{\@ifnextchar[\ThreePartTable@i \ThreePartTable@ii}
-\def\ThreePartTable@i[#1]{\begin{figure}[!htbp]
-\onecolumn
-\begin{minipage}{0.485\textwidth}
-\oldtpt[#1]
-}
-\def\ThreePartTable@ii{\begin{figure}[!htbp]
-\onecolumn
-\begin{minipage}{0.48\textwidth}
-\oldtpt
-}
-\def\endThreePartTable{
-\endoldtpt
-\end{minipage}
-\twocolumn
-\end{figure}}
-\makeatother
-
 
 \makeatletter
-\let\endoldlt\endlongtable		
+\let\endoldlt\endlongtable
 \def\endlongtable{
 \hline
-\endoldlt}
+\endoldlt
+}
 \makeatother
-
-\newenvironment{twocolumntable}% environment name
-{% begin code
-\begin{table*}[!htbp]%
-\onecolumn%
-}%
-{%
-\twocolumn%
-\end{table*}%
-}% end code
 
 \urlstyle{same}
 
@@ -245,8 +259,8 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 \@ifpackageloaded{float}{}{\usepackage{float}}
 \floatstyle{ruled}
 \@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
-\floatname{codelisting}{Listing}
-\newcommand*\listoflistings{\listof{codelisting}{Lista de Listings}}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listados}}
 \makeatother
 \makeatletter
 \makeatother
@@ -305,8 +319,1952 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 
 
 
-Este artículo está actualmente en proceso de edición, y todas las
-secciones serán ampliadas y refinadas en futuras revisiones.
+En esta cuarta guía exploraremos cómo los programas pueden tomar
+decisiones basadas en condiciones. La ejecución condicional es
+fundamental para crear análisis económicos automatizados que respondan a
+diferentes escenarios y situaciones.
+
+\section{Expresiones booleanas}\label{expresiones-booleanas}
+
+Las expresiones booleanas son expresiones que evalúan a uno de dos
+valores posibles: True (verdadero) o False (falso). Son la base de la
+toma de decisiones en programación.
+
+\subsection{Valores booleanos}\label{valores-booleanos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Valores booleanos básicos}
+\NormalTok{valor\_verdadero }\OperatorTok{=} \VariableTok{True}
+\NormalTok{valor\_falso }\OperatorTok{=} \VariableTok{False}
+
+\BuiltInTok{print}\NormalTok{(valor\_verdadero)  }\CommentTok{\# True}
+\BuiltInTok{print}\NormalTok{(valor\_falso)      }\CommentTok{\# False}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(valor\_verdadero))  }\CommentTok{\# \textless{}class \textquotesingle{}bool\textquotesingle{}\textgreater{}}
+
+\CommentTok{\# En economía}
+\NormalTok{economia\_en\_crecimiento }\OperatorTok{=} \VariableTok{True}
+\NormalTok{hay\_recesion }\OperatorTok{=} \VariableTok{False}
+\NormalTok{meta\_inflacion\_cumplida }\OperatorTok{=} \VariableTok{True}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Función bool()}\label{funciuxf3n-bool}
+
+La función \texttt{bool()} convierte valores a booleanos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Valores que evalúan a False}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{bool}\NormalTok{(}\DecValTok{0}\NormalTok{))        }\CommentTok{\# False}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{bool}\NormalTok{(}\FloatTok{0.0}\NormalTok{))      }\CommentTok{\# False}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{bool}\NormalTok{(}\StringTok{""}\NormalTok{))       }\CommentTok{\# False (string vacío)}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{bool}\NormalTok{([]))       }\CommentTok{\# False (lista vacía)}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{bool}\NormalTok{(\{\}))       }\CommentTok{\# False (diccionario vacío)}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{bool}\NormalTok{(}\VariableTok{None}\NormalTok{))     }\CommentTok{\# False}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{bool}\NormalTok{(}\VariableTok{False}\NormalTok{))    }\CommentTok{\# False}
+
+\CommentTok{\# Valores que evalúan a True}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{bool}\NormalTok{(}\DecValTok{1}\NormalTok{))        }\CommentTok{\# True}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{bool}\NormalTok{(}\OperatorTok{{-}}\DecValTok{1}\NormalTok{))       }\CommentTok{\# True}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{bool}\NormalTok{(}\FloatTok{0.1}\NormalTok{))      }\CommentTok{\# True}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{bool}\NormalTok{(}\StringTok{"texto"}\NormalTok{))  }\CommentTok{\# True}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{bool}\NormalTok{([}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{]))   }\CommentTok{\# True}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{bool}\NormalTok{(\{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{1}\NormalTok{\})) }\CommentTok{\# True}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Aplicación económica}\label{aplicaciuxf3n-econuxf3mica}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Evaluar datos económicos}
+\NormalTok{pib }\OperatorTok{=} \DecValTok{242632}
+\NormalTok{inflacion }\OperatorTok{=} \FloatTok{3.5}
+\NormalTok{desempleo }\OperatorTok{=} \FloatTok{7.2}
+
+\CommentTok{\# Convertir a booleanos}
+\NormalTok{hay\_datos\_pib }\OperatorTok{=} \BuiltInTok{bool}\NormalTok{(pib)}
+\NormalTok{hay\_datos\_inflacion }\OperatorTok{=} \BuiltInTok{bool}\NormalTok{(inflacion)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"¿Hay datos de PIB? }\SpecialCharTok{\{}\NormalTok{hay\_datos\_pib}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"¿Hay datos de inflación? }\SpecialCharTok{\{}\NormalTok{hay\_datos\_inflacion}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Listas vacías como indicador}
+\NormalTok{sectores\_analizados }\OperatorTok{=}\NormalTok{ []}
+\NormalTok{regiones\_visitadas }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}Lima\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Arequipa\textquotesingle{}}\NormalTok{]}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"¿Se analizaron sectores? }\SpecialCharTok{\{}\BuiltInTok{bool}\NormalTok{(sectores\_analizados)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# False}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"¿Se visitaron regiones? }\SpecialCharTok{\{}\BuiltInTok{bool}\NormalTok{(regiones\_visitadas)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)    }\CommentTok{\# True}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Operadores de comparación}\label{operadores-de-comparaciuxf3n}
+
+Los operadores de comparación comparan dos valores y retornan un
+booleano:
+
+\subsection{Operadores básicos}\label{operadores-buxe1sicos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Datos económicos para comparar}
+\NormalTok{pib\_2022 }\OperatorTok{=} \DecValTok{240000}
+\NormalTok{pib\_2023 }\OperatorTok{=} \DecValTok{242632}
+\NormalTok{inflacion\_actual }\OperatorTok{=} \FloatTok{3.5}
+\NormalTok{meta\_inflacion }\OperatorTok{=} \FloatTok{3.0}
+
+\CommentTok{\# Igual a (==)}
+\BuiltInTok{print}\NormalTok{(pib\_2022 }\OperatorTok{==}\NormalTok{ pib\_2023)  }\CommentTok{\# False}
+\BuiltInTok{print}\NormalTok{(}\DecValTok{5} \OperatorTok{==} \FloatTok{5.0}\NormalTok{)              }\CommentTok{\# True (compara valor, no tipo)}
+
+\CommentTok{\# Diferente de (!=)}
+\BuiltInTok{print}\NormalTok{(pib\_2022 }\OperatorTok{!=}\NormalTok{ pib\_2023)  }\CommentTok{\# True}
+\BuiltInTok{print}\NormalTok{(inflacion\_actual }\OperatorTok{!=}\NormalTok{ meta\_inflacion)  }\CommentTok{\# True}
+
+\CommentTok{\# Mayor que (\textgreater{})}
+\BuiltInTok{print}\NormalTok{(pib\_2023 }\OperatorTok{\textgreater{}}\NormalTok{ pib\_2022)   }\CommentTok{\# True}
+\BuiltInTok{print}\NormalTok{(inflacion\_actual }\OperatorTok{\textgreater{}}\NormalTok{ meta\_inflacion)  }\CommentTok{\# True}
+
+\CommentTok{\# Menor que (\textless{})}
+\BuiltInTok{print}\NormalTok{(pib\_2022 }\OperatorTok{\textless{}}\NormalTok{ pib\_2023)   }\CommentTok{\# True}
+\BuiltInTok{print}\NormalTok{(meta\_inflacion }\OperatorTok{\textless{}}\NormalTok{ inflacion\_actual)  }\CommentTok{\# True}
+
+\CommentTok{\# Mayor o igual que (\textgreater{}=)}
+\BuiltInTok{print}\NormalTok{(pib\_2023 }\OperatorTok{\textgreater{}=}\NormalTok{ pib\_2022)  }\CommentTok{\# True}
+\BuiltInTok{print}\NormalTok{(pib\_2023 }\OperatorTok{\textgreater{}=} \DecValTok{242632}\NormalTok{)    }\CommentTok{\# True}
+
+\CommentTok{\# Menor o igual que (\textless{}=)}
+\BuiltInTok{print}\NormalTok{(meta\_inflacion }\OperatorTok{\textless{}=}\NormalTok{ inflacion\_actual)  }\CommentTok{\# True}
+\BuiltInTok{print}\NormalTok{(meta\_inflacion }\OperatorTok{\textless{}=} \FloatTok{3.0}\NormalTok{)  }\CommentTok{\# True}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Comparación de strings}\label{comparaciuxf3n-de-strings}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Los strings se comparan lexicográficamente}
+\NormalTok{pais\_1 }\OperatorTok{=} \StringTok{"Argentina"}
+\NormalTok{pais\_2 }\OperatorTok{=} \StringTok{"Perú"}
+\NormalTok{pais\_3 }\OperatorTok{=} \StringTok{"Perú"}
+
+\BuiltInTok{print}\NormalTok{(pais\_1 }\OperatorTok{==}\NormalTok{ pais\_2)  }\CommentTok{\# False}
+\BuiltInTok{print}\NormalTok{(pais\_2 }\OperatorTok{==}\NormalTok{ pais\_3)  }\CommentTok{\# True}
+\BuiltInTok{print}\NormalTok{(pais\_1 }\OperatorTok{\textless{}}\NormalTok{ pais\_2)   }\CommentTok{\# True (orden alfabético)}
+
+\CommentTok{\# Sensibilidad a mayúsculas}
+\NormalTok{sector\_1 }\OperatorTok{=} \StringTok{"Minería"}
+\NormalTok{sector\_2 }\OperatorTok{=} \StringTok{"minería"}
+
+\BuiltInTok{print}\NormalTok{(sector\_1 }\OperatorTok{==}\NormalTok{ sector\_2)  }\CommentTok{\# False}
+\BuiltInTok{print}\NormalTok{(sector\_1.lower() }\OperatorTok{==}\NormalTok{ sector\_2.lower())  }\CommentTok{\# True}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Comparación de listas}\label{comparaciuxf3n-de-listas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Listas se comparan elemento por elemento}
+\NormalTok{precios\_2022 }\OperatorTok{=}\NormalTok{ [}\DecValTok{100}\NormalTok{, }\DecValTok{105}\NormalTok{, }\DecValTok{110}\NormalTok{]}
+\NormalTok{precios\_2023 }\OperatorTok{=}\NormalTok{ [}\DecValTok{100}\NormalTok{, }\DecValTok{105}\NormalTok{, }\DecValTok{110}\NormalTok{]}
+\NormalTok{precios\_2024 }\OperatorTok{=}\NormalTok{ [}\DecValTok{100}\NormalTok{, }\DecValTok{105}\NormalTok{, }\DecValTok{115}\NormalTok{]}
+
+\BuiltInTok{print}\NormalTok{(precios\_2022 }\OperatorTok{==}\NormalTok{ precios\_2023)  }\CommentTok{\# True}
+\BuiltInTok{print}\NormalTok{(precios\_2022 }\OperatorTok{==}\NormalTok{ precios\_2024)  }\CommentTok{\# False}
+\BuiltInTok{print}\NormalTok{(precios\_2022 }\OperatorTok{\textless{}}\NormalTok{ precios\_2024)   }\CommentTok{\# True (compara primer elemento diferente)}
+
+\CommentTok{\# Orden importa}
+\NormalTok{lista\_a }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{]}
+\NormalTok{lista\_b }\OperatorTok{=}\NormalTok{ [}\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(lista\_a }\OperatorTok{==}\NormalTok{ lista\_b)  }\CommentTok{\# False}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Ejemplo aplicado: Clasificación de
+economías}\label{ejemplo-aplicado-clasificaciuxf3n-de-economuxedas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Clasificar países por PIB per cápita}
+\NormalTok{pib\_pc\_peru }\OperatorTok{=} \DecValTok{7196}
+\NormalTok{pib\_pc\_chile }\OperatorTok{=} \DecValTok{15400}
+\NormalTok{pib\_pc\_argentina }\OperatorTok{=} \DecValTok{10600}
+
+\NormalTok{umbral\_pais\_desarrollado }\OperatorTok{=} \DecValTok{12000}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"¿Perú es país desarrollado? }\SpecialCharTok{\{}\NormalTok{pib\_pc\_peru }\OperatorTok{\textgreater{}}\NormalTok{ umbral\_pais\_desarrollado}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"¿Chile es país desarrollado? }\SpecialCharTok{\{}\NormalTok{pib\_pc\_chile }\OperatorTok{\textgreater{}}\NormalTok{ umbral\_pais\_desarrollado}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"¿Argentina es país desarrollado? }\SpecialCharTok{\{}\NormalTok{pib\_pc\_argentina }\OperatorTok{\textgreater{}}\NormalTok{ umbral\_pais\_desarrollado}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Comparar entre países}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{¿Chile tiene mayor PIB per cápita que Perú? }\SpecialCharTok{\{}\NormalTok{pib\_pc\_chile }\OperatorTok{\textgreater{}}\NormalTok{ pib\_pc\_peru}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"¿Perú y Argentina tienen el mismo PIB per cápita? }\SpecialCharTok{\{}\NormalTok{pib\_pc\_peru }\OperatorTok{==}\NormalTok{ pib\_pc\_argentina}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Operadores lógicos}\label{operadores-luxf3gicos}
+
+Los operadores lógicos combinan múltiples expresiones booleanas:
+
+\subsection{Operador AND}\label{operador-and}
+
+El operador \texttt{and} retorna True solo si ambas condiciones son
+verdaderas:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Tabla de verdad de AND}
+\BuiltInTok{print}\NormalTok{(}\VariableTok{True} \KeywordTok{and} \VariableTok{True}\NormalTok{)    }\CommentTok{\# True}
+\BuiltInTok{print}\NormalTok{(}\VariableTok{True} \KeywordTok{and} \VariableTok{False}\NormalTok{)   }\CommentTok{\# False}
+\BuiltInTok{print}\NormalTok{(}\VariableTok{False} \KeywordTok{and} \VariableTok{True}\NormalTok{)   }\CommentTok{\# False}
+\BuiltInTok{print}\NormalTok{(}\VariableTok{False} \KeywordTok{and} \VariableTok{False}\NormalTok{)  }\CommentTok{\# False}
+
+\CommentTok{\# Aplicación económica}
+\NormalTok{inflacion }\OperatorTok{=} \FloatTok{3.2}
+\NormalTok{desempleo }\OperatorTok{=} \FloatTok{6.8}
+\NormalTok{crecimiento }\OperatorTok{=} \FloatTok{2.5}
+
+\CommentTok{\# Economía estable: inflación baja Y desempleo bajo Y crecimiento positivo}
+\NormalTok{inflacion\_controlada }\OperatorTok{=}\NormalTok{ inflacion }\OperatorTok{\textless{}} \FloatTok{4.0}
+\NormalTok{desempleo\_bajo }\OperatorTok{=}\NormalTok{ desempleo }\OperatorTok{\textless{}} \FloatTok{8.0}
+\NormalTok{crecimiento\_positivo }\OperatorTok{=}\NormalTok{ crecimiento }\OperatorTok{\textgreater{}} \DecValTok{0}
+
+\NormalTok{economia\_estable }\OperatorTok{=}\NormalTok{ inflacion\_controlada }\KeywordTok{and}\NormalTok{ desempleo\_bajo }\KeywordTok{and}\NormalTok{ crecimiento\_positivo}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"¿Economía estable? }\SpecialCharTok{\{}\NormalTok{economia\_estable}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# True}
+
+\CommentTok{\# Ejemplo: Aprobar un crédito}
+\NormalTok{ingreso\_mensual }\OperatorTok{=} \DecValTok{5000}
+\NormalTok{antiguedad\_laboral }\OperatorTok{=} \DecValTok{3}  \CommentTok{\# años}
+\NormalTok{historial\_crediticio }\OperatorTok{=} \StringTok{"bueno"}
+
+\NormalTok{ingreso\_suficiente }\OperatorTok{=}\NormalTok{ ingreso\_mensual }\OperatorTok{\textgreater{}=} \DecValTok{3000}
+\NormalTok{estabilidad\_laboral }\OperatorTok{=}\NormalTok{ antiguedad\_laboral }\OperatorTok{\textgreater{}=} \DecValTok{2}
+\NormalTok{buen\_historial }\OperatorTok{=}\NormalTok{ historial\_crediticio }\OperatorTok{==} \StringTok{"bueno"}
+
+\NormalTok{aprobar\_credito }\OperatorTok{=}\NormalTok{ ingreso\_suficiente }\KeywordTok{and}\NormalTok{ estabilidad\_laboral }\KeywordTok{and}\NormalTok{ buen\_historial}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"¿Aprobar crédito? }\SpecialCharTok{\{}\NormalTok{aprobar\_credito}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# True}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Operador OR}\label{operador-or}
+
+El operador \texttt{or} retorna True si al menos una condición es
+verdadera:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Tabla de verdad de OR}
+\BuiltInTok{print}\NormalTok{(}\VariableTok{True} \KeywordTok{or} \VariableTok{True}\NormalTok{)     }\CommentTok{\# True}
+\BuiltInTok{print}\NormalTok{(}\VariableTok{True} \KeywordTok{or} \VariableTok{False}\NormalTok{)    }\CommentTok{\# True}
+\BuiltInTok{print}\NormalTok{(}\VariableTok{False} \KeywordTok{or} \VariableTok{True}\NormalTok{)    }\CommentTok{\# True}
+\BuiltInTok{print}\NormalTok{(}\VariableTok{False} \KeywordTok{or} \VariableTok{False}\NormalTok{)   }\CommentTok{\# False}
+
+\CommentTok{\# Aplicación económica: Señales de alerta}
+\NormalTok{inflacion }\OperatorTok{=} \FloatTok{5.5}
+\NormalTok{desempleo }\OperatorTok{=} \FloatTok{9.2}
+\NormalTok{deficit\_fiscal }\OperatorTok{=} \FloatTok{4.8}
+
+\NormalTok{inflacion\_alta }\OperatorTok{=}\NormalTok{ inflacion }\OperatorTok{\textgreater{}} \FloatTok{5.0}
+\NormalTok{desempleo\_alto }\OperatorTok{=}\NormalTok{ desempleo }\OperatorTok{\textgreater{}} \FloatTok{8.0}
+\NormalTok{deficit\_alto }\OperatorTok{=}\NormalTok{ deficit\_fiscal }\OperatorTok{\textgreater{}} \FloatTok{4.0}
+
+\NormalTok{alerta\_economica }\OperatorTok{=}\NormalTok{ inflacion\_alta }\KeywordTok{or}\NormalTok{ desempleo\_alto }\KeywordTok{or}\NormalTok{ deficit\_alto}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"¿Hay alerta económica? }\SpecialCharTok{\{}\NormalTok{alerta\_economica}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# True}
+
+\CommentTok{\# Ejemplo: Elegibilidad para programa social}
+\NormalTok{ingreso\_familiar }\OperatorTok{=} \DecValTok{1200}
+\NormalTok{numero\_dependientes }\OperatorTok{=} \DecValTok{3}
+\NormalTok{zona\_rural }\OperatorTok{=} \VariableTok{True}
+
+\NormalTok{ingreso\_bajo }\OperatorTok{=}\NormalTok{ ingreso\_familiar }\OperatorTok{\textless{}} \DecValTok{1500}
+\NormalTok{familia\_numerosa }\OperatorTok{=}\NormalTok{ numero\_dependientes }\OperatorTok{\textgreater{}=} \DecValTok{3}
+
+\NormalTok{elegible }\OperatorTok{=}\NormalTok{ ingreso\_bajo }\KeywordTok{or}\NormalTok{ familia\_numerosa }\KeywordTok{or}\NormalTok{ zona\_rural}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"¿Elegible para programa? }\SpecialCharTok{\{}\NormalTok{elegible}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# True}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Operador NOT}\label{operador-not}
+
+El operador \texttt{not} invierte el valor booleano:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Tabla de verdad de NOT}
+\BuiltInTok{print}\NormalTok{(}\KeywordTok{not} \VariableTok{True}\NormalTok{)   }\CommentTok{\# False}
+\BuiltInTok{print}\NormalTok{(}\KeywordTok{not} \VariableTok{False}\NormalTok{)  }\CommentTok{\# True}
+
+\CommentTok{\# Aplicación económica}
+\NormalTok{en\_recesion }\OperatorTok{=} \VariableTok{False}
+\NormalTok{tiene\_empleo }\OperatorTok{=} \VariableTok{True}
+\NormalTok{deuda\_impagable }\OperatorTok{=} \VariableTok{False}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"¿No está en recesión? }\SpecialCharTok{\{}\KeywordTok{not}\NormalTok{ en\_recesion}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# True}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"¿Está desempleado? }\SpecialCharTok{\{}\KeywordTok{not}\NormalTok{ tiene\_empleo}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)    }\CommentTok{\# False}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"¿Deuda manejable? }\SpecialCharTok{\{}\KeywordTok{not}\NormalTok{ deuda\_impagable}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# True}
+
+\CommentTok{\# Ejemplo: Verificar condiciones negativas}
+\NormalTok{cumple\_meta\_inflacion }\OperatorTok{=} \VariableTok{False}
+\NormalTok{supera\_crecimiento\_esperado }\OperatorTok{=} \VariableTok{True}
+
+\NormalTok{no\_cumple\_meta }\OperatorTok{=} \KeywordTok{not}\NormalTok{ cumple\_meta\_inflacion}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"¿Necesita ajuste de política? }\SpecialCharTok{\{}\NormalTok{no\_cumple\_meta}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# True}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Combinación de
+operadores}\label{combinaciuxf3n-de-operadores}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Los operadores se pueden combinar}
+\CommentTok{\# Precedencia: not \textgreater{} and \textgreater{} or}
+
+\CommentTok{\# Análisis de inversión}
+\NormalTok{rentabilidad }\OperatorTok{=} \FloatTok{8.5}
+\NormalTok{riesgo }\OperatorTok{=} \StringTok{"medio"}
+\NormalTok{liquidez }\OperatorTok{=} \StringTok{"alta"}
+\NormalTok{plazo\_anos }\OperatorTok{=} \DecValTok{3}
+
+\CommentTok{\# Condiciones}
+\NormalTok{rentabilidad\_aceptable }\OperatorTok{=}\NormalTok{ rentabilidad }\OperatorTok{\textgreater{}} \FloatTok{6.0}
+\NormalTok{riesgo\_aceptable }\OperatorTok{=}\NormalTok{ riesgo }\KeywordTok{in}\NormalTok{ [}\StringTok{"bajo"}\NormalTok{, }\StringTok{"medio"}\NormalTok{]}
+\NormalTok{liquidez\_aceptable }\OperatorTok{=}\NormalTok{ liquidez }\KeywordTok{in}\NormalTok{ [}\StringTok{"media"}\NormalTok{, }\StringTok{"alta"}\NormalTok{]}
+\NormalTok{plazo\_adecuado }\OperatorTok{=}\NormalTok{ plazo\_anos }\OperatorTok{\textless{}=} \DecValTok{5}
+
+\CommentTok{\# Decisión de inversión}
+\NormalTok{invertir }\OperatorTok{=}\NormalTok{ (rentabilidad\_aceptable }\KeywordTok{and}\NormalTok{ riesgo\_aceptable) }\KeywordTok{and} \OperatorTok{\textbackslash{}}
+\NormalTok{           (liquidez\_aceptable }\KeywordTok{or}\NormalTok{ plazo\_adecuado)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"¿Realizar inversión? }\SpecialCharTok{\{}\NormalTok{invertir}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Uso de paréntesis para claridad}
+\NormalTok{inflacion }\OperatorTok{=} \FloatTok{4.2}
+\NormalTok{desempleo }\OperatorTok{=} \FloatTok{7.5}
+\NormalTok{reservas }\OperatorTok{=} \DecValTok{75000}
+
+\NormalTok{situacion\_critica }\OperatorTok{=}\NormalTok{ (inflacion }\OperatorTok{\textgreater{}} \FloatTok{5.0} \KeywordTok{and}\NormalTok{ desempleo }\OperatorTok{\textgreater{}} \FloatTok{10.0}\NormalTok{) }\KeywordTok{or} \OperatorTok{\textbackslash{}}
+\NormalTok{                    (reservas }\OperatorTok{\textless{}} \DecValTok{50000}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"¿Situación crítica? }\SpecialCharTok{\{}\NormalTok{situacion\_critica}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# False}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Ejecución condicional
+simple}\label{ejecuciuxf3n-condicional-simple}
+
+La estructura \texttt{if} ejecuta código solo si una condición es
+verdadera:
+
+\subsection{Sintaxis básica}\label{sintaxis-buxe1sica}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Estructura básica}
+\NormalTok{condicion }\OperatorTok{=} \VariableTok{True}
+
+\ControlFlowTok{if}\NormalTok{ condicion:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"La condición es verdadera"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Este código se ejecuta"}\NormalTok{)}
+
+\CommentTok{\# Sin indentación, no es parte del if}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Este código siempre se ejecuta"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Ejemplos económicos}\label{ejemplos-econuxf3micos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Ejemplo 1: Alerta de inflación}
+\NormalTok{inflacion\_mensual }\OperatorTok{=} \FloatTok{0.6}
+
+\ControlFlowTok{if}\NormalTok{ inflacion\_mensual }\OperatorTok{\textgreater{}} \FloatTok{0.5}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"ALERTA: Inflación mensual supera el 0.5\%"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Inflación registrada: }\SpecialCharTok{\{}\NormalTok{inflacion\_mensual}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Se recomienda revisar política monetaria"}\NormalTok{)}
+
+\CommentTok{\# Ejemplo 2: Verificar meta de crecimiento}
+\NormalTok{crecimiento\_pib }\OperatorTok{=} \FloatTok{3.2}
+\NormalTok{meta\_crecimiento }\OperatorTok{=} \FloatTok{3.0}
+
+\ControlFlowTok{if}\NormalTok{ crecimiento\_pib }\OperatorTok{\textgreater{}=}\NormalTok{ meta\_crecimiento:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Meta de crecimiento alcanzada"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Crecimiento: }\SpecialCharTok{\{}\NormalTok{crecimiento\_pib}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Meta: }\SpecialCharTok{\{}\NormalTok{meta\_crecimiento}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{)}
+
+\CommentTok{\# Ejemplo 3: Control de inventario}
+\NormalTok{stock\_actual }\OperatorTok{=} \DecValTok{8}
+\NormalTok{stock\_minimo }\OperatorTok{=} \DecValTok{10}
+
+\ControlFlowTok{if}\NormalTok{ stock\_actual }\OperatorTok{\textless{}}\NormalTok{ stock\_minimo:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"ALERTA: Stock bajo el mínimo"}\NormalTok{)}
+\NormalTok{    faltante }\OperatorTok{=}\NormalTok{ stock\_minimo }\OperatorTok{{-}}\NormalTok{ stock\_actual}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Se requiere reponer }\SpecialCharTok{\{}\NormalTok{faltante}\SpecialCharTok{\}}\SpecialStringTok{ unidades"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Importancia de la
+indentación}\label{importancia-de-la-indentaciuxf3n}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Python usa indentación para delimitar bloques}
+\NormalTok{x }\OperatorTok{=} \DecValTok{10}
+
+\ControlFlowTok{if}\NormalTok{ x }\OperatorTok{\textgreater{}} \DecValTok{5}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"x es mayor que 5"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Este también es parte del if"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Este no es parte del if"}\NormalTok{)}
+
+\CommentTok{\# Error de indentación (comentado para evitar error)}
+\CommentTok{\# if x \textgreater{} 5:}
+\CommentTok{\# print("Error: no hay indentación")}
+
+\CommentTok{\# Indentación inconsistente (comentado)}
+\CommentTok{\# if x \textgreater{} 5:}
+\CommentTok{\#     print("4 espacios")}
+\CommentTok{\#       print("6 espacios {-} Error!")}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Ejecución alternativa}\label{ejecuciuxf3n-alternativa}
+
+La estructura \texttt{if-else} ejecuta un bloque si la condición es
+verdadera, y otro si es falsa:
+
+\subsection{Sintaxis if-else}\label{sintaxis-if-else}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Estructura básica}
+\NormalTok{condicion }\OperatorTok{=} \VariableTok{True}
+
+\ControlFlowTok{if}\NormalTok{ condicion:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Condición verdadera"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Condición falsa"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Ejemplos económicos}\label{ejemplos-econuxf3micos-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Ejemplo 1: Clasificar inflación}
+\NormalTok{inflacion }\OperatorTok{=} \FloatTok{3.5}
+\NormalTok{meta }\OperatorTok{=} \FloatTok{3.0}
+
+\ControlFlowTok{if}\NormalTok{ inflacion }\OperatorTok{\textless{}=}\NormalTok{ meta:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Inflación bajo control"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Inflación: }\SpecialCharTok{\{}\NormalTok{inflacion}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Meta: }\SpecialCharTok{\{}\NormalTok{meta}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Inflación por encima de la meta"}\NormalTok{)}
+\NormalTok{    exceso }\OperatorTok{=}\NormalTok{ inflacion }\OperatorTok{{-}}\NormalTok{ meta}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Exceso: }\SpecialCharTok{\{}\NormalTok{exceso}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Se requiere ajuste en política monetaria"}\NormalTok{)}
+
+\CommentTok{\# Ejemplo 2: Determinar superávit o déficit}
+\NormalTok{ingresos }\OperatorTok{=} \DecValTok{1500000}
+\NormalTok{gastos }\OperatorTok{=} \DecValTok{1450000}
+
+\ControlFlowTok{if}\NormalTok{ ingresos }\OperatorTok{\textgreater{}=}\NormalTok{ gastos:}
+\NormalTok{    superavit }\OperatorTok{=}\NormalTok{ ingresos }\OperatorTok{{-}}\NormalTok{ gastos}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Superávit fiscal: S/ }\SpecialCharTok{\{}\NormalTok{superavit}\SpecialCharTok{:,\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Situación fiscal favorable"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+\NormalTok{    deficit }\OperatorTok{=}\NormalTok{ gastos }\OperatorTok{{-}}\NormalTok{ ingresos}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Déficit fiscal: S/ }\SpecialCharTok{\{}\NormalTok{deficit}\SpecialCharTok{:,\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Se requiere ajuste fiscal"}\NormalTok{)}
+
+\CommentTok{\# Ejemplo 3: Calificación de riesgo crediticio}
+\NormalTok{puntaje\_crediticio }\OperatorTok{=} \DecValTok{720}
+\NormalTok{umbral }\OperatorTok{=} \DecValTok{700}
+
+\ControlFlowTok{if}\NormalTok{ puntaje\_crediticio }\OperatorTok{\textgreater{}=}\NormalTok{ umbral:}
+\NormalTok{    tasa\_interes }\OperatorTok{=} \FloatTok{8.5}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Crédito aprobado"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Tasa de interés: }\SpecialCharTok{\{}\NormalTok{tasa\_interes}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Crédito denegado"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Puntaje insuficiente"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Puntaje actual: }\SpecialCharTok{\{}\NormalTok{puntaje\_crediticio}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Puntaje requerido: }\SpecialCharTok{\{}\NormalTok{umbral}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Operador ternario}\label{operador-ternario}
+
+Python permite escribir if-else en una línea:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sintaxis: valor\_si\_true if condicion else valor\_si\_false}
+
+\CommentTok{\# Ejemplo 1: Clasificar país}
+\NormalTok{pib\_per\_capita }\OperatorTok{=} \DecValTok{15000}
+\NormalTok{clasificacion }\OperatorTok{=} \StringTok{"Desarrollado"} \ControlFlowTok{if}\NormalTok{ pib\_per\_capita }\OperatorTok{\textgreater{}} \DecValTok{12000} \ControlFlowTok{else} \StringTok{"En desarrollo"}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Clasificación: }\SpecialCharTok{\{}\NormalTok{clasificacion}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Ejemplo 2: Determinar signo}
+\NormalTok{saldo }\OperatorTok{=} \DecValTok{5000}
+\NormalTok{signo }\OperatorTok{=} \StringTok{"+"} \ControlFlowTok{if}\NormalTok{ saldo }\OperatorTok{\textgreater{}=} \DecValTok{0} \ControlFlowTok{else} \StringTok{"{-}"}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Saldo: }\SpecialCharTok{\{}\NormalTok{signo}\SpecialCharTok{\}}\SpecialStringTok{S/ }\SpecialCharTok{\{}\BuiltInTok{abs}\NormalTok{(saldo)}\SpecialCharTok{:,\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Ejemplo 3: Calcular descuento}
+\NormalTok{precio }\OperatorTok{=} \DecValTok{1000}
+\NormalTok{cantidad }\OperatorTok{=} \DecValTok{15}
+\NormalTok{descuento }\OperatorTok{=} \FloatTok{0.10} \ControlFlowTok{if}\NormalTok{ cantidad }\OperatorTok{\textgreater{}=} \DecValTok{10} \ControlFlowTok{else} \DecValTok{0}
+\NormalTok{precio\_final }\OperatorTok{=}\NormalTok{ precio }\OperatorTok{*}\NormalTok{ (}\DecValTok{1} \OperatorTok{{-}}\NormalTok{ descuento)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Precio final: S/ }\SpecialCharTok{\{}\NormalTok{precio\_final}\SpecialCharTok{:.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Condicionales encadenados}\label{condicionales-encadenados}
+
+La estructura \texttt{if-elif-else} permite evaluar múltiples
+condiciones en secuencia:
+
+\subsection{Sintaxis if-elif-else}\label{sintaxis-if-elif-else}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Estructura básica}
+\NormalTok{x }\OperatorTok{=} \DecValTok{10}
+
+\ControlFlowTok{if}\NormalTok{ x }\OperatorTok{\textless{}} \DecValTok{0}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Negativo"}\NormalTok{)}
+\ControlFlowTok{elif}\NormalTok{ x }\OperatorTok{==} \DecValTok{0}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Cero"}\NormalTok{)}
+\ControlFlowTok{elif}\NormalTok{ x }\OperatorTok{\textless{}} \DecValTok{10}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Positivo menor que 10"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"10 o mayor"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Ejemplos económicos}\label{ejemplos-econuxf3micos-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Ejemplo 1: Clasificación de inflación}
+\NormalTok{inflacion }\OperatorTok{=} \FloatTok{4.5}
+
+\ControlFlowTok{if}\NormalTok{ inflacion }\OperatorTok{\textless{}} \FloatTok{2.0}\NormalTok{:}
+\NormalTok{    clasificacion }\OperatorTok{=} \StringTok{"Muy baja"}
+\NormalTok{    comentario }\OperatorTok{=} \StringTok{"Riesgo de deflación"}
+\ControlFlowTok{elif}\NormalTok{ inflacion }\OperatorTok{\textless{}} \FloatTok{3.0}\NormalTok{:}
+\NormalTok{    clasificacion }\OperatorTok{=} \StringTok{"Baja"}
+\NormalTok{    comentario }\OperatorTok{=} \StringTok{"Dentro del objetivo"}
+\ControlFlowTok{elif}\NormalTok{ inflacion }\OperatorTok{\textless{}} \FloatTok{4.0}\NormalTok{:}
+\NormalTok{    clasificacion }\OperatorTok{=} \StringTok{"Moderada"}
+\NormalTok{    comentario }\OperatorTok{=} \StringTok{"Ligeramente por encima del objetivo"}
+\ControlFlowTok{elif}\NormalTok{ inflacion }\OperatorTok{\textless{}} \FloatTok{6.0}\NormalTok{:}
+\NormalTok{    clasificacion }\OperatorTok{=} \StringTok{"Alta"}
+\NormalTok{    comentario }\OperatorTok{=} \StringTok{"Requiere medidas correctivas"}
+\ControlFlowTok{else}\NormalTok{:}
+\NormalTok{    clasificacion }\OperatorTok{=} \StringTok{"Muy alta"}
+\NormalTok{    comentario }\OperatorTok{=} \StringTok{"Situación crítica"}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Inflación: }\SpecialCharTok{\{}\NormalTok{inflacion}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Clasificación: }\SpecialCharTok{\{}\NormalTok{clasificacion}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Comentario: }\SpecialCharTok{\{}\NormalTok{comentario}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Ejemplo 2: Escala de riesgo crediticio}
+\NormalTok{puntaje }\OperatorTok{=} \DecValTok{680}
+
+\ControlFlowTok{if}\NormalTok{ puntaje }\OperatorTok{\textgreater{}=} \DecValTok{800}\NormalTok{:}
+\NormalTok{    riesgo }\OperatorTok{=} \StringTok{"Muy bajo"}
+\NormalTok{    tasa }\OperatorTok{=} \FloatTok{7.5}
+\ControlFlowTok{elif}\NormalTok{ puntaje }\OperatorTok{\textgreater{}=} \DecValTok{740}\NormalTok{:}
+\NormalTok{    riesgo }\OperatorTok{=} \StringTok{"Bajo"}
+\NormalTok{    tasa }\OperatorTok{=} \FloatTok{9.0}
+\ControlFlowTok{elif}\NormalTok{ puntaje }\OperatorTok{\textgreater{}=} \DecValTok{670}\NormalTok{:}
+\NormalTok{    riesgo }\OperatorTok{=} \StringTok{"Medio"}
+\NormalTok{    tasa }\OperatorTok{=} \FloatTok{12.0}
+\ControlFlowTok{elif}\NormalTok{ puntaje }\OperatorTok{\textgreater{}=} \DecValTok{580}\NormalTok{:}
+\NormalTok{    riesgo }\OperatorTok{=} \StringTok{"Alto"}
+\NormalTok{    tasa }\OperatorTok{=} \FloatTok{16.0}
+\ControlFlowTok{else}\NormalTok{:}
+\NormalTok{    riesgo }\OperatorTok{=} \StringTok{"Muy alto"}
+\NormalTok{    tasa }\OperatorTok{=} \VariableTok{None}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Puntaje crediticio: }\SpecialCharTok{\{}\NormalTok{puntaje}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Nivel de riesgo: }\SpecialCharTok{\{}\NormalTok{riesgo}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\ControlFlowTok{if}\NormalTok{ tasa:}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Tasa de interés: }\SpecialCharTok{\{}\NormalTok{tasa}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Crédito no disponible"}\NormalTok{)}
+
+\CommentTok{\# Ejemplo 3: Clasificación de países por ingreso}
+\NormalTok{ingreso\_per\_capita }\OperatorTok{=} \DecValTok{4500}
+
+\ControlFlowTok{if}\NormalTok{ ingreso\_per\_capita }\OperatorTok{\textless{}} \DecValTok{1045}\NormalTok{:}
+\NormalTok{    categoria }\OperatorTok{=} \StringTok{"Ingreso bajo"}
+\NormalTok{    grupo }\OperatorTok{=} \StringTok{"Países menos desarrollados"}
+\ControlFlowTok{elif}\NormalTok{ ingreso\_per\_capita }\OperatorTok{\textless{}} \DecValTok{4095}\NormalTok{:}
+\NormalTok{    categoria }\OperatorTok{=} \StringTok{"Ingreso medio{-}bajo"}
+\NormalTok{    grupo }\OperatorTok{=} \StringTok{"Economías emergentes"}
+\ControlFlowTok{elif}\NormalTok{ ingreso\_per\_capita }\OperatorTok{\textless{}} \DecValTok{12695}\NormalTok{:}
+\NormalTok{    categoria }\OperatorTok{=} \StringTok{"Ingreso medio{-}alto"}
+\NormalTok{    grupo }\OperatorTok{=} \StringTok{"Economías en transición"}
+\ControlFlowTok{else}\NormalTok{:}
+\NormalTok{    categoria }\OperatorTok{=} \StringTok{"Ingreso alto"}
+\NormalTok{    grupo }\OperatorTok{=} \StringTok{"Países desarrollados"}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Ingreso per cápita: USD }\SpecialCharTok{\{}\NormalTok{ingreso\_per\_capita}\SpecialCharTok{:,\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Categoría: }\SpecialCharTok{\{}\NormalTok{categoria}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Grupo: }\SpecialCharTok{\{}\NormalTok{grupo}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Orden de evaluación}\label{orden-de-evaluaciuxf3n}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# El orden importa: se evalúa de arriba hacia abajo}
+\CommentTok{\# Solo se ejecuta el primer bloque que cumple la condición}
+
+\NormalTok{nota }\OperatorTok{=} \DecValTok{85}
+
+\ControlFlowTok{if}\NormalTok{ nota }\OperatorTok{\textgreater{}=} \DecValTok{90}\NormalTok{:}
+\NormalTok{    calificacion }\OperatorTok{=} \StringTok{"Excelente"}
+\ControlFlowTok{elif}\NormalTok{ nota }\OperatorTok{\textgreater{}=} \DecValTok{80}\NormalTok{:}
+\NormalTok{    calificacion }\OperatorTok{=} \StringTok{"Muy bueno"}
+\ControlFlowTok{elif}\NormalTok{ nota }\OperatorTok{\textgreater{}=} \DecValTok{70}\NormalTok{:}
+\NormalTok{    calificacion }\OperatorTok{=} \StringTok{"Bueno"}
+\ControlFlowTok{elif}\NormalTok{ nota }\OperatorTok{\textgreater{}=} \DecValTok{60}\NormalTok{:}
+\NormalTok{    calificacion }\OperatorTok{=} \StringTok{"Regular"}
+\ControlFlowTok{else}\NormalTok{:}
+\NormalTok{    calificacion }\OperatorTok{=} \StringTok{"Insuficiente"}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Nota: }\SpecialCharTok{\{}\NormalTok{nota}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Calificación: }\SpecialCharTok{\{}\NormalTok{calificacion}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Si cambiamos el orden, el resultado puede ser diferente}
+\CommentTok{\# (Ejemplo de lo que NO hacer)}
+\ControlFlowTok{if}\NormalTok{ nota }\OperatorTok{\textgreater{}=} \DecValTok{60}\NormalTok{:  }\CommentTok{\# Este se evalúa primero}
+\NormalTok{    calificacion\_incorrecta }\OperatorTok{=} \StringTok{"Regular"}
+\ControlFlowTok{elif}\NormalTok{ nota }\OperatorTok{\textgreater{}=} \DecValTok{90}\NormalTok{:  }\CommentTok{\# Nunca se alcanza}
+\NormalTok{    calificacion\_incorrecta }\OperatorTok{=} \StringTok{"Excelente"}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Calificación incorrecta: }\SpecialCharTok{\{}\NormalTok{calificacion\_incorrecta}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# Regular}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Condicionales anidados}\label{condicionales-anidados}
+
+Los condicionales pueden contener otros condicionales dentro:
+
+\subsection{Estructura básica}\label{estructura-buxe1sica}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Condicional anidado simple}
+\NormalTok{x }\OperatorTok{=} \DecValTok{10}
+
+\ControlFlowTok{if}\NormalTok{ x }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"x es positivo"}\NormalTok{)}
+    \ControlFlowTok{if}\NormalTok{ x }\OperatorTok{\textgreater{}} \DecValTok{5}\NormalTok{:}
+        \BuiltInTok{print}\NormalTok{(}\StringTok{"x es mayor que 5"}\NormalTok{)}
+    \ControlFlowTok{else}\NormalTok{:}
+        \BuiltInTok{print}\NormalTok{(}\StringTok{"x es menor o igual a 5"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"x es cero o negativo"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Ejemplos económicos}\label{ejemplos-econuxf3micos-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Ejemplo 1: Análisis de elegibilidad para crédito hipotecario}
+\NormalTok{ingreso\_mensual }\OperatorTok{=} \DecValTok{8000}
+\NormalTok{ahorro\_inicial }\OperatorTok{=} \DecValTok{150000}
+\NormalTok{historial\_crediticio }\OperatorTok{=} \StringTok{"bueno"}
+\NormalTok{precio\_vivienda }\OperatorTok{=} \DecValTok{500000}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"ANÁLISIS DE ELEGIBILIDAD {-} CRÉDITO HIPOTECARIO"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{60}\NormalTok{)}
+
+\CommentTok{\# Primera condición: ingreso mínimo}
+\ControlFlowTok{if}\NormalTok{ ingreso\_mensual }\OperatorTok{\textgreater{}=} \DecValTok{5000}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"✓ Ingreso mensual adecuado: S/ }\SpecialCharTok{\{}\NormalTok{ingreso\_mensual}\SpecialCharTok{:,\}}\SpecialStringTok{"}\NormalTok{)}
+    
+    \CommentTok{\# Segunda condición: ahorro inicial}
+\NormalTok{    ahorro\_minimo }\OperatorTok{=}\NormalTok{ precio\_vivienda }\OperatorTok{*} \FloatTok{0.20}
+    
+    \ControlFlowTok{if}\NormalTok{ ahorro\_inicial }\OperatorTok{\textgreater{}=}\NormalTok{ ahorro\_minimo:}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"✓ Ahorro inicial suficiente: S/ }\SpecialCharTok{\{}\NormalTok{ahorro\_inicial}\SpecialCharTok{:,\}}\SpecialStringTok{"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  (Requerido: S/ }\SpecialCharTok{\{}\NormalTok{ahorro\_minimo}\SpecialCharTok{:,\}}\SpecialStringTok{)"}\NormalTok{)}
+        
+        \CommentTok{\# Tercera condición: historial crediticio}
+        \ControlFlowTok{if}\NormalTok{ historial\_crediticio }\OperatorTok{==} \StringTok{"excelente"}\NormalTok{:}
+\NormalTok{            tasa\_interes }\OperatorTok{=} \FloatTok{7.5}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"✓ Historial crediticio excelente"}\NormalTok{)}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Tasa de interés: }\SpecialCharTok{\{}\NormalTok{tasa\_interes}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{)}
+        \ControlFlowTok{elif}\NormalTok{ historial\_crediticio }\OperatorTok{==} \StringTok{"bueno"}\NormalTok{:}
+\NormalTok{            tasa\_interes }\OperatorTok{=} \FloatTok{8.5}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"✓ Historial crediticio bueno"}\NormalTok{)}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Tasa de interés: }\SpecialCharTok{\{}\NormalTok{tasa\_interes}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{)}
+        \ControlFlowTok{else}\NormalTok{:}
+            \BuiltInTok{print}\NormalTok{(}\StringTok{"✗ Historial crediticio insuficiente"}\NormalTok{)}
+\NormalTok{            tasa\_interes }\OperatorTok{=} \VariableTok{None}
+        
+        \CommentTok{\# Decisión final}
+        \ControlFlowTok{if}\NormalTok{ tasa\_interes:}
+\NormalTok{            monto\_credito }\OperatorTok{=}\NormalTok{ precio\_vivienda }\OperatorTok{{-}}\NormalTok{ ahorro\_inicial}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialCharTok{\{}\StringTok{\textquotesingle{}=\textquotesingle{}}\OperatorTok{*}\DecValTok{60}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"CRÉDITO APROBADO"}\NormalTok{)}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Monto del crédito: S/ }\SpecialCharTok{\{}\NormalTok{monto\_credito}\SpecialCharTok{:,\}}\SpecialStringTok{"}\NormalTok{)}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Tasa de interés: }\SpecialCharTok{\{}\NormalTok{tasa\_interes}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{)}
+        \ControlFlowTok{else}\NormalTok{:}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Crédito denegado por historial crediticio"}\NormalTok{)}
+    \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{        faltante }\OperatorTok{=}\NormalTok{ ahorro\_minimo }\OperatorTok{{-}}\NormalTok{ ahorro\_inicial}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"✗ Ahorro inicial insuficiente"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Ahorro actual: S/ }\SpecialCharTok{\{}\NormalTok{ahorro\_inicial}\SpecialCharTok{:,\}}\SpecialStringTok{"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Ahorro requerido: S/ }\SpecialCharTok{\{}\NormalTok{ahorro\_minimo}\SpecialCharTok{:,\}}\SpecialStringTok{"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Faltante: S/ }\SpecialCharTok{\{}\NormalTok{faltante}\SpecialCharTok{:,\}}\SpecialStringTok{"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"✗ Ingreso mensual insuficiente: S/ }\SpecialCharTok{\{}\NormalTok{ingreso\_mensual}\SpecialCharTok{:,\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Ingreso mínimo requerido: S/ 5,000"}\NormalTok{)}
+
+\CommentTok{\# Ejemplo 2: Clasificación de empresa por tamaño y sector}
+\NormalTok{ventas\_anuales }\OperatorTok{=} \DecValTok{8500000}  \CommentTok{\# en soles}
+\NormalTok{num\_trabajadores }\OperatorTok{=} \DecValTok{85}
+\NormalTok{sector }\OperatorTok{=} \StringTok{"manufactura"}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"} \OperatorTok{+} \StringTok{"="}\OperatorTok{*}\DecValTok{60}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"CLASIFICACIÓN DE EMPRESA"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="}\OperatorTok{*}\DecValTok{60}\NormalTok{)}
+
+\ControlFlowTok{if}\NormalTok{ sector }\OperatorTok{==} \StringTok{"manufactura"}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Sector: Manufactura"}\NormalTok{)}
+    
+    \ControlFlowTok{if}\NormalTok{ ventas\_anuales }\OperatorTok{\textless{}=} \DecValTok{1700000}\NormalTok{:}
+        \ControlFlowTok{if}\NormalTok{ num\_trabajadores }\OperatorTok{\textless{}=} \DecValTok{10}\NormalTok{:}
+\NormalTok{            clasificacion }\OperatorTok{=} \StringTok{"Microempresa"}
+        \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{            clasificacion }\OperatorTok{=} \StringTok{"Pequeña empresa"}
+    \ControlFlowTok{elif}\NormalTok{ ventas\_anuales }\OperatorTok{\textless{}=} \DecValTok{17000000}\NormalTok{:}
+        \ControlFlowTok{if}\NormalTok{ num\_trabajadores }\OperatorTok{\textless{}=} \DecValTok{100}\NormalTok{:}
+\NormalTok{            clasificacion }\OperatorTok{=} \StringTok{"Pequeña empresa"}
+        \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{            clasificacion }\OperatorTok{=} \StringTok{"Mediana empresa"}
+    \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{        clasificacion }\OperatorTok{=} \StringTok{"Gran empresa"}
+
+\ControlFlowTok{elif}\NormalTok{ sector }\OperatorTok{==} \StringTok{"servicios"}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Sector: Servicios"}\NormalTok{)}
+    
+    \ControlFlowTok{if}\NormalTok{ ventas\_anuales }\OperatorTok{\textless{}=} \DecValTok{1100000}\NormalTok{:}
+\NormalTok{        clasificacion }\OperatorTok{=} \StringTok{"Microempresa"}
+    \ControlFlowTok{elif}\NormalTok{ ventas\_anuales }\OperatorTok{\textless{}=} \DecValTok{11000000}\NormalTok{:}
+\NormalTok{        clasificacion }\OperatorTok{=} \StringTok{"Pequeña empresa"}
+    \ControlFlowTok{elif}\NormalTok{ ventas\_anuales }\OperatorTok{\textless{}=} \DecValTok{110000000}\NormalTok{:}
+\NormalTok{        clasificacion }\OperatorTok{=} \StringTok{"Mediana empresa"}
+    \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{        clasificacion }\OperatorTok{=} \StringTok{"Gran empresa"}
+\ControlFlowTok{else}\NormalTok{:}
+\NormalTok{    clasificacion }\OperatorTok{=} \StringTok{"Sector no clasificado"}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Ventas anuales: S/ }\SpecialCharTok{\{}\NormalTok{ventas\_anuales}\SpecialCharTok{:,\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Número de trabajadores: }\SpecialCharTok{\{}\NormalTok{num\_trabajadores}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Clasificación: }\SpecialCharTok{\{}\NormalTok{clasificacion}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Alternativa a anidamiento
+excesivo}\label{alternativa-a-anidamiento-excesivo}
+
+Los condicionales muy anidados pueden dificultar la lectura. Es mejor
+usar \texttt{elif}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Evitar anidamiento excesivo}
+\NormalTok{ingreso }\OperatorTok{=} \DecValTok{5000}
+\NormalTok{credito }\OperatorTok{=} \StringTok{"bueno"}
+\NormalTok{empleo }\OperatorTok{=} \StringTok{"estable"}
+
+\CommentTok{\# Mal: muy anidado}
+\ControlFlowTok{if}\NormalTok{ ingreso }\OperatorTok{\textgreater{}} \DecValTok{3000}\NormalTok{:}
+    \ControlFlowTok{if}\NormalTok{ credito }\OperatorTok{==} \StringTok{"bueno"}\NormalTok{:}
+        \ControlFlowTok{if}\NormalTok{ empleo }\OperatorTok{==} \StringTok{"estable"}\NormalTok{:}
+            \BuiltInTok{print}\NormalTok{(}\StringTok{"Crédito aprobado"}\NormalTok{)}
+        \ControlFlowTok{else}\NormalTok{:}
+            \BuiltInTok{print}\NormalTok{(}\StringTok{"Crédito denegado: empleo inestable"}\NormalTok{)}
+    \ControlFlowTok{else}\NormalTok{:}
+        \BuiltInTok{print}\NormalTok{(}\StringTok{"Crédito denegado: mal historial"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Crédito denegado: ingreso bajo"}\NormalTok{)}
+
+\CommentTok{\# Mejor: condiciones combinadas}
+\ControlFlowTok{if}\NormalTok{ ingreso }\OperatorTok{\textless{}=} \DecValTok{3000}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Crédito denegado: ingreso bajo"}\NormalTok{)}
+\ControlFlowTok{elif}\NormalTok{ credito }\OperatorTok{!=} \StringTok{"bueno"}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Crédito denegado: mal historial"}\NormalTok{)}
+\ControlFlowTok{elif}\NormalTok{ empleo }\OperatorTok{!=} \StringTok{"estable"}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Crédito denegado: empleo inestable"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Crédito aprobado"}\NormalTok{)}
+
+\CommentTok{\# Aún mejor: usar operadores lógicos}
+\ControlFlowTok{if}\NormalTok{ ingreso }\OperatorTok{\textgreater{}} \DecValTok{3000} \KeywordTok{and}\NormalTok{ credito }\OperatorTok{==} \StringTok{"bueno"} \KeywordTok{and}\NormalTok{ empleo }\OperatorTok{==} \StringTok{"estable"}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Crédito aprobado"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Crédito denegado"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Evaluación de pertenencia e
+identidad}\label{evaluaciuxf3n-de-pertenencia-e-identidad}
+
+\subsection{Operador in}\label{operador-in}
+
+Verifica si un elemento está en una secuencia:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Verificar en listas}
+\NormalTok{sectores\_primarios }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}Agricultura\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Pesca\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Minería\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Petróleo\textquotesingle{}}\NormalTok{]}
+\NormalTok{sector\_analizar }\OperatorTok{=} \StringTok{\textquotesingle{}Minería\textquotesingle{}}
+
+\ControlFlowTok{if}\NormalTok{ sector\_analizar }\KeywordTok{in}\NormalTok{ sectores\_primarios:}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{sector\_analizar}\SpecialCharTok{\}}\SpecialStringTok{ es un sector primario"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{sector\_analizar}\SpecialCharTok{\}}\SpecialStringTok{ no es un sector primario"}\NormalTok{)}
+
+\CommentTok{\# Verificar en strings}
+\NormalTok{descripcion }\OperatorTok{=} \StringTok{"Crecimiento del Producto Bruto Interno"}
+\ControlFlowTok{if} \StringTok{"PIB"} \KeywordTok{in}\NormalTok{ descripcion }\KeywordTok{or} \StringTok{"Producto Bruto Interno"} \KeywordTok{in}\NormalTok{ descripcion:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"El texto menciona el PIB"}\NormalTok{)}
+
+\CommentTok{\# Verificar en diccionarios (verifica claves)}
+\NormalTok{indicadores }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{: }\DecValTok{242632}\NormalTok{,}
+    \StringTok{\textquotesingle{}inflacion\textquotesingle{}}\NormalTok{: }\FloatTok{3.5}\NormalTok{,}
+    \StringTok{\textquotesingle{}desempleo\textquotesingle{}}\NormalTok{: }\FloatTok{7.2}
+\NormalTok{\}}
+
+\ControlFlowTok{if} \StringTok{\textquotesingle{}pib\textquotesingle{}} \KeywordTok{in}\NormalTok{ indicadores:}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"PIB disponible: }\SpecialCharTok{\{}\NormalTok{indicadores[}\StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\ControlFlowTok{if} \StringTok{\textquotesingle{}reservas\textquotesingle{}} \KeywordTok{not} \KeywordTok{in}\NormalTok{ indicadores:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"No hay datos de reservas internacionales"}\NormalTok{)}
+
+\CommentTok{\# Verificar en rangos}
+\NormalTok{edad }\OperatorTok{=} \DecValTok{25}
+\ControlFlowTok{if}\NormalTok{ edad }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{18}\NormalTok{, }\DecValTok{65}\NormalTok{):}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"En edad de trabajar"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Operador is}\label{operador-is}
+
+Verifica identidad de objetos (mismo objeto en memoria):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Comparar identidad vs igualdad}
+\NormalTok{a }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{]}
+\NormalTok{b }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{]}
+\NormalTok{c }\OperatorTok{=}\NormalTok{ a}
+
+\CommentTok{\# Igualdad de valores}
+\BuiltInTok{print}\NormalTok{(a }\OperatorTok{==}\NormalTok{ b)  }\CommentTok{\# True (mismo contenido)}
+\BuiltInTok{print}\NormalTok{(a }\OperatorTok{==}\NormalTok{ c)  }\CommentTok{\# True (mismo contenido)}
+
+\CommentTok{\# Identidad de objetos}
+\BuiltInTok{print}\NormalTok{(a }\KeywordTok{is}\NormalTok{ b)  }\CommentTok{\# False (objetos diferentes en memoria)}
+\BuiltInTok{print}\NormalTok{(a }\KeywordTok{is}\NormalTok{ c)  }\CommentTok{\# True (mismo objeto)}
+
+\CommentTok{\# Uso con None}
+\NormalTok{valor }\OperatorTok{=} \VariableTok{None}
+\ControlFlowTok{if}\NormalTok{ valor }\KeywordTok{is} \VariableTok{None}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Valor no definido"}\NormalTok{)}
+
+\CommentTok{\# Con booleanos}
+\NormalTok{activo }\OperatorTok{=} \VariableTok{True}
+\ControlFlowTok{if}\NormalTok{ activo }\KeywordTok{is} \VariableTok{True}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Estado activo"}\NormalTok{)}
+
+\CommentTok{\# Mejor práctica: comparar con None usando \textquotesingle{}is\textquotesingle{}}
+\NormalTok{datos }\OperatorTok{=} \VariableTok{None}
+\ControlFlowTok{if}\NormalTok{ datos }\KeywordTok{is} \VariableTok{None}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"No hay datos disponibles"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Datos: }\SpecialCharTok{\{}\NormalTok{datos}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Función isinstance()}\label{funciuxf3n-isinstance}
+
+Verifica el tipo de un objeto:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Verificar tipos}
+\NormalTok{pib }\OperatorTok{=} \DecValTok{242632}
+\NormalTok{inflacion }\OperatorTok{=} \FloatTok{3.5}
+\NormalTok{pais }\OperatorTok{=} \StringTok{"Perú"}
+\NormalTok{sectores }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}Minería\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Agricultura\textquotesingle{}}\NormalTok{]}
+\NormalTok{datos }\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{: }\DecValTok{242632}\NormalTok{, }\StringTok{\textquotesingle{}inflacion\textquotesingle{}}\NormalTok{: }\FloatTok{3.5}\NormalTok{\}}
+
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{isinstance}\NormalTok{(pib, }\BuiltInTok{int}\NormalTok{))           }\CommentTok{\# True}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{isinstance}\NormalTok{(inflacion, }\BuiltInTok{float}\NormalTok{))   }\CommentTok{\# True}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{isinstance}\NormalTok{(pais, }\BuiltInTok{str}\NormalTok{))          }\CommentTok{\# True}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{isinstance}\NormalTok{(sectores, }\BuiltInTok{list}\NormalTok{))     }\CommentTok{\# True}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{isinstance}\NormalTok{(datos, }\BuiltInTok{dict}\NormalTok{))        }\CommentTok{\# True}
+
+\CommentTok{\# Verificar múltiples tipos}
+\NormalTok{valor }\OperatorTok{=} \DecValTok{42}
+\ControlFlowTok{if} \BuiltInTok{isinstance}\NormalTok{(valor, (}\BuiltInTok{int}\NormalTok{, }\BuiltInTok{float}\NormalTok{)):}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Es un número"}\NormalTok{)}
+
+\CommentTok{\# Aplicación: validar entrada}
+\KeywordTok{def}\NormalTok{ calcular\_interes(capital, tasa, tiempo):}
+    \CommentTok{"""Calcula interés simple"""}
+    
+    \CommentTok{\# Validar tipos}
+    \ControlFlowTok{if} \KeywordTok{not} \BuiltInTok{isinstance}\NormalTok{(capital, (}\BuiltInTok{int}\NormalTok{, }\BuiltInTok{float}\NormalTok{)):}
+        \ControlFlowTok{return} \StringTok{"Error: capital debe ser numérico"}
+    
+    \ControlFlowTok{if} \KeywordTok{not} \BuiltInTok{isinstance}\NormalTok{(tasa, (}\BuiltInTok{int}\NormalTok{, }\BuiltInTok{float}\NormalTok{)):}
+        \ControlFlowTok{return} \StringTok{"Error: tasa debe ser numérica"}
+    
+    \ControlFlowTok{if} \KeywordTok{not} \BuiltInTok{isinstance}\NormalTok{(tiempo, (}\BuiltInTok{int}\NormalTok{, }\BuiltInTok{float}\NormalTok{)):}
+        \ControlFlowTok{return} \StringTok{"Error: tiempo debe ser numérico"}
+    
+    \CommentTok{\# Calcular}
+\NormalTok{    interes }\OperatorTok{=}\NormalTok{ capital }\OperatorTok{*}\NormalTok{ tasa }\OperatorTok{*}\NormalTok{ tiempo}
+    \ControlFlowTok{return}\NormalTok{ interes}
+
+\CommentTok{\# Probar función}
+\NormalTok{resultado1 }\OperatorTok{=}\NormalTok{ calcular\_interes(}\DecValTok{10000}\NormalTok{, }\FloatTok{0.08}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Interés: S/ }\SpecialCharTok{\{}\NormalTok{resultado1}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+
+\NormalTok{resultado2 }\OperatorTok{=}\NormalTok{ calcular\_interes(}\StringTok{"10000"}\NormalTok{, }\FloatTok{0.08}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(resultado2)  }\CommentTok{\# Error: capital debe ser numérico}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Guardianes: try y except}\label{guardianes-try-y-except}
+
+El manejo de excepciones permite capturar y manejar errores sin que el
+programa se detenga:
+
+\subsection{Estructura básica}\label{estructura-buxe1sica-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sin manejo de errores (genera error)}
+\CommentTok{\# numero = int("abc")  \# ValueError}
+
+\CommentTok{\# Con manejo de errores}
+\ControlFlowTok{try}\NormalTok{:}
+\NormalTok{    numero }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(}\StringTok{"abc"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(numero)}
+\ControlFlowTok{except}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Error: no se pudo convertir a número"}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"El programa continúa"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Capturar excepciones
+específicas}\label{capturar-excepciones-especuxedficas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Capturar tipos específicos de errores}
+\ControlFlowTok{try}\NormalTok{:}
+\NormalTok{    resultado }\OperatorTok{=} \DecValTok{10} \OperatorTok{/} \DecValTok{0}
+\ControlFlowTok{except} \PreprocessorTok{ZeroDivisionError}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Error: división por cero"}\NormalTok{)}
+
+\ControlFlowTok{try}\NormalTok{:}
+\NormalTok{    lista }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{]}
+    \BuiltInTok{print}\NormalTok{(lista[}\DecValTok{5}\NormalTok{])}
+\ControlFlowTok{except} \PreprocessorTok{IndexError}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Error: índice fuera de rango"}\NormalTok{)}
+
+\ControlFlowTok{try}\NormalTok{:}
+\NormalTok{    diccionario }\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{1}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{: }\DecValTok{2}\NormalTok{\}}
+    \BuiltInTok{print}\NormalTok{(diccionario[}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{])}
+\ControlFlowTok{except} \PreprocessorTok{KeyError}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Error: clave no existe"}\NormalTok{)}
+
+\ControlFlowTok{try}\NormalTok{:}
+\NormalTok{    numero }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(}\StringTok{"texto"}\NormalTok{)}
+\ControlFlowTok{except} \PreprocessorTok{ValueError}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Error: valor no numérico"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Múltiples except}\label{muxfaltiples-except}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Manejar diferentes errores}
+\KeywordTok{def}\NormalTok{ dividir(a, b):}
+    \ControlFlowTok{try}\NormalTok{:}
+\NormalTok{        resultado }\OperatorTok{=}\NormalTok{ a }\OperatorTok{/}\NormalTok{ b}
+        \ControlFlowTok{return}\NormalTok{ resultado}
+    \ControlFlowTok{except} \PreprocessorTok{ZeroDivisionError}\NormalTok{:}
+        \ControlFlowTok{return} \StringTok{"Error: no se puede dividir por cero"}
+    \ControlFlowTok{except} \PreprocessorTok{TypeError}\NormalTok{:}
+        \ControlFlowTok{return} \StringTok{"Error: los valores deben ser numéricos"}
+
+\BuiltInTok{print}\NormalTok{(dividir(}\DecValTok{10}\NormalTok{, }\DecValTok{2}\NormalTok{))      }\CommentTok{\# 5.0}
+\BuiltInTok{print}\NormalTok{(dividir(}\DecValTok{10}\NormalTok{, }\DecValTok{0}\NormalTok{))      }\CommentTok{\# Error: no se puede dividir por cero}
+\BuiltInTok{print}\NormalTok{(dividir(}\DecValTok{10}\NormalTok{, }\StringTok{"2"}\NormalTok{))    }\CommentTok{\# Error: los valores deben ser numéricos}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Cláusula else y finally}\label{cluxe1usula-else-y-finally}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# else: se ejecuta si no hay error}
+\CommentTok{\# finally: siempre se ejecuta}
+
+\ControlFlowTok{try}\NormalTok{:}
+\NormalTok{    numero }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(}\BuiltInTok{input}\NormalTok{(}\StringTok{"Ingrese un número: "}\NormalTok{))}
+\ControlFlowTok{except} \PreprocessorTok{ValueError}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Error: debe ingresar un número"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Número ingresado: }\SpecialCharTok{\{}\NormalTok{numero}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\NormalTok{    cuadrado }\OperatorTok{=}\NormalTok{ numero }\OperatorTok{**} \DecValTok{2}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Cuadrado: }\SpecialCharTok{\{}\NormalTok{cuadrado}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\ControlFlowTok{finally}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Fin del proceso"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Aplicaciones económicas}\label{aplicaciones-econuxf3micas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Ejemplo 1: Validar entrada de datos}
+\KeywordTok{def}\NormalTok{ calcular\_tasa\_crecimiento(valor\_inicial, valor\_final):}
+    \CommentTok{"""Calcula la tasa de crecimiento"""}
+    
+    \ControlFlowTok{try}\NormalTok{:}
+        \CommentTok{\# Intentar convertir a float}
+\NormalTok{        v\_inicial }\OperatorTok{=} \BuiltInTok{float}\NormalTok{(valor\_inicial)}
+\NormalTok{        v\_final }\OperatorTok{=} \BuiltInTok{float}\NormalTok{(valor\_final)}
+        
+        \CommentTok{\# Validar valores positivos}
+        \ControlFlowTok{if}\NormalTok{ v\_inicial }\OperatorTok{\textless{}=} \DecValTok{0}\NormalTok{:}
+            \ControlFlowTok{return} \StringTok{"Error: el valor inicial debe ser positivo"}
+        
+        \CommentTok{\# Calcular tasa}
+\NormalTok{        tasa }\OperatorTok{=}\NormalTok{ ((v\_final }\OperatorTok{{-}}\NormalTok{ v\_inicial) }\OperatorTok{/}\NormalTok{ v\_inicial) }\OperatorTok{*} \DecValTok{100}
+        \ControlFlowTok{return}\NormalTok{ tasa}
+        
+    \ControlFlowTok{except} \PreprocessorTok{ValueError}\NormalTok{:}
+        \ControlFlowTok{return} \StringTok{"Error: los valores deben ser numéricos"}
+    \ControlFlowTok{except} \PreprocessorTok{ZeroDivisionError}\NormalTok{:}
+        \ControlFlowTok{return} \StringTok{"Error: el valor inicial no puede ser cero"}
+
+\CommentTok{\# Probar función}
+\BuiltInTok{print}\NormalTok{(calcular\_tasa\_crecimiento(}\DecValTok{100}\NormalTok{, }\DecValTok{110}\NormalTok{))      }\CommentTok{\# 10.0}
+\BuiltInTok{print}\NormalTok{(calcular\_tasa\_crecimiento(}\StringTok{"100"}\NormalTok{, }\StringTok{"110"}\NormalTok{))  }\CommentTok{\# 10.0}
+\BuiltInTok{print}\NormalTok{(calcular\_tasa\_crecimiento(}\StringTok{"abc"}\NormalTok{, }\DecValTok{110}\NormalTok{))    }\CommentTok{\# Error}
+\BuiltInTok{print}\NormalTok{(calcular\_tasa\_crecimiento(}\DecValTok{0}\NormalTok{, }\DecValTok{110}\NormalTok{))        }\CommentTok{\# Error}
+
+\CommentTok{\# Ejemplo 2: Leer datos de diccionario de forma segura}
+\NormalTok{datos\_pais }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}nombre\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Perú\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{: }\DecValTok{242632}\NormalTok{,}
+    \StringTok{\textquotesingle{}poblacion\textquotesingle{}}\NormalTok{: }\DecValTok{33715471}
+\NormalTok{\}}
+
+\KeywordTok{def}\NormalTok{ obtener\_indicador(pais, indicador):}
+    \CommentTok{"""Obtiene un indicador del diccionario de forma segura"""}
+    
+    \ControlFlowTok{try}\NormalTok{:}
+\NormalTok{        valor }\OperatorTok{=}\NormalTok{ pais[indicador]}
+        \ControlFlowTok{return}\NormalTok{ valor}
+    \ControlFlowTok{except} \PreprocessorTok{KeyError}\NormalTok{:}
+        \ControlFlowTok{return} \SpecialStringTok{f"Indicador \textquotesingle{}}\SpecialCharTok{\{}\NormalTok{indicador}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{} no disponible"}
+    \ControlFlowTok{except} \PreprocessorTok{TypeError}\NormalTok{:}
+        \ControlFlowTok{return} \StringTok{"Error: formato de datos incorrecto"}
+
+\BuiltInTok{print}\NormalTok{(obtener\_indicador(datos\_pais, }\StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{))         }\CommentTok{\# 242632}
+\BuiltInTok{print}\NormalTok{(obtener\_indicador(datos\_pais, }\StringTok{\textquotesingle{}inflacion\textquotesingle{}}\NormalTok{))   }\CommentTok{\# No disponible}
+
+\CommentTok{\# Ejemplo 3: Cálculo con validación}
+\KeywordTok{def}\NormalTok{ calcular\_pib\_per\_capita(pib, poblacion):}
+    \CommentTok{"""Calcula PIB per cápita con manejo de errores"""}
+    
+    \ControlFlowTok{try}\NormalTok{:}
+\NormalTok{        pib\_pc }\OperatorTok{=}\NormalTok{ (pib }\OperatorTok{/}\NormalTok{ poblacion) }\OperatorTok{*} \DecValTok{1000000}
+        \ControlFlowTok{return}\NormalTok{ pib\_pc}
+    \ControlFlowTok{except} \PreprocessorTok{ZeroDivisionError}\NormalTok{:}
+        \ControlFlowTok{return} \StringTok{"Error: población no puede ser cero"}
+    \ControlFlowTok{except} \PreprocessorTok{TypeError}\NormalTok{:}
+        \ControlFlowTok{return} \StringTok{"Error: valores deben ser numéricos"}
+    \ControlFlowTok{except} \PreprocessorTok{Exception} \ImportTok{as}\NormalTok{ e:}
+        \ControlFlowTok{return} \SpecialStringTok{f"Error inesperado: }\SpecialCharTok{\{}\NormalTok{e}\SpecialCharTok{\}}\SpecialStringTok{"}
+
+\BuiltInTok{print}\NormalTok{(calcular\_pib\_per\_capita(}\DecValTok{242632}\NormalTok{, }\DecValTok{33715471}\NormalTok{))    }\CommentTok{\# 7196.21}
+\BuiltInTok{print}\NormalTok{(calcular\_pib\_per\_capita(}\DecValTok{242632}\NormalTok{, }\DecValTok{0}\NormalTok{))           }\CommentTok{\# Error: población...}
+\BuiltInTok{print}\NormalTok{(calcular\_pib\_per\_capita(}\StringTok{"242632"}\NormalTok{, }\DecValTok{33715471}\NormalTok{))  }\CommentTok{\# Error: valores...}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Obtener información del
+error}\label{obtener-informaciuxf3n-del-error}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Capturar el mensaje de error}
+\ControlFlowTok{try}\NormalTok{:}
+\NormalTok{    resultado }\OperatorTok{=} \DecValTok{10} \OperatorTok{/} \DecValTok{0}
+\ControlFlowTok{except} \PreprocessorTok{ZeroDivisionError} \ImportTok{as}\NormalTok{ error:}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Error capturado: }\SpecialCharTok{\{}\NormalTok{error}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Tipo de error: }\SpecialCharTok{\{}\BuiltInTok{type}\NormalTok{(error)}\SpecialCharTok{.}\VariableTok{\_\_name\_\_}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Aplicación: log de errores}
+\KeywordTok{def}\NormalTok{ procesar\_datos(datos):}
+\NormalTok{    errores }\OperatorTok{=}\NormalTok{ []}
+    
+    \ControlFlowTok{for}\NormalTok{ i, valor }\KeywordTok{in} \BuiltInTok{enumerate}\NormalTok{(datos):}
+        \ControlFlowTok{try}\NormalTok{:}
+\NormalTok{            resultado }\OperatorTok{=} \DecValTok{100} \OperatorTok{/}\NormalTok{ valor}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Índice }\SpecialCharTok{\{}\NormalTok{i}\SpecialCharTok{\}}\SpecialStringTok{: }\SpecialCharTok{\{}\NormalTok{resultado}\SpecialCharTok{:.2f\}}\SpecialStringTok{"}\NormalTok{)}
+        \ControlFlowTok{except} \PreprocessorTok{Exception} \ImportTok{as}\NormalTok{ e:}
+\NormalTok{            mensaje\_error }\OperatorTok{=} \SpecialStringTok{f"Índice }\SpecialCharTok{\{}\NormalTok{i}\SpecialCharTok{\}}\SpecialStringTok{: }\SpecialCharTok{\{}\BuiltInTok{type}\NormalTok{(e)}\SpecialCharTok{.}\VariableTok{\_\_name\_\_}\SpecialCharTok{\}}\SpecialStringTok{ {-} }\SpecialCharTok{\{}\NormalTok{e}\SpecialCharTok{\}}\SpecialStringTok{"}
+\NormalTok{            errores.append(mensaje\_error)}
+    
+    \ControlFlowTok{if}\NormalTok{ errores:}
+        \BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Errores encontrados:"}\NormalTok{)}
+        \ControlFlowTok{for}\NormalTok{ error }\KeywordTok{in}\NormalTok{ errores:}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  {-} }\SpecialCharTok{\{}\NormalTok{error}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\NormalTok{datos\_prueba }\OperatorTok{=}\NormalTok{ [}\DecValTok{10}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{2}\NormalTok{, }\StringTok{"a"}\NormalTok{, }\DecValTok{4}\NormalTok{]}
+\NormalTok{procesar\_datos(datos\_prueba)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Evaluación de
+cortocircuito}\label{evaluaciuxf3n-de-cortocircuito}
+
+Python evalúa expresiones booleanas de izquierda a derecha y se detiene
+cuando el resultado es determinado:
+
+\subsection{Cortocircuito con AND}\label{cortocircuito-con-and}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# and: se detiene en el primer False}
+\KeywordTok{def}\NormalTok{ funcion\_a():}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Ejecutando función A"}\NormalTok{)}
+    \ControlFlowTok{return} \VariableTok{False}
+
+\KeywordTok{def}\NormalTok{ funcion\_b():}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Ejecutando función B"}\NormalTok{)}
+    \ControlFlowTok{return} \VariableTok{True}
+
+\CommentTok{\# funcion\_b nunca se ejecuta}
+\NormalTok{resultado }\OperatorTok{=}\NormalTok{ funcion\_a() }\KeywordTok{and}\NormalTok{ funcion\_b()}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Resultado: }\SpecialCharTok{\{}\NormalTok{resultado}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# Salida:}
+\CommentTok{\# Ejecutando función A}
+\CommentTok{\# Resultado: False}
+
+\CommentTok{\# Aplicación: evitar errores}
+\NormalTok{datos }\OperatorTok{=}\NormalTok{ []}
+\CommentTok{\# Sin cortocircuito, esto daría error:}
+\CommentTok{\# if datos[0] \textgreater{} 0:  \# IndexError}
+
+\CommentTok{\# Con cortocircuito, es seguro:}
+\ControlFlowTok{if} \BuiltInTok{len}\NormalTok{(datos) }\OperatorTok{\textgreater{}} \DecValTok{0} \KeywordTok{and}\NormalTok{ datos[}\DecValTok{0}\NormalTok{] }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Primer elemento es positivo"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Lista vacía o primer elemento no positivo"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Cortocircuito con OR}\label{cortocircuito-con-or}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# or: se detiene en el primer True}
+\KeywordTok{def}\NormalTok{ funcion\_c():}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Ejecutando función C"}\NormalTok{)}
+    \ControlFlowTok{return} \VariableTok{True}
+
+\KeywordTok{def}\NormalTok{ funcion\_d():}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Ejecutando función D"}\NormalTok{)}
+    \ControlFlowTok{return} \VariableTok{False}
+
+\CommentTok{\# funcion\_d nunca se ejecuta}
+\NormalTok{resultado }\OperatorTok{=}\NormalTok{ funcion\_c() }\KeywordTok{or}\NormalTok{ funcion\_d()}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Resultado: }\SpecialCharTok{\{}\NormalTok{resultado}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# Salida:}
+\CommentTok{\# Ejecutando función C}
+\CommentTok{\# Resultado: True}
+
+\CommentTok{\# Aplicación: valores por defecto}
+\NormalTok{nombre }\OperatorTok{=} \StringTok{""}
+\NormalTok{nombre\_mostrar }\OperatorTok{=}\NormalTok{ nombre }\KeywordTok{or} \StringTok{"Sin nombre"}
+\BuiltInTok{print}\NormalTok{(nombre\_mostrar)  }\CommentTok{\# "Sin nombre"}
+
+\NormalTok{pais }\OperatorTok{=} \StringTok{"Perú"}
+\NormalTok{pais\_mostrar }\OperatorTok{=}\NormalTok{ pais }\KeywordTok{or} \StringTok{"No especificado"}
+\BuiltInTok{print}\NormalTok{(pais\_mostrar)  }\CommentTok{\# "Perú"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Uso práctico en
+economía}\label{uso-pruxe1ctico-en-economuxeda}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Ejemplo 1: Validación eficiente}
+\KeywordTok{def}\NormalTok{ analizar\_empresa(datos):}
+    \CommentTok{"""Analiza datos de empresa con validación eficiente"""}
+    
+    \CommentTok{\# Verificaciones en orden de eficiencia}
+    \CommentTok{\# Se detiene en la primera que falla}
+    \ControlFlowTok{if} \KeywordTok{not}\NormalTok{ datos:}
+        \ControlFlowTok{return} \StringTok{"Error: no hay datos"}
+    
+    \ControlFlowTok{if} \StringTok{\textquotesingle{}ingresos\textquotesingle{}} \KeywordTok{not} \KeywordTok{in}\NormalTok{ datos:}
+        \ControlFlowTok{return} \StringTok{"Error: faltan ingresos"}
+    
+    \ControlFlowTok{if} \StringTok{\textquotesingle{}gastos\textquotesingle{}} \KeywordTok{not} \KeywordTok{in}\NormalTok{ datos:}
+        \ControlFlowTok{return} \StringTok{"Error: faltan gastos"}
+    
+    \CommentTok{\# Si llegamos aquí, todos los datos están}
+\NormalTok{    utilidad }\OperatorTok{=}\NormalTok{ datos[}\StringTok{\textquotesingle{}ingresos\textquotesingle{}}\NormalTok{] }\OperatorTok{{-}}\NormalTok{ datos[}\StringTok{\textquotesingle{}gastos\textquotesingle{}}\NormalTok{]}
+\NormalTok{    margen }\OperatorTok{=}\NormalTok{ (utilidad }\OperatorTok{/}\NormalTok{ datos[}\StringTok{\textquotesingle{}ingresos\textquotesingle{}}\NormalTok{]) }\OperatorTok{*} \DecValTok{100}
+    
+    \ControlFlowTok{return} \SpecialStringTok{f"Utilidad: S/ }\SpecialCharTok{\{}\NormalTok{utilidad}\SpecialCharTok{:,\}}\SpecialStringTok{, Margen: }\SpecialCharTok{\{}\NormalTok{margen}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%"}
+
+\CommentTok{\# Pruebas}
+\BuiltInTok{print}\NormalTok{(analizar\_empresa(\{\}))}
+\BuiltInTok{print}\NormalTok{(analizar\_empresa(\{}\StringTok{\textquotesingle{}ingresos\textquotesingle{}}\NormalTok{: }\DecValTok{100000}\NormalTok{\}))}
+\BuiltInTok{print}\NormalTok{(analizar\_empresa(\{}\StringTok{\textquotesingle{}ingresos\textquotesingle{}}\NormalTok{: }\DecValTok{100000}\NormalTok{, }\StringTok{\textquotesingle{}gastos\textquotesingle{}}\NormalTok{: }\DecValTok{80000}\NormalTok{\}))}
+
+\CommentTok{\# Ejemplo 2: Acceso seguro a datos anidados}
+\NormalTok{pais\_data }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}nombre\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Perú\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}economia\textquotesingle{}}\NormalTok{: \{}
+        \StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{: }\DecValTok{242632}\NormalTok{,}
+        \StringTok{\textquotesingle{}sectores\textquotesingle{}}\NormalTok{: \{}
+            \StringTok{\textquotesingle{}mineria\textquotesingle{}}\NormalTok{: }\DecValTok{30000}
+\NormalTok{        \}}
+\NormalTok{    \}}
+\NormalTok{\}}
+
+\CommentTok{\# Acceso con cortocircuito}
+\NormalTok{tiene\_mineria }\OperatorTok{=}\NormalTok{ pais\_data }\KeywordTok{and} \OperatorTok{\textbackslash{}}
+                \StringTok{\textquotesingle{}economia\textquotesingle{}} \KeywordTok{in}\NormalTok{ pais\_data }\KeywordTok{and} \OperatorTok{\textbackslash{}}
+                \StringTok{\textquotesingle{}sectores\textquotesingle{}} \KeywordTok{in}\NormalTok{ pais\_data[}\StringTok{\textquotesingle{}economia\textquotesingle{}}\NormalTok{] }\KeywordTok{and} \OperatorTok{\textbackslash{}}
+                \StringTok{\textquotesingle{}mineria\textquotesingle{}} \KeywordTok{in}\NormalTok{ pais\_data[}\StringTok{\textquotesingle{}economia\textquotesingle{}}\NormalTok{][}\StringTok{\textquotesingle{}sectores\textquotesingle{}}\NormalTok{]}
+
+\ControlFlowTok{if}\NormalTok{ tiene\_mineria:}
+\NormalTok{    valor\_mineria }\OperatorTok{=}\NormalTok{ pais\_data[}\StringTok{\textquotesingle{}economia\textquotesingle{}}\NormalTok{][}\StringTok{\textquotesingle{}sectores\textquotesingle{}}\NormalTok{][}\StringTok{\textquotesingle{}mineria\textquotesingle{}}\NormalTok{]}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Minería: }\SpecialCharTok{\{}\NormalTok{valor\_mineria}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Datos de minería no disponibles"}\NormalTok{)}
+
+\CommentTok{\# Ejemplo 3: Búsqueda eficiente}
+\KeywordTok{def}\NormalTok{ buscar\_indicador(indicadores, nombres\_posibles):}
+    \CommentTok{"""Busca un indicador por varios nombres posibles"""}
+    
+    \CommentTok{\# Se detiene en el primer nombre encontrado}
+    \ControlFlowTok{for}\NormalTok{ nombre }\KeywordTok{in}\NormalTok{ nombres\_posibles:}
+        \ControlFlowTok{if}\NormalTok{ nombre }\KeywordTok{in}\NormalTok{ indicadores:}
+            \ControlFlowTok{return}\NormalTok{ indicadores[nombre]}
+    
+    \ControlFlowTok{return} \VariableTok{None}
+
+\NormalTok{indicadores }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}producto\_bruto\_interno\textquotesingle{}}\NormalTok{: }\DecValTok{242632}\NormalTok{,}
+    \StringTok{\textquotesingle{}tasa\_inflacion\textquotesingle{}}\NormalTok{: }\FloatTok{3.5}\NormalTok{,}
+    \StringTok{\textquotesingle{}tasa\_desempleo\textquotesingle{}}\NormalTok{: }\FloatTok{7.2}
+\NormalTok{\}}
+
+\CommentTok{\# Buscar PIB con nombres alternativos}
+\NormalTok{pib }\OperatorTok{=}\NormalTok{ buscar\_indicador(indicadores, [}\StringTok{\textquotesingle{}pib\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}producto\_bruto\_interno\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}gdp\textquotesingle{}}\NormalTok{])}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"PIB encontrado: }\SpecialCharTok{\{}\NormalTok{pib}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Aplicaciones económicas}\label{aplicaciones-econuxf3micas-1}
+
+\subsection{Aplicación 1: Sistema de clasificación de riesgo
+país}\label{aplicaciuxf3n-1-sistema-de-clasificaciuxf3n-de-riesgo-pauxeds}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ clasificar\_riesgo\_pais(datos):}
+    \CommentTok{"""}
+\CommentTok{    Clasifica el riesgo país según múltiples indicadores}
+\CommentTok{    """}
+    
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"SISTEMA DE CLASIFICACIÓN DE RIESGO PAÍS"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{60}\NormalTok{)}
+    
+    \ControlFlowTok{try}\NormalTok{:}
+        \CommentTok{\# Extraer indicadores}
+\NormalTok{        pib\_crecimiento }\OperatorTok{=}\NormalTok{ datos.get(}\StringTok{\textquotesingle{}pib\_crecimiento\textquotesingle{}}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{        inflacion }\OperatorTok{=}\NormalTok{ datos.get(}\StringTok{\textquotesingle{}inflacion\textquotesingle{}}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{        deficit\_fiscal }\OperatorTok{=}\NormalTok{ datos.get(}\StringTok{\textquotesingle{}deficit\_fiscal\textquotesingle{}}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{        deuda\_pib }\OperatorTok{=}\NormalTok{ datos.get(}\StringTok{\textquotesingle{}deuda\_pib\textquotesingle{}}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{        reservas\_meses\_importacion }\OperatorTok{=}\NormalTok{ datos.get(}\StringTok{\textquotesingle{}reservas\textquotesingle{}}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+        
+        \CommentTok{\# Inicializar puntaje}
+\NormalTok{        puntaje }\OperatorTok{=} \DecValTok{0}
+\NormalTok{        detalles }\OperatorTok{=}\NormalTok{ []}
+        
+        \CommentTok{\# Evaluar crecimiento económico}
+        \ControlFlowTok{if}\NormalTok{ pib\_crecimiento }\OperatorTok{\textgreater{}=} \FloatTok{4.0}\NormalTok{:}
+\NormalTok{            puntaje }\OperatorTok{+=} \DecValTok{3}
+\NormalTok{            detalles.append(}\StringTok{"✓ Crecimiento sólido (3 puntos)"}\NormalTok{)}
+        \ControlFlowTok{elif}\NormalTok{ pib\_crecimiento }\OperatorTok{\textgreater{}=} \FloatTok{2.0}\NormalTok{:}
+\NormalTok{            puntaje }\OperatorTok{+=} \DecValTok{2}
+\NormalTok{            detalles.append(}\StringTok{"○ Crecimiento moderado (2 puntos)"}\NormalTok{)}
+        \ControlFlowTok{elif}\NormalTok{ pib\_crecimiento }\OperatorTok{\textgreater{}=} \DecValTok{0}\NormalTok{:}
+\NormalTok{            puntaje }\OperatorTok{+=} \DecValTok{1}
+\NormalTok{            detalles.append(}\StringTok{"○ Crecimiento débil (1 punto)"}\NormalTok{)}
+        \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{            detalles.append(}\StringTok{"✗ Recesión (0 puntos)"}\NormalTok{)}
+        
+        \CommentTok{\# Evaluar inflación}
+        \ControlFlowTok{if}\NormalTok{ inflacion }\OperatorTok{\textless{}=} \FloatTok{3.0}\NormalTok{:}
+\NormalTok{            puntaje }\OperatorTok{+=} \DecValTok{3}
+\NormalTok{            detalles.append(}\StringTok{"✓ Inflación controlada (3 puntos)"}\NormalTok{)}
+        \ControlFlowTok{elif}\NormalTok{ inflacion }\OperatorTok{\textless{}=} \FloatTok{5.0}\NormalTok{:}
+\NormalTok{            puntaje }\OperatorTok{+=} \DecValTok{2}
+\NormalTok{            detalles.append(}\StringTok{"○ Inflación moderada (2 puntos)"}\NormalTok{)}
+        \ControlFlowTok{elif}\NormalTok{ inflacion }\OperatorTok{\textless{}=} \FloatTok{10.0}\NormalTok{:}
+\NormalTok{            puntaje }\OperatorTok{+=} \DecValTok{1}
+\NormalTok{            detalles.append(}\StringTok{"○ Inflación alta (1 punto)"}\NormalTok{)}
+        \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{            detalles.append(}\StringTok{"✗ Inflación muy alta (0 puntos)"}\NormalTok{)}
+        
+        \CommentTok{\# Evaluar balance fiscal}
+        \ControlFlowTok{if}\NormalTok{ deficit\_fiscal }\OperatorTok{\textless{}=} \FloatTok{2.0}\NormalTok{:}
+\NormalTok{            puntaje }\OperatorTok{+=} \DecValTok{2}
+\NormalTok{            detalles.append(}\StringTok{"✓ Balance fiscal saludable (2 puntos)"}\NormalTok{)}
+        \ControlFlowTok{elif}\NormalTok{ deficit\_fiscal }\OperatorTok{\textless{}=} \FloatTok{4.0}\NormalTok{:}
+\NormalTok{            puntaje }\OperatorTok{+=} \DecValTok{1}
+\NormalTok{            detalles.append(}\StringTok{"○ Déficit moderado (1 punto)"}\NormalTok{)}
+        \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{            detalles.append(}\StringTok{"✗ Déficit elevado (0 puntos)"}\NormalTok{)}
+        
+        \CommentTok{\# Evaluar deuda pública}
+        \ControlFlowTok{if}\NormalTok{ deuda\_pib }\OperatorTok{\textless{}=} \FloatTok{40.0}\NormalTok{:}
+\NormalTok{            puntaje }\OperatorTok{+=} \DecValTok{2}
+\NormalTok{            detalles.append(}\StringTok{"✓ Deuda baja (2 puntos)"}\NormalTok{)}
+        \ControlFlowTok{elif}\NormalTok{ deuda\_pib }\OperatorTok{\textless{}=} \FloatTok{60.0}\NormalTok{:}
+\NormalTok{            puntaje }\OperatorTok{+=} \DecValTok{1}
+\NormalTok{            detalles.append(}\StringTok{"○ Deuda moderada (1 punto)"}\NormalTok{)}
+        \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{            detalles.append(}\StringTok{"✗ Deuda alta (0 puntos)"}\NormalTok{)}
+        
+        \CommentTok{\# Evaluar reservas internacionales}
+        \ControlFlowTok{if}\NormalTok{ reservas\_meses\_importacion }\OperatorTok{\textgreater{}=} \FloatTok{6.0}\NormalTok{:}
+\NormalTok{            puntaje }\OperatorTok{+=} \DecValTok{2}
+\NormalTok{            detalles.append(}\StringTok{"✓ Reservas sólidas (2 puntos)"}\NormalTok{)}
+        \ControlFlowTok{elif}\NormalTok{ reservas\_meses\_importacion }\OperatorTok{\textgreater{}=} \FloatTok{3.0}\NormalTok{:}
+\NormalTok{            puntaje }\OperatorTok{+=} \DecValTok{1}
+\NormalTok{            detalles.append(}\StringTok{"○ Reservas adecuadas (1 punto)"}\NormalTok{)}
+        \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{            detalles.append(}\StringTok{"✗ Reservas bajas (0 puntos)"}\NormalTok{)}
+        
+        \CommentTok{\# Determinar clasificación}
+        \ControlFlowTok{if}\NormalTok{ puntaje }\OperatorTok{\textgreater{}=} \DecValTok{11}\NormalTok{:}
+\NormalTok{            clasificacion }\OperatorTok{=} \StringTok{"AAA"}
+\NormalTok{            descripcion }\OperatorTok{=} \StringTok{"Riesgo muy bajo"}
+\NormalTok{            spread }\OperatorTok{=} \DecValTok{100}
+        \ControlFlowTok{elif}\NormalTok{ puntaje }\OperatorTok{\textgreater{}=} \DecValTok{9}\NormalTok{:}
+\NormalTok{            clasificacion }\OperatorTok{=} \StringTok{"AA"}
+\NormalTok{            descripcion }\OperatorTok{=} \StringTok{"Riesgo bajo"}
+\NormalTok{            spread }\OperatorTok{=} \DecValTok{150}
+        \ControlFlowTok{elif}\NormalTok{ puntaje }\OperatorTok{\textgreater{}=} \DecValTok{7}\NormalTok{:}
+\NormalTok{            clasificacion }\OperatorTok{=} \StringTok{"A"}
+\NormalTok{            descripcion }\OperatorTok{=} \StringTok{"Riesgo moderado"}
+\NormalTok{            spread }\OperatorTok{=} \DecValTok{250}
+        \ControlFlowTok{elif}\NormalTok{ puntaje }\OperatorTok{\textgreater{}=} \DecValTok{5}\NormalTok{:}
+\NormalTok{            clasificacion }\OperatorTok{=} \StringTok{"BBB"}
+\NormalTok{            descripcion }\OperatorTok{=} \StringTok{"Riesgo medio"}
+\NormalTok{            spread }\OperatorTok{=} \DecValTok{400}
+        \ControlFlowTok{elif}\NormalTok{ puntaje }\OperatorTok{\textgreater{}=} \DecValTok{3}\NormalTok{:}
+\NormalTok{            clasificacion }\OperatorTok{=} \StringTok{"BB"}
+\NormalTok{            descripcion }\OperatorTok{=} \StringTok{"Riesgo alto"}
+\NormalTok{            spread }\OperatorTok{=} \DecValTok{600}
+        \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{            clasificacion }\OperatorTok{=} \StringTok{"B"}
+\NormalTok{            descripcion }\OperatorTok{=} \StringTok{"Riesgo muy alto"}
+\NormalTok{            spread }\OperatorTok{=} \DecValTok{1000}
+        
+        \CommentTok{\# Mostrar resultados}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{País: }\SpecialCharTok{\{}\NormalTok{datos}\SpecialCharTok{.}\NormalTok{get(}\StringTok{\textquotesingle{}nombre\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}No especificado\textquotesingle{}}\NormalTok{)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Indicadores:"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Crecimiento PIB: }\SpecialCharTok{\{}\NormalTok{pib\_crecimiento}\SpecialCharTok{:+.1f\}}\SpecialStringTok{\%"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Inflación: }\SpecialCharTok{\{}\NormalTok{inflacion}\SpecialCharTok{:.1f\}}\SpecialStringTok{\%"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Déficit fiscal: }\SpecialCharTok{\{}\NormalTok{deficit\_fiscal}\SpecialCharTok{:.1f\}}\SpecialStringTok{\% del PIB"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Deuda pública: }\SpecialCharTok{\{}\NormalTok{deuda\_pib}\SpecialCharTok{:.1f\}}\SpecialStringTok{\% del PIB"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Reservas: }\SpecialCharTok{\{}\NormalTok{reservas\_meses\_importacion}\SpecialCharTok{:.1f\}}\SpecialStringTok{ meses de importación"}\NormalTok{)}
+        
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Evaluación:"}\NormalTok{)}
+        \ControlFlowTok{for}\NormalTok{ detalle }\KeywordTok{in}\NormalTok{ detalles:}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  }\SpecialCharTok{\{}\NormalTok{detalle}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+        
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialCharTok{\{}\StringTok{\textquotesingle{}=\textquotesingle{}}\OperatorTok{*}\DecValTok{60}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Puntaje total: }\SpecialCharTok{\{}\NormalTok{puntaje}\SpecialCharTok{\}}\SpecialStringTok{/12"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Clasificación: }\SpecialCharTok{\{}\NormalTok{clasificacion}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Descripción: }\SpecialCharTok{\{}\NormalTok{descripcion}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Spread estimado: }\SpecialCharTok{\{}\NormalTok{spread}\SpecialCharTok{\}}\SpecialStringTok{ puntos básicos"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\StringTok{\textquotesingle{}=\textquotesingle{}}\OperatorTok{*}\DecValTok{60}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+        
+        \ControlFlowTok{return}\NormalTok{ clasificacion}
+        
+    \ControlFlowTok{except} \PreprocessorTok{Exception} \ImportTok{as}\NormalTok{ e:}
+        \ControlFlowTok{return} \SpecialStringTok{f"Error en el análisis: }\SpecialCharTok{\{}\NormalTok{e}\SpecialCharTok{\}}\SpecialStringTok{"}
+
+\CommentTok{\# Ejemplo de uso}
+\NormalTok{peru\_datos }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}nombre\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Perú\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}pib\_crecimiento\textquotesingle{}}\NormalTok{: }\FloatTok{2.7}\NormalTok{,}
+    \StringTok{\textquotesingle{}inflacion\textquotesingle{}}\NormalTok{: }\FloatTok{3.5}\NormalTok{,}
+    \StringTok{\textquotesingle{}deficit\_fiscal\textquotesingle{}}\NormalTok{: }\FloatTok{2.8}\NormalTok{,}
+    \StringTok{\textquotesingle{}deuda\_pib\textquotesingle{}}\NormalTok{: }\FloatTok{35.0}\NormalTok{,}
+    \StringTok{\textquotesingle{}reservas\textquotesingle{}}\NormalTok{: }\FloatTok{8.5}
+\NormalTok{\}}
+
+\NormalTok{clasificacion }\OperatorTok{=}\NormalTok{ clasificar\_riesgo\_pais(peru\_datos)}
+
+\CommentTok{\# Comparar con otro país}
+\NormalTok{venezuela\_datos }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}nombre\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Venezuela\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}pib\_crecimiento\textquotesingle{}}\NormalTok{: }\OperatorTok{{-}}\FloatTok{5.0}\NormalTok{,}
+    \StringTok{\textquotesingle{}inflacion\textquotesingle{}}\NormalTok{: }\FloatTok{1500.0}\NormalTok{,}
+    \StringTok{\textquotesingle{}deficit\_fiscal\textquotesingle{}}\NormalTok{: }\FloatTok{15.0}\NormalTok{,}
+    \StringTok{\textquotesingle{}deuda\_pib\textquotesingle{}}\NormalTok{: }\FloatTok{150.0}\NormalTok{,}
+    \StringTok{\textquotesingle{}reservas\textquotesingle{}}\NormalTok{: }\FloatTok{0.5}
+\NormalTok{\}}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{clasificacion\_vzla }\OperatorTok{=}\NormalTok{ clasificar\_riesgo\_pais(venezuela\_datos)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Aplicación 2: Calculadora de impuestos
+progresivos}\label{aplicaciuxf3n-2-calculadora-de-impuestos-progresivos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ calcular\_impuesto\_renta(ingreso\_anual):}
+    \CommentTok{"""}
+\CommentTok{    Calcula el impuesto a la renta con sistema progresivo}
+\CommentTok{    (Basado en el sistema peruano simplificado)}
+\CommentTok{    """}
+    
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"CÁLCULO DE IMPUESTO A LA RENTA"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{60}\NormalTok{)}
+    
+    \ControlFlowTok{try}\NormalTok{:}
+        \CommentTok{\# Validar entrada}
+        \ControlFlowTok{if} \KeywordTok{not} \BuiltInTok{isinstance}\NormalTok{(ingreso\_anual, (}\BuiltInTok{int}\NormalTok{, }\BuiltInTok{float}\NormalTok{)):}
+            \ControlFlowTok{return} \StringTok{"Error: el ingreso debe ser numérico"}
+        
+        \ControlFlowTok{if}\NormalTok{ ingreso\_anual }\OperatorTok{\textless{}} \DecValTok{0}\NormalTok{:}
+            \ControlFlowTok{return} \StringTok{"Error: el ingreso no puede ser negativo"}
+        
+        \CommentTok{\# Tramos de impuesto (valores en UIT)}
+\NormalTok{        UIT }\OperatorTok{=} \DecValTok{5150}  \CommentTok{\# UIT para 2026 (valor hipotético)}
+        
+        \CommentTok{\# Definir tramos}
+\NormalTok{        tramo1\_limite }\OperatorTok{=} \DecValTok{5} \OperatorTok{*}\NormalTok{ UIT      }\CommentTok{\# 0{-}5 UIT: 8\%}
+\NormalTok{        tramo2\_limite }\OperatorTok{=} \DecValTok{20} \OperatorTok{*}\NormalTok{ UIT     }\CommentTok{\# 5{-}20 UIT: 14\%}
+\NormalTok{        tramo3\_limite }\OperatorTok{=} \DecValTok{35} \OperatorTok{*}\NormalTok{ UIT     }\CommentTok{\# 20{-}35 UIT: 17\%}
+\NormalTok{        tramo4\_limite }\OperatorTok{=} \DecValTok{45} \OperatorTok{*}\NormalTok{ UIT     }\CommentTok{\# 35{-}45 UIT: 20\%}
+        \CommentTok{\# Más de 45 UIT: 30\%}
+        
+        \CommentTok{\# Calcular impuesto}
+\NormalTok{        impuesto }\OperatorTok{=} \DecValTok{0}
+\NormalTok{        ingreso\_restante }\OperatorTok{=}\NormalTok{ ingreso\_anual}
+\NormalTok{        desglose }\OperatorTok{=}\NormalTok{ []}
+        
+        \CommentTok{\# Tramo 1: 0{-}5 UIT (8\%)}
+        \ControlFlowTok{if}\NormalTok{ ingreso\_restante }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{            monto\_tramo }\OperatorTok{=} \BuiltInTok{min}\NormalTok{(ingreso\_restante, tramo1\_limite)}
+\NormalTok{            impuesto\_tramo }\OperatorTok{=}\NormalTok{ monto\_tramo }\OperatorTok{*} \FloatTok{0.08}
+\NormalTok{            impuesto }\OperatorTok{+=}\NormalTok{ impuesto\_tramo}
+\NormalTok{            ingreso\_restante }\OperatorTok{{-}=}\NormalTok{ monto\_tramo}
+            
+            \ControlFlowTok{if}\NormalTok{ monto\_tramo }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{                desglose.append(\{}
+                    \StringTok{\textquotesingle{}tramo\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Tramo 1 (0{-}5 UIT)\textquotesingle{}}\NormalTok{,}
+                    \StringTok{\textquotesingle{}base\textquotesingle{}}\NormalTok{: monto\_tramo,}
+                    \StringTok{\textquotesingle{}tasa\textquotesingle{}}\NormalTok{: }\FloatTok{0.08}\NormalTok{,}
+                    \StringTok{\textquotesingle{}impuesto\textquotesingle{}}\NormalTok{: impuesto\_tramo}
+\NormalTok{                \})}
+        
+        \CommentTok{\# Tramo 2: 5{-}20 UIT (14\%)}
+        \ControlFlowTok{if}\NormalTok{ ingreso\_restante }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{            monto\_tramo }\OperatorTok{=} \BuiltInTok{min}\NormalTok{(ingreso\_restante, tramo2\_limite }\OperatorTok{{-}}\NormalTok{ tramo1\_limite)}
+\NormalTok{            impuesto\_tramo }\OperatorTok{=}\NormalTok{ monto\_tramo }\OperatorTok{*} \FloatTok{0.14}
+\NormalTok{            impuesto }\OperatorTok{+=}\NormalTok{ impuesto\_tramo}
+\NormalTok{            ingreso\_restante }\OperatorTok{{-}=}\NormalTok{ monto\_tramo}
+            
+            \ControlFlowTok{if}\NormalTok{ monto\_tramo }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{                desglose.append(\{}
+                    \StringTok{\textquotesingle{}tramo\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Tramo 2 (5{-}20 UIT)\textquotesingle{}}\NormalTok{,}
+                    \StringTok{\textquotesingle{}base\textquotesingle{}}\NormalTok{: monto\_tramo,}
+                    \StringTok{\textquotesingle{}tasa\textquotesingle{}}\NormalTok{: }\FloatTok{0.14}\NormalTok{,}
+                    \StringTok{\textquotesingle{}impuesto\textquotesingle{}}\NormalTok{: impuesto\_tramo}
+\NormalTok{                \})}
+        
+        \CommentTok{\# Tramo 3: 20{-}35 UIT (17\%)}
+        \ControlFlowTok{if}\NormalTok{ ingreso\_restante }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{            monto\_tramo }\OperatorTok{=} \BuiltInTok{min}\NormalTok{(ingreso\_restante, tramo3\_limite }\OperatorTok{{-}}\NormalTok{ tramo2\_limite)}
+\NormalTok{            impuesto\_tramo }\OperatorTok{=}\NormalTok{ monto\_tramo }\OperatorTok{*} \FloatTok{0.17}
+\NormalTok{            impuesto }\OperatorTok{+=}\NormalTok{ impuesto\_tramo}
+\NormalTok{            ingreso\_restante }\OperatorTok{{-}=}\NormalTok{ monto\_tramo}
+            
+            \ControlFlowTok{if}\NormalTok{ monto\_tramo }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{                desglose.append(\{}
+                    \StringTok{\textquotesingle{}tramo\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Tramo 3 (20{-}35 UIT)\textquotesingle{}}\NormalTok{,}
+                    \StringTok{\textquotesingle{}base\textquotesingle{}}\NormalTok{: monto\_tramo,}
+                    \StringTok{\textquotesingle{}tasa\textquotesingle{}}\NormalTok{: }\FloatTok{0.17}\NormalTok{,}
+                    \StringTok{\textquotesingle{}impuesto\textquotesingle{}}\NormalTok{: impuesto\_tramo}
+\NormalTok{                \})}
+        
+        \CommentTok{\# Tramo 4: 35{-}45 UIT (20\%)}
+        \ControlFlowTok{if}\NormalTok{ ingreso\_restante }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{            monto\_tramo }\OperatorTok{=} \BuiltInTok{min}\NormalTok{(ingreso\_restante, tramo4\_limite }\OperatorTok{{-}}\NormalTok{ tramo3\_limite)}
+\NormalTok{            impuesto\_tramo }\OperatorTok{=}\NormalTok{ monto\_tramo }\OperatorTok{*} \FloatTok{0.20}
+\NormalTok{            impuesto }\OperatorTok{+=}\NormalTok{ impuesto\_tramo}
+\NormalTok{            ingreso\_restante }\OperatorTok{{-}=}\NormalTok{ monto\_tramo}
+            
+            \ControlFlowTok{if}\NormalTok{ monto\_tramo }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{                desglose.append(\{}
+                    \StringTok{\textquotesingle{}tramo\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Tramo 4 (35{-}45 UIT)\textquotesingle{}}\NormalTok{,}
+                    \StringTok{\textquotesingle{}base\textquotesingle{}}\NormalTok{: monto\_tramo,}
+                    \StringTok{\textquotesingle{}tasa\textquotesingle{}}\NormalTok{: }\FloatTok{0.20}\NormalTok{,}
+                    \StringTok{\textquotesingle{}impuesto\textquotesingle{}}\NormalTok{: impuesto\_tramo}
+\NormalTok{                \})}
+        
+        \CommentTok{\# Tramo 5: Más de 45 UIT (30\%)}
+        \ControlFlowTok{if}\NormalTok{ ingreso\_restante }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{            monto\_tramo }\OperatorTok{=}\NormalTok{ ingreso\_restante}
+\NormalTok{            impuesto\_tramo }\OperatorTok{=}\NormalTok{ monto\_tramo }\OperatorTok{*} \FloatTok{0.30}
+\NormalTok{            impuesto }\OperatorTok{+=}\NormalTok{ impuesto\_tramo}
+            
+\NormalTok{            desglose.append(\{}
+                \StringTok{\textquotesingle{}tramo\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Tramo 5 (\textgreater{}45 UIT)\textquotesingle{}}\NormalTok{,}
+                \StringTok{\textquotesingle{}base\textquotesingle{}}\NormalTok{: monto\_tramo,}
+                \StringTok{\textquotesingle{}tasa\textquotesingle{}}\NormalTok{: }\FloatTok{0.30}\NormalTok{,}
+                \StringTok{\textquotesingle{}impuesto\textquotesingle{}}\NormalTok{: impuesto\_tramo}
+\NormalTok{            \})}
+        
+        \CommentTok{\# Calcular tasa efectiva}
+\NormalTok{        tasa\_efectiva }\OperatorTok{=}\NormalTok{ (impuesto }\OperatorTok{/}\NormalTok{ ingreso\_anual) }\OperatorTok{*} \DecValTok{100} \ControlFlowTok{if}\NormalTok{ ingreso\_anual }\OperatorTok{\textgreater{}} \DecValTok{0} \ControlFlowTok{else} \DecValTok{0}
+\NormalTok{        ingreso\_neto }\OperatorTok{=}\NormalTok{ ingreso\_anual }\OperatorTok{{-}}\NormalTok{ impuesto}
+        
+        \CommentTok{\# Mostrar resultados}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Ingreso bruto anual: S/ }\SpecialCharTok{\{}\NormalTok{ingreso\_anual}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"UIT vigente: S/ }\SpecialCharTok{\{}\NormalTok{UIT}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Desglose por tramos:"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\StringTok{"{-}"} \OperatorTok{*} \DecValTok{60}\NormalTok{)}
+        
+        \ControlFlowTok{for}\NormalTok{ item }\KeywordTok{in}\NormalTok{ desglose:}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialCharTok{\{}\NormalTok{item[}\StringTok{\textquotesingle{}tramo\textquotesingle{}}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Base imponible: S/ }\SpecialCharTok{\{}\NormalTok{item[}\StringTok{\textquotesingle{}base\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Tasa: }\SpecialCharTok{\{}\NormalTok{item[}\StringTok{\textquotesingle{}tasa\textquotesingle{}}\NormalTok{]}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.0f\}}\SpecialStringTok{\%"}\NormalTok{)}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Impuesto: S/ }\SpecialCharTok{\{}\NormalTok{item[}\StringTok{\textquotesingle{}impuesto\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+        
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialCharTok{\{}\StringTok{\textquotesingle{}=\textquotesingle{}}\OperatorTok{*}\DecValTok{60}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Impuesto total: S/ }\SpecialCharTok{\{}\NormalTok{impuesto}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Tasa efectiva: }\SpecialCharTok{\{}\NormalTok{tasa\_efectiva}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Ingreso neto: S/ }\SpecialCharTok{\{}\NormalTok{ingreso\_neto}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\StringTok{\textquotesingle{}=\textquotesingle{}}\OperatorTok{*}\DecValTok{60}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+        
+        \ControlFlowTok{return}\NormalTok{ impuesto}
+        
+    \ControlFlowTok{except} \PreprocessorTok{Exception} \ImportTok{as}\NormalTok{ e:}
+        \ControlFlowTok{return} \SpecialStringTok{f"Error en el cálculo: }\SpecialCharTok{\{}\NormalTok{e}\SpecialCharTok{\}}\SpecialStringTok{"}
+
+\CommentTok{\# Ejemplos de uso}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Caso 1: Ingreso medio"}\NormalTok{)}
+\NormalTok{calcular\_impuesto\_renta(}\DecValTok{80000}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"} \OperatorTok{+} \StringTok{"="}\OperatorTok{*}\DecValTok{80} \OperatorTok{+} \StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Caso 2: Ingreso alto"}\NormalTok{)}
+\NormalTok{calcular\_impuesto\_renta(}\DecValTok{300000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Ejercicios prácticos}\label{ejercicios-pruxe1cticos}
+
+\subsection{Ejercicio 1: Sistema de evaluación de proyectos de
+inversión}\label{ejercicio-1-sistema-de-evaluaciuxf3n-de-proyectos-de-inversiuxf3n}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ evaluar\_proyecto(datos\_proyecto):}
+    \CommentTok{"""}
+\CommentTok{    Evalúa la viabilidad de un proyecto de inversión}
+\CommentTok{    """}
+    
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"EVALUACIÓN DE PROYECTO DE INVERSIÓN"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{60}\NormalTok{)}
+    
+    \ControlFlowTok{try}\NormalTok{:}
+        \CommentTok{\# Extraer datos}
+\NormalTok{        inversion\_inicial }\OperatorTok{=}\NormalTok{ datos\_proyecto[}\StringTok{\textquotesingle{}inversion\_inicial\textquotesingle{}}\NormalTok{]}
+\NormalTok{        flujos\_anuales }\OperatorTok{=}\NormalTok{ datos\_proyecto[}\StringTok{\textquotesingle{}flujos\_anuales\textquotesingle{}}\NormalTok{]}
+\NormalTok{        tasa\_descuento }\OperatorTok{=}\NormalTok{ datos\_proyecto[}\StringTok{\textquotesingle{}tasa\_descuento\textquotesingle{}}\NormalTok{]}
+\NormalTok{        nombre }\OperatorTok{=}\NormalTok{ datos\_proyecto.get(}\StringTok{\textquotesingle{}nombre\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Proyecto sin nombre\textquotesingle{}}\NormalTok{)}
+        
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Proyecto: }\SpecialCharTok{\{}\NormalTok{nombre}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Inversión inicial: S/ }\SpecialCharTok{\{}\NormalTok{inversion\_inicial}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Tasa de descuento: }\SpecialCharTok{\{}\NormalTok{tasa\_descuento}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.1f\}}\SpecialStringTok{\%"}\NormalTok{)}
+        
+        \CommentTok{\# Calcular VPN}
+\NormalTok{        vpn }\OperatorTok{=} \OperatorTok{{-}}\NormalTok{inversion\_inicial}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Flujos de caja:"}\NormalTok{)}
+        
+        \ControlFlowTok{for}\NormalTok{ i, flujo }\KeywordTok{in} \BuiltInTok{enumerate}\NormalTok{(flujos\_anuales, }\DecValTok{1}\NormalTok{):}
+\NormalTok{            valor\_presente }\OperatorTok{=}\NormalTok{ flujo }\OperatorTok{/}\NormalTok{ ((}\DecValTok{1} \OperatorTok{+}\NormalTok{ tasa\_descuento) }\OperatorTok{**}\NormalTok{ i)}
+\NormalTok{            vpn }\OperatorTok{+=}\NormalTok{ valor\_presente}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Año }\SpecialCharTok{\{}\NormalTok{i}\SpecialCharTok{\}}\SpecialStringTok{: S/ }\SpecialCharTok{\{}\NormalTok{flujo}\SpecialCharTok{:,.2f\}}\SpecialStringTok{ (VP: S/ }\SpecialCharTok{\{}\NormalTok{valor\_presente}\SpecialCharTok{:,.2f\}}\SpecialStringTok{)"}\NormalTok{)}
+        
+        \CommentTok{\# Calcular TIR (aproximación simple)}
+        \CommentTok{\# Para cálculo exacto se requeriría método numérico}
+        
+        \CommentTok{\# Período de recuperación}
+\NormalTok{        saldo\_acumulado }\OperatorTok{=} \OperatorTok{{-}}\NormalTok{inversion\_inicial}
+\NormalTok{        periodo\_recuperacion }\OperatorTok{=} \VariableTok{None}
+        
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Análisis de recuperación:"}\NormalTok{)}
+        \ControlFlowTok{for}\NormalTok{ i, flujo }\KeywordTok{in} \BuiltInTok{enumerate}\NormalTok{(flujos\_anuales, }\DecValTok{1}\NormalTok{):}
+\NormalTok{            saldo\_acumulado }\OperatorTok{+=}\NormalTok{ flujo}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Año }\SpecialCharTok{\{}\NormalTok{i}\SpecialCharTok{\}}\SpecialStringTok{: Saldo acumulado S/ }\SpecialCharTok{\{}\NormalTok{saldo\_acumulado}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+            
+            \ControlFlowTok{if}\NormalTok{ saldo\_acumulado }\OperatorTok{\textgreater{}=} \DecValTok{0} \KeywordTok{and}\NormalTok{ periodo\_recuperacion }\KeywordTok{is} \VariableTok{None}\NormalTok{:}
+\NormalTok{                periodo\_recuperacion }\OperatorTok{=}\NormalTok{ i}
+        
+        \CommentTok{\# Evaluación}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialCharTok{\{}\StringTok{\textquotesingle{}=\textquotesingle{}}\OperatorTok{*}\DecValTok{60}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"RESULTADOS:"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"VPN: S/ }\SpecialCharTok{\{}\NormalTok{vpn}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
+        
+        \ControlFlowTok{if}\NormalTok{ vpn }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Recomendación: ACEPTAR el proyecto"}\NormalTok{)}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"El proyecto genera valor"}\NormalTok{)}
+        \ControlFlowTok{elif}\NormalTok{ vpn }\OperatorTok{==} \DecValTok{0}\NormalTok{:}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Recomendación: INDIFERENTE"}\NormalTok{)}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"El proyecto no genera ni destruye valor"}\NormalTok{)}
+        \ControlFlowTok{else}\NormalTok{:}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Recomendación: RECHAZAR el proyecto"}\NormalTok{)}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"El proyecto destruye valor"}\NormalTok{)}
+        
+        \ControlFlowTok{if}\NormalTok{ periodo\_recuperacion:}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Período de recuperación: }\SpecialCharTok{\{}\NormalTok{periodo\_recuperacion}\SpecialCharTok{\}}\SpecialStringTok{ años"}\NormalTok{)}
+        \ControlFlowTok{else}\NormalTok{:}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{El proyecto no recupera la inversión en el período analizado"}\NormalTok{)}
+        
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\StringTok{\textquotesingle{}=\textquotesingle{}}\OperatorTok{*}\DecValTok{60}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+        
+        \ControlFlowTok{return}\NormalTok{ vpn}
+        
+    \ControlFlowTok{except} \PreprocessorTok{KeyError} \ImportTok{as}\NormalTok{ e:}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Error: Falta el campo }\SpecialCharTok{\{}\NormalTok{e}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+        \ControlFlowTok{return} \VariableTok{None}
+    \ControlFlowTok{except} \PreprocessorTok{Exception} \ImportTok{as}\NormalTok{ e:}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Error en la evaluación: }\SpecialCharTok{\{}\NormalTok{e}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+        \ControlFlowTok{return} \VariableTok{None}
+
+\CommentTok{\# Ejemplo de uso}
+\NormalTok{proyecto\_a }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}nombre\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Ampliación de planta\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}inversion\_inicial\textquotesingle{}}\NormalTok{: }\DecValTok{500000}\NormalTok{,}
+    \StringTok{\textquotesingle{}flujos\_anuales\textquotesingle{}}\NormalTok{: [}\DecValTok{150000}\NormalTok{, }\DecValTok{180000}\NormalTok{, }\DecValTok{200000}\NormalTok{, }\DecValTok{220000}\NormalTok{, }\DecValTok{200000}\NormalTok{],}
+    \StringTok{\textquotesingle{}tasa\_descuento\textquotesingle{}}\NormalTok{: }\FloatTok{0.12}
+\NormalTok{\}}
+
+\NormalTok{vpn\_a }\OperatorTok{=}\NormalTok{ evaluar\_proyecto(proyecto\_a)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"} \OperatorTok{+} \StringTok{"="}\OperatorTok{*}\DecValTok{80} \OperatorTok{+} \StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+
+\NormalTok{proyecto\_b }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}nombre\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Nueva línea de productos\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}inversion\_inicial\textquotesingle{}}\NormalTok{: }\DecValTok{800000}\NormalTok{,}
+    \StringTok{\textquotesingle{}flujos\_anuales\textquotesingle{}}\NormalTok{: [}\DecValTok{100000}\NormalTok{, }\DecValTok{150000}\NormalTok{, }\DecValTok{200000}\NormalTok{, }\DecValTok{250000}\NormalTok{, }\DecValTok{300000}\NormalTok{],}
+    \StringTok{\textquotesingle{}tasa\_descuento\textquotesingle{}}\NormalTok{: }\FloatTok{0.12}
+\NormalTok{\}}
+
+\NormalTok{vpn\_b }\OperatorTok{=}\NormalTok{ evaluar\_proyecto(proyecto\_b)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Ejercicio 2: Simulador de política
+monetaria}\label{ejercicio-2-simulador-de-poluxedtica-monetaria}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ simular\_politica\_monetaria(estado\_economia):}
+    \CommentTok{"""}
+\CommentTok{    Simula decisiones de política monetaria según el estado de la economía}
+\CommentTok{    """}
+    
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"SIMULADOR DE POLÍTICA MONETARIA"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{60}\NormalTok{)}
+    
+    \ControlFlowTok{try}\NormalTok{:}
+        \CommentTok{\# Extraer indicadores}
+\NormalTok{        inflacion\_actual }\OperatorTok{=}\NormalTok{ estado\_economia[}\StringTok{\textquotesingle{}inflacion\_actual\textquotesingle{}}\NormalTok{]}
+\NormalTok{        inflacion\_esperada }\OperatorTok{=}\NormalTok{ estado\_economia[}\StringTok{\textquotesingle{}inflacion\_esperada\textquotesingle{}}\NormalTok{]}
+\NormalTok{        meta\_inflacion }\OperatorTok{=}\NormalTok{ estado\_economia[}\StringTok{\textquotesingle{}meta\_inflacion\textquotesingle{}}\NormalTok{]}
+\NormalTok{        brecha\_producto }\OperatorTok{=}\NormalTok{ estado\_economia[}\StringTok{\textquotesingle{}brecha\_producto\textquotesingle{}}\NormalTok{]}
+\NormalTok{        tasa\_actual }\OperatorTok{=}\NormalTok{ estado\_economia[}\StringTok{\textquotesingle{}tasa\_interes\_actual\textquotesingle{}}\NormalTok{]}
+        
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Indicadores macroeconómicos:"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Inflación actual: }\SpecialCharTok{\{}\NormalTok{inflacion\_actual}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Inflación esperada: }\SpecialCharTok{\{}\NormalTok{inflacion\_esperada}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Meta de inflación: }\SpecialCharTok{\{}\NormalTok{meta\_inflacion}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Brecha del producto: }\SpecialCharTok{\{}\NormalTok{brecha\_producto}\SpecialCharTok{:+.2f\}}\SpecialStringTok{\%"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Tasa de interés actual: }\SpecialCharTok{\{}\NormalTok{tasa\_actual}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%"}\NormalTok{)}
+        
+        \CommentTok{\# Regla de Taylor simplificada}
+        \CommentTok{\# r = r* + π + 0.5(π {-} π*) + 0.5(y)}
+        \CommentTok{\# donde:}
+        \CommentTok{\# r = tasa de interés nominal}
+        \CommentTok{\# r* = tasa de interés real neutral (asumimos 2\%)}
+        \CommentTok{\# π = inflación}
+        \CommentTok{\# π* = meta de inflación}
+        \CommentTok{\# y = brecha del producto}
+        
+\NormalTok{        tasa\_neutral }\OperatorTok{=} \FloatTok{2.0}
+\NormalTok{        desviacion\_inflacion }\OperatorTok{=}\NormalTok{ inflacion\_esperada }\OperatorTok{{-}}\NormalTok{ meta\_inflacion}
+        
+        \CommentTok{\# Calcular tasa sugerida según Regla de Taylor}
+\NormalTok{        tasa\_sugerida }\OperatorTok{=}\NormalTok{ tasa\_neutral }\OperatorTok{+}\NormalTok{ inflacion\_esperada }\OperatorTok{+} \OperatorTok{\textbackslash{}}
+                       \FloatTok{0.5} \OperatorTok{*}\NormalTok{ desviacion\_inflacion }\OperatorTok{+} \OperatorTok{\textbackslash{}}
+                       \FloatTok{0.5} \OperatorTok{*}\NormalTok{ brecha\_producto}
+        
+        \CommentTok{\# Determinar acción}
+\NormalTok{        diferencia }\OperatorTok{=}\NormalTok{ tasa\_sugerida }\OperatorTok{{-}}\NormalTok{ tasa\_actual}
+        
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialCharTok{\{}\StringTok{\textquotesingle{}=\textquotesingle{}}\OperatorTok{*}\DecValTok{60}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"ANÁLISIS:"}\NormalTok{)}
+        
+        \CommentTok{\# Evaluar presiones inflacionarias}
+        \ControlFlowTok{if}\NormalTok{ inflacion\_actual }\OperatorTok{\textgreater{}}\NormalTok{ meta\_inflacion }\OperatorTok{+} \FloatTok{1.0}\NormalTok{:}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"⚠️  Inflación significativamente por encima de la meta"}\NormalTok{)}
+\NormalTok{            presion\_inflacionaria }\OperatorTok{=} \StringTok{"alta"}
+        \ControlFlowTok{elif}\NormalTok{ inflacion\_actual }\OperatorTok{\textgreater{}}\NormalTok{ meta\_inflacion:}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"○ Inflación ligeramente por encima de la meta"}\NormalTok{)}
+\NormalTok{            presion\_inflacionaria }\OperatorTok{=} \StringTok{"moderada"}
+        \ControlFlowTok{elif}\NormalTok{ inflacion\_actual }\OperatorTok{\textless{}}\NormalTok{ meta\_inflacion }\OperatorTok{{-}} \FloatTok{1.0}\NormalTok{:}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"○ Inflación significativamente por debajo de la meta"}\NormalTok{)}
+\NormalTok{            presion\_inflacionaria }\OperatorTok{=} \StringTok{"baja"}
+        \ControlFlowTok{else}\NormalTok{:}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"✓ Inflación dentro del rango meta"}\NormalTok{)}
+\NormalTok{            presion\_inflacionaria }\OperatorTok{=} \StringTok{"normal"}
+        
+        \CommentTok{\# Evaluar actividad económica}
+        \ControlFlowTok{if}\NormalTok{ brecha\_producto }\OperatorTok{\textgreater{}} \FloatTok{2.0}\NormalTok{:}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"⚠️  Economía sobrecalentada"}\NormalTok{)}
+\NormalTok{            presion\_demanda }\OperatorTok{=} \StringTok{"alta"}
+        \ControlFlowTok{elif}\NormalTok{ brecha\_producto }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"○ Economía por encima de su potencial"}\NormalTok{)}
+\NormalTok{            presion\_demanda }\OperatorTok{=} \StringTok{"moderada"}
+        \ControlFlowTok{elif}\NormalTok{ brecha\_producto }\OperatorTok{\textless{}} \OperatorTok{{-}}\FloatTok{2.0}\NormalTok{:}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"⚠️  Economía en recesión"}\NormalTok{)}
+\NormalTok{            presion\_demanda }\OperatorTok{=} \StringTok{"muy baja"}
+        \ControlFlowTok{else}\NormalTok{:}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"○ Economía por debajo de su potencial"}\NormalTok{)}
+\NormalTok{            presion\_demanda }\OperatorTok{=} \StringTok{"baja"}
+        
+        \CommentTok{\# Recomendación}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialCharTok{\{}\StringTok{\textquotesingle{}=\textquotesingle{}}\OperatorTok{*}\DecValTok{60}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"RECOMENDACIÓN DE POLÍTICA:"}\NormalTok{)}
+        
+        \ControlFlowTok{if} \BuiltInTok{abs}\NormalTok{(diferencia) }\OperatorTok{\textless{}} \FloatTok{0.25}\NormalTok{:}
+\NormalTok{            decision }\OperatorTok{=} \StringTok{"MANTENER"}
+\NormalTok{            tasa\_nueva }\OperatorTok{=}\NormalTok{ tasa\_actual}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"✓ MANTENER la tasa de interés en }\SpecialCharTok{\{}\NormalTok{tasa\_actual}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%"}\NormalTok{)}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  La tasa actual es adecuada para las condiciones macroeconómicas"}\NormalTok{)}
+        
+        \ControlFlowTok{elif}\NormalTok{ diferencia }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+            \ControlFlowTok{if} \BuiltInTok{abs}\NormalTok{(diferencia) }\OperatorTok{\textgreater{}} \FloatTok{0.75}\NormalTok{:}
+\NormalTok{                ajuste }\OperatorTok{=} \FloatTok{0.50}
+\NormalTok{                decision }\OperatorTok{=} \StringTok{"SUBIR FUERTE"}
+            \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{                ajuste }\OperatorTok{=} \FloatTok{0.25}
+\NormalTok{                decision }\OperatorTok{=} \StringTok{"SUBIR"}
+            
+\NormalTok{            tasa\_nueva }\OperatorTok{=}\NormalTok{ tasa\_actual }\OperatorTok{+}\NormalTok{ ajuste}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"↑ }\SpecialCharTok{\{}\NormalTok{decision}\SpecialCharTok{\}}\SpecialStringTok{ la tasa de interés a }\SpecialCharTok{\{}\NormalTok{tasa\_nueva}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%"}\NormalTok{)}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Ajuste: +}\SpecialCharTok{\{}\NormalTok{ajuste}\SpecialCharTok{:.2f\}}\SpecialStringTok{ puntos porcentuales"}\NormalTok{)}
+            
+            \ControlFlowTok{if}\NormalTok{ presion\_inflacionaria }\KeywordTok{in}\NormalTok{ [}\StringTok{"alta"}\NormalTok{, }\StringTok{"moderada"}\NormalTok{]:}
+                \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Justificación: Controlar presiones inflacionarias"}\NormalTok{)}
+            \ControlFlowTok{if}\NormalTok{ presion\_demanda }\OperatorTok{==} \StringTok{"alta"}\NormalTok{:}
+                \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Justificación: Enfriar la economía sobrecalentada"}\NormalTok{)}
+        
+        \ControlFlowTok{else}\NormalTok{:}
+            \ControlFlowTok{if} \BuiltInTok{abs}\NormalTok{(diferencia) }\OperatorTok{\textgreater{}} \FloatTok{0.75}\NormalTok{:}
+\NormalTok{                ajuste }\OperatorTok{=} \OperatorTok{{-}}\FloatTok{0.50}
+\NormalTok{                decision }\OperatorTok{=} \StringTok{"BAJAR FUERTE"}
+            \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{                ajuste }\OperatorTok{=} \OperatorTok{{-}}\FloatTok{0.25}
+\NormalTok{                decision }\OperatorTok{=} \StringTok{"BAJAR"}
+            
+\NormalTok{            tasa\_nueva }\OperatorTok{=}\NormalTok{ tasa\_actual }\OperatorTok{+}\NormalTok{ ajuste}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"↓ }\SpecialCharTok{\{}\NormalTok{decision}\SpecialCharTok{\}}\SpecialStringTok{ la tasa de interés a }\SpecialCharTok{\{}\NormalTok{tasa\_nueva}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%"}\NormalTok{)}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Ajuste: }\SpecialCharTok{\{}\NormalTok{ajuste}\SpecialCharTok{:.2f\}}\SpecialStringTok{ puntos porcentuales"}\NormalTok{)}
+            
+            \ControlFlowTok{if}\NormalTok{ presion\_inflacionaria }\OperatorTok{==} \StringTok{"baja"}\NormalTok{:}
+                \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Justificación: Evitar presiones deflacionarias"}\NormalTok{)}
+            \ControlFlowTok{if}\NormalTok{ presion\_demanda }\KeywordTok{in}\NormalTok{ [}\StringTok{"baja"}\NormalTok{, }\StringTok{"muy baja"}\NormalTok{]:}
+                \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Justificación: Estimular la actividad económica"}\NormalTok{)}
+        
+        \CommentTok{\# Efectos esperados}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Efectos esperados:"}\NormalTok{)}
+        \ControlFlowTok{if}\NormalTok{ decision }\KeywordTok{in}\NormalTok{ [}\StringTok{"SUBIR"}\NormalTok{, }\StringTok{"SUBIR FUERTE"}\NormalTok{]:}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  • Encarecimiento del crédito"}\NormalTok{)}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  • Reducción del consumo e inversión"}\NormalTok{)}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  • Desaceleración de la inflación"}\NormalTok{)}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  • Apreciación de la moneda local"}\NormalTok{)}
+        \ControlFlowTok{elif}\NormalTok{ decision }\KeywordTok{in}\NormalTok{ [}\StringTok{"BAJAR"}\NormalTok{, }\StringTok{"BAJAR FUERTE"}\NormalTok{]:}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  • Abaratamiento del crédito"}\NormalTok{)}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  • Estímulo al consumo e inversión"}\NormalTok{)}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  • Impulso a la actividad económica"}\NormalTok{)}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  • Depreciación de la moneda local"}\NormalTok{)}
+        \ControlFlowTok{else}\NormalTok{:}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  • Mantenimiento de las condiciones actuales"}\NormalTok{)}
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  • Monitoreo continuo de indicadores"}\NormalTok{)}
+        
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\StringTok{\textquotesingle{}=\textquotesingle{}}\OperatorTok{*}\DecValTok{60}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+        
+        \ControlFlowTok{return}\NormalTok{ \{}
+            \StringTok{\textquotesingle{}decision\textquotesingle{}}\NormalTok{: decision,}
+            \StringTok{\textquotesingle{}tasa\_nueva\textquotesingle{}}\NormalTok{: tasa\_nueva,}
+            \StringTok{\textquotesingle{}tasa\_sugerida\_taylor\textquotesingle{}}\NormalTok{: tasa\_sugerida}
+\NormalTok{        \}}
+        
+    \ControlFlowTok{except} \PreprocessorTok{Exception} \ImportTok{as}\NormalTok{ e:}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Error en la simulación: }\SpecialCharTok{\{}\NormalTok{e}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+        \ControlFlowTok{return} \VariableTok{None}
+
+\CommentTok{\# Escenario 1: Inflación alta}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"ESCENARIO 1: Presiones inflacionarias"}\NormalTok{)}
+\NormalTok{escenario\_1 }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}inflacion\_actual\textquotesingle{}}\NormalTok{: }\FloatTok{5.2}\NormalTok{,}
+    \StringTok{\textquotesingle{}inflacion\_esperada\textquotesingle{}}\NormalTok{: }\FloatTok{5.5}\NormalTok{,}
+    \StringTok{\textquotesingle{}meta\_inflacion\textquotesingle{}}\NormalTok{: }\FloatTok{3.0}\NormalTok{,}
+    \StringTok{\textquotesingle{}brecha\_producto\textquotesingle{}}\NormalTok{: }\FloatTok{1.5}\NormalTok{,}
+    \StringTok{\textquotesingle{}tasa\_interes\_actual\textquotesingle{}}\NormalTok{: }\FloatTok{5.5}
+\NormalTok{\}}
+\NormalTok{resultado\_1 }\OperatorTok{=}\NormalTok{ simular\_politica\_monetaria(escenario\_1)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"} \OperatorTok{+} \StringTok{"="}\OperatorTok{*}\DecValTok{80} \OperatorTok{+} \StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+
+\CommentTok{\# Escenario 2: Recesión}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"ESCENARIO 2: Recesión económica"}\NormalTok{)}
+\NormalTok{escenario\_2 }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}inflacion\_actual\textquotesingle{}}\NormalTok{: }\FloatTok{2.0}\NormalTok{,}
+    \StringTok{\textquotesingle{}inflacion\_esperada\textquotesingle{}}\NormalTok{: }\FloatTok{1.8}\NormalTok{,}
+    \StringTok{\textquotesingle{}meta\_inflacion\textquotesingle{}}\NormalTok{: }\FloatTok{3.0}\NormalTok{,}
+    \StringTok{\textquotesingle{}brecha\_producto\textquotesingle{}}\NormalTok{: }\OperatorTok{{-}}\FloatTok{3.5}\NormalTok{,}
+    \StringTok{\textquotesingle{}tasa\_interes\_actual\textquotesingle{}}\NormalTok{: }\FloatTok{4.0}
+\NormalTok{\}}
+\NormalTok{resultado\_2 }\OperatorTok{=}\NormalTok{ simular\_politica\_monetaria(escenario\_2)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Conclusión}\label{conclusiuxf3n}
+
+En esta guía hemos explorado la ejecución condicional en Python:
+
+\textbf{Expresiones booleanas}
+
+Expresiones que evalúan a True o False. Son la base de la toma de
+decisiones en programación.
+
+\textbf{Operadores de comparación}
+
+Permiten comparar valores: \texttt{==}, \texttt{!=},
+\texttt{\textgreater{}}, \texttt{\textless{}}, \texttt{\textgreater{}=},
+\texttt{\textless{}=}.
+
+\textbf{Operadores lógicos}
+
+Combinan expresiones booleanas: \texttt{and}, \texttt{or}, \texttt{not}.
+La precedencia es: \texttt{not} \textgreater{} \texttt{and}
+\textgreater{} \texttt{or}.
+
+\textbf{Estructuras condicionales}
+
+\texttt{if} para ejecución simple, \texttt{if-else} para alternativas,
+\texttt{if-elif-else} para múltiples condiciones.
+
+\textbf{Condicionales anidados}
+
+Permiten lógica compleja pero deben usarse con moderación para mantener
+legibilidad.
+
+\textbf{Manejo de excepciones}
+
+\texttt{try-except} permite capturar y manejar errores sin detener el
+programa.
+
+\textbf{Evaluación de cortocircuito}
+
+Python evalúa expresiones booleanas eficientemente, deteniéndose cuando
+el resultado es determinado.
+
+\section{Próximos pasos}\label{pruxf3ximos-pasos}
+
+En la siguiente guía (Guía 5: Iteraciones) exploraremos:
+
+\begin{itemize}
+\tightlist
+\item
+  Actualización de variables
+\item
+  Bucles definidos con for
+\item
+  Iteración doble, múltiple y anidada
+\item
+  Bucles while
+\item
+  List comprehension
+\end{itemize}
+
+Las iteraciones nos permitirán procesar grandes cantidades de datos
+económicos de manera eficiente y automatizada.
+
+\section{Recursos adicionales}\label{recursos-adicionales}
+
+Para profundizar en ejecución condicional:
+
+\begin{itemize}
+\tightlist
+\item
+  Python Control Flow: docs.python.org/tutorial/controlflow.html
+\item
+  Práctica con casos económicos reales
+\item
+  Estudio de algoritmos de decisión en economía
+\end{itemize}
 
 \section{Publicaciones Similares}\label{publicaciones-similares}
 

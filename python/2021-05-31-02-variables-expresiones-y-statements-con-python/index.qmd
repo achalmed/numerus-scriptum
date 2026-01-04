@@ -35,7 +35,7 @@ citation:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python/index.pdf
 date: 05/31/2021
-draft: true
+draft: false
 image: ../featured.jpg
 ---
 
