@@ -40,7 +40,6 @@ draft: false
 image: ../featured.jpg
 ---
 
-
 En esta tercera guía exploraremos las estructuras de datos fundamentales de Python: listas, diccionarios y tuplas. Estas estructuras son esenciales para organizar y manipular datos económicos de manera eficiente.
 
 # Listas
@@ -49,7 +48,7 @@ Las listas son colecciones ordenadas y mutables de elementos en Python. Son uno 
 
 ## Creación de listas
 
-::: {#d73951f1 .cell}
+::: {#41bcf1d4 .cell}
 ``` {.python .cell-code}
 # Lista de precios
 precios = [10.50, 12.30, 15.80, 9.90, 11.20]
@@ -78,7 +77,7 @@ print(datos_vacios)
 
 Las listas pueden contener elementos de diferentes tipos:
 
-::: {#813ceb2c .cell}
+::: {#6956c995 .cell}
 ``` {.python .cell-code}
 # Lista mixta con datos económicos
 datos_empresa = ['TechCorp', 2015, 1500000.50, True, ['Lima', 'Arequipa']]
@@ -101,7 +100,7 @@ indicador_economico = [
 
 Las listas en Python usan indexación de base cero (el primer elemento está en la posición 0):
 
-::: {#fe2011e8 .cell}
+::: {#5ae93f00 .cell}
 ``` {.python .cell-code}
 # Datos de inflación mensual
 inflacion_mensual = [0.5, 0.3, 0.4, 0.6, 0.2, 0.5, 0.7, 0.4, 0.5, 0.6, 0.3, 0.4]
@@ -130,7 +129,7 @@ print(f"Penúltimo mes: {penultimo_mes}%")  # 0.3%
 
 El slicing permite extraer sublistas:
 
-::: {#2f574a88 .cell}
+::: {#be867d74 .cell}
 ``` {.python .cell-code}
 # PIB trimestral
 pib_trimestral = [50000, 52000, 51500, 53000, 54000, 55500, 56000, 57200]
@@ -177,7 +176,7 @@ print(f"Invertido: {invertido}")
 
 Las listas son mutables, podemos cambiar sus elementos:
 
-::: {#9a2e2825 .cell}
+::: {#5d63a51d .cell}
 ``` {.python .cell-code}
 # Proyecciones de crecimiento
 crecimiento = [2.5, 3.0, 3.2, 2.8, 3.5]
@@ -202,7 +201,7 @@ print(f"Final: {crecimiento}")
 
 Las listas pueden contener otras listas, útil para representar matrices o datos multidimensionales:
 
-::: {#d17514c9 .cell}
+::: {#a2f5f11e .cell}
 ``` {.python .cell-code}
 # Matriz de datos económicos por región y año
 # Filas: regiones, Columnas: años
@@ -240,7 +239,7 @@ Este es uno de los conceptos más importantes y frecuentemente malentendidos en 
 
 Cuando asignamos una lista a otra variable, Python no crea una copia nueva. Ambas variables apuntan al mismo objeto en memoria:
 
-::: {#7627e86b .cell}
+::: {#9a6ee888 .cell}
 ``` {.python .cell-code}
 # Lista original de precios
 precios_2023 = [100, 105, 110, 108, 112]
@@ -274,7 +273,7 @@ precios_2024 ──┘
 
 Para crear una copia independiente de una lista:
 
-::: {#6597e8f2 .cell}
+::: {#cc267d45 .cell}
 ``` {.python .cell-code}
 import copy
 
@@ -308,7 +307,7 @@ print(f"¿Son el mismo objeto? {inflacion_base is inflacion_copia1}")  # False
 
 La copia superficial no copia las listas internas:
 
-::: {#78737de9 .cell}
+::: {#d2a565dd .cell}
 ``` {.python .cell-code}
 import copy
 
@@ -339,7 +338,7 @@ print(f"Copia: {datos_copia_superficial}")
 
 Para copiar listas que contienen otras listas:
 
-::: {#95cf34f8 .cell}
+::: {#5dc9898e .cell}
 ``` {.python .cell-code}
 import copy
 
@@ -368,7 +367,7 @@ print(f"Copia profunda: {datos_copia_profunda}")
 
 ## Ejemplo aplicado: Escenarios económicos
 
-::: {#34e72e36 .cell}
+::: {#cf563b64 .cell}
 ``` {.python .cell-code}
 import copy
 
@@ -408,7 +407,7 @@ print(escenario_pesimista)
 
 ## Concatenación y repetición
 
-::: {#ff3f2241 .cell}
+::: {#c38dd500 .cell}
 ``` {.python .cell-code}
 # Datos del primer semestre
 primer_semestre = [50000, 52000, 51500]
@@ -436,7 +435,7 @@ print(f"Tasas iniciales: {tasas_iniciales}")
 
 ## Pertenencia a listas
 
-::: {#b06b8e51 .cell}
+::: {#1441f598 .cell}
 ``` {.python .cell-code}
 # Sectores económicos
 sectores_primarios = ['Agricultura', 'Pesca', 'Minería']
@@ -460,7 +459,7 @@ else:
 
 ## Comparación de listas
 
-::: {#fc2b7c72 .cell}
+::: {#bf43f733 .cell}
 ``` {.python .cell-code}
 # PIB por trimestre de dos años
 pib_2022 = [50000, 52000, 51500, 53000]
@@ -482,7 +481,7 @@ print(pib_2022 < pib_2023)  # True (compara primer elemento diferente)
 
 ## Eliminar elementos
 
-::: {#098949f6 .cell}
+::: {#4a31966c .cell}
 ``` {.python .cell-code}
 # Lista de sectores
 sectores = ['Agricultura', 'Minería', 'Manufactura', 'Construcción', 'Servicios']
@@ -517,7 +516,7 @@ print(f"Lista vacía: {sectores}")
 
 ## Funciones básicas
 
-::: {#bbe564f9 .cell}
+::: {#704dcdd5 .cell}
 ``` {.python .cell-code}
 # Datos de ventas mensuales (en miles)
 ventas = [45, 52, 48, 55, 60, 58, 62, 59, 65, 70, 68, 75]
@@ -549,7 +548,7 @@ print(f"Venta promedio: {ventas_promedio:.2f} mil")  # 59.75
 
 Agrega un elemento al final de la lista:
 
-::: {#b32e4eef .cell}
+::: {#0277dd6b .cell}
 ``` {.python .cell-code}
 # Registro de inflación mensual
 inflacion = [0.5, 0.3, 0.4]
@@ -572,7 +571,7 @@ print(f"Con lista anidada: {inflacion}")
 
 Extiende la lista agregando elementos de un iterable:
 
-::: {#e3813c48 .cell}
+::: {#2dfaf462 .cell}
 ``` {.python .cell-code}
 # PIB trimestral
 pib_q1_q2 = [50000, 52000]
@@ -601,7 +600,7 @@ print(f"Con append: {lista2}")  # [1, 2, 3, [4, 5]]
 
 Inserta un elemento en una posición específica:
 
-::: {#d51f6d0d .cell}
+::: {#7defd145 .cell}
 ``` {.python .cell-code}
 # Tasas de crecimiento
 crecimiento = [2.5, 3.0, 3.5, 4.0]
@@ -624,7 +623,7 @@ print(f"Con valor inicial: {crecimiento}")
 
 Elimina la primera ocurrencia de un valor:
 
-::: {#ec12aec5 .cell}
+::: {#f03f3f7d .cell}
 ``` {.python .cell-code}
 # Sectores para análisis
 sectores = ['Minería', 'Agricultura', 'Minería', 'Manufactura']
@@ -648,7 +647,7 @@ except ValueError:
 
 Elimina y retorna un elemento:
 
-::: {#5d2bacbd .cell}
+::: {#aa782007 .cell}
 ``` {.python .cell-code}
 # Cola de proyectos
 proyectos = ['Proyecto A', 'Proyecto B', 'Proyecto C', 'Proyecto D']
@@ -671,7 +670,7 @@ print(f"Proyectos pendientes: {proyectos}")
 
 Retorna el índice de la primera ocurrencia de un valor:
 
-::: {#9214f93d .cell}
+::: {#ac1af067 .cell}
 ``` {.python .cell-code}
 # Sectores económicos
 sectores = ['Agricultura', 'Minería', 'Manufactura', 'Servicios', 'Construcción']
@@ -695,7 +694,7 @@ print(f"Índice de 2 desde posición 2: {indice}")  # 3
 
 Cuenta las ocurrencias de un valor:
 
-::: {#d86a7a2b .cell}
+::: {#c54576c1 .cell}
 ``` {.python .cell-code}
 # Calificaciones de riesgo
 calificaciones = ['AAA', 'AA', 'A', 'BBB', 'AA', 'AAA', 'A', 'AAA']
@@ -716,7 +715,7 @@ print(f"Calificación A: {num_a} veces")      # 2
 
 Ordena la lista in-place (modifica la lista original):
 
-::: {#423c4d89 .cell}
+::: {#773ce1bc .cell}
 ``` {.python .cell-code}
 # Tasas de interés desordenadas
 tasas = [0.065, 0.045, 0.075, 0.055, 0.050]
@@ -745,7 +744,7 @@ print(f"Países ordenados: {paises}")
 
 Retorna una nueva lista ordenada (no modifica la original):
 
-::: {#6bd0a201 .cell}
+::: {#f12df5a1 .cell}
 ``` {.python .cell-code}
 # PIB de regiones
 pib_regiones = [100000, 50000, 75000, 30000, 45000]
@@ -767,7 +766,7 @@ print(f"PIB descendente: {pib_descendente}")
 
 Invierte el orden de los elementos:
 
-::: {#f90f5dbd .cell}
+::: {#d59d9ad0 .cell}
 ``` {.python .cell-code}
 # Años en orden cronológico
 anos = [2019, 2020, 2021, 2022, 2023]
@@ -792,7 +791,7 @@ Los diccionarios son colecciones de pares clave-valor, desordenadas (hasta Pytho
 
 ## Creación de diccionarios
 
-::: {#09949a7b .cell}
+::: {#e0e340b7 .cell}
 ``` {.python .cell-code}
 # Diccionario vacío
 pais_vacio = {}
@@ -824,7 +823,7 @@ print(indicadores)
 
 ## Acceso a elementos
 
-::: {#8f07e475 .cell}
+::: {#bfeb422c .cell}
 ``` {.python .cell-code}
 # Datos macroeconómicos
 macro = {
@@ -860,7 +859,7 @@ except KeyError:
 
 ## Modificación de diccionarios
 
-::: {#9963038b .cell}
+::: {#fc97b0c5 .cell}
 ``` {.python .cell-code}
 # Indicadores económicos
 indicadores = {
@@ -889,7 +888,7 @@ print(f"Después de eliminar: {indicadores}")
 
 ## Verificación de claves
 
-::: {#de2a22d6 .cell}
+::: {#ae75eca6 .cell}
 ``` {.python .cell-code}
 # Datos de un sector económico
 sector = {
@@ -920,7 +919,7 @@ else:
 
 ## Métodos keys(), values(), items()
 
-::: {#327e0762 .cell}
+::: {#5f594a27 .cell}
 ``` {.python .cell-code}
 # Exportaciones por sector (millones USD)
 exportaciones = {
@@ -960,7 +959,7 @@ for sector, valor in exportaciones.items():
 
 ## Método update()
 
-::: {#9be01922 .cell}
+::: {#08b5c9d6 .cell}
 ``` {.python .cell-code}
 # Datos base
 datos_2022 = {
@@ -987,7 +986,7 @@ print(f"Datos actualizados: {datos_2022}")
 
 ## Método pop()
 
-::: {#ac33b884 .cell}
+::: {#ca52c169 .cell}
 ``` {.python .cell-code}
 # Indicadores trimestrales
 indicadores = {
@@ -1012,7 +1011,7 @@ print(f"Valor Q5: {valor_q5}")  # 0 (no existe)
 
 ## Método copy()
 
-::: {#f5478c77 .cell}
+::: {#d2ef881b .cell}
 ``` {.python .cell-code}
 import copy
 
@@ -1044,7 +1043,7 @@ print(f"Copia profunda: {datos_profunda}")
 
 ## Método clear()
 
-::: {#c40a7a9e .cell}
+::: {#2377ca00 .cell}
 ``` {.python .cell-code}
 # Datos temporales
 temp = {'a': 1, 'b': 2, 'c': 3}
@@ -1058,7 +1057,7 @@ print(f"Después de clear: {temp}")  # {}
 
 ## Diccionarios anidados
 
-::: {#11eec965 .cell}
+::: {#46f35662 .cell}
 ``` {.python .cell-code}
 # Datos económicos por país
 america_latina = {
@@ -1103,7 +1102,7 @@ Las tuplas son colecciones ordenadas e inmutables. Son más eficientes en memori
 
 ## Creación de tuplas
 
-::: {#7f84212f .cell}
+::: {#66c17bab .cell}
 ``` {.python .cell-code}
 # Tupla con paréntesis
 coordenadas = (10.5, 15.3)
@@ -1136,7 +1135,7 @@ print(tupla_tasas)
 
 ## Características de tuplas
 
-::: {#83a1e1c7 .cell}
+::: {#0c8c81fa .cell}
 ``` {.python .cell-code}
 # Datos macroeconómicos como tupla
 macro_2023 = ('Peru', 242632, 3.5, 7.2)
@@ -1166,7 +1165,7 @@ print(tupla_con_lista)  # (1, 2, [3, 4, 5])
 
 ## Ventajas de tuplas
 
-::: {#babc822a .cell}
+::: {#cabe9690 .cell}
 ``` {.python .cell-code}
 import sys
 
@@ -1197,7 +1196,7 @@ print(f"Coordenadas de Lima: {lima_coords}")
 
 ## Desempaquetado de tuplas
 
-::: {#842f1344 .cell}
+::: {#c27b4a4b .cell}
 ``` {.python .cell-code}
 # Datos de una transacción
 transaccion = ('Compra', 1000, 3.75, 'USD')
@@ -1229,7 +1228,7 @@ print(f"Último: {ultimo}")      # 5
 
 ## Métodos de tuplas
 
-::: {#eef8fda8 .cell}
+::: {#9692c6bc .cell}
 ``` {.python .cell-code}
 # Tuplas tienen pocos métodos (porque son inmutables)
 calificaciones = ('AAA', 'AA', 'A', 'BBB', 'AA', 'AAA', 'A', 'AAA')
@@ -1258,7 +1257,7 @@ print(f"Suma: {sum(precios)}")     # 508
 
 El desempaquetado funciona con diccionarios también:
 
-::: {#88a6b449 .cell}
+::: {#654e7371 .cell}
 ``` {.python .cell-code}
 # Desempaquetar claves
 datos = {'nombre': 'Peru', 'pib': 242632, 'moneda': 'PEN'}
@@ -1282,7 +1281,7 @@ for clave, valor in datos.items():
 
 ## Retorno múltiple de funciones
 
-::: {#bb732317 .cell}
+::: {#d394213d .cell}
 ``` {.python .cell-code}
 def calcular_estadisticas(valores):
     """Retorna múltiples estadísticas como tupla"""
@@ -1308,7 +1307,7 @@ print(f"Venta promedio: {prom_venta:.2f}")
 
 ## Ejemplo 1: Análisis de cartera de inversiones
 
-::: {#d8031f50 .cell}
+::: {#c026a5ba .cell}
 ``` {.python .cell-code}
 # Cartera de inversiones
 cartera = {
@@ -1361,7 +1360,7 @@ print(f"  Rentabilidad total: {rentabilidad_total:+.2f}%")
 
 ## Ejemplo 2: Análisis de comercio exterior
 
-::: {#60b4283e .cell}
+::: {#5df0c467 .cell}
 ``` {.python .cell-code}
 # Datos de comercio por país (millones USD)
 comercio_exterior = {
@@ -1421,7 +1420,7 @@ print(f"  Balanza comercial total: USD {balanza_total:+,} M")
 
 ## Ejemplo 3: Sistema de calificación de riesgo
 
-::: {#d77dca97 .cell}
+::: {#cd151002 .cell}
 ``` {.python .cell-code}
 # Empresas y sus indicadores financieros
 empresas = [
@@ -1506,7 +1505,7 @@ for i, (empresa, calif, puntos, _) in enumerate(calificaciones, 1):
 
 ## Ejercicio 1: Administrador de presupuesto familiar
 
-::: {#aba117e8 .cell}
+::: {#cd55e705 .cell}
 ``` {.python .cell-code}
 # Sistema de presupuesto mensual
 presupuesto = {
@@ -1589,7 +1588,7 @@ else:
 
 ## Ejercicio 2: Análisis de series de tiempo económicas
 
-::: {#e73fd754 .cell}
+::: {#875868bc .cell}
 ``` {.python .cell-code}
 # PIB trimestral de múltiples años
 pib_trimestral = {
@@ -1652,7 +1651,7 @@ print(f"Peor trimestre: Q{peor_trimestre[1]} {peor_trimestre[0]} - S/ {peor_trim
 
 ## Ejercicio 3: Sistema de inventario
 
-::: {#4ff6201b .cell}
+::: {#2c268dca .cell}
 ``` {.python .cell-code}
 # Inventario de productos
 inventario = {

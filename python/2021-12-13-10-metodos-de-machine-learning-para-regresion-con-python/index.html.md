@@ -47,7 +47,7 @@ En esta décima guía exploraremos los principales algoritmos de machine learnin
 
 La regresión es un método para predecir valores numéricos continuos (a diferencia de clasificación que predice categorías discretas).
 
-::: {#4dbdfdf9 .cell execution_count=1}
+::: {#e312c295 .cell}
 ``` {.python .cell-code}
 import pandas as pd
 import numpy as np
@@ -70,12 +70,6 @@ np.random.seed(42)
 
 print("Librerías importadas exitosamente")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-Librerías importadas exitosamente
-```
-:::
 :::
 
 
@@ -115,7 +109,7 @@ Librerías importadas exitosamente
 
 ## Generar datos de ejemplo
 
-::: {#8cbdf409 .cell execution_count=2}
+::: {#01a2bbd3 .cell}
 ``` {.python .cell-code}
 def generar_datos_regresion(n=200, ruido=1.0, seed=42):
     """
@@ -169,34 +163,12 @@ plt.tight_layout()
 plt.savefig('datos_regresion.png', dpi=300, bbox_inches='tight')
 print("\nGráfico guardado como 'datos_regresion.png'")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-DATOS GENERADOS
-======================================================================
-Número de observaciones: 200
-Número de características: 2
-
-Coeficientes verdaderos:
-  Intercepto: 3.0
-  β₁: 2.0
-  β₂: -1.5
-
-Modelo verdadero: Y = 3.0 + 2.0*X₁ + -1.5*X₂ + ε
-
-Gráfico guardado como 'datos_regresion.png'
-```
-:::
-
-::: {.cell-output .cell-output-display}
-![](index_files/figure-html/cell-3-output-2.png){width=1335 height=470}
-:::
 :::
 
 
 ## Dividir datos
 
-::: {#9d90440f .cell execution_count=3}
+::: {#07a3f912 .cell}
 ``` {.python .cell-code}
 # Dividir en entrenamiento y prueba
 X_train, X_test, y_train, y_test = train_test_split(
@@ -207,15 +179,6 @@ print(f"\nDivisión de datos:")
 print(f"  Entrenamiento: {len(y_train)} observaciones")
 print(f"  Prueba: {len(y_test)} observaciones")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-División de datos:
-  Entrenamiento: 140 observaciones
-  Prueba: 60 observaciones
-```
-:::
 :::
 
 
@@ -452,7 +415,7 @@ En Python, `sklearn.linear_model.LinearRegression` utiliza descomposición SVD p
 
 ## Implementación
 
-::: {#a9c38b02 .cell execution_count=4}
+::: {#7e52b1fd .cell}
 ``` {.python .cell-code}
 # Entrenar modelo OLS
 modelo_ols = LinearRegression()
@@ -484,34 +447,12 @@ print(f"R² Test:  {r2_test:.4f}")
 print(f"MSE Train: {mse_train:.4f}")
 print(f"MSE Test:  {mse_test:.4f}")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-MODELO OLS ESTIMADO
-======================================================================
-Intercepto estimado: 2.8623
-  (Verdadero: 3.0)
-
-Coeficientes estimados:
-  β₁: 2.1145 (Verdadero: 2.0)
-  β₂: -1.3336 (Verdadero: -1.5)
-
-
-PERFORMANCE DEL MODELO
-======================================================================
-R² Train: 0.8619
-R² Test:  0.8480
-MSE Train: 0.9534
-MSE Test:  1.0902
-```
-:::
 :::
 
 
 ## Visualización de predicciones
 
-::: {#26478c86 .cell execution_count=5}
+::: {#9e8ebddc .cell}
 ``` {.python .cell-code}
 # Gráfico de valores reales vs predichos
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
@@ -542,23 +483,12 @@ plt.tight_layout()
 plt.savefig('ols_predictions.png', dpi=300, bbox_inches='tight')
 print("\nGráfico guardado como 'ols_predictions.png'")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-Gráfico guardado como 'ols_predictions.png'
-```
-:::
-
-::: {.cell-output .cell-output-display}
-![](index_files/figure-html/cell-6-output-2.png){width=1335 height=470}
-:::
 :::
 
 
 ## Análisis de residuos
 
-::: {#73013aa2 .cell execution_count=6}
+::: {#bfb84a79 .cell}
 ``` {.python .cell-code}
 # Calcular residuos
 residuos_train = y_train - y_pred_ols_train
@@ -601,16 +531,6 @@ plt.tight_layout()
 plt.savefig('ols_diagnostics.png', dpi=300, bbox_inches='tight')
 print("Gráficos de diagnóstico guardados como 'ols_diagnostics.png'")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-Gráficos de diagnóstico guardados como 'ols_diagnostics.png'
-```
-:::
-
-::: {.cell-output .cell-output-display}
-![](index_files/figure-html/cell-7-output-2.png){width=1335 height=950}
-:::
 :::
 
 
@@ -836,7 +756,7 @@ donde $\text{MSE}_k(\alpha)$ es el error cuadrático medio en el k-ésimo fold.
 
 ## Implementación
 
-::: {#d393f004 .cell execution_count=7}
+::: {#ae169aa2 .cell}
 ``` {.python .cell-code}
 # Probar diferentes valores de alpha
 alphas = [0.001, 0.01, 0.1, 1, 10, 100, 1000]
@@ -870,29 +790,12 @@ for alpha in alphas:
 
 df_ridge = pd.DataFrame(resultados_ridge)
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-REGRESIÓN RIDGE - EFECTO DE α
-======================================================================
-α          β₁           β₂           R² Train     R² Test     
-----------------------------------------------------------------------
-0.001      2.1145       -1.3336      0.8619       0.8480      
-0.010      2.1143       -1.3335      0.8619       0.8480      
-0.100      2.1129       -1.3326      0.8619       0.8480      
-1.000      2.0986       -1.3239      0.8619       0.8476      
-10.000     1.9659       -1.2421      0.8577       0.8407      
-100.000    1.2046       -0.7678      0.7036       0.6801      
-1000.000   0.2473       -0.1592      0.1909       0.1821      
-```
-:::
 :::
 
 
 ## Visualización del efecto de regularización
 
-::: {#7eda96ff .cell execution_count=8}
+::: {#f4793e81 .cell}
 ``` {.python .cell-code}
 # Gráfico de coeficientes vs alpha
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
@@ -933,20 +836,6 @@ mejor_alpha = df_ridge.loc[mejor_idx, 'alpha']
 print(f"\nMejor α: {mejor_alpha}")
 print(f"R² Test: {df_ridge.loc[mejor_idx, 'r2_test']:.4f}")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-Gráfico guardado como 'ridge_regularization.png'
-
-Mejor α: 0.001
-R² Test: 0.8480
-```
-:::
-
-::: {.cell-output .cell-output-display}
-![](index_files/figure-html/cell-9-output-2.png){width=1334 height=468}
-:::
 :::
 
 
@@ -1230,7 +1119,7 @@ donde típicamente $w_j = 1/|\hat{\beta}_j^{\text{OLS}}|^{\gamma}$ con $\gamma >
 
 ## Implementación
 
-::: {#ceb0436b .cell execution_count=9}
+::: {#86679ef8 .cell}
 ``` {.python .cell-code}
 # Probar diferentes valores de alpha
 alphas_lasso = [0.001, 0.01, 0.1, 0.5, 1, 2, 5]
@@ -1269,29 +1158,12 @@ for alpha in alphas_lasso:
 
 df_lasso = pd.DataFrame(resultados_lasso)
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-REGRESIÓN LASSO - EFECTO DE α
-================================================================================
-α          β₁           β₂           Variables≠0    R² Train     R² Test     
---------------------------------------------------------------------------------
-0.001      2.1135       -1.3325      2              0.8619       0.8479      
-0.010      2.1042       -1.3229      2              0.8619       0.8473      
-0.100      2.0112       -1.2265      2              0.8589       0.8383      
-0.500      1.5982       -0.7981      2              0.7858       0.7416      
-1.000      1.0819       -0.2626      2              0.5573       0.4907      
-2.000      0.0005       -0.0000      1              0.0003       -0.0005     
-5.000      0.0000       -0.0000      0              0.0000       -0.0007     
-```
-:::
 :::
 
 
 ## Comparación Ridge vs Lasso
 
-::: {#cb537f6e .cell execution_count=10}
+::: {#3a2c3ac3 .cell}
 ``` {.python .cell-code}
 # Visualización comparativa
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))
@@ -1348,17 +1220,6 @@ plt.tight_layout()
 plt.savefig('ridge_vs_lasso.png', dpi=300, bbox_inches='tight')
 print("\nGráfico guardado como 'ridge_vs_lasso.png'")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-Gráfico guardado como 'ridge_vs_lasso.png'
-```
-:::
-
-::: {.cell-output .cell-output-display}
-![](index_files/figure-html/cell-11-output-2.png){width=1334 height=948}
-:::
 :::
 
 
@@ -1604,7 +1465,7 @@ donde los pesos se derivan de estimaciones preliminares.
 
 ## Implementación
 
-::: {#45127298 .cell execution_count=11}
+::: {#aa2cb2e7 .cell}
 ``` {.python .cell-code}
 # Entrenar Elastic Net
 modelo_elastic = ElasticNet(alpha=0.1, l1_ratio=0.5, max_iter=10000)
@@ -1620,20 +1481,6 @@ print(f"  β₂: {modelo_elastic.coef_[1]:.4f}")
 r2_elastic = modelo_elastic.score(X_test, y_test)
 print(f"\nR² Test: {r2_elastic:.4f}")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-ELASTIC NET
-======================================================================
-Intercepto: 2.8637
-Coeficientes:
-  β₁: 1.9592
-  β₂: -1.2174
-
-R² Test: 0.8375
-```
-:::
 :::
 
 
@@ -1982,7 +1829,7 @@ donde $f_j$ son funciones suaves no paramétricas.
 
 ## Implementación
 
-::: {#4411b114 .cell execution_count=12}
+::: {#cea77c5f .cell}
 ``` {.python .cell-code}
 # Generar datos con relación no lineal
 np.random.seed(42)
@@ -2058,27 +1905,6 @@ plt.tight_layout()
 plt.savefig('polynomial_regression.png', dpi=300, bbox_inches='tight')
 print("\nGráfico guardado como 'polynomial_regression.png'")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-REGRESIÓN POLINOMIAL
-======================================================================
-Grado    R² Train     R² Test      MSE Train    MSE Test    
-----------------------------------------------------------------------
-1        0.6946       0.7957       6.4986       4.5762      
-2        0.8668       0.8265       2.8340       3.8863      
-3        0.8669       0.8276       2.8315       3.8613      
-5        0.8702       0.8254       2.7615       3.9118      
-8        0.8739       0.7964       2.6829       4.5608      
-
-Gráfico guardado como 'polynomial_regression.png'
-```
-:::
-
-::: {.cell-output .cell-output-display}
-![](index_files/figure-html/cell-13-output-2.png){width=1334 height=758}
-:::
 :::
 
 
@@ -2447,7 +2273,7 @@ Los pesos se pueden aprender para mejorar performance.
 
 ## Implementación
 
-::: {#75f79f15 .cell execution_count=13}
+::: {#3fefb7c7 .cell}
 ``` {.python .cell-code}
 # Estandarizar datos (importante para KNN)
 scaler = StandardScaler()
@@ -2511,29 +2337,6 @@ plt.tight_layout()
 plt.savefig('knn_regression.png', dpi=300, bbox_inches='tight')
 print("\nGráfico guardado como 'knn_regression.png'")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-K-NEAREST NEIGHBORS REGRESSOR
-======================================================================
-k        R² Train     R² Test      MSE Test    
-----------------------------------------------------------------------
-1        1.0000       0.7339       1.9089      
-3        0.9021       0.7823       1.5612      
-5        0.8574       0.7661       1.6778      
-10       0.8090       0.7409       1.8582      
-20       0.7545       0.7305       1.9327      
-30       0.7124       0.7041       2.1224      
-50       0.6264       0.6180       2.7400      
-
-Gráfico guardado como 'knn_regression.png'
-```
-:::
-
-::: {.cell-output .cell-output-display}
-![](index_files/figure-html/cell-14-output-2.png){width=1334 height=469}
-:::
 :::
 
 
@@ -2923,7 +2726,7 @@ $$
 
 ## Implementación de métricas
 
-::: {#ba7c76cf .cell execution_count=14}
+::: {#20a5cf04 .cell}
 ``` {.python .cell-code}
 def calcular_metricas(y_true, y_pred, modelo_nombre="Modelo"):
     """Calcula todas las métricas de regresión"""
@@ -2993,55 +2796,6 @@ print("\n\nTABLA COMPARATIVA")
 print("=" * 70)
 print(df_metricas.to_string(index=False))
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-MÉTRICAS DE EVALUACIÓN - CONJUNTO DE PRUEBA
-======================================================================
-
-OLS
---------------------------------------------------
-  MSE:          1.0902
-  RMSE:         1.0441
-  MAE:          0.8652
-  R²:           0.8480
-  R² Ajustado:  0.8427
-
-Ridge
---------------------------------------------------
-  MSE:          1.0902
-  RMSE:         1.0441
-  MAE:          0.8652
-  R²:           0.8480
-  R² Ajustado:  0.8427
-
-Lasso
---------------------------------------------------
-  MSE:          1.0907
-  RMSE:         1.0443
-  MAE:          0.8654
-  R²:           0.8479
-  R² Ajustado:  0.8426
-
-KNN
---------------------------------------------------
-  MSE:          1.5612
-  RMSE:         1.2495
-  MAE:          0.9792
-  R²:           0.7823
-  R² Ajustado:  0.7747
-
-
-TABLA COMPARATIVA
-======================================================================
-modelo      mse     rmse      mae       r2   r2_adj
-   OLS 1.090161 1.044108 0.865203 0.848011 0.842678
- Ridge 1.090163 1.044109 0.865204 0.848011 0.842678
- Lasso 1.090653 1.044343 0.865375 0.847943 0.842607
-   KNN 1.561182 1.249473 0.979177 0.782342 0.774705
-```
-:::
 :::
 
 
@@ -3049,7 +2803,7 @@ modelo      mse     rmse      mae       r2   r2_adj
 
 ## Tabla y visualización comparativa
 
-::: {#ddba101d .cell execution_count=15}
+::: {#cccb0f7f .cell}
 ``` {.python .cell-code}
 # Visualización comparativa
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))
@@ -3098,18 +2852,6 @@ print("\nComparación guardada como 'model_comparison.png'")
 df_metricas.to_csv('metricas_comparacion.csv', index=False)
 print("Tabla guardada como 'metricas_comparacion.csv'")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-Comparación guardada como 'model_comparison.png'
-Tabla guardada como 'metricas_comparacion.csv'
-```
-:::
-
-::: {.cell-output .cell-output-display}
-![](index_files/figure-html/cell-16-output-2.png){width=1334 height=950}
-:::
 :::
 
 
@@ -3117,7 +2859,7 @@ Tabla guardada como 'metricas_comparacion.csv'
 
 ## Aplicación 1: Predicción de precios de vivienda
 
-::: {#cf39c06a .cell execution_count=16}
+::: {#dcb31166 .cell}
 ``` {.python .cell-code}
 print("\n\n\nAPLICACIÓN: PREDICCIÓN DE PRECIOS DE VIVIENDA")
 print("=" * 70)
@@ -3252,92 +2994,12 @@ for nombre, modelo in modelos_vivienda.items():
     
     print(f"  {nombre:<15} S/ {pred:,.0f} mil")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-
-
-APLICACIÓN: PREDICCIÓN DE PRECIOS DE VIVIENDA
-======================================================================
-
-Dataset de viviendas:
-  Total viviendas: 500
-
-Estadísticas de precio (miles de soles):
-count     500.000000
-mean     1137.639883
-std       394.316529
-min       273.313950
-25%       806.868893
-50%      1130.556820
-75%      1453.350005
-max      2089.835315
-Name: precio_miles, dtype: float64
-
-
-RESULTADOS DE MODELOS
-======================================================================
-
-OLS:
-  R²:   0.9788
-  RMSE: 54.77 miles de soles
-  MAE:  42.88 miles de soles
-
-Ridge:
-  R²:   0.9794
-  RMSE: 54.01 miles de soles
-  MAE:  43.23 miles de soles
-
-Lasso:
-  R²:   0.9795
-  RMSE: 53.81 miles de soles
-  MAE:  42.35 miles de soles
-
-Random Forest:
-  R²:   0.9544
-  RMSE: 80.31 miles de soles
-  MAE:  67.31 miles de soles
-
-
-IMPORTANCIA DE CARACTERÍSTICAS (Random Forest)
-======================================================================
-  area_m2                   0.8669 ██████████████████████████████████████████████████████████████████████████████████████
-  area_jardin_m2            0.0562 █████
-  distancia_centro_km       0.0348 ███
-  num_habitaciones          0.0192 █
-  antiguedad_anos           0.0105 █
-  piso                      0.0054 
-  tiene_cochera             0.0039 
-  num_banos                 0.0030 
-
-
-EJEMPLO DE PREDICCIÓN
-======================================================================
-
-Características de la vivienda:
-  area_m2: 150
-  num_habitaciones: 3
-  num_banos: 2
-  antiguedad_anos: 10
-  distancia_centro_km: 5
-  area_jardin_m2: 50
-  tiene_cochera: 1
-  piso: 3
-
-Predicciones de precio (miles de soles):
-  OLS             S/ 1,088 mil
-  Ridge           S/ 1,089 mil
-  Lasso           S/ 1,085 mil
-  Random Forest   S/ 1,063 mil
-```
-:::
 :::
 
 
 ## Aplicación 2: Predicción de ventas
 
-::: {#daa97651 .cell execution_count=17}
+::: {#336d1829 .cell}
 ``` {.python .cell-code}
 print("\n\n\nAPLICACIÓN: PREDICCIÓN DE VENTAS")
 print("=" * 70)
@@ -3481,55 +3143,6 @@ if abs(elasticidad) > 1:
 else:
     print(f"  → Demanda inelástica (poco sensible al precio)")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-
-
-APLICACIÓN: PREDICCIÓN DE VENTAS
-======================================================================
-
-Dataset de ventas:
-  Total productos: 400
-
-Estadísticas de ventas mensuales:
-count    400.000000
-mean     413.779329
-std      133.711254
-min       83.286944
-25%      316.421096
-50%      412.196200
-75%      514.370629
-max      799.735141
-Name: ventas_mensuales, dtype: float64
-
-
-REGRESIÓN POLINOMIAL PARA VENTAS
-======================================================================
-Modelo                    R²         RMSE            MAE            
-----------------------------------------------------------------------
-Lineal                    0.8470     50.32           40.20          
-Polinomial (grado 2)      0.8329     52.58           43.27          
-Ridge Polinomial          0.8417     51.18           42.40          
-Random Forest             0.7766     60.80           49.69          
-
-
-ANÁLISIS DE ELASTICIDAD PRECIO
-======================================================================
-
-Curva de demanda guardada como 'curva_demanda.png'
-
-Elasticidad precio en punto medio:
-  Precio: S/ 106.94
-  Elasticidad: -0.113
-  → Demanda inelástica (poco sensible al precio)
-```
-:::
-
-::: {.cell-output .cell-output-display}
-![](index_files/figure-html/cell-18-output-2.png){width=951 height=566}
-:::
 :::
 
 
@@ -3537,7 +3150,7 @@ Elasticidad precio en punto medio:
 
 ## Ejercicio: Validación cruzada
 
-::: {#f38020fa .cell execution_count=18}
+::: {#54da4001 .cell}
 ``` {.python .cell-code}
 print("\n\n\nEJERCICIO: VALIDACIÓN CRUZADA")
 print("=" * 70)
@@ -3589,29 +3202,6 @@ mejor_modelo_cv = df_cv.loc[df_cv['r2_medio'].idxmax(), 'modelo']
 print(f"\n\nMejor modelo según validación cruzada: {mejor_modelo_cv}")
 print("(Balance entre performance y generalización)")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-
-
-EJERCICIO: VALIDACIÓN CRUZADA
-======================================================================
-
-Validación cruzada (5-fold):
-Modelo               R² medio     R² std       RMSE medio     
-----------------------------------------------------------------------
-OLS                  0.8546       0.0204       1.0002         
-Ridge (α=1)          0.8547       0.0208       0.9999         
-Ridge (α=10)         0.8524       0.0247       1.0091         
-Lasso (α=0.1)        0.8525       0.0247       1.0087         
-Lasso (α=1)          0.5366       0.0332       1.7877         
-
-
-Mejor modelo según validación cruzada: Ridge (α=1)
-(Balance entre performance y generalización)
-```
-:::
 :::
 
 

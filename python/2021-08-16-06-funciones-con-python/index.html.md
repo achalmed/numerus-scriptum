@@ -28,7 +28,7 @@ author-note:
     authorship-agreements: null
 description: Funciones, parámetros, retorno, scope y buenas prácticas para código
   modular y reutilizable en Python.
-eval: false
+eval: true
 citation:
   type: article-journal
   author:
@@ -56,7 +56,7 @@ Una función es un bloque de código reutilizable que realiza una tarea específ
 
 ## Flujo de ejecución
 
-::: {#aacc385a .cell}
+::: {#444e98df .cell}
 ``` {.python .cell-code}
 # El flujo de ejecución con funciones
 
@@ -82,7 +82,7 @@ print("Fin del programa")
 
 ## Argumentos vs Parámetros
 
-::: {#fa35bbe1 .cell}
+::: {#10dd8736 .cell}
 ``` {.python .cell-code}
 # Parámetros: variables en la definición de la función
 def calcular_pib_per_capita(pib, poblacion):  # pib y poblacion son parámetros
@@ -101,7 +101,7 @@ print(f"PIB per cápita: USD {resultado:,.2f}")
 
 ## Sintaxis básica
 
-::: {#d464978d .cell}
+::: {#a0032b0d .cell}
 ``` {.python .cell-code}
 def nombre_funcion(parametros):
     """
@@ -117,7 +117,7 @@ def nombre_funcion(parametros):
 
 ## Ejemplos básicos
 
-::: {#cd83ca55 .cell}
+::: {#b3650bb8 .cell}
 ``` {.python .cell-code}
 # Función sin parámetros
 def saludar():
@@ -167,7 +167,7 @@ print(f"Mínimo: S/ {min_v:,.2f}")
 
 ## Función sin return
 
-::: {#afce7ee2 .cell}
+::: {#3e4c5bf6 .cell}
 ``` {.python .cell-code}
 # Una función sin return retorna None implícitamente
 def imprimir_reporte(titulo, valor):
@@ -186,7 +186,7 @@ print(f"Resultado: {resultado}")  # None
 
 ## Argumentos posicionales
 
-::: {#24b605b9 .cell}
+::: {#85b9fe65 .cell}
 ``` {.python .cell-code}
 def calcular_tasa_crecimiento(valor_inicial, valor_final, periodos):
     """Calcula la tasa de crecimiento anualizada"""
@@ -202,7 +202,7 @@ print(f"Tasa de crecimiento: {tasa:.2f}%")
 
 ## Argumentos con nombre (keyword arguments)
 
-::: {#fbaec8c1 .cell}
+::: {#3b54b871 .cell}
 ``` {.python .cell-code}
 # Se pueden pasar argumentos usando el nombre del parámetro
 tasa = calcular_tasa_crecimiento(
@@ -225,7 +225,7 @@ print(f"Tasa de crecimiento: {tasa:.2f}%")
 
 ## Argumentos con valores por defecto
 
-::: {#e6ca2420 .cell}
+::: {#8052cb58 .cell}
 ``` {.python .cell-code}
 def calcular_interes_compuesto(capital, tasa=0.05, periodos=1):
     """
@@ -255,7 +255,7 @@ print(f"Monto 3: S/ {monto3:,.2f}")
 
 ## Argumentos variables (*args)
 
-::: {#70193232 .cell}
+::: {#aa4d1c69 .cell}
 ``` {.python .cell-code}
 def calcular_promedio(*valores):
     """Calcula el promedio de un número variable de argumentos"""
@@ -281,7 +281,7 @@ print(f"Promedio 3: {prom3:.2f}")
 
 ## Argumentos variables con nombre (**kwargs)
 
-::: {#1d377c5f .cell}
+::: {#bb92bbd7 .cell}
 ``` {.python .cell-code}
 def crear_reporte_economico(**indicadores):
     """Crea un reporte con indicadores económicos variables"""
@@ -317,7 +317,7 @@ crear_reporte_economico(
 
 ## Docstrings
 
-::: {#b800129a .cell}
+::: {#5339597c .cell}
 ``` {.python .cell-code}
 def calcular_vpn(flujos, tasa_descuento):
     """
@@ -360,7 +360,7 @@ print(f"\nVPN del proyecto: S/ {vpn:,.2f}")
 
 ## Anotaciones de tipo (Type hints)
 
-::: {#501ad3e5 .cell}
+::: {#0f6c56d8 .cell}
 ``` {.python .cell-code}
 def calcular_elasticidad(precio_inicial: float, 
                         precio_final: float,
@@ -389,7 +389,7 @@ print(f"Elasticidad: {elast:.2f}")
 
 ## Variables locales vs globales
 
-::: {#760922b1 .cell}
+::: {#38125854 .cell}
 ``` {.python .cell-code}
 # Variable global
 tasa_igv = 0.18
@@ -422,7 +422,7 @@ funcion_con_contador()
 
 ## Buenas prácticas
 
-::: {#36699971 .cell}
+::: {#4a818dc0 .cell}
 ``` {.python .cell-code}
 # Mejor práctica: retornar valores en lugar de modificar globales
 def calcular_estadisticas(datos, contador=0):
@@ -456,7 +456,7 @@ Las funciones lambda son funciones anónimas pequeñas y de una sola línea.
 
 ## Sintaxis básica
 
-::: {#76bf8502 .cell}
+::: {#5a8b6b48 .cell}
 ``` {.python .cell-code}
 # Función lambda simple
 cuadrado = lambda x: x ** 2
@@ -478,7 +478,7 @@ print(f"Multiplicación: {multiplicacion(2, 3, 4)}")
 
 ## Aplicaciones económicas
 
-::: {#167dec01 .cell}
+::: {#aab17bba .cell}
 ``` {.python .cell-code}
 # Calcular IGV
 calcular_igv = lambda precio: precio * 0.18
@@ -509,7 +509,7 @@ print(f"Empresa 3: {clasificar_empresa(50000000)}")
 
 ## Lambdas en estructuras de datos
 
-::: {#f813959d .cell}
+::: {#473b554d .cell}
 ``` {.python .cell-code}
 # Diccionario de funciones
 operaciones = {
@@ -546,7 +546,7 @@ for transformacion in transformaciones:
 
 La función `map()` aplica una función a cada elemento de un iterable.
 
-::: {#e63b361b .cell}
+::: {#984798a0 .cell}
 ``` {.python .cell-code}
 # Sintaxis: map(funcion, iterable)
 
@@ -585,7 +585,7 @@ for i, var in enumerate(variaciones, 1):
 
 La función `filter()` filtra elementos que cumplen una condición.
 
-::: {#f200e3ac .cell}
+::: {#7661bc54 .cell}
 ``` {.python .cell-code}
 # Sintaxis: filter(funcion, iterable)
 
@@ -622,7 +622,7 @@ print(f"\nDatos válidos: {datos_validos}")
 
 ## Combinación de map y filter
 
-::: {#84767e1e .cell}
+::: {#07ac99ab .cell}
 ``` {.python .cell-code}
 # Proceso de datos: filtrar y transformar
 ventas_brutas = [45000, -1000, 52000, 48000, 0, 55000, -500, 60000]
@@ -656,7 +656,7 @@ NumPy (Numerical Python) es la biblioteca fundamental para computación científ
 
 ## Instalación e importación
 
-::: {#af7b16b2 .cell}
+::: {#5a916267 .cell}
 ``` {.python .cell-code}
 # Instalación: pip install numpy
 import numpy as np
@@ -666,7 +666,7 @@ import numpy as np
 
 ## Creación de arrays
 
-::: {#b5fc2cb1 .cell}
+::: {#c9ec26bb .cell}
 ``` {.python .cell-code}
 # Array desde lista
 lista = [1, 2, 3, 4, 5]
@@ -704,7 +704,7 @@ print(f"Linspace: {linspace}")
 
 ## Operaciones con arrays
 
-::: {#26d658dc .cell}
+::: {#9ed1522c .cell}
 ``` {.python .cell-code}
 # Operaciones elemento por elemento
 a = np.array([1, 2, 3, 4, 5])
@@ -732,7 +732,7 @@ print(f"Exponencial: {np.exp([0.1, 0.2, 0.3])}")
 
 ## Estadísticas con NumPy
 
-::: {#83135186 .cell}
+::: {#74587370 .cell}
 ``` {.python .cell-code}
 # Datos de ventas mensuales
 ventas = np.array([45000, 52000, 48000, 55000, 60000, 58000, 
@@ -758,7 +758,7 @@ print(f"Percentil 75: S/ {np.percentile(ventas, 75):,.2f}")
 
 ## Operaciones con matrices
 
-::: {#fb70cf2a .cell}
+::: {#b5484974 .cell}
 ``` {.python .cell-code}
 # Datos de ventas por producto y región
 # Filas: Productos, Columnas: Regiones
@@ -792,7 +792,7 @@ print(ventas_matriz.T)
 
 ## Generación de números aleatorios
 
-::: {#847a0f11 .cell}
+::: {#09d266aa .cell}
 ``` {.python .cell-code}
 # Semilla para reproducibilidad
 np.random.seed(42)
@@ -843,7 +843,7 @@ Pandas es la biblioteca principal para análisis y manipulación de datos en Pyt
 
 ## Instalación e importación
 
-::: {#d8d70768 .cell}
+::: {#df63d911 .cell}
 ``` {.python .cell-code}
 # Instalación: pip install pandas
 import pandas as pd
@@ -854,7 +854,7 @@ import numpy as np
 
 ## Series de Pandas
 
-::: {#6095bec2 .cell}
+::: {#24d9ae38 .cell}
 ``` {.python .cell-code}
 # Crear Series desde lista
 ventas = pd.Series([45000, 52000, 48000, 55000, 60000])
@@ -887,7 +887,7 @@ print(ventas_con_descuento)
 
 ## DataFrames
 
-::: {#b4504416 .cell}
+::: {#720254bb .cell}
 ``` {.python .cell-code}
 # Crear DataFrame desde diccionario
 datos = {
@@ -916,7 +916,7 @@ print(df.head(2))
 
 ## Operaciones con DataFrames
 
-::: {#a85a3a78 .cell}
+::: {#bd609e2c .cell}
 ``` {.python .cell-code}
 # Crear columna calculada
 df['Total'] = df['Cantidad'] * df['Precio']
@@ -949,7 +949,7 @@ print(df.describe())
 
 ## Lectura y escritura de datos
 
-::: {#1110af0c .cell}
+::: {#9219fad0 .cell}
 ``` {.python .cell-code}
 # Crear DataFrame de ejemplo
 datos_economicos = pd.DataFrame({
@@ -979,7 +979,7 @@ print(df_leido)
 
 ## Aplicaciones económicas con Pandas
 
-::: {#f685d4cc .cell}
+::: {#4738479d .cell}
 ``` {.python .cell-code}
 # Análisis de series de tiempo
 fechas = pd.date_range('2023-01-01', periods=12, freq='M')
@@ -1014,7 +1014,7 @@ print(f"  Crecimiento total: {((ventas_mensuales.iloc[-1]/ventas_mensuales.iloc[
 
 ## Aplicación 1: Calculadora financiera completa
 
-::: {#e23c4e29 .cell}
+::: {#db5d7c4f .cell}
 ``` {.python .cell-code}
 class CalculadoraFinanciera:
     """
@@ -1094,7 +1094,7 @@ print(f"Total intereses: S/ {tabla['Interes'].sum():,.2f}")
 
 ## Aplicación 2: Análisis de portafolio con NumPy y Pandas
 
-::: {#ceb6438d .cell}
+::: {#336b57b5 .cell}
 ``` {.python .cell-code}
 def analizar_portafolio(activos, pesos, rendimientos_esperados, matriz_covarianza):
     """
@@ -1170,7 +1170,7 @@ resultados = analizar_portafolio(activos, pesos, rendimientos_esperados, cov_mat
 
 ## Ejercicio 1: Sistema de predicción económica
 
-::: {#a5c91fc8 .cell}
+::: {#c9b059ce .cell}
 ``` {.python .cell-code}
 def predecir_serie_tiempo(datos_historicos, metodo='promedio_movil', ventana=3):
     """
@@ -1232,7 +1232,7 @@ for metodo in metodos:
 
 ## Ejercicio 2: Optimizador de producción
 
-::: {#65d5a6dd .cell}
+::: {#0183666c .cell}
 ``` {.python .cell-code}
 def optimizar_produccion(productos, recursos_disponibles):
     """

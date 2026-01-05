@@ -47,7 +47,7 @@ image: ../featured.jpg
 
 # Grafico de lineas
 
-::: {#66c21588 .cell}
+::: {#08719c6c .cell}
 ``` {.python .cell-code}
 import numpy as np
 import matplotlib.pyplot as plt
@@ -95,7 +95,7 @@ plt.show()
 :::
 
 
-::: {#aad424f7 .cell}
+::: {#343367d4 .cell}
 ``` {.python .cell-code}
 import matplotlib.pyplot as plt
 import numpy as np
@@ -131,7 +131,7 @@ plt.show()
 # Gráfico de barras
 ## horizontal
 
-::: {#9412e870 .cell}
+::: {#d4be0502 .cell}
 ``` {.python .cell-code}
 import matplotlib.pyplot as plt
 
@@ -167,7 +167,7 @@ plt.show()
 
 ## vertical
 
-::: {#f02d5d46 .cell}
+::: {#04e6cd84 .cell}
 ``` {.python .cell-code}
 #plt.figure(figsize=[10,8])
 #Consumo de legumbres en el 2001
@@ -186,7 +186,7 @@ plt.show()
 
 # Histograma
 
-::: {#90927238 .cell}
+::: {#4a6f3bc9 .cell}
 ``` {.python .cell-code}
 import matplotlib.pyplot as plt
 
@@ -225,7 +225,7 @@ plt.show()
 
 # Grafico circular
 
-::: {#e943988a .cell}
+::: {#f7bf0b20 .cell}
 ``` {.python .cell-code}
 import matplotlib.pyplot as plt
 
@@ -267,7 +267,7 @@ plt.show()
 
 # Grafico de Donut
 
-::: {#b1f9a5d3 .cell}
+::: {#f84f41bc .cell}
 ``` {.python .cell-code}
 import matplotlib.pyplot as plt
 
@@ -313,7 +313,7 @@ plt.show()
 
 # Grafico de cajas
 
-::: {#2250eae1 .cell}
+::: {#0d96dcf5 .cell}
 ``` {.python .cell-code}
 import matplotlib.pyplot as plt
 
@@ -353,7 +353,7 @@ plt.show()
 
 # Grafico de barras combinadas
 
-::: {#e1b3a850 .cell}
+::: {#134713fe .cell}
 ``` {.python .cell-code}
 import matplotlib.pyplot as plt
 
@@ -401,7 +401,7 @@ plt.show()
 
 # Graficos combinados
 
-::: {#9922539c .cell}
+::: {#7eade3f4 .cell}
 ``` {.python .cell-code}
 import matplotlib.pyplot as plt
 

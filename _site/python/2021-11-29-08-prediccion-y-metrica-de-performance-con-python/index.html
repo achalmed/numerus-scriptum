@@ -285,7 +285,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div>
         <div class="quarto-title-meta-heading">Fecha de última modificación</div>
         <div class="quarto-title-meta-contents">
-          <p class="date-modified">3 de enero de 2026</p>
+          <p class="date-modified">4 de enero de 2026</p>
         </div>
       </div>
         
@@ -462,7 +462,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li>¿Un estudiante completará o abandonará sus estudios?</li>
 <li>¿Un producto se venderá o no se venderá?</li>
 </ul>
-<div id="26a6e194" class="cell">
+<div id="5ba7e26c" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -478,7 +478,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </section>
 <section id="flujo-de-decisión-con-predicción" class="level2">
 <h2 class="anchored" data-anchor-id="flujo-de-decisión-con-predicción">Flujo de decisión con predicción</h2>
-<div id="1755a68f" class="cell">
+<div id="5183060d" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="bu">print</span>(<span class="st">"""</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="st">FLUJO DE TOMA DE DECISIONES CON PREDICCIÓN</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a></span>
@@ -509,7 +509,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Clasificación binaria</h1>
 <section id="problema-de-admisión-académica" class="level2">
 <h2 class="anchored" data-anchor-id="problema-de-admisión-académica">Problema de admisión académica</h2>
-<div id="4fc54f4a" class="cell">
+<div id="451e37bc" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Crear dataset de ejemplo: admisión a programa de posgrado</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>np.random.seed(<span class="dv">42</span>)</span>
 <span id="cb3-3"><a href="#cb3-3"></a></span>
@@ -542,7 +542,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </section>
 <section id="entrenar-modelo-de-clasificación" class="level2">
 <h2 class="anchored" data-anchor-id="entrenar-modelo-de-clasificación">Entrenar modelo de clasificación</h2>
-<div id="6c3d03e2" class="cell">
+<div id="03b9dc1e" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Separar variables predictoras y objetivo</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>X <span class="op">=</span> datos_admision[[<span class="st">'puntaje_examen'</span>, <span class="st">'gpa'</span>, <span class="st">'experiencia_laboral'</span>, <span class="st">'publicaciones'</span>]]</span>
 <span id="cb4-3"><a href="#cb4-3"></a>y <span class="op">=</span> datos_admision[<span class="st">'admitido'</span>]</span>
@@ -570,7 +570,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Thresholding (Umbralización)</h1>
 <section id="concepto-de-probabilidades" class="level2">
 <h2 class="anchored" data-anchor-id="concepto-de-probabilidades">Concepto de probabilidades</h2>
-<div id="2e7b6a75" class="cell">
+<div id="e1dd5ad0" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Obtener probabilidades de predicción</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>probabilidades <span class="op">=</span> modelo.predict_proba(X_test)</span>
 <span id="cb5-3"><a href="#cb5-3"></a></span>
@@ -595,7 +595,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </section>
 <section id="efecto-del-umbral" class="level2">
 <h2 class="anchored" data-anchor-id="efecto-del-umbral">Efecto del umbral</h2>
-<div id="e1a40b08" class="cell">
+<div id="079a408a" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Experimentar con diferentes umbrales</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a>umbrales <span class="op">=</span> [<span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.7</span>, <span class="fl">0.9</span>]</span>
 <span id="cb6-3"><a href="#cb6-3"></a></span>
@@ -617,7 +617,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </section>
 <section id="visualizar-distribución-de-probabilidades" class="level2">
 <h2 class="anchored" data-anchor-id="visualizar-distribución-de-probabilidades">Visualizar distribución de probabilidades</h2>
-<div id="9826162a" class="cell">
+<div id="ea1773e8" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Crear gráfico de distribución de probabilidades</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">5</span>))</span>
 <span id="cb7-3"><a href="#cb7-3"></a></span>
@@ -657,7 +657,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <section id="concepto-y-estructura" class="level2">
 <h2 class="anchored" data-anchor-id="concepto-y-estructura">Concepto y estructura</h2>
 <p>La matriz de confusión es una tabla que describe el desempeño de un modelo de clasificación.</p>
-<div id="58b89526" class="cell">
+<div id="82fcaea3" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="bu">print</span>(<span class="st">"""</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="st">MATRIZ DE CONFUSIÓN - ESTRUCTURA</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a></span>
@@ -679,7 +679,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </section>
 <section id="calcular-matriz-de-confusión" class="level2">
 <h2 class="anchored" data-anchor-id="calcular-matriz-de-confusión">Calcular matriz de confusión</h2>
-<div id="9ab0e3b1" class="cell">
+<div id="0e7c0716" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Predicciones con umbral 0.5</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a>y_pred <span class="op">=</span> modelo.predict(X_test)</span>
 <span id="cb9-3"><a href="#cb9-3"></a></span>
@@ -705,7 +705,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </section>
 <section id="función-personalizada-para-matriz-de-confusión" class="level2">
 <h2 class="anchored" data-anchor-id="función-personalizada-para-matriz-de-confusión">Función personalizada para matriz de confusión</h2>
-<div id="66837164" class="cell">
+<div id="843210c3" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">def</span> calcular_matriz_confusion(y_real, y_pred):</span>
 <span id="cb10-2"><a href="#cb10-2"></a>    <span class="co">"""</span></span>
 <span id="cb10-3"><a href="#cb10-3"></a><span class="co">    Calcula matriz de confusión y sus componentes</span></span>
@@ -736,7 +736,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </section>
 <section id="visualizar-matriz-de-confusión" class="level2">
 <h2 class="anchored" data-anchor-id="visualizar-matriz-de-confusión">Visualizar matriz de confusión</h2>
-<div id="08e821bc" class="cell">
+<div id="b1a9b276" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">def</span> graficar_matriz_confusion(cm, nombres_clases<span class="op">=</span>[<span class="st">'No'</span>, <span class="st">'Sí'</span>]):</span>
 <span id="cb11-2"><a href="#cb11-2"></a>    <span class="co">"""</span></span>
 <span id="cb11-3"><a href="#cb11-3"></a><span class="co">    Visualiza la matriz de confusión</span></span>
@@ -778,7 +778,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Métricas de clasificación</h1>
 <section id="resumen-de-métricas-principales" class="level2">
 <h2 class="anchored" data-anchor-id="resumen-de-métricas-principales">Resumen de métricas principales</h2>
-<div id="b947e83a" class="cell">
+<div id="4da9155f" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="bu">print</span>(<span class="st">"""</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a><span class="st">MÉTRICAS DE CLASIFICACIÓN</span></span>
 <span id="cb12-3"><a href="#cb12-3"></a></span>
@@ -815,7 +815,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Accuracy (Exactitud)</h1>
 <section id="cálculo-e-interpretación" class="level2">
 <h2 class="anchored" data-anchor-id="cálculo-e-interpretación">Cálculo e interpretación</h2>
-<div id="9eeda945" class="cell">
+<div id="0de13438" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">def</span> calcular_accuracy(y_real, y_pred):</span>
 <span id="cb13-2"><a href="#cb13-2"></a>    <span class="co">"""Calcula accuracy"""</span></span>
 <span id="cb13-3"><a href="#cb13-3"></a>    _, TP, TN, FP, FN <span class="op">=</span> calcular_matriz_confusion(y_real, y_pred)</span>
@@ -835,7 +835,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </section>
 <section id="limitaciones-del-accuracy" class="level2">
 <h2 class="anchored" data-anchor-id="limitaciones-del-accuracy">Limitaciones del accuracy</h2>
-<div id="2d8726fa" class="cell">
+<div id="f22ccbd6" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Ejemplo con dataset desbalanceado</span></span>
 <span id="cb14-2"><a href="#cb14-2"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">EJEMPLO: LIMITACIÓN DEL ACCURACY CON CLASES DESBALANCEADAS"</span>)</span>
 <span id="cb14-3"><a href="#cb14-3"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">70</span>)</span>
@@ -865,7 +865,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Precision (Precisión)</h1>
 <section id="cálculo-e-interpretación-1" class="level2">
 <h2 class="anchored" data-anchor-id="cálculo-e-interpretación-1">Cálculo e interpretación</h2>
-<div id="d2e40d3c" class="cell">
+<div id="2d485f90" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">def</span> calcular_precision(y_real, y_pred):</span>
 <span id="cb15-2"><a href="#cb15-2"></a>    <span class="co">"""Calcula precision"""</span></span>
 <span id="cb15-3"><a href="#cb15-3"></a>    _, TP, TN, FP, FN <span class="op">=</span> calcular_matriz_confusion(y_real, y_pred)</span>
@@ -889,7 +889,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </section>
 <section id="ejemplo-económico-aprobación-de-créditos" class="level2">
 <h2 class="anchored" data-anchor-id="ejemplo-económico-aprobación-de-créditos">Ejemplo económico: Aprobación de créditos</h2>
-<div id="515d9b9a" class="cell">
+<div id="f744f0d8" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n\n</span><span class="st">EJEMPLO ECONÓMICO: APROBACIÓN DE CRÉDITOS"</span>)</span>
 <span id="cb16-2"><a href="#cb16-2"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">70</span>)</span>
 <span id="cb16-3"><a href="#cb16-3"></a></span>
@@ -923,7 +923,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Recall (Sensibilidad)</h1>
 <section id="cálculo-e-interpretación-2" class="level2">
 <h2 class="anchored" data-anchor-id="cálculo-e-interpretación-2">Cálculo e interpretación</h2>
-<div id="499b2821" class="cell">
+<div id="aa1a480c" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">def</span> calcular_recall(y_real, y_pred):</span>
 <span id="cb17-2"><a href="#cb17-2"></a>    <span class="co">"""Calcula recall (sensibilidad)"""</span></span>
 <span id="cb17-3"><a href="#cb17-3"></a>    _, TP, TN, FP, FN <span class="op">=</span> calcular_matriz_confusion(y_real, y_pred)</span>
@@ -947,7 +947,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </section>
 <section id="ejemplo-económico-detección-de-fraude" class="level2">
 <h2 class="anchored" data-anchor-id="ejemplo-económico-detección-de-fraude">Ejemplo económico: Detección de fraude</h2>
-<div id="e03135fb" class="cell">
+<div id="09cbff00" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n\n</span><span class="st">EJEMPLO ECONÓMICO: DETECCIÓN DE FRAUDE"</span>)</span>
 <span id="cb18-2"><a href="#cb18-2"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">70</span>)</span>
 <span id="cb18-3"><a href="#cb18-3"></a></span>
@@ -990,7 +990,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>F1-Score</h1>
 <section id="cálculo-e-interpretación-3" class="level2">
 <h2 class="anchored" data-anchor-id="cálculo-e-interpretación-3">Cálculo e interpretación</h2>
-<div id="cb1fe2ed" class="cell">
+<div id="9a3cd32c" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">def</span> calcular_f1(y_real, y_pred):</span>
 <span id="cb19-2"><a href="#cb19-2"></a>    <span class="co">"""Calcula F1-score"""</span></span>
 <span id="cb19-3"><a href="#cb19-3"></a>    precision <span class="op">=</span> calcular_precision(y_real, y_pred)</span>
@@ -1017,7 +1017,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </section>
 <section id="trade-off-entre-precision-y-recall" class="level2">
 <h2 class="anchored" data-anchor-id="trade-off-entre-precision-y-recall">Trade-off entre Precision y Recall</h2>
-<div id="68a24e44" class="cell">
+<div id="f39c3665" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Demostrar trade-off</span></span>
 <span id="cb20-2"><a href="#cb20-2"></a>umbrales <span class="op">=</span> [<span class="fl">0.1</span>, <span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.7</span>, <span class="fl">0.9</span>]</span>
 <span id="cb20-3"><a href="#cb20-3"></a></span>
@@ -1045,7 +1045,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Curva Precision-Recall</h1>
 <section id="generar-curva-precision-recall" class="level2">
 <h2 class="anchored" data-anchor-id="generar-curva-precision-recall">Generar curva Precision-Recall</h2>
-<div id="42f52d54" class="cell">
+<div id="57c21f7c" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">def</span> calcular_curva_precision_recall(y_real, probabilidades):</span>
 <span id="cb21-2"><a href="#cb21-2"></a>    <span class="co">"""</span></span>
 <span id="cb21-3"><a href="#cb21-3"></a><span class="co">    Calcula curva Precision-Recall para diferentes umbrales</span></span>
@@ -1080,7 +1080,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </section>
 <section id="visualizar-curva-precision-recall" class="level2">
 <h2 class="anchored" data-anchor-id="visualizar-curva-precision-recall">Visualizar curva Precision-Recall</h2>
-<div id="86d80228" class="cell">
+<div id="8e43200f" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># Crear gráfico</span></span>
 <span id="cb22-2"><a href="#cb22-2"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
 <span id="cb22-3"><a href="#cb22-3"></a></span>
@@ -1119,7 +1119,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Curva ROC y AUC</h1>
 <section id="concepto-de-roc" class="level2">
 <h2 class="anchored" data-anchor-id="concepto-de-roc">Concepto de ROC</h2>
-<div id="66f69591" class="cell">
+<div id="ec2081bf" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="bu">print</span>(<span class="st">"""</span></span>
 <span id="cb23-2"><a href="#cb23-2"></a><span class="st">CURVA ROC (Receiver Operating Characteristic)</span></span>
 <span id="cb23-3"><a href="#cb23-3"></a></span>
@@ -1140,7 +1140,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </section>
 <section id="calcular-tpr-y-fpr" class="level2">
 <h2 class="anchored" data-anchor-id="calcular-tpr-y-fpr">Calcular TPR y FPR</h2>
-<div id="e990acb4" class="cell">
+<div id="a8d8eb37" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">def</span> calcular_tpr(y_real, y_pred):</span>
 <span id="cb24-2"><a href="#cb24-2"></a>    <span class="co">"""Calcula True Positive Rate (TPR) = Recall"""</span></span>
 <span id="cb24-3"><a href="#cb24-3"></a>    <span class="cf">return</span> calcular_recall(y_real, y_pred)</span>
@@ -1191,7 +1191,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </section>
 <section id="visualizar-curva-roc" class="level2">
 <h2 class="anchored" data-anchor-id="visualizar-curva-roc">Visualizar curva ROC</h2>
-<div id="91b29ec3" class="cell">
+<div id="b5fa36b0" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># Crear gráfico</span></span>
 <span id="cb25-2"><a href="#cb25-2"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
 <span id="cb25-3"><a href="#cb25-3"></a></span>
@@ -1226,7 +1226,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </section>
 <section id="interpretación-del-auc" class="level2">
 <h2 class="anchored" data-anchor-id="interpretación-del-auc">Interpretación del AUC</h2>
-<div id="8e9876cc" class="cell">
+<div id="c96539c7" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="kw">def</span> interpretar_auc(auc_score):</span>
 <span id="cb26-2"><a href="#cb26-2"></a>    <span class="co">"""Interpreta el valor de AUC"""</span></span>
 <span id="cb26-3"><a href="#cb26-3"></a>    <span class="cf">if</span> auc_score <span class="op">&gt;=</span> <span class="fl">0.9</span>:</span>
@@ -1256,7 +1256,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Aplicaciones económicas</h1>
 <section id="aplicación-1-predicción-de-incumplimiento-crediticio" class="level2">
 <h2 class="anchored" data-anchor-id="aplicación-1-predicción-de-incumplimiento-crediticio">Aplicación 1: Predicción de incumplimiento crediticio</h2>
-<div id="e5af9296" class="cell">
+<div id="846ce21a" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n\n</span><span class="st">APLICACIÓN: PREDICCIÓN DE INCUMPLIMIENTO CREDITICIO"</span>)</span>
 <span id="cb27-2"><a href="#cb27-2"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">70</span>)</span>
 <span id="cb27-3"><a href="#cb27-3"></a></span>
@@ -1362,7 +1362,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </section>
 <section id="aplicación-2-clasificación-de-empresas-por-riesgo-de-quiebra" class="level2">
 <h2 class="anchored" data-anchor-id="aplicación-2-clasificación-de-empresas-por-riesgo-de-quiebra">Aplicación 2: Clasificación de empresas por riesgo de quiebra</h2>
-<div id="5cdf70fb" class="cell">
+<div id="9e189758" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n\n\n</span><span class="st">APLICACIÓN: CLASIFICACIÓN DE RIESGO DE QUIEBRA EMPRESARIAL"</span>)</span>
 <span id="cb28-2"><a href="#cb28-2"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">70</span>)</span>
 <span id="cb28-3"><a href="#cb28-3"></a></span>
@@ -1462,7 +1462,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Ejercicios prácticos</h1>
 <section id="ejercicio-1-optimizar-umbral-según-costo" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicio-1-optimizar-umbral-según-costo">Ejercicio 1: Optimizar umbral según costo</h2>
-<div id="0c38e6eb" class="cell">
+<div id="2c224618" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n\n\n</span><span class="st">EJERCICIO: OPTIMIZACIÓN DE UMBRAL SEGÚN COSTOS"</span>)</span>
 <span id="cb29-2"><a href="#cb29-2"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">70</span>)</span>
 <span id="cb29-3"><a href="#cb29-3"></a></span>

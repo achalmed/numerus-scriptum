@@ -10,10 +10,8 @@ keywords:
 - keyword1
 - keyword2
 categories:
-
 - Python
 tags:
-
 - python
 - python_intro
 author-note:
@@ -89,7 +87,7 @@ Las instituciones que más demandan economistas hoy en día buscan profesionales
 
 Un economista del BCRP necesita analizar la relación entre la tasa de interés y la inflación en los últimos 20 años. Con Python puede:
 
-::: {#d11c781e .cell}
+::: {#12a2499e .cell}
 ``` {.python .cell-code}
 # Importar datos del BCRP
 # Limpiar y transformar los datos
@@ -104,7 +102,7 @@ Un economista del BCRP necesita analizar la relación entre la tasa de interés 
 
 Un investigador evalúa el impacto de un programa social en los ingresos familiares:
 
-::: {#7a2a2365 .cell}
+::: {#71fd4a6a .cell}
 ``` {.python .cell-code}
 # Cargar microdatos de encuestas
 # Implementar matching propensity score
@@ -119,7 +117,7 @@ Un investigador evalúa el impacto de un programa social en los ingresos familia
 
 Un analista financiero predice el tipo de cambio:
 
-::: {#6a5ae968 .cell}
+::: {#9ce540de .cell}
 ``` {.python .cell-code}
 # Obtener datos históricos del tipo de cambio
 # Aplicar modelos ARIMA y GARCH
@@ -211,7 +209,7 @@ ggplot(datos, aes(x = educacion, y = ingreso)) + geom_point()
 
 **Ejemplo en Python:**
 
-::: {#5ac41193 .cell}
+::: {#063dd25e .cell}
 ``` {.python .cell-code}
 import pandas as pd
 import statsmodels.formula.api as smf
@@ -457,7 +455,7 @@ Python se ha convertido en el lenguaje dominante para Data Science y Machine Lea
 
 **Ejemplo de workflow típico:**
 
-::: {#4770001f .cell}
+::: {#05078b65 .cell}
 ``` {.python .cell-code}
 import pandas as pd                # Cargar y limpiar datos
 import matplotlib.pyplot as plt    # Visualizar
@@ -490,7 +488,7 @@ plt.show()
 
 Python te permite crear reportes automatizados que se actualizan con nuevos datos:
 
-::: {#cf4bffb0 .cell}
+::: {#e05df6b2 .cell}
 ``` {.python .cell-code}
 # Script que corre automáticamente cada mes
 def generar_reporte_inflacion():
@@ -517,7 +515,7 @@ def generar_reporte_inflacion():
 
 Recolecta datos económicos de internet automáticamente:
 
-::: {#e489364f .cell}
+::: {#55fbf2a4 .cell}
 ``` {.python .cell-code}
 import requests
 from bs4 import BeautifulSoup
@@ -545,7 +543,7 @@ precios_hoy = scrape_precios_supermercado('https://...')
 
 Accede a bases de datos económicas programáticamente:
 
-::: {#2e471780 .cell}
+::: {#6805d4a7 .cell}
 ``` {.python .cell-code}
 # Ejemplo: Datos del Banco Mundial
 import pandas_datareader as pdr
@@ -572,7 +570,7 @@ datos = response.json()
 
 Todo tu análisis queda documentado en código:
 
-::: {#f5347c2e .cell}
+::: {#fc1544be .cell}
 ``` {.python .cell-code}
 """
 Análisis de determinantes del ingreso en Perú
@@ -701,7 +699,7 @@ Esto abrirá tu navegador con una interfaz donde puedes:
 
 **Estructura de un notebook:**
 
-::: {#d6dad7a9 .cell}
+::: {#ee7cb937 .cell}
 ``` {.python .cell-code}
 # Celda 1: Importar librerías
 import pandas as pd
@@ -852,7 +850,7 @@ Analizar los determinantes del ingreso utilizando datos de la ENAHO 2023.
 
 Abre un nuevo notebook de Jupyter y escribe:
 
-::: {#67d993a0 .cell}
+::: {#165e7b52 .cell}
 ``` {.python .cell-code}
 # Mi primer programa en Python
 print("¡Hola, mundo económico!")
@@ -872,7 +870,7 @@ Estudiante de economía de la UNSCH
 
 Python puede funcionar como calculadora:
 
-::: {#2e9b733c .cell}
+::: {#a307a030 .cell}
 ``` {.python .cell-code}
 # Operaciones básicas
 print(2 + 3)        # Suma: 5
@@ -888,7 +886,7 @@ print(17 % 5)       # Módulo (residuo): 2
 
 **Aplicación económica: Calcular IPC**
 
-::: {#12cee874 .cell}
+::: {#000ea884 .cell}
 ``` {.python .cell-code}
 # Calcular índice de precios al consumidor (IPC)
 precio_canasta_hoy = 850.50
@@ -905,7 +903,7 @@ print(f"El IPC es: {ipc:.2f}")
 
 ## Variables y tipos de datos
 
-::: {#0b393069 .cell}
+::: {#75bba849 .cell}
 ``` {.python .cell-code}
 # Variables numéricas
 pib_peru = 242_632  # PIB en millones de USD (guiones bajos para legibilidad)
@@ -938,7 +936,7 @@ PIB per cápita: $7,196.21
 
 ## Listas: Colecciones de datos
 
-::: {#92b01628 .cell}
+::: {#d2d628af .cell}
 ``` {.python .cell-code}
 # Lista de tasas de crecimiento del PIB (últimos 5 años)
 crecimiento_pib = [2.4, 4.0, -11.0, 13.3, 2.7]
@@ -958,7 +956,7 @@ print(f"Crecimiento promedio: {promedio:.2f}%")
 
 ## Diccionarios: Datos etiquetados
 
-::: {#18c4776b .cell}
+::: {#62e8587e .cell}
 ``` {.python .cell-code}
 # Información económica de un país
 economia_peru = {
@@ -987,7 +985,7 @@ print(f"PIB per cápita: ${economia_peru['pib_per_capita']:.2f}")
 
 ## Tu primer análisis de datos con Pandas
 
-::: {#e88943e3 .cell}
+::: {#7c723211 .cell}
 ``` {.python .cell-code}
 import pandas as pd
 
@@ -1043,7 +1041,7 @@ Región con mayor PIB per cápita: Lima
 
 ## Visualización básica
 
-::: {#81ab5671 .cell}
+::: {#b8a91c0d .cell}
 ``` {.python .cell-code}
 import matplotlib.pyplot as plt
 
@@ -1069,7 +1067,7 @@ Crea un programa que calcule la inflación acumulada dados los índices de preci
 
 **Datos:**
 
-::: {#a04526c3 .cell}
+::: {#f05cf55d .cell}
 ``` {.python .cell-code}
 ipc_mensual = [100.0, 100.5, 101.2, 101.8, 102.5, 103.0]
 ```
@@ -1083,14 +1081,14 @@ ipc_mensual = [100.0, 100.5, 101.2, 101.8, 102.5, 103.0]
 
 **Solución esperada:**
 
-::: {#c0a9d50b .cell}
+::: {#8480b284 .cell}
 ``` {.python .cell-code}
 # Tu código aquí
 ```
 :::
 
 
-::: {#61270f2e .cell}
+::: {#b1c455e9 .cell}
 ``` {.python .cell-code}
 ipc_mensual = [100.0, 100.5, 101.2, 101.8, 102.5, 103.0]
 
@@ -1114,7 +1112,7 @@ print(f"\nInflación acumulada: {inflacion_acumulada:.2f}%")
 
 Tienes datos de exportaciones de Perú por sectores.
 
-::: {#d5afe52f .cell}
+::: {#62cf4cb1 .cell}
 ``` {.python .cell-code}
 exportaciones = {
     'sector': ['Minería', 'Agricultura', 'Pesca', 'Manufactura'],
@@ -1132,7 +1130,7 @@ exportaciones = {
 3. Identifica el sector con mayor crecimiento
 4. Calcula el total exportado en cada año
 
-::: {#6e462060 .cell}
+::: {#364b2ed1 .cell}
 ``` {.python .cell-code}
 import pandas as pd
 
@@ -1174,7 +1172,7 @@ U(x, y) = x^α * y^(1-α)
 
 Donde x e y son bienes consumidos y α es el parámetro de preferencia.
 
-::: {#cb115042 .cell}
+::: {#cf0a4da1 .cell}
 ``` {.python .cell-code}
 def utilidad_cobb_douglas(x, y, alpha):
     """
@@ -1198,7 +1196,7 @@ print(f"Utilidad: {u:.2f}")
 :::
 
 
-::: {#4df2479e .cell}
+::: {#e9317e84 .cell}
 ``` {.python .cell-code}
 def utilidad_cobb_douglas(x, y, alpha):
     """

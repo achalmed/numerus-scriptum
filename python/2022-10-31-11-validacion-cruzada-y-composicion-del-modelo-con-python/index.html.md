@@ -100,7 +100,7 @@ Aumentar la complejidad del modelo:
 
 4. **Inestabilidad**: Pequeños cambios en datos → grandes cambios en modelo
 
-::: {#d02d4718 .cell execution_count=1}
+::: {#ed607c2d .cell}
 ``` {.python .cell-code}
 import pandas as pd
 import numpy as np
@@ -131,18 +131,12 @@ np.random.seed(42)
 
 print("Librerías importadas exitosamente")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-Librerías importadas exitosamente
-```
-:::
 :::
 
 
 ## Ilustración del overfitting
 
-::: {#f13c033a .cell execution_count=2}
+::: {#c0dd5095 .cell}
 ``` {.python .cell-code}
 # Cargar datos
 iris = load_iris()
@@ -194,37 +188,12 @@ for nombre, modelo in modelos.items():
 
 df_resultados = pd.DataFrame(resultados)
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-ILUSTRACIÓN DE OVERFITTING
-======================================================================
-
-Simple (k=50):
-  Train: 0.8190
-  Test:  0.8222
-  Gap:   -0.0032
-  ✓ Balance adecuado
-
-Balanceado (k=5):
-  Train: 0.8476
-  Test:  0.7778
-  Gap:   0.0698
-  ✓ Balance adecuado
-
-Complejo (k=1):
-  Train: 0.9619
-  Test:  0.7111
-  Gap:   0.2508
-  ⚠️  Posible overfitting detectado
-```
-:::
 :::
 
 
 ## Visualización del trade-off
 
-::: {#74df43d6 .cell execution_count=3}
+::: {#e90c3663 .cell}
 ``` {.python .cell-code}
 # Evaluar KNN con diferentes k
 k_values = range(1, 51)
@@ -266,17 +235,6 @@ plt.tight_layout()
 plt.savefig('bias_variance_tradeoff.png', dpi=300, bbox_inches='tight')
 print("\nGráfico guardado como 'bias_variance_tradeoff.png'")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-Gráfico guardado como 'bias_variance_tradeoff.png'
-```
-:::
-
-::: {.cell-output .cell-output-display}
-![](index_files/figure-html/cell-4-output-2.png){width=1142 height=566}
-:::
 :::
 
 
@@ -363,7 +321,7 @@ Repetir K-Fold con diferentes particiones aleatorias y promediar.
 
 ## Implementación básica
 
-::: {#796f2187 .cell execution_count=4}
+::: {#b40877e2 .cell}
 ``` {.python .cell-code}
 print("\n\nVALIDACIÓN CRUZADA")
 print("=" * 70)
@@ -387,27 +345,12 @@ print(f"Desviación estándar: {scores.std():.4f}")
 print(f"Intervalo 95% confianza: [{scores.mean() - 1.96*scores.std():.4f}, "
       f"{scores.mean() + 1.96*scores.std():.4f}]")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-
-VALIDACIÓN CRUZADA
-======================================================================
-
-K-Fold Cross-Validation (K=5):
-Scores por fold: [0.9        0.83333333 0.76666667 0.7        0.73333333]
-Media: 0.7867
-Desviación estándar: 0.0718
-Intervalo 95% confianza: [0.6459, 0.9274]
-```
-:::
 :::
 
 
 ## Stratified Cross-Validation
 
-::: {#4fb3e58d .cell execution_count=5}
+::: {#d8985061 .cell}
 ``` {.python .cell-code}
 # Verificar distribución de clases
 print(f"\n\nDistribución de clases:")
@@ -431,28 +374,12 @@ print(f"Desv. est: {scores_stratified.std():.4f}")
 print(f"\nDiferencia con K-Fold estándar: "
       f"{scores_stratified.mean() - scores.mean():.4f}")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-
-Distribución de clases:
-Clase 0: 100 (66.7%)
-Clase 1: 50 (33.3%)
-
-Stratified K-Fold CV:
-Media: 0.7867
-Desv. est: 0.0686
-
-Diferencia con K-Fold estándar: 0.0000
-```
-:::
 :::
 
 
 ## Cross-validation con múltiples métricas
 
-::: {#3a4bcdb5 .cell execution_count=6}
+::: {#46ac9224 .cell}
 ``` {.python .cell-code}
 # Evaluar múltiples métricas simultáneamente
 scoring = {
@@ -482,46 +409,12 @@ for metric in ['accuracy', 'precision', 'recall', 'f1', 'roc_auc']:
     print(f"  Test:  {test_scores.mean():.4f} ± {test_scores.std():.4f}")
     print(f"  Gap:   {train_scores.mean() - test_scores.mean():.4f}")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-
-RESULTADOS CROSS-VALIDATION - MÚLTIPLES MÉTRICAS
-======================================================================
-
-ACCURACY:
-  Train: 0.8067 ± 0.0178
-  Test:  0.7867 ± 0.0686
-  Gap:   0.0200
-
-PRECISION:
-  Train: 0.7260 ± 0.0285
-  Test:  0.6984 ± 0.0893
-  Gap:   0.0276
-
-RECALL:
-  Train: 0.6750 ± 0.0316
-  Test:  0.6400 ± 0.2154
-  Gap:   0.0350
-
-F1:
-  Train: 0.6994 ± 0.0282
-  Test:  0.6479 ± 0.1519
-  Gap:   0.0514
-
-ROC_AUC:
-  Train: 0.8888 ± 0.0162
-  Test:  0.8935 ± 0.0611
-  Gap:   -0.0047
-```
-:::
 :::
 
 
 ## Visualización de resultados CV
 
-::: {#eafe0131 .cell execution_count=7}
+::: {#a2fa7950 .cell}
 ``` {.python .cell-code}
 # Crear DataFrame para visualización
 metrics_data = []
@@ -562,17 +455,6 @@ plt.tight_layout()
 plt.savefig('cv_multiple_metrics.png', dpi=300, bbox_inches='tight')
 print("\nGráfico guardado como 'cv_multiple_metrics.png'")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-Gráfico guardado como 'cv_multiple_metrics.png'
-```
-:::
-
-::: {.cell-output .cell-output-display}
-![](index_files/figure-html/cell-8-output-2.png){width=1430 height=950}
-:::
 :::
 
 
@@ -645,7 +527,7 @@ $$
 
 ## Implementación de Grid Search
 
-::: {#00b2a510 .cell execution_count=8}
+::: {#dd5ceeb7 .cell}
 ``` {.python .cell-code}
 print("\n\nGRID SEARCH - OPTIMIZACIÓN DE HIPERPARÁMETROS")
 print("=" * 70)
@@ -674,27 +556,10 @@ n_combinations = (len(param_grid['n_estimators']) *
 print(f"\nTotal de combinaciones: {n_combinations}")
 print(f"Con CV de 5-fold: {n_combinations * 5} modelos a entrenar")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-
-GRID SEARCH - OPTIMIZACIÓN DE HIPERPARÁMETROS
-======================================================================
-Espacio de búsqueda:
-  n_estimators: [50, 100, 200]
-  max_depth: [3, 5, 10, None]
-  min_samples_split: [2, 5, 10]
-  min_samples_leaf: [1, 2, 4]
-
-Total de combinaciones: 108
-Con CV de 5-fold: 540 modelos a entrenar
-```
-:::
 :::
 
 
-::: {#005fb5c0 .cell execution_count=9}
+::: {#a546e887 .cell}
 ``` {.python .cell-code}
 # Ejecutar Grid Search
 grid_search = GridSearchCV(
@@ -730,39 +595,12 @@ print(f"  Recall: {recall_score(y, y_pred):.4f}")
 print(f"  F1-Score: {f1_score(y, y_pred):.4f}")
 print(f"  ROC-AUC: {roc_auc_score(y, y_proba):.4f}")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-Ejecutando Grid Search...
-Fitting 5 folds for each of 108 candidates, totalling 540 fits
-
-
-RESULTADOS GRID SEARCH
-======================================================================
-
-Mejores hiperparámetros:
-  max_depth: 3
-  min_samples_leaf: 1
-  min_samples_split: 10
-  n_estimators: 200
-
-Mejor score (ROC-AUC): 0.8810
-
-Performance del mejor modelo:
-  Accuracy: 0.8400
-  Precision: 0.7500
-  Recall: 0.7800
-  F1-Score: 0.7647
-  ROC-AUC: 0.9141
-```
-:::
 :::
 
 
 ## Análisis de resultados Grid Search
 
-::: {#e5df870f .cell execution_count=10}
+::: {#3729361b .cell}
 ``` {.python .cell-code}
 # Convertir resultados a DataFrame
 results = pd.DataFrame(grid_search.cv_results_)
@@ -782,81 +620,12 @@ for idx, row in top_10.iterrows():
     print(f"  Train Score: {row['mean_train_score']:.4f}")
     print(f"  Tiempo: {row['mean_fit_time']:.2f}s")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-
-TOP 10 CONFIGURACIONES
-======================================================================
-
-Rank 1:
-  Parámetros: {'max_depth': 3, 'min_samples_leaf': 1, 'min_samples_split': 10, 'n_estimators': 200}
-  Test Score: 0.8810 ± 0.0557
-  Train Score: 0.9245
-  Tiempo: 1.08s
-
-Rank 2:
-  Parámetros: {'max_depth': 3, 'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 200}
-  Test Score: 0.8785 ± 0.0569
-  Train Score: 0.9262
-  Tiempo: 1.06s
-
-Rank 3:
-  Parámetros: {'max_depth': 3, 'min_samples_leaf': 4, 'min_samples_split': 2, 'n_estimators': 200}
-  Test Score: 0.8780 ± 0.0645
-  Train Score: 0.9183
-  Tiempo: 1.06s
-
-Rank 3:
-  Parámetros: {'max_depth': 3, 'min_samples_leaf': 4, 'min_samples_split': 5, 'n_estimators': 200}
-  Test Score: 0.8780 ± 0.0645
-  Train Score: 0.9183
-  Tiempo: 1.05s
-
-Rank 5:
-  Parámetros: {'max_depth': 3, 'min_samples_leaf': 4, 'min_samples_split': 10, 'n_estimators': 200}
-  Test Score: 0.8770 ± 0.0615
-  Train Score: 0.9170
-  Tiempo: 1.04s
-
-Rank 6:
-  Parámetros: {'max_depth': 3, 'min_samples_leaf': 2, 'min_samples_split': 10, 'n_estimators': 200}
-  Test Score: 0.8770 ± 0.0595
-  Train Score: 0.9228
-  Tiempo: 1.03s
-
-Rank 7:
-  Parámetros: {'max_depth': 3, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 200}
-  Test Score: 0.8765 ± 0.0567
-  Train Score: 0.9275
-  Tiempo: 1.12s
-
-Rank 8:
-  Parámetros: {'max_depth': 3, 'min_samples_leaf': 2, 'min_samples_split': 2, 'n_estimators': 200}
-  Test Score: 0.8755 ± 0.0565
-  Train Score: 0.9244
-  Tiempo: 1.09s
-
-Rank 9:
-  Parámetros: {'max_depth': 3, 'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 100}
-  Test Score: 0.8750 ± 0.0527
-  Train Score: 0.9266
-  Tiempo: 0.52s
-
-Rank 9:
-  Parámetros: {'max_depth': 3, 'min_samples_leaf': 1, 'min_samples_split': 10, 'n_estimators': 50}
-  Test Score: 0.8750 ± 0.0576
-  Train Score: 0.9241
-  Tiempo: 0.29s
-```
-:::
 :::
 
 
 ## Visualización de Grid Search
 
-::: {#5af0d8a1 .cell execution_count=11}
+::: {#af705425 .cell}
 ``` {.python .cell-code}
 # Analizar efecto de hiperparámetros clave
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))
@@ -922,23 +691,12 @@ plt.tight_layout()
 plt.savefig('grid_search_analysis.png', dpi=300, bbox_inches='tight')
 print("\nGráfico guardado como 'grid_search_analysis.png'")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-Gráfico guardado como 'grid_search_analysis.png'
-```
-:::
-
-::: {.cell-output .cell-output-display}
-![](index_files/figure-html/cell-12-output-2.png){width=1334 height=950}
-:::
 :::
 
 
 ## Random Search implementation
 
-::: {#a3cf7b50 .cell execution_count=12}
+::: {#d76bab2c .cell}
 ``` {.python .cell-code}
 from sklearn.model_selection import RandomizedSearchCV
 from scipy.stats import randint, uniform
@@ -983,31 +741,6 @@ print(f"  Grid Search score:   {grid_search.best_score_:.4f}")
 print(f"  Random Search score: {random_search.best_score_:.4f}")
 print(f"  Diferencia:          {random_search.best_score_ - grid_search.best_score_:.4f}")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-
-RANDOM SEARCH
-======================================================================
-Ejecutando Random Search (100 iteraciones)...
-Fitting 5 folds for each of 100 candidates, totalling 500 fits
-
-Mejores hiperparámetros:
-  max_depth: 3
-  max_features: sqrt
-  min_samples_leaf: 6
-  min_samples_split: 17
-  n_estimators: 142
-
-Mejor score: 0.8830
-
-Comparación:
-  Grid Search score:   0.8810
-  Random Search score: 0.8830
-  Diferencia:          0.0020
-```
-:::
 :::
 
 
@@ -1054,7 +787,7 @@ $$
 
 ## Implementación
 
-::: {#e876a33a .cell execution_count=13}
+::: {#836663cc .cell}
 ``` {.python .cell-code}
 print("\n\nCURVAS DE APRENDIZAJE")
 print("=" * 70)
@@ -1135,76 +868,12 @@ for nombre, modelo in modelos.items():
     filename = f"learning_curve_{nombre.replace(' ', '_').lower()}.png"
     plot_learning_curves(modelo, X, y, f'Learning Curve: {nombre}', filename)
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-
-CURVAS DE APRENDIZAJE
-======================================================================
-```
-:::
-
-::: {.cell-output .cell-output-stdout}
-```
-
-Gráfico guardado como 'learning_curve_logistic_regression.png'
-
-Diagnóstico para Learning Curve: Logistic Regression:
-  Final training score: 0.8033
-  Final validation score: 0.7867
-  Gap: 0.0167
-  ✓ Balance adecuado
-
-Gráfico guardado como 'learning_curve_decision_tree_(depth=3).png'
-
-Diagnóstico para Learning Curve: Decision Tree (depth=3):
-  Final training score: 0.8283
-  Final validation score: 0.7267
-  Gap: 0.1017
-  ✓ Balance adecuado
-
-Gráfico guardado como 'learning_curve_decision_tree_(depth=20).png'
-
-Diagnóstico para Learning Curve: Decision Tree (depth=20):
-  Final training score: 0.9400
-  Final validation score: 0.7000
-  Gap: 0.2400
-  ⚠️  High variance (overfitting)
-  Recomendaciones: Más datos, regularización, modelo más simple
-
-Gráfico guardado como 'learning_curve_random_forest.png'
-
-Diagnóstico para Learning Curve: Random Forest:
-  Final training score: 0.9367
-  Final validation score: 0.7400
-  Gap: 0.1967
-  ⚠️  High variance (overfitting)
-  Recomendaciones: Más datos, regularización, modelo más simple
-```
-:::
-
-::: {.cell-output .cell-output-display}
-![](index_files/figure-html/cell-14-output-3.png){width=950 height=566}
-:::
-
-::: {.cell-output .cell-output-display}
-![](index_files/figure-html/cell-14-output-4.png){width=950 height=566}
-:::
-
-::: {.cell-output .cell-output-display}
-![](index_files/figure-html/cell-14-output-5.png){width=950 height=566}
-:::
-
-::: {.cell-output .cell-output-display}
-![](index_files/figure-html/cell-14-output-6.png){width=950 height=566}
-:::
 :::
 
 
 ## Comparación de modelos
 
-::: {#94551594 .cell execution_count=14}
+::: {#a429c190 .cell}
 ``` {.python .cell-code}
 # Comparar todas las curvas en un gráfico
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))
@@ -1237,17 +906,6 @@ plt.tight_layout()
 plt.savefig('learning_curves_comparison.png', dpi=300, bbox_inches='tight')
 print("\nComparación guardada como 'learning_curves_comparison.png'")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-Comparación guardada como 'learning_curves_comparison.png'
-```
-:::
-
-::: {.cell-output .cell-output-display}
-![](index_files/figure-html/cell-15-output-2.png){width=1334 height=950}
-:::
 :::
 
 
@@ -1255,7 +913,7 @@ Comparación guardada como 'learning_curves_comparison.png'
 
 ## Análisis de sensibilidad al tamaño de muestra
 
-::: {#dfa68d5f .cell execution_count=15}
+::: {#ea58476a .cell}
 ``` {.python .cell-code}
 print("\n\nCONTRIBUCIÓN DE LA DATA AL MODELO")
 print("=" * 70)
@@ -1289,56 +947,12 @@ for size in sample_sizes:
 
 df_sizes = pd.DataFrame(resultados_sizes)
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-
-CONTRIBUCIÓN DE LA DATA AL MODELO
-======================================================================
-```
-:::
-
-::: {.cell-output .cell-output-stdout}
-```
-
-Proporción: 0.1 (n=15)
-  AUC: nan ± nan
-
-Proporción: 0.2 (n=30)
-  AUC: 0.8500 ± 0.1458
-
-Proporción: 0.3 (n=45)
-  AUC: 0.8778 ± 0.0648
-
-Proporción: 0.4 (n=60)
-  AUC: 0.7569 ± 0.1366
-
-Proporción: 0.5 (n=75)
-  AUC: 0.7460 ± 0.0774
-
-Proporción: 0.6 (n=90)
-  AUC: 0.8688 ± 0.0530
-
-Proporción: 0.7 (n=105)
-  AUC: 0.8603 ± 0.0990
-
-Proporción: 0.8 (n=120)
-  AUC: 0.7810 ± 0.0831
-
-Proporción: 0.9 (n=135)
-  AUC: 0.8302 ± 0.0457
-
-Proporción: 1.0 (n=150)
-  AUC: 0.8460 ± 0.0724
-```
-:::
 :::
 
 
 ## Visualización
 
-::: {#bd2f2b68 .cell execution_count=16}
+::: {#a4fbf1db .cell}
 ``` {.python .cell-code}
 # Graficar relación tamaño-performance
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
@@ -1382,28 +996,6 @@ if improvement_50_100 < improvement_10_50 / 2:
 else:
     print("\n✓ Más datos aún beneficioso")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-Gráfico guardado como 'data_contribution.png'
-
-
-ANÁLISIS DE RENDIMIENTOS:
-Con 10% de datos (n=15): AUC = nan
-Con 50% de datos (n=75): AUC = 0.7460
-Con 100% de datos (n=150): AUC = 0.8460
-
-Mejora 10%→50%: nan
-Mejora 50%→100%: 0.1000
-
-✓ Más datos aún beneficioso
-```
-:::
-
-::: {.cell-output .cell-output-display}
-![](index_files/figure-html/cell-17-output-2.png){width=1334 height=470}
-:::
 :::
 
 
@@ -1411,7 +1003,7 @@ Mejora 50%→100%: 0.1000
 
 ## Importancia de características
 
-::: {#c8b4f218 .cell execution_count=17}
+::: {#69da35ab .cell}
 ``` {.python .cell-code}
 print("\n\nCONTRIBUCIÓN DE LAS VARIABLES AL MODELO")
 print("=" * 70)
@@ -1435,28 +1027,12 @@ print("=" * 70)
 for i, idx in enumerate(indices):
     print(f"{i+1}. {feature_names[idx]:<30} {importances[idx]:.4f}")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-
-CONTRIBUCIÓN DE LAS VARIABLES AL MODELO
-======================================================================
-
-Importancia de características (Random Forest):
-======================================================================
-1. petal length (cm)              0.4842
-2. petal width (cm)               0.3874
-3. sepal length (cm)              0.1014
-4. sepal width (cm)               0.0269
-```
-:::
 :::
 
 
 ## Análisis de permutación
 
-::: {#ba0cbda0 .cell execution_count=18}
+::: {#e32291e0 .cell}
 ``` {.python .cell-code}
 from sklearn.inspection import permutation_importance
 
@@ -1479,27 +1055,12 @@ for i in indices:
           f"{importances[i]:<15.4f} "
           f"{perm_importance.importances_mean[i]:<15.4f}")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-
-COMPARACIÓN DE MÉTODOS DE IMPORTANCIA
-======================================================================
-Característica                 RF Importance   Perm Importance
-----------------------------------------------------------------------
-petal length (cm)              0.4842          0.2142         
-petal width (cm)               0.3874          0.1627         
-sepal length (cm)              0.1014          0.0084         
-sepal width (cm)               0.0269          0.0113         
-```
-:::
 :::
 
 
 ## Visualización de importancia
 
-::: {#56cbbc00 .cell execution_count=19}
+::: {#5e27a944 .cell}
 ``` {.python .cell-code}
 # Graficar importancias
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
@@ -1526,23 +1087,12 @@ plt.tight_layout()
 plt.savefig('feature_importance.png', dpi=300, bbox_inches='tight')
 print("\nGráfico guardado como 'feature_importance.png'")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-Gráfico guardado como 'feature_importance.png'
-```
-:::
-
-::: {.cell-output .cell-output-display}
-![](index_files/figure-html/cell-20-output-2.png){width=1334 height=470}
-:::
 :::
 
 
 ## Selección de características
 
-::: {#afc6d109 .cell execution_count=20}
+::: {#e7408837 .cell}
 ``` {.python .cell-code}
 from sklearn.feature_selection import RFECV
 
@@ -1585,35 +1135,12 @@ plt.tight_layout()
 plt.savefig('rfecv_results.png', dpi=300, bbox_inches='tight')
 print("\nGráfico guardado como 'rfecv_results.png'")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-
-SELECCIÓN DE CARACTERÍSTICAS
-======================================================================
-
-Número óptimo de características: 4
-
-Características seleccionadas:
-  ✓ sepal length (cm)
-  ✓ sepal width (cm)
-  ✓ petal length (cm)
-  ✓ petal width (cm)
-
-Gráfico guardado como 'rfecv_results.png'
-```
-:::
-
-::: {.cell-output .cell-output-display}
-![](index_files/figure-html/cell-21-output-2.png){width=951 height=566}
-:::
 :::
 
 
 ## Análisis incremental de variables
 
-::: {#875c0389 .cell execution_count=21}
+::: {#1579a03a .cell}
 ``` {.python .cell-code}
 # Evaluar contribución incremental de cada variable
 print("\n\nANÁLISIS INCREMENTAL DE VARIABLES")
@@ -1661,33 +1188,6 @@ plt.tight_layout()
 plt.savefig('incremental_features.png', dpi=300, bbox_inches='tight')
 print("\nGráfico guardado como 'incremental_features.png'")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-
-ANÁLISIS INCREMENTAL DE VARIABLES
-======================================================================
-
-1 feature(s): petal length (cm)
-  AUC: 0.9740 ± 0.0174
-
-2 feature(s): petal width (cm)
-  AUC: 0.9880 ± 0.0240
-
-3 feature(s): sepal length (cm)
-  AUC: 0.9885 ± 0.0206
-
-4 feature(s): sepal width (cm)
-  AUC: 0.9945 ± 0.0110
-
-Gráfico guardado como 'incremental_features.png'
-```
-:::
-
-::: {.cell-output .cell-output-display}
-![](index_files/figure-html/cell-22-output-2.png){width=950 height=565}
-:::
 :::
 
 
@@ -1695,7 +1195,7 @@ Gráfico guardado como 'incremental_features.png'
 
 ## Aplicación 1: Predicción de incumplimiento crediticio
 
-::: {#a30e7440 .cell execution_count=22}
+::: {#3d39a948 .cell}
 ``` {.python .cell-code}
 print("\n\n\nAPLICACIÓN: OPTIMIZACIÓN DE MODELO DE CRÉDITO")
 print("=" * 70)
@@ -1741,25 +1241,12 @@ print(f"  Tasa de incumplimiento: {datos_credito['incumplimiento'].mean():.2%}")
 X_credito = datos_credito.drop('incumplimiento', axis=1)
 y_credito = datos_credito['incumplimiento']
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-
-
-APLICACIÓN: OPTIMIZACIÓN DE MODELO DE CRÉDITO
-======================================================================
-Dataset de crédito generado:
-  Total clientes: 1000
-  Tasa de incumplimiento: 2.60%
-```
-:::
 :::
 
 
 ## Pipeline completo de optimización
 
-::: {#75336e1d .cell execution_count=23}
+::: {#c7c6470d .cell}
 ``` {.python .cell-code}
 # 1. Comparar múltiples modelos con CV
 modelos_credito = {
@@ -1876,80 +1363,6 @@ elif gap_final < 0.15:
 else:
     print("  ⚠️  Overfitting significativo")
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-
-COMPARACIÓN DE MODELOS
-======================================================================
-```
-:::
-
-::: {.cell-output .cell-output-stdout}
-```
-
-Logistic Regression:
-  AUC: 0.6643
-  Precision: 0.0000
-  Recall: 0.0000
-```
-:::
-
-::: {.cell-output .cell-output-stdout}
-```
-
-Random Forest:
-  AUC: 0.5305
-  Precision: 0.0000
-  Recall: 0.0000
-
-Decision Tree:
-  AUC: 0.5261
-  Precision: 0.0833
-  Recall: 0.0800
-
-
-OPTIMIZACIÓN DE HIPERPARÁMETROS
-======================================================================
-Ejecutando Grid Search...
-
-Mejores parámetros:
-  class_weight: balanced
-  max_depth: 10
-  min_samples_split: 2
-  n_estimators: 300
-
-Mejor AUC: 0.6431
-
-
-IMPORTANCIA DE VARIABLES
-======================================================================
-antiguedad_laboral        0.2290 ███████████
-score_crediticio          0.1828 █████████
-ratio_deuda_ingreso       0.1591 ███████
-edad                      0.1563 ███████
-ingreso_mensual           0.1367 ██████
-num_creditos_anteriores   0.0709 ███
-tiene_ahorros             0.0384 █
-tiene_hipoteca            0.0267 █
-
-
-CURVAS DE APRENDIZAJE
-======================================================================
-Curva guardada como 'learning_curve_credito.png'
-
-Diagnóstico:
-  Training AUC: 1.0000
-  Validation AUC: 0.6431
-  Gap: 0.3569
-  ⚠️  Overfitting significativo
-```
-:::
-
-::: {.cell-output .cell-output-display}
-![](index_files/figure-html/cell-24-output-4.png){width=950 height=566}
-:::
 :::
 
 
@@ -1957,7 +1370,7 @@ Diagnóstico:
 
 ## Checklist de validación de modelos
 
-::: {#81cb1038 .cell execution_count=24}
+::: {#9e81ef10 .cell}
 ``` {.python .cell-code}
 print("\n\n\nCHECKLIST DE VALIDACIÓN DE MODELOS")
 print("=" * 70)
@@ -2024,81 +1437,12 @@ checklist = """
 
 print(checklist)
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-
-
-CHECKLIST DE VALIDACIÓN DE MODELOS
-======================================================================
-
-□ DIVISIÓN DE DATOS
-  ✓ Separar train/test antes de cualquier análisis
-  ✓ Usar stratified split para clases desbalanceadas
-  ✓ Mantener test set intocado hasta evaluación final
-
-□ VALIDACIÓN CRUZADA
-  ✓ Usar K-Fold (típicamente K=5 o K=10)
-  ✓ Stratified K-Fold para clasificación
-  ✓ Repetir con diferentes seeds
-  ✓ Reportar media ± desviación estándar
-
-□ OPTIMIZACIÓN DE HIPERPARÁMETROS
-  ✓ Definir grilla razonable de hiperparámetros
-  ✓ Usar validación cruzada anidada
-  ✓ Considerar Random Search para espacios grandes
-  ✓ Guardar mejores parámetros
-
-□ EVALUACIÓN DE OVERFITTING
-  ✓ Comparar performance train vs test
-  ✓ Analizar curvas de aprendizaje
-  ✓ Verificar gap < 0.15
-  ✓ Usar regularización si es necesario
-
-□ ANÁLISIS DE DATOS
-  ✓ Evaluar si más datos ayudarían
-  ✓ Verificar rendimientos decrecientes
-  ✓ Considerar costo de recolección
-
-□ SELECCIÓN DE VARIABLES
-  ✓ Analizar importancia de características
-  ✓ Considerar RFECV para reducir dimensionalidad
-  ✓ Evaluar contribución incremental
-  ✓ Remover variables redundantes
-
-□ MÉTRICAS APROPIADAS
-  ✓ Elegir métrica según objetivo de negocio
-  ✓ Considerar costos de errores (FP vs FN)
-  ✓ Reportar múltiples métricas
-  ✓ Usar curvas ROC/PR para panorama completo
-
-□ ROBUSTEZ
-  ✓ Probar con diferentes particiones
-  ✓ Validar en período temporal diferente
-  ✓ Verificar estabilidad con diferentes seeds
-  ✓ Detectar data leakage
-
-□ DOCUMENTACIÓN
-  ✓ Guardar hiperparámetros óptimos
-  ✓ Documentar proceso de selección
-  ✓ Registrar performance en test
-  ✓ Explicar decisiones de diseño
-
-□ COMPARACIÓN
-  ✓ Establecer baseline simple
-  ✓ Comparar múltiples algoritmos
-  ✓ Usar mismos datos para comparación
-  ✓ Considerar trade-offs (interpretabilidad vs accuracy)
-
-```
-:::
 :::
 
 
 ## Función de pipeline completo
 
-::: {#4651d255 .cell execution_count=25}
+::: {#1a06beab .cell}
 ``` {.python .cell-code}
 def pipeline_validacion_completo(X, y, modelos, param_grids, feature_names=None):
     """
@@ -2275,88 +1619,6 @@ resultados_pipeline = pipeline_validacion_completo(
     feature_names=X_credito.columns.tolist()
 )
 ```
-
-::: {.cell-output .cell-output-stdout}
-```
-
-
-EJEMPLO DE PIPELINE COMPLETO
-======================================================================
-======================================================================
-PIPELINE DE VALIDACIÓN COMPLETO
-======================================================================
-
-1. COMPARACIÓN INICIAL DE MODELOS
-----------------------------------------------------------------------
-
-Evaluando Logistic Regression...
-```
-:::
-
-::: {.cell-output .cell-output-stdout}
-```
-  AUC: 0.6901 ± 0.1161
-  Gap: 0.0524
-
-Evaluando Random Forest...
-```
-:::
-
-::: {.cell-output .cell-output-stdout}
-```
-  AUC: 0.5376 ± 0.0664
-  Gap: 0.4624
-
-Evaluando Decision Tree...
-  AUC: 0.5025 ± 0.0438
-  Gap: 0.4975
-
-
-2. OPTIMIZACIÓN DE HIPERPARÁMETROS
-----------------------------------------------------------------------
-
-Optimizando Random Forest...
-  Mejor AUC: 0.6043
-  Mejores parámetros: {'max_depth': 5, 'min_samples_split': 2, 'n_estimators': 100}
-
-Optimizando Decision Tree...
-  Mejor AUC: 0.5301
-  Mejores parámetros: {'max_depth': 3, 'min_samples_split': 2}
-
-
-3. ANÁLISIS DE IMPORTANCIA DE VARIABLES
-----------------------------------------------------------------------
-
-Random Forest:
-  antiguedad_laboral             0.2271
-  ingreso_mensual                0.2201
-  score_crediticio               0.1674
-  edad                           0.1661
-  ratio_deuda_ingreso            0.1243
-  num_creditos_anteriores        0.0530
-  tiene_ahorros                  0.0284
-  tiene_hipoteca                 0.0136
-
-Decision Tree:
-  antiguedad_laboral             0.3298
-  ingreso_mensual                0.3279
-  edad                           0.2752
-  score_crediticio               0.0671
-  num_creditos_anteriores        0.0000
-  tiene_hipoteca                 0.0000
-  tiene_ahorros                  0.0000
-  ratio_deuda_ingreso            0.0000
-
-
-4. DIAGNÓSTICO Y RECOMENDACIONES
-----------------------------------------------------------------------
-
-Mejor modelo: Logistic Regression
-AUC: 0.6901
-
-✓ Modelo bien balanceado
-```
-:::
 :::
 
 
