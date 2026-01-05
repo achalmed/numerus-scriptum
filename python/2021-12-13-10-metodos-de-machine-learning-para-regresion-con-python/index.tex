@@ -357,6 +357,10 @@ diferencia de clasificación que predice categorías discretas).
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Librerías importadas exitosamente
+\end{verbatim}
+
 \subsection{Tipos de problemas de
 regresión}\label{tipos-de-problemas-de-regresiuxf3n}
 
@@ -486,6 +490,24 @@ regresión}\label{tipos-de-problemas-de-regresiuxf3n}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+DATOS GENERADOS
+======================================================================
+Número de observaciones: 200
+Número de características: 2
+
+Coeficientes verdaderos:
+  Intercepto: 3.0
+  β₁: 2.0
+  β₂: -1.5
+
+Modelo verdadero: Y = 3.0 + 2.0*X₁ + -1.5*X₂ + ε
+
+Gráfico guardado como 'datos_regresion.png'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-3-output-2.pdf}}
+
 \subsection{Dividir datos}\label{dividir-datos}
 
 \begin{Shaded}
@@ -500,6 +522,13 @@ regresión}\label{tipos-de-problemas-de-regresiuxf3n}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Prueba: }\SpecialCharTok{\{}\BuiltInTok{len}\NormalTok{(y\_test)}\SpecialCharTok{\}}\SpecialStringTok{ observaciones"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+
+División de datos:
+  Entrenamiento: 140 observaciones
+  Prueba: 60 observaciones
+\end{verbatim}
 
 \section{Mínimos cuadrados ordinarios
 (OLS)}\label{muxednimos-cuadrados-ordinarios-ols}
@@ -892,6 +921,26 @@ superior.
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+MODELO OLS ESTIMADO
+======================================================================
+Intercepto estimado: 2.8623
+  (Verdadero: 3.0)
+
+Coeficientes estimados:
+  β₁: 2.1145 (Verdadero: 2.0)
+  β₂: -1.3336 (Verdadero: -1.5)
+
+
+PERFORMANCE DEL MODELO
+======================================================================
+R² Train: 0.8619
+R² Test:  0.8480
+MSE Train: 0.9534
+MSE Test:  1.0902
+\end{verbatim}
+
 \subsection{Visualización de
 predicciones}\label{visualizaciuxf3n-de-predicciones}
 
@@ -927,6 +976,13 @@ predicciones}\label{visualizaciuxf3n-de-predicciones}
 \BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Gráfico guardado como \textquotesingle{}ols\_predictions.png\textquotesingle{}"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+
+Gráfico guardado como 'ols_predictions.png'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-6-output-2.pdf}}
 
 \subsection{Análisis de residuos}\label{anuxe1lisis-de-residuos}
 
@@ -975,50 +1031,332 @@ predicciones}\label{visualizaciuxf3n-de-predicciones}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Gráficos de diagnóstico guardados como 'ols_diagnostics.png'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-7-output-2.pdf}}
+
 \section{Regresión Ridge}\label{regresiuxf3n-ridge}
 
 \subsection{Fundamento matemático}\label{fundamento-matemuxe1tico-1}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
-\StringTok{REGRESIÓN RIDGE (L2 REGULARIZATION)}
+La regresión Ridge, también conocida como regularización L2 o regresión
+de cresta, fue propuesta por Hoerl y Kennard (1970) como una solución al
+problema de multicolinealidad en regresión lineal. Este método introduce
+una penalización sobre la magnitud de los coeficientes para estabilizar
+las estimaciones.
 
-\StringTok{Objetivo:}
-\StringTok{    Minimizar RSS + penalización por magnitud de coeficientes}
-\StringTok{    }
-\StringTok{    min \{ RSS(β) + α·Σβⱼ² \}}
-\StringTok{    }
-\StringTok{    = min \{ Σ(yᵢ {-} ŷᵢ)² + α·Σβⱼ² \}}
+\subsubsection{Especificación del
+problema}\label{especificaciuxf3n-del-problema}
 
-\StringTok{Solución:}
-\StringTok{    β̂ᴿⁱᵈᵍᵉ = (X\textquotesingle{}X + αI)⁻¹X\textquotesingle{}Y}
+La regresión Ridge modifica el problema de mínimos cuadrados ordinarios
+añadiendo un término de penalización:
 
-\StringTok{Donde:}
-\StringTok{{-} α: Parámetro de regularización (α ≥ 0)}
-\StringTok{  * α = 0: Equivalente a OLS}
-\StringTok{  * α → ∞: Coeficientes → 0}
-\StringTok{{-} ||β||₂²: Norma L2 (suma de cuadrados de coeficientes)}
+\[
+\min_{\boldsymbol{\beta}} \left\{ \text{RSS}(\boldsymbol{\beta}) + \alpha \|\boldsymbol{\beta}\|_2^2 \right\}
+\]
 
-\StringTok{Efecto de Ridge:}
-\StringTok{✓ Reduce magnitud de coeficientes (shrinkage)}
-\StringTok{✓ Mantiene todas las variables (no hace selección)}
-\StringTok{✓ Ayuda con multicolinealidad}
-\StringTok{✓ Reduce varianza del modelo}
-\StringTok{✓ Previene overfitting}
+donde:
 
-\StringTok{Cuándo usar Ridge:}
-\StringTok{{-} Cuando hay muchas variables correlacionadas}
-\StringTok{{-} Cuando todas las variables son potencialmente relevantes}
-\StringTok{{-} Cuando se prefiere estabilidad sobre interpretabilidad}
+\begin{itemize}
+\tightlist
+\item
+  \(\text{RSS}(\boldsymbol{\beta}) = \sum_{i=1}^{n} (Y_i - \mathbf{X}_i^\top\boldsymbol{\beta})^2\)
+  es la suma de residuos al cuadrado
+\item
+  \(\|\boldsymbol{\beta}\|_2^2 = \sum_{j=1}^{p} \beta_j^2\) es la norma
+  L2 al cuadrado de los coeficientes
+\item
+  \(\alpha \geq 0\) es el parámetro de regularización que controla la
+  intensidad de la penalización
+\end{itemize}
 
-\StringTok{Aplicaciones económicas:}
-\StringTok{{-} Modelos con muchas variables macroeconómicas correlacionadas}
-\StringTok{{-} Predicción de series de tiempo con múltiples rezagos}
-\StringTok{{-} Modelos de pricing con características correlacionadas}
-\StringTok{"""}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+Expandiendo la función objetivo:
+
+\[
+\mathcal{L}(\boldsymbol{\beta}) = \sum_{i=1}^{n} \left(Y_i - \beta_0 - \sum_{j=1}^{p} \beta_j X_{ji}\right)^2 + \alpha \sum_{j=1}^{p} \beta_j^2
+\]
+
+En notación matricial:
+
+\[
+\mathcal{L}(\boldsymbol{\beta}) = (\mathbf{Y} - \mathbf{X}\boldsymbol{\beta})^\top(\mathbf{Y} - \mathbf{X}\boldsymbol{\beta}) + \alpha \boldsymbol{\beta}^\top\boldsymbol{\beta}
+\]
+
+\textbf{Nota importante}: Generalmente, el intercepto \(\beta_0\) no se
+penaliza, es decir, la penalización se aplica solo a
+\(\beta_1, \ldots, \beta_p\). Esto se debe a que el intercepto
+simplemente centra los datos y no debería ser objeto de regularización.
+
+\subsubsection{Derivación de la
+solución}\label{derivaciuxf3n-de-la-soluciuxf3n-1}
+
+Para encontrar el estimador Ridge, derivamos la función objetivo con
+respecto a \(\boldsymbol{\beta}\) e igualamos a cero:
+
+\[
+\frac{\partial \mathcal{L}}{\partial \boldsymbol{\beta}} = -2\mathbf{X}^\top(\mathbf{Y} - \mathbf{X}\boldsymbol{\beta}) + 2\alpha\boldsymbol{\beta} = 0
+\]
+
+Reordenando:
+
+\[
+\mathbf{X}^\top\mathbf{Y} = \mathbf{X}^\top\mathbf{X}\boldsymbol{\beta} + \alpha\boldsymbol{\beta}
+\]
+
+\[
+\mathbf{X}^\top\mathbf{Y} = (\mathbf{X}^\top\mathbf{X} + \alpha\mathbf{I})\boldsymbol{\beta}
+\]
+
+Por lo tanto, la \textbf{solución de regresión Ridge} es:
+
+\[
+\hat{\boldsymbol{\beta}}^{\text{Ridge}} = (\mathbf{X}^\top\mathbf{X} + \alpha\mathbf{I})^{-1}\mathbf{X}^\top\mathbf{Y}
+\]
+
+donde \(\mathbf{I}\) es la matriz identidad de dimensión \(p \times p\).
+
+\subsubsection{Interpretación
+geométrica}\label{interpretaciuxf3n-geomuxe9trica}
+
+La solución Ridge puede interpretarse como el resultado de añadir
+\(\alpha\) a los elementos diagonales de \(\mathbf{X}^\top\mathbf{X}\),
+lo que garantiza que la matriz sea invertible incluso cuando
+\(\mathbf{X}^\top\mathbf{X}\) es singular o casi singular (problema de
+multicolinealidad).
+
+\subsubsection{Efecto del parámetro de regularización
+α}\label{efecto-del-paruxe1metro-de-regularizaciuxf3n-ux3b1}
+
+El parámetro \(\alpha\) controla el trade-off entre ajuste a los datos y
+complejidad del modelo:
+
+\textbf{Caso α = 0}: \[
+\hat{\boldsymbol{\beta}}^{\text{Ridge}} = (\mathbf{X}^\top\mathbf{X})^{-1}\mathbf{X}^\top\mathbf{Y} = \hat{\boldsymbol{\beta}}^{\text{OLS}}
+\] La solución es idéntica a OLS (sin regularización).
+
+\textbf{Caso α → ∞}: \[
+\lim_{\alpha \to \infty} \hat{\boldsymbol{\beta}}^{\text{Ridge}} = \mathbf{0}
+\] Los coeficientes se reducen a cero (máxima regularización).
+
+\textbf{Casos intermedios} (0 \textless{} α \textless{} ∞): Los
+coeficientes se ``encogen'' (shrinkage) hacia cero, pero nunca alcanzan
+exactamente cero.
+
+\subsubsection{Propiedades del estimador
+Ridge}\label{propiedades-del-estimador-ridge}
+
+\textbf{1. Sesgo del estimador}
+
+A diferencia de OLS, el estimador Ridge es sesgado:
+
+\[
+E[\hat{\boldsymbol{\beta}}^{\text{Ridge}}] = (\mathbf{X}^\top\mathbf{X} + \alpha\mathbf{I})^{-1}\mathbf{X}^\top\mathbf{X}\boldsymbol{\beta} \neq \boldsymbol{\beta}
+\]
+
+El sesgo es:
+
+\[
+\text{Bias}[\hat{\boldsymbol{\beta}}^{\text{Ridge}}] = -\alpha(\mathbf{X}^\top\mathbf{X} + \alpha\mathbf{I})^{-1}\boldsymbol{\beta}
+\]
+
+\textbf{2. Varianza del estimador}
+
+La matriz de varianzas-covarianzas es:
+
+\[
+\text{Var}(\hat{\boldsymbol{\beta}}^{\text{Ridge}}) = \sigma^2 (\mathbf{X}^\top\mathbf{X} + \alpha\mathbf{I})^{-1} \mathbf{X}^\top\mathbf{X} (\mathbf{X}^\top\mathbf{X} + \alpha\mathbf{I})^{-1}
+\]
+
+que es generalmente menor que la varianza de OLS:
+
+\[
+\text{Var}(\hat{\boldsymbol{\beta}}^{\text{OLS}}) = \sigma^2 (\mathbf{X}^\top\mathbf{X})^{-1}
+\]
+
+\textbf{3. Error cuadrático medio (MSE)}
+
+El MSE del estimador Ridge es:
+
+\[
+\text{MSE}[\hat{\boldsymbol{\beta}}^{\text{Ridge}}] = \text{Var}(\hat{\boldsymbol{\beta}}^{\text{Ridge}}) + \text{Bias}^2[\hat{\boldsymbol{\beta}}^{\text{Ridge}}]
+\]
+
+Aunque Ridge introduce sesgo, la reducción en varianza puede ser
+suficiente para que el MSE total sea menor que el de OLS, especialmente
+en presencia de multicolinealidad.
+
+\subsubsection{Trade-off sesgo-varianza}\label{trade-off-sesgo-varianza}
+
+La regresión Ridge ilustra el clásico trade-off entre sesgo y varianza:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Aumentar α}: Incrementa el sesgo pero reduce la varianza
+\item
+  \textbf{Disminuir α}: Reduce el sesgo pero incrementa la varianza
+\end{itemize}
+
+Existe un valor óptimo de \(\alpha\) que minimiza el error de predicción
+esperado:
+
+\[
+\alpha^* = \arg\min_{\alpha} E[(Y_{\text{nuevo}} - \mathbf{X}_{\text{nuevo}}^\top\hat{\boldsymbol{\beta}}^{\text{Ridge}})^2]
+\]
+
+Este valor óptimo se determina típicamente mediante validación cruzada.
+
+\subsubsection{Interpretación
+Bayesiana}\label{interpretaciuxf3n-bayesiana}
+
+La regresión Ridge tiene una interpretación elegante desde la
+perspectiva Bayesiana. Es equivalente a estimación de máxima
+probabilidad a posteriori (MAP) con una distribución a priori gaussiana
+sobre los coeficientes:
+
+\[
+\beta_j \sim N(0, \tau^2) \quad \text{donde} \quad \tau^2 = \frac{\sigma^2}{\alpha}
+\]
+
+La penalización L2 corresponde al logaritmo negativo de esta
+distribución a priori.
+
+\subsubsection{Ventajas de la regresión
+Ridge}\label{ventajas-de-la-regresiuxf3n-ridge}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Estabilidad ante multicolinealidad}: Cuando
+  \(\mathbf{X}^\top\mathbf{X}\) es casi singular (multicolinealidad
+  alta), OLS produce coeficientes inestables con varianzas muy altas.
+  Ridge estabiliza las estimaciones.
+\item
+  \textbf{Reducción de varianza}: Especialmente beneficioso cuando \(p\)
+  es grande relativo a \(n\) o cuando las variables están
+  correlacionadas.
+\item
+  \textbf{Prevención de overfitting}: La penalización limita la
+  complejidad del modelo, mejorando la generalización.
+\item
+  \textbf{Solución única garantizada}: La matriz
+  \(\mathbf{X}^\top\mathbf{X} + \alpha\mathbf{I}\) siempre es invertible
+  para \(\alpha > 0\).
+\item
+  \textbf{Todas las variables permanecen}: A diferencia de Lasso, Ridge
+  no elimina variables completamente, lo cual es deseable cuando todas
+  las variables son potencialmente relevantes.
+\item
+  \textbf{Propiedades de grupos}: Cuando hay grupos de variables
+  correlacionadas, Ridge tiende a asignarles coeficientes similares, lo
+  cual puede ser deseable en ciertos contextos económicos.
+\end{enumerate}
+
+\subsubsection{Limitaciones de la regresión
+Ridge}\label{limitaciones-de-la-regresiuxf3n-ridge}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{No realiza selección de variables}: Todos los coeficientes son
+  distintos de cero (aunque pequeños). Esto puede dificultar la
+  interpretación cuando \(p\) es muy grande.
+\item
+  \textbf{Sesgo introducido}: El estimador es sesgado, lo que puede ser
+  problemático para inferencia causal.
+\item
+  \textbf{Difícil interpretación}: Los coeficientes encogidos son más
+  difíciles de interpretar que los de OLS.
+\item
+  \textbf{Elección de α}: Requiere seleccionar el parámetro de
+  regularización, típicamente mediante validación cruzada, lo cual añade
+  complejidad computacional.
+\item
+  \textbf{Sensibilidad a la escala}: Los resultados dependen de la
+  escala de las variables, por lo que es esencial estandarizar las
+  variables antes de aplicar Ridge.
+\end{enumerate}
+
+\subsubsection{Estandarización de
+variables}\label{estandarizaciuxf3n-de-variables}
+
+Antes de aplicar Ridge, es crucial estandarizar las variables
+independientes:
+
+\[
+\tilde{X}_{ji} = \frac{X_{ji} - \bar{X}_j}{s_j}
+\]
+
+donde \(\bar{X}_j\) y \(s_j\) son la media y desviación estándar de la
+variable \(j\). Esto asegura que todas las variables contribuyan
+equitativamente a la penalización.
+
+\subsubsection{Aplicaciones en
+economía}\label{aplicaciones-en-economuxeda-1}
+
+La regresión Ridge es particularmente útil en:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Modelos macroeconómicos}: Con múltiples indicadores
+  correlacionados (PIB, consumo, inversión, etc.)
+\item
+  \textbf{Predicción de series de tiempo}: Con múltiples rezagos de la
+  variable dependiente y otras variables explicativas
+\item
+  \textbf{Modelos de pricing}: En finanzas, cuando múltiples factores de
+  riesgo están correlacionados
+\item
+  \textbf{Análisis de panel}: Con muchos efectos fijos o controles
+  correlacionados
+\item
+  \textbf{Modelos de valoración}: Cuando hay múltiples características
+  correlacionadas (ej: valoración de viviendas con características de
+  ubicación correlacionadas)
+\item
+  \textbf{Forecasting económico}: Cuando se incluyen muchos predictores
+  potencialmente relevantes y correlacionados
+\end{enumerate}
+
+\subsubsection{Selección del parámetro α mediante validación
+cruzada}\label{selecciuxf3n-del-paruxe1metro-ux3b1-mediante-validaciuxf3n-cruzada}
+
+El procedimiento estándar para seleccionar \(\alpha\) es:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Dividir datos en K folds
+\item
+  Para cada valor candidato de α:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Entrenar modelo en K-1 folds
+  \item
+    Predecir en el fold restante
+  \item
+    Calcular error de predicción
+  \end{itemize}
+\item
+  Promediar errores sobre los K folds
+\item
+  Seleccionar α que minimiza el error promedio
+\end{enumerate}
+
+Matemáticamente:
+
+\[
+\alpha^* = \arg\min_{\alpha} \frac{1}{K} \sum_{k=1}^{K} \text{MSE}_k(\alpha)
+\]
+
+donde \(\text{MSE}_k(\alpha)\) es el error cuadrático medio en el
+k-ésimo fold.
 
 \subsection{Implementación}\label{implementaciuxf3n-1}
 
@@ -1057,6 +1395,21 @@ predicciones}\label{visualizaciuxf3n-de-predicciones}
 \NormalTok{df\_ridge }\OperatorTok{=}\NormalTok{ pd.DataFrame(resultados\_ridge)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+
+REGRESIÓN RIDGE - EFECTO DE α
+======================================================================
+α          β₁           β₂           R² Train     R² Test     
+----------------------------------------------------------------------
+0.001      2.1145       -1.3336      0.8619       0.8480      
+0.010      2.1143       -1.3335      0.8619       0.8480      
+0.100      2.1129       -1.3326      0.8619       0.8480      
+1.000      2.0986       -1.3239      0.8619       0.8476      
+10.000     1.9659       -1.2421      0.8577       0.8407      
+100.000    1.2046       -0.7678      0.7036       0.6801      
+1000.000   0.2473       -0.1592      0.1909       0.1821      
+\end{verbatim}
 
 \subsection{Visualización del efecto de
 regularización}\label{visualizaciuxf3n-del-efecto-de-regularizaciuxf3n}
@@ -1104,49 +1457,409 @@ regularización}\label{visualizaciuxf3n-del-efecto-de-regularizaciuxf3n}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+Gráfico guardado como 'ridge_regularization.png'
+
+Mejor α: 0.001
+R² Test: 0.8480
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-9-output-2.pdf}}
+
 \section{Regresión Lasso}\label{regresiuxf3n-lasso}
 
 \subsection{Fundamento matemático}\label{fundamento-matemuxe1tico-2}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
-\StringTok{REGRESIÓN LASSO (L1 REGULARIZATION)}
+La regresión Lasso (Least Absolute Shrinkage and Selection Operator) fue
+introducida por Tibshirani (1996) como un método de regularización que
+simultáneamente realiza selección de variables y regularización de
+coeficientes. A diferencia de Ridge, Lasso puede reducir algunos
+coeficientes exactamente a cero, proporcionando modelos más
+interpretables y parsimoniosos.
 
-\StringTok{Objetivo:}
-\StringTok{    Minimizar RSS + penalización por valor absoluto de coeficientes}
-\StringTok{    }
-\StringTok{    min \{ RSS(β) + α·Σ|βⱼ| \}}
-\StringTok{    }
-\StringTok{    = min \{ Σ(yᵢ {-} ŷᵢ)² + α·Σ|βⱼ| \}}
+\subsubsection{Especificación del
+problema}\label{especificaciuxf3n-del-problema-1}
 
-\StringTok{Donde:}
-\StringTok{{-} α: Parámetro de regularización (α ≥ 0)}
-\StringTok{{-} ||β||₁: Norma L1 (suma de valores absolutos)}
+La regresión Lasso minimiza la siguiente función objetivo:
 
-\StringTok{Diferencia clave con Ridge:}
-\StringTok{{-} Lasso puede llevar coeficientes exactamente a CERO}
-\StringTok{{-} Ridge solo los reduce pero no los elimina}
+\[
+\min_{\boldsymbol{\beta}} \left\{ \text{RSS}(\boldsymbol{\beta}) + \alpha \|\boldsymbol{\beta}\|_1 \right\}
+\]
 
-\StringTok{Efecto de Lasso:}
-\StringTok{✓ Selección automática de variables (feature selection)}
-\StringTok{✓ Produce modelos dispersos (sparse models)}
-\StringTok{✓ Más interpretable que Ridge}
-\StringTok{✓ Útil cuando hay muchas variables irrelevantes}
+donde:
 
-\StringTok{Cuándo usar Lasso:}
-\StringTok{{-} Cuando se cree que solo pocas variables son relevantes}
-\StringTok{{-} Cuando se necesita interpretabilidad}
-\StringTok{{-} Cuando se quiere selección automática de variables}
+\begin{itemize}
+\tightlist
+\item
+  \(\text{RSS}(\boldsymbol{\beta}) = \sum_{i=1}^{n} (Y_i - \mathbf{X}_i^\top\boldsymbol{\beta})^2\)
+  es la suma de residuos al cuadrado
+\item
+  \(\|\boldsymbol{\beta}\|_1 = \sum_{j=1}^{p} |\beta_j|\) es la norma L1
+  de los coeficientes
+\item
+  \(\alpha \geq 0\) es el parámetro de regularización
+\end{itemize}
 
-\StringTok{Aplicaciones económicas:}
-\StringTok{{-} Identificar factores clave que afectan un outcome}
-\StringTok{{-} Modelos parsimoniosos para reportes}
-\StringTok{{-} Análisis exploratorio de muchas variables}
-\StringTok{{-} Predicción con datasets con muchas columnas}
-\StringTok{"""}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+Expandiendo:
+
+\[
+\mathcal{L}(\boldsymbol{\beta}) = \sum_{i=1}^{n} \left(Y_i - \beta_0 - \sum_{j=1}^{p} \beta_j X_{ji}\right)^2 + \alpha \sum_{j=1}^{p} |\beta_j|
+\]
+
+En notación matricial:
+
+\[
+\mathcal{L}(\boldsymbol{\beta}) = (\mathbf{Y} - \mathbf{X}\boldsymbol{\beta})^\top(\mathbf{Y} - \mathbf{X}\boldsymbol{\beta}) + \alpha \|\boldsymbol{\beta}\|_1
+\]
+
+\textbf{Nota importante}: Al igual que en Ridge, el intercepto
+\(\beta_0\) típicamente no se penaliza.
+
+\subsubsection{Diferencia fundamental con
+Ridge}\label{diferencia-fundamental-con-ridge}
+
+La diferencia clave entre Lasso y Ridge radica en la norma utilizada:
+
+\textbf{Ridge (L2)}: \[
+\text{Penalización} = \alpha \sum_{j=1}^{p} \beta_j^2
+\]
+
+\textbf{Lasso (L1)}: \[
+\text{Penalización} = \alpha \sum_{j=1}^{p} |\beta_j|
+\]
+
+La norma L1 es la suma de valores absolutos, mientras que la norma L2 es
+la suma de cuadrados. Esta diferencia aparentemente sutil tiene
+consecuencias profundas.
+
+\subsubsection{Solución del problema
+Lasso}\label{soluciuxf3n-del-problema-lasso}
+
+A diferencia de Ridge y OLS, Lasso \textbf{no tiene solución analítica
+cerrada} debido a la no diferenciabilidad de la función valor absoluto
+en cero. La función \(|\beta_j|\) no es diferenciable en
+\(\beta_j = 0\).
+
+La solución debe obtenerse mediante métodos de optimización numérica:
+
+\textbf{1. Coordinate Descent (Descenso por coordenadas)}
+
+Actualiza un coeficiente a la vez, manteniendo los demás fijos. Para
+cada coeficiente \(\beta_j\):
+
+\[
+\hat{\beta}_j = \text{sign}(\tilde{\beta}_j^{\text{OLS}}) \cdot \max(0, |\tilde{\beta}_j^{\text{OLS}}| - \alpha)
+\]
+
+donde \(\tilde{\beta}_j^{\text{OLS}}\) es el coeficiente OLS condicional
+en los demás coeficientes. Esta es la operación de
+\textbf{soft-thresholding}.
+
+\textbf{2. LARS (Least Angle Regression)}
+
+Algoritmo eficiente que construye el path completo de soluciones Lasso
+para todos los valores de \(\alpha\).
+
+\textbf{3. Proximal Gradient Descent}
+
+Métodos de optimización convexa que explotan la estructura del problema.
+
+\subsubsection{Interpretación
+geométrica}\label{interpretaciuxf3n-geomuxe9trica-1}
+
+La diferencia en el comportamiento de Ridge y Lasso puede entenderse
+geométricamente:
+
+\textbf{Formulación equivalente con restricción}:
+
+Ridge: \[
+\min_{\boldsymbol{\beta}} \text{RSS}(\boldsymbol{\beta}) \quad \text{sujeto a} \quad \sum_{j=1}^{p} \beta_j^2 \leq t
+\]
+
+Lasso: \[
+\min_{\boldsymbol{\beta}} \text{RSS}(\boldsymbol{\beta}) \quad \text{sujeto a} \quad \sum_{j=1}^{p} |\beta_j| \leq t
+\]
+
+Donde existe una correspondencia uno a uno entre \(\alpha\) y \(t\).
+
+\textbf{Región de restricción}:
+
+\begin{itemize}
+\tightlist
+\item
+  Ridge: La restricción \(\sum \beta_j^2 \leq t\) define una
+  \textbf{hiperesfera} (bola)
+\item
+  Lasso: La restricción \(\sum |\beta_j| \leq t\) define un
+  \textbf{hiperrombo} (diamante)
+\end{itemize}
+
+La solución óptima ocurre donde las curvas de nivel de RSS tocan primero
+la región de restricción.
+
+\textbf{Punto clave}: El hiperrombo de Lasso tiene ``esquinas'' en los
+ejes donde algunos \(\beta_j = 0\). Es más probable que las curvas de
+nivel de RSS toquen estas esquinas, lo que explica por qué Lasso produce
+coeficientes exactamente cero.
+
+\subsubsection{Propiedades de
+soft-thresholding}\label{propiedades-de-soft-thresholding}
+
+La operación de soft-thresholding es fundamental en Lasso:
+
+\[
+\mathcal{S}_{\alpha}(\beta) = \begin{cases}
+\beta - \alpha & \text{si } \beta > \alpha \\
+0 & \text{si } |\beta| \leq \alpha \\
+\beta + \alpha & \text{si } \beta < -\alpha
+\end{cases}
+\]
+
+Esta función: 1. \textbf{Encoge} coeficientes hacia cero 2.
+\textbf{Establece en cero} coeficientes pequeños (menores que \(\alpha\)
+en valor absoluto) 3. Es la operación de proximidad para la norma L1
+
+\subsubsection{Efecto del parámetro
+α}\label{efecto-del-paruxe1metro-ux3b1}
+
+\textbf{Caso α = 0}: Sin penalización, se reduce a OLS (si las variables
+están estandarizadas apropiadamente).
+
+\textbf{Caso α pequeño}: Pocos coeficientes se establecen exactamente en
+cero. El modelo incluye casi todas las variables.
+
+\textbf{Caso α moderado}: Balance entre ajuste y parsimonia. Algunos
+coeficientes son cero (selección de variables).
+
+\textbf{Caso α grande}: Muchos o todos los coeficientes son cero. Modelo
+muy regularizado.
+
+\textbf{Caso α → ∞}: \[
+\lim_{\alpha \to \infty} \hat{\boldsymbol{\beta}}^{\text{Lasso}} = \mathbf{0}
+\]
+
+Todos los coeficientes se reducen a cero.
+
+\subsubsection{Propiedades del estimador
+Lasso}\label{propiedades-del-estimador-lasso}
+
+\textbf{1. Selección de variables}
+
+La propiedad más distintiva de Lasso es que produce \textbf{modelos
+sparse} (dispersos):
+
+\[
+\hat{\beta}_j^{\text{Lasso}} = 0 \quad \text{para algunos } j
+\]
+
+Esto proporciona selección automática de variables, identificando las
+variables más relevantes.
+
+\textbf{2. Sesgo y varianza}
+
+Similar a Ridge, Lasso introduce sesgo pero reduce varianza:
+
+\[
+E[\hat{\boldsymbol{\beta}}^{\text{Lasso}}] \neq \boldsymbol{\beta}
+\]
+
+El trade-off sesgo-varianza se controla mediante \(\alpha\).
+
+\textbf{3. Consistencia en selección}
+
+Bajo ciertas condiciones (irrepresentability condition), Lasso
+identifica consistentemente el conjunto verdadero de variables
+relevantes cuando \(n \to \infty\).
+
+\textbf{4. Comportamiento con variables correlacionadas}
+
+Cuando variables están altamente correlacionadas, Lasso tiende a:
+
+\begin{itemize}
+\tightlist
+\item
+  Seleccionar arbitrariamente una del grupo
+\item
+  Ignorar las demás
+\end{itemize}
+
+Este comportamiento puede ser indeseable si todas las variables
+correlacionadas son relevantes.
+
+\subsubsection{Comparación Ridge vs
+Lasso}\label{comparaciuxf3n-ridge-vs-lasso}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Característica
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Ridge (L2)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Lasso (L1)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Penalización} & \(\sum \beta_j^2\) & \(\sum \|\beta_j\|\) \\
+\textbf{Solución} & Analítica cerrada & Numérica \\
+\textbf{Coeficientes cero} & No (solo encoge) & Sí (selección) \\
+\textbf{Variables correlacionadas} & Coeficientes similares & Selecciona
+una \\
+\textbf{Interpretabilidad} & Menos (todas las variables) & Más (modelo
+sparse) \\
+\textbf{Estabilidad} & Más estable & Menos estable \\
+\textbf{Uso principal} & Reducir varianza & Selección de variables \\
+\end{longtable}
+
+\subsubsection{Ventajas de la regresión
+Lasso}\label{ventajas-de-la-regresiuxf3n-lasso}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Selección automática de variables}: Identifica las variables
+  más importantes, estableciendo otras en cero.
+\item
+  \textbf{Modelos interpretables}: Produce modelos parsimoniosos más
+  fáciles de entender y comunicar.
+\item
+  \textbf{Prevención de overfitting}: Especialmente útil cuando
+  \(p >> n\) (más variables que observaciones).
+\item
+  \textbf{Reducción de varianza}: Similar a Ridge, reduce la varianza
+  del modelo.
+\item
+  \textbf{Útil para identificación}: En economía, ayuda a identificar
+  los determinantes clave de un fenómeno.
+\item
+  \textbf{Computational efficiency}: Los algoritmos modernos (coordinate
+  descent) son muy eficientes.
+\end{enumerate}
+
+\subsubsection{Limitaciones de la regresión
+Lasso}\label{limitaciones-de-la-regresiuxf3n-lasso}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Selección arbitraria con correlación}: Con variables
+  correlacionadas, puede seleccionar arbitrariamente entre ellas, lo
+  cual puede no ser deseable.
+\item
+  \textbf{Máximo p \textless{} n variables}: En el caso extremo donde
+  \(p > n\), Lasso puede seleccionar como máximo \(n\) variables
+  (limitación del algoritmo).
+\item
+  \textbf{Inestabilidad}: Pequeños cambios en los datos pueden cambiar
+  qué variables son seleccionadas.
+\item
+  \textbf{No agrupa variables correlacionadas}: A diferencia de Ridge,
+  no asigna coeficientes similares a variables correlacionadas.
+\item
+  \textbf{Sesgo introducido}: Especialmente problemático para
+  coeficientes grandes que deberían permanecer grandes.
+\item
+  \textbf{Elección de α}: Requiere validación cruzada, añadiendo
+  complejidad computacional.
+\end{enumerate}
+
+\subsubsection{Interpretación
+Bayesiana}\label{interpretaciuxf3n-bayesiana-1}
+
+Lasso corresponde a MAP estimation con una distribución a priori de
+Laplace (doble exponencial):
+
+\[
+p(\beta_j) = \frac{1}{2b} \exp\left(-\frac{|\beta_j|}{b}\right)
+\]
+
+donde \(b = \frac{\sigma^2}{\alpha}\). Esta distribución tiene más masa
+de probabilidad en cero que la distribución gaussiana (a priori de
+Ridge), explicando por qué Lasso produce más coeficientes exactamente
+cero.
+
+\subsubsection{Estandarización de
+variables}\label{estandarizaciuxf3n-de-variables-1}
+
+Al igual que Ridge, es \textbf{crucial} estandarizar variables antes de
+aplicar Lasso:
+
+\[
+\tilde{X}_{ji} = \frac{X_{ji} - \bar{X}_j}{s_j}
+\]
+
+Sin estandarización, la penalización L1 penalizaría
+desproporcionadamente variables con escalas grandes.
+
+\subsubsection{Aplicaciones en
+economía}\label{aplicaciones-en-economuxeda-2}
+
+Lasso es particularmente valioso en:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Variable selection en modelos empíricos}: Identificar
+  determinantes clave de outcomes económicos entre muchos candidatos.
+\item
+  \textbf{Modelos de forecasting}: Seleccionar predictores relevantes de
+  series macroeconómicas.
+\item
+  \textbf{Análisis de text mining}: Identificar palabras clave en
+  análisis de sentimiento económico.
+\item
+  \textbf{Modelos de credit scoring}: Seleccionar características
+  predictivas de default.
+\item
+  \textbf{Economía del desarrollo}: Identificar factores clave de
+  desarrollo entre múltiples variables institucionales, geográficas y
+  económicas.
+\item
+  \textbf{Finanzas}: Selección de factores relevantes en modelos de
+  pricing de activos.
+\item
+  \textbf{High-dimensional econometrics}: Modelos con muchas variables
+  potenciales y relativamente pocas observaciones.
+\end{enumerate}
+
+\subsubsection{Selección del parámetro
+α}\label{selecciuxf3n-del-paruxe1metro-ux3b1}
+
+El procedimiento estándar es validación cruzada:
+
+\[
+\alpha^* = \arg\min_{\alpha} \frac{1}{K} \sum_{k=1}^{K} \text{MSE}_k(\alpha)
+\]
+
+\textbf{Regla de un error estándar}: En la práctica, se suele
+seleccionar el α más grande (más regularización) cuyo error esté dentro
+de un error estándar del mínimo:
+
+\[
+\alpha^{1SE} = \max\{\alpha : \text{MSE}(\alpha) \leq \text{MSE}(\alpha^*) + \text{SE}(\alpha^*)\}
+\]
+
+Esto favorece modelos más simples cuando el error de predicción es
+comparable.
+
+\subsubsection{Lasso adaptativo}\label{lasso-adaptativo}
+
+Una extensión importante es el \textbf{Adaptive Lasso}, que usa pesos
+diferentes para cada coeficiente:
+
+\[
+\mathcal{L}(\boldsymbol{\beta}) = \text{RSS}(\boldsymbol{\beta}) + \alpha \sum_{j=1}^{p} w_j |\beta_j|
+\]
+
+donde típicamente \(w_j = 1/|\hat{\beta}_j^{\text{OLS}}|^{\gamma}\) con
+\(\gamma > 0\). Esto mejora las propiedades de selección consistente del
+modelo.
 
 \subsection{Implementación}\label{implementaciuxf3n-2}
 
@@ -1191,8 +1904,23 @@ regularización}\label{visualizaciuxf3n-del-efecto-de-regularizaciuxf3n}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+REGRESIÓN LASSO - EFECTO DE α
+================================================================================
+α          β₁           β₂           Variables≠0    R² Train     R² Test     
+--------------------------------------------------------------------------------
+0.001      2.1135       -1.3325      2              0.8619       0.8479      
+0.010      2.1042       -1.3229      2              0.8619       0.8473      
+0.100      2.0112       -1.2265      2              0.8589       0.8383      
+0.500      1.5982       -0.7981      2              0.7858       0.7416      
+1.000      1.0819       -0.2626      2              0.5573       0.4907      
+2.000      0.0005       -0.0000      1              0.0003       -0.0005     
+5.000      0.0000       -0.0000      0              0.0000       -0.0007     
+\end{verbatim}
+
 \subsection{Comparación Ridge vs
-Lasso}\label{comparaciuxf3n-ridge-vs-lasso}
+Lasso}\label{comparaciuxf3n-ridge-vs-lasso-1}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1253,38 +1981,417 @@ Lasso}\label{comparaciuxf3n-ridge-vs-lasso}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+Gráfico guardado como 'ridge_vs_lasso.png'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-11-output-2.pdf}}
+
 \section{Elastic Net}\label{elastic-net}
 
-\subsection{Fundamento}\label{fundamento}
+\subsection{Fundamento matemático}\label{fundamento-matemuxe1tico-3}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
-\StringTok{ELASTIC NET}
+Elastic Net, propuesto por Zou y Hastie (2005), es un método de
+regularización híbrido que combina las penalizaciones L1 (Lasso) y L2
+(Ridge) para aprovechar las ventajas de ambos métodos mientras mitiga
+sus limitaciones individuales.
 
-\StringTok{Combina penalizaciones L1 (Lasso) y L2 (Ridge):}
+\subsubsection{Especificación del
+problema}\label{especificaciuxf3n-del-problema-2}
 
-\StringTok{    min \{ RSS(β) + α·ρ·Σ|βⱼ| + α·(1{-}ρ)/2·Σβⱼ² \}}
+Elastic Net minimiza la siguiente función objetivo:
 
-\StringTok{Donde:}
-\StringTok{{-} α: Fuerza total de regularización}
-\StringTok{{-} ρ: Balance entre L1 y L2 (0 ≤ ρ ≤ 1)}
-\StringTok{  * ρ = 0: Ridge puro}
-\StringTok{  * ρ = 1: Lasso puro}
-\StringTok{  * 0 \textless{} ρ \textless{} 1: Combinación}
+\[
+\min_{\boldsymbol{\beta}} \left\{ \text{RSS}(\boldsymbol{\beta}) + \alpha \left[ \rho \|\boldsymbol{\beta}\|_1 + \frac{1-\rho}{2} \|\boldsymbol{\beta}\|_2^2 \right] \right\}
+\]
 
-\StringTok{Ventajas:}
-\StringTok{✓ Combina lo mejor de Ridge y Lasso}
-\StringTok{✓ Selección de variables (como Lasso)}
-\StringTok{✓ Manejo de variables correlacionadas (como Ridge)}
-\StringTok{✓ Más estable que Lasso cuando hay correlaciones altas}
+donde:
 
-\StringTok{Aplicaciones:}
-\StringTok{{-} Cuando hay grupos de variables correlacionadas}
-\StringTok{{-} Cuando se necesita selección de variables y estabilidad}
-\StringTok{"""}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{itemize}
+\tightlist
+\item
+  \(\text{RSS}(\boldsymbol{\beta}) = \sum_{i=1}^{n} (Y_i - \mathbf{X}_i^\top\boldsymbol{\beta})^2\)
+  es la suma de residuos al cuadrado
+\item
+  \(\|\boldsymbol{\beta}\|_1 = \sum_{j=1}^{p} |\beta_j|\) es la norma L1
+  (penalización Lasso)
+\item
+  \(\|\boldsymbol{\beta}\|_2^2 = \sum_{j=1}^{p} \beta_j^2\) es la norma
+  L2 al cuadrado (penalización Ridge)
+\item
+  \(\alpha \geq 0\) es el parámetro que controla la fuerza total de
+  regularización
+\item
+  \(\rho \in [0, 1]\) es el parámetro que controla el balance entre L1 y
+  L2
+\end{itemize}
+
+\subsubsection{Forma alternativa de la
+penalización}\label{forma-alternativa-de-la-penalizaciuxf3n}
+
+La penalización de Elastic Net puede escribirse como:
+
+\[
+P(\boldsymbol{\beta}) = \alpha \rho \|\boldsymbol{\beta}\|_1 + \alpha \frac{1-\rho}{2} \|\boldsymbol{\beta}\|_2^2
+\]
+
+que combina:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Componente L1}: \(\alpha \rho \sum_{j=1}^{p} |\beta_j|\)
+  (promueve sparsity)
+\item
+  \textbf{Componente L2}:
+  \(\alpha \frac{1-\rho}{2} \sum_{j=1}^{p} \beta_j^2\) (promueve
+  estabilidad)
+\end{itemize}
+
+\subsubsection{Casos especiales}\label{casos-especiales}
+
+La elección del parámetro \(\rho\) determina el comportamiento del
+modelo:
+
+\textbf{ρ = 1 (Lasso puro)}: \[
+P(\boldsymbol{\beta}) = \alpha \|\boldsymbol{\beta}\|_1
+\] El modelo se reduce a Lasso estándar.
+
+\textbf{ρ = 0 (Ridge puro)}: \[
+P(\boldsymbol{\beta}) = \frac{\alpha}{2} \|\boldsymbol{\beta}\|_2^2
+\] El modelo se reduce a Ridge (con ajuste en la constante de
+regularización).
+
+\textbf{0 \textless{} ρ \textless{} 1 (Elastic Net)}: Combinación
+genuina que balancea selección de variables (L1) y estabilidad (L2).
+
+\subsubsection{Motivación: limitaciones de
+Lasso}\label{motivaciuxf3n-limitaciones-de-lasso}
+
+Elastic Net fue desarrollado para abordar dos limitaciones principales
+de Lasso:
+
+\textbf{1. Problema con variables correlacionadas}
+
+Cuando dos variables \(X_j\) y \(X_k\) están altamente correlacionadas:
+
+\begin{itemize}
+\tightlist
+\item
+  Lasso tiende a seleccionar arbitrariamente una y establecer la otra en
+  cero
+\item
+  Los coeficientes pueden ser muy inestables ante pequeñas
+  perturbaciones en los datos
+\end{itemize}
+
+\textbf{Solución de Elastic Net}: La componente L2 agrupa variables
+correlacionadas, asignándoles coeficientes similares (como Ridge),
+mientras que la componente L1 realiza selección de variables.
+
+\textbf{2. Limitación p \textgreater{} n}
+
+Cuando el número de variables excede el número de observaciones
+(\(p > n\)):
+
+\begin{itemize}
+\tightlist
+\item
+  Lasso puede seleccionar como máximo \(n\) variables
+\item
+  Esto puede ser problemático si más de \(n\) variables son relevantes
+\end{itemize}
+
+\textbf{Solución de Elastic Net}: La componente Ridge elimina esta
+restricción, permitiendo seleccionar más de \(n\) variables si es
+necesario.
+
+\subsubsection{Propiedades del estimador Elastic
+Net}\label{propiedades-del-estimador-elastic-net}
+
+\textbf{1. Efecto de agrupamiento (grouping effect)}
+
+Supongamos que dos predictores \(X_j\) y \(X_k\) están perfectamente
+correlacionados (\(X_j = X_k\)). Elastic Net tiene la siguiente
+propiedad:
+
+\[
+|\hat{\beta}_j - \hat{\beta}_k| \leq \frac{2}{\alpha(1-\rho)} \left| \hat{\beta}_j^{\text{naive}} - \hat{\beta}_k^{\text{naive}} \right|
+\]
+
+donde \(\hat{\beta}^{\text{naive}}\) es el estimador Elastic Net sin la
+componente L2. Esto muestra que Elastic Net agrupa los coeficientes de
+variables correlacionadas.
+
+\textbf{2. Selección de variables}
+
+Como Lasso, Elastic Net produce soluciones sparse:
+
+\[
+\hat{\beta}_j^{\text{EN}} = 0 \quad \text{para algunos } j
+\]
+
+Pero con más estabilidad que Lasso cuando hay correlaciones.
+
+\textbf{3. Trade-off sesgo-varianza}
+
+Elastic Net permite un control más fino del trade-off:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\alpha\) controla la regularización total (sesgo vs varianza global)
+\item
+  \(\rho\) controla el tipo de regularización (selección vs
+  agrupamiento)
+\end{itemize}
+
+\subsubsection{Algoritmo de
+optimización}\label{algoritmo-de-optimizaciuxf3n}
+
+La solución de Elastic Net no tiene forma cerrada y requiere
+optimización numérica. El algoritmo más común es \textbf{coordinate
+descent con soft-thresholding}:
+
+Para cada coeficiente \(\beta_j\), el paso de actualización es:
+
+\[
+\hat{\beta}_j = \frac{\mathcal{S}_{\alpha\rho}(\tilde{\beta}_j)}{1 + \alpha(1-\rho)}
+\]
+
+donde:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\mathcal{S}_{\lambda}(\beta) = \text{sign}(\beta) \max(0, |\beta| - \lambda)\)
+  es el operador soft-thresholding
+\item
+  \(\tilde{\beta}_j\) es una cantidad que depende de los residuos
+  parciales
+\end{itemize}
+
+Este algoritmo converge rápidamente en la práctica.
+
+\subsubsection{Interpretación
+geométrica}\label{interpretaciuxf3n-geomuxe9trica-2}
+
+La región de restricción de Elastic Net es una combinación convexa de:
+
+\begin{itemize}
+\tightlist
+\item
+  El hiperrombo de Lasso (que tiene esquinas en los ejes)
+\item
+  La hiperesfera de Ridge (que es suave)
+\end{itemize}
+
+Esto crea una región que:
+
+\begin{itemize}
+\tightlist
+\item
+  Tiene ``esquinas suavizadas'', permitiendo selección de variables
+\item
+  Es más convexa que el hiperrombo puro, dando más estabilidad
+\end{itemize}
+
+\subsubsection{Ventajas de Elastic Net}\label{ventajas-de-elastic-net}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Balance óptimo}: Combina lo mejor de Lasso (selección) y Ridge
+  (estabilidad).
+\item
+  \textbf{Manejo de correlaciones}: A diferencia de Lasso, no selecciona
+  arbitrariamente entre variables correlacionadas, sino que las incluye
+  o excluye como grupo.
+\item
+  \textbf{Supera limitación p \textgreater{} n}: Puede seleccionar más
+  de \(n\) variables cuando es apropiado.
+\item
+  \textbf{Estabilidad mejorada}: Menos sensible a pequeños cambios en
+  los datos que Lasso puro.
+\item
+  \textbf{Flexibilidad}: Dos parámetros (\(\alpha\) y \(\rho\)) permiten
+  ajuste más fino del modelo.
+\item
+  \textbf{Hereda propiedades}: Mantiene propiedades deseables tanto de
+  Ridge como de Lasso.
+\end{enumerate}
+
+\subsubsection{Limitaciones de Elastic
+Net}\label{limitaciones-de-elastic-net}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Dos hiperparámetros}: Requiere seleccionar tanto \(\alpha\)
+  como \(\rho\), incrementando la complejidad computacional de la
+  validación cruzada.
+\item
+  \textbf{Interpretación más compleja}: La penalización híbrida es menos
+  intuitiva que L1 o L2 puras.
+\item
+  \textbf{Costo computacional}: Más costoso que Ridge o Lasso
+  individualmente.
+\item
+  \textbf{Elección de ρ}: No siempre es claro qué valor de \(\rho\) es
+  óptimo; en la práctica se suele usar \(\rho = 0.5\) como punto de
+  partida.
+\end{enumerate}
+
+\subsubsection{Selección de
+hiperparámetros}\label{selecciuxf3n-de-hiperparuxe1metros}
+
+Para Elastic Net, se deben seleccionar dos parámetros: \(\alpha\) y
+\(\rho\).
+
+\textbf{Estrategia 1: Grid search bidimensional}
+
+\[
+(\alpha^*, \rho^*) = \arg\min_{(\alpha, \rho)} \frac{1}{K} \sum_{k=1}^{K} \text{MSE}_k(\alpha, \rho)
+\]
+
+Se evalúa una grilla de valores \((\alpha, \rho)\) mediante validación
+cruzada.
+
+\textbf{Estrategia 2: Grid search con ρ fijo}
+
+Frecuentemente se fija \(\rho = 0.5\) (balance igual entre L1 y L2) y
+solo se optimiza \(\alpha\):
+
+\[
+\alpha^* = \arg\min_{\alpha} \frac{1}{K} \sum_{k=1}^{K} \text{MSE}_k(\alpha, \rho=0.5)
+\]
+
+\textbf{Estrategia 3: Búsqueda secuencial}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Primero optimizar \(\rho\) con un valor fijo de \(\alpha\)
+\item
+  Luego optimizar \(\alpha\) con el \(\rho\) óptimo encontrado
+\end{enumerate}
+
+\subsubsection{Comparación de los tres
+métodos}\label{comparaciuxf3n-de-los-tres-muxe9todos}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1194}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2090}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1642}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.4030}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1045}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Método
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Penalización
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Selección
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Variables correlacionadas
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+p \textgreater{} n
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Ridge} & \(\alpha \sum \beta_j^2\) & No & Coef. similares &
+OK \\
+\textbf{Lasso} & \(\alpha \sum \|\beta_j\|\) & Sí & Selecciona una & Max
+n variables \\
+\textbf{Elastic Net} &
+\(\alpha[\rho \sum \|\beta_j\| + \frac{1-\rho}{2}\sum \beta_j^2]\) & Sí
+& Agrupa & OK \\
+\end{longtable}
+
+\subsubsection{Aplicaciones en
+economía}\label{aplicaciones-en-economuxeda-3}
+
+Elastic Net es particularmente útil en:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Modelos macroeconómicos}: Con múltiples indicadores
+  correlacionados donde se desea tanto selección como estabilidad.
+\item
+  \textbf{Análisis de panel con muchas variables}: Especialmente cuando
+  hay variables correlacionadas por construcción (ej: rezagos, efectos
+  fijos).
+\item
+  \textbf{Predicción de series de tiempo}: Con múltiples rezagos y
+  variables explicativas correlacionadas.
+\item
+  \textbf{Modelos de pricing con características correlacionadas}: En
+  finanzas o valoración inmobiliaria.
+\item
+  \textbf{High-dimensional econometrics}: Cuando \(p\) es comparable o
+  mayor que \(n\) y hay correlaciones entre predictores.
+\item
+  \textbf{Genomic econometrics}: Estudios de economía de la salud con
+  datos genéticos (muchas variables, alta correlación).
+\item
+  \textbf{Text analysis}: En economía aplicada con muchas variables de
+  texto correlacionadas.
+\end{enumerate}
+
+\subsubsection{Recomendaciones
+prácticas}\label{recomendaciones-pruxe1cticas}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Estandarización}: Siempre estandarizar variables antes de
+  aplicar Elastic Net.
+\item
+  \textbf{Valor inicial de ρ}: Comenzar con \(\rho = 0.5\) como valor
+  por defecto.
+\item
+  \textbf{Cuando usar cada método}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Use \textbf{Ridge} si todas las variables son relevantes y hay
+    multicolinealidad
+  \item
+    Use \textbf{Lasso} si cree que solo pocas variables son relevantes
+  \item
+    Use \textbf{Elastic Net} si hay correlaciones y necesita selección
+  \end{itemize}
+\item
+  \textbf{Validación cruzada}: Use CV tanto para \(\alpha\) como para
+  \(\rho\) si los recursos computacionales lo permiten.
+\item
+  \textbf{Estabilidad}: Si los coeficientes de Lasso varían mucho entre
+  folds de CV, considere Elastic Net.
+\end{enumerate}
+
+\subsubsection{Extensiones y variantes}\label{extensiones-y-variantes}
+
+\textbf{Sparse Group Lasso}: Combina selección de variables individuales
+(Lasso) con selección de grupos de variables:
+
+\[
+P(\boldsymbol{\beta}) = \alpha_1 \|\boldsymbol{\beta}\|_1 + \alpha_2 \sum_{g=1}^{G} \|\boldsymbol{\beta}_g\|_2
+\]
+
+\textbf{Adaptive Elastic Net}: Usa pesos adaptativos para mejorar
+propiedades de selección consistente:
+
+\[
+P(\boldsymbol{\beta}) = \alpha \left[ \rho \sum_{j=1}^{p} w_j|\beta_j| + \frac{1-\rho}{2} \sum_{j=1}^{p} v_j\beta_j^2 \right]
+\]
+
+donde los pesos se derivan de estimaciones preliminares.
 
 \subsection{Implementación}\label{implementaciuxf3n-3}
 
@@ -1306,42 +2413,441 @@ Lasso}\label{comparaciuxf3n-ridge-vs-lasso}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+ELASTIC NET
+======================================================================
+Intercepto: 2.8637
+Coeficientes:
+  β₁: 1.9592
+  β₂: -1.2174
+
+R² Test: 0.8375
+\end{verbatim}
+
 \section{Regresión polinomial}\label{regresiuxf3n-polinomial}
 
-\subsection{Fundamento}\label{fundamento-1}
+\subsection{Fundamento matemático}\label{fundamento-matemuxe1tico-4}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
-\StringTok{REGRESIÓN POLINOMIAL}
+La regresión polinomial es una extensión de la regresión lineal que
+permite modelar relaciones no lineales entre la variable dependiente y
+las variables independientes mediante el uso de términos polinomiales. A
+pesar de involucrar potencias de las variables, el modelo sigue siendo
+lineal en los parámetros, lo que permite usar el método de mínimos
+cuadrados ordinarios.
 
-\StringTok{Extiende regresión lineal creando características polinomiales:}
+\subsubsection{Especificación del modelo
+univariado}\label{especificaciuxf3n-del-modelo-univariado}
 
-\StringTok{Grado 1 (lineal): Y = β₀ + β₁X}
-\StringTok{Grado 2: Y = β₀ + β₁X + β₂X²}
-\StringTok{Grado 3: Y = β₀ + β₁X + β₂X² + β₃X³}
+Para una única variable independiente \(X\), un polinomio de grado \(d\)
+se especifica como:
 
-\StringTok{Proceso:}
-\StringTok{1. Crear características polinomiales (X, X², X³, etc.)}
-\StringTok{2. Aplicar regresión lineal en características transformadas}
+\[
+Y_i = \beta_0 + \beta_1 X_i + \beta_2 X_i^2 + \beta_3 X_i^3 + \cdots + \beta_d X_i^d + \varepsilon_i
+\]
 
-\StringTok{Ventajas:}
-\StringTok{✓ Captura relaciones no lineales}
-\StringTok{✓ Flexible para ajustar curvas complejas}
+Casos específicos:
 
-\StringTok{Desventajas:}
-\StringTok{✗ Propenso a overfitting con grados altos}
-\StringTok{✗ Inestable en extremos (extrapolación)}
-\StringTok{✗ Difícil de interpretar}
+\textbf{Grado 1 (Lineal)}: \[
+Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i
+\]
 
-\StringTok{Aplicaciones económicas:}
-\StringTok{{-} Curvas de costo (U invertida)}
-\StringTok{{-} Funciones de producción con rendimientos decrecientes}
-\StringTok{{-} Curvas de demanda no lineales}
-\StringTok{{-} Ciclos económicos}
-\StringTok{"""}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\textbf{Grado 2 (Cuadrático)}: \[
+Y_i = \beta_0 + \beta_1 X_i + \beta_2 X_i^2 + \varepsilon_i
+\]
+
+\textbf{Grado 3 (Cúbico)}: \[
+Y_i = \beta_0 + \beta_1 X_i + \beta_2 X_i^2 + \beta_3 X_i^3 + \varepsilon_i
+\]
+
+\subsubsection{Transformación de
+características}\label{transformaciuxf3n-de-caracteruxedsticas}
+
+La regresión polinomial transforma el problema en uno de regresión
+lineal múltiple mediante la creación de nuevas características:
+
+\textbf{Características originales}: \[
+\mathbf{X} = [X_1, X_2, \ldots, X_n]^\top
+\]
+
+\textbf{Características transformadas}: \[
+\mathbf{Z} = [1, X, X^2, X^3, \ldots, X^d]
+\]
+
+donde cada columna es: \[
+\mathbf{Z}_j = [1, X_1^j, X_2^j, \ldots, X_n^j]^\top \quad \text{para } j = 0, 1, \ldots, d
+\]
+
+El modelo entonces es: \[
+\mathbf{Y} = \mathbf{Z}\boldsymbol{\beta} + \boldsymbol{\varepsilon}
+\]
+
+que es lineal en \(\boldsymbol{\beta}\) y puede estimarse con OLS: \[
+\hat{\boldsymbol{\beta}} = (\mathbf{Z}^\top\mathbf{Z})^{-1}\mathbf{Z}^\top\mathbf{Y}
+\]
+
+\subsubsection{Regresión polinomial
+multivariada}\label{regresiuxf3n-polinomial-multivariada}
+
+Para \(p\) variables independientes, el modelo puede incluir:
+
+\textbf{Términos principales}: \[
+\beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_p X_p
+\]
+
+\textbf{Términos cuadráticos}: \[
+\beta_{11} X_1^2 + \beta_{22} X_2^2 + \cdots + \beta_{pp} X_p^2
+\]
+
+\textbf{Términos de interacción} (productos cruzados): \[
+\beta_{12} X_1 X_2 + \beta_{13} X_1 X_3 + \cdots
+\]
+
+\textbf{Términos de orden superior}: \[
+\beta_{111} X_1^3 + \beta_{112} X_1^2 X_2 + \cdots
+\]
+
+Para un modelo de grado 2 con 2 variables: \[
+Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_{11} X_1^2 + \beta_{22} X_2^2 + \beta_{12} X_1 X_2 + \varepsilon
+\]
+
+\subsubsection{Número de términos en el
+modelo}\label{nuxfamero-de-tuxe9rminos-en-el-modelo}
+
+El número total de términos (incluyendo intercepto) en un modelo
+polinomial de grado \(d\) con \(p\) variables es:
+
+\[
+\binom{p + d}{d} = \frac{(p+d)!}{p! \cdot d!}
+\]
+
+\textbf{Ejemplos}:
+
+\begin{itemize}
+\tightlist
+\item
+  \(p=2\), \(d=2\): \(\binom{4}{2} = 6\) términos
+\item
+  \(p=3\), \(d=2\): \(\binom{5}{2} = 10\) términos\\
+\item
+  \(p=5\), \(d=3\): \(\binom{8}{3} = 56\) términos
+\end{itemize}
+
+Este crecimiento exponencial implica que modelos polinomiales de alto
+grado con múltiples variables rápidamente se vuelven muy complejos.
+
+\subsubsection{Propiedades
+matemáticas}\label{propiedades-matemuxe1ticas}
+
+\textbf{1. Linealidad en parámetros}
+
+Aunque el modelo es no lineal en \(X\), es lineal en
+\(\boldsymbol{\beta}\): \[
+Y = \mathbf{Z}\boldsymbol{\beta} + \varepsilon
+\]
+
+Esto permite usar toda la teoría de regresión lineal.
+
+\textbf{2. Flexibilidad}
+
+Según el \textbf{Teorema de aproximación de Weierstrass}, cualquier
+función continua en un intervalo cerrado puede ser aproximada
+arbitrariamente bien por un polinomio de grado suficientemente alto.
+
+\textbf{3. Extrapolación peligrosa}
+
+Los polinomios de alto grado pueden comportarse erráticamente fuera del
+rango de los datos de entrenamiento. La extrapolación es particularmente
+problemática.
+
+\subsubsection{Interpretación de
+coeficientes}\label{interpretaciuxf3n-de-coeficientes}
+
+En un modelo cuadrático: \[
+Y = \beta_0 + \beta_1 X + \beta_2 X^2 + \varepsilon
+\]
+
+\textbf{Efecto marginal}: \[
+\frac{\partial Y}{\partial X} = \beta_1 + 2\beta_2 X
+\]
+
+El efecto de \(X\) sobre \(Y\) depende del valor de \(X\):
+
+\begin{itemize}
+\tightlist
+\item
+  No es constante (como en modelo lineal)
+\item
+  Varía según el punto de evaluación
+\item
+  Puede cambiar de signo si \(\beta_1\) y \(\beta_2\) tienen signos
+  opuestos
+\end{itemize}
+
+\textbf{Punto de inflexión} (donde cambia la curvatura):
+
+Para un cúbico \(Y = \beta_0 + \beta_1 X + \beta_2 X^2 + \beta_3 X^3\):
+\[
+\frac{\partial^2 Y}{\partial X^2} = 2\beta_2 + 6\beta_3 X = 0 \implies X^* = -\frac{\beta_2}{3\beta_3}
+\]
+
+\textbf{Valor extremo} (máximo o mínimo):
+
+Para un cuadrático: \[
+\frac{\partial Y}{\partial X} = \beta_1 + 2\beta_2 X = 0 \implies X^* = -\frac{\beta_1}{2\beta_2}
+\]
+
+Es máximo si \(\beta_2 < 0\), mínimo si \(\beta_2 > 0\).
+
+\subsubsection{Problemas de
+multicolinealidad}\label{problemas-de-multicolinealidad}
+
+Los términos polinomiales están altamente correlacionados entre sí. Por
+ejemplo, \(X\) y \(X^2\) típicamente tienen correlación cercana a 1
+cuando \(X > 0\).
+
+\textbf{Consecuencias}:
+
+\begin{itemize}
+\tightlist
+\item
+  Matriz \(\mathbf{Z}^\top\mathbf{Z}\) cercana a singular
+\item
+  Coeficientes inestables
+\item
+  Errores estándar inflados
+\item
+  Dificultad para invertir la matriz
+\end{itemize}
+
+\textbf{Solución: Ortogonalización}
+
+Usar \textbf{polinomios ortogonales} (ej: polinomios de Chebyshev,
+Legendre): \[
+P_0(X) = 1, \quad P_1(X) = X, \quad P_k(X) = \text{combinación ortogonal}
+\]
+
+satisfaciendo: \[
+\sum_{i=1}^{n} P_j(X_i) P_k(X_i) = 0 \quad \text{para } j \neq k
+\]
+
+\subsubsection{Sesgo y varianza con el grado del
+polinomio}\label{sesgo-y-varianza-con-el-grado-del-polinomio}
+
+\textbf{Grado bajo} (\(d\) pequeño):
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Sesgo alto}: El modelo es demasiado simple (underfitting)
+\item
+  \textbf{Varianza baja}: Pocas variables, estimaciones estables
+\item
+  Pobre ajuste tanto en entrenamiento como en prueba
+\end{itemize}
+
+\textbf{Grado moderado} (\(d\) óptimo):
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Balance sesgo-varianza}: Captura la verdadera relación
+\item
+  Buen ajuste en entrenamiento y prueba
+\end{itemize}
+
+\textbf{Grado alto} (\(d\) grande):
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Sesgo bajo}: El modelo se ajusta muy bien a los datos de
+  entrenamiento
+\item
+  \textbf{Varianza alta}: Muchas variables, sensible a ruido
+  (overfitting)
+\item
+  Excelente ajuste en entrenamiento, pobre en prueba
+\end{itemize}
+
+\subsubsection{Selección del grado
+óptimo}\label{selecciuxf3n-del-grado-uxf3ptimo}
+
+\textbf{Criterios de información}:
+
+\textbf{AIC (Akaike Information Criterion)}: \[
+\text{AIC} = n \log(\text{RSS}/n) + 2(d+1)
+\]
+
+\textbf{BIC (Bayesian Information Criterion)}: \[
+\text{BIC} = n \log(\text{RSS}/n) + \log(n)(d+1)
+\]
+
+Seleccionar \(d\) que minimiza AIC o BIC.
+
+\textbf{Validación cruzada}: \[
+d^* = \arg\min_{d} \frac{1}{K} \sum_{k=1}^{K} \text{MSE}_k(d)
+\]
+
+\textbf{Penalización}:
+
+Combinar regresión polinomial con Ridge o Lasso: \[
+\min_{\boldsymbol{\beta}} \left\{ \text{RSS}(\boldsymbol{\beta}) + \alpha P(\boldsymbol{\beta}) \right\}
+\]
+
+donde \(P\) es penalización L1, L2, o Elastic Net.
+
+\subsubsection{Ventajas de la regresión
+polinomial}\label{ventajas-de-la-regresiuxf3n-polinomial}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Captura no linealidades}: Modela relaciones curvas
+  naturalmente.
+\item
+  \textbf{Mantiene linealidad en parámetros}: Permite usar OLS y toda la
+  inferencia asociada.
+\item
+  \textbf{Flexibilidad}: Puede aproximar muchas formas funcionales.
+\item
+  \textbf{Implementación simple}: Fácil de implementar transformando
+  características.
+\item
+  \textbf{Interpretación económica}: Muchas relaciones económicas son
+  naturalmente curvas (rendimientos decrecientes, costos en forma de U).
+\end{enumerate}
+
+\subsubsection{Limitaciones de la regresión
+polinomial}\label{limitaciones-de-la-regresiuxf3n-polinomial}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Overfitting con grado alto}: Modelos de alto grado se ajustan
+  al ruido.
+\item
+  \textbf{Extrapolación peligrosa}: Comportamiento errático fuera del
+  rango de datos.
+\item
+  \textbf{Oscilaciones}: Polinomios de alto grado pueden oscilar wildly
+  (fenómeno de Runge).
+\item
+  \textbf{Multicolinealidad}: Términos polinomiales altamente
+  correlacionados.
+\item
+  \textbf{Crecimiento del número de parámetros}: Rápidamente se vuelve
+  intratable con múltiples variables.
+\item
+  \textbf{Interpretación compleja}: Difícil interpretar coeficientes
+  individuales.
+\item
+  \textbf{Sensibilidad a outliers}: Especialmente en los extremos del
+  rango.
+\end{enumerate}
+
+\subsubsection{Aplicaciones en
+economía}\label{aplicaciones-en-economuxeda-4}
+
+La regresión polinomial es natural para modelar:
+
+\textbf{1. Funciones de costo}: \[
+C(Q) = c_0 + c_1 Q + c_2 Q^2 + c_3 Q^3
+\] Captura economías y deseconomías de escala.
+
+\textbf{2. Curvas de Engel}: \[
+\text{Gasto}_i = \beta_0 + \beta_1 \text{Ingreso}_i + \beta_2 \text{Ingreso}_i^2 + \varepsilon_i
+\] Relación no lineal entre ingreso y gasto en diferentes bienes.
+
+\textbf{3. Funciones de producción con rendimientos variables}: \[
+Y = \beta_0 + \beta_1 K + \beta_2 K^2 + \beta_3 L + \beta_4 L^2 + \beta_5 KL + \varepsilon
+\]
+
+\textbf{4. Curvas de oferta y demanda no lineales}: \[
+Q_d = \alpha_0 + \alpha_1 P + \alpha_2 P^2 + \varepsilon
+\]
+
+\textbf{5. Ciclos económicos}: Capturar patrones cíclicos en variables
+macroeconómicas.
+
+\textbf{6. Curvas de aprendizaje}: \[
+\text{Costo}_t = c_0 + c_1 t + c_2 t^2
+\] Modelar cómo los costos disminuyen con la experiencia.
+
+\textbf{7. Relaciones edad-ingreso}: \[
+\text{Ingreso}_i = \beta_0 + \beta_1 \text{Edad}_i + \beta_2 \text{Edad}_i^2 + \varepsilon_i
+\] Típicamente muestra una forma de U invertida (ecuación de Mincer
+extendida).
+
+\subsubsection{Alternativas modernas}\label{alternativas-modernas}
+
+Cuando se necesita flexibilidad pero se quiere evitar limitaciones de
+polinomios globales:
+
+\textbf{1. Splines}:
+
+\begin{itemize}
+\tightlist
+\item
+  Polinomios por partes con restricciones de suavidad
+\item
+  Más estables que polinomios globales
+\item
+  Menos propensos a oscilaciones
+\end{itemize}
+
+\textbf{2. Generalized Additive Models (GAMs)}: \[
+Y = \beta_0 + f_1(X_1) + f_2(X_2) + \cdots + f_p(X_p) + \varepsilon
+\] donde \(f_j\) son funciones suaves no paramétricas.
+
+\textbf{3. Redes neuronales}:
+
+\begin{itemize}
+\tightlist
+\item
+  Aproximadores universales de funciones
+\item
+  Más flexibles pero menos interpretables
+\end{itemize}
+
+\textbf{4. Regression trees}:
+
+\begin{itemize}
+\tightlist
+\item
+  Capturan no linealidades mediante particiones
+\item
+  Interpretables y robustos
+\end{itemize}
+
+\subsubsection{Recomendaciones
+prácticas}\label{recomendaciones-pruxe1cticas-1}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Comenzar simple}: Probar modelo lineal primero, luego
+  cuadrático, luego cúbico.
+\item
+  \textbf{No exceder grado 4-5}: En la práctica, grados mayores rara vez
+  mejoran y causan problemas.
+\item
+  \textbf{Estandarizar}: Centrar y escalar \(X\) antes de crear
+  potencias.
+\item
+  \textbf{Usar penalización}: Combinar con Ridge/Lasso si \(d\) es alto.
+\item
+  \textbf{Validación cruzada}: Usar CV para seleccionar \(d\) óptimo.
+\item
+  \textbf{Verificar extrapolación}: Ser muy cauteloso al predecir fuera
+  del rango de entrenamiento.
+\item
+  \textbf{Considerar splines}: Si necesita grados altos, considere
+  splines en su lugar.
+\item
+  \textbf{Graficar siempre}: Visualizar la curva ajustada para detectar
+  comportamientos extraños.
+\end{enumerate}
 
 \subsection{Implementación}\label{implementaciuxf3n-4}
 
@@ -1423,45 +2929,525 @@ Lasso}\label{comparaciuxf3n-ridge-vs-lasso}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+REGRESIÓN POLINOMIAL
+======================================================================
+Grado    R² Train     R² Test      MSE Train    MSE Test    
+----------------------------------------------------------------------
+1        0.6946       0.7957       6.4986       4.5762      
+2        0.8668       0.8265       2.8340       3.8863      
+3        0.8669       0.8276       2.8315       3.8613      
+5        0.8702       0.8254       2.7615       3.9118      
+8        0.8739       0.7964       2.6829       4.5608      
+
+Gráfico guardado como 'polynomial_regression.png'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-13-output-2.pdf}}
+
 \section{K-Nearest Neighbors
 Regressor}\label{k-nearest-neighbors-regressor}
 
-\subsection{Fundamento}\label{fundamento-2}
+\subsection{Fundamento matemático}\label{fundamento-matemuxe1tico-5}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
-\StringTok{K{-}NEAREST NEIGHBORS REGRESSOR}
+K-Nearest Neighbors (KNN) para regresión es un método no paramétrico que
+realiza predicciones basándose en el promedio de los valores de las
+observaciones más cercanas en el espacio de características. A
+diferencia de los métodos paramétricos como OLS o Ridge, KNN no asume
+una forma funcional específica para la relación entre variables.
 
-\StringTok{Funcionamiento:}
-\StringTok{1. Para predecir Y de un nuevo punto X:}
-\StringTok{   a. Encuentra los k vecinos más cercanos en datos de entrenamiento}
-\StringTok{   b. Promedia sus valores Y}
-\StringTok{   c. Ese promedio es la predicción}
+\subsubsection{Definición formal}\label{definiciuxf3n-formal}
 
-\StringTok{Métricas de distancia:}
-\StringTok{{-} Euclidiana: √(Σ(xᵢ {-} yᵢ)²)}
-\StringTok{{-} Manhattan: Σ|xᵢ {-} yᵢ|}
-\StringTok{{-} Minkowski: (Σ|xᵢ {-} yᵢ|ᵖ)\^{}(1/p)}
+Dado un conjunto de entrenamiento
+\(\mathcal{D} = \{(\mathbf{X}_i, Y_i)\}_{i=1}^{n}\) y un nuevo punto
+\(\mathbf{X}_0\), el estimador KNN predice:
 
-\StringTok{Ventajas:}
-\StringTok{✓ No asume forma funcional}
-\StringTok{✓ Captura relaciones complejas}
-\StringTok{✓ Fácil de entender}
+\[
+\hat{Y}_0 = \frac{1}{k} \sum_{i \in \mathcal{N}_k(\mathbf{X}_0)} Y_i
+\]
 
-\StringTok{Desventajas:}
-\StringTok{✗ Lento para predicción con datasets grandes}
-\StringTok{✗ Sensible a escala de características}
-\StringTok{✗ No funciona bien en alta dimensionalidad}
-\StringTok{✗ Necesita elegir k apropiado}
+donde:
 
-\StringTok{Aplicaciones:}
-\StringTok{{-} Predicción de precios de viviendas (casas similares)}
-\StringTok{{-} Valuación de activos por comparables}
-\StringTok{{-} Forecasting basado en patrones históricos similares}
-\StringTok{"""}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{itemize}
+\tightlist
+\item
+  \(k\) es el número de vecinos a considerar
+\item
+  \(\mathcal{N}_k(\mathbf{X}_0)\) es el conjunto de los \(k\) vecinos
+  más cercanos a \(\mathbf{X}_0\)
+\item
+  La cercanía se mide típicamente mediante una métrica de distancia
+\end{itemize}
+
+\textbf{Interpretación}: La predicción es simplemente el promedio de las
+\(k\) observaciones más similares al nuevo punto.
+
+\subsubsection{Métricas de distancia}\label{muxe9tricas-de-distancia}
+
+La elección de la métrica de distancia es crucial en KNN. Las más
+comunes son:
+
+\textbf{1. Distancia Euclidiana} (la más utilizada): \[
+d(\mathbf{X}_i, \mathbf{X}_j) = \sqrt{\sum_{m=1}^{p} (X_{im} - X_{jm})^2} = \|\mathbf{X}_i - \mathbf{X}_j\|_2
+\]
+
+\textbf{2. Distancia Manhattan} (también llamada L1 o city-block): \[
+d(\mathbf{X}_i, \mathbf{X}_j) = \sum_{m=1}^{p} |X_{im} - X_{jm}| = \|\mathbf{X}_i - \mathbf{X}_j\|_1
+\]
+
+\textbf{3. Distancia Minkowski} (generalización): \[
+d(\mathbf{X}_i, \mathbf{X}_j) = \left(\sum_{m=1}^{p} |X_{im} - X_{jm}|^q\right)^{1/q} = \|\mathbf{X}_i - \mathbf{X}_j\|_q
+\]
+
+donde:
+
+\begin{itemize}
+\tightlist
+\item
+  \(q = 1\): Distancia Manhattan
+\item
+  \(q = 2\): Distancia Euclidiana
+\item
+  \(q \to \infty\): Distancia de Chebyshev (máximo)
+\end{itemize}
+
+\textbf{4. Distancia de Chebyshev}: \[
+d(\mathbf{X}_i, \mathbf{X}_j) = \max_{m=1,\ldots,p} |X_{im} - X_{jm}|
+\]
+
+\textbf{5. Distancia de Mahalanobis} (considera correlaciones): \[
+d(\mathbf{X}_i, \mathbf{X}_j) = \sqrt{(\mathbf{X}_i - \mathbf{X}_j)^\top \mathbf{\Sigma}^{-1} (\mathbf{X}_i - \mathbf{X}_j)}
+\]
+
+donde \(\mathbf{\Sigma}\) es la matriz de covarianza de las
+características.
+
+\subsubsection{Algoritmo KNN}\label{algoritmo-knn}
+
+\textbf{Paso 1}: Dado un nuevo punto \(\mathbf{X}_0\), calcular su
+distancia a todos los puntos de entrenamiento: \[
+d_i = d(\mathbf{X}_0, \mathbf{X}_i) \quad \text{para } i = 1, \ldots, n
+\]
+
+\textbf{Paso 2}: Ordenar las distancias en orden ascendente: \[
+d_{(1)} \leq d_{(2)} \leq \cdots \leq d_{(n)}
+\]
+
+\textbf{Paso 3}: Seleccionar los \(k\) puntos con menores distancias.
+
+\textbf{Paso 4}: Calcular la predicción como el promedio de sus valores:
+\[
+\hat{Y}_0 = \frac{1}{k} \sum_{i=1}^{k} Y_{(i)}
+\]
+
+donde \(Y_{(i)}\) es el valor de \(Y\) correspondiente a la \(i\)-ésima
+menor distancia.
+
+\subsubsection{Variantes ponderadas}\label{variantes-ponderadas}
+
+En lugar de un promedio simple, se puede usar un \textbf{promedio
+ponderado} donde observaciones más cercanas tienen más peso:
+
+\[
+\hat{Y}_0 = \frac{\sum_{i=1}^{k} w_i Y_{(i)}}{\sum_{i=1}^{k} w_i}
+\]
+
+\textbf{Pesos comunes}:
+
+\textbf{1. Uniforme} (estándar): \[
+w_i = 1 \quad \text{para todo } i
+\]
+
+\textbf{2. Inverso de la distancia}: \[
+w_i = \frac{1}{d_i + \epsilon}
+\] donde \(\epsilon > 0\) es un término pequeño para evitar división por
+cero.
+
+\textbf{3. Kernel gaussiano}: \[
+w_i = \exp\left(-\frac{d_i^2}{2\sigma^2}\right)
+\]
+
+\textbf{4. Kernel de Epanechnikov}: \[
+w_i = \max\left(0, 1 - \frac{d_i^2}{h^2}\right)
+\]
+
+\subsubsection{Propiedades
+estadísticas}\label{propiedades-estaduxedsticas}
+
+\textbf{1. Consistencia}
+
+Bajo condiciones regulares, KNN es consistente: \[
+\lim_{n \to \infty} E[(\hat{Y}_0 - Y_0)^2] = 0
+\]
+
+siempre que \(k \to \infty\) y \(k/n \to 0\) cuando \(n \to \infty\).
+
+\textbf{2. Sesgo y varianza}
+
+Para un punto fijo \(\mathbf{X}_0\):
+
+\textbf{Sesgo}: \[
+\text{Bias}[\hat{Y}_0] = E[\hat{Y}_0] - E[Y_0 | \mathbf{X}_0]
+\]
+
+El sesgo disminuye cuando \(k\) aumenta (se promedian más observaciones
+cercanas).
+
+\textbf{Varianza}: \[
+\text{Var}[\hat{Y}_0] = \text{Var}\left[\frac{1}{k} \sum_{i \in \mathcal{N}_k} Y_i\right] \approx \frac{\sigma^2}{k}
+\]
+
+La varianza disminuye con \(k\) más grande.
+
+\textbf{3. Trade-off con k}
+
+\begin{itemize}
+\item
+  \textbf{k pequeño}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Baja bias (modelo flexible, se adapta a variaciones locales)
+  \item
+    Alta varianza (sensible a ruido, predicciones inestables)
+  \item
+    Riesgo de overfitting
+  \end{itemize}
+\item
+  \textbf{k grande}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Alta bias (modelo menos flexible, suaviza demasiado)
+  \item
+    Baja varianza (predicciones estables)
+  \item
+    Riesgo de underfitting
+  \end{itemize}
+\end{itemize}
+
+\textbf{4. Error de predicción esperado}
+
+\[
+E[(Y_0 - \hat{Y}_0)^2] = \text{Bias}^2[\hat{Y}_0] + \text{Var}[\hat{Y}_0] + \sigma^2
+\]
+
+Existe un \(k\) óptimo que minimiza este error.
+
+\subsubsection{Selección del parámetro
+k}\label{selecciuxf3n-del-paruxe1metro-k}
+
+\textbf{Validación cruzada leave-one-out}: \[
+\text{CV}(k) = \frac{1}{n} \sum_{i=1}^{n} (Y_i - \hat{Y}_{-i}(k))^2
+\]
+
+donde \(\hat{Y}_{-i}(k)\) es la predicción KNN para \(\mathbf{X}_i\)
+usando todos los datos excepto la observación \(i\).
+
+\textbf{Validación cruzada K-fold}: \[
+k^* = \arg\min_{k} \frac{1}{K} \sum_{j=1}^{K} \text{MSE}_j(k)
+\]
+
+\textbf{Regla práctica}: \[
+k \approx \sqrt{n}
+\]
+
+Esta es una heurística común para valores iniciales.
+
+\subsubsection{Complejidad
+computacional}\label{complejidad-computacional}
+
+\textbf{Búsqueda naive}:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Entrenamiento}: \(O(1)\) (solo almacenar datos)
+\item
+  \textbf{Predicción}: \(O(np)\) por cada nueva observación
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Calcular \(n\) distancias de dimensión \(p\)
+  \item
+    Encontrar los \(k\) mínimos
+  \end{itemize}
+\end{itemize}
+
+\textbf{Estructuras eficientes} (KD-trees, Ball trees):
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Entrenamiento}: \(O(np \log n)\)
+\item
+  \textbf{Predicción}: \(O(\log n)\) en promedio (mejor caso)
+\end{itemize}
+
+Sin embargo, en alta dimensionalidad (\(p\) grande), estas estructuras
+pierden eficiencia (``curse of dimensionality'').
+
+\subsubsection{Sensibilidad a la escala}\label{sensibilidad-a-la-escala}
+
+KNN es \textbf{extremadamente sensible} a la escala de las variables.
+Una variable con rango {[}0, 1000{]} dominará una variable con rango
+{[}0, 1{]} en el cálculo de distancias.
+
+\textbf{Solución: Estandarización}
+
+Antes de aplicar KNN, estandarizar cada característica: \[
+\tilde{X}_{im} = \frac{X_{im} - \mu_m}{\sigma_m}
+\]
+
+donde \(\mu_m\) y \(\sigma_m\) son la media y desviación estándar de la
+característica \(m\).
+
+Alternativamente, normalizar al rango {[}0, 1{]}: \[
+\tilde{X}_{im} = \frac{X_{im} - \min_i X_{im}}{\max_i X_{im} - \min_i X_{im}}
+\]
+
+\subsubsection{Maldición de la
+dimensionalidad}\label{maldiciuxf3n-de-la-dimensionalidad}
+
+En alta dimensionalidad, KNN sufre de la ``curse of dimensionality'':
+
+\textbf{Problema 1: Distancias se vuelven uniformes}
+
+En dimensiones altas, las distancias entre cualquier par de puntos
+tienden a ser similares: \[
+\lim_{p \to \infty} \frac{d_{\max} - d_{\min}}{d_{\min}} \to 0
+\]
+
+\textbf{Problema 2: Volumen requerido para capturar k vecinos}
+
+Para mantener \(k\) vecinos en una región local, el volumen requerido
+crece exponencialmente con \(p\): \[
+V \propto r^p
+\]
+
+donde \(r\) es el radio y \(p\) es la dimensión.
+
+\textbf{Consecuencia}: En alta dimensionalidad, los ``vecinos cercanos''
+pueden estar muy lejos, y KNN pierde efectividad.
+
+\textbf{Regla práctica}: KNN funciona mejor cuando \(p < 10-20\).
+
+\subsubsection{Ventajas del método
+KNN}\label{ventajas-del-muxe9todo-knn}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{No paramétrico}: No asume forma funcional específica para la
+  relación.
+\item
+  \textbf{Simplicidad conceptual}: Muy intuitivo y fácil de entender.
+\item
+  \textbf{Flexibilidad}: Puede capturar relaciones muy complejas y no
+  lineales.
+\item
+  \textbf{No requiere entrenamiento}: Solo almacena datos (lazy
+  learning).
+\item
+  \textbf{Actualización online}: Fácil incorporar nuevos datos.
+\item
+  \textbf{Robusto a outliers} (con k grande): El promedio reduce
+  influencia de valores extremos.
+\end{enumerate}
+
+\subsubsection{Limitaciones del método
+KNN}\label{limitaciones-del-muxe9todo-knn}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Computacionalmente costoso en predicción}: Necesita calcular
+  distancias a todos los puntos de entrenamiento.
+\item
+  \textbf{Sensible a la escala}: Requiere estandarización obligatoria.
+\item
+  \textbf{Maldición de la dimensionalidad}: Performance deteriora
+  rápidamente con \(p\) grande.
+\item
+  \textbf{Requiere gran memoria}: Debe almacenar todo el dataset de
+  entrenamiento.
+\item
+  \textbf{Sensible a características irrelevantes}: Variables no
+  informativas contaminan el cálculo de distancias.
+\item
+  \textbf{Dificultad en selección de k}: No hay regla universal;
+  requiere experimentación.
+\item
+  \textbf{No proporciona forma funcional}: No hay coeficientes
+  interpretables.
+\item
+  \textbf{Límites de decisión irregulares}: Pueden ser demasiado
+  complejos.
+\end{enumerate}
+
+\subsubsection{Aplicaciones en
+economía}\label{aplicaciones-en-economuxeda-5}
+
+KNN es útil en contextos económicos donde:
+
+\textbf{1. Predicción de precios basada en comparables}:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Valuación inmobiliaria}: Estimar precio de una casa basándose
+  en casas similares (ubicación, tamaño, características).
+\item
+  \textbf{Pricing de activos}: Valorar activos basándose en activos
+  similares.
+\end{itemize}
+
+\textbf{2. Recomendación y matching}:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Sistemas de recomendación}: Sugerir productos basados en
+  preferencias de usuarios similares.
+\item
+  \textbf{Mercados laborales}: Emparejar trabajadores con empleos
+  similares a sus características.
+\end{itemize}
+
+\textbf{3. Forecasting no paramétrico}:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Series de tiempo}: Predecir valores futuros basándose en
+  patrones históricos similares.
+\item
+  \textbf{Análisis de ciclos}: Identificar períodos históricos similares
+  al actual.
+\end{itemize}
+
+\textbf{4. Imputación de valores faltantes}:
+
+\begin{itemize}
+\tightlist
+\item
+  Imputar datos económicos faltantes usando información de entidades
+  similares.
+\end{itemize}
+
+\textbf{5. Detección de anomalías}:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Fraude}: Identificar transacciones muy diferentes de las
+  ``normales''.
+\item
+  \textbf{Outliers}: Detectar observaciones atípicas en datos
+  económicos.
+\end{itemize}
+
+\textbf{6. Clustering y segmentación}:
+
+\begin{itemize}
+\tightlist
+\item
+  Agrupar empresas, países, o individuos con características similares.
+\end{itemize}
+
+\subsubsection{Comparación con métodos
+paramétricos}\label{comparaciuxf3n-con-muxe9todos-paramuxe9tricos}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1607}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.0893}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.7500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Aspecto
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+KNN
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Métodos Paramétricos (OLS, Ridge, Lasso)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Supuestos} & Mínimos & Forma funcional específica \\
+\textbf{Interpretabilidad} & Baja (no hay coeficientes) & Alta
+(coeficientes interpretables) \\
+\textbf{Flexibilidad} & Alta & Media-Baja \\
+\textbf{Extrapolación} & Problemática & Más confiable \\
+\textbf{Dimensionalidad} & Sufre con p alto & Maneja mejor
+(especialmente con regularización) \\
+\textbf{Costo computacional} & Alto en predicción & Bajo en
+predicción \\
+\textbf{Datos necesarios} & Más datos generalmente mejor & Puede
+funcionar con menos datos \\
+\end{longtable}
+
+\subsubsection{Extensiones y variantes}\label{extensiones-y-variantes-1}
+
+\textbf{1. Locally Weighted Regression (LOESS)}:
+
+Combina KNN con regresión: \[
+\hat{Y}_0 = \arg\min_{\beta_0, \boldsymbol{\beta}} \sum_{i \in \mathcal{N}_k} w_i (Y_i - \beta_0 - \mathbf{X}_i^\top\boldsymbol{\beta})^2
+\]
+
+Ajusta regresión local en vecindad de cada punto.
+
+\textbf{2. Radius Neighbors Regression}:
+
+En lugar de \(k\) fijo, incluye todos los puntos dentro de un radio
+\(r\): \[
+\hat{Y}_0 = \frac{1}{|\mathcal{N}_r|} \sum_{i \in \mathcal{N}_r(\mathbf{X}_0)} Y_i
+\]
+
+donde
+\(\mathcal{N}_r(\mathbf{X}_0) = \{i : d(\mathbf{X}_0, \mathbf{X}_i) \leq r\}\).
+
+\textbf{3. Feature-Weighted KNN}:
+
+Asigna pesos diferentes a diferentes características: \[
+d(\mathbf{X}_i, \mathbf{X}_j) = \sqrt{\sum_{m=1}^{p} w_m (X_{im} - X_{jm})^2}
+\]
+
+Los pesos se pueden aprender para mejorar performance.
+
+\subsubsection{Recomendaciones
+prácticas}\label{recomendaciones-pruxe1cticas-2}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Siempre estandarizar}: Crucial para resultados válidos.
+\item
+  \textbf{Seleccionar k por CV}: No confiar en reglas de oro; validar
+  empíricamente.
+\item
+  \textbf{Probar múltiples métricas}: Euclidiana es estándar, pero otras
+  pueden funcionar mejor.
+\item
+  \textbf{Reducir dimensionalidad}: Considerar PCA o selección de
+  features si \(p\) es grande.
+\item
+  \textbf{Comparar con métodos paramétricos}: KNN no siempre es
+  superior; comparar performance.
+\item
+  \textbf{Considerar computational cost}: Para datasets grandes, puede
+  ser prohibitivamente lento.
+\item
+  \textbf{Usar para benchmarking}: KNN es útil como baseline no
+  paramétrico.
+\item
+  \textbf{Visualizar vecindarios}: En 2D-3D, visualizar qué puntos son
+  considerados ``vecinos''.
+\end{enumerate}
 
 \subsection{Implementación}\label{implementaciuxf3n-5}
 
@@ -1531,66 +3517,666 @@ Regressor}\label{k-nearest-neighbors-regressor}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+K-NEAREST NEIGHBORS REGRESSOR
+======================================================================
+k        R² Train     R² Test      MSE Test    
+----------------------------------------------------------------------
+1        1.0000       0.7339       1.9089      
+3        0.9021       0.7823       1.5612      
+5        0.8574       0.7661       1.6778      
+10       0.8090       0.7409       1.8582      
+20       0.7545       0.7305       1.9327      
+30       0.7124       0.7041       2.1224      
+50       0.6264       0.6180       2.7400      
+
+Gráfico guardado como 'knn_regression.png'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-14-output-2.pdf}}
+
 \section{Métricas de evaluación}\label{muxe9tricas-de-evaluaciuxf3n}
 
-\subsection{Explicación de
-métricas}\label{explicaciuxf3n-de-muxe9tricas}
+\subsection{Fundamento matemático}\label{fundamento-matemuxe1tico-6}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
-\StringTok{MÉTRICAS DE EVALUACIÓN EN REGRESIÓN}
+La evaluación de modelos de regresión es crucial para comparar
+diferentes algoritmos y seleccionar el modelo óptimo. A diferencia de la
+clasificación (que usa accuracy, precision, recall), la regresión
+requiere métricas que cuantifiquen la magnitud del error de predicción.
 
-\StringTok{1. MSE (Mean Squared Error)}
-\StringTok{   MSE = (1/n) Σ(yᵢ {-} ŷᵢ)²}
-\StringTok{   }
-\StringTok{   {-} Promedio de errores al cuadrado}
-\StringTok{   {-} Penaliza más los errores grandes}
-\StringTok{   {-} Mismas unidades que Y al cuadrado}
-\StringTok{   {-} Siempre positivo, menor es mejor}
-\StringTok{   {-} Sensible a outliers}
+\subsubsection{Notación}\label{notaciuxf3n}
 
-\StringTok{2. RMSE (Root Mean Squared Error)}
-\StringTok{   RMSE = √MSE = √[(1/n) Σ(yᵢ {-} ŷᵢ)²]}
-\StringTok{   }
-\StringTok{   {-} Raíz cuadrada de MSE}
-\StringTok{   {-} Mismas unidades que Y}
-\StringTok{   {-} Más interpretable que MSE}
-\StringTok{   {-} También sensible a outliers}
+Para un conjunto de \(n\) observaciones:
 
-\StringTok{3. MAE (Mean Absolute Error)}
-\StringTok{   MAE = (1/n) Σ|yᵢ {-} ŷᵢ|}
-\StringTok{   }
-\StringTok{   {-} Promedio de errores absolutos}
-\StringTok{   {-} Mismas unidades que Y}
-\StringTok{   {-} Menos sensible a outliers que MSE}
-\StringTok{   {-} Todos los errores pesan igual}
+\begin{itemize}
+\tightlist
+\item
+  \(Y_i\): Valor real de la variable dependiente para la observación
+  \(i\)
+\item
+  \(\hat{Y}_i\): Valor predicho por el modelo
+\item
+  \(\bar{Y} = \frac{1}{n}\sum_{i=1}^{n} Y_i\): Media de los valores
+  reales
+\end{itemize}
 
-\StringTok{4. R² (Coeficiente de determinación)}
-\StringTok{   R² = 1 {-} (RSS/TSS) = 1 {-} [Σ(yᵢ {-} ŷᵢ)²] / [Σ(yᵢ {-} ȳ)²]}
-\StringTok{   }
-\StringTok{   {-} Proporción de varianza explicada}
-\StringTok{   {-} Rango: 0 a 1 (puede ser negativo en test)}
-\StringTok{   {-} R² = 1: Predicción perfecta}
-\StringTok{   {-} R² = 0: Tan bueno como predecir la media}
-\StringTok{   {-} No tiene unidades}
-\StringTok{   {-} Interpretable e intuitivo}
+\subsubsection{Mean Squared Error (MSE)}\label{mean-squared-error-mse}
 
-\StringTok{5. Adjusted R² (R² ajustado)}
-\StringTok{   R²ₐdⱼ = 1 {-} [(1 {-} R²)(n {-} 1)] / (n {-} p {-} 1)}
-\StringTok{   }
-\StringTok{   {-} Penaliza por número de variables}
-\StringTok{   {-} Útil para comparar modelos con diferentes \# de variables}
-\StringTok{   {-} Puede decrecer si se agregan variables irrelevantes}
+\textbf{Definición}: \[
+\text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (Y_i - \hat{Y}_i)^2
+\]
 
-\StringTok{Cuál usar:}
-\StringTok{{-} R²: Fácil interpretación, comparar modelos}
-\StringTok{{-} RMSE: Cuando importan unidades originales}
-\StringTok{{-} MAE: Cuando outliers no deberían dominar}
-\StringTok{{-} Múltiples métricas: Para evaluación completa}
-\StringTok{"""}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\textbf{Interpretación}:
+
+\begin{itemize}
+\tightlist
+\item
+  Promedio de los errores al cuadrado
+\item
+  Penaliza más los errores grandes (debido al cuadrado)
+\item
+  Unidades: cuadrado de las unidades de \(Y\)
+\item
+  Rango: \([0, \infty)\), donde 0 indica predicción perfecta
+\end{itemize}
+
+\textbf{Propiedades}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Diferenciabilidad}: MSE es diferenciable en todas partes,
+  facilitando optimización.
+\item
+  \textbf{Sensibilidad a outliers}: El cuadrado magnifica errores
+  grandes.
+\item
+  \textbf{Descomposición}: \[
+  \text{MSE} = \text{Bias}^2[\hat{Y}] + \text{Var}[\hat{Y}] + \sigma^2
+  \]
+\end{enumerate}
+
+donde:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\text{Bias}^2[\hat{Y}] = (E[\hat{Y}] - Y)^2\): Error sistemático
+\item
+  \(\text{Var}[\hat{Y}]\): Variabilidad de las predicciones
+\item
+  \(\sigma^2\): Varianza irreducible (ruido)
+\end{itemize}
+
+\textbf{Ventajas}:
+
+\begin{itemize}
+\tightlist
+\item
+  Matemáticamente conveniente para optimización
+\item
+  Conexión directa con likelihood gaussiana
+\item
+  Penaliza errores grandes
+\end{itemize}
+
+\textbf{Desventajas}:
+
+\begin{itemize}
+\tightlist
+\item
+  Sensible a outliers
+\item
+  Unidades no son interpretables directamente
+\item
+  No es robusto
+\end{itemize}
+
+\textbf{Cuándo usar}: Cuando errores grandes son particularmente
+indeseables y los datos no tienen outliers extremos.
+
+\subsubsection{Root Mean Squared Error
+(RMSE)}\label{root-mean-squared-error-rmse}
+
+\textbf{Definición}: \[
+\text{RMSE} = \sqrt{\text{MSE}} = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (Y_i - \hat{Y}_i)^2}
+\]
+
+\textbf{Interpretación}:
+
+\begin{itemize}
+\tightlist
+\item
+  Desviación típica de los errores de predicción
+\item
+  Mismas unidades que \(Y\) (interpretable)
+\item
+  Representa el ``error promedio'' en las mismas unidades que la
+  variable objetivo
+\end{itemize}
+
+\textbf{Propiedades}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Interpretabilidad}: Unidades coinciden con las de \(Y\).
+\item
+  \textbf{Relación con MSE}: \(\text{RMSE} = \sqrt{\text{MSE}}\)
+\item
+  \textbf{Comparación entre modelos}: Solo comparable si modelos se
+  evalúan en mismo conjunto de datos.
+\end{enumerate}
+
+\textbf{Ventajas}:
+
+\begin{itemize}
+\tightlist
+\item
+  Unidades interpretables
+\item
+  Mantiene sensibilidad a errores grandes
+\item
+  Más interpretable que MSE
+\end{itemize}
+
+\textbf{Desventajas}:
+
+\begin{itemize}
+\tightlist
+\item
+  Aún sensible a outliers
+\item
+  No acotado superiormente
+\end{itemize}
+
+\textbf{Cuándo usar}: Para comunicar el error en unidades comprensibles
+(ej: ``el modelo predice con un error promedio de 5000 soles'').
+
+\subsubsection{Mean Absolute Error (MAE)}\label{mean-absolute-error-mae}
+
+\textbf{Definición}: \[
+\text{MAE} = \frac{1}{n} \sum_{i=1}^{n} |Y_i - \hat{Y}_i|
+\]
+
+\textbf{Interpretación}:
+
+\begin{itemize}
+\tightlist
+\item
+  Promedio de los valores absolutos de los errores
+\item
+  Todos los errores pesan igual (lineal)
+\item
+  Unidades: mismas que \(Y\)
+\end{itemize}
+
+\textbf{Propiedades}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Robustez}: Menos sensible a outliers que MSE/RMSE.
+\item
+  \textbf{Linealidad}: Error de magnitud \(2\epsilon\) pesa exactamente
+  el doble que error de magnitud \(\epsilon\).
+\item
+  \textbf{No diferenciable en cero}: Complica optimización con métodos
+  basados en gradientes.
+\item
+  \textbf{Relación con mediana}: MAE es minimizado cuando
+  \(\hat{Y}_i = \text{mediana}(Y)\).
+\end{enumerate}
+
+\textbf{Ventajas}:
+
+\begin{itemize}
+\tightlist
+\item
+  Robusto a outliers
+\item
+  Interpretación intuitiva
+\item
+  Unidades interpretables
+\end{itemize}
+
+\textbf{Desventajas}:
+
+\begin{itemize}
+\tightlist
+\item
+  No penaliza errores grandes tanto como MSE
+\item
+  No diferenciable en el origen
+\item
+  Puede subponderar errores grandes que son importantes
+\end{itemize}
+
+\textbf{Cuándo usar}: Cuando hay outliers o cuando todos los errores
+deben pesar igual independiente de su magnitud.
+
+\subsubsection{Comparación MAE vs
+RMSE}\label{comparaciuxf3n-mae-vs-rmse}
+
+Para un mismo conjunto de errores: \[
+\text{MAE} \leq \text{RMSE}
+\]
+
+La desigualdad es estricta excepto cuando todos los errores tienen la
+misma magnitud.
+
+\textbf{Ratio RMSE/MAE}:
+
+\begin{itemize}
+\tightlist
+\item
+  Cercano a 1: Errores uniformemente distribuidos
+\item
+  Alejado de 1: Algunos errores muy grandes (outliers)
+\end{itemize}
+
+\[
+\frac{\text{RMSE}}{\text{MAE}} \geq 1
+\]
+
+\subsubsection{Coeficiente de Determinación
+(R²)}\label{coeficiente-de-determinaciuxf3n-ruxb2}
+
+\textbf{Definición}: \[
+R^2 = 1 - \frac{\text{RSS}}{\text{TSS}} = 1 - \frac{\sum_{i=1}^{n}(Y_i - \hat{Y}_i)^2}{\sum_{i=1}^{n}(Y_i - \bar{Y})^2}
+\]
+
+donde:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\text{RSS} = \sum_{i=1}^{n}(Y_i - \hat{Y}_i)^2\): Residual Sum of
+  Squares (suma de cuadrados residuales)
+\item
+  \(\text{TSS} = \sum_{i=1}^{n}(Y_i - \bar{Y})^2\): Total Sum of Squares
+  (variabilidad total)
+\end{itemize}
+
+\textbf{Forma alternativa}: \[
+R^2 = \frac{\text{ESS}}{\text{TSS}} = \frac{\sum_{i=1}^{n}(\hat{Y}_i - \bar{Y})^2}{\sum_{i=1}^{n}(Y_i - \bar{Y})^2}
+\]
+
+donde \(\text{ESS}\) es Explained Sum of Squares.
+
+\textbf{Interpretación}:
+
+\begin{itemize}
+\tightlist
+\item
+  Proporción de varianza de \(Y\) explicada por el modelo
+\item
+  \(R^2 = 0\): El modelo no explica nada (tan bueno como predecir
+  \(\bar{Y}\))
+\item
+  \(R^2 = 1\): El modelo explica perfectamente la varianza
+\item
+  \(R^2 < 0\): El modelo es peor que simplemente predecir la media
+  (posible en conjunto de prueba)
+\end{itemize}
+
+\textbf{Propiedades}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Rango en training}: \(0 \leq R^2 \leq 1\) (con intercepto)
+\item
+  \textbf{Rango en testing}: \(-\infty < R^2 \leq 1\) (puede ser
+  negativo)
+\item
+  \textbf{Relación con correlación}: En regresión lineal simple: \[
+  R^2 = \rho^2_{Y,\hat{Y}}
+  \] donde \(\rho\) es el coeficiente de correlación de Pearson.
+\item
+  \textbf{Sensibilidad a variables}: \(R^2\) nunca disminuye al agregar
+  variables (en training).
+\item
+  \textbf{No tiene unidades}: Es una proporción, interpretable sin
+  conocer unidades de \(Y\).
+\end{enumerate}
+
+\textbf{Ventajas}:
+
+\begin{itemize}
+\tightlist
+\item
+  Fácil interpretación (porcentaje de varianza explicada)
+\item
+  Sin unidades (comparable entre problemas)
+\item
+  Intuitivo para audiencias no técnicas
+\end{itemize}
+
+\textbf{Desventajas}:
+
+\begin{itemize}
+\tightlist
+\item
+  Puede ser engañoso (alto \(R^2\) no implica buen modelo)
+\item
+  Siempre aumenta con más variables en training (favorece sobreajuste)
+\item
+  Puede ser negativo en test set
+\item
+  No indica si modelo está bien especificado
+\end{itemize}
+
+\textbf{Cuándo usar}: Para reportar qué proporción de variabilidad se
+captura, especialmente en contextos académicos o cuando se comunica con
+no especialistas.
+
+\subsubsection{R² Ajustado}\label{ruxb2-ajustado}
+
+\textbf{Definición}: \[
+R^2_{\text{adj}} = 1 - \frac{\text{RSS}/(n-p-1)}{\text{TSS}/(n-1)} = 1 - (1-R^2)\frac{n-1}{n-p-1}
+\]
+
+donde:
+
+\begin{itemize}
+\tightlist
+\item
+  \(n\): número de observaciones
+\item
+  \(p\): número de variables independientes (sin contar intercepto)
+\end{itemize}
+
+\textbf{Interpretación}:
+
+\begin{itemize}
+\tightlist
+\item
+  Ajusta \(R^2\) penalizando por número de variables
+\item
+  Puede disminuir al agregar variables irrelevantes
+\item
+  Más apropiado para comparar modelos con diferente número de variables
+\end{itemize}
+
+\textbf{Propiedades}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Penalización por complejidad}: \[
+  R^2_{\text{adj}} = R^2 - \frac{p}{n-p-1}(1-R^2)
+  \]
+\item
+  \textbf{Comparación}: \(R^2_{\text{adj}} \leq R^2\) siempre.
+\item
+  \textbf{Puede ser negativo}: Tanto en training como en testing.
+\end{enumerate}
+
+\textbf{Ventajas}:
+
+\begin{itemize}
+\tightlist
+\item
+  Penaliza modelos complejos
+\item
+  Útil para selección de variables
+\item
+  Más justo para comparar modelos
+\end{itemize}
+
+\textbf{Desventajas}:
+
+\begin{itemize}
+\tightlist
+\item
+  Aún puede favorecer modelos sobreajustados
+\item
+  Interpretación menos intuitiva que \(R^2\)
+\end{itemize}
+
+\textbf{Cuándo usar}: Al comparar modelos con diferente número de
+variables, especialmente en regresión lineal clásica.
+
+\subsubsection{Mean Absolute Percentage Error
+(MAPE)}\label{mean-absolute-percentage-error-mape}
+
+\textbf{Definición}: \[
+\text{MAPE} = \frac{100\%}{n} \sum_{i=1}^{n} \left|\frac{Y_i - \hat{Y}_i}{Y_i}\right|
+\]
+
+\textbf{Interpretación}:
+
+\begin{itemize}
+\tightlist
+\item
+  Error promedio en términos porcentuales
+\item
+  Independiente de la escala
+\item
+  Expresado como porcentaje
+\end{itemize}
+
+\textbf{Propiedades}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Scale-independent}: Útil para comparar modelos en diferentes
+  escalas.
+\item
+  \textbf{Asimétrico}: Penaliza más subestimaciones que
+  sobreestimaciones.
+\item
+  \textbf{Indefinido para \(Y_i = 0\)}: No se puede calcular si hay
+  valores cero.
+\end{enumerate}
+
+\textbf{Ventajas}:
+
+\begin{itemize}
+\tightlist
+\item
+  Interpretación intuitiva (porcentaje)
+\item
+  No depende de escala
+\item
+  Fácil de comunicar
+\end{itemize}
+
+\textbf{Desventajas}:
+
+\begin{itemize}
+\tightlist
+\item
+  Indefinido cuando \(Y_i = 0\)
+\item
+  Asimétrico (penaliza diferente sub- y sobre-estimaciones)
+\item
+  Puede ser inflado por valores pequeños de \(Y_i\)
+\end{itemize}
+
+\textbf{Cuándo usar}: Cuando se necesita comparar performance en
+diferentes escalas o comunicar errores como porcentajes.
+
+\subsubsection{Median Absolute Error
+(MedAE)}\label{median-absolute-error-medae}
+
+\textbf{Definición}: \[
+\text{MedAE} = \text{median}(|Y_1 - \hat{Y}_1|, |Y_2 - \hat{Y}_2|, \ldots, |Y_n - \hat{Y}_n|)
+\]
+
+\textbf{Interpretación}:
+
+\begin{itemize}
+\tightlist
+\item
+  Mediana de los errores absolutos
+\item
+  Extremadamente robusto a outliers
+\item
+  50\% de predicciones tienen error menor que MedAE
+\end{itemize}
+
+\textbf{Ventajas}:
+
+\begin{itemize}
+\tightlist
+\item
+  Muy robusto a outliers
+\item
+  Representativo del error ``típico''
+\end{itemize}
+
+\textbf{Desventajas}:
+
+\begin{itemize}
+\tightlist
+\item
+  Ignora magnitud de errores grandes
+\item
+  Menos usado, menos familiar
+\end{itemize}
+
+\textbf{Cuándo usar}: Cuando hay muchos outliers y se necesita una
+métrica muy robusta.
+
+\subsubsection{Elección de métrica según
+contexto}\label{elecciuxf3n-de-muxe9trica-seguxfan-contexto}
+
+\textbf{Contexto 1: Predicción de precios de viviendas}
+
+Usar \textbf{RMSE} o \textbf{MAE}:
+
+\begin{itemize}
+\tightlist
+\item
+  RMSE: Si errores grandes en casas caras son muy problemáticos
+\item
+  MAE: Si se quiere error interpretable en soles
+\end{itemize}
+
+\textbf{Contexto 2: Forecasting de demanda}
+
+Usar \textbf{MAPE}:
+
+\begin{itemize}
+\tightlist
+\item
+  Errores como porcentaje son más interpretables
+\item
+  Permite comparar performance en productos de diferentes escalas
+\end{itemize}
+
+\textbf{Contexto 3: Investigación académica}
+
+Usar \textbf{R²} y \textbf{RMSE}:
+
+\begin{itemize}
+\tightlist
+\item
+  R²: Para reportar varianza explicada
+\item
+  RMSE: Para magnitud del error
+\end{itemize}
+
+\textbf{Contexto 4: Detección de outliers}
+
+Usar \textbf{MAE} o \textbf{MedAE}:
+
+\begin{itemize}
+\tightlist
+\item
+  Robustas a outliers
+\item
+  No dominadas por observaciones extremas
+\end{itemize}
+
+\subsubsection{Tabla comparativa de
+métricas}\label{tabla-comparativa-de-muxe9tricas}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1406}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1562}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1094}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.3438}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Métrica
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Unidades
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Rango
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Sensibilidad outliers
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Interpretación
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{MSE} & \(Y^2\) & \([0, \infty)\) & Alta & Error cuadrático
+medio \\
+\textbf{RMSE} & \(Y\) & \([0, \infty)\) & Alta & Error típico en
+unidades de Y \\
+\textbf{MAE} & \(Y\) & \([0, \infty)\) & Media & Error absoluto medio \\
+\textbf{R²} & Sin unidades & \((-\infty, 1]\) & Media & Proporción
+varianza explicada \\
+\textbf{R²ₐⱼ} & Sin unidades & \((-\infty, 1]\) & Media & R² ajustado
+por complejidad \\
+\textbf{MAPE} & Porcentaje & \([0, \infty)\) & Baja & Error porcentual
+medio \\
+\textbf{MedAE} & \(Y\) & \([0, \infty)\) & Muy baja & Error mediano \\
+\end{longtable}
+
+\subsubsection{Relaciones matemáticas entre
+métricas}\label{relaciones-matemuxe1ticas-entre-muxe9tricas}
+
+\textbf{1. MSE, RMSE y varianza del error}: \[
+\text{MSE} = \text{Var}(\text{error}) + \text{Bias}^2(\text{error})
+\]
+
+\textbf{2. R² y MSE}: \[
+R^2 = 1 - \frac{\text{MSE}}{\text{Var}(Y)}
+\]
+
+\textbf{3. Desigualdad entre métricas}: \[
+\text{MedAE} \leq \text{MAE} \leq \text{RMSE} \leq \max_i |Y_i - \hat{Y}_i|
+\]
+
+\subsubsection{Recomendaciones
+prácticas}\label{recomendaciones-pruxe1cticas-3}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Usar múltiples métricas}: No confiar en una sola; diferentes
+  métricas revelan diferentes aspectos.
+\item
+  \textbf{Considerar el contexto}: La métrica apropiada depende del
+  problema y las consecuencias de los errores.
+\item
+  \textbf{Reportar en test set}: Métricas en training pueden ser
+  engañosas (overfitting).
+\item
+  \textbf{Estandarizar comparaciones}: Usar mismos datos de test para
+  comparar modelos.
+\item
+  \textbf{Documentar claramente}: Especificar qué métrica se optimiza y
+  por qué.
+\item
+  \textbf{Considerar distribución de errores}: No solo el promedio;
+  visualizar histogramas de errores.
+\item
+  \textbf{Cross-validation}: Reportar media y desviación estándar de
+  métricas en CV.
+\item
+  \textbf{Business metrics}: Complementar con métricas específicas del
+  negocio (ej: impacto económico de errores).
+\end{enumerate}
 
 \subsection{Implementación de
 métricas}\label{implementaciuxf3n-de-muxe9tricas}
@@ -1667,6 +4253,53 @@ métricas}\label{implementaciuxf3n-de-muxe9tricas}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+MÉTRICAS DE EVALUACIÓN - CONJUNTO DE PRUEBA
+======================================================================
+
+OLS
+--------------------------------------------------
+  MSE:          1.0902
+  RMSE:         1.0441
+  MAE:          0.8652
+  R²:           0.8480
+  R² Ajustado:  0.8427
+
+Ridge
+--------------------------------------------------
+  MSE:          1.0902
+  RMSE:         1.0441
+  MAE:          0.8652
+  R²:           0.8480
+  R² Ajustado:  0.8427
+
+Lasso
+--------------------------------------------------
+  MSE:          1.0907
+  RMSE:         1.0443
+  MAE:          0.8654
+  R²:           0.8479
+  R² Ajustado:  0.8426
+
+KNN
+--------------------------------------------------
+  MSE:          1.5612
+  RMSE:         1.2495
+  MAE:          0.9792
+  R²:           0.7823
+  R² Ajustado:  0.7747
+
+
+TABLA COMPARATIVA
+======================================================================
+modelo      mse     rmse      mae       r2   r2_adj
+   OLS 1.090161 1.044108 0.865203 0.848011 0.842678
+ Ridge 1.090163 1.044109 0.865204 0.848011 0.842678
+ Lasso 1.090653 1.044343 0.865375 0.847943 0.842607
+   KNN 1.561182 1.249473 0.979177 0.782342 0.774705
+\end{verbatim}
+
 \section{Comparación de modelos}\label{comparaciuxf3n-de-modelos}
 
 \subsection{Tabla y visualización
@@ -1722,6 +4355,14 @@ comparativa}\label{tabla-y-visualizaciuxf3n-comparativa}
 \BuiltInTok{print}\NormalTok{(}\StringTok{"Tabla guardada como \textquotesingle{}metricas\_comparacion.csv\textquotesingle{}"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+
+Comparación guardada como 'model_comparison.png'
+Tabla guardada como 'metricas_comparacion.csv'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-16-output-2.pdf}}
 
 \section{Aplicaciones económicas}\label{aplicaciones-econuxf3micas}
 
@@ -1864,6 +4505,84 @@ vivienda}\label{aplicaciuxf3n-1-predicciuxf3n-de-precios-de-vivienda}
     \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  }\SpecialCharTok{\{}\NormalTok{nombre}\SpecialCharTok{:\textless{}15\}}\SpecialStringTok{ S/ }\SpecialCharTok{\{}\NormalTok{pred}\SpecialCharTok{:,.0f\}}\SpecialStringTok{ mil"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+
+
+
+APLICACIÓN: PREDICCIÓN DE PRECIOS DE VIVIENDA
+======================================================================
+
+Dataset de viviendas:
+  Total viviendas: 500
+
+Estadísticas de precio (miles de soles):
+count     500.000000
+mean     1137.639883
+std       394.316529
+min       273.313950
+25%       806.868893
+50%      1130.556820
+75%      1453.350005
+max      2089.835315
+Name: precio_miles, dtype: float64
+
+
+RESULTADOS DE MODELOS
+======================================================================
+
+OLS:
+  R²:   0.9788
+  RMSE: 54.77 miles de soles
+  MAE:  42.88 miles de soles
+
+Ridge:
+  R²:   0.9794
+  RMSE: 54.01 miles de soles
+  MAE:  43.23 miles de soles
+
+Lasso:
+  R²:   0.9795
+  RMSE: 53.81 miles de soles
+  MAE:  42.35 miles de soles
+
+Random Forest:
+  R²:   0.9544
+  RMSE: 80.31 miles de soles
+  MAE:  67.31 miles de soles
+
+
+IMPORTANCIA DE CARACTERÍSTICAS (Random Forest)
+======================================================================
+  area_m2                   0.8669 ██████████████████████████████████████████████████████████████████████████████████████
+  area_jardin_m2            0.0562 █████
+  distancia_centro_km       0.0348 ███
+  num_habitaciones          0.0192 █
+  antiguedad_anos           0.0105 █
+  piso                      0.0054 
+  tiene_cochera             0.0039 
+  num_banos                 0.0030 
+
+
+EJEMPLO DE PREDICCIÓN
+======================================================================
+
+Características de la vivienda:
+  area_m2: 150
+  num_habitaciones: 3
+  num_banos: 2
+  antiguedad_anos: 10
+  distancia_centro_km: 5
+  area_jardin_m2: 50
+  tiene_cochera: 1
+  piso: 3
+
+Predicciones de precio (miles de soles):
+  OLS             S/ 1,088 mil
+  Ridge           S/ 1,089 mil
+  Lasso           S/ 1,085 mil
+  Random Forest   S/ 1,063 mil
+\end{verbatim}
 
 \subsection{Aplicación 2: Predicción de
 ventas}\label{aplicaciuxf3n-2-predicciuxf3n-de-ventas}
@@ -2014,6 +4733,51 @@ ventas}\label{aplicaciuxf3n-2-predicciuxf3n-de-ventas}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+
+
+APLICACIÓN: PREDICCIÓN DE VENTAS
+======================================================================
+
+Dataset de ventas:
+  Total productos: 400
+
+Estadísticas de ventas mensuales:
+count    400.000000
+mean     413.779329
+std      133.711254
+min       83.286944
+25%      316.421096
+50%      412.196200
+75%      514.370629
+max      799.735141
+Name: ventas_mensuales, dtype: float64
+
+
+REGRESIÓN POLINOMIAL PARA VENTAS
+======================================================================
+Modelo                    R²         RMSE            MAE            
+----------------------------------------------------------------------
+Lineal                    0.8470     50.32           40.20          
+Polinomial (grado 2)      0.8329     52.58           43.27          
+Ridge Polinomial          0.8417     51.18           42.40          
+Random Forest             0.7766     60.80           49.69          
+
+
+ANÁLISIS DE ELASTICIDAD PRECIO
+======================================================================
+
+Curva de demanda guardada como 'curva_demanda.png'
+
+Elasticidad precio en punto medio:
+  Precio: S/ 106.94
+  Elasticidad: -0.113
+  → Demanda inelástica (poco sensible al precio)
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-18-output-2.pdf}}
+
 \section{Ejercicios prácticos}\label{ejercicios-pruxe1cticos}
 
 \subsection{Ejercicio: Validación
@@ -2072,6 +4836,27 @@ cruzada}\label{ejercicio-validaciuxf3n-cruzada}
 \BuiltInTok{print}\NormalTok{(}\StringTok{"(Balance entre performance y generalización)"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+
+
+
+EJERCICIO: VALIDACIÓN CRUZADA
+======================================================================
+
+Validación cruzada (5-fold):
+Modelo               R² medio     R² std       RMSE medio     
+----------------------------------------------------------------------
+OLS                  0.8546       0.0204       1.0002         
+Ridge (α=1)          0.8547       0.0208       0.9999         
+Ridge (α=10)         0.8524       0.0247       1.0091         
+Lasso (α=0.1)        0.8525       0.0247       1.0087         
+Lasso (α=1)          0.5366       0.0332       1.7877         
+
+
+Mejor modelo según validación cruzada: Ridge (α=1)
+(Balance entre performance y generalización)
+\end{verbatim}
 
 \section{Conclusión}\label{conclusiuxf3n}
 
