@@ -1,5 +1,5 @@
 \documentclass[
-  jou,
+  doc,
   floatsintext,
   longtable,
   a4paper,
@@ -12,6 +12,8 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
+\geometry{inner=1in, outer=1in}
+\fancyhfoffset[LE,RO]{0cm}
 
 
 \usepackage[bidi=default]{babel}
@@ -78,6 +80,46 @@
 
 
 
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -163,51 +205,23 @@ contenido final del artículo. }
 \par{   El autor no tiene conflictos de interés que revelar.    Los
 roles de autor se clasificaron utilizando la taxonomía de roles de
 colaborador (CRediT; https://credit.niso.org/) de la siguiente
-manera:  Edison Achalma:   conceptualización, redacción}
+manera:  Edison Achalma:   conceptualización, metodología, análisis
+formal, investigación, recursos, curación de
+datos, redacción, visualización, supervisión, administración del
+proyecto}
 \par{La correspondencia relativa a este artículo debe dirigirse a Edison
-Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
+Achalma, Escuela Profesional de Economía, Universidad Nacional de San
+Cristóbal de Huamanga, Portal Independencia N°
+57, Ayacucho, AYA 5001, Perú, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
 }
-
-\usepackage{pbalance}
-% \usepackage{float}
-\makeatletter
-\let\oldtpt\ThreePartTable
-\let\endoldtpt\endThreePartTable
-\def\ThreePartTable{\@ifnextchar[\ThreePartTable@i \ThreePartTable@ii}
-\def\ThreePartTable@i[#1]{\begin{figure}[!htbp]
-\onecolumn
-\begin{minipage}{0.485\textwidth}
-\oldtpt[#1]
-}
-\def\ThreePartTable@ii{\begin{figure}[!htbp]
-\onecolumn
-\begin{minipage}{0.48\textwidth}
-\oldtpt
-}
-\def\endThreePartTable{
-\endoldtpt
-\end{minipage}
-\twocolumn
-\end{figure}}
-\makeatother
-
 
 \makeatletter
-\let\endoldlt\endlongtable		
+\let\endoldlt\endlongtable
 \def\endlongtable{
 \hline
-\endoldlt}
+\endoldlt
+}
 \makeatother
-
-\newenvironment{twocolumntable}% environment name
-{% begin code
-\begin{table*}[!htbp]%
-\onecolumn%
-}%
-{%
-\twocolumn%
-\end{table*}%
-}% end code
 
 \urlstyle{same}
 
@@ -245,8 +259,8 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 \@ifpackageloaded{float}{}{\usepackage{float}}
 \floatstyle{ruled}
 \@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
-\floatname{codelisting}{Listing}
-\newcommand*\listoflistings{\listof{codelisting}{Lista de Listings}}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listados}}
 \makeatother
 \makeatletter
 \makeatother
@@ -305,8 +319,1831 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 
 
 
-Este artículo está actualmente en proceso de edición, y todas las
-secciones serán ampliadas y refinadas en futuras revisiones.
+En esta décima guía exploraremos los principales algoritmos de machine
+learning para problemas de regresión. Estos métodos son fundamentales
+para resolver problemas económicos como predicción de precios,
+estimación de demanda, forecasting de series de tiempo, valuación de
+activos, entre otros.
+
+\section{La regresión}\label{la-regresiuxf3n}
+
+\subsection{Concepto}\label{concepto}
+
+La regresión es un método para predecir valores numéricos continuos (a
+diferencia de clasificación que predice categorías discretas).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+\ImportTok{import}\NormalTok{ seaborn }\ImportTok{as}\NormalTok{ sns}
+
+\CommentTok{\# Scikit{-}learn}
+\ImportTok{from}\NormalTok{ sklearn.model\_selection }\ImportTok{import}\NormalTok{ train\_test\_split, cross\_val\_score}
+\ImportTok{from}\NormalTok{ sklearn.preprocessing }\ImportTok{import}\NormalTok{ StandardScaler, PolynomialFeatures}
+\ImportTok{from}\NormalTok{ sklearn.linear\_model }\ImportTok{import}\NormalTok{ LinearRegression, Ridge, Lasso, ElasticNet}
+\ImportTok{from}\NormalTok{ sklearn.neighbors }\ImportTok{import}\NormalTok{ KNeighborsRegressor}
+\ImportTok{from}\NormalTok{ sklearn.tree }\ImportTok{import}\NormalTok{ DecisionTreeRegressor}
+\ImportTok{from}\NormalTok{ sklearn.ensemble }\ImportTok{import}\NormalTok{ RandomForestRegressor}
+\ImportTok{from}\NormalTok{ sklearn.metrics }\ImportTok{import}\NormalTok{ mean\_squared\_error, mean\_absolute\_error, r2\_score}
+
+\CommentTok{\# Configuración}
+\NormalTok{plt.style.use(}\StringTok{\textquotesingle{}seaborn{-}v0\_8{-}whitegrid\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.rcParams[}\StringTok{\textquotesingle{}figure.figsize\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ (}\DecValTok{12}\NormalTok{, }\DecValTok{6}\NormalTok{)}
+\NormalTok{np.random.seed(}\DecValTok{42}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Librerías importadas exitosamente"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Tipos de problemas de
+regresión}\label{tipos-de-problemas-de-regresiuxf3n}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Predicción de precios}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Precios de viviendas
+  \item
+    Precios de acciones
+  \item
+    Precios de commodities
+  \item
+    Tipos de cambio
+  \end{itemize}
+\item
+  \textbf{Estimación de demanda}*
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Demanda de productos
+  \item
+    Demanda laboral
+  \item
+    Demanda de servicios públicos
+  \end{itemize}
+\item
+  \textbf{Forecasting económico} (pronósticos)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    PIB futuro
+  \item
+    Ventas futuras
+  \item
+    Inflación
+  \item
+    Tasas de interés
+  \end{itemize}
+\item
+  \textbf{Valuación}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Valuación de empresas
+  \item
+    Valuación de activos
+  \item
+    Riesgo de crédito (score continuo)
+  \end{itemize}
+\item
+  \textbf{Análisis de impacto y causalidad}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Efecto de políticas públicas
+  \item
+    Retorno de inversión en publicidad
+  \item
+    Elasticidades (precio, ingreso)
+  \end{itemize}
+\end{enumerate}
+
+\subsection{Generar datos de ejemplo}\label{generar-datos-de-ejemplo}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ generar\_datos\_regresion(n}\OperatorTok{=}\DecValTok{200}\NormalTok{, ruido}\OperatorTok{=}\FloatTok{1.0}\NormalTok{, seed}\OperatorTok{=}\DecValTok{42}\NormalTok{):}
+    \CommentTok{"""}
+\CommentTok{    Genera datos sintéticos para regresión}
+\CommentTok{    }
+\CommentTok{    Modelo: Y = 3 + 2*X1 {-} 1.5*X2 + ε}
+\CommentTok{    """}
+\NormalTok{    np.random.seed(seed)}
+    
+    \CommentTok{\# Variables explicativas}
+\NormalTok{    X }\OperatorTok{=}\NormalTok{ np.random.randn(n, }\DecValTok{2}\NormalTok{)}
+    
+    \CommentTok{\# Coeficientes verdaderos}
+\NormalTok{    beta\_true }\OperatorTok{=}\NormalTok{ np.array([}\FloatTok{2.0}\NormalTok{, }\OperatorTok{{-}}\FloatTok{1.5}\NormalTok{])}
+\NormalTok{    intercepto\_true }\OperatorTok{=} \FloatTok{3.0}
+    
+    \CommentTok{\# Variable dependiente con ruido}
+\NormalTok{    Y }\OperatorTok{=}\NormalTok{ intercepto\_true }\OperatorTok{+}\NormalTok{ np.dot(X, beta\_true) }\OperatorTok{+}\NormalTok{ np.random.randn(n) }\OperatorTok{*}\NormalTok{ ruido}
+    
+    \ControlFlowTok{return}\NormalTok{ X, Y, beta\_true, intercepto\_true}
+
+\CommentTok{\# Generar datos}
+\NormalTok{X, Y, beta\_true, intercepto\_true }\OperatorTok{=}\NormalTok{ generar\_datos\_regresion(n}\OperatorTok{=}\DecValTok{200}\NormalTok{, ruido}\OperatorTok{=}\FloatTok{1.0}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"DATOS GENERADOS"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Número de observaciones: }\SpecialCharTok{\{}\BuiltInTok{len}\NormalTok{(Y)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Número de características: }\SpecialCharTok{\{}\NormalTok{X}\SpecialCharTok{.}\NormalTok{shape[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Coeficientes verdaderos:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Intercepto: }\SpecialCharTok{\{}\NormalTok{intercepto\_true}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  β₁: }\SpecialCharTok{\{}\NormalTok{beta\_true[}\DecValTok{0}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  β₂: }\SpecialCharTok{\{}\NormalTok{beta\_true[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Modelo verdadero: Y = }\SpecialCharTok{\{}\NormalTok{intercepto\_true}\SpecialCharTok{\}}\SpecialStringTok{ + }\SpecialCharTok{\{}\NormalTok{beta\_true[}\DecValTok{0}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{*X₁ + }\SpecialCharTok{\{}\NormalTok{beta\_true[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{*X₂ + ε"}\NormalTok{)}
+
+\CommentTok{\# Visualizar datos}
+\NormalTok{fig, axes }\OperatorTok{=}\NormalTok{ plt.subplots(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{14}\NormalTok{, }\DecValTok{5}\NormalTok{))}
+
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].scatter(X[:, }\DecValTok{0}\NormalTok{], Y, alpha}\OperatorTok{=}\FloatTok{0.6}\NormalTok{, s}\OperatorTok{=}\DecValTok{50}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].set\_xlabel(}\StringTok{\textquotesingle{}X₁\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].set\_ylabel(}\StringTok{\textquotesingle{}Y\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}Relación Y vs X₁\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].scatter(X[:, }\DecValTok{1}\NormalTok{], Y, alpha}\OperatorTok{=}\FloatTok{0.6}\NormalTok{, s}\OperatorTok{=}\DecValTok{50}\NormalTok{, color}\OperatorTok{=}\StringTok{\textquotesingle{}orange\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].set\_xlabel(}\StringTok{\textquotesingle{}X₂\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].set\_ylabel(}\StringTok{\textquotesingle{}Y\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}Relación Y vs X₂\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\NormalTok{plt.tight\_layout()}
+\NormalTok{plt.savefig(}\StringTok{\textquotesingle{}datos\_regresion.png\textquotesingle{}}\NormalTok{, dpi}\OperatorTok{=}\DecValTok{300}\NormalTok{, bbox\_inches}\OperatorTok{=}\StringTok{\textquotesingle{}tight\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Gráfico guardado como \textquotesingle{}datos\_regresion.png\textquotesingle{}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Dividir datos}\label{dividir-datos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Dividir en entrenamiento y prueba}
+\NormalTok{X\_train, X\_test, y\_train, y\_test }\OperatorTok{=}\NormalTok{ train\_test\_split(}
+\NormalTok{    X, Y, test\_size}\OperatorTok{=}\FloatTok{0.3}\NormalTok{, random\_state}\OperatorTok{=}\DecValTok{42}
+\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{División de datos:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Entrenamiento: }\SpecialCharTok{\{}\BuiltInTok{len}\NormalTok{(y\_train)}\SpecialCharTok{\}}\SpecialStringTok{ observaciones"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Prueba: }\SpecialCharTok{\{}\BuiltInTok{len}\NormalTok{(y\_test)}\SpecialCharTok{\}}\SpecialStringTok{ observaciones"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Mínimos cuadrados ordinarios
+(OLS)}\label{muxednimos-cuadrados-ordinarios-ols}
+
+\subsection{Fundamento matemático}\label{fundamento-matemuxe1tico}
+
+El método de Mínimos Cuadrados Ordinarios (Ordinary Least Squares, OLS)
+es el método más fundamental y ampliamente utilizado en econometría y
+análisis de regresión. Fue desarrollado por Carl Friedrich Gauss a
+principios del siglo XIX y constituye la base para muchos métodos
+estadísticos modernos.
+
+\subsubsection{Especificación del
+modelo}\label{especificaciuxf3n-del-modelo}
+
+El modelo de regresión lineal múltiple se especifica como:
+
+\[
+Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \cdots + \beta_p X_{pi} + \varepsilon_i
+\]
+
+donde:
+
+\begin{itemize}
+\tightlist
+\item
+  \(Y_i\) es el valor observado de la variable dependiente para la
+  observación \(i\)
+\item
+  \(X_{ji}\) es el valor de la \(j\)-ésima variable independiente para
+  la observación \(i\)
+\item
+  \(\beta_0\) es el intercepto (término constante)
+\item
+  \(\beta_j\) son los coeficientes de regresión para
+  \(j = 1, 2, \ldots, p\)
+\item
+  \(\varepsilon_i\) es el término de error aleatorio
+\item
+  \(i = 1, 2, \ldots, n\) indexa las observaciones
+\end{itemize}
+
+En notación matricial, el modelo se expresa de forma más compacta como:
+
+\[
+\mathbf{Y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}
+\]
+
+donde:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\mathbf{Y}\) es un vector \(n \times 1\) de observaciones de la
+  variable dependiente
+\item
+  \(\mathbf{X}\) es una matriz \(n \times (p+1)\) de variables
+  independientes (incluye columna de unos para el intercepto)
+\item
+  \(\boldsymbol{\beta}\) es un vector \((p+1) \times 1\) de coeficientes
+\item
+  \(\boldsymbol{\varepsilon}\) es un vector \(n \times 1\) de errores
+\end{itemize}
+
+\subsubsection{Función objetivo}\label{funciuxf3n-objetivo}
+
+El método OLS busca estimar los coeficientes \(\boldsymbol{\beta}\) que
+minimizan la Suma de Residuos al Cuadrado (Residual Sum of Squares,
+RSS):
+
+\[
+\text{RSS}(\boldsymbol{\beta}) = \sum_{i=1}^{n} \varepsilon_i^2 = \sum_{i=1}^{n} (Y_i - \hat{Y}_i)^2
+\]
+
+donde \(\hat{Y}_i = \beta_0 + \beta_1 X_{1i} + \cdots + \beta_p X_{pi}\)
+es el valor predicho.
+
+Expandiendo la expresión:
+
+\[
+\text{RSS}(\boldsymbol{\beta}) = \sum_{i=1}^{n} \left(Y_i - \beta_0 - \sum_{j=1}^{p} \beta_j X_{ji}\right)^2
+\]
+
+En notación matricial:
+
+\[
+\text{RSS}(\boldsymbol{\beta}) = (\mathbf{Y} - \mathbf{X}\boldsymbol{\beta})^\top (\mathbf{Y} - \mathbf{X}\boldsymbol{\beta})
+\]
+
+\subsubsection{Derivación de la
+solución}\label{derivaciuxf3n-de-la-soluciuxf3n}
+
+Para encontrar el estimador que minimiza RSS, tomamos la derivada con
+respecto a \(\boldsymbol{\beta}\) e igualamos a cero:
+
+\[
+\frac{\partial \text{RSS}}{\partial \boldsymbol{\beta}} = -2\mathbf{X}^\top(\mathbf{Y} - \mathbf{X}\boldsymbol{\beta}) = 0
+\]
+
+Resolviendo para \(\boldsymbol{\beta}\):
+
+\[
+\mathbf{X}^\top\mathbf{Y} = \mathbf{X}^\top\mathbf{X}\boldsymbol{\beta}
+\]
+
+Estas son las \textbf{ecuaciones normales} del problema de mínimos
+cuadrados. Asumiendo que \(\mathbf{X}^\top\mathbf{X}\) es invertible (es
+decir, las columnas de \(\mathbf{X}\) son linealmente independientes),
+la solución es:
+
+\[
+\hat{\boldsymbol{\beta}} = (\mathbf{X}^\top\mathbf{X})^{-1}\mathbf{X}^\top\mathbf{Y}
+\]
+
+Esta es la \textbf{solución de mínimos cuadrados ordinarios}.
+
+\subsubsection{Propiedades del estimador
+OLS}\label{propiedades-del-estimador-ols}
+
+Bajo los supuestos estándar (ver sección siguiente), el estimador OLS
+posee las siguientes propiedades deseables:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Insesgadez}: El estimador es insesgado, es decir: \[
+  E[\hat{\boldsymbol{\beta}}] = \boldsymbol{\beta}
+  \]
+\item
+  \textbf{Varianza mínima}: Según el Teorema de Gauss-Markov, OLS es el
+  estimador lineal insesgado de varianza mínima (BLUE: Best Linear
+  Unbiased Estimator).
+\item
+  \textbf{Consistencia}: El estimador converge en probabilidad al
+  verdadero valor cuando \(n \to \infty\): \[
+  \text{plim}_{n \to \infty} \hat{\boldsymbol{\beta}} = \boldsymbol{\beta}
+  \]
+\item
+  \textbf{Normalidad asintótica}: Bajo condiciones regulares: \[
+  \sqrt{n}(\hat{\boldsymbol{\beta}} - \boldsymbol{\beta}) \xrightarrow{d} N(0, \sigma^2(\mathbf{X}^\top\mathbf{X})^{-1})
+  \]
+\end{enumerate}
+
+\subsubsection{Matriz de
+varianzas-covarianzas}\label{matriz-de-varianzas-covarianzas}
+
+La matriz de varianzas-covarianzas del estimador OLS está dada por:
+
+\[
+\text{Var}(\hat{\boldsymbol{\beta}}) = \sigma^2 (\mathbf{X}^\top\mathbf{X})^{-1}
+\]
+
+donde \(\sigma^2 = \text{Var}(\varepsilon_i)\) es la varianza del error.
+En la práctica, \(\sigma^2\) se estima mediante:
+
+\[
+\hat{\sigma}^2 = \frac{\text{RSS}}{n - p - 1} = \frac{\sum_{i=1}^{n} \hat{\varepsilon}_i^2}{n - p - 1}
+\]
+
+Los errores estándar de los coeficientes son las raíces cuadradas de los
+elementos diagonales de
+\(\hat{\sigma}^2 (\mathbf{X}^\top\mathbf{X})^{-1}\).
+
+\subsubsection{Supuestos del modelo clásico de regresión
+lineal}\label{supuestos-del-modelo-cluxe1sico-de-regresiuxf3n-lineal}
+
+Para que el estimador OLS tenga las propiedades óptimas mencionadas, se
+requieren los siguientes supuestos:
+
+\textbf{Supuesto 1: Linealidad}
+
+El modelo es lineal en los parámetros. La verdadera relación entre \(Y\)
+y las \(X\) puede expresarse como:
+
+\[
+E[Y_i | X_{1i}, \ldots, X_{pi}] = \beta_0 + \beta_1 X_{1i} + \cdots + \beta_p X_{pi}
+\]
+
+\textbf{Supuesto 2: Exogeneidad estricta}
+
+Los errores tienen media condicional cero:
+
+\[
+E[\varepsilon_i | \mathbf{X}] = 0 \quad \text{para todo } i
+\]
+
+Esto implica que las variables independientes no están correlacionadas
+con el término de error.
+
+\textbf{Supuesto 3: No colinealidad perfecta}
+
+Las columnas de \(\mathbf{X}\) son linealmente independientes, es decir,
+la matriz \(\mathbf{X}^\top\mathbf{X}\) es de rango completo y por tanto
+invertible. No existe \(\mathbf{a} \neq \mathbf{0}\) tal que
+\(\mathbf{X}\mathbf{a} = \mathbf{0}\).
+
+\textbf{Supuesto 4: Homocedasticidad}
+
+Los errores tienen varianza constante:
+
+\[
+\text{Var}(\varepsilon_i | \mathbf{X}) = \sigma^2 \quad \text{para todo } i
+\]
+
+\textbf{Supuesto 5: No autocorrelación}
+
+Los errores no están correlacionados entre sí:
+
+\[
+\text{Cov}(\varepsilon_i, \varepsilon_j | \mathbf{X}) = 0 \quad \text{para } i \neq j
+\]
+
+Los supuestos 4 y 5 pueden combinarse como:
+
+\[
+E[\boldsymbol{\varepsilon}\boldsymbol{\varepsilon}^\top | \mathbf{X}] = \sigma^2 \mathbf{I}_n
+\]
+
+\textbf{Supuesto 6: Normalidad (opcional)}
+
+Para inferencia en muestras finitas, se asume:
+
+\[
+\varepsilon_i | \mathbf{X} \sim N(0, \sigma^2)
+\]
+
+Este supuesto no es necesario para propiedades asintóticas pero permite
+realizar pruebas de hipótesis exactas en muestras pequeñas.
+
+\subsubsection{Ventajas del método
+OLS}\label{ventajas-del-muxe9todo-ols}
+
+\begin{itemize}
+\item
+  \textbf{Simplicidad conceptual e implementación}: El método tiene una
+  interpretación geométrica clara (proyección ortogonal) y es
+  computacionalmente eficiente.
+\item
+  \textbf{Interpretabilidad}: Los coeficientes tienen interpretación
+  directa como efectos marginales. \(\beta_j\) representa el cambio en
+  \(Y\) por un cambio unitario en \(X_j\), manteniendo constantes las
+  demás variables.
+\item
+  \textbf{Solución cerrada}: Existe una fórmula analítica explícita para
+  el estimador, lo que facilita el análisis teórico.
+\item
+  \textbf{Propiedades estadísticas óptimas}: Bajo los supuestos del
+  modelo clásico, OLS es BLUE.
+\item
+  \textbf{Base para extensiones}: OLS es el fundamento de métodos más
+  sofisticados como mínimos cuadrados generalizados (GLS), variables
+  instrumentales (IV), y modelos de panel.
+\item
+  \textbf{Inferencia estadística}: Permite construir intervalos de
+  confianza y realizar pruebas de hipótesis sobre los coeficientes.
+\end{itemize}
+
+\subsubsection{Limitaciones del método
+OLS}\label{limitaciones-del-muxe9todo-ols}
+
+\begin{itemize}
+\item
+  \textbf{Sensibilidad a violaciones de supuestos}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    La \textbf{heterocedasticidad} (varianza no constante) invalida los
+    errores estándar estándar
+  \item
+    La \textbf{autocorrelación} (común en series de tiempo) sesga los
+    errores estándar
+  \item
+    La \textbf{endogeneidad} (correlación entre \(X\) y \(\varepsilon\))
+    produce estimadores sesgados e inconsistentes
+  \end{itemize}
+\item
+  \textbf{Sensibilidad a outliers}: Valores extremos pueden ejercer
+  influencia desproporcionada en las estimaciones debido a la
+  minimización de errores al cuadrado.
+\item
+  \textbf{Multicolinealidad}: Cuando las variables independientes están
+  altamente correlacionadas:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Los errores estándar de los coeficientes se inflan
+  \item
+    Los coeficientes individuales se vuelven inestables
+  \item
+    La matriz \(\mathbf{X}^\top\mathbf{X}\) se aproxima a singularidad
+  \end{itemize}
+\item
+  \textbf{Restricción a modelos lineales}: OLS solo puede capturar
+  relaciones lineales en los parámetros (aunque puede incluir
+  transformaciones no lineales de las variables).
+\item
+  \textbf{No realiza selección de variables}: Incluye todas las
+  variables especificadas sin discriminar su relevancia.
+\item
+  \textbf{Overfitting con muchas variables}: En modelos con \(p\) grande
+  relativo a \(n\), puede ajustar demasiado al ruido de los datos de
+  entrenamiento, deteriorando la capacidad predictiva fuera de muestra.
+\end{itemize}
+
+\subsubsection{Aplicaciones en
+economía}\label{aplicaciones-en-economuxeda}
+
+El método OLS es ubicuo en economía y se aplica a:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Estimación de funciones de demanda}: Relación entre cantidad
+  demandada, precio, ingreso y otros factores
+\item
+  \textbf{Funciones de producción}: Relación entre insumos (capital,
+  trabajo) y producto
+\item
+  \textbf{Ecuaciones de salarios}: Retornos a la educación y experiencia
+  (ecuación de Mincer)
+\item
+  \textbf{Modelos de consumo}: Propensión marginal a consumir
+\item
+  \textbf{Análisis de series macroeconómicas}: PIB, inflación, desempleo
+\item
+  \textbf{Evaluación de políticas}: Efectos de programas sociales o
+  intervenciones
+\end{itemize}
+
+\subsubsection{Consideraciones
+computacionales}\label{consideraciones-computacionales}
+
+La inversión de la matriz \(\mathbf{X}^\top\mathbf{X}\) es
+computacionalmente costosa cuando \(p\) es grande. Métodos numéricos
+estables incluyen:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Descomposición QR}: \(\mathbf{X} = \mathbf{Q}\mathbf{R}\),
+  luego
+  \(\hat{\boldsymbol{\beta}} = \mathbf{R}^{-1}\mathbf{Q}^\top\mathbf{Y}\)
+\item
+  \textbf{Descomposición SVD}: Descomposición en valores singulares de
+  \(\mathbf{X}\)
+\item
+  \textbf{Eliminación gaussiana}: Para resolver directamente las
+  ecuaciones normales
+\end{itemize}
+
+En Python, \texttt{sklearn.linear\_model.LinearRegression} utiliza
+descomposición SVD por defecto, lo que proporciona estabilidad numérica
+superior.
+
+\subsection{Implementación}\label{implementaciuxf3n}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Entrenar modelo OLS}
+\NormalTok{modelo\_ols }\OperatorTok{=}\NormalTok{ LinearRegression()}
+\NormalTok{modelo\_ols.fit(X\_train, y\_train)}
+
+\CommentTok{\# Coeficientes estimados}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{MODELO OLS ESTIMADO"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Intercepto estimado: }\SpecialCharTok{\{}\NormalTok{modelo\_ols}\SpecialCharTok{.}\NormalTok{intercept\_}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  (Verdadero: }\SpecialCharTok{\{}\NormalTok{intercepto\_true}\SpecialCharTok{\}}\SpecialStringTok{)"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Coeficientes estimados:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  β₁: }\SpecialCharTok{\{}\NormalTok{modelo\_ols}\SpecialCharTok{.}\NormalTok{coef\_[}\DecValTok{0}\NormalTok{]}\SpecialCharTok{:.4f\}}\SpecialStringTok{ (Verdadero: }\SpecialCharTok{\{}\NormalTok{beta\_true[}\DecValTok{0}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{)"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  β₂: }\SpecialCharTok{\{}\NormalTok{modelo\_ols}\SpecialCharTok{.}\NormalTok{coef\_[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{:.4f\}}\SpecialStringTok{ (Verdadero: }\SpecialCharTok{\{}\NormalTok{beta\_true[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{)"}\NormalTok{)}
+
+\CommentTok{\# Predecir}
+\NormalTok{y\_pred\_ols\_train }\OperatorTok{=}\NormalTok{ modelo\_ols.predict(X\_train)}
+\NormalTok{y\_pred\_ols\_test }\OperatorTok{=}\NormalTok{ modelo\_ols.predict(X\_test)}
+
+\CommentTok{\# Evaluar}
+\NormalTok{r2\_train }\OperatorTok{=}\NormalTok{ r2\_score(y\_train, y\_pred\_ols\_train)}
+\NormalTok{r2\_test }\OperatorTok{=}\NormalTok{ r2\_score(y\_test, y\_pred\_ols\_test)}
+\NormalTok{mse\_train }\OperatorTok{=}\NormalTok{ mean\_squared\_error(y\_train, y\_pred\_ols\_train)}
+\NormalTok{mse\_test }\OperatorTok{=}\NormalTok{ mean\_squared\_error(y\_test, y\_pred\_ols\_test)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{PERFORMANCE DEL MODELO"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"R² Train: }\SpecialCharTok{\{}\NormalTok{r2\_train}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"R² Test:  }\SpecialCharTok{\{}\NormalTok{r2\_test}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"MSE Train: }\SpecialCharTok{\{}\NormalTok{mse\_train}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"MSE Test:  }\SpecialCharTok{\{}\NormalTok{mse\_test}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Visualización de
+predicciones}\label{visualizaciuxf3n-de-predicciones}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Gráfico de valores reales vs predichos}
+\NormalTok{fig, axes }\OperatorTok{=}\NormalTok{ plt.subplots(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{14}\NormalTok{, }\DecValTok{5}\NormalTok{))}
+
+\CommentTok{\# Training set}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].scatter(y\_train, y\_pred\_ols\_train, alpha}\OperatorTok{=}\FloatTok{0.6}\NormalTok{, s}\OperatorTok{=}\DecValTok{50}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].plot([y\_train.}\BuiltInTok{min}\NormalTok{(), y\_train.}\BuiltInTok{max}\NormalTok{()], }
+\NormalTok{             [y\_train.}\BuiltInTok{min}\NormalTok{(), y\_train.}\BuiltInTok{max}\NormalTok{()], }
+             \StringTok{\textquotesingle{}r{-}{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Predicción perfecta\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].set\_xlabel(}\StringTok{\textquotesingle{}Y real\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].set\_ylabel(}\StringTok{\textquotesingle{}Y predicho\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].set\_title(}\SpecialStringTok{f\textquotesingle{}OLS {-} Entrenamiento (R²=}\SpecialCharTok{\{}\NormalTok{r2\_train}\SpecialCharTok{:.3f\}}\SpecialStringTok{)\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].legend()}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\CommentTok{\# Test set}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].scatter(y\_test, y\_pred\_ols\_test, alpha}\OperatorTok{=}\FloatTok{0.6}\NormalTok{, s}\OperatorTok{=}\DecValTok{50}\NormalTok{, color}\OperatorTok{=}\StringTok{\textquotesingle{}orange\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].plot([y\_test.}\BuiltInTok{min}\NormalTok{(), y\_test.}\BuiltInTok{max}\NormalTok{()], }
+\NormalTok{             [y\_test.}\BuiltInTok{min}\NormalTok{(), y\_test.}\BuiltInTok{max}\NormalTok{()], }
+             \StringTok{\textquotesingle{}r{-}{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Predicción perfecta\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].set\_xlabel(}\StringTok{\textquotesingle{}Y real\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].set\_ylabel(}\StringTok{\textquotesingle{}Y predicho\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].set\_title(}\SpecialStringTok{f\textquotesingle{}OLS {-} Prueba (R²=}\SpecialCharTok{\{}\NormalTok{r2\_test}\SpecialCharTok{:.3f\}}\SpecialStringTok{)\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].legend()}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\NormalTok{plt.tight\_layout()}
+\NormalTok{plt.savefig(}\StringTok{\textquotesingle{}ols\_predictions.png\textquotesingle{}}\NormalTok{, dpi}\OperatorTok{=}\DecValTok{300}\NormalTok{, bbox\_inches}\OperatorTok{=}\StringTok{\textquotesingle{}tight\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Gráfico guardado como \textquotesingle{}ols\_predictions.png\textquotesingle{}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Análisis de residuos}\label{anuxe1lisis-de-residuos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Calcular residuos}
+\NormalTok{residuos\_train }\OperatorTok{=}\NormalTok{ y\_train }\OperatorTok{{-}}\NormalTok{ y\_pred\_ols\_train}
+\NormalTok{residuos\_test }\OperatorTok{=}\NormalTok{ y\_test }\OperatorTok{{-}}\NormalTok{ y\_pred\_ols\_test}
+
+\CommentTok{\# Gráficos de diagnóstico}
+\NormalTok{fig, axes }\OperatorTok{=}\NormalTok{ plt.subplots(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{14}\NormalTok{, }\DecValTok{10}\NormalTok{))}
+
+\CommentTok{\# 1. Residuos vs valores predichos}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{].scatter(y\_pred\_ols\_train, residuos\_train, alpha}\OperatorTok{=}\FloatTok{0.6}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{].axhline(y}\OperatorTok{=}\DecValTok{0}\NormalTok{, color}\OperatorTok{=}\StringTok{\textquotesingle{}r\textquotesingle{}}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{\textquotesingle{}{-}{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{].set\_xlabel(}\StringTok{\textquotesingle{}Valores predichos\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{].set\_ylabel(}\StringTok{\textquotesingle{}Residuos\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}Residuos vs Predicciones\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\CommentTok{\# 2. Histograma de residuos}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{].hist(residuos\_train, bins}\OperatorTok{=}\DecValTok{30}\NormalTok{, edgecolor}\OperatorTok{=}\StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.7}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{].axvline(x}\OperatorTok{=}\DecValTok{0}\NormalTok{, color}\OperatorTok{=}\StringTok{\textquotesingle{}r\textquotesingle{}}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{\textquotesingle{}{-}{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{].set\_xlabel(}\StringTok{\textquotesingle{}Residuos\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{].set\_ylabel(}\StringTok{\textquotesingle{}Frecuencia\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}Distribución de Residuos\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\CommentTok{\# 3. Q{-}Q plot}
+\ImportTok{from}\NormalTok{ scipy }\ImportTok{import}\NormalTok{ stats}
+\NormalTok{stats.probplot(residuos\_train, dist}\OperatorTok{=}\StringTok{"norm"}\NormalTok{, plot}\OperatorTok{=}\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{])}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}Q{-}Q Plot\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\CommentTok{\# 4. Residuos vs orden}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{].scatter(}\BuiltInTok{range}\NormalTok{(}\BuiltInTok{len}\NormalTok{(residuos\_train)), residuos\_train, alpha}\OperatorTok{=}\FloatTok{0.6}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{].axhline(y}\OperatorTok{=}\DecValTok{0}\NormalTok{, color}\OperatorTok{=}\StringTok{\textquotesingle{}r\textquotesingle{}}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{\textquotesingle{}{-}{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{].set\_xlabel(}\StringTok{\textquotesingle{}Índice de observación\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{].set\_ylabel(}\StringTok{\textquotesingle{}Residuos\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}Residuos vs Orden\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\NormalTok{plt.tight\_layout()}
+\NormalTok{plt.savefig(}\StringTok{\textquotesingle{}ols\_diagnostics.png\textquotesingle{}}\NormalTok{, dpi}\OperatorTok{=}\DecValTok{300}\NormalTok{, bbox\_inches}\OperatorTok{=}\StringTok{\textquotesingle{}tight\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Gráficos de diagnóstico guardados como \textquotesingle{}ols\_diagnostics.png\textquotesingle{}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Regresión Ridge}\label{regresiuxf3n-ridge}
+
+\subsection{Fundamento matemático}\label{fundamento-matemuxe1tico-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
+\StringTok{REGRESIÓN RIDGE (L2 REGULARIZATION)}
+
+\StringTok{Objetivo:}
+\StringTok{    Minimizar RSS + penalización por magnitud de coeficientes}
+\StringTok{    }
+\StringTok{    min \{ RSS(β) + α·Σβⱼ² \}}
+\StringTok{    }
+\StringTok{    = min \{ Σ(yᵢ {-} ŷᵢ)² + α·Σβⱼ² \}}
+
+\StringTok{Solución:}
+\StringTok{    β̂ᴿⁱᵈᵍᵉ = (X\textquotesingle{}X + αI)⁻¹X\textquotesingle{}Y}
+
+\StringTok{Donde:}
+\StringTok{{-} α: Parámetro de regularización (α ≥ 0)}
+\StringTok{  * α = 0: Equivalente a OLS}
+\StringTok{  * α → ∞: Coeficientes → 0}
+\StringTok{{-} ||β||₂²: Norma L2 (suma de cuadrados de coeficientes)}
+
+\StringTok{Efecto de Ridge:}
+\StringTok{✓ Reduce magnitud de coeficientes (shrinkage)}
+\StringTok{✓ Mantiene todas las variables (no hace selección)}
+\StringTok{✓ Ayuda con multicolinealidad}
+\StringTok{✓ Reduce varianza del modelo}
+\StringTok{✓ Previene overfitting}
+
+\StringTok{Cuándo usar Ridge:}
+\StringTok{{-} Cuando hay muchas variables correlacionadas}
+\StringTok{{-} Cuando todas las variables son potencialmente relevantes}
+\StringTok{{-} Cuando se prefiere estabilidad sobre interpretabilidad}
+
+\StringTok{Aplicaciones económicas:}
+\StringTok{{-} Modelos con muchas variables macroeconómicas correlacionadas}
+\StringTok{{-} Predicción de series de tiempo con múltiples rezagos}
+\StringTok{{-} Modelos de pricing con características correlacionadas}
+\StringTok{"""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Implementación}\label{implementaciuxf3n-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Probar diferentes valores de alpha}
+\NormalTok{alphas }\OperatorTok{=}\NormalTok{ [}\FloatTok{0.001}\NormalTok{, }\FloatTok{0.01}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{1000}\NormalTok{]}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{REGRESIÓN RIDGE {-} EFECTO DE α"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\StringTok{\textquotesingle{}α\textquotesingle{}}\SpecialCharTok{:\textless{}10\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}β₁\textquotesingle{}}\SpecialCharTok{:\textless{}12\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}β₂\textquotesingle{}}\SpecialCharTok{:\textless{}12\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}R² Train\textquotesingle{}}\SpecialCharTok{:\textless{}12\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}R² Test\textquotesingle{}}\SpecialCharTok{:\textless{}12\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"{-}"} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{resultados\_ridge }\OperatorTok{=}\NormalTok{ []}
+
+\ControlFlowTok{for}\NormalTok{ alpha }\KeywordTok{in}\NormalTok{ alphas:}
+    \CommentTok{\# Entrenar modelo}
+\NormalTok{    modelo\_ridge }\OperatorTok{=}\NormalTok{ Ridge(alpha}\OperatorTok{=}\NormalTok{alpha)}
+\NormalTok{    modelo\_ridge.fit(X\_train, y\_train)}
+    
+    \CommentTok{\# Evaluar}
+\NormalTok{    r2\_train }\OperatorTok{=}\NormalTok{ modelo\_ridge.score(X\_train, y\_train)}
+\NormalTok{    r2\_test }\OperatorTok{=}\NormalTok{ modelo\_ridge.score(X\_test, y\_test)}
+    
+\NormalTok{    resultados\_ridge.append(\{}
+        \StringTok{\textquotesingle{}alpha\textquotesingle{}}\NormalTok{: alpha,}
+        \StringTok{\textquotesingle{}beta1\textquotesingle{}}\NormalTok{: modelo\_ridge.coef\_[}\DecValTok{0}\NormalTok{],}
+        \StringTok{\textquotesingle{}beta2\textquotesingle{}}\NormalTok{: modelo\_ridge.coef\_[}\DecValTok{1}\NormalTok{],}
+        \StringTok{\textquotesingle{}r2\_train\textquotesingle{}}\NormalTok{: r2\_train,}
+        \StringTok{\textquotesingle{}r2\_test\textquotesingle{}}\NormalTok{: r2\_test}
+\NormalTok{    \})}
+    
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{alpha}\SpecialCharTok{:\textless{}10.3f\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{modelo\_ridge}\SpecialCharTok{.}\NormalTok{coef\_[}\DecValTok{0}\NormalTok{]}\SpecialCharTok{:\textless{}12.4f\}}\SpecialStringTok{ "}
+          \SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{modelo\_ridge}\SpecialCharTok{.}\NormalTok{coef\_[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{:\textless{}12.4f\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{r2\_train}\SpecialCharTok{:\textless{}12.4f\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{r2\_test}\SpecialCharTok{:\textless{}12.4f\}}\SpecialStringTok{"}\NormalTok{)}
+
+\NormalTok{df\_ridge }\OperatorTok{=}\NormalTok{ pd.DataFrame(resultados\_ridge)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Visualización del efecto de
+regularización}\label{visualizaciuxf3n-del-efecto-de-regularizaciuxf3n}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Gráfico de coeficientes vs alpha}
+\NormalTok{fig, axes }\OperatorTok{=}\NormalTok{ plt.subplots(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{14}\NormalTok{, }\DecValTok{5}\NormalTok{))}
+
+\CommentTok{\# Coeficientes}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].semilogx(df\_ridge[}\StringTok{\textquotesingle{}alpha\textquotesingle{}}\NormalTok{], df\_ridge[}\StringTok{\textquotesingle{}beta1\textquotesingle{}}\NormalTok{], }
+                 \StringTok{\textquotesingle{}o{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, markersize}\OperatorTok{=}\DecValTok{8}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}β₁\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].semilogx(df\_ridge[}\StringTok{\textquotesingle{}alpha\textquotesingle{}}\NormalTok{], df\_ridge[}\StringTok{\textquotesingle{}beta2\textquotesingle{}}\NormalTok{], }
+                 \StringTok{\textquotesingle{}s{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, markersize}\OperatorTok{=}\DecValTok{8}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}β₂\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].axhline(y}\OperatorTok{=}\NormalTok{beta\_true[}\DecValTok{0}\NormalTok{], color}\OperatorTok{=}\StringTok{\textquotesingle{}blue\textquotesingle{}}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{\textquotesingle{}{-}{-}\textquotesingle{}}\NormalTok{, }
+\NormalTok{                alpha}\OperatorTok{=}\FloatTok{0.5}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}β₁ verdadero\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].axhline(y}\OperatorTok{=}\NormalTok{beta\_true[}\DecValTok{1}\NormalTok{], color}\OperatorTok{=}\StringTok{\textquotesingle{}orange\textquotesingle{}}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{\textquotesingle{}{-}{-}\textquotesingle{}}\NormalTok{, }
+\NormalTok{                alpha}\OperatorTok{=}\FloatTok{0.5}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}β₂ verdadero\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].set\_xlabel(}\StringTok{\textquotesingle{}α (escala logarítmica)\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].set\_ylabel(}\StringTok{\textquotesingle{}Valor del coeficiente\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}Coeficientes vs Parámetro de Regularización\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].legend()}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\CommentTok{\# R²}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].semilogx(df\_ridge[}\StringTok{\textquotesingle{}alpha\textquotesingle{}}\NormalTok{], df\_ridge[}\StringTok{\textquotesingle{}r2\_train\textquotesingle{}}\NormalTok{], }
+                \StringTok{\textquotesingle{}o{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, markersize}\OperatorTok{=}\DecValTok{8}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Train\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].semilogx(df\_ridge[}\StringTok{\textquotesingle{}alpha\textquotesingle{}}\NormalTok{], df\_ridge[}\StringTok{\textquotesingle{}r2\_test\textquotesingle{}}\NormalTok{], }
+                \StringTok{\textquotesingle{}s{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, markersize}\OperatorTok{=}\DecValTok{8}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Test\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].set\_xlabel(}\StringTok{\textquotesingle{}α (escala logarítmica)\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].set\_ylabel(}\StringTok{\textquotesingle{}R²\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}R² vs Parámetro de Regularización\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].legend()}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\NormalTok{plt.tight\_layout()}
+\NormalTok{plt.savefig(}\StringTok{\textquotesingle{}ridge\_regularization.png\textquotesingle{}}\NormalTok{, dpi}\OperatorTok{=}\DecValTok{300}\NormalTok{, bbox\_inches}\OperatorTok{=}\StringTok{\textquotesingle{}tight\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Gráfico guardado como \textquotesingle{}ridge\_regularization.png\textquotesingle{}"}\NormalTok{)}
+
+\CommentTok{\# Mejor alpha}
+\NormalTok{mejor\_idx }\OperatorTok{=}\NormalTok{ df\_ridge[}\StringTok{\textquotesingle{}r2\_test\textquotesingle{}}\NormalTok{].idxmax()}
+\NormalTok{mejor\_alpha }\OperatorTok{=}\NormalTok{ df\_ridge.loc[mejor\_idx, }\StringTok{\textquotesingle{}alpha\textquotesingle{}}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Mejor α: }\SpecialCharTok{\{}\NormalTok{mejor\_alpha}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"R² Test: }\SpecialCharTok{\{}\NormalTok{df\_ridge}\SpecialCharTok{.}\NormalTok{loc[mejor\_idx, }\StringTok{\textquotesingle{}r2\_test\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Regresión Lasso}\label{regresiuxf3n-lasso}
+
+\subsection{Fundamento matemático}\label{fundamento-matemuxe1tico-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
+\StringTok{REGRESIÓN LASSO (L1 REGULARIZATION)}
+
+\StringTok{Objetivo:}
+\StringTok{    Minimizar RSS + penalización por valor absoluto de coeficientes}
+\StringTok{    }
+\StringTok{    min \{ RSS(β) + α·Σ|βⱼ| \}}
+\StringTok{    }
+\StringTok{    = min \{ Σ(yᵢ {-} ŷᵢ)² + α·Σ|βⱼ| \}}
+
+\StringTok{Donde:}
+\StringTok{{-} α: Parámetro de regularización (α ≥ 0)}
+\StringTok{{-} ||β||₁: Norma L1 (suma de valores absolutos)}
+
+\StringTok{Diferencia clave con Ridge:}
+\StringTok{{-} Lasso puede llevar coeficientes exactamente a CERO}
+\StringTok{{-} Ridge solo los reduce pero no los elimina}
+
+\StringTok{Efecto de Lasso:}
+\StringTok{✓ Selección automática de variables (feature selection)}
+\StringTok{✓ Produce modelos dispersos (sparse models)}
+\StringTok{✓ Más interpretable que Ridge}
+\StringTok{✓ Útil cuando hay muchas variables irrelevantes}
+
+\StringTok{Cuándo usar Lasso:}
+\StringTok{{-} Cuando se cree que solo pocas variables son relevantes}
+\StringTok{{-} Cuando se necesita interpretabilidad}
+\StringTok{{-} Cuando se quiere selección automática de variables}
+
+\StringTok{Aplicaciones económicas:}
+\StringTok{{-} Identificar factores clave que afectan un outcome}
+\StringTok{{-} Modelos parsimoniosos para reportes}
+\StringTok{{-} Análisis exploratorio de muchas variables}
+\StringTok{{-} Predicción con datasets con muchas columnas}
+\StringTok{"""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Implementación}\label{implementaciuxf3n-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Probar diferentes valores de alpha}
+\NormalTok{alphas\_lasso }\OperatorTok{=}\NormalTok{ [}\FloatTok{0.001}\NormalTok{, }\FloatTok{0.01}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{5}\NormalTok{]}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{REGRESIÓN LASSO {-} EFECTO DE α"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{80}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\StringTok{\textquotesingle{}α\textquotesingle{}}\SpecialCharTok{:\textless{}10\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}β₁\textquotesingle{}}\SpecialCharTok{:\textless{}12\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}β₂\textquotesingle{}}\SpecialCharTok{:\textless{}12\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}Variables≠0\textquotesingle{}}\SpecialCharTok{:\textless{}14\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}R² Train\textquotesingle{}}\SpecialCharTok{:\textless{}12\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}R² Test\textquotesingle{}}\SpecialCharTok{:\textless{}12\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"{-}"} \OperatorTok{*} \DecValTok{80}\NormalTok{)}
+
+\NormalTok{resultados\_lasso }\OperatorTok{=}\NormalTok{ []}
+
+\ControlFlowTok{for}\NormalTok{ alpha }\KeywordTok{in}\NormalTok{ alphas\_lasso:}
+    \CommentTok{\# Entrenar modelo}
+\NormalTok{    modelo\_lasso }\OperatorTok{=}\NormalTok{ Lasso(alpha}\OperatorTok{=}\NormalTok{alpha, max\_iter}\OperatorTok{=}\DecValTok{10000}\NormalTok{)}
+\NormalTok{    modelo\_lasso.fit(X\_train, y\_train)}
+    
+    \CommentTok{\# Contar variables no cero}
+\NormalTok{    n\_nonzero }\OperatorTok{=}\NormalTok{ np.}\BuiltInTok{sum}\NormalTok{(modelo\_lasso.coef\_ }\OperatorTok{!=} \DecValTok{0}\NormalTok{)}
+    
+    \CommentTok{\# Evaluar}
+\NormalTok{    r2\_train }\OperatorTok{=}\NormalTok{ modelo\_lasso.score(X\_train, y\_train)}
+\NormalTok{    r2\_test }\OperatorTok{=}\NormalTok{ modelo\_lasso.score(X\_test, y\_test)}
+    
+\NormalTok{    resultados\_lasso.append(\{}
+        \StringTok{\textquotesingle{}alpha\textquotesingle{}}\NormalTok{: alpha,}
+        \StringTok{\textquotesingle{}beta1\textquotesingle{}}\NormalTok{: modelo\_lasso.coef\_[}\DecValTok{0}\NormalTok{],}
+        \StringTok{\textquotesingle{}beta2\textquotesingle{}}\NormalTok{: modelo\_lasso.coef\_[}\DecValTok{1}\NormalTok{],}
+        \StringTok{\textquotesingle{}n\_nonzero\textquotesingle{}}\NormalTok{: n\_nonzero,}
+        \StringTok{\textquotesingle{}r2\_train\textquotesingle{}}\NormalTok{: r2\_train,}
+        \StringTok{\textquotesingle{}r2\_test\textquotesingle{}}\NormalTok{: r2\_test}
+\NormalTok{    \})}
+    
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{alpha}\SpecialCharTok{:\textless{}10.3f\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{modelo\_lasso}\SpecialCharTok{.}\NormalTok{coef\_[}\DecValTok{0}\NormalTok{]}\SpecialCharTok{:\textless{}12.4f\}}\SpecialStringTok{ "}
+          \SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{modelo\_lasso}\SpecialCharTok{.}\NormalTok{coef\_[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{:\textless{}12.4f\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{n\_nonzero}\SpecialCharTok{:\textless{}14d\}}\SpecialStringTok{ "}
+          \SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{r2\_train}\SpecialCharTok{:\textless{}12.4f\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{r2\_test}\SpecialCharTok{:\textless{}12.4f\}}\SpecialStringTok{"}\NormalTok{)}
+
+\NormalTok{df\_lasso }\OperatorTok{=}\NormalTok{ pd.DataFrame(resultados\_lasso)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Comparación Ridge vs
+Lasso}\label{comparaciuxf3n-ridge-vs-lasso}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Visualización comparativa}
+\NormalTok{fig, axes }\OperatorTok{=}\NormalTok{ plt.subplots(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{14}\NormalTok{, }\DecValTok{10}\NormalTok{))}
+
+\CommentTok{\# Coeficiente 1}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{].semilogx(df\_ridge[}\StringTok{\textquotesingle{}alpha\textquotesingle{}}\NormalTok{], df\_ridge[}\StringTok{\textquotesingle{}beta1\textquotesingle{}}\NormalTok{], }
+                    \StringTok{\textquotesingle{}o{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Ridge\textquotesingle{}}\NormalTok{, markersize}\OperatorTok{=}\DecValTok{8}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{].semilogx(df\_lasso[}\StringTok{\textquotesingle{}alpha\textquotesingle{}}\NormalTok{], df\_lasso[}\StringTok{\textquotesingle{}beta1\textquotesingle{}}\NormalTok{], }
+                    \StringTok{\textquotesingle{}s{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Lasso\textquotesingle{}}\NormalTok{, markersize}\OperatorTok{=}\DecValTok{8}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{].axhline(y}\OperatorTok{=}\NormalTok{beta\_true[}\DecValTok{0}\NormalTok{], color}\OperatorTok{=}\StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{\textquotesingle{}{-}{-}\textquotesingle{}}\NormalTok{, }
+\NormalTok{                   alpha}\OperatorTok{=}\FloatTok{0.5}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Verdadero\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{].set\_xlabel(}\StringTok{\textquotesingle{}α\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{].set\_ylabel(}\StringTok{\textquotesingle{}β₁\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}Coeficiente β₁ vs α\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{].legend()}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\CommentTok{\# Coeficiente 2}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{].semilogx(df\_ridge[}\StringTok{\textquotesingle{}alpha\textquotesingle{}}\NormalTok{], df\_ridge[}\StringTok{\textquotesingle{}beta2\textquotesingle{}}\NormalTok{], }
+                    \StringTok{\textquotesingle{}o{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Ridge\textquotesingle{}}\NormalTok{, markersize}\OperatorTok{=}\DecValTok{8}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{].semilogx(df\_lasso[}\StringTok{\textquotesingle{}alpha\textquotesingle{}}\NormalTok{], df\_lasso[}\StringTok{\textquotesingle{}beta2\textquotesingle{}}\NormalTok{], }
+                    \StringTok{\textquotesingle{}s{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Lasso\textquotesingle{}}\NormalTok{, markersize}\OperatorTok{=}\DecValTok{8}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{].axhline(y}\OperatorTok{=}\NormalTok{beta\_true[}\DecValTok{1}\NormalTok{], color}\OperatorTok{=}\StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, linestyle}\OperatorTok{=}\StringTok{\textquotesingle{}{-}{-}\textquotesingle{}}\NormalTok{, }
+\NormalTok{                   alpha}\OperatorTok{=}\FloatTok{0.5}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Verdadero\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{].set\_xlabel(}\StringTok{\textquotesingle{}α\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{].set\_ylabel(}\StringTok{\textquotesingle{}β₂\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}Coeficiente β₂ vs α\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{].legend()}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\CommentTok{\# R² Train}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{].semilogx(df\_ridge[}\StringTok{\textquotesingle{}alpha\textquotesingle{}}\NormalTok{], df\_ridge[}\StringTok{\textquotesingle{}r2\_train\textquotesingle{}}\NormalTok{], }
+                    \StringTok{\textquotesingle{}o{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Ridge\textquotesingle{}}\NormalTok{, markersize}\OperatorTok{=}\DecValTok{8}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{].semilogx(df\_lasso[}\StringTok{\textquotesingle{}alpha\textquotesingle{}}\NormalTok{], df\_lasso[}\StringTok{\textquotesingle{}r2\_train\textquotesingle{}}\NormalTok{], }
+                    \StringTok{\textquotesingle{}s{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Lasso\textquotesingle{}}\NormalTok{, markersize}\OperatorTok{=}\DecValTok{8}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{].set\_xlabel(}\StringTok{\textquotesingle{}α\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{].set\_ylabel(}\StringTok{\textquotesingle{}R²\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}R² Entrenamiento vs α\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{].legend()}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\CommentTok{\# R² Test}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{].semilogx(df\_ridge[}\StringTok{\textquotesingle{}alpha\textquotesingle{}}\NormalTok{], df\_ridge[}\StringTok{\textquotesingle{}r2\_test\textquotesingle{}}\NormalTok{], }
+                    \StringTok{\textquotesingle{}o{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Ridge\textquotesingle{}}\NormalTok{, markersize}\OperatorTok{=}\DecValTok{8}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{].semilogx(df\_lasso[}\StringTok{\textquotesingle{}alpha\textquotesingle{}}\NormalTok{], df\_lasso[}\StringTok{\textquotesingle{}r2\_test\textquotesingle{}}\NormalTok{], }
+                    \StringTok{\textquotesingle{}s{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Lasso\textquotesingle{}}\NormalTok{, markersize}\OperatorTok{=}\DecValTok{8}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{].set\_xlabel(}\StringTok{\textquotesingle{}α\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{].set\_ylabel(}\StringTok{\textquotesingle{}R²\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}R² Test vs α\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{].legend()}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\NormalTok{plt.tight\_layout()}
+\NormalTok{plt.savefig(}\StringTok{\textquotesingle{}ridge\_vs\_lasso.png\textquotesingle{}}\NormalTok{, dpi}\OperatorTok{=}\DecValTok{300}\NormalTok{, bbox\_inches}\OperatorTok{=}\StringTok{\textquotesingle{}tight\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Gráfico guardado como \textquotesingle{}ridge\_vs\_lasso.png\textquotesingle{}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Elastic Net}\label{elastic-net}
+
+\subsection{Fundamento}\label{fundamento}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
+\StringTok{ELASTIC NET}
+
+\StringTok{Combina penalizaciones L1 (Lasso) y L2 (Ridge):}
+
+\StringTok{    min \{ RSS(β) + α·ρ·Σ|βⱼ| + α·(1{-}ρ)/2·Σβⱼ² \}}
+
+\StringTok{Donde:}
+\StringTok{{-} α: Fuerza total de regularización}
+\StringTok{{-} ρ: Balance entre L1 y L2 (0 ≤ ρ ≤ 1)}
+\StringTok{  * ρ = 0: Ridge puro}
+\StringTok{  * ρ = 1: Lasso puro}
+\StringTok{  * 0 \textless{} ρ \textless{} 1: Combinación}
+
+\StringTok{Ventajas:}
+\StringTok{✓ Combina lo mejor de Ridge y Lasso}
+\StringTok{✓ Selección de variables (como Lasso)}
+\StringTok{✓ Manejo de variables correlacionadas (como Ridge)}
+\StringTok{✓ Más estable que Lasso cuando hay correlaciones altas}
+
+\StringTok{Aplicaciones:}
+\StringTok{{-} Cuando hay grupos de variables correlacionadas}
+\StringTok{{-} Cuando se necesita selección de variables y estabilidad}
+\StringTok{"""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Implementación}\label{implementaciuxf3n-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Entrenar Elastic Net}
+\NormalTok{modelo\_elastic }\OperatorTok{=}\NormalTok{ ElasticNet(alpha}\OperatorTok{=}\FloatTok{0.1}\NormalTok{, l1\_ratio}\OperatorTok{=}\FloatTok{0.5}\NormalTok{, max\_iter}\OperatorTok{=}\DecValTok{10000}\NormalTok{)}
+\NormalTok{modelo\_elastic.fit(X\_train, y\_train)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{ELASTIC NET"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Intercepto: }\SpecialCharTok{\{}\NormalTok{modelo\_elastic}\SpecialCharTok{.}\NormalTok{intercept\_}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Coeficientes:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  β₁: }\SpecialCharTok{\{}\NormalTok{modelo\_elastic}\SpecialCharTok{.}\NormalTok{coef\_[}\DecValTok{0}\NormalTok{]}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  β₂: }\SpecialCharTok{\{}\NormalTok{modelo\_elastic}\SpecialCharTok{.}\NormalTok{coef\_[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+
+\NormalTok{r2\_elastic }\OperatorTok{=}\NormalTok{ modelo\_elastic.score(X\_test, y\_test)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{R² Test: }\SpecialCharTok{\{}\NormalTok{r2\_elastic}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Regresión polinomial}\label{regresiuxf3n-polinomial}
+
+\subsection{Fundamento}\label{fundamento-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
+\StringTok{REGRESIÓN POLINOMIAL}
+
+\StringTok{Extiende regresión lineal creando características polinomiales:}
+
+\StringTok{Grado 1 (lineal): Y = β₀ + β₁X}
+\StringTok{Grado 2: Y = β₀ + β₁X + β₂X²}
+\StringTok{Grado 3: Y = β₀ + β₁X + β₂X² + β₃X³}
+
+\StringTok{Proceso:}
+\StringTok{1. Crear características polinomiales (X, X², X³, etc.)}
+\StringTok{2. Aplicar regresión lineal en características transformadas}
+
+\StringTok{Ventajas:}
+\StringTok{✓ Captura relaciones no lineales}
+\StringTok{✓ Flexible para ajustar curvas complejas}
+
+\StringTok{Desventajas:}
+\StringTok{✗ Propenso a overfitting con grados altos}
+\StringTok{✗ Inestable en extremos (extrapolación)}
+\StringTok{✗ Difícil de interpretar}
+
+\StringTok{Aplicaciones económicas:}
+\StringTok{{-} Curvas de costo (U invertida)}
+\StringTok{{-} Funciones de producción con rendimientos decrecientes}
+\StringTok{{-} Curvas de demanda no lineales}
+\StringTok{{-} Ciclos económicos}
+\StringTok{"""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Implementación}\label{implementaciuxf3n-4}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Generar datos con relación no lineal}
+\NormalTok{np.random.seed(}\DecValTok{42}\NormalTok{)}
+\NormalTok{X\_poly\_1d }\OperatorTok{=}\NormalTok{ np.random.uniform(}\OperatorTok{{-}}\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{100}\NormalTok{)}
+\NormalTok{Y\_poly }\OperatorTok{=} \FloatTok{0.5} \OperatorTok{*}\NormalTok{ X\_poly\_1d}\OperatorTok{**}\DecValTok{2} \OperatorTok{{-}} \DecValTok{2} \OperatorTok{*}\NormalTok{ X\_poly\_1d }\OperatorTok{+} \DecValTok{1} \OperatorTok{+}\NormalTok{ np.random.randn(}\DecValTok{100}\NormalTok{) }\OperatorTok{*} \DecValTok{2}
+
+\CommentTok{\# Ordenar para visualización}
+\NormalTok{sort\_idx }\OperatorTok{=}\NormalTok{ np.argsort(X\_poly\_1d)}
+\NormalTok{X\_poly\_1d }\OperatorTok{=}\NormalTok{ X\_poly\_1d[sort\_idx]}
+\NormalTok{Y\_poly }\OperatorTok{=}\NormalTok{ Y\_poly[sort\_idx]}
+
+\NormalTok{X\_poly\_1d }\OperatorTok{=}\NormalTok{ X\_poly\_1d.reshape(}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+
+\CommentTok{\# Dividir datos}
+\NormalTok{X\_train\_poly, X\_test\_poly, y\_train\_poly, y\_test\_poly }\OperatorTok{=}\NormalTok{ train\_test\_split(}
+\NormalTok{    X\_poly\_1d, Y\_poly, test\_size}\OperatorTok{=}\FloatTok{0.3}\NormalTok{, random\_state}\OperatorTok{=}\DecValTok{42}
+\NormalTok{)}
+
+\CommentTok{\# Probar diferentes grados}
+\NormalTok{grados }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{8}\NormalTok{]}
+\NormalTok{colores }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}blue\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}green\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}purple\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}orange\textquotesingle{}}\NormalTok{]}
+
+\NormalTok{plt.figure(figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{14}\NormalTok{, }\DecValTok{8}\NormalTok{))}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{REGRESIÓN POLINOMIAL"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\StringTok{\textquotesingle{}Grado\textquotesingle{}}\SpecialCharTok{:\textless{}8\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}R² Train\textquotesingle{}}\SpecialCharTok{:\textless{}12\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}R² Test\textquotesingle{}}\SpecialCharTok{:\textless{}12\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}MSE Train\textquotesingle{}}\SpecialCharTok{:\textless{}12\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}MSE Test\textquotesingle{}}\SpecialCharTok{:\textless{}12\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"{-}"} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ grado, color }\KeywordTok{in} \BuiltInTok{zip}\NormalTok{(grados, colores):}
+    \CommentTok{\# Crear características polinomiales}
+\NormalTok{    poly\_features }\OperatorTok{=}\NormalTok{ PolynomialFeatures(degree}\OperatorTok{=}\NormalTok{grado, include\_bias}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+\NormalTok{    X\_train\_poly\_transformed }\OperatorTok{=}\NormalTok{ poly\_features.fit\_transform(X\_train\_poly)}
+\NormalTok{    X\_test\_poly\_transformed }\OperatorTok{=}\NormalTok{ poly\_features.transform(X\_test\_poly)}
+    
+    \CommentTok{\# Entrenar modelo}
+\NormalTok{    modelo }\OperatorTok{=}\NormalTok{ LinearRegression()}
+\NormalTok{    modelo.fit(X\_train\_poly\_transformed, y\_train\_poly)}
+    
+    \CommentTok{\# Evaluar}
+\NormalTok{    r2\_train }\OperatorTok{=}\NormalTok{ modelo.score(X\_train\_poly\_transformed, y\_train\_poly)}
+\NormalTok{    r2\_test }\OperatorTok{=}\NormalTok{ modelo.score(X\_test\_poly\_transformed, y\_test\_poly)}
+    
+\NormalTok{    y\_pred\_train }\OperatorTok{=}\NormalTok{ modelo.predict(X\_train\_poly\_transformed)}
+\NormalTok{    y\_pred\_test }\OperatorTok{=}\NormalTok{ modelo.predict(X\_test\_poly\_transformed)}
+    
+\NormalTok{    mse\_train }\OperatorTok{=}\NormalTok{ mean\_squared\_error(y\_train\_poly, y\_pred\_train)}
+\NormalTok{    mse\_test }\OperatorTok{=}\NormalTok{ mean\_squared\_error(y\_test\_poly, y\_pred\_test)}
+    
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{grado}\SpecialCharTok{:\textless{}8\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{r2\_train}\SpecialCharTok{:\textless{}12.4f\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{r2\_test}\SpecialCharTok{:\textless{}12.4f\}}\SpecialStringTok{ "}
+          \SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{mse\_train}\SpecialCharTok{:\textless{}12.4f\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{mse\_test}\SpecialCharTok{:\textless{}12.4f\}}\SpecialStringTok{"}\NormalTok{)}
+    
+    \CommentTok{\# Graficar}
+\NormalTok{    X\_plot }\OperatorTok{=}\NormalTok{ np.linspace(X\_poly\_1d.}\BuiltInTok{min}\NormalTok{(), X\_poly\_1d.}\BuiltInTok{max}\NormalTok{(), }\DecValTok{300}\NormalTok{).reshape(}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\NormalTok{    X\_plot\_transformed }\OperatorTok{=}\NormalTok{ poly\_features.transform(X\_plot)}
+\NormalTok{    y\_plot }\OperatorTok{=}\NormalTok{ modelo.predict(X\_plot\_transformed)}
+    
+\NormalTok{    plt.plot(X\_plot, y\_plot, color}\OperatorTok{=}\NormalTok{color, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, }
+\NormalTok{             label}\OperatorTok{=}\SpecialStringTok{f\textquotesingle{}Grado }\SpecialCharTok{\{}\NormalTok{grado}\SpecialCharTok{\}}\SpecialStringTok{ (R²=}\SpecialCharTok{\{}\NormalTok{r2\_test}\SpecialCharTok{:.3f\}}\SpecialStringTok{)\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Datos originales}
+\NormalTok{plt.scatter(X\_train\_poly, y\_train\_poly, alpha}\OperatorTok{=}\FloatTok{0.6}\NormalTok{, s}\OperatorTok{=}\DecValTok{50}\NormalTok{, }
+\NormalTok{           color}\OperatorTok{=}\StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Datos entrenamiento\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.scatter(X\_test\_poly, y\_test\_poly, alpha}\OperatorTok{=}\FloatTok{0.6}\NormalTok{, s}\OperatorTok{=}\DecValTok{50}\NormalTok{, }
+\NormalTok{           marker}\OperatorTok{=}\StringTok{\textquotesingle{}s\textquotesingle{}}\NormalTok{, color}\OperatorTok{=}\StringTok{\textquotesingle{}gray\textquotesingle{}}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Datos prueba\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{plt.xlabel(}\StringTok{\textquotesingle{}X\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.ylabel(}\StringTok{\textquotesingle{}Y\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.title(}\StringTok{\textquotesingle{}Regresión Polinomial {-} Efecto del Grado\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.legend()}
+\NormalTok{plt.grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+\NormalTok{plt.tight\_layout()}
+\NormalTok{plt.savefig(}\StringTok{\textquotesingle{}polynomial\_regression.png\textquotesingle{}}\NormalTok{, dpi}\OperatorTok{=}\DecValTok{300}\NormalTok{, bbox\_inches}\OperatorTok{=}\StringTok{\textquotesingle{}tight\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Gráfico guardado como \textquotesingle{}polynomial\_regression.png\textquotesingle{}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{K-Nearest Neighbors
+Regressor}\label{k-nearest-neighbors-regressor}
+
+\subsection{Fundamento}\label{fundamento-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
+\StringTok{K{-}NEAREST NEIGHBORS REGRESSOR}
+
+\StringTok{Funcionamiento:}
+\StringTok{1. Para predecir Y de un nuevo punto X:}
+\StringTok{   a. Encuentra los k vecinos más cercanos en datos de entrenamiento}
+\StringTok{   b. Promedia sus valores Y}
+\StringTok{   c. Ese promedio es la predicción}
+
+\StringTok{Métricas de distancia:}
+\StringTok{{-} Euclidiana: √(Σ(xᵢ {-} yᵢ)²)}
+\StringTok{{-} Manhattan: Σ|xᵢ {-} yᵢ|}
+\StringTok{{-} Minkowski: (Σ|xᵢ {-} yᵢ|ᵖ)\^{}(1/p)}
+
+\StringTok{Ventajas:}
+\StringTok{✓ No asume forma funcional}
+\StringTok{✓ Captura relaciones complejas}
+\StringTok{✓ Fácil de entender}
+
+\StringTok{Desventajas:}
+\StringTok{✗ Lento para predicción con datasets grandes}
+\StringTok{✗ Sensible a escala de características}
+\StringTok{✗ No funciona bien en alta dimensionalidad}
+\StringTok{✗ Necesita elegir k apropiado}
+
+\StringTok{Aplicaciones:}
+\StringTok{{-} Predicción de precios de viviendas (casas similares)}
+\StringTok{{-} Valuación de activos por comparables}
+\StringTok{{-} Forecasting basado en patrones históricos similares}
+\StringTok{"""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Implementación}\label{implementaciuxf3n-5}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Estandarizar datos (importante para KNN)}
+\NormalTok{scaler }\OperatorTok{=}\NormalTok{ StandardScaler()}
+\NormalTok{X\_train\_scaled }\OperatorTok{=}\NormalTok{ scaler.fit\_transform(X\_train)}
+\NormalTok{X\_test\_scaled }\OperatorTok{=}\NormalTok{ scaler.transform(X\_test)}
+
+\CommentTok{\# Probar diferentes valores de k}
+\NormalTok{k\_values }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{50}\NormalTok{]}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{K{-}NEAREST NEIGHBORS REGRESSOR"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\StringTok{\textquotesingle{}k\textquotesingle{}}\SpecialCharTok{:\textless{}8\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}R² Train\textquotesingle{}}\SpecialCharTok{:\textless{}12\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}R² Test\textquotesingle{}}\SpecialCharTok{:\textless{}12\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}MSE Test\textquotesingle{}}\SpecialCharTok{:\textless{}12\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"{-}"} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{resultados\_knn }\OperatorTok{=}\NormalTok{ []}
+
+\ControlFlowTok{for}\NormalTok{ k }\KeywordTok{in}\NormalTok{ k\_values:}
+    \CommentTok{\# Entrenar modelo}
+\NormalTok{    modelo\_knn }\OperatorTok{=}\NormalTok{ KNeighborsRegressor(n\_neighbors}\OperatorTok{=}\NormalTok{k)}
+\NormalTok{    modelo\_knn.fit(X\_train\_scaled, y\_train)}
+    
+    \CommentTok{\# Evaluar}
+\NormalTok{    r2\_train }\OperatorTok{=}\NormalTok{ modelo\_knn.score(X\_train\_scaled, y\_train)}
+\NormalTok{    r2\_test }\OperatorTok{=}\NormalTok{ modelo\_knn.score(X\_test\_scaled, y\_test)}
+    
+\NormalTok{    y\_pred\_test }\OperatorTok{=}\NormalTok{ modelo\_knn.predict(X\_test\_scaled)}
+\NormalTok{    mse\_test }\OperatorTok{=}\NormalTok{ mean\_squared\_error(y\_test, y\_pred\_test)}
+    
+\NormalTok{    resultados\_knn.append(\{}
+        \StringTok{\textquotesingle{}k\textquotesingle{}}\NormalTok{: k,}
+        \StringTok{\textquotesingle{}r2\_train\textquotesingle{}}\NormalTok{: r2\_train,}
+        \StringTok{\textquotesingle{}r2\_test\textquotesingle{}}\NormalTok{: r2\_test,}
+        \StringTok{\textquotesingle{}mse\_test\textquotesingle{}}\NormalTok{: mse\_test}
+\NormalTok{    \})}
+    
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{k}\SpecialCharTok{:\textless{}8\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{r2\_train}\SpecialCharTok{:\textless{}12.4f\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{r2\_test}\SpecialCharTok{:\textless{}12.4f\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{mse\_test}\SpecialCharTok{:\textless{}12.4f\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Visualizar}
+\NormalTok{df\_knn }\OperatorTok{=}\NormalTok{ pd.DataFrame(resultados\_knn)}
+
+\NormalTok{fig, axes }\OperatorTok{=}\NormalTok{ plt.subplots(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{14}\NormalTok{, }\DecValTok{5}\NormalTok{))}
+
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].plot(df\_knn[}\StringTok{\textquotesingle{}k\textquotesingle{}}\NormalTok{], df\_knn[}\StringTok{\textquotesingle{}r2\_train\textquotesingle{}}\NormalTok{], }
+             \StringTok{\textquotesingle{}o{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Train\textquotesingle{}}\NormalTok{, markersize}\OperatorTok{=}\DecValTok{8}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].plot(df\_knn[}\StringTok{\textquotesingle{}k\textquotesingle{}}\NormalTok{], df\_knn[}\StringTok{\textquotesingle{}r2\_test\textquotesingle{}}\NormalTok{], }
+             \StringTok{\textquotesingle{}s{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}Test\textquotesingle{}}\NormalTok{, markersize}\OperatorTok{=}\DecValTok{8}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].set\_xlabel(}\StringTok{\textquotesingle{}Número de vecinos (k)\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].set\_ylabel(}\StringTok{\textquotesingle{}R²\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}R² vs k en KNN\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].legend()}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].plot(df\_knn[}\StringTok{\textquotesingle{}k\textquotesingle{}}\NormalTok{], df\_knn[}\StringTok{\textquotesingle{}mse\_test\textquotesingle{}}\NormalTok{], }
+             \StringTok{\textquotesingle{}o{-}\textquotesingle{}}\NormalTok{, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{, color}\OperatorTok{=}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{, markersize}\OperatorTok{=}\DecValTok{8}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].set\_xlabel(}\StringTok{\textquotesingle{}Número de vecinos (k)\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].set\_ylabel(}\StringTok{\textquotesingle{}MSE Test\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}MSE vs k en KNN\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+
+\NormalTok{plt.tight\_layout()}
+\NormalTok{plt.savefig(}\StringTok{\textquotesingle{}knn\_regression.png\textquotesingle{}}\NormalTok{, dpi}\OperatorTok{=}\DecValTok{300}\NormalTok{, bbox\_inches}\OperatorTok{=}\StringTok{\textquotesingle{}tight\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Gráfico guardado como \textquotesingle{}knn\_regression.png\textquotesingle{}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Métricas de evaluación}\label{muxe9tricas-de-evaluaciuxf3n}
+
+\subsection{Explicación de
+métricas}\label{explicaciuxf3n-de-muxe9tricas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
+\StringTok{MÉTRICAS DE EVALUACIÓN EN REGRESIÓN}
+
+\StringTok{1. MSE (Mean Squared Error)}
+\StringTok{   MSE = (1/n) Σ(yᵢ {-} ŷᵢ)²}
+\StringTok{   }
+\StringTok{   {-} Promedio de errores al cuadrado}
+\StringTok{   {-} Penaliza más los errores grandes}
+\StringTok{   {-} Mismas unidades que Y al cuadrado}
+\StringTok{   {-} Siempre positivo, menor es mejor}
+\StringTok{   {-} Sensible a outliers}
+
+\StringTok{2. RMSE (Root Mean Squared Error)}
+\StringTok{   RMSE = √MSE = √[(1/n) Σ(yᵢ {-} ŷᵢ)²]}
+\StringTok{   }
+\StringTok{   {-} Raíz cuadrada de MSE}
+\StringTok{   {-} Mismas unidades que Y}
+\StringTok{   {-} Más interpretable que MSE}
+\StringTok{   {-} También sensible a outliers}
+
+\StringTok{3. MAE (Mean Absolute Error)}
+\StringTok{   MAE = (1/n) Σ|yᵢ {-} ŷᵢ|}
+\StringTok{   }
+\StringTok{   {-} Promedio de errores absolutos}
+\StringTok{   {-} Mismas unidades que Y}
+\StringTok{   {-} Menos sensible a outliers que MSE}
+\StringTok{   {-} Todos los errores pesan igual}
+
+\StringTok{4. R² (Coeficiente de determinación)}
+\StringTok{   R² = 1 {-} (RSS/TSS) = 1 {-} [Σ(yᵢ {-} ŷᵢ)²] / [Σ(yᵢ {-} ȳ)²]}
+\StringTok{   }
+\StringTok{   {-} Proporción de varianza explicada}
+\StringTok{   {-} Rango: 0 a 1 (puede ser negativo en test)}
+\StringTok{   {-} R² = 1: Predicción perfecta}
+\StringTok{   {-} R² = 0: Tan bueno como predecir la media}
+\StringTok{   {-} No tiene unidades}
+\StringTok{   {-} Interpretable e intuitivo}
+
+\StringTok{5. Adjusted R² (R² ajustado)}
+\StringTok{   R²ₐdⱼ = 1 {-} [(1 {-} R²)(n {-} 1)] / (n {-} p {-} 1)}
+\StringTok{   }
+\StringTok{   {-} Penaliza por número de variables}
+\StringTok{   {-} Útil para comparar modelos con diferentes \# de variables}
+\StringTok{   {-} Puede decrecer si se agregan variables irrelevantes}
+
+\StringTok{Cuál usar:}
+\StringTok{{-} R²: Fácil interpretación, comparar modelos}
+\StringTok{{-} RMSE: Cuando importan unidades originales}
+\StringTok{{-} MAE: Cuando outliers no deberían dominar}
+\StringTok{{-} Múltiples métricas: Para evaluación completa}
+\StringTok{"""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Implementación de
+métricas}\label{implementaciuxf3n-de-muxe9tricas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ calcular\_metricas(y\_true, y\_pred, modelo\_nombre}\OperatorTok{=}\StringTok{"Modelo"}\NormalTok{):}
+    \CommentTok{"""Calcula todas las métricas de regresión"""}
+    
+    \CommentTok{\# Calcular métricas}
+\NormalTok{    mse }\OperatorTok{=}\NormalTok{ mean\_squared\_error(y\_true, y\_pred)}
+\NormalTok{    rmse }\OperatorTok{=}\NormalTok{ np.sqrt(mse)}
+\NormalTok{    mae }\OperatorTok{=}\NormalTok{ mean\_absolute\_error(y\_true, y\_pred)}
+\NormalTok{    r2 }\OperatorTok{=}\NormalTok{ r2\_score(y\_true, y\_pred)}
+    
+    \CommentTok{\# Calcular R² ajustado manualmente}
+\NormalTok{    n }\OperatorTok{=} \BuiltInTok{len}\NormalTok{(y\_true)}
+\NormalTok{    p }\OperatorTok{=} \DecValTok{2}  \CommentTok{\# número de predictores en nuestro caso}
+\NormalTok{    r2\_adj }\OperatorTok{=} \DecValTok{1} \OperatorTok{{-}}\NormalTok{ (}\DecValTok{1} \OperatorTok{{-}}\NormalTok{ r2) }\OperatorTok{*}\NormalTok{ (n }\OperatorTok{{-}} \DecValTok{1}\NormalTok{) }\OperatorTok{/}\NormalTok{ (n }\OperatorTok{{-}}\NormalTok{ p }\OperatorTok{{-}} \DecValTok{1}\NormalTok{)}
+    
+    \CommentTok{\# Imprimir}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialCharTok{\{}\NormalTok{modelo\_nombre}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"{-}"} \OperatorTok{*} \DecValTok{50}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  MSE:          }\SpecialCharTok{\{}\NormalTok{mse}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  RMSE:         }\SpecialCharTok{\{}\NormalTok{rmse}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  MAE:          }\SpecialCharTok{\{}\NormalTok{mae}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  R²:           }\SpecialCharTok{\{}\NormalTok{r2}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  R² Ajustado:  }\SpecialCharTok{\{}\NormalTok{r2\_adj}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+    
+    \ControlFlowTok{return}\NormalTok{ \{}
+        \StringTok{\textquotesingle{}modelo\textquotesingle{}}\NormalTok{: modelo\_nombre,}
+        \StringTok{\textquotesingle{}mse\textquotesingle{}}\NormalTok{: mse,}
+        \StringTok{\textquotesingle{}rmse\textquotesingle{}}\NormalTok{: rmse,}
+        \StringTok{\textquotesingle{}mae\textquotesingle{}}\NormalTok{: mae,}
+        \StringTok{\textquotesingle{}r2\textquotesingle{}}\NormalTok{: r2,}
+        \StringTok{\textquotesingle{}r2\_adj\textquotesingle{}}\NormalTok{: r2\_adj}
+\NormalTok{    \}}
+
+\CommentTok{\# Calcular métricas para cada modelo}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{MÉTRICAS DE EVALUACIÓN {-} CONJUNTO DE PRUEBA"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{metricas\_modelos }\OperatorTok{=}\NormalTok{ []}
+
+\CommentTok{\# OLS}
+\NormalTok{metricas\_modelos.append(calcular\_metricas(y\_test, y\_pred\_ols\_test, }\StringTok{"OLS"}\NormalTok{))}
+
+\CommentTok{\# Ridge (con mejor alpha)}
+\NormalTok{modelo\_ridge\_final }\OperatorTok{=}\NormalTok{ Ridge(alpha}\OperatorTok{=}\NormalTok{mejor\_alpha)}
+\NormalTok{modelo\_ridge\_final.fit(X\_train, y\_train)}
+\NormalTok{y\_pred\_ridge }\OperatorTok{=}\NormalTok{ modelo\_ridge\_final.predict(X\_test)}
+\NormalTok{metricas\_modelos.append(calcular\_metricas(y\_test, y\_pred\_ridge, }\StringTok{"Ridge"}\NormalTok{))}
+
+\CommentTok{\# Lasso}
+\NormalTok{mejor\_alpha\_lasso }\OperatorTok{=}\NormalTok{ df\_lasso.loc[df\_lasso[}\StringTok{\textquotesingle{}r2\_test\textquotesingle{}}\NormalTok{].idxmax(), }\StringTok{\textquotesingle{}alpha\textquotesingle{}}\NormalTok{]}
+\NormalTok{modelo\_lasso\_final }\OperatorTok{=}\NormalTok{ Lasso(alpha}\OperatorTok{=}\NormalTok{mejor\_alpha\_lasso, max\_iter}\OperatorTok{=}\DecValTok{10000}\NormalTok{)}
+\NormalTok{modelo\_lasso\_final.fit(X\_train, y\_train)}
+\NormalTok{y\_pred\_lasso }\OperatorTok{=}\NormalTok{ modelo\_lasso\_final.predict(X\_test)}
+\NormalTok{metricas\_modelos.append(calcular\_metricas(y\_test, y\_pred\_lasso, }\StringTok{"Lasso"}\NormalTok{))}
+
+\CommentTok{\# KNN}
+\NormalTok{mejor\_k }\OperatorTok{=}\NormalTok{ df\_knn.loc[df\_knn[}\StringTok{\textquotesingle{}r2\_test\textquotesingle{}}\NormalTok{].idxmax(), }\StringTok{\textquotesingle{}k\textquotesingle{}}\NormalTok{]}
+\NormalTok{modelo\_knn\_final }\OperatorTok{=}\NormalTok{ KNeighborsRegressor(n\_neighbors}\OperatorTok{=}\BuiltInTok{int}\NormalTok{(mejor\_k))}
+\NormalTok{modelo\_knn\_final.fit(X\_train\_scaled, y\_train)}
+\NormalTok{y\_pred\_knn }\OperatorTok{=}\NormalTok{ modelo\_knn\_final.predict(X\_test\_scaled)}
+\NormalTok{metricas\_modelos.append(calcular\_metricas(y\_test, y\_pred\_knn, }\StringTok{"KNN"}\NormalTok{))}
+
+\CommentTok{\# Crear DataFrame comparativo}
+\NormalTok{df\_metricas }\OperatorTok{=}\NormalTok{ pd.DataFrame(metricas\_modelos)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{TABLA COMPARATIVA"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(df\_metricas.to\_string(index}\OperatorTok{=}\VariableTok{False}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Comparación de modelos}\label{comparaciuxf3n-de-modelos}
+
+\subsection{Tabla y visualización
+comparativa}\label{tabla-y-visualizaciuxf3n-comparativa}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Visualización comparativa}
+\NormalTok{fig, axes }\OperatorTok{=}\NormalTok{ plt.subplots(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{14}\NormalTok{, }\DecValTok{10}\NormalTok{))}
+
+\CommentTok{\# R²}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{].bar(df\_metricas[}\StringTok{\textquotesingle{}modelo\textquotesingle{}}\NormalTok{], df\_metricas[}\StringTok{\textquotesingle{}r2\textquotesingle{}}\NormalTok{], alpha}\OperatorTok{=}\FloatTok{0.7}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{].set\_ylabel(}\StringTok{\textquotesingle{}R²\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}R² por Modelo\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{].set\_ylim([}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{])}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{, axis}\OperatorTok{=}\StringTok{\textquotesingle{}y\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# RMSE}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{].bar(df\_metricas[}\StringTok{\textquotesingle{}modelo\textquotesingle{}}\NormalTok{], df\_metricas[}\StringTok{\textquotesingle{}rmse\textquotesingle{}}\NormalTok{], }
+\NormalTok{              alpha}\OperatorTok{=}\FloatTok{0.7}\NormalTok{, color}\OperatorTok{=}\StringTok{\textquotesingle{}orange\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{].set\_ylabel(}\StringTok{\textquotesingle{}RMSE\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}RMSE por Modelo (menor es mejor)\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{, axis}\OperatorTok{=}\StringTok{\textquotesingle{}y\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# MAE}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{].bar(df\_metricas[}\StringTok{\textquotesingle{}modelo\textquotesingle{}}\NormalTok{], df\_metricas[}\StringTok{\textquotesingle{}mae\textquotesingle{}}\NormalTok{], }
+\NormalTok{              alpha}\OperatorTok{=}\FloatTok{0.7}\NormalTok{, color}\OperatorTok{=}\StringTok{\textquotesingle{}green\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{].set\_ylabel(}\StringTok{\textquotesingle{}MAE\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}MAE por Modelo (menor es mejor)\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{, axis}\OperatorTok{=}\StringTok{\textquotesingle{}y\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Comparación múltiple}
+\NormalTok{x }\OperatorTok{=}\NormalTok{ np.arange(}\BuiltInTok{len}\NormalTok{(df\_metricas))}
+\NormalTok{width }\OperatorTok{=} \FloatTok{0.35}
+
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{].bar(x }\OperatorTok{{-}}\NormalTok{ width}\OperatorTok{/}\DecValTok{2}\NormalTok{, df\_metricas[}\StringTok{\textquotesingle{}mse\textquotesingle{}}\NormalTok{], width, }
+\NormalTok{              label}\OperatorTok{=}\StringTok{\textquotesingle{}MSE\textquotesingle{}}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.7}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{].bar(x }\OperatorTok{+}\NormalTok{ width}\OperatorTok{/}\DecValTok{2}\NormalTok{, df\_metricas[}\StringTok{\textquotesingle{}mae\textquotesingle{}}\NormalTok{], width, }
+\NormalTok{              label}\OperatorTok{=}\StringTok{\textquotesingle{}MAE\textquotesingle{}}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.7}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{].set\_xticks(x)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{].set\_xticklabels(df\_metricas[}\StringTok{\textquotesingle{}modelo\textquotesingle{}}\NormalTok{])}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{].set\_ylabel(}\StringTok{\textquotesingle{}Error\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}Comparación MSE vs MAE\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{].legend()}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{].grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{, axis}\OperatorTok{=}\StringTok{\textquotesingle{}y\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{plt.tight\_layout()}
+\NormalTok{plt.savefig(}\StringTok{\textquotesingle{}model\_comparison.png\textquotesingle{}}\NormalTok{, dpi}\OperatorTok{=}\DecValTok{300}\NormalTok{, bbox\_inches}\OperatorTok{=}\StringTok{\textquotesingle{}tight\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Comparación guardada como \textquotesingle{}model\_comparison.png\textquotesingle{}"}\NormalTok{)}
+
+\CommentTok{\# Guardar tabla}
+\NormalTok{df\_metricas.to\_csv(}\StringTok{\textquotesingle{}metricas\_comparacion.csv\textquotesingle{}}\NormalTok{, index}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Tabla guardada como \textquotesingle{}metricas\_comparacion.csv\textquotesingle{}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Aplicaciones económicas}\label{aplicaciones-econuxf3micas}
+
+\subsection{Aplicación 1: Predicción de precios de
+vivienda}\label{aplicaciuxf3n-1-predicciuxf3n-de-precios-de-vivienda}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n\textbackslash{}n}\StringTok{APLICACIÓN: PREDICCIÓN DE PRECIOS DE VIVIENDA"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\CommentTok{\# Generar datos sintéticos de viviendas}
+\NormalTok{np.random.seed(}\DecValTok{42}\NormalTok{)}
+\NormalTok{n\_casas }\OperatorTok{=} \DecValTok{500}
+
+\NormalTok{datos\_vivienda }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}area\_m2\textquotesingle{}}\NormalTok{: np.random.uniform(}\DecValTok{50}\NormalTok{, }\DecValTok{300}\NormalTok{, n\_casas),}
+    \StringTok{\textquotesingle{}num\_habitaciones\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{1}\NormalTok{, }\DecValTok{6}\NormalTok{, n\_casas),}
+    \StringTok{\textquotesingle{}num\_banos\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{1}\NormalTok{, }\DecValTok{4}\NormalTok{, n\_casas),}
+    \StringTok{\textquotesingle{}antiguedad\_anos\textquotesingle{}}\NormalTok{: np.random.uniform(}\DecValTok{0}\NormalTok{, }\DecValTok{50}\NormalTok{, n\_casas),}
+    \StringTok{\textquotesingle{}distancia\_centro\_km\textquotesingle{}}\NormalTok{: np.random.uniform(}\FloatTok{0.5}\NormalTok{, }\DecValTok{30}\NormalTok{, n\_casas),}
+    \StringTok{\textquotesingle{}area\_jardin\_m2\textquotesingle{}}\NormalTok{: np.random.uniform(}\DecValTok{0}\NormalTok{, }\DecValTok{200}\NormalTok{, n\_casas),}
+    \StringTok{\textquotesingle{}tiene\_cochera\textquotesingle{}}\NormalTok{: np.random.choice([}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{], n\_casas, p}\OperatorTok{=}\NormalTok{[}\FloatTok{0.3}\NormalTok{, }\FloatTok{0.7}\NormalTok{]),}
+    \StringTok{\textquotesingle{}piso\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{1}\NormalTok{, }\DecValTok{15}\NormalTok{, n\_casas)}
+\NormalTok{\})}
+
+\CommentTok{\# Generar precio (en miles de soles)}
+\NormalTok{precio }\OperatorTok{=}\NormalTok{ (}
+\NormalTok{    datos\_vivienda[}\StringTok{\textquotesingle{}area\_m2\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \DecValTok{5} \OperatorTok{+}
+\NormalTok{    datos\_vivienda[}\StringTok{\textquotesingle{}num\_habitaciones\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \DecValTok{50} \OperatorTok{+}
+\NormalTok{    datos\_vivienda[}\StringTok{\textquotesingle{}num\_banos\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \DecValTok{30} \OperatorTok{+}
+    \OperatorTok{{-}}\NormalTok{datos\_vivienda[}\StringTok{\textquotesingle{}antiguedad\_anos\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \DecValTok{2} \OperatorTok{+}
+    \OperatorTok{{-}}\NormalTok{datos\_vivienda[}\StringTok{\textquotesingle{}distancia\_centro\_km\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \DecValTok{8} \OperatorTok{+}
+\NormalTok{    datos\_vivienda[}\StringTok{\textquotesingle{}area\_jardin\_m2\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \FloatTok{1.5} \OperatorTok{+}
+\NormalTok{    datos\_vivienda[}\StringTok{\textquotesingle{}tiene\_cochera\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \DecValTok{100} \OperatorTok{+}
+\NormalTok{    np.random.normal(}\DecValTok{0}\NormalTok{, }\DecValTok{50}\NormalTok{, n\_casas)}
+\NormalTok{)}
+
+\NormalTok{datos\_vivienda[}\StringTok{\textquotesingle{}precio\_miles\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ precio}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Dataset de viviendas:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Total viviendas: }\SpecialCharTok{\{}\NormalTok{n\_casas}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Estadísticas de precio (miles de soles):"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(datos\_vivienda[}\StringTok{\textquotesingle{}precio\_miles\textquotesingle{}}\NormalTok{].describe())}
+
+\CommentTok{\# Preparar datos}
+\NormalTok{X\_vivienda }\OperatorTok{=}\NormalTok{ datos\_vivienda.drop(}\StringTok{\textquotesingle{}precio\_miles\textquotesingle{}}\NormalTok{, axis}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+\NormalTok{y\_vivienda }\OperatorTok{=}\NormalTok{ datos\_vivienda[}\StringTok{\textquotesingle{}precio\_miles\textquotesingle{}}\NormalTok{]}
+
+\NormalTok{X\_train\_v, X\_test\_v, y\_train\_v, y\_test\_v }\OperatorTok{=}\NormalTok{ train\_test\_split(}
+\NormalTok{    X\_vivienda, y\_vivienda, test\_size}\OperatorTok{=}\FloatTok{0.2}\NormalTok{, random\_state}\OperatorTok{=}\DecValTok{42}
+\NormalTok{)}
+
+\CommentTok{\# Estandarizar}
+\NormalTok{scaler\_v }\OperatorTok{=}\NormalTok{ StandardScaler()}
+\NormalTok{X\_train\_v\_scaled }\OperatorTok{=}\NormalTok{ scaler\_v.fit\_transform(X\_train\_v)}
+\NormalTok{X\_test\_v\_scaled }\OperatorTok{=}\NormalTok{ scaler\_v.transform(X\_test\_v)}
+
+\CommentTok{\# Entrenar múltiples modelos}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{RESULTADOS DE MODELOS"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{modelos\_vivienda }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}OLS\textquotesingle{}}\NormalTok{: LinearRegression(),}
+    \StringTok{\textquotesingle{}Ridge\textquotesingle{}}\NormalTok{: Ridge(alpha}\OperatorTok{=}\DecValTok{10}\NormalTok{),}
+    \StringTok{\textquotesingle{}Lasso\textquotesingle{}}\NormalTok{: Lasso(alpha}\OperatorTok{=}\DecValTok{1}\NormalTok{, max\_iter}\OperatorTok{=}\DecValTok{10000}\NormalTok{),}
+    \StringTok{\textquotesingle{}Random Forest\textquotesingle{}}\NormalTok{: RandomForestRegressor(n\_estimators}\OperatorTok{=}\DecValTok{100}\NormalTok{, random\_state}\OperatorTok{=}\DecValTok{42}\NormalTok{)}
+\NormalTok{\}}
+
+\NormalTok{resultados\_vivienda }\OperatorTok{=}\NormalTok{ []}
+
+\ControlFlowTok{for}\NormalTok{ nombre, modelo }\KeywordTok{in}\NormalTok{ modelos\_vivienda.items():}
+    \CommentTok{\# Entrenar (algunos modelos necesitan datos escalados)}
+    \ControlFlowTok{if}\NormalTok{ nombre }\KeywordTok{in}\NormalTok{ [}\StringTok{\textquotesingle{}OLS\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Ridge\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Lasso\textquotesingle{}}\NormalTok{]:}
+\NormalTok{        modelo.fit(X\_train\_v\_scaled, y\_train\_v)}
+\NormalTok{        y\_pred }\OperatorTok{=}\NormalTok{ modelo.predict(X\_test\_v\_scaled)}
+    \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{        modelo.fit(X\_train\_v, y\_train\_v)}
+\NormalTok{        y\_pred }\OperatorTok{=}\NormalTok{ modelo.predict(X\_test\_v)}
+    
+    \CommentTok{\# Métricas}
+\NormalTok{    r2 }\OperatorTok{=}\NormalTok{ r2\_score(y\_test\_v, y\_pred)}
+\NormalTok{    rmse }\OperatorTok{=}\NormalTok{ np.sqrt(mean\_squared\_error(y\_test\_v, y\_pred))}
+\NormalTok{    mae }\OperatorTok{=}\NormalTok{ mean\_absolute\_error(y\_test\_v, y\_pred)}
+    
+\NormalTok{    resultados\_vivienda.append(\{}
+        \StringTok{\textquotesingle{}Modelo\textquotesingle{}}\NormalTok{: nombre,}
+        \StringTok{\textquotesingle{}R²\textquotesingle{}}\NormalTok{: r2,}
+        \StringTok{\textquotesingle{}RMSE\textquotesingle{}}\NormalTok{: rmse,}
+        \StringTok{\textquotesingle{}MAE\textquotesingle{}}\NormalTok{: mae}
+\NormalTok{    \})}
+    
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialCharTok{\{}\NormalTok{nombre}\SpecialCharTok{\}}\SpecialStringTok{:"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  R²:   }\SpecialCharTok{\{}\NormalTok{r2}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  RMSE: }\SpecialCharTok{\{}\NormalTok{rmse}\SpecialCharTok{:.2f\}}\SpecialStringTok{ miles de soles"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  MAE:  }\SpecialCharTok{\{}\NormalTok{mae}\SpecialCharTok{:.2f\}}\SpecialStringTok{ miles de soles"}\NormalTok{)}
+
+\CommentTok{\# Importancia de características (Random Forest)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{IMPORTANCIA DE CARACTERÍSTICAS (Random Forest)"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{importancias\_vivienda }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}caracteristica\textquotesingle{}}\NormalTok{: X\_vivienda.columns,}
+    \StringTok{\textquotesingle{}importancia\textquotesingle{}}\NormalTok{: modelos\_vivienda[}\StringTok{\textquotesingle{}Random Forest\textquotesingle{}}\NormalTok{].feature\_importances\_}
+\NormalTok{\}).sort\_values(}\StringTok{\textquotesingle{}importancia\textquotesingle{}}\NormalTok{, ascending}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ \_, row }\KeywordTok{in}\NormalTok{ importancias\_vivienda.iterrows():}
+\NormalTok{    barra }\OperatorTok{=} \StringTok{\textquotesingle{}█\textquotesingle{}} \OperatorTok{*} \BuiltInTok{int}\NormalTok{(row[}\StringTok{\textquotesingle{}importancia\textquotesingle{}}\NormalTok{] }\OperatorTok{*} \DecValTok{100}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  }\SpecialCharTok{\{}\NormalTok{row[}\StringTok{\textquotesingle{}caracteristica\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:\textless{}25\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{row[}\StringTok{\textquotesingle{}importancia\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:.4f\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{barra}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Ejemplo de predicción}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{EJEMPLO DE PREDICCIÓN"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{casa\_ejemplo }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}area\_m2\textquotesingle{}}\NormalTok{: [}\DecValTok{150}\NormalTok{],}
+    \StringTok{\textquotesingle{}num\_habitaciones\textquotesingle{}}\NormalTok{: [}\DecValTok{3}\NormalTok{],}
+    \StringTok{\textquotesingle{}num\_banos\textquotesingle{}}\NormalTok{: [}\DecValTok{2}\NormalTok{],}
+    \StringTok{\textquotesingle{}antiguedad\_anos\textquotesingle{}}\NormalTok{: [}\DecValTok{10}\NormalTok{],}
+    \StringTok{\textquotesingle{}distancia\_centro\_km\textquotesingle{}}\NormalTok{: [}\DecValTok{5}\NormalTok{],}
+    \StringTok{\textquotesingle{}area\_jardin\_m2\textquotesingle{}}\NormalTok{: [}\DecValTok{50}\NormalTok{],}
+    \StringTok{\textquotesingle{}tiene\_cochera\textquotesingle{}}\NormalTok{: [}\DecValTok{1}\NormalTok{],}
+    \StringTok{\textquotesingle{}piso\textquotesingle{}}\NormalTok{: [}\DecValTok{3}\NormalTok{]}
+\NormalTok{\})}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Características de la vivienda:"}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ col }\KeywordTok{in}\NormalTok{ casa\_ejemplo.columns:}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  }\SpecialCharTok{\{}\NormalTok{col}\SpecialCharTok{\}}\SpecialStringTok{: }\SpecialCharTok{\{}\NormalTok{casa\_ejemplo[col]}\SpecialCharTok{.}\NormalTok{values[}\DecValTok{0}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Predecir con cada modelo}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Predicciones de precio (miles de soles):"}\NormalTok{)}
+\NormalTok{casa\_ejemplo\_scaled }\OperatorTok{=}\NormalTok{ scaler\_v.transform(casa\_ejemplo)}
+
+\ControlFlowTok{for}\NormalTok{ nombre, modelo }\KeywordTok{in}\NormalTok{ modelos\_vivienda.items():}
+    \ControlFlowTok{if}\NormalTok{ nombre }\KeywordTok{in}\NormalTok{ [}\StringTok{\textquotesingle{}OLS\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Ridge\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Lasso\textquotesingle{}}\NormalTok{]:}
+\NormalTok{        pred }\OperatorTok{=}\NormalTok{ modelo.predict(casa\_ejemplo\_scaled)[}\DecValTok{0}\NormalTok{]}
+    \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{        pred }\OperatorTok{=}\NormalTok{ modelo.predict(casa\_ejemplo)[}\DecValTok{0}\NormalTok{]}
+    
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  }\SpecialCharTok{\{}\NormalTok{nombre}\SpecialCharTok{:\textless{}15\}}\SpecialStringTok{ S/ }\SpecialCharTok{\{}\NormalTok{pred}\SpecialCharTok{:,.0f\}}\SpecialStringTok{ mil"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Aplicación 2: Predicción de
+ventas}\label{aplicaciuxf3n-2-predicciuxf3n-de-ventas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n\textbackslash{}n}\StringTok{APLICACIÓN: PREDICCIÓN DE VENTAS"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\CommentTok{\# Generar datos de ventas}
+\NormalTok{np.random.seed(}\DecValTok{42}\NormalTok{)}
+\NormalTok{n\_productos }\OperatorTok{=} \DecValTok{400}
+
+\NormalTok{datos\_ventas }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}precio\textquotesingle{}}\NormalTok{: np.random.uniform(}\DecValTok{10}\NormalTok{, }\DecValTok{200}\NormalTok{, n\_productos),}
+    \StringTok{\textquotesingle{}inversion\_publicidad\textquotesingle{}}\NormalTok{: np.random.uniform(}\DecValTok{0}\NormalTok{, }\DecValTok{10000}\NormalTok{, n\_productos),}
+    \StringTok{\textquotesingle{}num\_competidores\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{1}\NormalTok{, }\DecValTok{10}\NormalTok{, n\_productos),}
+    \StringTok{\textquotesingle{}calificacion\_producto\textquotesingle{}}\NormalTok{: np.random.uniform(}\DecValTok{2}\NormalTok{, }\DecValTok{5}\NormalTok{, n\_productos),}
+    \StringTok{\textquotesingle{}inventario\_disponible\textquotesingle{}}\NormalTok{: np.random.randint(}\DecValTok{10}\NormalTok{, }\DecValTok{1000}\NormalTok{, n\_productos),}
+    \StringTok{\textquotesingle{}descuento\_pct\textquotesingle{}}\NormalTok{: np.random.uniform(}\DecValTok{0}\NormalTok{, }\DecValTok{30}\NormalTok{, n\_productos),}
+    \StringTok{\textquotesingle{}temporada\_alta\textquotesingle{}}\NormalTok{: np.random.choice([}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{], n\_productos, p}\OperatorTok{=}\NormalTok{[}\FloatTok{0.7}\NormalTok{, }\FloatTok{0.3}\NormalTok{])}
+\NormalTok{\})}
+
+\CommentTok{\# Generar ventas con relación no lineal}
+\NormalTok{ventas }\OperatorTok{=}\NormalTok{ (}
+    \OperatorTok{{-}}\FloatTok{0.5} \OperatorTok{*}\NormalTok{ datos\_ventas[}\StringTok{\textquotesingle{}precio\textquotesingle{}}\NormalTok{] }\OperatorTok{+}
+    \FloatTok{0.8} \OperatorTok{*}\NormalTok{ np.sqrt(datos\_ventas[}\StringTok{\textquotesingle{}inversion\_publicidad\textquotesingle{}}\NormalTok{]) }\OperatorTok{+}
+    \OperatorTok{{-}}\DecValTok{10} \OperatorTok{*}\NormalTok{ datos\_ventas[}\StringTok{\textquotesingle{}num\_competidores\textquotesingle{}}\NormalTok{] }\OperatorTok{+}
+    \DecValTok{100} \OperatorTok{*}\NormalTok{ datos\_ventas[}\StringTok{\textquotesingle{}calificacion\_producto\textquotesingle{}}\NormalTok{] }\OperatorTok{+}
+    \FloatTok{0.05} \OperatorTok{*}\NormalTok{ datos\_ventas[}\StringTok{\textquotesingle{}inventario\_disponible\textquotesingle{}}\NormalTok{] }\OperatorTok{+}
+    \DecValTok{3} \OperatorTok{*}\NormalTok{ datos\_ventas[}\StringTok{\textquotesingle{}descuento\_pct\textquotesingle{}}\NormalTok{] }\OperatorTok{+}
+    \DecValTok{150} \OperatorTok{*}\NormalTok{ datos\_ventas[}\StringTok{\textquotesingle{}temporada\_alta\textquotesingle{}}\NormalTok{] }\OperatorTok{+}
+\NormalTok{    np.random.normal(}\DecValTok{0}\NormalTok{, }\DecValTok{50}\NormalTok{, n\_productos)}
+\NormalTok{)}
+
+\NormalTok{datos\_ventas[}\StringTok{\textquotesingle{}ventas\_mensuales\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ np.maximum(ventas, }\DecValTok{0}\NormalTok{)  }\CommentTok{\# No ventas negativas}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Dataset de ventas:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Total productos: }\SpecialCharTok{\{}\NormalTok{n\_productos}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Estadísticas de ventas mensuales:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(datos\_ventas[}\StringTok{\textquotesingle{}ventas\_mensuales\textquotesingle{}}\NormalTok{].describe())}
+
+\CommentTok{\# Preparar datos}
+\NormalTok{X\_ventas }\OperatorTok{=}\NormalTok{ datos\_ventas.drop(}\StringTok{\textquotesingle{}ventas\_mensuales\textquotesingle{}}\NormalTok{, axis}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+\NormalTok{y\_ventas }\OperatorTok{=}\NormalTok{ datos\_ventas[}\StringTok{\textquotesingle{}ventas\_mensuales\textquotesingle{}}\NormalTok{]}
+
+\NormalTok{X\_train\_s, X\_test\_s, y\_train\_s, y\_test\_s }\OperatorTok{=}\NormalTok{ train\_test\_split(}
+\NormalTok{    X\_ventas, y\_ventas, test\_size}\OperatorTok{=}\FloatTok{0.2}\NormalTok{, random\_state}\OperatorTok{=}\DecValTok{42}
+\NormalTok{)}
+
+\CommentTok{\# Probar regresión polinomial}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{REGRESIÓN POLINOMIAL PARA VENTAS"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\CommentTok{\# Crear características polinomiales de grado 2}
+\NormalTok{poly }\OperatorTok{=}\NormalTok{ PolynomialFeatures(degree}\OperatorTok{=}\DecValTok{2}\NormalTok{, include\_bias}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+\NormalTok{X\_train\_s\_poly }\OperatorTok{=}\NormalTok{ poly.fit\_transform(X\_train\_s)}
+\NormalTok{X\_test\_s\_poly }\OperatorTok{=}\NormalTok{ poly.transform(X\_test\_s)}
+
+\CommentTok{\# Entrenar modelos}
+\NormalTok{modelos\_ventas }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}Lineal\textquotesingle{}}\NormalTok{: LinearRegression(),}
+    \StringTok{\textquotesingle{}Polinomial (grado 2)\textquotesingle{}}\NormalTok{: LinearRegression(),}
+    \StringTok{\textquotesingle{}Ridge Polinomial\textquotesingle{}}\NormalTok{: Ridge(alpha}\OperatorTok{=}\DecValTok{100}\NormalTok{),}
+    \StringTok{\textquotesingle{}Random Forest\textquotesingle{}}\NormalTok{: RandomForestRegressor(n\_estimators}\OperatorTok{=}\DecValTok{200}\NormalTok{, max\_depth}\OperatorTok{=}\DecValTok{10}\NormalTok{, random\_state}\OperatorTok{=}\DecValTok{42}\NormalTok{)}
+\NormalTok{\}}
+
+\CommentTok{\# Lineal}
+\NormalTok{modelos\_ventas[}\StringTok{\textquotesingle{}Lineal\textquotesingle{}}\NormalTok{].fit(X\_train\_s, y\_train\_s)}
+\NormalTok{y\_pred\_lineal }\OperatorTok{=}\NormalTok{ modelos\_ventas[}\StringTok{\textquotesingle{}Lineal\textquotesingle{}}\NormalTok{].predict(X\_test\_s)}
+
+\CommentTok{\# Polinomial}
+\NormalTok{modelos\_ventas[}\StringTok{\textquotesingle{}Polinomial (grado 2)\textquotesingle{}}\NormalTok{].fit(X\_train\_s\_poly, y\_train\_s)}
+\NormalTok{y\_pred\_poly }\OperatorTok{=}\NormalTok{ modelos\_ventas[}\StringTok{\textquotesingle{}Polinomial (grado 2)\textquotesingle{}}\NormalTok{].predict(X\_test\_s\_poly)}
+
+\CommentTok{\# Ridge Polinomial}
+\NormalTok{modelos\_ventas[}\StringTok{\textquotesingle{}Ridge Polinomial\textquotesingle{}}\NormalTok{].fit(X\_train\_s\_poly, y\_train\_s)}
+\NormalTok{y\_pred\_ridge\_poly }\OperatorTok{=}\NormalTok{ modelos\_ventas[}\StringTok{\textquotesingle{}Ridge Polinomial\textquotesingle{}}\NormalTok{].predict(X\_test\_s\_poly)}
+
+\CommentTok{\# Random Forest}
+\NormalTok{modelos\_ventas[}\StringTok{\textquotesingle{}Random Forest\textquotesingle{}}\NormalTok{].fit(X\_train\_s, y\_train\_s)}
+\NormalTok{y\_pred\_rf }\OperatorTok{=}\NormalTok{ modelos\_ventas[}\StringTok{\textquotesingle{}Random Forest\textquotesingle{}}\NormalTok{].predict(X\_test\_s)}
+
+\CommentTok{\# Evaluar}
+\NormalTok{predicciones }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}Lineal\textquotesingle{}}\NormalTok{: y\_pred\_lineal,}
+    \StringTok{\textquotesingle{}Polinomial (grado 2)\textquotesingle{}}\NormalTok{: y\_pred\_poly,}
+    \StringTok{\textquotesingle{}Ridge Polinomial\textquotesingle{}}\NormalTok{: y\_pred\_ridge\_poly,}
+    \StringTok{\textquotesingle{}Random Forest\textquotesingle{}}\NormalTok{: y\_pred\_rf}
+\NormalTok{\}}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\StringTok{\textquotesingle{}Modelo\textquotesingle{}}\SpecialCharTok{:\textless{}25\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}R²\textquotesingle{}}\SpecialCharTok{:\textless{}10\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}RMSE\textquotesingle{}}\SpecialCharTok{:\textless{}15\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}MAE\textquotesingle{}}\SpecialCharTok{:\textless{}15\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"{-}"} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ nombre, y\_pred }\KeywordTok{in}\NormalTok{ predicciones.items():}
+\NormalTok{    r2 }\OperatorTok{=}\NormalTok{ r2\_score(y\_test\_s, y\_pred)}
+\NormalTok{    rmse }\OperatorTok{=}\NormalTok{ np.sqrt(mean\_squared\_error(y\_test\_s, y\_pred))}
+\NormalTok{    mae }\OperatorTok{=}\NormalTok{ mean\_absolute\_error(y\_test\_s, y\_pred)}
+    
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{nombre}\SpecialCharTok{:\textless{}25\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{r2}\SpecialCharTok{:\textless{}10.4f\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{rmse}\SpecialCharTok{:\textless{}15.2f\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{mae}\SpecialCharTok{:\textless{}15.2f\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Análisis de elasticidad precio}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{ANÁLISIS DE ELASTICIDAD PRECIO"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\CommentTok{\# Usar modelo Random Forest para análisis}
+\NormalTok{precios\_test }\OperatorTok{=}\NormalTok{ np.linspace(}\DecValTok{10}\NormalTok{, }\DecValTok{200}\NormalTok{, }\DecValTok{50}\NormalTok{)}
+\NormalTok{datos\_base }\OperatorTok{=}\NormalTok{ X\_ventas.mean().to\_dict()}
+
+\NormalTok{ventas\_por\_precio }\OperatorTok{=}\NormalTok{ []}
+
+\ControlFlowTok{for}\NormalTok{ precio }\KeywordTok{in}\NormalTok{ precios\_test:}
+\NormalTok{    datos\_pred }\OperatorTok{=}\NormalTok{ pd.DataFrame([datos\_base])}
+\NormalTok{    datos\_pred[}\StringTok{\textquotesingle{}precio\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ precio}
+\NormalTok{    ventas\_pred }\OperatorTok{=}\NormalTok{ modelos\_ventas[}\StringTok{\textquotesingle{}Random Forest\textquotesingle{}}\NormalTok{].predict(datos\_pred)[}\DecValTok{0}\NormalTok{]}
+\NormalTok{    ventas\_por\_precio.append(ventas\_pred)}
+
+\CommentTok{\# Graficar curva de demanda}
+\NormalTok{plt.figure(figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{6}\NormalTok{))}
+\NormalTok{plt.plot(precios\_test, ventas\_por\_precio, linewidth}\OperatorTok{=}\DecValTok{2}\NormalTok{)}
+\NormalTok{plt.xlabel(}\StringTok{\textquotesingle{}Precio\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.ylabel(}\StringTok{\textquotesingle{}Ventas mensuales predichas\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.title(}\StringTok{\textquotesingle{}Curva de Demanda Estimada\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.grid(}\VariableTok{True}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+\NormalTok{plt.tight\_layout()}
+\NormalTok{plt.savefig(}\StringTok{\textquotesingle{}curva\_demanda.png\textquotesingle{}}\NormalTok{, dpi}\OperatorTok{=}\DecValTok{300}\NormalTok{, bbox\_inches}\OperatorTok{=}\StringTok{\textquotesingle{}tight\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Curva de demanda guardada como \textquotesingle{}curva\_demanda.png\textquotesingle{}"}\NormalTok{)}
+
+\CommentTok{\# Calcular elasticidad en diferentes puntos}
+\NormalTok{idx\_medio }\OperatorTok{=} \BuiltInTok{len}\NormalTok{(precios\_test) }\OperatorTok{//} \DecValTok{2}
+\NormalTok{precio\_medio }\OperatorTok{=}\NormalTok{ precios\_test[idx\_medio]}
+\NormalTok{ventas\_medio }\OperatorTok{=}\NormalTok{ ventas\_por\_precio[idx\_medio]}
+
+\CommentTok{\# Elasticidad = (ΔQ/Q) / (ΔP/P)}
+\NormalTok{delta\_p }\OperatorTok{=}\NormalTok{ precios\_test[idx\_medio }\OperatorTok{+} \DecValTok{1}\NormalTok{] }\OperatorTok{{-}}\NormalTok{ precios\_test[idx\_medio]}
+\NormalTok{delta\_q }\OperatorTok{=}\NormalTok{ ventas\_por\_precio[idx\_medio }\OperatorTok{+} \DecValTok{1}\NormalTok{] }\OperatorTok{{-}}\NormalTok{ ventas\_por\_precio[idx\_medio]}
+
+\NormalTok{elasticidad }\OperatorTok{=}\NormalTok{ (delta\_q }\OperatorTok{/}\NormalTok{ ventas\_medio) }\OperatorTok{/}\NormalTok{ (delta\_p }\OperatorTok{/}\NormalTok{ precio\_medio)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Elasticidad precio en punto medio:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Precio: S/ }\SpecialCharTok{\{}\NormalTok{precio\_medio}\SpecialCharTok{:.2f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Elasticidad: }\SpecialCharTok{\{}\NormalTok{elasticidad}\SpecialCharTok{:.3f\}}\SpecialStringTok{"}\NormalTok{)}
+
+\ControlFlowTok{if} \BuiltInTok{abs}\NormalTok{(elasticidad) }\OperatorTok{\textgreater{}} \DecValTok{1}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  → Demanda elástica (sensible al precio)"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  → Demanda inelástica (poco sensible al precio)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Ejercicios prácticos}\label{ejercicios-pruxe1cticos}
+
+\subsection{Ejercicio: Validación
+cruzada}\label{ejercicio-validaciuxf3n-cruzada}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n\textbackslash{}n}\StringTok{EJERCICIO: VALIDACIÓN CRUZADA"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\CommentTok{\# Validación cruzada con diferentes modelos}
+\ImportTok{from}\NormalTok{ sklearn.model\_selection }\ImportTok{import}\NormalTok{ cross\_validate}
+
+\NormalTok{modelos\_cv }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{\textquotesingle{}OLS\textquotesingle{}}\NormalTok{: LinearRegression(),}
+    \StringTok{\textquotesingle{}Ridge (α=1)\textquotesingle{}}\NormalTok{: Ridge(alpha}\OperatorTok{=}\DecValTok{1}\NormalTok{),}
+    \StringTok{\textquotesingle{}Ridge (α=10)\textquotesingle{}}\NormalTok{: Ridge(alpha}\OperatorTok{=}\DecValTok{10}\NormalTok{),}
+    \StringTok{\textquotesingle{}Lasso (α=0.1)\textquotesingle{}}\NormalTok{: Lasso(alpha}\OperatorTok{=}\FloatTok{0.1}\NormalTok{, max\_iter}\OperatorTok{=}\DecValTok{10000}\NormalTok{),}
+    \StringTok{\textquotesingle{}Lasso (α=1)\textquotesingle{}}\NormalTok{: Lasso(alpha}\OperatorTok{=}\DecValTok{1}\NormalTok{, max\_iter}\OperatorTok{=}\DecValTok{10000}\NormalTok{)}
+\NormalTok{\}}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Validación cruzada (5{-}fold):"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\StringTok{\textquotesingle{}Modelo\textquotesingle{}}\SpecialCharTok{:\textless{}20\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}R² medio\textquotesingle{}}\SpecialCharTok{:\textless{}12\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}R² std\textquotesingle{}}\SpecialCharTok{:\textless{}12\}}\SpecialStringTok{ }\SpecialCharTok{\{}\StringTok{\textquotesingle{}RMSE medio\textquotesingle{}}\SpecialCharTok{:\textless{}15\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"{-}"} \OperatorTok{*} \DecValTok{70}\NormalTok{)}
+
+\NormalTok{resultados\_cv }\OperatorTok{=}\NormalTok{ []}
+
+\ControlFlowTok{for}\NormalTok{ nombre, modelo }\KeywordTok{in}\NormalTok{ modelos\_cv.items():}
+    \CommentTok{\# Validación cruzada}
+\NormalTok{    cv\_results }\OperatorTok{=}\NormalTok{ cross\_validate(}
+\NormalTok{        modelo, X, Y,}
+\NormalTok{        cv}\OperatorTok{=}\DecValTok{5}\NormalTok{,}
+\NormalTok{        scoring}\OperatorTok{=}\NormalTok{[}\StringTok{\textquotesingle{}r2\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}neg\_mean\_squared\_error\textquotesingle{}}\NormalTok{],}
+\NormalTok{        return\_train\_score}\OperatorTok{=}\VariableTok{False}
+\NormalTok{    )}
+    
+\NormalTok{    r2\_medio }\OperatorTok{=}\NormalTok{ cv\_results[}\StringTok{\textquotesingle{}test\_r2\textquotesingle{}}\NormalTok{].mean()}
+\NormalTok{    r2\_std }\OperatorTok{=}\NormalTok{ cv\_results[}\StringTok{\textquotesingle{}test\_r2\textquotesingle{}}\NormalTok{].std()}
+\NormalTok{    mse\_medio }\OperatorTok{=} \OperatorTok{{-}}\NormalTok{cv\_results[}\StringTok{\textquotesingle{}test\_neg\_mean\_squared\_error\textquotesingle{}}\NormalTok{].mean()}
+\NormalTok{    rmse\_medio }\OperatorTok{=}\NormalTok{ np.sqrt(mse\_medio)}
+    
+\NormalTok{    resultados\_cv.append(\{}
+        \StringTok{\textquotesingle{}modelo\textquotesingle{}}\NormalTok{: nombre,}
+        \StringTok{\textquotesingle{}r2\_medio\textquotesingle{}}\NormalTok{: r2\_medio,}
+        \StringTok{\textquotesingle{}r2\_std\textquotesingle{}}\NormalTok{: r2\_std,}
+        \StringTok{\textquotesingle{}rmse\_medio\textquotesingle{}}\NormalTok{: rmse\_medio}
+\NormalTok{    \})}
+    
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{nombre}\SpecialCharTok{:\textless{}20\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{r2\_medio}\SpecialCharTok{:\textless{}12.4f\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{r2\_std}\SpecialCharTok{:\textless{}12.4f\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{rmse\_medio}\SpecialCharTok{:\textless{}15.4f\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Mejor modelo por CV}
+\NormalTok{df\_cv }\OperatorTok{=}\NormalTok{ pd.DataFrame(resultados\_cv)}
+\NormalTok{mejor\_modelo\_cv }\OperatorTok{=}\NormalTok{ df\_cv.loc[df\_cv[}\StringTok{\textquotesingle{}r2\_medio\textquotesingle{}}\NormalTok{].idxmax(), }\StringTok{\textquotesingle{}modelo\textquotesingle{}}\NormalTok{]}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n\textbackslash{}n}\SpecialStringTok{Mejor modelo según validación cruzada: }\SpecialCharTok{\{}\NormalTok{mejor\_modelo\_cv}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"(Balance entre performance y generalización)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Conclusión}\label{conclusiuxf3n}
+
+En esta guía hemos explorado los métodos de regresión:
+
+\textbf{Mínimos Cuadrados Ordinarios (OLS)}
+
+Método base, interpretable, con solución analítica. Sensible a outliers
+y multicolinealidad.
+
+\textbf{Regresión Ridge}
+
+Penalización L2. Reduce magnitud de coeficientes. Útil con variables
+correlacionadas.
+
+\textbf{Regresión Lasso}
+
+Penalización L1. Selección automática de variables. Produce modelos
+sparse.
+
+\textbf{Elastic Net}
+
+Combina Ridge y Lasso. Balance entre selección y estabilidad.
+
+\textbf{Regresión Polinomial}
+
+Captura relaciones no lineales. Propenso a overfitting con grados altos.
+
+\textbf{K-Nearest Neighbors}
+
+No paramétrico. Captura patrones complejos. Sensible a escala y lento.
+
+\textbf{Métricas: R², MSE, RMSE, MAE}
+
+Diferentes perspectivas del error. R² para varianza explicada. RMSE/MAE
+para magnitud del error.
+
+\section{Próximos pasos}\label{pruxf3ximos-pasos}
+
+En la siguiente guía (Guía 11: Validación Cruzada y Composición del
+Modelo) exploraremos:
+
+\begin{itemize}
+\tightlist
+\item
+  Validación cruzada (k-fold, stratified)
+\item
+  Grid search para hiperparámetros
+\item
+  Curvas de aprendizaje
+\item
+  Contribución de features
+\item
+  Bias-variance tradeoff
+\end{itemize}
+
+\section{Recursos adicionales}\label{recursos-adicionales}
+
+Para profundizar en regresión:
+
+\begin{itemize}
+\tightlist
+\item
+  Scikit-learn Regression:
+  scikit-learn.org/stable/supervised\_learning.html\#supervised-learning
+\item
+  Introduction to Statistical Learning (ISLR) - Capítulos 3, 6
+\item
+  Elements of Statistical Learning (ESL)
+\item
+  Applied Econometrics with Python
+\end{itemize}
 
 \section{Publicaciones Similares}\label{publicaciones-similares}
 
