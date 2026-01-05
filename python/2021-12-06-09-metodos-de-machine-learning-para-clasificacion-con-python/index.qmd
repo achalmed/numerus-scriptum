@@ -39,7 +39,6 @@ draft: false
 image: ../featured.jpg
 ---
 
-
 En esta novena guía exploraremos los principales algoritmos de machine learning para problemas de clasificación. Estos métodos son fundamentales para resolver problemas económicos como clasificación de riesgo crediticio, predicción de comportamiento de consumidores, segmentación de mercados, entre otros.
 
 # Introducción al aprendizaje supervisado
@@ -158,38 +157,148 @@ print("\nGráfico guardado como 'iris_scatter.png'")
 
 ## Fundamento matemático
 
-La regresión logística es un modelo lineal para clasificación que estima probabilidades usando la función logística (sigmoide).
+La regresión logística es uno de los métodos más fundamentales y ampliamente utilizados para problemas de clasificación binaria. A pesar de su nombre que incluye "regresión", es un algoritmo de clasificación que predice probabilidades de pertenencia a clases mediante una transformación no lineal de una combinación lineal de características.
 
-```{python}
-print("""
-REGRESIÓN LOGÍSTICA
+### Modelo de probabilidad
 
-Modelo matemático:
-    y = β₀ + β₁x₁ + β₂x₂ + ... + βₙxₙ + ε
-    
-    p = 1 / (1 + e^(-y))
+Para clasificación binaria donde $Y \in \{0, 1\}$, la regresión logística modela la probabilidad de que la observación pertenezca a la clase positiva ($Y=1$):
 
-Donde:
-- y: Combinación lineal de características
-- p: Probabilidad de pertenecer a la clase positiva
-- β: Coeficientes (pesos) del modelo
-- e: Base del logaritmo natural (≈2.718)
+$$
+P(Y=1 | \mathbf{X}) = p(\mathbf{X}) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p)}}
+$$
 
-Características:
-✓ Simple e interpretable
-✓ Rápido de entrenar
-✓ Funciona bien con características linealmente separables
-✓ Proporciona probabilidades calibradas
-✗ Asume relación lineal
-✗ Sensible a outliers
+Definiendo la combinación lineal:
+$$
+z = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_p X_p = \beta_0 + \mathbf{X}^\top\boldsymbol{\beta}
+$$
 
-Aplicaciones económicas:
+La probabilidad se expresa como:
+$$
+p(\mathbf{X}) = \frac{1}{1 + e^{-z}} = \frac{e^z}{1 + e^z}
+$$
+
+Esta función se conoce como **función logística** o **sigmoide**.
+
+### Función sigmoide
+
+La función sigmoide tiene la forma:
+$$
+\sigma(z) = \frac{1}{1 + e^{-z}}
+$$
+
+**Propiedades clave**:
+
+1. **Rango**: $\sigma(z) \in (0, 1)$ para todo $z \in \mathbb{R}$
+   - Garantiza que las predicciones sean probabilidades válidas
+
+2. **Simetría**: $\sigma(-z) = 1 - \sigma(z)$
+
+3. **Límites asintóticos**:
+   $$
+   \lim_{z \to \infty} \sigma(z) = 1, \quad \lim_{z \to -\infty} \sigma(z) = 0
+   $$
+
+4. **Punto medio**: $\sigma(0) = 0.5$
+
+5. **Derivada**: 
+   $$
+   \frac{d\sigma(z)}{dz} = \sigma(z)(1 - \sigma(z))
+   $$
+   Esta propiedad simplifica el cálculo de gradientes.
+
+### Odds y log-odds (logit)
+
+**Odds (momios)**:
+
+La probabilidad de éxito sobre la probabilidad de fracaso:
+$$
+\text{Odds} = \frac{p(\mathbf{X})}{1 - p(\mathbf{X})} = e^z
+$$
+
+**Log-odds (logit)**:
+
+Tomando logaritmo natural:
+$$
+\log\left(\frac{p(\mathbf{X})}{1-p(\mathbf{X})}\right) = z = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p
+$$
+
+Esta es la **transformación logit** que convierte probabilidades (0,1) al rango completo de números reales $(-\infty, \infty)$.
+
+**Interpretación crucial**: El modelo es lineal en el log-odds, no en la probabilidad misma.
+
+### Interpretación de coeficientes
+
+Un incremento unitario en $X_j$ (manteniendo otras variables constantes):
+
+**En log-odds**:
+$$
+\Delta \log(\text{Odds}) = \beta_j
+$$
+
+**En odds**:
+$$
+\text{Odds ratio} = e^{\beta_j}
+$$
+
+- Si $\beta_j > 0$: $e^{\beta_j} > 1$ → La variable incrementa el odds de $Y=1$
+- Si $\beta_j < 0$: $e^{\beta_j} < 1$ → La variable reduce el odds de $Y=1$
+- Si $\beta_j = 0$: $e^{\beta_j} = 1$ → La variable no afecta el odds
+
+**Efecto marginal en probabilidad**:
+$$
+\frac{\partial p}{\partial X_j} = \beta_j \cdot p(\mathbf{X}) \cdot (1 - p(\mathbf{X}))
+$$
+
+El efecto no es constante; depende del nivel de probabilidad actual.
+
+### Estimación: Maximum Likelihood
+
+Los coeficientes se estiman mediante **máxima verosimilitud** (MLE).
+
+**Log-verosimilitud**:
+$$
+\ell(\boldsymbol{\beta}) = \sum_{i=1}^{n} \left[ Y_i \log p(\mathbf{X}_i) + (1-Y_i) \log(1-p(\mathbf{X}_i)) \right]
+$$
+
+**Objetivo**: Maximizar $\ell(\boldsymbol{\beta})$ mediante métodos iterativos (Newton-Raphson, gradient descent).
+
+**Función de pérdida equivalente** (Binary Cross-Entropy):
+$$
+\text{BCE}(\boldsymbol{\beta}) = -\frac{1}{n}\sum_{i=1}^{n} \left[ Y_i \log \hat{p}_i + (1-Y_i) \log(1-\hat{p}_i) \right]
+$$
+
+### Frontera de decisión
+
+La frontera de decisión es donde $p(\mathbf{X}) = 0.5$:
+$$
+\beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p = 0
+$$
+
+En el espacio de características, esta es una **hipersuperficie lineal** (hiperplano).
+
+### Ventajas
+
+- Salidas probabilísticas interpretables
+- Eficiencia computacional
+- Pocos hiperparámetros
+- Funciona bien como baseline
+- Extensible a clasificación multi-clase
+
+### Limitaciones
+
+- Asume linealidad en log-odds
+- No captura relaciones no lineales complejas
+- Sensible a outliers
+- Requiere features relevantes
+
+### Aplicaciones económicas
+
 - Predicción de incumplimiento crediticio
-- Clasificación de riesgo empresarial
-- Predicción de compra de producto
-- Churn (abandono de clientes)
-""")
-```
+- Participación laboral
+- Decisiones de compra
+- Migración
+- Adopción de tecnología
+- Éxito de startups
 
 ## Implementación
 
@@ -310,44 +419,260 @@ plot_decision_boundary(
 
 ## Fundamento del algoritmo
 
-```{python}
-print("""
-K-NEAREST NEIGHBORS (KNN)
+K-Nearest Neighbors es un algoritmo de clasificación no paramétrico basado en la premisa de que observaciones similares (vecinas) tienden a pertenecer a la misma clase. Es uno de los algoritmos más simples conceptualmente, pero sorprendentemente efectivo en muchas aplicaciones.
 
-Principio:
-"Dime quiénes son tus vecinos y te diré quién eres"
+### Principio fundamental
 
-Funcionamiento:
-1. Para clasificar un nuevo punto:
-   a. Calcula distancia a todos los puntos de entrenamiento
-   b. Selecciona los K vecinos más cercanos
-   c. Vota por mayoría: clase más común entre vecinos
+**Idea central**: "Dime quiénes son tus vecinos y te diré quién eres"
 
-Parámetros clave:
-- k: Número de vecinos a considerar
-  * k pequeño: Más flexible, sensible a ruido
-  * k grande: Más suave, puede perder detalles
+Una nueva observación se clasifica según la clase más común entre sus $k$ vecinos más cercanos en el espacio de características.
 
-Métricas de distancia:
-- Euclidiana: √Σ(xi - yi)²
-- Manhattan: Σ|xi - yi|
-- Minkowski: (Σ|xi - yi|^p)^(1/p)
+### Definición formal
 
-Características:
-✓ No paramétrico (no asume distribución)
-✓ Simple de entender
-✓ Funciona bien con fronteras complejas
-✗ Lento en predicción con datasets grandes
-✗ Sensible a la escala de características
-✗ Sufre con alta dimensionalidad
+Dado:
 
-Aplicaciones económicas:
-- Sistema de recomendación de productos
-- Clasificación de clientes similares
-- Detección de anomalías en transacciones
-- Valuación de propiedades (casas similares)
-""")
-```
+- Conjunto de entrenamiento $\mathcal{D} = \{(\mathbf{X}_i, Y_i)\}_{i=1}^{n}$
+- Nuevo punto a clasificar $\mathbf{X}_0$
+- Número de vecinos $k$
+
+El algoritmo:
+
+1. **Calcular distancias** a todos los puntos de entrenamiento:
+   $$
+   d_i = d(\mathbf{X}_0, \mathbf{X}_i) \quad \text{para } i = 1, \ldots, n
+   $$
+
+2. **Identificar** los $k$ puntos con menores distancias:
+   $$
+   \mathcal{N}_k(\mathbf{X}_0) = \{k \text{ vecinos más cercanos}\}
+   $$
+
+3. **Votar por mayoría**:
+   $$
+   \hat{Y}_0 = \arg\max_{c} \sum_{i \in \mathcal{N}_k(\mathbf{X}_0)} \mathbb{1}(Y_i = c)
+   $$
+   
+   donde $\mathbb{1}(\cdot)$ es la función indicadora y $c$ recorre todas las clases posibles.
+
+### Métricas de distancia
+
+La elección de la métrica de distancia es fundamental en KNN:
+
+**1. Distancia Euclidiana** (la más común):
+$$
+d(\mathbf{X}_i, \mathbf{X}_j) = \sqrt{\sum_{m=1}^{p} (X_{im} - X_{jm})^2} = \|\mathbf{X}_i - \mathbf{X}_j\|_2
+$$
+
+**2. Distancia Manhattan** (city-block):
+$$
+d(\mathbf{X}_i, \mathbf{X}_j) = \sum_{m=1}^{p} |X_{im} - X_{jm}| = \|\mathbf{X}_i - \mathbf{X}_j\|_1
+$$
+
+**3. Distancia Minkowski** (generalización):
+$$
+d(\mathbf{X}_i, \mathbf{X}_j) = \left(\sum_{m=1}^{p} |X_{im} - X_{jm}|^q\right)^{1/q}
+$$
+
+donde:
+
+- $q = 1$: Manhattan
+- $q = 2$: Euclidiana
+- $q \to \infty$: Chebyshev
+
+**4. Distancia de Mahalanobis** (considera correlaciones):
+$$
+d(\mathbf{X}_i, \mathbf{X}_j) = \sqrt{(\mathbf{X}_i - \mathbf{X}_j)^\top \mathbf{\Sigma}^{-1} (\mathbf{X}_i - \mathbf{X}_j)}
+$$
+
+### Regla de decisión probabilística
+
+KNN puede proporcionar probabilidades estimadas:
+
+$$
+P(Y = c | \mathbf{X}_0) = \frac{1}{k} \sum_{i \in \mathcal{N}_k(\mathbf{X}_0)} \mathbb{1}(Y_i = c)
+$$
+
+Es decir, la proporción de vecinos que pertenecen a la clase $c$.
+
+### Versión ponderada
+
+En lugar de votos iguales, se pueden usar **pesos inversamente proporcionales a la distancia**:
+
+$$
+\hat{Y}_0 = \arg\max_{c} \sum_{i \in \mathcal{N}_k(\mathbf{X}_0)} w_i \cdot \mathbb{1}(Y_i = c)
+$$
+
+donde:
+$$
+w_i = \frac{1}{d(\mathbf{X}_0, \mathbf{X}_i) + \epsilon}
+$$
+
+$\epsilon > 0$ evita división por cero. Vecinos más cercanos tienen más influencia.
+
+### Parámetro k: Trade-off sesgo-varianza
+
+**k pequeño** (ej: k=1):
+
+- **Baja bias**: Frontera de decisión flexible, se adapta a detalles locales
+- **Alta varianza**: Sensible a ruido, predicciones inestables
+- Riesgo de **overfitting**
+- Fronteras irregulares
+
+**k grande** (ej: k=50):
+
+- **Alta bias**: Frontera de decisión suave, ignora detalles locales
+- **Baja varianza**: Predicciones estables
+- Riesgo de **underfitting**
+- Fronteras más regulares
+
+**k óptimo**: Balance entre sesgo y varianza, determinado típicamente por validación cruzada.
+
+### Complejidad computacional
+
+**Búsqueda naive**:
+
+- **Entrenamiento**: $O(1)$ (solo almacenar datos)
+- **Predicción**: $O(np)$ por cada nueva observación
+  - Calcular $n$ distancias de dimensión $p$
+  - Encontrar los $k$ mínimos: $O(n \log k)$
+
+**Total por predicción**: $O(np + n \log k) \approx O(np)$
+
+**Estructuras eficientes** (KD-trees, Ball trees):
+
+- **Construcción**: $O(np \log n)$
+- **Predicción**: $O(\log n)$ en promedio (mejor caso)
+  
+Sin embargo, en alta dimensionalidad ($p$ grande), estas estructuras pierden eficiencia.
+
+### Maldición de la dimensionalidad
+
+En espacios de alta dimensión, KNN sufre severamente:
+
+**Problema 1**: Las distancias se vuelven uniformes
+$$
+\lim_{p \to \infty} \frac{d_{\max} - d_{\min}}{d_{\min}} \to 0
+$$
+
+Todos los puntos parecen equidistantes, haciendo que el concepto de "vecino cercano" pierda significado.
+
+**Problema 2**: Volumen crece exponencialmente
+
+Para mantener densidad constante de vecinos, el volumen requerido crece como $r^p$.
+
+**Consecuencia**: KNN funciona mejor cuando $p < 10-20$.
+
+### Sensibilidad a la escala
+
+KNN es **extremadamente sensible** a la escala de las variables.
+
+**Problema**: Una variable con rango [0, 1000] dominará una con rango [0, 1] en el cálculo de distancias.
+
+**Solución obligatoria**: Estandarización
+$$
+\tilde{X}_{jm} = \frac{X_{jm} - \mu_m}{\sigma_m}
+$$
+
+Sin estandarización, el algoritmo es inválido.
+
+### Fronteras de decisión
+
+Las fronteras de decisión de KNN son:
+
+- **No lineales**: Pueden ser arbitrariamente complejas
+- **No paramétricas**: No asumen forma funcional
+- **Locales**: Definidas solo por vecinos cercanos
+- **Irregulares**: Especialmente con k pequeño
+
+Para clasificación binaria con k=1, la frontera es la **diagrama de Voronoi** del conjunto de entrenamiento.
+
+### Propiedades teóricas
+
+**Teorema (Cover & Hart, 1967)**: 
+
+Para k=1 y $n \to \infty$, el error de KNN está acotado por:
+$$
+\text{Error}_{1-NN} \leq 2 \cdot \text{Error}_{\text{Bayes}}
+$$
+
+donde Error$_{\text{Bayes}}$ es el error del clasificador óptimo.
+
+**Consistencia**: KNN es consistente si $k \to \infty$ y $k/n \to 0$ cuando $n \to \infty$.
+
+### Ventajas
+
+1. **Simplicidad conceptual**: Muy intuitivo
+2. **No paramétrico**: No asume distribución de datos
+3. **Flexibilidad**: Captura fronteras complejas
+4. **Lazy learning**: No hay fase de entrenamiento
+5. **Actualización trivial**: Fácil incorporar nuevos datos
+6. **Múltiples clases**: Extiende naturalmente a clasificación multi-clase
+
+### Limitaciones
+
+1. **Costo computacional alto en predicción**: $O(np)$ por cada predicción
+2. **Sensibilidad a escala**: Requiere estandarización obligatoria
+3. **Maldición dimensionalidad**: Falla en espacios de alta dimensión
+4. **Memoria**: Debe almacenar todo el conjunto de entrenamiento
+5. **Sensibilidad a features irrelevantes**: Variables ruidosas contaminan distancias
+6. **No interpretable**: No hay modelo explícito para interpretar
+7. **Elección de k**: Requiere validación cruzada
+
+### Selección del parámetro k
+
+**Validación cruzada**:
+$$
+k^* = \arg\min_{k} \frac{1}{K} \sum_{j=1}^{K} \text{Error}_j(k)
+$$
+
+**Regla empírica**:
+$$
+k \approx \sqrt{n}
+$$
+
+**Recomendación**: Probar valores impares para evitar empates en clasificación binaria.
+
+### Extensiones y variantes
+
+**1. Weighted KNN**: 
+Pesos basados en distancia o kernel.
+
+**2. Distance-weighted KNN**:
+$$
+w_i = \exp\left(-\frac{d_i^2}{2\sigma^2}\right)
+$$
+
+**3. Adaptive KNN**: 
+Diferentes valores de $k$ para diferentes regiones del espacio.
+
+**4. Locally Weighted Learning**:
+Combina KNN con regresión local.
+
+### Aplicaciones en economía
+
+1. **Sistemas de recomendación**: Recomendar productos basados en consumidores similares
+
+2. **Credit scoring**: Clasificar aplicantes basándose en aplicantes históricos similares
+
+3. **Detección de fraude**: Identificar transacciones anómalas (diferentes de vecinos)
+
+4. **Valuación inmobiliaria**: Precio de casas basado en propiedades similares
+
+5. **Segmentación de clientes**: Agrupar clientes con características similares
+
+6. **Predicción de quiebra**: Clasificar empresas basándose en empresas similares del pasado
+
+### Comparación con métodos paramétricos
+
+| Aspecto | KNN | Métodos Paramétricos |
+|---------|-----|---------------------|
+| Supuestos | Mínimos | Forma funcional específica |
+| Interpretabilidad | Baja | Alta |
+| Flexibilidad | Alta | Media-Baja |
+| Costo computacional | Alto (predicción) | Bajo (predicción) |
+| Dimensionalidad | Sufre con p alto | Mejor con regularización |
+| Fronteras | No lineales complejas | Lineales o simples |
+
 
 ## Implementación
 
@@ -474,49 +799,301 @@ print("Comparación guardada como 'knn_comparison.png'")
 
 ## Fundamento del algoritmo
 
-```{python}
-print("""
-ÁRBOLES DE DECISIÓN (DECISION TREES)
+Los árboles de decisión son modelos no paramétricos que segmentan recursivamente el espacio de características mediante reglas de decisión simples,  creando una estructura jerárquica tipo árbol. Son altamente interpretables y capturan relaciones no lineales complejas.
 
-Funcionamiento:
-El algoritmo construye un árbol de decisiones mediante:
-1. Selección de la mejor característica para dividir datos
-2. División de datos en subgrupos
-3. Repetición recursiva hasta cumplir criterio de parada
+### Estructura del árbol
 
-Criterios de división:
-- Gini Impurity: Mide impureza de un nodo
-  Gini = 1 - Σ(pi²), donde pi = proporción de clase i
-  
-- Entropy (Information Gain): Mide desorden
-  Entropy = -Σ(pi * log2(pi))
+Un árbol de decisión consiste en:
 
-Parámetros importantes:
-- max_depth: Profundidad máxima del árbol
-- min_samples_split: Mínimo de muestras para dividir nodo
-- min_samples_leaf: Mínimo de muestras en hoja
-- max_features: Número de características a considerar
+**Nodo raíz**: Contiene todos los datos
 
-Ventajas:
-✓ Fácil de interpretar y visualizar
-✓ No requiere normalización de datos
-✓ Maneja características numéricas y categóricas
-✓ Captura relaciones no lineales
-✓ Puede manejar missing values
+**Nodos internos**: Representan decisiones basadas en características
 
-Desventajas:
-✗ Propenso a overfitting
-✗ Inestable (pequeños cambios → árbol diferente)
-✗ Puede crear árboles sesgados con clases desbalanceadas
+- Test en una característica: $X_j \leq t$
+- División binaria del espacio
 
-Aplicaciones económicas:
-- Aprobación de créditos (reglas claras)
-- Segmentación de clientes
-- Detección de fraude
-- Valuación de riesgo
-- Decisiones de inversión
-""")
-```
+**Hojas (nodos terminales)**: Contienen predicciones
+
+- Clasificación: Clase mayoritaria en la hoja
+- Probabilidad: Distribución empírica de clases
+
+**Ramas**: Conectan nodos, representan resultados de tests
+
+### Algoritmo de construcción recursiva
+
+El algoritmo CART (Classification and Regression Trees) construye el árbol mediante particiones binarias recursivas:
+
+**Paso 1 - Selección de división óptima**:
+
+Para cada nodo, encontrar la mejor división $(j, t)$ que minimiza una función de impureza:
+
+$$
+(j^*, t^*) = \arg\min_{j, t} \left[ N_L \cdot I(L) + N_R \cdot I(R) \right]
+$$
+
+donde:
+
+- $j$: Índice de característica
+- $t$: Umbral de división
+- $N_L, N_R$: Número de muestras en nodo izquierdo/derecho
+- $I(L), I(R)$: Impureza de nodos hijo
+
+**Paso 2 - División**:
+
+Dividir datos según $X_j \leq t$:
+
+- Izquierda: $\{(\mathbf{X}_i, Y_i) : X_{ij} \leq t\}$
+- Derecha: $\{(\mathbf{X}_i, Y_i) : X_{ij} > t\}$
+
+**Paso 3 - Recursión**:
+
+Repetir para cada nodo hijo hasta cumplir criterio de parada.
+
+### Criterios de impureza
+
+**1. Índice de Gini (Gini Impurity)**:
+
+$$
+\text{Gini}(N) = 1 - \sum_{k=1}^{K} p_k^2
+$$
+
+donde $p_k$ es la proporción de muestras de clase $k$ en el nodo $N$.
+
+**Interpretación**: Probabilidad de clasificar incorrectamente una observación aleatoria si se etiqueta aleatoriamente según distribución del nodo.
+
+**Propiedades**:
+
+- Mínimo: 0 (nodo puro, todas las muestras de una clase)
+- Máximo: $1 - 1/K$ (distribución uniforme sobre $K$ clases)
+- Para $K=2$: Máximo en $p=0.5$, Gini = 0.5
+
+**2. Entropía (Entropy)**:
+
+$$
+\text{Entropy}(N) = -\sum_{k=1}^{K} p_k \log_2(p_k)
+$$
+
+(por convención, $0 \log 0 = 0$)
+
+**Interpretación**: Cantidad promedio de información (en bits) necesaria para codificar la clase.
+
+**Propiedades**:
+
+- Mínimo: 0 (nodo puro)
+- Máximo: $\log_2(K)$ (distribución uniforme)
+- Para $K=2$: Máximo en $p=0.5$, Entropy = 1
+
+**Ganancia de información** (Information Gain):
+$$
+\text{IG} = \text{Entropy}(\text{padre}) - \left[\frac{N_L}{N}\text{Entropy}(L) + \frac{N_R}{N}\text{Entropy}(R)\right]
+$$
+
+**3. Error de clasificación**:
+
+$$
+\text{Error}(N) = 1 - \max_k p_k
+$$
+
+Menos sensible que Gini y Entropy; menos usado en práctica.
+
+### Comparación Gini vs Entropy
+
+Para clasificación binaria:
+
+$$
+\text{Gini} = 2p(1-p)
+$$
+
+$$
+\text{Entropy} = -p\log_2(p) - (1-p)\log_2(1-p)
+$$
+
+**Diferencias**:
+
+- Entropy penaliza más desigualdades
+- Gini es más rápido de calcular (no requiere logaritmo)
+- En práctica, producen árboles similares
+
+### Criterios de parada
+
+El proceso de división se detiene cuando:
+
+1. **Pureza perfecta**: Todas las muestras en el nodo pertenecen a la misma clase
+
+2. **Profundidad máxima** (`max_depth`): Se alcanza profundidad especificada
+
+3. **Muestras mínimas para dividir** (`min_samples_split`): 
+   $$
+   N_{\text{nodo}} < \text{min\_samples\_split}
+   $$
+
+4. **Muestras mínimas en hoja** (`min_samples_leaf`):
+   División resultaría en hoja con menos muestras que umbral
+
+5. **Ganancia de información insuficiente** (`min_impurity_decrease`):
+   $$
+   \Delta \text{Impurity} < \text{threshold}
+   $$
+
+6. **Número de hojas máximo** (`max_leaf_nodes`): Se alcanza número especificado de hojas
+
+### Predicción
+
+Para clasificar una nueva observación $\mathbf{X}_0$:
+
+**Paso 1**: Comenzar en raíz
+
+**Paso 2**: Seguir ramas según tests:
+
+- Si $X_{0j} \leq t$: ir a nodo izquierdo
+- Si $X_{0j} > t$: ir a nodo derecho
+
+**Paso 3**: Al llegar a hoja, predecir:
+
+**Clase**:
+$$
+\hat{Y}_0 = \arg\max_k p_k^{(\text{hoja})}
+$$
+
+**Probabilidad**:
+$$
+P(Y=k|\mathbf{X}_0) = p_k^{(\text{hoja})} = \frac{N_k^{(\text{hoja})}}{N^{(\text{hoja})}}
+$$
+
+### Fronteras de decisión
+
+Las fronteras son **hiperplanos perpendiculares a los ejes** (axis-aligned):
+
+- Cada división crea frontera perpendicular a un eje de característica
+- Partición recursiva del espacio en regiones rectangulares
+- Dentro de cada región: predicción constante
+
+**Limitación**: No puede representar eficientemente fronteras oblicuas (ej: $X_1 + X_2 = 0$).
+
+### Importancia de características
+
+La importancia de característica $j$ se calcula como:
+
+$$
+\text{Importance}(j) = \sum_{N : \text{usa } X_j} \Delta \text{Impurity}(N) \cdot \frac{N_{\text{samples}}(N)}{N_{\text{total}}}
+$$
+
+Suma ponderada de reducción de impureza sobre todos los nodos que usan $X_j$.
+
+**Normalización**:
+$$
+\sum_{j=1}^{p} \text{Importance}(j) = 1
+$$
+
+### Poda del árbol (Pruning)
+
+Para controlar overfitting:
+
+**1. Pre-pruning (early stopping)**:
+Detener crecimiento usando criterios de parada estrictos
+
+**2. Post-pruning (pruning)**:
+Construir árbol completo, luego podar:
+
+**Cost-Complexity Pruning**:
+$$
+R_\alpha(T) = R(T) + \alpha |T|
+$$
+
+donde:
+
+- $R(T)$: Error de clasificación del árbol
+- $|T|$: Número de hojas
+- $\alpha \geq 0$: Parámetro de complejidad
+
+Seleccionar $\alpha$ que minimiza error de validación cruzada.
+
+### Ventajas
+
+1. **Interpretabilidad**: Fácil de entender y visualizar
+
+2. **No requiere preprocesamiento**: No necesita estandarización ni normalización
+
+3. **Maneja datos mixtos**: Características numéricas y categóricas
+
+4. **No paramétrico**: No asume distribución de datos
+
+5. **Captura no linealidades**: Automáticamente modela interacciones complejas
+
+6. **Robustez a outliers**: En variables independientes (no en Y)
+
+7. **Selección implícita de features**: Usa solo características informativas
+
+8. **Manejo de missing values**: Algoritmos con estrategias para datos faltantes
+
+### Limitaciones
+
+1. **Overfitting**: Tendencia a ajustar demasiado datos de entrenamiento
+   - Árboles profundos memorizan ruido
+
+2. **Inestabilidad**: Alta varianza
+   - Pequeños cambios en datos → árbol completamente diferente
+   - No robusto
+
+3. **Sesgo con clases desbalanceadas**: Tiende a favorecer clase mayoritaria
+
+4. **Fronteras axis-aligned**: No eficiente para fronteras oblicuas
+
+5. **Greedy algorithm**: Optimización local en cada división
+   - No garantiza árbol globalmente óptimo
+
+6. **Discontinuidades**: Predicciones cambian abruptamente en fronteras
+
+### Hiperparámetros principales
+
+| Parámetro | Descripción | Efecto |
+|-----------|-------------|--------|
+| `max_depth` | Profundidad máxima | Mayor → Más complejo, overfitting |
+| `min_samples_split` | Muestras mínimas para dividir | Mayor → Más simple |
+| `min_samples_leaf` | Muestras mínimas en hoja | Mayor → Más suave |
+| `max_features` | Features a considerar | Menor → Más diversidad |
+| `max_leaf_nodes` | Número máximo de hojas | Menor → Más simple |
+| `min_impurity_decrease` | Ganancia mínima | Mayor → Más conservador |
+
+### Aplicaciones en economía
+
+1. **Credit scoring**: Reglas claras para aprobación/rechazo de créditos
+
+2. **Segmentación de clientes**: Identificar grupos con características similares
+
+3. **Detección de fraude**: Reglas para identificar transacciones sospechosas
+
+4. **Predicción de churn**: Identificar clientes en riesgo de abandonar
+
+5. **Pricing dinámico**: Reglas para ajustar precios según características
+
+6. **Evaluación de riesgo**: Clasificación de riesgo crediticio o empresarial
+
+7. **Decisiones de inversión**: Reglas para compra/venta de activos
+
+### Comparación con otros métodos
+
+| Aspecto | Decision Trees | Logistic Regression | KNN |
+|---------|----------------|---------------------|-----|
+| Interpretabilidad | Alta | Media | Baja |
+| Captura no linealidades | Sí | No (sin transformaciones) | Sí |
+| Preprocesamiento | Mínimo | Requiere estandarización | Requiere estandarización |
+| Overfitting | Alto | Bajo-Medio | Medio-Alto |
+| Estabilidad | Baja | Alta | Media |
+| Velocidad predicción | Rápida | Rápida | Lenta |
+
+### Extensiones y variantes
+
+**1. Árboles de regresión (CART)**: Predicción de valores continuos
+
+**2. Random Forests**: Ensemble de árboles (siguiente sección)
+
+**3. Gradient Boosted Trees**: Ensemble secuencial (XGBoost, LightGBM)
+
+**4. Conditional Inference Trees**: Usa tests estadísticos para divisiones
+
+**5. Árboles multivariados**: Divisiones oblicuas (no axis-aligned)
+
 
 ## Implementación básica
 
@@ -634,48 +1211,276 @@ print("\nAnálisis guardado como 'tree_depth_analysis.png'")
 
 ## Fundamento del algoritmo
 
-```{python}
-print("""
-RANDOM FORESTS (BOSQUES ALEATORIOS)
+Random Forests (Bosques Aleatorios) es un método de ensemble que combina múltiples árboles de decisión para producir un clasificador más robusto y preciso. Fue propuesto por Leo Breiman en 2001 y se basa en el principio de "la sabiduría de las multitudes".
 
-Concepto:
-"La sabiduría de las multitudes"
-Ensemble de múltiples árboles de decisión
+### Concepto central: Ensemble Learning
 
-Funcionamiento:
-1. Bootstrap: Crear múltiples muestras aleatorias con reemplazo
-2. Para cada muestra:
-   a. Entrenar árbol de decisión
-   b. En cada división, considerar solo subset aleatorio de características
-3. Predicción final: Votación mayoritaria de todos los árboles
+**Idea fundamental**: Combinar predicciones de múltiples modelos débiles para crear un modelo fuerte.
 
-Parámetros clave:
-- n_estimators: Número de árboles (más = mejor, pero más lento)
-- max_depth: Profundidad de cada árbol
-- max_features: Características a considerar en cada división
-- min_samples_split: Mínimo para dividir nodo
-- bootstrap: Usar bootstrap o no
+**Analogía**: Consultar a múltiples expertos y promediar sus opiniones suele dar mejor resultado que confiar en uno solo.
 
-Ventajas:
-✓ Reduce overfitting vs árbol único
-✓ Más robusto y preciso
-✓ Proporciona importancia de características
-✓ Funciona bien out-of-the-box
-✓ Maneja grandes dimensiones
+### Algoritmo Random Forest
 
-Desventajas:
-✗ Menos interpretable que árbol único
-✗ Más lento para entrenar y predecir
-✗ Requiere más memoria
+**Entrada**: 
 
-Aplicaciones económicas:
-- Credit scoring (alta precisión)
-- Predicción de precios (inmuebles, acciones)
-- Detección de fraude
-- Churn prediction
-- Segmentación avanzada de clientes
-""")
-```
+- Dataset $\mathcal{D} = \{(\mathbf{X}_i, Y_i)\}_{i=1}^{n}$
+- Número de árboles $B$
+- Número de características por división $m$
+
+**Proceso**:
+
+Para $b = 1, \ldots, B$:
+
+**Paso 1 - Bootstrap**: Crear muestra aleatoria con reemplazo
+$$
+\mathcal{D}_b = \{\text{muestra } n \text{ observaciones de } \mathcal{D} \text{ con reemplazo}\}
+$$
+
+Aproximadamente 63.2% de observaciones únicas en cada muestra (algunas repetidas, otras excluidas).
+
+**Paso 2 - Entrenar árbol con randomización adicional**:
+
+Para cada nodo del árbol $b$:
+
+- Seleccionar aleatoriamente $m$ características de las $p$ disponibles
+- Encontrar mejor división usando solo estas $m$ características
+- Dividir nodo
+- Repetir recursivamente
+
+**Paso 3 - Crecer árbol completo**: 
+Sin poda (o con poda mínima). Cada árbol tiene alta varianza pero bajo sesgo.
+
+**Predicción**:
+
+Para nueva observación $\mathbf{X}_0$:
+
+**Clasificación** (votación mayoritaria):
+$$
+\hat{Y}_0 = \text{moda}\{\hat{Y}_0^{(1)}, \hat{Y}_0^{(2)}, \ldots, \hat{Y}_0^{(B)}\}
+$$
+
+**Probabilidad**:
+$$
+\hat{P}(Y=k|\mathbf{X}_0) = \frac{1}{B} \sum_{b=1}^{B} \mathbb{1}(\hat{Y}_0^{(b)} = k)
+$$
+
+### Dos fuentes de aleatoriedad
+
+Random Forests introduce dos niveles de aleatoriedad:
+
+**1. Bootstrap (Bagging)**:
+
+- Diferentes muestras de entrenamiento para cada árbol
+- Reduce varianza al promediar predictores correlacionados
+
+**2. Random Feature Selection**:
+
+- Diferentes subsets de características en cada división
+- **Decorrelaciona** los árboles
+- Típicamente $m = \sqrt{p}$ para clasificación
+
+Sin (2), los árboles serían muy similares (correlacionados), y el promedio no reduciría tanto la varianza.
+
+### Relación con Bagging
+
+**Bagging** (Bootstrap Aggregating): Caso especial de Random Forest donde $m = p$
+
+Random Forest = Bagging + Random Feature Selection
+
+La selección aleatoria de features es la innovación clave que mejora Bagging.
+
+### Out-of-Bag (OOB) Error
+
+Para cada árbol $b$, aproximadamente 37% de observaciones no están en $\mathcal{D}_b$.
+
+Estas observaciones **Out-of-Bag** pueden usarse como conjunto de validación interno:
+
+$$
+\text{OOB Error} = \frac{1}{n} \sum_{i=1}^{n} \mathbb{1}\left(Y_i \neq \frac{1}{|B_i|}\sum_{b \in B_i} \hat{Y}_i^{(b)}\right)
+$$
+
+donde $B_i$ es el conjunto de árboles que no usaron observación $i$.
+
+**Ventaja**: No requiere conjunto de validación separado.
+
+### Importancia de características
+
+Random Forests calcula dos medidas de importancia:
+
+**1. Mean Decrease Impurity (MDI)**:
+
+$$
+\text{Importance}(X_j) = \frac{1}{B} \sum_{b=1}^{B} \sum_{N \in T_b : \text{usa } X_j} \Delta I(N) \cdot \frac{n_N}{n}
+$$
+
+Promedio sobre todos los árboles de la reducción de impureza cuando se usa $X_j$.
+
+**2. Mean Decrease Accuracy (MDA)** (Permutation Importance):
+
+Para cada característica $X_j$:
+
+1. Calcular OOB error original
+2. Permutar aleatoriamente valores de $X_j$ en OOB
+3. Recalcular OOB error
+4. Importancia = Incremento en error
+
+$$
+\text{Importance}(X_j) = \text{OOB Error}_{\text{permutado}} - \text{OOB Error}_{\text{original}}
+$$
+
+**Interpretación**: Si $X_j$ es importante, permutarla aumentará significativamente el error.
+
+### Propiedades teóricas
+
+**Teorema (Breiman)**:
+
+Bajo ciertas condiciones, cuando $B \to \infty$:
+
+$$
+\lim_{B \to \infty} \text{Error}_{RF} = \rho \cdot \bar{\sigma}^2 \cdot (1 - s^2)
+$$
+
+donde:
+
+- $\rho$: Correlación promedio entre árboles
+- $\bar{\sigma}^2$: Varianza promedio de cada árbol
+- $s$: Fuerza promedio de cada árbol
+
+**Implicaciones**:
+
+1. **Aumentar B**: Siempre ayuda (no overfitting)
+2. **Reducir ρ** (decorrelación): Ayuda → Random feature selection
+3. **Aumentar fuerza árboles**: Ayuda → Usar más características
+
+### Hiperparámetros principales
+
+| Parámetro | Descripción | Valor típico | Efecto |
+|-----------|-------------|--------------|--------|
+| `n_estimators` | Número de árboles | 100-500 | Más = mejor (con límite) |
+| `max_features` | Features por división | $\sqrt{p}$ (clasificación) | Controla correlación |
+| `max_depth` | Profundidad máxima | None (completo) | Controla sesgo-varianza |
+| `min_samples_split` | Mínimo para dividir | 2 | Mayor = más simple |
+| `min_samples_leaf` | Mínimo en hoja | 1 | Mayor = más suave |
+| `bootstrap` | Usar bootstrap | True | False = usar todo dataset |
+
+### Ventajas
+
+1. **Reduce overfitting**: Vs árbol único, por promediado
+
+2. **Alta precisión**: Entre los mejores algoritmos out-of-the-box
+
+3. **Robusto**: Menos sensible a hiperparámetros que otros métodos
+
+4. **Maneja alta dimensionalidad**: Funciona bien incluso con $p$ grande
+
+5. **Importancia de features**: Proporciona ranking de características
+
+6. **No requiere estandarización**: Como árboles individuales
+
+7. **Paralelizable**: Árboles se entrenan independientemente
+
+8. **OOB error**: Validación interna sin conjunto separado
+
+9. **Maneja missing values**: Estrategias incorporadas
+
+10. **Versátil**: Funciona bien en diversos problemas
+
+### Limitaciones
+
+1. **Menos interpretable**: Difícil entender modelo (caja negra)
+
+2. **Costo computacional**: 
+
+   - Entrenamiento: $O(B \cdot n \log n \cdot m)$
+   - Predicción: $O(B \cdot \log n)$
+   Más lento que un árbol único
+
+3. **Memoria**: Requiere almacenar $B$ árboles
+
+4. **Extrapolación limitada**: No predice fuera del rango de datos de entrenamiento
+
+5. **Sesgo con clases desbalanceadas**: Puede favorecer clase mayoritaria
+
+6. **No captura tendencias lineales simples**: A veces un modelo simple es mejor
+
+### Comparación con otros métodos
+
+| Aspecto | Random Forest | Decision Tree | Gradient Boosting |
+|---------|---------------|---------------|-------------------|
+| Interpretabilidad | Baja | Alta | Baja |
+| Accuracy | Alta | Media | Muy alta |
+| Overfitting | Bajo | Alto | Medio (con tuning) |
+| Velocidad entrenamiento | Media | Rápida | Lenta |
+| Velocidad predicción | Media | Rápida | Media |
+| Hiperparámetros | Pocos críticos | Pocos | Muchos críticos |
+| Robustez | Alta | Baja | Media |
+
+### Selección de hiperparámetros
+
+**Estrategia típica**:
+
+1. **n_estimators**: Comenzar con 100, aumentar hasta que performance se estabilice
+
+2. **max_features**: 
+
+   - Clasificación: $\sqrt{p}$
+   - Regresión: $p/3$
+   - Probar también $\log_2(p)$ y $p/2$
+
+3. **max_depth**: Comenzar sin límite, reducir si overfitting
+
+4. **min_samples_split** y **min_samples_leaf**: Usar valores por defecto inicialmente
+
+**Grid Search** sobre:
+
+- `n_estimators`: [50, 100, 200, 500]
+- `max_features`: ['sqrt', 'log2', 0.3]
+- `max_depth`: [None, 10, 20, 30]
+- `min_samples_split`: [2, 5, 10]
+
+### Aplicaciones en economía
+
+1. **Credit scoring**: Predicción de incumplimiento con alta precisión
+
+2. **Predicción de precios**:
+
+   - Inmuebles
+   - Acciones
+   - Commodities
+
+3. **Detección de fraude**: Identificar transacciones fraudulentas
+
+4. **Churn prediction**: Predecir abandono de clientes
+
+5. **Segmentación avanzada**: Clasificar clientes en múltiples categorías
+
+6. **Predicción de quiebra empresarial**: Clasificación de riesgo
+
+7. **Trading algorítmico**: Señales de compra/venta
+
+8. **Risk management**: Evaluación de riesgo de portafolios
+
+### Variantes y extensiones
+
+**1. Extremely Randomized Trees (Extra Trees)**:
+
+- Divisiones completamente aleatorias (no optimizadas)
+- Más rápido, más diversidad
+
+**2. Balanced Random Forest**:
+
+- Balanceo de clases en cada árbol
+- Mejor para datasets desbalanceados
+
+**3. Isolation Forest**:
+
+- Para detección de anomalías
+- Aísla outliers
+
+**4. Quantile Regression Forest**:
+
+- Predice distribución completa, no solo media
+- Útil para intervalos de confianza
 
 ## Implementación
 

@@ -367,6 +367,10 @@ predecir etiquetas de nuevos datos.
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Librerías importadas exitosamente
+\end{verbatim}
+
 \subsection{Tipos de problemas de
 clasificación}\label{tipos-de-problemas-de-clasificaciuxf3n}
 
@@ -399,6 +403,33 @@ clasificación}\label{tipos-de-problemas-de-clasificaciuxf3n}
 \StringTok{"""}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+
+TIPOS DE PROBLEMAS DE CLASIFICACIÓN
+
+1. CLASIFICACIÓN BINARIA
+   - Dos clases posibles
+   - Ejemplos económicos:
+     * Aprobado/Rechazado (crédito)
+     * Paga/No paga (incumplimiento)
+     * Éxito/Fracaso (empresa)
+     * Compra/No compra (marketing)
+
+2. CLASIFICACIÓN MULTI-CLASE
+   - Más de dos clases
+   - Ejemplos económicos:
+     * Clasificación de riesgo (AAA, AA, A, BBB, etc.)
+     * Segmentación de clientes (bajo, medio, alto valor)
+     * Categorías de productos
+     * Niveles socioeconómicos (A, B, C, D, E)
+
+3. CLASIFICACIÓN MULTI-ETIQUETA
+   - Múltiples etiquetas simultáneas
+   - Ejemplos económicos:
+     * Características de consumidor (múltiples intereses)
+     * Atributos de producto (múltiples categorías)
+\end{verbatim}
 
 \subsection{Dataset de ejemplo: Iris}\label{dataset-de-ejemplo-iris}
 
@@ -447,45 +478,227 @@ clasificación}\label{tipos-de-problemas-de-clasificaciuxf3n}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Dataset Iris:
+   sepal length (cm)  sepal width (cm)  petal length (cm)  petal width (cm)  \
+0                5.1               3.5                1.4               0.2   
+1                4.9               3.0                1.4               0.2   
+2                4.7               3.2                1.3               0.2   
+3                4.6               3.1                1.5               0.2   
+4                5.0               3.6                1.4               0.2   
+
+   especie especie_nombre  
+0        0         Setosa  
+1        0         Setosa  
+2        0         Setosa  
+3        0         Setosa  
+4        0         Setosa  
+
+Forma: (150, 6)
+
+Distribución de especies:
+especie_nombre
+Setosa        50
+Versicolor    50
+Virginica     50
+Name: count, dtype: int64
+
+Gráfico guardado como 'iris_scatter.png'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-4-output-2.pdf}}
+
 \section{Regresión logística}\label{regresiuxf3n-loguxedstica}
 
 \subsection{Fundamento matemático}\label{fundamento-matemuxe1tico}
 
-La regresión logística es un modelo lineal para clasificación que estima
-probabilidades usando la función logística (sigmoide).
+La regresión logística es uno de los métodos más fundamentales y
+ampliamente utilizados para problemas de clasificación binaria. A pesar
+de su nombre que incluye ``regresión'', es un algoritmo de clasificación
+que predice probabilidades de pertenencia a clases mediante una
+transformación no lineal de una combinación lineal de características.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
-\StringTok{REGRESIÓN LOGÍSTICA}
+\subsubsection{Modelo de probabilidad}\label{modelo-de-probabilidad}
 
-\StringTok{Modelo matemático:}
-\StringTok{    y = β₀ + β₁x₁ + β₂x₂ + ... + βₙxₙ + ε}
-\StringTok{    }
-\StringTok{    p = 1 / (1 + e\^{}({-}y))}
+Para clasificación binaria donde \(Y \in \{0, 1\}\), la regresión
+logística modela la probabilidad de que la observación pertenezca a la
+clase positiva (\(Y=1\)):
 
-\StringTok{Donde:}
-\StringTok{{-} y: Combinación lineal de características}
-\StringTok{{-} p: Probabilidad de pertenecer a la clase positiva}
-\StringTok{{-} β: Coeficientes (pesos) del modelo}
-\StringTok{{-} e: Base del logaritmo natural (≈2.718)}
+\[
+P(Y=1 | \mathbf{X}) = p(\mathbf{X}) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p)}}
+\]
 
-\StringTok{Características:}
-\StringTok{✓ Simple e interpretable}
-\StringTok{✓ Rápido de entrenar}
-\StringTok{✓ Funciona bien con características linealmente separables}
-\StringTok{✓ Proporciona probabilidades calibradas}
-\StringTok{✗ Asume relación lineal}
-\StringTok{✗ Sensible a outliers}
+Definiendo la combinación lineal: \[
+z = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_p X_p = \beta_0 + \mathbf{X}^\top\boldsymbol{\beta}
+\]
 
-\StringTok{Aplicaciones económicas:}
-\StringTok{{-} Predicción de incumplimiento crediticio}
-\StringTok{{-} Clasificación de riesgo empresarial}
-\StringTok{{-} Predicción de compra de producto}
-\StringTok{{-} Churn (abandono de clientes)}
-\StringTok{"""}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+La probabilidad se expresa como: \[
+p(\mathbf{X}) = \frac{1}{1 + e^{-z}} = \frac{e^z}{1 + e^z}
+\]
+
+Esta función se conoce como \textbf{función logística} o
+\textbf{sigmoide}.
+
+\subsubsection{Función sigmoide}\label{funciuxf3n-sigmoide}
+
+La función sigmoide tiene la forma: \[
+\sigma(z) = \frac{1}{1 + e^{-z}}
+\]
+
+\textbf{Propiedades clave}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Rango}: \(\sigma(z) \in (0, 1)\) para todo
+  \(z \in \mathbb{R}\)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Garantiza que las predicciones sean probabilidades válidas
+  \end{itemize}
+\item
+  \textbf{Simetría}: \(\sigma(-z) = 1 - \sigma(z)\)
+\item
+  \textbf{Límites asintóticos}: \[
+  \lim_{z \to \infty} \sigma(z) = 1, \quad \lim_{z \to -\infty} \sigma(z) = 0
+  \]
+\item
+  \textbf{Punto medio}: \(\sigma(0) = 0.5\)
+\item
+  \textbf{Derivada}: \[
+  \frac{d\sigma(z)}{dz} = \sigma(z)(1 - \sigma(z))
+  \] Esta propiedad simplifica el cálculo de gradientes.
+\end{enumerate}
+
+\subsubsection{Odds y log-odds (logit)}\label{odds-y-log-odds-logit}
+
+\textbf{Odds (momios)}:
+
+La probabilidad de éxito sobre la probabilidad de fracaso: \[
+\text{Odds} = \frac{p(\mathbf{X})}{1 - p(\mathbf{X})} = e^z
+\]
+
+\textbf{Log-odds (logit)}:
+
+Tomando logaritmo natural: \[
+\log\left(\frac{p(\mathbf{X})}{1-p(\mathbf{X})}\right) = z = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p
+\]
+
+Esta es la \textbf{transformación logit} que convierte probabilidades
+(0,1) al rango completo de números reales \((-\infty, \infty)\).
+
+\textbf{Interpretación crucial}: El modelo es lineal en el log-odds, no
+en la probabilidad misma.
+
+\subsubsection{Interpretación de
+coeficientes}\label{interpretaciuxf3n-de-coeficientes}
+
+Un incremento unitario en \(X_j\) (manteniendo otras variables
+constantes):
+
+\textbf{En log-odds}: \[
+\Delta \log(\text{Odds}) = \beta_j
+\]
+
+\textbf{En odds}: \[
+\text{Odds ratio} = e^{\beta_j}
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  Si \(\beta_j > 0\): \(e^{\beta_j} > 1\) → La variable incrementa el
+  odds de \(Y=1\)
+\item
+  Si \(\beta_j < 0\): \(e^{\beta_j} < 1\) → La variable reduce el odds
+  de \(Y=1\)
+\item
+  Si \(\beta_j = 0\): \(e^{\beta_j} = 1\) → La variable no afecta el
+  odds
+\end{itemize}
+
+\textbf{Efecto marginal en probabilidad}: \[
+\frac{\partial p}{\partial X_j} = \beta_j \cdot p(\mathbf{X}) \cdot (1 - p(\mathbf{X}))
+\]
+
+El efecto no es constante; depende del nivel de probabilidad actual.
+
+\subsubsection{Estimación: Maximum
+Likelihood}\label{estimaciuxf3n-maximum-likelihood}
+
+Los coeficientes se estiman mediante \textbf{máxima verosimilitud}
+(MLE).
+
+\textbf{Log-verosimilitud}: \[
+\ell(\boldsymbol{\beta}) = \sum_{i=1}^{n} \left[ Y_i \log p(\mathbf{X}_i) + (1-Y_i) \log(1-p(\mathbf{X}_i)) \right]
+\]
+
+\textbf{Objetivo}: Maximizar \(\ell(\boldsymbol{\beta})\) mediante
+métodos iterativos (Newton-Raphson, gradient descent).
+
+\textbf{Función de pérdida equivalente} (Binary Cross-Entropy): \[
+\text{BCE}(\boldsymbol{\beta}) = -\frac{1}{n}\sum_{i=1}^{n} \left[ Y_i \log \hat{p}_i + (1-Y_i) \log(1-\hat{p}_i) \right]
+\]
+
+\subsubsection{Frontera de decisión}\label{frontera-de-decisiuxf3n}
+
+La frontera de decisión es donde \(p(\mathbf{X}) = 0.5\): \[
+\beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p = 0
+\]
+
+En el espacio de características, esta es una \textbf{hipersuperficie
+lineal} (hiperplano).
+
+\subsubsection{Ventajas}\label{ventajas}
+
+\begin{itemize}
+\tightlist
+\item
+  Salidas probabilísticas interpretables
+\item
+  Eficiencia computacional
+\item
+  Pocos hiperparámetros
+\item
+  Funciona bien como baseline
+\item
+  Extensible a clasificación multi-clase
+\end{itemize}
+
+\subsubsection{Limitaciones}\label{limitaciones}
+
+\begin{itemize}
+\tightlist
+\item
+  Asume linealidad en log-odds
+\item
+  No captura relaciones no lineales complejas
+\item
+  Sensible a outliers
+\item
+  Requiere features relevantes
+\end{itemize}
+
+\subsubsection{Aplicaciones
+económicas}\label{aplicaciones-econuxf3micas}
+
+\begin{itemize}
+\tightlist
+\item
+  Predicción de incumplimiento crediticio
+\item
+  Participación laboral
+\item
+  Decisiones de compra
+\item
+  Migración
+\item
+  Adopción de tecnología
+\item
+  Éxito de startups
+\end{itemize}
 
 \subsection{Implementación}\label{implementaciuxf3n}
 
@@ -518,6 +731,23 @@ probabilidades usando la función logística (sigmoide).
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  β₂ (ancho sépalo): }\SpecialCharTok{\{}\NormalTok{modelo\_logit}\SpecialCharTok{.}\NormalTok{coef\_[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{]}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Conjunto de entrenamiento: 105 muestras
+Conjunto de prueba: 45 muestras
+
+Distribución en entrenamiento:
+  Clase 0 (No Virginica): 68
+  Clase 1 (Virginica): 37
+
+
+MODELO ENTRENADO
+======================================================================
+Intercepto (β₀): -12.3391
+Coeficientes:
+  β₁ (largo sépalo): 2.0623
+  β₂ (ancho sépalo): -0.2043
+\end{verbatim}
 
 \subsection{Predicción e
 interpretación}\label{predicciuxf3n-e-interpretaciuxf3n}
@@ -556,6 +786,32 @@ interpretación}\label{predicciuxf3n-e-interpretaciuxf3n}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Predicción: }\SpecialCharTok{\{}\StringTok{\textquotesingle{}Virginica\textquotesingle{}} \ControlFlowTok{if}\NormalTok{ pred }\OperatorTok{==} \DecValTok{1} \ControlFlowTok{else} \StringTok{\textquotesingle{}No Virginica\textquotesingle{}}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+
+Accuracy en test: 0.8667 (86.7%)
+
+Matriz de confusión:
+[[28  4]
+ [ 2 11]]
+
+Reporte de clasificación:
+              precision    recall  f1-score   support
+
+No Virginica       0.93      0.88      0.90        32
+   Virginica       0.73      0.85      0.79        13
+
+    accuracy                           0.87        45
+   macro avg       0.83      0.86      0.84        45
+weighted avg       0.88      0.87      0.87        45
+
+
+
+EJEMPLO DE PREDICCIÓN
+Características: Largo=6.5 cm, Ancho=3.0 cm
+Probabilidad de ser Virginica: 0.6113 (61.1%)
+Predicción: Virginica
+\end{verbatim}
 
 \subsection{Visualización del modelo}\label{visualizaciuxf3n-del-modelo}
 
@@ -609,50 +865,373 @@ interpretación}\label{predicciuxf3n-e-interpretaciuxf3n}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Gráfico guardado como 'logistic_regression_boundary.png'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-7-output-2.pdf}}
+
 \section{K-Nearest Neighbors (KNN)}\label{k-nearest-neighbors-knn}
 
 \subsection{Fundamento del algoritmo}\label{fundamento-del-algoritmo}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
-\StringTok{K{-}NEAREST NEIGHBORS (KNN)}
+K-Nearest Neighbors es un algoritmo de clasificación no paramétrico
+basado en la premisa de que observaciones similares (vecinas) tienden a
+pertenecer a la misma clase. Es uno de los algoritmos más simples
+conceptualmente, pero sorprendentemente efectivo en muchas aplicaciones.
 
-\StringTok{Principio:}
-\StringTok{"Dime quiénes son tus vecinos y te diré quién eres"}
+\subsubsection{Principio fundamental}\label{principio-fundamental}
 
-\StringTok{Funcionamiento:}
-\StringTok{1. Para clasificar un nuevo punto:}
-\StringTok{   a. Calcula distancia a todos los puntos de entrenamiento}
-\StringTok{   b. Selecciona los K vecinos más cercanos}
-\StringTok{   c. Vota por mayoría: clase más común entre vecinos}
+\textbf{Idea central}: ``Dime quiénes son tus vecinos y te diré quién
+eres''
 
-\StringTok{Parámetros clave:}
-\StringTok{{-} k: Número de vecinos a considerar}
-\StringTok{  * k pequeño: Más flexible, sensible a ruido}
-\StringTok{  * k grande: Más suave, puede perder detalles}
+Una nueva observación se clasifica según la clase más común entre sus
+\(k\) vecinos más cercanos en el espacio de características.
 
-\StringTok{Métricas de distancia:}
-\StringTok{{-} Euclidiana: √Σ(xi {-} yi)²}
-\StringTok{{-} Manhattan: Σ|xi {-} yi|}
-\StringTok{{-} Minkowski: (Σ|xi {-} yi|\^{}p)\^{}(1/p)}
+\subsubsection{Definición formal}\label{definiciuxf3n-formal}
 
-\StringTok{Características:}
-\StringTok{✓ No paramétrico (no asume distribución)}
-\StringTok{✓ Simple de entender}
-\StringTok{✓ Funciona bien con fronteras complejas}
-\StringTok{✗ Lento en predicción con datasets grandes}
-\StringTok{✗ Sensible a la escala de características}
-\StringTok{✗ Sufre con alta dimensionalidad}
+Dado:
 
-\StringTok{Aplicaciones económicas:}
-\StringTok{{-} Sistema de recomendación de productos}
-\StringTok{{-} Clasificación de clientes similares}
-\StringTok{{-} Detección de anomalías en transacciones}
-\StringTok{{-} Valuación de propiedades (casas similares)}
-\StringTok{"""}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{itemize}
+\tightlist
+\item
+  Conjunto de entrenamiento
+  \(\mathcal{D} = \{(\mathbf{X}_i, Y_i)\}_{i=1}^{n}\)
+\item
+  Nuevo punto a clasificar \(\mathbf{X}_0\)
+\item
+  Número de vecinos \(k\)
+\end{itemize}
+
+El algoritmo:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Calcular distancias} a todos los puntos de entrenamiento: \[
+  d_i = d(\mathbf{X}_0, \mathbf{X}_i) \quad \text{para } i = 1, \ldots, n
+  \]
+\item
+  \textbf{Identificar} los \(k\) puntos con menores distancias: \[
+  \mathcal{N}_k(\mathbf{X}_0) = \{k \text{ vecinos más cercanos}\}
+  \]
+\item
+  \textbf{Votar por mayoría}: \[
+  \hat{Y}_0 = \arg\max_{c} \sum_{i \in \mathcal{N}_k(\mathbf{X}_0)} \mathbb{1}(Y_i = c)
+  \]
+
+  donde \(\mathbb{1}(\cdot)\) es la función indicadora y \(c\) recorre
+  todas las clases posibles.
+\end{enumerate}
+
+\subsubsection{Métricas de distancia}\label{muxe9tricas-de-distancia}
+
+La elección de la métrica de distancia es fundamental en KNN:
+
+\textbf{1. Distancia Euclidiana} (la más común): \[
+d(\mathbf{X}_i, \mathbf{X}_j) = \sqrt{\sum_{m=1}^{p} (X_{im} - X_{jm})^2} = \|\mathbf{X}_i - \mathbf{X}_j\|_2
+\]
+
+\textbf{2. Distancia Manhattan} (city-block): \[
+d(\mathbf{X}_i, \mathbf{X}_j) = \sum_{m=1}^{p} |X_{im} - X_{jm}| = \|\mathbf{X}_i - \mathbf{X}_j\|_1
+\]
+
+\textbf{3. Distancia Minkowski} (generalización): \[
+d(\mathbf{X}_i, \mathbf{X}_j) = \left(\sum_{m=1}^{p} |X_{im} - X_{jm}|^q\right)^{1/q}
+\]
+
+donde:
+
+\begin{itemize}
+\tightlist
+\item
+  \(q = 1\): Manhattan
+\item
+  \(q = 2\): Euclidiana
+\item
+  \(q \to \infty\): Chebyshev
+\end{itemize}
+
+\textbf{4. Distancia de Mahalanobis} (considera correlaciones): \[
+d(\mathbf{X}_i, \mathbf{X}_j) = \sqrt{(\mathbf{X}_i - \mathbf{X}_j)^\top \mathbf{\Sigma}^{-1} (\mathbf{X}_i - \mathbf{X}_j)}
+\]
+
+\subsubsection{Regla de decisión
+probabilística}\label{regla-de-decisiuxf3n-probabiluxedstica}
+
+KNN puede proporcionar probabilidades estimadas:
+
+\[
+P(Y = c | \mathbf{X}_0) = \frac{1}{k} \sum_{i \in \mathcal{N}_k(\mathbf{X}_0)} \mathbb{1}(Y_i = c)
+\]
+
+Es decir, la proporción de vecinos que pertenecen a la clase \(c\).
+
+\subsubsection{Versión ponderada}\label{versiuxf3n-ponderada}
+
+En lugar de votos iguales, se pueden usar \textbf{pesos inversamente
+proporcionales a la distancia}:
+
+\[
+\hat{Y}_0 = \arg\max_{c} \sum_{i \in \mathcal{N}_k(\mathbf{X}_0)} w_i \cdot \mathbb{1}(Y_i = c)
+\]
+
+donde: \[
+w_i = \frac{1}{d(\mathbf{X}_0, \mathbf{X}_i) + \epsilon}
+\]
+
+\(\epsilon > 0\) evita división por cero. Vecinos más cercanos tienen
+más influencia.
+
+\subsubsection{Parámetro k: Trade-off
+sesgo-varianza}\label{paruxe1metro-k-trade-off-sesgo-varianza}
+
+\textbf{k pequeño} (ej: k=1):
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Baja bias}: Frontera de decisión flexible, se adapta a
+  detalles locales
+\item
+  \textbf{Alta varianza}: Sensible a ruido, predicciones inestables
+\item
+  Riesgo de \textbf{overfitting}
+\item
+  Fronteras irregulares
+\end{itemize}
+
+\textbf{k grande} (ej: k=50):
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Alta bias}: Frontera de decisión suave, ignora detalles
+  locales
+\item
+  \textbf{Baja varianza}: Predicciones estables
+\item
+  Riesgo de \textbf{underfitting}
+\item
+  Fronteras más regulares
+\end{itemize}
+
+\textbf{k óptimo}: Balance entre sesgo y varianza, determinado
+típicamente por validación cruzada.
+
+\subsubsection{Complejidad
+computacional}\label{complejidad-computacional}
+
+\textbf{Búsqueda naive}:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Entrenamiento}: \(O(1)\) (solo almacenar datos)
+\item
+  \textbf{Predicción}: \(O(np)\) por cada nueva observación
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Calcular \(n\) distancias de dimensión \(p\)
+  \item
+    Encontrar los \(k\) mínimos: \(O(n \log k)\)
+  \end{itemize}
+\end{itemize}
+
+\textbf{Total por predicción}: \(O(np + n \log k) \approx O(np)\)
+
+\textbf{Estructuras eficientes} (KD-trees, Ball trees):
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Construcción}: \(O(np \log n)\)
+\item
+  \textbf{Predicción}: \(O(\log n)\) en promedio (mejor caso)
+\end{itemize}
+
+Sin embargo, en alta dimensionalidad (\(p\) grande), estas estructuras
+pierden eficiencia.
+
+\subsubsection{Maldición de la
+dimensionalidad}\label{maldiciuxf3n-de-la-dimensionalidad}
+
+En espacios de alta dimensión, KNN sufre severamente:
+
+\textbf{Problema 1}: Las distancias se vuelven uniformes \[
+\lim_{p \to \infty} \frac{d_{\max} - d_{\min}}{d_{\min}} \to 0
+\]
+
+Todos los puntos parecen equidistantes, haciendo que el concepto de
+``vecino cercano'' pierda significado.
+
+\textbf{Problema 2}: Volumen crece exponencialmente
+
+Para mantener densidad constante de vecinos, el volumen requerido crece
+como \(r^p\).
+
+\textbf{Consecuencia}: KNN funciona mejor cuando \(p < 10-20\).
+
+\subsubsection{Sensibilidad a la escala}\label{sensibilidad-a-la-escala}
+
+KNN es \textbf{extremadamente sensible} a la escala de las variables.
+
+\textbf{Problema}: Una variable con rango {[}0, 1000{]} dominará una con
+rango {[}0, 1{]} en el cálculo de distancias.
+
+\textbf{Solución obligatoria}: Estandarización \[
+\tilde{X}_{jm} = \frac{X_{jm} - \mu_m}{\sigma_m}
+\]
+
+Sin estandarización, el algoritmo es inválido.
+
+\subsubsection{Fronteras de decisión}\label{fronteras-de-decisiuxf3n}
+
+Las fronteras de decisión de KNN son:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{No lineales}: Pueden ser arbitrariamente complejas
+\item
+  \textbf{No paramétricas}: No asumen forma funcional
+\item
+  \textbf{Locales}: Definidas solo por vecinos cercanos
+\item
+  \textbf{Irregulares}: Especialmente con k pequeño
+\end{itemize}
+
+Para clasificación binaria con k=1, la frontera es la \textbf{diagrama
+de Voronoi} del conjunto de entrenamiento.
+
+\subsubsection{Propiedades teóricas}\label{propiedades-teuxf3ricas}
+
+\textbf{Teorema (Cover \& Hart, 1967)}:
+
+Para k=1 y \(n \to \infty\), el error de KNN está acotado por: \[
+\text{Error}_{1-NN} \leq 2 \cdot \text{Error}_{\text{Bayes}}
+\]
+
+donde Error\(_{\text{Bayes}}\) es el error del clasificador óptimo.
+
+\textbf{Consistencia}: KNN es consistente si \(k \to \infty\) y
+\(k/n \to 0\) cuando \(n \to \infty\).
+
+\subsubsection{Ventajas}\label{ventajas-1}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Simplicidad conceptual}: Muy intuitivo
+\item
+  \textbf{No paramétrico}: No asume distribución de datos
+\item
+  \textbf{Flexibilidad}: Captura fronteras complejas
+\item
+  \textbf{Lazy learning}: No hay fase de entrenamiento
+\item
+  \textbf{Actualización trivial}: Fácil incorporar nuevos datos
+\item
+  \textbf{Múltiples clases}: Extiende naturalmente a clasificación
+  multi-clase
+\end{enumerate}
+
+\subsubsection{Limitaciones}\label{limitaciones-1}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Costo computacional alto en predicción}: \(O(np)\) por cada
+  predicción
+\item
+  \textbf{Sensibilidad a escala}: Requiere estandarización obligatoria
+\item
+  \textbf{Maldición dimensionalidad}: Falla en espacios de alta
+  dimensión
+\item
+  \textbf{Memoria}: Debe almacenar todo el conjunto de entrenamiento
+\item
+  \textbf{Sensibilidad a features irrelevantes}: Variables ruidosas
+  contaminan distancias
+\item
+  \textbf{No interpretable}: No hay modelo explícito para interpretar
+\item
+  \textbf{Elección de k}: Requiere validación cruzada
+\end{enumerate}
+
+\subsubsection{Selección del parámetro
+k}\label{selecciuxf3n-del-paruxe1metro-k}
+
+\textbf{Validación cruzada}: \[
+k^* = \arg\min_{k} \frac{1}{K} \sum_{j=1}^{K} \text{Error}_j(k)
+\]
+
+\textbf{Regla empírica}: \[
+k \approx \sqrt{n}
+\]
+
+\textbf{Recomendación}: Probar valores impares para evitar empates en
+clasificación binaria.
+
+\subsubsection{Extensiones y variantes}\label{extensiones-y-variantes}
+
+\textbf{1. Weighted KNN}: Pesos basados en distancia o kernel.
+
+\textbf{2. Distance-weighted KNN}: \[
+w_i = \exp\left(-\frac{d_i^2}{2\sigma^2}\right)
+\]
+
+\textbf{3. Adaptive KNN}: Diferentes valores de \(k\) para diferentes
+regiones del espacio.
+
+\textbf{4. Locally Weighted Learning}: Combina KNN con regresión local.
+
+\subsubsection{Aplicaciones en
+economía}\label{aplicaciones-en-economuxeda}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Sistemas de recomendación}: Recomendar productos basados en
+  consumidores similares
+\item
+  \textbf{Credit scoring}: Clasificar aplicantes basándose en aplicantes
+  históricos similares
+\item
+  \textbf{Detección de fraude}: Identificar transacciones anómalas
+  (diferentes de vecinos)
+\item
+  \textbf{Valuación inmobiliaria}: Precio de casas basado en propiedades
+  similares
+\item
+  \textbf{Segmentación de clientes}: Agrupar clientes con
+  características similares
+\item
+  \textbf{Predicción de quiebra}: Clasificar empresas basándose en
+  empresas similares del pasado
+\end{enumerate}
+
+\subsubsection{Comparación con métodos
+paramétricos}\label{comparaciuxf3n-con-muxe9todos-paramuxe9tricos}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Aspecto & KNN & Métodos Paramétricos \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Supuestos & Mínimos & Forma funcional específica \\
+Interpretabilidad & Baja & Alta \\
+Flexibilidad & Alta & Media-Baja \\
+Costo computacional & Alto (predicción) & Bajo (predicción) \\
+Dimensionalidad & Sufre con p alto & Mejor con regularización \\
+Fronteras & No lineales complejas & Lineales o simples \\
+\end{longtable}
 
 \subsection{Implementación}\label{implementaciuxf3n-1}
 
@@ -698,6 +1277,22 @@ interpretación}\label{predicciuxf3n-e-interpretaciuxf3n}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+EVALUACIÓN DE KNN CON DIFERENTES VALORES DE K
+======================================================================
+K     Accuracy Train  Accuracy Test   Diferencia  
+----------------------------------------------------------------------
+1     0.9619          0.7111          0.2508      
+3     0.8571          0.8000          0.0571      
+5     0.8667          0.8000          0.0667      
+10    0.8190          0.7556          0.0635      
+15    0.8381          0.7111          0.1270      
+20    0.8095          0.7556          0.0540      
+
+
+Mejor k: 3 (mayor accuracy en test)
+\end{verbatim}
+
 \subsection{Visualización del efecto de
 k}\label{visualizaciuxf3n-del-efecto-de-k}
 
@@ -741,6 +1336,13 @@ k}\label{visualizaciuxf3n-del-efecto-de-k}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+Gráfico guardado como 'knn_k_selection.png'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-9-output-2.pdf}}
+
 \subsection{Visualización de fronteras de
 decisión}\label{visualizaciuxf3n-de-fronteras-de-decisiuxf3n}
 
@@ -783,55 +1385,472 @@ decisión}\label{visualizaciuxf3n-de-fronteras-de-decisiuxf3n}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Comparación guardada como 'knn_comparison.png'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-10-output-2.pdf}}
+
 \section{Árboles de decisión}\label{uxe1rboles-de-decisiuxf3n}
 
 \subsection{Fundamento del algoritmo}\label{fundamento-del-algoritmo-1}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
-\StringTok{ÁRBOLES DE DECISIÓN (DECISION TREES)}
+Los árboles de decisión son modelos no paramétricos que segmentan
+recursivamente el espacio de características mediante reglas de decisión
+simples, creando una estructura jerárquica tipo árbol. Son altamente
+interpretables y capturan relaciones no lineales complejas.
 
-\StringTok{Funcionamiento:}
-\StringTok{El algoritmo construye un árbol de decisiones mediante:}
-\StringTok{1. Selección de la mejor característica para dividir datos}
-\StringTok{2. División de datos en subgrupos}
-\StringTok{3. Repetición recursiva hasta cumplir criterio de parada}
+\subsubsection{Estructura del árbol}\label{estructura-del-uxe1rbol}
 
-\StringTok{Criterios de división:}
-\StringTok{{-} Gini Impurity: Mide impureza de un nodo}
-\StringTok{  Gini = 1 {-} Σ(pi²), donde pi = proporción de clase i}
-\StringTok{  }
-\StringTok{{-} Entropy (Information Gain): Mide desorden}
-\StringTok{  Entropy = {-}Σ(pi * log2(pi))}
+Un árbol de decisión consiste en:
 
-\StringTok{Parámetros importantes:}
-\StringTok{{-} max\_depth: Profundidad máxima del árbol}
-\StringTok{{-} min\_samples\_split: Mínimo de muestras para dividir nodo}
-\StringTok{{-} min\_samples\_leaf: Mínimo de muestras en hoja}
-\StringTok{{-} max\_features: Número de características a considerar}
+\textbf{Nodo raíz}: Contiene todos los datos
 
-\StringTok{Ventajas:}
-\StringTok{✓ Fácil de interpretar y visualizar}
-\StringTok{✓ No requiere normalización de datos}
-\StringTok{✓ Maneja características numéricas y categóricas}
-\StringTok{✓ Captura relaciones no lineales}
-\StringTok{✓ Puede manejar missing values}
+\textbf{Nodos internos}: Representan decisiones basadas en
+características
 
-\StringTok{Desventajas:}
-\StringTok{✗ Propenso a overfitting}
-\StringTok{✗ Inestable (pequeños cambios → árbol diferente)}
-\StringTok{✗ Puede crear árboles sesgados con clases desbalanceadas}
+\begin{itemize}
+\tightlist
+\item
+  Test en una característica: \(X_j \leq t\)
+\item
+  División binaria del espacio
+\end{itemize}
 
-\StringTok{Aplicaciones económicas:}
-\StringTok{{-} Aprobación de créditos (reglas claras)}
-\StringTok{{-} Segmentación de clientes}
-\StringTok{{-} Detección de fraude}
-\StringTok{{-} Valuación de riesgo}
-\StringTok{{-} Decisiones de inversión}
-\StringTok{"""}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\textbf{Hojas (nodos terminales)}: Contienen predicciones
+
+\begin{itemize}
+\tightlist
+\item
+  Clasificación: Clase mayoritaria en la hoja
+\item
+  Probabilidad: Distribución empírica de clases
+\end{itemize}
+
+\textbf{Ramas}: Conectan nodos, representan resultados de tests
+
+\subsubsection{Algoritmo de construcción
+recursiva}\label{algoritmo-de-construcciuxf3n-recursiva}
+
+El algoritmo CART (Classification and Regression Trees) construye el
+árbol mediante particiones binarias recursivas:
+
+\textbf{Paso 1 - Selección de división óptima}:
+
+Para cada nodo, encontrar la mejor división \((j, t)\) que minimiza una
+función de impureza:
+
+\[
+(j^*, t^*) = \arg\min_{j, t} \left[ N_L \cdot I(L) + N_R \cdot I(R) \right]
+\]
+
+donde:
+
+\begin{itemize}
+\tightlist
+\item
+  \(j\): Índice de característica
+\item
+  \(t\): Umbral de división
+\item
+  \(N_L, N_R\): Número de muestras en nodo izquierdo/derecho
+\item
+  \(I(L), I(R)\): Impureza de nodos hijo
+\end{itemize}
+
+\textbf{Paso 2 - División}:
+
+Dividir datos según \(X_j \leq t\):
+
+\begin{itemize}
+\tightlist
+\item
+  Izquierda: \(\{(\mathbf{X}_i, Y_i) : X_{ij} \leq t\}\)
+\item
+  Derecha: \(\{(\mathbf{X}_i, Y_i) : X_{ij} > t\}\)
+\end{itemize}
+
+\textbf{Paso 3 - Recursión}:
+
+Repetir para cada nodo hijo hasta cumplir criterio de parada.
+
+\subsubsection{Criterios de impureza}\label{criterios-de-impureza}
+
+\textbf{1. Índice de Gini (Gini Impurity)}:
+
+\[
+\text{Gini}(N) = 1 - \sum_{k=1}^{K} p_k^2
+\]
+
+donde \(p_k\) es la proporción de muestras de clase \(k\) en el nodo
+\(N\).
+
+\textbf{Interpretación}: Probabilidad de clasificar incorrectamente una
+observación aleatoria si se etiqueta aleatoriamente según distribución
+del nodo.
+
+\textbf{Propiedades}:
+
+\begin{itemize}
+\tightlist
+\item
+  Mínimo: 0 (nodo puro, todas las muestras de una clase)
+\item
+  Máximo: \(1 - 1/K\) (distribución uniforme sobre \(K\) clases)
+\item
+  Para \(K=2\): Máximo en \(p=0.5\), Gini = 0.5
+\end{itemize}
+
+\textbf{2. Entropía (Entropy)}:
+
+\[
+\text{Entropy}(N) = -\sum_{k=1}^{K} p_k \log_2(p_k)
+\]
+
+(por convención, \(0 \log 0 = 0\))
+
+\textbf{Interpretación}: Cantidad promedio de información (en bits)
+necesaria para codificar la clase.
+
+\textbf{Propiedades}:
+
+\begin{itemize}
+\tightlist
+\item
+  Mínimo: 0 (nodo puro)
+\item
+  Máximo: \(\log_2(K)\) (distribución uniforme)
+\item
+  Para \(K=2\): Máximo en \(p=0.5\), Entropy = 1
+\end{itemize}
+
+\textbf{Ganancia de información} (Information Gain): \[
+\text{IG} = \text{Entropy}(\text{padre}) - \left[\frac{N_L}{N}\text{Entropy}(L) + \frac{N_R}{N}\text{Entropy}(R)\right]
+\]
+
+\textbf{3. Error de clasificación}:
+
+\[
+\text{Error}(N) = 1 - \max_k p_k
+\]
+
+Menos sensible que Gini y Entropy; menos usado en práctica.
+
+\subsubsection{Comparación Gini vs
+Entropy}\label{comparaciuxf3n-gini-vs-entropy}
+
+Para clasificación binaria:
+
+\[
+\text{Gini} = 2p(1-p)
+\]
+
+\[
+\text{Entropy} = -p\log_2(p) - (1-p)\log_2(1-p)
+\]
+
+\textbf{Diferencias}:
+
+\begin{itemize}
+\tightlist
+\item
+  Entropy penaliza más desigualdades
+\item
+  Gini es más rápido de calcular (no requiere logaritmo)
+\item
+  En práctica, producen árboles similares
+\end{itemize}
+
+\subsubsection{Criterios de parada}\label{criterios-de-parada}
+
+El proceso de división se detiene cuando:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Pureza perfecta}: Todas las muestras en el nodo pertenecen a
+  la misma clase
+\item
+  \textbf{Profundidad máxima} (\texttt{max\_depth}): Se alcanza
+  profundidad especificada
+\item
+  \textbf{Muestras mínimas para dividir} (\texttt{min\_samples\_split}):
+  \[
+  N_{\text{nodo}} < \text{min\_samples\_split}
+  \]
+\item
+  \textbf{Muestras mínimas en hoja} (\texttt{min\_samples\_leaf}):
+  División resultaría en hoja con menos muestras que umbral
+\item
+  \textbf{Ganancia de información insuficiente}
+  (\texttt{min\_impurity\_decrease}): \[
+  \Delta \text{Impurity} < \text{threshold}
+  \]
+\item
+  \textbf{Número de hojas máximo} (\texttt{max\_leaf\_nodes}): Se
+  alcanza número especificado de hojas
+\end{enumerate}
+
+\subsubsection{Predicción}\label{predicciuxf3n}
+
+Para clasificar una nueva observación \(\mathbf{X}_0\):
+
+\textbf{Paso 1}: Comenzar en raíz
+
+\textbf{Paso 2}: Seguir ramas según tests:
+
+\begin{itemize}
+\tightlist
+\item
+  Si \(X_{0j} \leq t\): ir a nodo izquierdo
+\item
+  Si \(X_{0j} > t\): ir a nodo derecho
+\end{itemize}
+
+\textbf{Paso 3}: Al llegar a hoja, predecir:
+
+\textbf{Clase}: \[
+\hat{Y}_0 = \arg\max_k p_k^{(\text{hoja})}
+\]
+
+\textbf{Probabilidad}: \[
+P(Y=k|\mathbf{X}_0) = p_k^{(\text{hoja})} = \frac{N_k^{(\text{hoja})}}{N^{(\text{hoja})}}
+\]
+
+\subsubsection{Fronteras de decisión}\label{fronteras-de-decisiuxf3n-1}
+
+Las fronteras son \textbf{hiperplanos perpendiculares a los ejes}
+(axis-aligned):
+
+\begin{itemize}
+\tightlist
+\item
+  Cada división crea frontera perpendicular a un eje de característica
+\item
+  Partición recursiva del espacio en regiones rectangulares
+\item
+  Dentro de cada región: predicción constante
+\end{itemize}
+
+\textbf{Limitación}: No puede representar eficientemente fronteras
+oblicuas (ej: \(X_1 + X_2 = 0\)).
+
+\subsubsection{Importancia de
+características}\label{importancia-de-caracteruxedsticas}
+
+La importancia de característica \(j\) se calcula como:
+
+\[
+\text{Importance}(j) = \sum_{N : \text{usa } X_j} \Delta \text{Impurity}(N) \cdot \frac{N_{\text{samples}}(N)}{N_{\text{total}}}
+\]
+
+Suma ponderada de reducción de impureza sobre todos los nodos que usan
+\(X_j\).
+
+\textbf{Normalización}: \[
+\sum_{j=1}^{p} \text{Importance}(j) = 1
+\]
+
+\subsubsection{Poda del árbol
+(Pruning)}\label{poda-del-uxe1rbol-pruning}
+
+Para controlar overfitting:
+
+\textbf{1. Pre-pruning (early stopping)}: Detener crecimiento usando
+criterios de parada estrictos
+
+\textbf{2. Post-pruning (pruning)}: Construir árbol completo, luego
+podar:
+
+\textbf{Cost-Complexity Pruning}: \[
+R_\alpha(T) = R(T) + \alpha |T|
+\]
+
+donde:
+
+\begin{itemize}
+\tightlist
+\item
+  \(R(T)\): Error de clasificación del árbol
+\item
+  \(|T|\): Número de hojas
+\item
+  \(\alpha \geq 0\): Parámetro de complejidad
+\end{itemize}
+
+Seleccionar \(\alpha\) que minimiza error de validación cruzada.
+
+\subsubsection{Ventajas}\label{ventajas-2}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Interpretabilidad}: Fácil de entender y visualizar
+\item
+  \textbf{No requiere preprocesamiento}: No necesita estandarización ni
+  normalización
+\item
+  \textbf{Maneja datos mixtos}: Características numéricas y categóricas
+\item
+  \textbf{No paramétrico}: No asume distribución de datos
+\item
+  \textbf{Captura no linealidades}: Automáticamente modela interacciones
+  complejas
+\item
+  \textbf{Robustez a outliers}: En variables independientes (no en Y)
+\item
+  \textbf{Selección implícita de features}: Usa solo características
+  informativas
+\item
+  \textbf{Manejo de missing values}: Algoritmos con estrategias para
+  datos faltantes
+\end{enumerate}
+
+\subsubsection{Limitaciones}\label{limitaciones-2}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Overfitting}: Tendencia a ajustar demasiado datos de
+  entrenamiento
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Árboles profundos memorizan ruido
+  \end{itemize}
+\item
+  \textbf{Inestabilidad}: Alta varianza
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Pequeños cambios en datos → árbol completamente diferente
+  \item
+    No robusto
+  \end{itemize}
+\item
+  \textbf{Sesgo con clases desbalanceadas}: Tiende a favorecer clase
+  mayoritaria
+\item
+  \textbf{Fronteras axis-aligned}: No eficiente para fronteras oblicuas
+\item
+  \textbf{Greedy algorithm}: Optimización local en cada división
+
+  \begin{itemize}
+  \tightlist
+  \item
+    No garantiza árbol globalmente óptimo
+  \end{itemize}
+\item
+  \textbf{Discontinuidades}: Predicciones cambian abruptamente en
+  fronteras
+\end{enumerate}
+
+\subsubsection{Hiperparámetros
+principales}\label{hiperparuxe1metros-principales}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3438}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4062}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Parámetro
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Descripción
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Efecto
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{max\_depth} & Profundidad máxima & Mayor → Más complejo,
+overfitting \\
+\texttt{min\_samples\_split} & Muestras mínimas para dividir & Mayor →
+Más simple \\
+\texttt{min\_samples\_leaf} & Muestras mínimas en hoja & Mayor → Más
+suave \\
+\texttt{max\_features} & Features a considerar & Menor → Más
+diversidad \\
+\texttt{max\_leaf\_nodes} & Número máximo de hojas & Menor → Más
+simple \\
+\texttt{min\_impurity\_decrease} & Ganancia mínima & Mayor → Más
+conservador \\
+\end{longtable}
+
+\subsubsection{Aplicaciones en
+economía}\label{aplicaciones-en-economuxeda-1}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Credit scoring}: Reglas claras para aprobación/rechazo de
+  créditos
+\item
+  \textbf{Segmentación de clientes}: Identificar grupos con
+  características similares
+\item
+  \textbf{Detección de fraude}: Reglas para identificar transacciones
+  sospechosas
+\item
+  \textbf{Predicción de churn}: Identificar clientes en riesgo de
+  abandonar
+\item
+  \textbf{Pricing dinámico}: Reglas para ajustar precios según
+  características
+\item
+  \textbf{Evaluación de riesgo}: Clasificación de riesgo crediticio o
+  empresarial
+\item
+  \textbf{Decisiones de inversión}: Reglas para compra/venta de activos
+\end{enumerate}
+
+\subsubsection{Comparación con otros
+métodos}\label{comparaciuxf3n-con-otros-muxe9todos}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1765}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3137}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.4118}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0980}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Aspecto
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Decision Trees
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Logistic Regression
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+KNN
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Interpretabilidad & Alta & Media & Baja \\
+Captura no linealidades & Sí & No (sin transformaciones) & Sí \\
+Preprocesamiento & Mínimo & Requiere estandarización & Requiere
+estandarización \\
+Overfitting & Alto & Bajo-Medio & Medio-Alto \\
+Estabilidad & Baja & Alta & Media \\
+Velocidad predicción & Rápida & Rápida & Lenta \\
+\end{longtable}
+
+\subsubsection{Extensiones y variantes}\label{extensiones-y-variantes-1}
+
+\textbf{1. Árboles de regresión (CART)}: Predicción de valores continuos
+
+\textbf{2. Random Forests}: Ensemble de árboles (siguiente sección)
+
+\textbf{3. Gradient Boosted Trees}: Ensemble secuencial (XGBoost,
+LightGBM)
+
+\textbf{4. Conditional Inference Trees}: Usa tests estadísticos para
+divisiones
+
+\textbf{5. Árboles multivariados}: Divisiones oblicuas (no axis-aligned)
 
 \subsection{Implementación básica}\label{implementaciuxf3n-buxe1sica}
 
@@ -869,6 +1888,18 @@ decisión}\label{visualizaciuxf3n-de-fronteras-de-decisiuxf3n}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+ÁRBOL DE DECISIÓN
+======================================================================
+Profundidad del árbol: 3
+Número de hojas: 7
+Accuracy en test: 0.8222 (82.2%)
+
+Importancia de características:
+  Largo sépalo: 0.9006
+  Ancho sépalo: 0.0994
+\end{verbatim}
+
 \subsection{Visualización del
 árbol}\label{visualizaciuxf3n-del-uxe1rbol}
 
@@ -891,6 +1922,13 @@ decisión}\label{visualizaciuxf3n-de-fronteras-de-decisiuxf3n}
 \BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Árbol visualizado y guardado como \textquotesingle{}decision\_tree.png\textquotesingle{}"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+
+Árbol visualizado y guardado como 'decision_tree.png'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-12-output-2.pdf}}
 
 \subsection{Efecto de la profundidad}\label{efecto-de-la-profundidad}
 
@@ -952,54 +1990,463 @@ decisión}\label{visualizaciuxf3n-de-fronteras-de-decisiuxf3n}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+
+EFECTO DE LA PROFUNDIDAD DEL ÁRBOL
+======================================================================
+Profundidad  Accuracy Train  Accuracy Test   Hojas     
+----------------------------------------------------------------------
+1            0.8190          0.8222          2         
+2            0.8381          0.7778          4         
+3            0.8476          0.7556          7         
+4            0.8476          0.7556          11        
+5            0.8667          0.7556          15        
+6            0.8762          0.7556          19        
+7            0.9333          0.7333          24        
+8            0.9429          0.7333          28        
+9            0.9429          0.7333          32        
+10           0.9619          0.6889          35        
+
+Análisis guardado como 'tree_depth_analysis.png'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-13-output-2.pdf}}
+
 \section{Random Forests}\label{random-forests}
 
 \subsection{Fundamento del algoritmo}\label{fundamento-del-algoritmo-2}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\StringTok{"""}
-\StringTok{RANDOM FORESTS (BOSQUES ALEATORIOS)}
+Random Forests (Bosques Aleatorios) es un método de ensemble que combina
+múltiples árboles de decisión para producir un clasificador más robusto
+y preciso. Fue propuesto por Leo Breiman en 2001 y se basa en el
+principio de ``la sabiduría de las multitudes''.
 
-\StringTok{Concepto:}
-\StringTok{"La sabiduría de las multitudes"}
-\StringTok{Ensemble de múltiples árboles de decisión}
+\subsubsection{Concepto central: Ensemble
+Learning}\label{concepto-central-ensemble-learning}
 
-\StringTok{Funcionamiento:}
-\StringTok{1. Bootstrap: Crear múltiples muestras aleatorias con reemplazo}
-\StringTok{2. Para cada muestra:}
-\StringTok{   a. Entrenar árbol de decisión}
-\StringTok{   b. En cada división, considerar solo subset aleatorio de características}
-\StringTok{3. Predicción final: Votación mayoritaria de todos los árboles}
+\textbf{Idea fundamental}: Combinar predicciones de múltiples modelos
+débiles para crear un modelo fuerte.
 
-\StringTok{Parámetros clave:}
-\StringTok{{-} n\_estimators: Número de árboles (más = mejor, pero más lento)}
-\StringTok{{-} max\_depth: Profundidad de cada árbol}
-\StringTok{{-} max\_features: Características a considerar en cada división}
-\StringTok{{-} min\_samples\_split: Mínimo para dividir nodo}
-\StringTok{{-} bootstrap: Usar bootstrap o no}
+\textbf{Analogía}: Consultar a múltiples expertos y promediar sus
+opiniones suele dar mejor resultado que confiar en uno solo.
 
-\StringTok{Ventajas:}
-\StringTok{✓ Reduce overfitting vs árbol único}
-\StringTok{✓ Más robusto y preciso}
-\StringTok{✓ Proporciona importancia de características}
-\StringTok{✓ Funciona bien out{-}of{-}the{-}box}
-\StringTok{✓ Maneja grandes dimensiones}
+\subsubsection{Algoritmo Random Forest}\label{algoritmo-random-forest}
 
-\StringTok{Desventajas:}
-\StringTok{✗ Menos interpretable que árbol único}
-\StringTok{✗ Más lento para entrenar y predecir}
-\StringTok{✗ Requiere más memoria}
+\textbf{Entrada}:
 
-\StringTok{Aplicaciones económicas:}
-\StringTok{{-} Credit scoring (alta precisión)}
-\StringTok{{-} Predicción de precios (inmuebles, acciones)}
-\StringTok{{-} Detección de fraude}
-\StringTok{{-} Churn prediction}
-\StringTok{{-} Segmentación avanzada de clientes}
-\StringTok{"""}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{itemize}
+\tightlist
+\item
+  Dataset \(\mathcal{D} = \{(\mathbf{X}_i, Y_i)\}_{i=1}^{n}\)
+\item
+  Número de árboles \(B\)
+\item
+  Número de características por división \(m\)
+\end{itemize}
+
+\textbf{Proceso}:
+
+Para \(b = 1, \ldots, B\):
+
+\textbf{Paso 1 - Bootstrap}: Crear muestra aleatoria con reemplazo \[
+\mathcal{D}_b = \{\text{muestra } n \text{ observaciones de } \mathcal{D} \text{ con reemplazo}\}
+\]
+
+Aproximadamente 63.2\% de observaciones únicas en cada muestra (algunas
+repetidas, otras excluidas).
+
+\textbf{Paso 2 - Entrenar árbol con randomización adicional}:
+
+Para cada nodo del árbol \(b\):
+
+\begin{itemize}
+\tightlist
+\item
+  Seleccionar aleatoriamente \(m\) características de las \(p\)
+  disponibles
+\item
+  Encontrar mejor división usando solo estas \(m\) características
+\item
+  Dividir nodo
+\item
+  Repetir recursivamente
+\end{itemize}
+
+\textbf{Paso 3 - Crecer árbol completo}: Sin poda (o con poda mínima).
+Cada árbol tiene alta varianza pero bajo sesgo.
+
+\textbf{Predicción}:
+
+Para nueva observación \(\mathbf{X}_0\):
+
+\textbf{Clasificación} (votación mayoritaria): \[
+\hat{Y}_0 = \text{moda}\{\hat{Y}_0^{(1)}, \hat{Y}_0^{(2)}, \ldots, \hat{Y}_0^{(B)}\}
+\]
+
+\textbf{Probabilidad}: \[
+\hat{P}(Y=k|\mathbf{X}_0) = \frac{1}{B} \sum_{b=1}^{B} \mathbb{1}(\hat{Y}_0^{(b)} = k)
+\]
+
+\subsubsection{Dos fuentes de
+aleatoriedad}\label{dos-fuentes-de-aleatoriedad}
+
+Random Forests introduce dos niveles de aleatoriedad:
+
+\textbf{1. Bootstrap (Bagging)}:
+
+\begin{itemize}
+\tightlist
+\item
+  Diferentes muestras de entrenamiento para cada árbol
+\item
+  Reduce varianza al promediar predictores correlacionados
+\end{itemize}
+
+\textbf{2. Random Feature Selection}:
+
+\begin{itemize}
+\tightlist
+\item
+  Diferentes subsets de características en cada división
+\item
+  \textbf{Decorrelaciona} los árboles
+\item
+  Típicamente \(m = \sqrt{p}\) para clasificación
+\end{itemize}
+
+Sin (2), los árboles serían muy similares (correlacionados), y el
+promedio no reduciría tanto la varianza.
+
+\subsubsection{Relación con Bagging}\label{relaciuxf3n-con-bagging}
+
+\textbf{Bagging} (Bootstrap Aggregating): Caso especial de Random Forest
+donde \(m = p\)
+
+Random Forest = Bagging + Random Feature Selection
+
+La selección aleatoria de features es la innovación clave que mejora
+Bagging.
+
+\subsubsection{Out-of-Bag (OOB) Error}\label{out-of-bag-oob-error}
+
+Para cada árbol \(b\), aproximadamente 37\% de observaciones no están en
+\(\mathcal{D}_b\).
+
+Estas observaciones \textbf{Out-of-Bag} pueden usarse como conjunto de
+validación interno:
+
+\[
+\text{OOB Error} = \frac{1}{n} \sum_{i=1}^{n} \mathbb{1}\left(Y_i \neq \frac{1}{|B_i|}\sum_{b \in B_i} \hat{Y}_i^{(b)}\right)
+\]
+
+donde \(B_i\) es el conjunto de árboles que no usaron observación \(i\).
+
+\textbf{Ventaja}: No requiere conjunto de validación separado.
+
+\subsubsection{Importancia de
+características}\label{importancia-de-caracteruxedsticas-1}
+
+Random Forests calcula dos medidas de importancia:
+
+\textbf{1. Mean Decrease Impurity (MDI)}:
+
+\[
+\text{Importance}(X_j) = \frac{1}{B} \sum_{b=1}^{B} \sum_{N \in T_b : \text{usa } X_j} \Delta I(N) \cdot \frac{n_N}{n}
+\]
+
+Promedio sobre todos los árboles de la reducción de impureza cuando se
+usa \(X_j\).
+
+\textbf{2. Mean Decrease Accuracy (MDA)} (Permutation Importance):
+
+Para cada característica \(X_j\):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Calcular OOB error original
+\item
+  Permutar aleatoriamente valores de \(X_j\) en OOB
+\item
+  Recalcular OOB error
+\item
+  Importancia = Incremento en error
+\end{enumerate}
+
+\[
+\text{Importance}(X_j) = \text{OOB Error}_{\text{permutado}} - \text{OOB Error}_{\text{original}}
+\]
+
+\textbf{Interpretación}: Si \(X_j\) es importante, permutarla aumentará
+significativamente el error.
+
+\subsubsection{Propiedades teóricas}\label{propiedades-teuxf3ricas-1}
+
+\textbf{Teorema (Breiman)}:
+
+Bajo ciertas condiciones, cuando \(B \to \infty\):
+
+\[
+\lim_{B \to \infty} \text{Error}_{RF} = \rho \cdot \bar{\sigma}^2 \cdot (1 - s^2)
+\]
+
+donde:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\rho\): Correlación promedio entre árboles
+\item
+  \(\bar{\sigma}^2\): Varianza promedio de cada árbol
+\item
+  \(s\): Fuerza promedio de cada árbol
+\end{itemize}
+
+\textbf{Implicaciones}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Aumentar B}: Siempre ayuda (no overfitting)
+\item
+  \textbf{Reducir ρ} (decorrelación): Ayuda → Random feature selection
+\item
+  \textbf{Aumentar fuerza árboles}: Ayuda → Usar más características
+\end{enumerate}
+
+\subsubsection{Hiperparámetros
+principales}\label{hiperparuxe1metros-principales-1}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2391}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2826}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3043}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1739}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Parámetro
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Descripción
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Valor típico
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Efecto
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{n\_estimators} & Número de árboles & 100-500 & Más = mejor (con
+límite) \\
+\texttt{max\_features} & Features por división & \(\sqrt{p}\)
+(clasificación) & Controla correlación \\
+\texttt{max\_depth} & Profundidad máxima & None (completo) & Controla
+sesgo-varianza \\
+\texttt{min\_samples\_split} & Mínimo para dividir & 2 & Mayor = más
+simple \\
+\texttt{min\_samples\_leaf} & Mínimo en hoja & 1 & Mayor = más suave \\
+\texttt{bootstrap} & Usar bootstrap & True & False = usar todo
+dataset \\
+\end{longtable}
+
+\subsubsection{Ventajas}\label{ventajas-3}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Reduce overfitting}: Vs árbol único, por promediado
+\item
+  \textbf{Alta precisión}: Entre los mejores algoritmos out-of-the-box
+\item
+  \textbf{Robusto}: Menos sensible a hiperparámetros que otros métodos
+\item
+  \textbf{Maneja alta dimensionalidad}: Funciona bien incluso con \(p\)
+  grande
+\item
+  \textbf{Importancia de features}: Proporciona ranking de
+  características
+\item
+  \textbf{No requiere estandarización}: Como árboles individuales
+\item
+  \textbf{Paralelizable}: Árboles se entrenan independientemente
+\item
+  \textbf{OOB error}: Validación interna sin conjunto separado
+\item
+  \textbf{Maneja missing values}: Estrategias incorporadas
+\item
+  \textbf{Versátil}: Funciona bien en diversos problemas
+\end{enumerate}
+
+\subsubsection{Limitaciones}\label{limitaciones-3}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Menos interpretable}: Difícil entender modelo (caja negra)
+\item
+  \textbf{Costo computacional}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Entrenamiento: \(O(B \cdot n \log n \cdot m)\)
+  \item
+    Predicción: \(O(B \cdot \log n)\) Más lento que un árbol único
+  \end{itemize}
+\item
+  \textbf{Memoria}: Requiere almacenar \(B\) árboles
+\item
+  \textbf{Extrapolación limitada}: No predice fuera del rango de datos
+  de entrenamiento
+\item
+  \textbf{Sesgo con clases desbalanceadas}: Puede favorecer clase
+  mayoritaria
+\item
+  \textbf{No captura tendencias lineales simples}: A veces un modelo
+  simple es mejor
+\end{enumerate}
+
+\subsubsection{Comparación con otros
+métodos}\label{comparaciuxf3n-con-otros-muxe9todos-1}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Aspecto & Random Forest & Decision Tree & Gradient Boosting \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Interpretabilidad & Baja & Alta & Baja \\
+Accuracy & Alta & Media & Muy alta \\
+Overfitting & Bajo & Alto & Medio (con tuning) \\
+Velocidad entrenamiento & Media & Rápida & Lenta \\
+Velocidad predicción & Media & Rápida & Media \\
+Hiperparámetros & Pocos críticos & Pocos & Muchos críticos \\
+Robustez & Alta & Baja & Media \\
+\end{longtable}
+
+\subsubsection{Selección de
+hiperparámetros}\label{selecciuxf3n-de-hiperparuxe1metros}
+
+\textbf{Estrategia típica}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{n\_estimators}: Comenzar con 100, aumentar hasta que
+  performance se estabilice
+\item
+  \textbf{max\_features}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Clasificación: \(\sqrt{p}\)
+  \item
+    Regresión: \(p/3\)
+  \item
+    Probar también \(\log_2(p)\) y \(p/2\)
+  \end{itemize}
+\item
+  \textbf{max\_depth}: Comenzar sin límite, reducir si overfitting
+\item
+  \textbf{min\_samples\_split} y \textbf{min\_samples\_leaf}: Usar
+  valores por defecto inicialmente
+\end{enumerate}
+
+\textbf{Grid Search} sobre:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{n\_estimators}: {[}50, 100, 200, 500{]}
+\item
+  \texttt{max\_features}: {[}`sqrt', `log2', 0.3{]}
+\item
+  \texttt{max\_depth}: {[}None, 10, 20, 30{]}
+\item
+  \texttt{min\_samples\_split}: {[}2, 5, 10{]}
+\end{itemize}
+
+\subsubsection{Aplicaciones en
+economía}\label{aplicaciones-en-economuxeda-2}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Credit scoring}: Predicción de incumplimiento con alta
+  precisión
+\item
+  \textbf{Predicción de precios}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Inmuebles
+  \item
+    Acciones
+  \item
+    Commodities
+  \end{itemize}
+\item
+  \textbf{Detección de fraude}: Identificar transacciones fraudulentas
+\item
+  \textbf{Churn prediction}: Predecir abandono de clientes
+\item
+  \textbf{Segmentación avanzada}: Clasificar clientes en múltiples
+  categorías
+\item
+  \textbf{Predicción de quiebra empresarial}: Clasificación de riesgo
+\item
+  \textbf{Trading algorítmico}: Señales de compra/venta
+\item
+  \textbf{Risk management}: Evaluación de riesgo de portafolios
+\end{enumerate}
+
+\subsubsection{Variantes y extensiones}\label{variantes-y-extensiones}
+
+\textbf{1. Extremely Randomized Trees (Extra Trees)}:
+
+\begin{itemize}
+\tightlist
+\item
+  Divisiones completamente aleatorias (no optimizadas)
+\item
+  Más rápido, más diversidad
+\end{itemize}
+
+\textbf{2. Balanced Random Forest}:
+
+\begin{itemize}
+\tightlist
+\item
+  Balanceo de clases en cada árbol
+\item
+  Mejor para datasets desbalanceados
+\end{itemize}
+
+\textbf{3. Isolation Forest}:
+
+\begin{itemize}
+\tightlist
+\item
+  Para detección de anomalías
+\item
+  Aísla outliers
+\end{itemize}
+
+\textbf{4. Quantile Regression Forest}:
+
+\begin{itemize}
+\tightlist
+\item
+  Predice distribución completa, no solo media
+\item
+  Útil para intervalos de confianza
+\end{itemize}
 
 \subsection{Implementación}\label{implementaciuxf3n-2}
 
@@ -1039,6 +2486,17 @@ decisión}\label{visualizaciuxf3n-de-fronteras-de-decisiuxf3n}
     \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  }\SpecialCharTok{\{}\NormalTok{row[}\StringTok{\textquotesingle{}caracteristica\textquotesingle{}}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{: }\SpecialCharTok{\{}\NormalTok{row[}\StringTok{\textquotesingle{}importancia\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:.4f\}}\SpecialStringTok{ (±}\SpecialCharTok{\{}\NormalTok{row[}\StringTok{\textquotesingle{}std\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:.4f\}}\SpecialStringTok{)"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+RANDOM FOREST
+======================================================================
+Número de árboles: 100
+Accuracy en test: 0.8222 (82.2%)
+
+Importancia de características:
+  Largo sépalo: 0.7925 (±0.1558)
+  Ancho sépalo: 0.2075 (±0.1558)
+\end{verbatim}
 
 \subsection{Efecto del número de
 árboles}\label{efecto-del-nuxfamero-de-uxe1rboles}
@@ -1093,6 +2551,26 @@ decisión}\label{visualizaciuxf3n-de-fronteras-de-decisiuxf3n}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+
+EFECTO DEL NÚMERO DE ÁRBOLES
+======================================================================
+N Árboles    Accuracy Train  Accuracy Test  
+----------------------------------------------------------------------
+1            0.8381          0.7111         
+5            0.8857          0.8000         
+10           0.8762          0.7556         
+20           0.8952          0.8000         
+50           0.8857          0.8000         
+100          0.8857          0.8000         
+200          0.8667          0.7778         
+
+Gráfico guardado como 'random_forest_ntrees.png'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-15-output-2.pdf}}
+
 \section{Clasificación multi-clase}\label{clasificaciuxf3n-multi-clase}
 
 \subsection{Dataset con 3 clases}\label{dataset-con-3-clases}
@@ -1118,6 +2596,18 @@ decisión}\label{visualizaciuxf3n-de-fronteras-de-decisiuxf3n}
 \NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+CLASIFICACIÓN MULTI-CLASE
+======================================================================
+Número de clases: 3
+Clases: ['setosa' 'versicolor' 'virginica']
+
+Distribución:
+  setosa: 50 muestras
+  versicolor: 50 muestras
+  virginica: 50 muestras
+\end{verbatim}
 
 \subsection{Entrenar modelos
 multi-clase}\label{entrenar-modelos-multi-clase}
@@ -1167,6 +2657,45 @@ multi-clase}\label{entrenar-modelos-multi-clase}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+
+RESULTADOS CLASIFICACIÓN MULTI-CLASE
+======================================================================
+
+Logistic Regression:
+  Accuracy: 0.8222 (82.2%)
+  Matriz de confusión:
+  [[19  0  0]
+ [ 0  7  6]
+ [ 0  2 11]]
+
+KNN:
+  Accuracy: 0.7778 (77.8%)
+  Matriz de confusión:
+  [[19  0  0]
+ [ 0  8  5]
+ [ 0  5  8]]
+
+Decision Tree:
+  Accuracy: 0.7556 (75.6%)
+  Matriz de confusión:
+  [[18  1  0]
+ [ 0  8  5]
+ [ 0  5  8]]
+
+Random Forest:
+  Accuracy: 0.7556 (75.6%)
+  Matriz de confusión:
+  [[19  0  0]
+ [ 0  7  6]
+ [ 0  5  8]]
+
+
+Mejor modelo: Logistic Regression
+Accuracy: 0.8222
+\end{verbatim}
+
 \subsection{Visualización
 multi-clase}\label{visualizaciuxf3n-multi-clase}
 
@@ -1209,6 +2738,13 @@ multi-clase}\label{visualizaciuxf3n-multi-clase}
 \BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Comparación guardada como \textquotesingle{}multiclass\_comparison.png\textquotesingle{}"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+
+Comparación guardada como 'multiclass_comparison.png'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-18-output-2.pdf}}
 
 \section{Comparación de modelos}\label{comparaciuxf3n-de-modelos}
 
@@ -1268,6 +2804,12 @@ modelo}\label{curvas-roc-para-cada-modelo}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Curvas ROC guardadas como 'roc_comparison.png'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-19-output-2.pdf}}
+
 \subsection{Tabla comparativa de
 métricas}\label{tabla-comparativa-de-muxe9tricas}
 
@@ -1322,7 +2864,22 @@ métricas}\label{tabla-comparativa-de-muxe9tricas}
 \end{Highlighting}
 \end{Shaded}
 
-\section{Aplicaciones económicas}\label{aplicaciones-econuxf3micas}
+\begin{verbatim}
+
+
+TABLA COMPARATIVA DE MODELOS
+======================================================================
+             Modelo  Accuracy  Precision  Recall  F1-Score    AUC
+Logistic Regression    0.8667     0.7333  0.8462    0.7857 0.9147
+          KNN (k=5)    0.7778     0.6154  0.6154    0.6154 0.8582
+      Decision Tree    0.7556     0.6250  0.3846    0.4762 0.7536
+      Random Forest    0.7333     0.5385  0.5385    0.5385 0.8209
+
+
+Tabla guardada como 'comparacion_modelos.csv'
+\end{verbatim}
+
+\section{Aplicaciones económicas}\label{aplicaciones-econuxf3micas-1}
 
 \subsection{Aplicación 1: Clasificación de riesgo
 crediticio}\label{aplicaciuxf3n-1-clasificaciuxf3n-de-riesgo-crediticio}
@@ -1437,6 +2994,100 @@ crediticio}\label{aplicaciuxf3n-1-clasificaciuxf3n-de-riesgo-crediticio}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+
+
+APLICACIÓN: CLASIFICACIÓN DE RIESGO CREDITICIO
+======================================================================
+
+Dataset de crédito:
+  Total clientes: 2,000
+
+Distribución de riesgo:
+riesgo
+Medio    1406
+Bajo      399
+Alto      195
+Name: count, dtype: int64
+
+
+ENTRENAMIENTO DE MODELOS
+======================================================================
+
+Random Forest:
+  Accuracy: 0.8217 (82.2%)
+
+  Reporte de clasificación:
+              precision    recall  f1-score   support
+
+        Bajo      0.828     0.600     0.696       120
+       Medio      0.819     0.957     0.883       422
+        Alto      0.850     0.293     0.436        58
+
+    accuracy                          0.822       600
+   macro avg      0.832     0.617     0.672       600
+weighted avg      0.824     0.822     0.802       600
+
+
+Decision Tree:
+  Accuracy: 0.7967 (79.7%)
+
+  Reporte de clasificación:
+              precision    recall  f1-score   support
+
+        Bajo      0.694     0.717     0.705       120
+       Medio      0.841     0.879     0.860       422
+        Alto      0.600     0.362     0.452        58
+
+    accuracy                          0.797       600
+   macro avg      0.712     0.653     0.672       600
+weighted avg      0.788     0.797     0.789       600
+
+
+KNN:
+  Accuracy: 0.8150 (81.5%)
+
+  Reporte de clasificación:
+              precision    recall  f1-score   support
+
+        Bajo      0.779     0.617     0.688       120
+       Medio      0.818     0.948     0.878       422
+        Alto      0.938     0.259     0.405        58
+
+    accuracy                          0.815       600
+   macro avg      0.845     0.608     0.657       600
+weighted avg      0.822     0.815     0.794       600
+
+
+Logistic Regression:
+  Accuracy: 0.8600 (86.0%)
+
+  Reporte de clasificación:
+              precision    recall  f1-score   support
+
+        Bajo      0.823     0.775     0.798       120
+       Medio      0.876     0.934     0.904       422
+        Alto      0.784     0.500     0.611        58
+
+    accuracy                          0.860       600
+   macro avg      0.827     0.736     0.771       600
+weighted avg      0.856     0.860     0.854       600
+
+
+
+IMPORTANCIA DE CARACTERÍSTICAS (Random Forest)
+======================================================================
+  ratio_deuda_ingreso       0.3181 ███████████████████████████████
+  score_crediticio          0.1543 ███████████████
+  num_creditos_previos      0.1495 ██████████████
+  antiguedad_laboral        0.1171 ███████████
+  monto_solicitado          0.0876 ████████
+  ingreso_anual             0.0861 ████████
+  edad                      0.0739 ███████
+  tiene_hipoteca            0.0134 █
+\end{verbatim}
+
 \subsection{Aplicación 2: Segmentación de
 clientes}\label{aplicaciuxf3n-2-segmentaciuxf3n-de-clientes}
 
@@ -1550,6 +3201,56 @@ clientes}\label{aplicaciuxf3n-2-segmentaciuxf3n-de-clientes}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+
+
+APLICACIÓN: SEGMENTACIÓN DE CLIENTES
+======================================================================
+
+Distribución de segmentos:
+segmento
+Bronce     129
+Plata      548
+Oro        635
+Platino    188
+Name: count, dtype: int64
+
+
+MODELO DE SEGMENTACIÓN
+======================================================================
+Accuracy: 0.8489 (84.9%)
+
+Matriz de confusión:
+                    Predicho
+             Bronce  Plata   Oro  Platino
+Real Bronce      20     19     0       0
+     Plata        1    147    16       0
+     Oro          0     10   180       1
+     Platino      0      0    21      35
+
+
+CARACTERÍSTICAS MÁS IMPORTANTES PARA SEGMENTACIÓN
+======================================================================
+  gasto_mensual             0.3186 ███████████████████████████████
+  ticket_promedio           0.2043 ████████████████████
+  num_compras_mes           0.1317 █████████████
+  frecuencia_compra         0.1266 ████████████
+  ratio_gasto_ingreso       0.1147 ███████████
+  ingreso_mensual           0.0321 ███
+  antiguedad_meses          0.0271 ██
+  visitas_web               0.0229 ██
+  edad                      0.0220 ██
+
+
+APLICACIÓN PRÁCTICA:
+Este modelo permite:
+  1. Clasificar automáticamente nuevos clientes
+  2. Personalizar ofertas según segmento
+  3. Identificar clientes con potencial de upgrade
+  4. Optimizar estrategias de retención
+\end{verbatim}
+
 \section{Ejercicios prácticos}\label{ejercicios-pruxe1cticos}
 
 \subsection{Ejercicio: Optimización de
@@ -1626,6 +3327,41 @@ hiperparámetros}\label{ejercicio-optimizaciuxf3n-de-hiperparuxe1metros}
 \BuiltInTok{print}\NormalTok{(df\_grid.head(}\DecValTok{10}\NormalTok{).to\_string(index}\OperatorTok{=}\VariableTok{False}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+
+
+
+EJERCICIO: OPTIMIZACIÓN DE HIPERPARÁMETROS
+======================================================================
+
+Buscando mejores hiperparámetros...
+Total combinaciones: 36
+
+
+MEJORES HIPERPARÁMETROS
+======================================================================
+  n_estimators: 100
+  max_depth: 5
+  min_samples_split: 10
+  CV Score: 0.8190
+
+Accuracy en test: 0.8000 (80.0%)
+
+
+Top 10 combinaciones:
+ n_estimators max_depth  min_samples_split  cv_score
+          100         5                 10  0.819048
+          200         5                 10  0.809524
+           50         5                 20  0.800000
+           50        15                 10  0.800000
+          100        15                 10  0.800000
+          200        15                 10  0.800000
+          100      None                 10  0.800000
+           50        10                 10  0.800000
+           50      None                 20  0.800000
+           50      None                 10  0.800000
+\end{verbatim}
 
 \section{Conclusión}\label{conclusiuxf3n}
 
