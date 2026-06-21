@@ -403,6 +403,9 @@ df
 
 **Acciones con data frames:**
 
+
+
+
 1.  Verificamos el número de filas del data frame utilizando la función `nrow()`:
 
     ```{r}

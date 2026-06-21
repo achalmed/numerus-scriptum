@@ -8,7 +8,7 @@
 # QUARTO Y R
 # =============================================================================
 # Directorios de Quarto
-/.quarto/
+.quarto/
 #_site/
 _book/
 #_freeze/
