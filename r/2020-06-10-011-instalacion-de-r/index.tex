@@ -122,6 +122,7 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -163,10 +164,10 @@
 
 
 
-\title{Instalación de R y RStudio}
+\title{Guía completa de instalación de R y RStudio Desktop}
 
 
-\shorttitle{Instalación de R y RStudio}
+\shorttitle{Guía completa de instalación de R y RStudio Desktop}
 
 
 \usepackage{etoolbox}
@@ -203,9 +204,14 @@ contenido final del artículo. }
 \par{   El autor no tiene conflictos de interés que revelar.    Los
 roles de autor se clasificaron utilizando la taxonomía de roles de
 colaborador (CRediT; https://credit.niso.org/) de la siguiente
-manera:  Edison Achalma:   conceptualización, redacción}
+manera:  Edison Achalma:   conceptualización, metodología, análisis
+formal, investigación, recursos, curación de
+datos, redacción, visualización, supervisión, administración del
+proyecto}
 \par{La correspondencia relativa a este artículo debe dirigirse a Edison
-Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
+Achalma, Escuela Profesional de Economía, Universidad Nacional de San
+Cristóbal de Huamanga, Portal Independencia N°
+57, Ayacucho, AYA 5001, Perú, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
 }
 
 \usepackage{pbalance}
@@ -253,6 +259,20 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 
 
 
+\usepackage{hyperref}
+\hypersetup{
+  pdftitle={Guía completa de instalación de R y RStudio Desktop},
+  pdfauthor={Edison Achalma},
+  pdfsubject={Este abstract será actualizado una vez que se complete el contenido final del artículo.},
+  pdfkeywords={keyword1, keyword2},
+  unicode=true,
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue,
+  pdfcreator={Quarto},
+  pdflang={es}
+}
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -285,8 +305,8 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 \@ifpackageloaded{float}{}{\usepackage{float}}
 \floatstyle{ruled}
 \@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
-\floatname{codelisting}{Listing}
-\newcommand*\listoflistings{\listof{codelisting}{Lista de Listings}}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listados}}
 \makeatother
 \makeatletter
 \makeatother
@@ -336,7 +356,8 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 \hypertarget{toc}{}
 \tableofcontents
 \newpage
-\section[Introduction]{Instalación de R y RStudio}
+\section[Introduction]{Guía completa de instalación de R y RStudio
+Desktop}
 
 \setcounter{secnumdepth}{3}
 
@@ -345,171 +366,1019 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 
 
 
-\section{Instalación}\label{instalaciuxf3n}
-
-En este artículo, te guiaré para descargar e instalar R y RStudio en
-sistema operativo Ubuntu Linux.
-
-\subsection{Paso 1. Descargar R en Ubuntu
-Linux}\label{paso-1.-descargar-r-en-ubuntu-linux}
-
-Para comenzar, necesitarás descargar el paquete de instalación de R
-desde el sitio web oficial de R. Abre tu navegador web y sigue este
-enlace: \href{https://cloud.r-project.org/}{Enlace de descarga de R}
+\section{Guía completa de instalación de R y RStudio
+Desktop}\label{guuxeda-completa-de-instalaciuxf3n-de-r-y-rstudio-desktop}
 
 \begin{quote}
-R es un lenguaje de programación ampliamente utilizado en la comunidad
-estadística y de análisis de datos, y es especialmente popular entre los
-científicos de datos y los investigadores.
+Referencia técnica independiente sobre la instalación de \textbf{R}
+(lenguaje y entorno estadístico) y \textbf{RStudio Desktop} (IDE de
+Posit, PBC) en tres sistemas: Kubuntu/Ubuntu (Debian-based), Arch Linux,
+y Windows. Basada en la documentación oficial de CRAN
+(cran.r-project.org), ArchWiki (wiki.archlinux.org) y Posit Docs
+(docs.posit.co / posit.co).
 \end{quote}
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-html/Screenshot_20230610_222900.png}}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\subsection{Paso 2. Instalar R en Ubuntu
-Linux}\label{paso-2.-instalar-r-en-ubuntu-linux}
+\subsection{Tabla de contenidos}\label{tabla-de-contenidos}
 
-Los paquetes para la versión actual de R 4.2 están disponibles para la
-mayoría de las versiones estables de Ubuntu Desktop. Sin embargo, solo
-la última versión de Soporte a Largo Plazo (LTS) cuenta con soporte
-completo. A partir del 2 de mayo de 2022, las versiones compatibles son:
-
-\begin{itemize}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Jammy Jellyfish (22.04, solo amd64)
+  \hyperref[1-conceptos-previos]{Conceptos previos}
 \item
-  Impish Indri (21.10, solo amd64)
+  \hyperref[2-instalaciuxf3n-de-r-en-kubuntu--ubuntu]{Instalación de R
+  en Kubuntu / Ubuntu}
 \item
-  Focal Fossa (20.04; LTS y solo amd64)
+  \hyperref[3-instalaciuxf3n-de-r-en-arch-linux]{Instalación de R en
+  Arch Linux}
 \item
-  Bionic Beaver (18.04; LTS)
+  \hyperref[4-instalaciuxf3n-de-r-en-windows]{Instalación de R en
+  Windows}
 \item
-  Xenial Xerus (16.04; LTS)
-\end{itemize}
+  \hyperref[5-instalaciuxf3n-de-rstudio-desktop-en-kubuntu--ubuntu]{Instalación
+  de RStudio Desktop en Kubuntu / Ubuntu}
+\item
+  \hyperref[6-instalaciuxf3n-de-rstudio-desktop-en-arch-linux]{Instalación
+  de RStudio Desktop en Arch Linux}
+\item
+  \hyperref[7-instalaciuxf3n-de-rstudio-desktop-en-windows]{Instalación
+  de RStudio Desktop en Windows}
+\item
+  \hyperref[8-verificaciuxf3n-post-instalaciuxf3n]{Verificación
+  post-instalación}
+\item
+  \hyperref[9-dependencias-de-sistema-para-paquetes-de-r-linux]{Dependencias
+  de sistema para paquetes de R (Linux)}
+\item
+  \hyperref[10-gestiuxf3n-de-paquetes-de-r]{Gestión de paquetes de R}
+\item
+  \hyperref[11-actualizaciuxf3n-y-desinstalaciuxf3n]{Actualización y
+  desinstalación}
+\item
+  \hyperref[12-soluciuxf3n-de-problemas-comunes]{Solución de problemas
+  comunes}
+\item
+  \hyperref[13-referencias-oficiales]{Referencias oficiales}
+\end{enumerate}
 
-Ejecuta estas líneas (si eres \texttt{root}, omite \texttt{sudo}) para
-informar a Ubuntu sobre los binarios de R en CRAN.
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Actualizar índices}
-\FunctionTok{sudo}\NormalTok{ apt update }\AttributeTok{{-}qq}
-\CommentTok{\# Instalar dos paquetes auxiliares necesarios}
-\FunctionTok{sudo}\NormalTok{ apt install }\AttributeTok{{-}{-}no{-}install{-}recommends}\NormalTok{ software{-}properties{-}common dirmngr}
-\CommentTok{\# Agregar la clave de firma (de Michael Rutter) para estos repositorios}
-\CommentTok{\# Para verificar la clave, ejecuta: gpg {-}{-}show{-}keys /etc/apt/trusted.gpg.d/cran\_ubuntu\_key.asc}
-\CommentTok{\# Huella digital: E298A3A825C0D65DFD57CBB651716619E084DAB9}
-\FunctionTok{wget} \AttributeTok{{-}qO{-}}\NormalTok{ https://cloud.r{-}project.org/bin/linux/ubuntu/marutter\_pubkey.asc }\KeywordTok{|} \FunctionTok{sudo}\NormalTok{ tee }\AttributeTok{{-}a}\NormalTok{ /etc/apt/trusted.gpg.d/cran\_ubuntu\_key.asc}
-\CommentTok{\# Agregar el repositorio de R 4.0 de CRAN {-}{-} ajustar \textquotesingle{}focal\textquotesingle{} a \textquotesingle{}groovy\textquotesingle{} o \textquotesingle{}bionic\textquotesingle{} según sea necesario}
-\FunctionTok{sudo}\NormalTok{ add{-}apt{-}repository }\StringTok{"deb https://cloud.r{-}project.org/bin/linux/ubuntu }\VariableTok{$(}\ExtensionTok{lsb\_release} \AttributeTok{{-}cs}\VariableTok{)}\StringTok{{-}cran40/"}
-\end{Highlighting}
-\end{Shaded}
+\subsection{1. Conceptos previos}\label{conceptos-previos}
 
-Aquí utilizamos \texttt{lsb\_release\ -cs} para acceder a la versión de
-Ubuntu que estás utilizando: ``jammy'', ``impish'', ``focal'',
-``bionic'', \ldots{}
+\subsubsection{1.1. R vs.~RStudio}\label{r-vs.-rstudio}
 
-Luego, ejecuta
+\textbf{R} es el lenguaje de programación y el entorno de ejecución para
+computación estadística y gráficos, desarrollado por la R Foundation. Se
+instala primero porque es el ``motor''.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{sudo}\NormalTok{ apt install }\AttributeTok{{-}{-}no{-}install{-}recommends}\NormalTok{ r{-}base}
-\end{Highlighting}
-\end{Shaded}
+\textbf{RStudio Desktop} es un IDE (entorno de desarrollo integrado)
+desarrollado por \textbf{Posit, PBC} (antes RStudio, PBC) que se ejecuta
+\emph{sobre} una instalación de R ya existente. RStudio no incluye R:
+siempre hay que instalar R primero y RStudio después, y RStudio detecta
+automáticamente la(s) instalación(es) de R presentes en el sistema.
 
-\subsection{Obtén más de 5000 paquetes de
-CRAN}\label{obtuxe9n-muxe1s-de-5000-paquetes-de-cran}
+\subsubsection{1.2. Orden de instalación
+recomendado}\label{orden-de-instalaciuxf3n-recomendado}
 
-Ejecuta este comando (como \texttt{root} o agregando \texttt{sudo} como
-prefijo) para agregar el repositorio actual de R 4.0 o posterior
-`c2d4u':
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Instalar R (desde el repositorio oficial de tu distribución o desde
+  CRAN).
+\item
+  Verificar que R funciona desde la terminal (\texttt{R\ -\/-version}).
+\item
+  Instalar RStudio Desktop (paquete binario oficial de Posit).
+\item
+  Verificar que RStudio detecta la instalación de R.
+\end{enumerate}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{sudo}\NormalTok{ add{-}apt{-}repository ppa:c2d4u.team/c2d4u4.0+}
-\end{Highlighting}
-\end{Shaded}
+\subsubsection{1.3. Compatibilidad de plataformas (RStudio
+Desktop)}\label{compatibilidad-de-plataformas-rstudio-desktop}
 
-para agregar el ID de clave de este repositorio, agregar el repositorio
-y actualizar el índice. Ahora puedes hacer
-\texttt{apt\ install\ -\/-no-install-recommends\ r-cran-rstan} o
-\texttt{apt\ install\ -\/-no-install-recommends\ r-cran-tidyverse}
-(nuevamente como usuario \texttt{root} o a través de \texttt{sudo}).
+Es importante saber que \textbf{Posit ya no construye RStudio Desktop
+para todas las distribuciones Linux indefinidamente}. Desde la versión
+2025.05.0 (``Mariposa Orchid''), Posit dejó de generar binarios de
+RStudio Desktop para SLES 15, Ubuntu 20.04 LTS (Focal Fossa) y RHEL 8,
+debido a dependencias de software incompatibles. Si usas Kubuntu/Ubuntu,
+se recomienda una versión 22.04 LTS o superior para garantizar
+compatibilidad con las versiones más recientes de RStudio.
 
-\subsection{Paso 3. Descargar RStudio en Ubuntu
-Linux}\label{paso-3.-descargar-rstudio-en-ubuntu-linux}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-Puedes descargar la última versión de RStudio desde su sitio web
-oficial:
-\href{https://www.rstudio.com/products/rstudio/download/}{Enlace de
-descarga de RStudio}
+\subsection{2. Instalación de R en Kubuntu /
+Ubuntu}\label{instalaciuxf3n-de-r-en-kubuntu-ubuntu}
 
-\begin{quote}
-RStudio RStudio es un entorno de desarrollo integrado (IDE) muy popular
-para trabajar con R. Proporciona una interfaz gráfica intuitiva y muchas
-herramientas útiles para la programación en R.
-\end{quote}
+Kubuntu comparte la base de paquetes de Ubuntu (APT/\texttt{.deb}), por
+lo que todo lo siguiente aplica igual a ambas. Existen dos rutas
+oficiales: el repositorio de Ubuntu (más simple, versión puede no ser la
+más reciente) o el repositorio de \textbf{CRAN} (versión más
+actualizada, recomendado para trabajo serio en R).
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-html//Screenshot_20230610_224818.png}}
-
-\subsection{Paso 4. Instalar RStudio en Ubuntu
-Linux}\label{paso-4.-instalar-rstudio-en-ubuntu-linux}
-
-\subsubsection{Instalar dependencias}\label{instalar-dependencias}
-
-Antes de instalar RStudio, es posible que debas instalar algunas
-dependencias en tu sistema. Abre la terminal y ejecuta los siguientes
-comandos para instalar las dependencias requeridas:
+\subsubsection{2.1. Opción A --- Repositorio de Ubuntu (rápida, versión
+potencialmente
+desactualizada)}\label{opciuxf3n-a-repositorio-de-ubuntu-ruxe1pida-versiuxf3n-potencialmente-desactualizada}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{sudo}\NormalTok{ apt update}
-\FunctionTok{sudo}\NormalTok{ apt install gdebi{-}core}
+\FunctionTok{sudo}\NormalTok{ apt install }\AttributeTok{{-}{-}no{-}install{-}recommends}\NormalTok{ r{-}base r{-}base{-}dev}
 \end{Highlighting}
 \end{Shaded}
 
-Estos comandos actualizarán los repositorios de paquetes y luego
-instalarán \texttt{gdebi-core}, una utilidad necesaria para instalar
-paquetes \texttt{.deb} de forma sencilla y para resolver dependencias
-automáticamente.
+Esta vía es la más simple, pero la versión de R que entrega depende del
+ciclo de paquetes de tu versión de Ubuntu/Kubuntu y puede quedar
+rezagada respecto a la última versión estable de R.
 
-\subsubsection{Instalar RStudio}\label{instalar-rstudio}
+\subsubsection{2.2. Opción B --- Repositorio oficial de CRAN
+(recomendada)}\label{opciuxf3n-b-repositorio-oficial-de-cran-recomendada}
 
-Una vez que hayas descargado el archivo de instalación de RStudio y
-hayas instalado las dependencias necesarias, puedes proceder con la
-instalación. Ve al directorio donde descargaste el archivo de
-instalación y ejecuta el siguiente comando en la terminal:
+CRAN mantiene un repositorio APT específico para Ubuntu con builds
+actualizados de R 4.x, compilados por Michael Rutter y mantenido junto
+con Dirk Eddelbuettel. Estos son los pasos oficiales (README breve de
+CRAN):
+
+\textbf{Paso 1 --- Actualizar índices e instalar paquetes auxiliares}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{sudo}\NormalTok{ gdebi }\OperatorTok{\textless{}}\NormalTok{nombre\_del\_archivo\_de\_instalación}\OperatorTok{\textgreater{}}\NormalTok{.deb}
+\FunctionTok{sudo}\NormalTok{ apt update }\AttributeTok{{-}qq}
+\FunctionTok{sudo}\NormalTok{ apt install }\AttributeTok{{-}{-}no{-}install{-}recommends}\NormalTok{ software{-}properties{-}common dirmngr}
 \end{Highlighting}
 \end{Shaded}
 
-Reemplaza
-\texttt{\textless{}nombre\_del\_archivo\_de\_instalación\textgreater{}}
-con el nombre real del archivo de instalación descargado.
+\begin{quote}
+En versiones recientes de Ubuntu/Kubuntu,
+\texttt{software-properties-common} y \texttt{dirmngr} suelen venir
+preinstalados; el comando no hará daño si ya están presentes.
+\end{quote}
 
-El comando \texttt{gdebi} instalará RStudio y resolverá automáticamente
-las dependencias necesarias.
-
-\subsection{Paso 5. Iniciar RStudio}\label{paso-5.-iniciar-rstudio}
-
-Una vez completada la instalación, puedes iniciar RStudio desde el menú
-de aplicaciones de Ubuntu o ejecutando el siguiente comando en la
-terminal:
+\textbf{Paso 2 --- Importar la clave de firma del repositorio CRAN}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\ExtensionTok{rstudio}
+\FunctionTok{wget} \AttributeTok{{-}qO{-}}\NormalTok{ https://cloud.r{-}project.org/bin/linux/ubuntu/marutter\_pubkey.asc }\KeywordTok{|} \DataTypeTok{\textbackslash{}}
+  \FunctionTok{sudo}\NormalTok{ tee }\AttributeTok{{-}a}\NormalTok{ /etc/apt/trusted.gpg.d/cran\_ubuntu\_key.asc}
 \end{Highlighting}
 \end{Shaded}
 
-RStudio se abrirá en una ventana separada, lo que te permitirá comenzar
-a trabajar con R y aprovechar todas las funciones y características que
-ofrece el IDE.
+La huella digital (fingerprint) oficial de esta clave es:
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-html//Screenshot_20230610_231407.png}}
+\begin{verbatim}
+E298A3A825C0D65DFD57CBB651716619E084DAB9
+\end{verbatim}
+
+Puedes verificarla con:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{gpg} \AttributeTok{{-}{-}show{-}keys}\NormalTok{ /etc/apt/trusted.gpg.d/cran\_ubuntu\_key.asc}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Paso 3 --- Añadir el repositorio CRAN}
+
+El comando usa \texttt{lsb\_release\ -cs} para detectar automáticamente
+el nombre en clave de tu versión de Ubuntu (p.~ej. \texttt{noble},
+\texttt{jammy}):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ add{-}apt{-}repository }\StringTok{"deb https://cloud.r{-}project.org/bin/linux/ubuntu }\VariableTok{$(}\ExtensionTok{lsb\_release} \AttributeTok{{-}cs}\VariableTok{)}\StringTok{{-}cran40/"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\texttt{cloud.r-project.org} redirige automáticamente a un espejo
+(mirror) de CRAN cercano a tu ubicación.
+\end{quote}
+
+\textbf{Paso 4 --- Instalar R}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ apt update}
+\FunctionTok{sudo}\NormalTok{ apt install }\AttributeTok{{-}{-}no{-}install{-}recommends}\NormalTok{ r{-}base}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Paso 5 --- Instalar herramientas de compilación (recomendado)}
+
+Si vas a instalar paquetes de CRAN que requieren compilación desde
+código fuente (lo cual es habitual con \texttt{install.packages()}),
+instala también \texttt{r-base-dev}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ apt install }\AttributeTok{{-}{-}no{-}install{-}recommends}\NormalTok{ r{-}base{-}dev}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{2.3. Nota sobre versiones de Ubuntu
+soportadas}\label{nota-sobre-versiones-de-ubuntu-soportadas}
+
+CRAN publica binarios de R 4.x para las versiones de escritorio de
+Ubuntu actualmente soportadas (hasta su fecha oficial de fin de vida).
+Solo la última versión LTS recibe soporte completo. Si tu versión de
+Kubuntu ya superó su fin de vida (EOL), considera actualizar el sistema
+antes de continuar.
+
+\subsubsection{\texorpdfstring{2.4. Instalación masiva de paquetes CRAN
+como binarios
+(\texttt{r2u})}{2.4. Instalación masiva de paquetes CRAN como binarios (r2u)}}\label{instalaciuxf3n-masiva-de-paquetes-cran-como-binarios-r2u}
+
+Para evitar compilar cada paquete de R desde código fuente (proceso
+lento), el proyecto \textbf{r2u}, mantenido por Dirk Eddelbuettel,
+permite instalar miles de paquetes CRAN y Bioconductor como binarios
+\texttt{.deb} listos para usar mediante un repositorio adicional. Es
+opcional, pero muy recomendable si trabajas con muchos paquetes
+(tidyverse, sf, etc.). Consulta la documentación del proyecto r2u para
+los pasos de configuración específicos de tu versión de Ubuntu.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3. Instalación de R en Arch
+Linux}\label{instalaciuxf3n-de-r-en-arch-linux}
+
+En Arch Linux, R está disponible directamente en el repositorio oficial
+\textbf{extra}, gestionado por \texttt{pacman}. No se requieren
+repositorios de terceros para obtener una versión reciente.
+
+\subsubsection{3.1. Instalación con
+pacman}\label{instalaciuxf3n-con-pacman}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ pacman }\AttributeTok{{-}Syu}\NormalTok{ r}
+\end{Highlighting}
+\end{Shaded}
+
+Esto instala el paquete \texttt{r}, que incluye el binario \texttt{R},
+\texttt{Rscript}, y las herramientas básicas de compilación de paquetes
+de R (R en Arch ya integra lo equivalente a \texttt{r-base-dev}).
+
+\subsubsection{3.2. Estructura de bibliotecas de paquetes en
+Arch}\label{estructura-de-bibliotecas-de-paquetes-en-arch}
+
+Según la documentación oficial (ArchWiki), conviene separar:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Paquetes gestionados por pacman}: se instalan en
+  \texttt{/usr/lib/R/library}.
+\item
+  \textbf{Paquetes instalados por el usuario vía
+  \texttt{install.packages()}}: se instalan en una ruta de usuario, por
+  ejemplo \texttt{\textasciitilde{}/R/library} o similar, definida por
+  \texttt{.libPaths()}.
+\end{itemize}
+
+La recomendación oficial es \textbf{no mezclar} ambos métodos de gestión
+para un mismo paquete: si pacman gestiona un paquete de sistema, no debe
+reinstalarse manualmente desde R, y viceversa.
+
+\subsubsection{3.3. Paquetes de R adicionales vía
+pacman}\label{paquetes-de-r-adicionales-vuxeda-pacman}
+
+Arch empaqueta también una colección creciente de paquetes de R
+individuales con el prefijo \texttt{r-} (por ejemplo
+\texttt{r-tidyverse}, \texttt{r-ggplot2}, si están disponibles en los
+repositorios oficiales o en AUR). Puedes buscarlos así:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{pacman} \AttributeTok{{-}Ss}\NormalTok{ \^{}r{-}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{3.4. Instalación de paquetes CRAN desde dentro de
+R}\label{instalaciuxf3n-de-paquetes-cran-desde-dentro-de-r}
+
+Para paquetes no empaquetados por Arch, se instalan igual que en
+cualquier sistema, desde la consola de R:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"nombre\_del\_paquete"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Si no tienes permisos de escritura en la biblioteca de sistema, R te
+ofrecerá crear automáticamente una biblioteca personal en tu directorio
+\texttt{\$HOME} (acepta con \texttt{yes}/\texttt{y} cuando se te
+pregunte).
+
+\subsubsection{3.5. Repositorios de terceros para binarios precompilados
+(opcional)}\label{repositorios-de-terceros-para-binarios-precompilados-opcional}
+
+Existen iniciativas comunitarias como \textbf{BioArchLinux} que ofrecen
+binarios precompilados de paquetes CRAN/Bioconductor para Arch,
+integrables con pacman mediante la herramienta \texttt{bspm} (permite
+que \texttt{install.packages()} use pacman por debajo). Esto es opcional
+y pensado para quienes instalan muchos paquetes con frecuencia; revisa
+la wiki de BioArchLinux para la configuración exacta si te interesa.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4. Instalación de R en
+Windows}\label{instalaciuxf3n-de-r-en-windows}
+
+\subsubsection{4.1. Descarga desde CRAN}\label{descarga-desde-cran}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Visita el espejo oficial de CRAN: \textbf{https://cran.r-project.org/}
+\item
+  Haz clic en \textbf{``Download R for Windows''}.
+\item
+  Selecciona \textbf{``base''} (es la opción para una instalación
+  nueva).
+\item
+  Haz clic en el enlace \textbf{``Download R-X.X.X for Windows''} (donde
+  X.X.X es la versión más reciente).
+\item
+  Ejecuta el instalador \texttt{.exe} descargado.
+\end{enumerate}
+
+\subsubsection{4.2. Pasos del instalador}\label{pasos-del-instalador}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Selecciona el idioma de instalación.
+\item
+  Acepta la licencia (GPL).
+\item
+  Elige la ruta de instalación (por defecto suele ser
+  \texttt{C:\textbackslash{}Program\ Files\textbackslash{}R\textbackslash{}R-X.X.X}).
+\item
+  Selecciona los componentes a instalar (se recomienda dejar todos
+  marcados: archivos principales de 64-bit, archivos de ayuda en HTML,
+  traducciones de mensajes).
+\item
+  Configura las opciones de inicio (puedes dejar las opciones SDI/MDI
+  por defecto si no tienes preferencia).
+\item
+  Elige si deseas crear un ícono en el escritorio y entradas en el menú
+  de inicio.
+\item
+  Finaliza la instalación.
+\end{enumerate}
+
+\subsubsection{4.3. Verificación}\label{verificaciuxf3n}
+
+Abre el menú de inicio y busca ``R x64 X.X.X'' o abre una terminal
+(\texttt{cmd} o PowerShell) y ejecuta:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{R {-}}\AttributeTok{{-}version}
+\end{Highlighting}
+\end{Shaded}
+
+Si el comando no es reconocido, es porque R no se agregó automáticamente
+al \texttt{PATH} del sistema; en ese caso, abre R desde su acceso
+directo del menú de inicio, o agrega manualmente la carpeta \texttt{bin}
+de la instalación (p.~ej.
+\texttt{C:\textbackslash{}Program\ Files\textbackslash{}R\textbackslash{}R-X.X.X\textbackslash{}bin})
+a la variable de entorno \texttt{PATH}.
+
+\subsubsection{4.4. Rtools (opcional pero
+recomendado)}\label{rtools-opcional-pero-recomendado}
+
+Si vas a compilar paquetes de R desde código fuente en Windows
+(necesario para algunos paquetes de CRAN que no tienen binario
+precompilado para Windows), instala \textbf{Rtools}, disponible también
+desde la página de descargas de CRAN para Windows (sección ``Rtools'').
+Rtools provee las herramientas de compilación (gcc, make, etc.)
+necesarias en ese entorno.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5. Instalación de RStudio Desktop en Kubuntu /
+Ubuntu}\label{instalaciuxf3n-de-rstudio-desktop-en-kubuntu-ubuntu}
+
+\begin{quote}
+\textbf{Prerrequisito}: R debe estar instalado antes de este paso (ver
+sección 2).
+\end{quote}
+
+\subsubsection{\texorpdfstring{5.1. Descarga del paquete
+\texttt{.deb}}{5.1. Descarga del paquete .deb}}\label{descarga-del-paquete-.deb}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Visita la página oficial de descargas:
+  \textbf{https://posit.co/download/rstudio-desktop/}
+\item
+  La página detecta tu sistema operativo y te ofrece el instalador
+  correspondiente; descarga el paquete \texttt{.deb} para Ubuntu/Debian
+  (arquitectura \texttt{amd64}).
+\item
+  Alternativamente, puedes descargar directamente con \texttt{wget}
+  usando la URL del paquete vigente que indique la página de descargas
+  (las URLs cambian con cada versión, por lo que se recomienda copiar el
+  enlace actualizado directamente desde el sitio de Posit en el momento
+  de instalar).
+\end{enumerate}
+
+\subsubsection{\texorpdfstring{5.2. Instalación del paquete
+\texttt{.deb}}{5.2. Instalación del paquete .deb}}\label{instalaciuxf3n-del-paquete-.deb}
+
+Desde la carpeta donde se descargó el archivo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ apt install ./rstudio{-}2026.XX.X{-}XXX{-}amd64.deb}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+El uso de \texttt{apt\ install\ ./archivo.deb} (en vez de
+\texttt{dpkg\ -i}) es preferible porque \texttt{apt} resuelve
+automáticamente las dependencias faltantes.
+\end{quote}
+
+Si por alguna razón usaste \texttt{dpkg}, corrige dependencias faltantes
+después con:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ dpkg }\AttributeTok{{-}i}\NormalTok{ rstudio{-}2026.XX.X{-}XXX{-}amd64.deb}
+\FunctionTok{sudo}\NormalTok{ apt }\AttributeTok{{-}{-}fix{-}broken}\NormalTok{ install}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{5.3. Verificación de la firma del paquete (opcional,
+recomendado)}\label{verificaciuxf3n-de-la-firma-del-paquete-opcional-recomendado}
+
+RStudio Desktop publica binarios firmados. Los usuarios de escritorio
+Linux pueden necesitar importar la clave pública de firma de código de
+Posit antes de instalar, dependiendo de la política de seguridad de tu
+sistema. Esto es opcional para uso normal vía \texttt{apt\ install},
+pero recomendable si quieres verificar la integridad del paquete
+manualmente (especialmente si lo descargaste desde un espejo o enlace no
+oficial).
+
+\subsubsection{5.4. Distribuciones
+soportadas}\label{distribuciones-soportadas}
+
+RStudio Desktop genera binarios dirigidos a un conjunto específico de
+distribuciones Linux de 64 bits. Revisa siempre la página oficial de
+descargas para confirmar que tu versión de Kubuntu/Ubuntu está dentro de
+las soportadas en el momento de tu instalación, ya que Posit retira
+soporte para versiones antiguas con cada ciclo de lanzamientos (ver nota
+de la sección 1.3 sobre Ubuntu 20.04).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6. Instalación de RStudio Desktop en Arch
+Linux}\label{instalaciuxf3n-de-rstudio-desktop-en-arch-linux}
+
+\begin{quote}
+\textbf{Importante}: RStudio Desktop \textbf{no está en los repositorios
+oficiales} de Arch Linux (\texttt{core}/\texttt{extra}). Solo está
+disponible mediante el \textbf{AUR} (Arch User Repository), que contiene
+contenido producido por la comunidad, no por los desarrolladores
+oficiales de Arch ni de Posit.
+\end{quote}
+
+\begin{quote}
+\textbf{Prerrequisito}: R debe estar instalado antes de este paso (ver
+sección 3).
+\end{quote}
+
+\subsubsection{6.1. Opciones disponibles en
+AUR}\label{opciones-disponibles-en-aur}
+
+Existen varios paquetes en AUR relacionados con RStudio; los dos
+relevantes para RStudio Desktop (IDE de Posit) son:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Paquete AUR
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Descripción
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Ventaja
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Desventaja
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{rstudio-desktop-bin} & Empaqueta el \texttt{.deb} oficial de
+Posit (binario distribuido para Ubuntu) & Instalación rápida, no
+requiere compilar & Depende de que el mantenedor actualice el paquete
+con cada release \\
+\texttt{rstudio-desktop} & Compila RStudio desde el código fuente & Más
+actualizado, optimizado para el sistema & Compilación larga (requiere
+GWT, Boost, etc.) y más propensa a romperse con actualizaciones del
+sistema (p.~ej. cambios en \texttt{libboost}) \\
+\end{longtable}
+}
+
+Para uso cotidiano sin compilar, \textbf{\texttt{rstudio-desktop-bin}}
+es la opción más práctica para la mayoría de usuarios.
+
+\subsubsection{6.2. Instalación con un ayudante de AUR
+(recomendado)}\label{instalaciuxf3n-con-un-ayudante-de-aur-recomendado}
+
+Si usas un ayudante de AUR como \texttt{yay} o \texttt{paru} (no
+incluidos en Arch base, hay que instalarlos antes desde el propio AUR):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{yay} \AttributeTok{{-}S}\NormalTok{ rstudio{-}desktop{-}bin}
+\end{Highlighting}
+\end{Shaded}
+
+o, si prefieres compilar desde código fuente:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{yay} \AttributeTok{{-}S}\NormalTok{ rstudio{-}desktop}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{6.3. Instalación manual desde AUR (sin
+ayudante)}\label{instalaciuxf3n-manual-desde-aur-sin-ayudante}
+
+Si no usas un ayudante de AUR, el proceso oficial documentado por
+ArchWiki es:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ clone https://aur.archlinux.org/rstudio{-}desktop{-}bin.git}
+\BuiltInTok{cd}\NormalTok{ rstudio{-}desktop{-}bin}
+\ExtensionTok{makepkg} \AttributeTok{{-}si}
+\end{Highlighting}
+\end{Shaded}
+
+El flag \texttt{-si} le indica a \texttt{makepkg} que instale las
+dependencias necesarias y luego instale el paquete resultante con
+\texttt{pacman\ -U} automáticamente.
+
+\subsubsection{6.4. Notas importantes para Arch /
+Archcraft}\label{notas-importantes-para-arch-archcraft}
+
+\begin{itemize}
+\tightlist
+\item
+  El paquete \texttt{rstudio-desktop} (compilado desde fuente) puede
+  romperse temporalmente tras actualizaciones de librerías base del
+  sistema (por ejemplo, \texttt{libboost}); si esto ocurre, conviene
+  forzar una reconstrucción con \texttt{pacman\ -Syudd} antes de
+  reconstruir el paquete, o cambiar temporalmente a
+  \texttt{rstudio-desktop-bin} mientras se resuelve.
+\item
+  Dado que ambos paquetes son mantenidos por voluntarios de la comunidad
+  (no por Posit oficialmente), revisa los comentarios recientes en la
+  página de AUR del paquete antes de instalar, por si hay incidencias
+  activas no resueltas.
+\item
+  En sistemas con gestor de ventanas tipo \emph{tiling} tal como los
+  usados en Archcraft, no debería haber incompatibilidades particulares
+  con RStudio (es una aplicación Electron/Qt estándar), pero usuarios de
+  Wayland han reportado necesitar banderas adicionales de lanzamiento
+  para Electron; si tienes problemas de renderizado bajo Wayland, prueba
+  forzando XWayland o revisa los comentarios del paquete en AUR para
+  \emph{workarounds} conocidos.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7. Instalación de RStudio Desktop en
+Windows}\label{instalaciuxf3n-de-rstudio-desktop-en-windows}
+
+\begin{quote}
+\textbf{Prerrequisito}: R debe estar instalado antes de este paso (ver
+sección 4).
+\end{quote}
+
+\subsubsection{7.1. Descarga}\label{descarga}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Visita \textbf{https://posit.co/download/rstudio-desktop/}
+\item
+  Descarga el instalador autoextraíble (\texttt{.exe}) para Windows.
+  RStudio para Windows requiere una edición de 64 bits de Windows 10 o
+  superior.
+\end{enumerate}
+
+\subsubsection{7.2. Instalación}\label{instalaciuxf3n}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Ejecuta el archivo \texttt{.exe} descargado.
+\item
+  Sigue el asistente de instalación (setup wizard).
+\item
+  Se requieren permisos de administrador para completar la instalación.
+\item
+  El instalador crea automáticamente un acceso directo de RStudio y una
+  entrada en ``Agregar o quitar programas'' para una futura
+  desinstalación.
+\end{enumerate}
+
+\subsubsection{7.3. Alternativa portable
+(.zip)}\label{alternativa-portable-.zip}
+
+Si prefieres no usar el instalador (por ejemplo, en un entorno
+restringido o para tener una versión portable), Posit también distribuye
+un archivo \texttt{.zip}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Descarga el \texttt{.zip} desde la misma página de descargas.
+\item
+  Extráelo en la ubicación que prefieras.
+\item
+  Ejecuta RStudio directamente desde \texttt{rstudio.exe}, ubicado en la
+  subcarpeta \texttt{bin} del directorio extraído.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8. Verificación
+post-instalación}\label{verificaciuxf3n-post-instalaciuxf3n}
+
+\subsubsection{8.1. Verificar R desde terminal (Linux y
+Windows)}\label{verificar-r-desde-terminal-linux-y-windows}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{R} \AttributeTok{{-}{-}version}
+\ExtensionTok{Rscript} \AttributeTok{{-}{-}version}
+\end{Highlighting}
+\end{Shaded}
+
+Deberías ver información de versión similar a:
+
+\begin{verbatim}
+R version 4.X.X (20XX-XX-XX) -- "Nombre en clave"
+\end{verbatim}
+
+\subsubsection{8.2. Verificar R desde su propia consola
+interactiva}\label{verificar-r-desde-su-propia-consola-interactiva}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{R}
+\end{Highlighting}
+\end{Shaded}
+
+Esto abre la consola interactiva de R. Para salir:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{q}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Te preguntará si deseas guardar la imagen del espacio de trabajo; puedes
+responder \texttt{n} si no lo necesitas.
+
+\subsubsection{8.3. Verificar que RStudio detecta
+R}\label{verificar-que-rstudio-detecta-r}
+
+Al abrir RStudio Desktop por primera vez, revisa la consola integrada
+(panel inferior izquierdo por defecto): debe mostrar la versión de R
+detectada al iniciar. Si tienes varias versiones de R instaladas, puedes
+elegir cuál usar desde:
+
+\texttt{Tools} → \texttt{Global\ Options} → \texttt{General} → sección
+\textbf{R version} (en Linux/Windows el menú es equivalente, aunque la
+ruta exacta puede variar ligeramente entre versiones de RStudio).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{9. Dependencias de sistema para paquetes de R
+(Linux)}\label{dependencias-de-sistema-para-paquetes-de-r-linux}
+
+Muchos paquetes de R populares (por ejemplo, los del \emph{tidyverse},
+paquetes espaciales como \texttt{sf}, paquetes con gráficos avanzados,
+etc.) requieren bibliotecas de sistema adicionales para compilarse
+correctamente desde código fuente. Posit documenta un conjunto curado de
+dependencias por distribución.
+
+\subsubsection{9.1. Ejemplo para Ubuntu /
+Debian}\label{ejemplo-para-ubuntu-debian}
+
+A modo de referencia (lista no exhaustiva; revisa siempre la
+documentación oficial de Posit para la lista completa y actualizada
+según tu versión exacta de Ubuntu):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ apt update}
+\FunctionTok{sudo}\NormalTok{ apt install }\AttributeTok{{-}y} \DataTypeTok{\textbackslash{}}
+\NormalTok{  build{-}essential }\DataTypeTok{\textbackslash{}}
+\NormalTok{  libcurl4{-}openssl{-}dev }\DataTypeTok{\textbackslash{}}
+\NormalTok{  libssl{-}dev }\DataTypeTok{\textbackslash{}}
+\NormalTok{  libxml2{-}dev }\DataTypeTok{\textbackslash{}}
+\NormalTok{  libfontconfig1{-}dev }\DataTypeTok{\textbackslash{}}
+\NormalTok{  libharfbuzz{-}dev }\DataTypeTok{\textbackslash{}}
+\NormalTok{  libfribidi{-}dev }\DataTypeTok{\textbackslash{}}
+\NormalTok{  libfreetype6{-}dev }\DataTypeTok{\textbackslash{}}
+\NormalTok{  libpng{-}dev }\DataTypeTok{\textbackslash{}}
+\NormalTok{  libtiff5{-}dev }\DataTypeTok{\textbackslash{}}
+\NormalTok{  libjpeg{-}dev }\DataTypeTok{\textbackslash{}}
+\NormalTok{  libgit2{-}dev}
+\end{Highlighting}
+\end{Shaded}
+
+Esta lista cubre dependencias habituales de paquetes como
+\texttt{devtools}, \texttt{httr}, \texttt{xml2}, \texttt{ragg},
+\texttt{textshaping}, \texttt{git2r}, entre otros.
+
+\subsubsection{9.2. Ejemplo para Arch
+Linux}\label{ejemplo-para-arch-linux}
+
+En Arch, la mayoría de estas bibliotecas suelen instalarse
+automáticamente como dependencias declaradas en el \texttt{PKGBUILD} del
+paquete \texttt{r-*} correspondiente o se resuelven directamente al
+compilar con \texttt{install.packages()}, siempre que tengas el grupo
+\texttt{base-devel} instalado:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ pacman }\AttributeTok{{-}S} \AttributeTok{{-}{-}needed}\NormalTok{ base{-}devel}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{9.3. Detección automática de
+dependencias}\label{detecciuxf3n-automuxe1tica-de-dependencias}
+
+Posit ofrece una herramienta de \textbf{detección de dependencias de
+sistema} que analiza qué bibliotecas de sistema requiere un conjunto de
+paquetes de R antes de instalarlos, evitando errores de compilación. Es
+útil si planeas instalar muchos paquetes de una sola vez (por ejemplo,
+en un servidor o máquina nueva). Consulta la documentación oficial de
+Posit (``System Dependency Detection'') para más detalles sobre su uso.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{10. Gestión de paquetes de
+R}\label{gestiuxf3n-de-paquetes-de-r}
+
+\subsubsection{10.1. Instalar paquetes desde
+CRAN}\label{instalar-paquetes-desde-cran}
+
+Desde la consola de R (en cualquier sistema operativo):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
+\FunctionTok{install.packages}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{, }\StringTok{"tidyr"}\NormalTok{, }\StringTok{"readr"}\NormalTok{))  }\CommentTok{\# instalación múltiple}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{10.2. Cargar un paquete
+instalado}\label{cargar-un-paquete-instalado}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{10.3. Actualizar todos los paquetes
+instalados}\label{actualizar-todos-los-paquetes-instalados}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{update.packages}\NormalTok{(}\AttributeTok{ask =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{10.4. Ver la biblioteca de paquetes
+activa}\label{ver-la-biblioteca-de-paquetes-activa}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{.libPaths}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{\texorpdfstring{10.5. Instalar paquetes desde GitHub
+(requiere \texttt{remotes} o
+\texttt{devtools})}{10.5. Instalar paquetes desde GitHub (requiere remotes o devtools)}}\label{instalar-paquetes-desde-github-requiere-remotes-o-devtools}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"remotes"}\NormalTok{)}
+\NormalTok{remotes}\SpecialCharTok{::}\FunctionTok{install\_github}\NormalTok{(}\StringTok{"usuario/repositorio"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{11. Actualización y
+desinstalación}\label{actualizaciuxf3n-y-desinstalaciuxf3n}
+
+\subsubsection{11.1. Actualizar R en Kubuntu/Ubuntu (repositorio
+CRAN)}\label{actualizar-r-en-kubuntuubuntu-repositorio-cran}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ apt update}
+\FunctionTok{sudo}\NormalTok{ apt upgrade r{-}base}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{11.2. Actualizar R en Arch
+Linux}\label{actualizar-r-en-arch-linux}
+
+Arch usa un modelo de lanzamiento continuo (\emph{rolling release}); R
+se actualiza junto con el resto del sistema:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ pacman }\AttributeTok{{-}Syu}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{11.3. Actualizar RStudio
+Desktop}\label{actualizar-rstudio-desktop}
+
+En todos los sistemas, la actualización de RStudio Desktop se realiza
+descargando e instalando el nuevo paquete/instalador desde la página
+oficial de descargas (no existe, en la edición open-source, un mecanismo
+de auto-actualización integrado en la aplicación). En Arch vía AUR,
+basta con actualizar el paquete con tu ayudante de AUR habitual
+(\texttt{yay\ -Syu}, por ejemplo).
+
+\subsubsection{11.4. Desinstalación}\label{desinstalaciuxf3n}
+
+\textbf{Kubuntu/Ubuntu:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ apt remove r{-}base r{-}base{-}dev}
+\FunctionTok{sudo}\NormalTok{ apt remove rstudio}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Arch Linux:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ pacman }\AttributeTok{{-}Rns}\NormalTok{ r}
+\ExtensionTok{yay} \AttributeTok{{-}Rns}\NormalTok{ rstudio{-}desktop{-}bin   }\CommentTok{\# o rstudio{-}desktop, según cuál hayas instalado}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Windows:}
+
+Usa el panel ``Agregar o quitar programas'' de Windows y desinstala
+``R'' y ``RStudio'' por separado, ya que son aplicaciones
+independientes.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{12. Solución de problemas
+comunes}\label{soluciuxf3n-de-problemas-comunes}
+
+\subsubsection{\texorpdfstring{12.1.
+\texttt{add-apt-repository:\ command\ not\ found}
+(Ubuntu/Kubuntu)}{12.1. add-apt-repository: command not found (Ubuntu/Kubuntu)}}\label{add-apt-repository-command-not-found-ubuntukubuntu}
+
+Falta el paquete \texttt{software-properties-common}. Instálalo con:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ apt install software{-}properties{-}common}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{12.2. Error de clave GPG no válida al añadir el
+repositorio
+CRAN}\label{error-de-clave-gpg-no-vuxe1lida-al-auxf1adir-el-repositorio-cran}
+
+Verifica que la huella digital coincide con
+\texttt{E298A3A825C0D65DFD57CBB651716619E084DAB9}. Si la descarga de la
+clave falla, intenta nuevamente o usa un espejo de CRAN alternativo
+listado en https://cran.r-project.org/mirrors.html.
+
+\subsubsection{12.3. RStudio no detecta R recién instalado
+(Linux)}\label{rstudio-no-detecta-r-reciuxe9n-instalado-linux}
+
+Cierra y vuelve a abrir RStudio. Si el problema persiste, revisa
+\texttt{Tools} → \texttt{Global\ Options} → \texttt{General} y
+selecciona manualmente la ruta del binario de R (normalmente
+\texttt{/usr/lib/R} en sistemas basados en Debian/Ubuntu, o
+\texttt{/usr/lib/R} también en Arch tras instalar el paquete
+\texttt{r}).
+
+\subsubsection{12.4. Falla la compilación de un paquete de R por falta
+de una librería de sistema
+(Linux)}\label{falla-la-compilaciuxf3n-de-un-paquete-de-r-por-falta-de-una-libreruxeda-de-sistema-linux}
+
+El mensaje de error en R suele indicar el nombre de la librería faltante
+(por ejemplo, \texttt{libcurl} o \texttt{libxml2}). Instala el paquete
+de desarrollo (\texttt{-dev} en Debian/Ubuntu, sin sufijo o con nombre
+equivalente en Arch) correspondiente y reintenta
+\texttt{install.packages()}.
+
+\subsubsection{\texorpdfstring{12.5. El paquete \texttt{rstudio-desktop}
+de AUR no compila tras una actualización del sistema
+(Arch)}{12.5. El paquete rstudio-desktop de AUR no compila tras una actualización del sistema (Arch)}}\label{el-paquete-rstudio-desktop-de-aur-no-compila-tras-una-actualizaciuxf3n-del-sistema-arch}
+
+Es un problema conocido y documentado en los comentarios del propio
+paquete AUR, generalmente vinculado a cambios en \texttt{libboost} u
+otras librerías del sistema. Prueba:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ pacman }\AttributeTok{{-}Syudd}
+\end{Highlighting}
+\end{Shaded}
+
+antes de reconstruir, o cambia temporalmente al paquete
+\texttt{rstudio-desktop-bin}, que usa un binario precompilado y no
+depende de compilar contra las librerías actuales del sistema.
+
+\subsubsection{\texorpdfstring{12.6. En Windows, \texttt{R} no es
+reconocido como
+comando}{12.6. En Windows, R no es reconocido como comando}}\label{en-windows-r-no-es-reconocido-como-comando}
+
+El instalador de R para Windows no siempre agrega el ejecutable al
+\texttt{PATH} del sistema automáticamente. Agrega manualmente la ruta
+\texttt{bin} de tu instalación de R (p.~ej.
+\texttt{C:\textbackslash{}Program\ Files\textbackslash{}R\textbackslash{}R-X.X.X\textbackslash{}bin\textbackslash{}x64})
+a la variable de entorno \texttt{PATH} desde el Panel de Control →
+Sistema → Configuración avanzada del sistema → Variables de entorno.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{13. Referencias oficiales}\label{referencias-oficiales}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{CRAN --- R Project}: https://cran.r-project.org/
+\item
+  \textbf{CRAN --- Instrucciones para Ubuntu (breve)}:
+  https://cran.r-project.org/bin/linux/ubuntu/
+\item
+  \textbf{CRAN --- Instrucciones para Ubuntu (completas / README)}:
+  https://cran.r-project.org/bin/linux/ubuntu/fullREADME.html
+\item
+  \textbf{CRAN --- R para Windows}:
+  https://cran.r-project.org/bin/windows/base/
+\item
+  \textbf{ArchWiki --- R}: https://wiki.archlinux.org/title/R
+\item
+  \textbf{ArchWiki --- Pacman}: https://wiki.archlinux.org/title/Pacman
+\item
+  \textbf{AUR --- rstudio-desktop-bin}:
+  https://aur.archlinux.org/packages/rstudio-desktop-bin
+\item
+  \textbf{AUR --- rstudio-desktop}:
+  https://aur.archlinux.org/packages/rstudio-desktop
+\item
+  \textbf{Posit --- Descargas de RStudio Desktop}:
+  https://posit.co/download/rstudio-desktop/
+\item
+  \textbf{Posit Docs --- Instalación de R (Install R)}:
+  https://docs.posit.co/resources/install-r.html
+\item
+  \textbf{Posit Docs --- Soporte de plataformas}:
+  https://docs.posit.co/platform-support.html
+\item
+  \textbf{Posit Docs --- Guía del IDE de RStudio}:
+  https://docs.posit.co/ide/user/
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Edison Achalma} Economista --- Universidad Nacional de San
+Cristóbal de Huamanga (UNSCH) Ayacucho, Perú ORCID:
+\href{https://orcid.org/0000-0001-6996-3364}{0000-0001-6996-3364}
 
 \section{Publicaciones Similares}\label{publicaciones-similares}
 

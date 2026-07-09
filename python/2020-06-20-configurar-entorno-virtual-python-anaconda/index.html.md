@@ -1244,7 +1244,7 @@ conda env remove -n temp-experiment -y
 ## Colaboración
 
 - [ ] Mantener `environment.yml` actualizado
-- [ ] Agregar instrucciones en `README.md`
+- [ ] Agregar instrucciones en `README.md` %%sp-id:a1509b1b%%
 - [ ] Usar versiones específicas para reproducibilidad
 - [ ] Probar entorno en máquina limpia antes de compartir
 

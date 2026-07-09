@@ -1,0 +1,2273 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "documentmode: doc\n",
+        "copyrightnotice: 2021\n",
+        "copyrightext: All rights reserved\n",
+        "title: Variables y expresiones en Python\n",
+        "shorttitle: VARIABLES PYTHON\n",
+        "abstract: Este abstract será actualizado una vez que se complete el contenido final\n",
+        "  del artículo.\n",
+        "keywords:\n",
+        "- keyword1\n",
+        "- keyword2\n",
+        "categories:\n",
+        "- Python\n",
+        "tags:\n",
+        "- python\n",
+        "- variables_python\n",
+        "author-note:\n",
+        "  status-changes:\n",
+        "    affiliation-change: null\n",
+        "    deceased: null\n",
+        "  disclosures:\n",
+        "    study-registration: null\n",
+        "    data-sharing: null\n",
+        "    related-report: null\n",
+        "    conflict-of-interest: El autor no tiene conflictos de interés que revelar.\n",
+        "    financial-support: null\n",
+        "    gratitude: null\n",
+        "    authorship-agreements: null\n",
+        "description: Tipos de datos, asignación, operadores y construcción de expresiones\n",
+        "  válidas en el lenguaje Python.\n",
+        "eval: true\n",
+        "citation:\n",
+        "  type: article-journal\n",
+        "  author:\n",
+        "  - Edison Achalma\n",
+        "  pdf-url: https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python/index.pdf\n",
+        "date: 05/31/2021\n",
+        "draft: false\n",
+        "image: ../featured.jpg\n",
+        "---\n",
+        "\n",
+        "En esta segunda guía exploraremos en profundidad los elementos fundamentales de Python: variables, expresiones y statements. Estos conceptos son la base para cualquier programa que escribamos y son esenciales para el análisis económico con Python.\n",
+        "\n",
+        "# Valores y tipos de datos\n",
+        "\n",
+        "## Tipos básicos en Python\n",
+        "\n",
+        "Python maneja diferentes tipos de datos que son fundamentales para nuestros análisis económicos. Los tipos básicos son:\n",
+        "\n",
+        "### Integers (Enteros)\n",
+        "\n",
+        "Los integers son números enteros, positivos o negativos, sin decimales. Son útiles para contar unidades discretas como número de trabajadores, cantidad de empresas, años, etc."
+      ],
+      "id": "28ad652b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Ejemplos de integers en contexto económico\n",
+        "num_trabajadores = 150\n",
+        "año_base = 2010\n",
+        "cantidad_empresas = 45\n",
+        "tasa_desempleo_entera = 7  # 7%"
+      ],
+      "id": "bc7d27dd",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Floats (Números de punto flotante)\n",
+        "\n",
+        "Los floats son números con decimales. La mayoría de variables económicas son floats: precios, tasas, proporciones, etc."
+      ],
+      "id": "ec8a083f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Ejemplos de floats en economía\n",
+        "precio_dolar = 3.75\n",
+        "tasa_interes = 0.065  # 6.5%\n",
+        "pib_per_capita = 7196.21\n",
+        "inflacion_mensual = 0.42  # 0.42%"
+      ],
+      "id": "80350b4a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Strings (Cadenas de texto)\n",
+        "\n",
+        "Los strings son secuencias de caracteres. Se usan para nombres, descripciones, códigos, etc."
+      ],
+      "id": "6703bf7d"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Ejemplos de strings en economía\n",
+        "nombre_pais = \"Perú\"\n",
+        "codigo_sector = \"CIIU-Rev4\"\n",
+        "descripcion = \"Producto Bruto Interno a precios constantes\"\n",
+        "moneda = \"PEN\""
+      ],
+      "id": "fc0e80cb",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Booleans (Booleanos)\n",
+        "\n",
+        "Los booleans solo pueden tener dos valores: True (verdadero) o False (falso). Son fundamentales para lógica condicional."
+      ],
+      "id": "7c597245"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Ejemplos de booleans en economía\n",
+        "esta_en_recesion = False\n",
+        "supera_meta_inflacion = True\n",
+        "es_pais_desarrollado = False\n",
+        "tiene_superavit_fiscal = True"
+      ],
+      "id": "fa4bc2fd",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Verificación de tipos\n",
+        "\n",
+        "Python nos permite verificar el tipo de cualquier valor con la función `type()`:"
+      ],
+      "id": "cfed9cc9"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Verificando tipos\n",
+        "print(type(150))           # <class 'int'>\n",
+        "print(type(3.75))          # <class 'float'>\n",
+        "print(type(\"Perú\"))        # <class 'str'>\n",
+        "print(type(True))          # <class 'bool'>"
+      ],
+      "id": "37878966",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Conversión entre tipos\n",
+        "\n",
+        "Frecuentemente necesitamos convertir datos de un tipo a otro. Python proporciona funciones para esto:"
+      ],
+      "id": "9f610499"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Conversión de float a integer\n",
+        "precio_aproximado = int(3.75)  # Resultado: 3\n",
+        "print(precio_aproximado)\n",
+        "\n",
+        "# Conversión de integer a float\n",
+        "tasa_como_float = float(7)  # Resultado: 7.0\n",
+        "print(tasa_como_float)\n",
+        "\n",
+        "# Conversión de número a string\n",
+        "año_texto = str(2023)  # Resultado: \"2023\"\n",
+        "print(\"El año es: \" + año_texto)\n",
+        "\n",
+        "# Conversión de string a número\n",
+        "texto_precio = \"3.75\"\n",
+        "precio_numerico = float(texto_precio)  # Resultado: 3.75\n",
+        "print(precio_numerico)"
+      ],
+      "id": "53ad0998",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Nota importante sobre conversión de float a int:"
+      ],
+      "id": "b08e0f99"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# La conversión a int trunca, no redondea\n",
+        "print(int(4.9))   # Resultado: 4\n",
+        "print(int(4.1))   # Resultado: 4\n",
+        "print(int(-4.9))  # Resultado: -4\n",
+        "\n",
+        "# Para redondear, usamos round()\n",
+        "print(round(4.9))  # Resultado: 5\n",
+        "print(round(4.1))  # Resultado: 4"
+      ],
+      "id": "ff001709",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Ejemplo aplicado: Cálculo del IPC"
+      ],
+      "id": "860a5cf1"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Datos de precios de canasta básica\n",
+        "precio_canasta_2023 = 850.50\n",
+        "precio_canasta_base = 750.00\n",
+        "año_base = 2020\n",
+        "\n",
+        "# Cálculo del IPC\n",
+        "ipc = (precio_canasta_2023 / precio_canasta_base) * 100\n",
+        "\n",
+        "# Resultados\n",
+        "print(\"Cálculo del Índice de Precios al Consumidor\")\n",
+        "print(\"Año base:\", año_base)\n",
+        "print(\"Precio canasta base: S/\", precio_canasta_base)\n",
+        "print(\"Precio canasta actual: S/\", precio_canasta_2023)\n",
+        "print(\"IPC:\", round(ipc, 2))\n",
+        "print(\"Tipo de dato del IPC:\", type(ipc))"
+      ],
+      "id": "7ebe1db1",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Nombres de variables y palabras reservadas\n",
+        "\n",
+        "## Reglas para nombres de variables\n",
+        "\n",
+        "Python tiene reglas estrictas sobre cómo nombrar variables:\n",
+        "\n",
+        "**Reglas obligatorias:**\n",
+        "\n",
+        "1. Debe comenzar con una letra (a-z, A-Z) o guión bajo (_)\n",
+        "2. Puede contener letras, números y guiones bajos\n",
+        "3. No puede contener espacios\n",
+        "4. Es sensible a mayúsculas y minúsculas\n",
+        "5. No puede ser una palabra reservada de Python"
+      ],
+      "id": "e531b8c7"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Nombres válidos\n",
+        "pib_peru = 242632\n",
+        "tasa_interes_2023 = 6.5\n",
+        "_variable_privada = 100\n",
+        "PIB = 500000  # Diferente de pib\n",
+        "\n",
+        "# Nombres inválidos (estos generarán errores)\n",
+        "# 2023_pib = 100        # No puede empezar con número\n",
+        "# tasa-interes = 5.5    # No puede contener guiones\n",
+        "# tasa interes = 5.5    # No puede contener espacios\n",
+        "# class = \"Economía\"    # class es palabra reservada"
+      ],
+      "id": "19cc65f1",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Palabras reservadas de Python\n",
+        "\n",
+        "Python tiene palabras reservadas que no pueden usarse como nombres de variables:"
+      ],
+      "id": "a7b74b6a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Lista de palabras reservadas en Python 3\n",
+        "# False      await      else       import     pass\n",
+        "# None       break      except     in         raise\n",
+        "# True       class      finally    is         return\n",
+        "# and        continue   for        lambda     try\n",
+        "# as         def        from       nonlocal   while\n",
+        "# assert     del        global     not        with\n",
+        "# async      elif       if         or         yield"
+      ],
+      "id": "575a0a78",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Convenciones de nombres en Python\n",
+        "\n",
+        "Python sigue convenciones (no obligatorias pero recomendadas):\n",
+        "\n",
+        "**Snake case para variables y funciones:**"
+      ],
+      "id": "06366e67"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Recomendado: snake_case (palabras separadas por guiones bajos)\n",
+        "precio_producto = 15.50\n",
+        "tasa_crecimiento_pib = 2.4\n",
+        "numero_trabajadores_formales = 8500000\n",
+        "\n",
+        "# No recomendado pero válido: camelCase\n",
+        "precioProducto = 15.50\n",
+        "tasaCrecimientoPib = 2.4"
+      ],
+      "id": "7d278023",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "**Constantes en mayúsculas:**"
+      ],
+      "id": "076ded94"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Constantes (valores que no cambian)\n",
+        "PI = 3.14159\n",
+        "TASA_IGV = 0.18\n",
+        "SUELDO_MINIMO_VITAL = 1025.00\n",
+        "año_BASE_IPC = 2020"
+      ],
+      "id": "dda1bf9e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "**Variables privadas con guión bajo:**"
+      ],
+      "id": "2ce6d0e6"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Primero definimos las variables necesarias\n",
+        "precio_unitario = 25.50  # precio de venta por unidad\n",
+        "cantidad_vendida = 120  # unidades vendidas\n",
+        "\n",
+        "# Ahora sí podemos calcular\n",
+        "_calculo_intermedio = precio_unitario * cantidad_vendida\n",
+        "_dato_temporal = 100  # variable que solo usamos internamente\n",
+        "\n",
+        "# Mostramos resultados (opcional, para que el lector vea)\n",
+        "print(f\"Precio unitario: S/ {precio_unitario:,.2f}\")\n",
+        "print(f\"Cantidad vendida: {cantidad_vendida} unidades\")\n",
+        "print(f\"Subtotal (cálculo intermedio): S/ {_calculo_intermedio:,.2f}\")\n",
+        "print(f\"Valor temporal interno: {_dato_temporal}\")"
+      ],
+      "id": "3c95ab55",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Nombres descriptivos vs. cortos\n",
+        "\n",
+        "En programación, es preferible usar nombres descriptivos que hagan el código auto-documentado:"
+      ],
+      "id": "d772b0f1"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Mal: nombres crípticos\n",
+        "x = 3.75\n",
+        "y = 1000\n",
+        "z = x * y\n",
+        "\n",
+        "# Bien: nombres descriptivos\n",
+        "precio_unitario = 3.75\n",
+        "cantidad_vendida = 1000\n",
+        "ingreso_total = precio_unitario * cantidad_vendida\n",
+        "\n",
+        "# Para índices en bucles, nombres cortos son aceptables\n",
+        "for i in range(10):\n",
+        "    print(i)"
+      ],
+      "id": "3640cd52",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Ejemplo económico completo"
+      ],
+      "id": "f01c71b3"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Variables macroeconómicas del Perú (valores hipotéticos)\n",
+        "PIB_NOMINAL = 242632  # Constante en millones USD\n",
+        "POBLACION = 33715471  # Constante\n",
+        "\n",
+        "# Variables calculadas\n",
+        "pib_per_capita = PIB_NOMINAL / POBLACION * 1000000\n",
+        "tasa_crecimiento_anual = 2.7\n",
+        "pib_proyectado = PIB_NOMINAL * (1 + tasa_crecimiento_anual / 100)\n",
+        "\n",
+        "# Información textual\n",
+        "nombre_pais = \"Perú\"\n",
+        "codigo_iso = \"PER\"\n",
+        "moneda_local = \"Sol peruano\"\n",
+        "simbolo_moneda = \"S/\"\n",
+        "\n",
+        "# Variables booleanas\n",
+        "es_economia_emergente = True\n",
+        "pertenece_ocde = False\n",
+        "\n",
+        "# Reporte\n",
+        "print(f\"Análisis Económico - {nombre_pais} ({codigo_iso})\")\n",
+        "print(f\"PIB nominal: USD {PIB_NOMINAL:,} millones\")\n",
+        "print(f\"Población: {POBLACION:,} habitantes\")\n",
+        "print(f\"PIB per cápita: USD {pib_per_capita:,.2f}\")\n",
+        "print(f\"Economía emergente: {es_economia_emergente}\")"
+      ],
+      "id": "0e621496",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Operadores y operandos\n",
+        "\n",
+        "## Operadores aritméticos\n",
+        "\n",
+        "Los operadores son símbolos que indican operaciones. Los operandos son los valores sobre los que se opera."
+      ],
+      "id": "f7d3449b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Suma\n",
+        "ingreso_enero = 5000\n",
+        "ingreso_febrero = 5500\n",
+        "ingreso_total = ingreso_enero + ingreso_febrero\n",
+        "print(\"Ingreso total:\", ingreso_total)  # 10500\n",
+        "\n",
+        "# Resta\n",
+        "gastos = 4000\n",
+        "ahorro = ingreso_enero - gastos\n",
+        "print(\"Ahorro:\", ahorro)  # 1000\n",
+        "\n",
+        "# Multiplicación\n",
+        "precio_unitario = 25.50\n",
+        "cantidad = 100\n",
+        "valor_venta = precio_unitario * cantidad\n",
+        "print(\"Valor de venta:\", valor_venta)  # 2550.0\n",
+        "\n",
+        "# División\n",
+        "pib_total = 500000\n",
+        "numero_habitantes = 50000\n",
+        "pib_per_capita = pib_total / numero_habitantes\n",
+        "print(\"PIB per cápita:\", pib_per_capita)  # 10.0\n",
+        "\n",
+        "# Potencia\n",
+        "capital_inicial = 10000\n",
+        "tasa_interes = 0.05\n",
+        "anos = 3\n",
+        "capital_final = capital_inicial * (1 + tasa_interes) ** anos\n",
+        "print(\"Capital final:\", round(capital_final, 2))  # 11576.25\n",
+        "\n",
+        "# División entera (cociente)\n",
+        "produccion_total = 1000\n",
+        "tamano_lote = 75\n",
+        "lotes_completos = produccion_total // tamano_lote\n",
+        "print(\"Lotes completos:\", lotes_completos)  # 13\n",
+        "\n",
+        "# Módulo (residuo)\n",
+        "unidades_restantes = produccion_total % tamano_lote\n",
+        "print(\"Unidades restantes:\", unidades_restantes)  # 25"
+      ],
+      "id": "84e3428a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Operadores de comparación\n",
+        "\n",
+        "Estos operadores comparan valores y devuelven True o False:"
+      ],
+      "id": "e01a746c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Datos económicos\n",
+        "inflacion_actual = 3.5\n",
+        "meta_inflacion = 3.0\n",
+        "pib_2023 = 250000\n",
+        "pib_2022 = 245000\n",
+        "\n",
+        "# Igual a\n",
+        "print(inflacion_actual == meta_inflacion)  # False\n",
+        "\n",
+        "# Diferente de\n",
+        "print(inflacion_actual != meta_inflacion)  # True\n",
+        "\n",
+        "# Mayor que\n",
+        "print(inflacion_actual > meta_inflacion)  # True\n",
+        "\n",
+        "# Menor que\n",
+        "print(inflacion_actual < meta_inflacion)  # False\n",
+        "\n",
+        "# Mayor o igual que\n",
+        "print(pib_2023 >= pib_2022)  # True\n",
+        "\n",
+        "# Menor o igual que\n",
+        "print(inflacion_actual <= meta_inflacion)  # False"
+      ],
+      "id": "b329691d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Operadores lógicos\n",
+        "\n",
+        "Los operadores lógicos combinan expresiones booleanas:"
+      ],
+      "id": "40fa5c4e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Datos para análisis\n",
+        "tasa_desempleo = 7.2\n",
+        "tasa_inflacion = 3.8\n",
+        "crecimiento_pib = 2.5\n",
+        "\n",
+        "# AND (y): ambas condiciones deben ser verdaderas\n",
+        "desempleo_bajo = tasa_desempleo < 8.0\n",
+        "inflacion_controlada = tasa_inflacion < 4.0\n",
+        "economia_estable = desempleo_bajo and inflacion_controlada\n",
+        "print(\"Economía estable:\", economia_estable)  # True\n",
+        "\n",
+        "# OR (o): al menos una condición debe ser verdadera\n",
+        "hay_problema = tasa_desempleo > 10.0 or tasa_inflacion > 5.0\n",
+        "print(\"Hay problema económico:\", hay_problema)  # False\n",
+        "\n",
+        "# NOT (no): invierte el valor booleano\n",
+        "crecimiento_positivo = crecimiento_pib > 0\n",
+        "en_recesion = not crecimiento_positivo\n",
+        "print(\"En recesión:\", en_recesion)  # False"
+      ],
+      "id": "8d17d745",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Operadores de asignación\n",
+        "\n",
+        "Además del operador básico de asignación (=), Python tiene operadores compuestos:"
+      ],
+      "id": "0fca4fc1"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Asignación básica\n",
+        "capital = 10000\n",
+        "\n",
+        "# Asignación con suma\n",
+        "capital += 1500  # Equivalente a: capital = capital + 1500\n",
+        "print(\"Capital después de aporte:\", capital)  # 11500\n",
+        "\n",
+        "# Asignación con resta\n",
+        "capital -= 2000  # Equivalente a: capital = capital - 2000\n",
+        "print(\"Capital después de retiro:\", capital)  # 9500\n",
+        "\n",
+        "# Asignación con multiplicación\n",
+        "capital *= 1.05  # Equivalente a: capital = capital * 1.05\n",
+        "print(\"Capital con interés:\", capital)  # 9975.0\n",
+        "\n",
+        "# Asignación con división\n",
+        "capital /= 2  # Equivalente a: capital = capital / 2\n",
+        "print(\"Capital dividido:\", capital)  # 4987.5\n",
+        "\n",
+        "# Asignación con potencia\n",
+        "tasa = 2\n",
+        "tasa **= 3  # Equivalente a: tasa = tasa ** 3\n",
+        "print(\"Tasa al cubo:\", tasa)  # 8"
+      ],
+      "id": "bd0a6fa2",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Ejemplo económico: Cálculo de interés compuesto"
+      ],
+      "id": "6fe2d64f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Parámetros del préstamo\n",
+        "capital_inicial = 50000.00\n",
+        "tasa_anual = 0.08  # 8%\n",
+        "periodo_anos = 5\n",
+        "\n",
+        "# Método 1: Usando fórmula directa\n",
+        "capital_final_1 = capital_inicial * (1 + tasa_anual) ** periodo_anos\n",
+        "\n",
+        "# Método 2: Usando operador compuesto\n",
+        "capital_final_2 = capital_inicial\n",
+        "for ano in range(periodo_anos):\n",
+        "    capital_final_2 *= (1 + tasa_anual)\n",
+        "\n",
+        "# Resultados\n",
+        "print(\"Préstamo con Interés Compuesto\")\n",
+        "print(f\"Capital inicial: S/ {capital_inicial:,.2f}\")\n",
+        "print(f\"Tasa anual: {tasa_anual * 100}%\")\n",
+        "print(f\"Periodo: {periodo_anos} años\")\n",
+        "print(f\"Capital final (método 1): S/ {capital_final_1:,.2f}\")\n",
+        "print(f\"Capital final (método 2): S/ {capital_final_2:,.2f}\")\n",
+        "print(f\"Intereses ganados: S/ {capital_final_1 - capital_inicial:,.2f}\")"
+      ],
+      "id": "6ce8aca5",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Expresiones\n",
+        "\n",
+        "Una expresión es una combinación de valores, variables y operadores que Python puede evaluar para producir un resultado.\n",
+        "\n",
+        "## Expresiones simples"
+      ],
+      "id": "7e4ad837"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Primero definimos las variables que vamos a usar\n",
+        "precio = 25.50\n",
+        "cantidad = 100\n",
+        "\n",
+        "# Expresiones numéricas\n",
+        "5 + 3  # Evalúa a 8\n",
+        "precio * cantidad  # Evalúa al producto\n",
+        "pib_2023 > pib_2022  # Evalúa a True o False\n",
+        "\n",
+        "# Expresiones con variables\n",
+        "ingreso_mensual = 3500\n",
+        "gasto_mensual = 2800\n",
+        "ahorro_mensual = ingreso_mensual - gasto_mensual  # Evalúa a 700"
+      ],
+      "id": "bacfd6be",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Expresiones complejas"
+      ],
+      "id": "175dc811"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Cálculo de la propensión marginal al consumo\n",
+        "consumo_inicial = 50000\n",
+        "consumo_final = 55000\n",
+        "ingreso_inicial = 100000\n",
+        "ingreso_final = 110000\n",
+        "\n",
+        "pmc = (consumo_final - consumo_inicial) / (ingreso_final - ingreso_inicial)\n",
+        "print(f\"Propensión marginal al consumo: {pmc}\")  # 0.5\n",
+        "\n",
+        "# Cálculo del multiplicador keynesiano\n",
+        "multiplicador = 1 / (1 - pmc)\n",
+        "print(f\"Multiplicador keynesiano: {multiplicador:.2f}\")  # 2.00"
+      ],
+      "id": "bc26b4fb",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Expresiones en contexto económico"
+      ],
+      "id": "e13c7abd"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Cálculo de elasticidad precio de la demanda\n",
+        "precio_inicial = 100\n",
+        "precio_final = 110\n",
+        "cantidad_inicial = 1000\n",
+        "cantidad_final = 950\n",
+        "\n",
+        "# Variación porcentual del precio\n",
+        "variacion_precio = ((precio_final - precio_inicial) / precio_inicial) * 100\n",
+        "\n",
+        "# Variación porcentual de la cantidad\n",
+        "variacion_cantidad = ((cantidad_final - cantidad_inicial) / cantidad_inicial) * 100\n",
+        "\n",
+        "# Elasticidad\n",
+        "elasticidad = variacion_cantidad / variacion_precio\n",
+        "\n",
+        "print(f\"Variación del precio: {variacion_precio:.2f}%\")\n",
+        "print(f\"Variación de la cantidad: {variacion_cantidad:.2f}%\")\n",
+        "print(f\"Elasticidad precio de la demanda: {elasticidad:.2f}\")\n",
+        "\n",
+        "# Interpretación\n",
+        "if abs(elasticidad) > 1:\n",
+        "    tipo_demanda = \"elástica\"\n",
+        "elif abs(elasticidad) < 1:\n",
+        "    tipo_demanda = \"inelástica\"\n",
+        "else:\n",
+        "    tipo_demanda = \"unitaria\"\n",
+        "\n",
+        "print(f\"La demanda es {tipo_demanda}\")"
+      ],
+      "id": "f61c17f2",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Orden de operaciones\n",
+        "\n",
+        "Python sigue un orden específico al evaluar expresiones, similar a las matemáticas tradicionales.\n",
+        "\n",
+        "## Precedencia de operadores\n",
+        "\n",
+        "De mayor a menor precedencia:\n",
+        "\n",
+        "1. Paréntesis: `()`\n",
+        "2. Potencia: `**`\n",
+        "3. Multiplicación, División, División entera, Módulo: `*`, `/`, `//`, `%`\n",
+        "4. Suma, Resta: `+`, `-`\n",
+        "5. Comparación: `<`, `<=`, `>`, `>=`, `==`, `!=`\n",
+        "6. NOT lógico: `not`\n",
+        "7. AND lógico: `and`\n",
+        "8. OR lógico: `or`\n",
+        "\n",
+        "## Ejemplos de precedencia"
+      ],
+      "id": "6ef8a57d"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Sin paréntesis\n",
+        "resultado_1 = 2 + 3 * 4\n",
+        "print(resultado_1)  # 14 (primero 3*4=12, luego 2+12=14)\n",
+        "\n",
+        "# Con paréntesis\n",
+        "resultado_2 = (2 + 3) * 4\n",
+        "print(resultado_2)  # 20 (primero 2+3=5, luego 5*4=20)\n",
+        "\n",
+        "# Expresión compleja\n",
+        "resultado_3 = 10 + 5 * 2 ** 3\n",
+        "print(resultado_3)  # 50 (2**3=8, 5*8=40, 10+40=50)\n",
+        "\n",
+        "# Con paréntesis para claridad\n",
+        "resultado_4 = 10 + (5 * (2 ** 3))\n",
+        "print(resultado_4)  # 50 (mismo resultado pero más claro)"
+      ],
+      "id": "6ae7e294",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Aplicación económica: Valor presente neto (VPN)"
+      ],
+      "id": "4cfe8af7"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Cálculo del VPN sin usar paréntesis adecuados\n",
+        "inversion_inicial = 100000\n",
+        "flujo_ano1 = 30000\n",
+        "flujo_ano2 = 40000\n",
+        "flujo_ano3 = 50000\n",
+        "tasa_descuento = 0.10\n",
+        "\n",
+        "# Incorrecto (orden de operaciones problemático)\n",
+        "# vpn_incorrecto = -inversion_inicial + flujo_ano1 / 1 + tasa_descuento + flujo_ano2 / 1 + tasa_descuento ** 2\n",
+        "\n",
+        "# Correcto (con paréntesis apropiados)\n",
+        "vpn = -inversion_inicial + \\\n",
+        "      flujo_ano1 / (1 + tasa_descuento) + \\\n",
+        "      flujo_ano2 / (1 + tasa_descuento) ** 2 + \\\n",
+        "      flujo_ano3 / (1 + tasa_descuento) ** 3\n",
+        "\n",
+        "print(f\"Inversión inicial: S/ {inversion_inicial:,.2f}\")\n",
+        "print(f\"VPN del proyecto: S/ {vpn:,.2f}\")\n",
+        "\n",
+        "if vpn > 0:\n",
+        "    decision = \"Aceptar el proyecto\"\n",
+        "else:\n",
+        "    decision = \"Rechazar el proyecto\"\n",
+        "    \n",
+        "print(f\"Decisión: {decision}\")"
+      ],
+      "id": "f1704fd5",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Uso de paréntesis para claridad\n",
+        "\n",
+        "Aunque Python respeta la precedencia, usar paréntesis hace el código más legible:"
+      ],
+      "id": "45a76327"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Menos claro\n",
+        "tasa_crecimiento = consumo_final - consumo_inicial / consumo_inicial * 100\n",
+        "\n",
+        "# Más claro\n",
+        "tasa_crecimiento = ((consumo_final - consumo_inicial) / consumo_inicial) * 100\n",
+        "\n",
+        "# Cálculo de la tasa efectiva anual\n",
+        "tasa_nominal = 0.12\n",
+        "periodos = 12\n",
+        "tasa_efectiva = (1 + tasa_nominal / periodos) ** periodos - 1\n",
+        "print(f\"Tasa efectiva anual: {tasa_efectiva * 100:.2f}%\")"
+      ],
+      "id": "f789b547",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Operaciones con strings\n",
+        "\n",
+        "Los strings son fundamentales para trabajar con datos textuales en economía: nombres de países, descripciones de sectores, códigos, etc.\n",
+        "\n",
+        "## Concatenación de strings"
+      ],
+      "id": "e3b9271e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Concatenación básica con +\n",
+        "pais = \"Perú\"\n",
+        "continente = \"América del Sur\"\n",
+        "descripcion = pais + \" está ubicado en \" + continente\n",
+        "print(descripcion)\n",
+        "\n",
+        "# Concatenación con múltiples variables\n",
+        "nombre = \"Edison\"\n",
+        "apellido = \"Achalma\"\n",
+        "profesion = \"Economista\"\n",
+        "presentacion = nombre + \" \" + apellido + \", \" + profesion\n",
+        "print(presentacion)"
+      ],
+      "id": "bc7524c8",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Repetición de strings"
+      ],
+      "id": "bb19ef79"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Repetir caracteres\n",
+        "linea_separadora = \"-\" * 50\n",
+        "print(linea_separadora)\n",
+        "\n",
+        "# Útil para formateo\n",
+        "print(\"=\" * 40)\n",
+        "print(\"REPORTE ECONÓMICO\".center(40))\n",
+        "print(\"=\" * 40)"
+      ],
+      "id": "28e6b7e4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Formato de strings\n",
+        "\n",
+        "Python ofrece varias formas de formatear strings:\n",
+        "\n",
+        "**Método antiguo con %**"
+      ],
+      "id": "2308746a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Formato con %\n",
+        "pais = \"Perú\"\n",
+        "pib = 242632\n",
+        "print(\"El PIB de %s es USD %d millones\" % (pais, pib))\n",
+        "\n",
+        "# Con floats\n",
+        "inflacion = 3.25\n",
+        "print(\"La inflación es %.2f%%\" % inflacion)\n",
+        "\n",
+        "# Múltiples valores\n",
+        "nombre = \"Edison\"\n",
+        "edad = 30\n",
+        "print(\"%s tiene %d años\" % (nombre, edad))"
+      ],
+      "id": "6d3d332a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "**Método format()**"
+      ],
+      "id": "277fa4a7"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Método format básico\n",
+        "pais = \"Perú\"\n",
+        "pib = 242632\n",
+        "print(\"El PIB de {} es USD {} millones\".format(pais, pib))\n",
+        "\n",
+        "# Con índices\n",
+        "print(\"El PIB de {0} es USD {1} millones. {0} es un país emergente.\".format(pais, pib))\n",
+        "\n",
+        "# Con nombres\n",
+        "print(\"El PIB de {p} es USD {valor} millones\".format(p=pais, valor=pib))\n",
+        "\n",
+        "# Con formato numérico\n",
+        "inflacion = 3.254\n",
+        "print(\"Inflación: {:.2f}%\".format(inflacion))  # 2 decimales\n",
+        "\n",
+        "# Separador de miles\n",
+        "pib_grande = 242632000000\n",
+        "print(\"PIB: USD {:,}\".format(pib_grande))  # Con comas"
+      ],
+      "id": "b16c258f",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "**F-strings (Recomendado, Python 3.6+)**"
+      ],
+      "id": "adff3032"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# F-strings: forma moderna y más legible\n",
+        "pais = \"Perú\"\n",
+        "pib = 242632\n",
+        "poblacion = 33715471\n",
+        "\n",
+        "# Básico\n",
+        "print(f\"El PIB de {pais} es USD {pib} millones\")\n",
+        "\n",
+        "# Con expresiones\n",
+        "pib_per_capita = pib / poblacion * 1000000\n",
+        "print(f\"PIB per cápita: USD {pib_per_capita:.2f}\")\n",
+        "\n",
+        "# Con formato\n",
+        "inflacion = 3.254\n",
+        "print(f\"Inflación: {inflacion:.2f}%\")\n",
+        "\n",
+        "# Con separador de miles\n",
+        "print(f\"Población: {poblacion:,} habitantes\")\n",
+        "\n",
+        "# Expresiones complejas dentro del f-string\n",
+        "precio = 100\n",
+        "cantidad = 50\n",
+        "print(f\"Valor total: S/ {precio * cantidad:,.2f}\")"
+      ],
+      "id": "612b1172",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Métodos de strings"
+      ],
+      "id": "e9203bfb"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Texto para análisis\n",
+        "sector_economico = \"agricultura, ganadería y pesca\"\n",
+        "\n",
+        "# Convertir a mayúsculas\n",
+        "print(sector_economico.upper())  # AGRICULTURA, GANADERÍA Y PESCA\n",
+        "\n",
+        "# Convertir a minúsculas\n",
+        "titulo = \"PRODUCTO BRUTO INTERNO\"\n",
+        "print(titulo.lower())  # producto bruto interno\n",
+        "\n",
+        "# Title case (primera letra de cada palabra en mayúscula)\n",
+        "print(sector_economico.title())  # Agricultura, Ganadería Y Pesca\n",
+        "\n",
+        "# Capitalizar (solo primera letra en mayúscula)\n",
+        "print(sector_economico.capitalize())  # Agricultura, ganadería y pesca\n",
+        "\n",
+        "# Reemplazar texto\n",
+        "texto_original = \"La tasa de interés es 5%\"\n",
+        "texto_modificado = texto_original.replace(\"5%\", \"6%\")\n",
+        "print(texto_modificado)  # La tasa de interés es 6%\n",
+        "\n",
+        "# Dividir strings\n",
+        "sectores = \"Minería, Agricultura, Manufactura, Servicios\"\n",
+        "lista_sectores = sectores.split(\", \")\n",
+        "print(lista_sectores)  # ['Minería', 'Agricultura', 'Manufactura', 'Servicios']\n",
+        "\n",
+        "# Unir strings\n",
+        "palabras = [\"Producto\", \"Bruto\", \"Interno\"]\n",
+        "frase = \" \".join(palabras)\n",
+        "print(frase)  # Producto Bruto Interno\n",
+        "\n",
+        "# Eliminar espacios al inicio y final\n",
+        "texto_con_espacios = \"   PIB   \"\n",
+        "texto_limpio = texto_con_espacios.strip()\n",
+        "print(f\"'{texto_limpio}'\")  # 'PIB'"
+      ],
+      "id": "14eae7aa",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Indexación y slicing de strings\n",
+        "\n",
+        "Los strings son secuencias de caracteres que pueden ser indexados:"
+      ],
+      "id": "d6499079"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# String de ejemplo\n",
+        "indicador = \"PRODUCTO BRUTO INTERNO\"\n",
+        "\n",
+        "# Indexación (posiciones empiezan en 0)\n",
+        "print(indicador[0])    # P (primer carácter)\n",
+        "print(indicador[1])    # R (segundo carácter)\n",
+        "print(indicador[-1])   # O (último carácter)\n",
+        "print(indicador[-2])   # N (penúltimo carácter)\n",
+        "\n",
+        "# Slicing (obtener subsecuencias)\n",
+        "print(indicador[0:8])   # PRODUCTO (desde 0 hasta 8, no incluye 8)\n",
+        "print(indicador[:8])    # PRODUCTO (desde inicio hasta 8)\n",
+        "print(indicador[9:14])  # BRUTO\n",
+        "print(indicador[15:])   # INTERNO (desde 15 hasta el final)\n",
+        "print(indicador[:])     # PRODUCTO BRUTO INTERNO (copia completa)\n",
+        "\n",
+        "# Slicing con paso\n",
+        "print(indicador[::2])   # POUOBUTITRO (cada 2 caracteres)\n",
+        "print(indicador[::-1])  # ONRETNI OTURB OTCUDORP (invertido)"
+      ],
+      "id": "a547d67e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Verificación de contenido"
+      ],
+      "id": "50811a3b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Datos económicos\n",
+        "codigo_sector = \"CIIU-456\"\n",
+        "descripcion = \"Comercio al por menor\"\n",
+        "\n",
+        "# Verificar si contiene\n",
+        "print(\"CIIU\" in codigo_sector)  # True\n",
+        "print(\"manufactura\" in descripcion.lower())  # False\n",
+        "\n",
+        "# Verificar inicio\n",
+        "print(codigo_sector.startswith(\"CIIU\"))  # True\n",
+        "print(descripcion.startswith(\"Comercio\"))  # True\n",
+        "\n",
+        "# Verificar final\n",
+        "print(codigo_sector.endswith(\"456\"))  # True\n",
+        "print(descripcion.endswith(\"mayor\"))  # True\n",
+        "\n",
+        "# Verificar si es numérico\n",
+        "año = \"2023\"\n",
+        "print(año.isdigit())  # True\n",
+        "\n",
+        "precio = \"123.45\"\n",
+        "print(precio.isdigit())  # False (por el punto decimal)\n",
+        "\n",
+        "# Verificar si es alfabético\n",
+        "moneda = \"soles\"\n",
+        "print(moneda.isalpha())  # True"
+      ],
+      "id": "d63f0743",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Ejemplo aplicado: Procesamiento de datos económicos"
+      ],
+      "id": "a49cb370"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Datos de sectores económicos (simulando datos crudos)\n",
+        "datos_brutos = \"minería;45.2;agricultura;12.8;manufactura;23.5;servicios;67.9\"\n",
+        "\n",
+        "# Separar datos\n",
+        "lista_datos = datos_brutos.split(\";\")\n",
+        "\n",
+        "# Procesar en pares (sector, valor)\n",
+        "sectores = []\n",
+        "valores = []\n",
+        "\n",
+        "for i in range(0, len(lista_datos), 2):\n",
+        "    sector = lista_datos[i].title()\n",
+        "    valor = float(lista_datos[i + 1])\n",
+        "    sectores.append(sector)\n",
+        "    valores.append(valor)\n",
+        "\n",
+        "# Generar reporte\n",
+        "print(\"CONTRIBUCIÓN SECTORIAL AL PIB\")\n",
+        "print(\"=\" * 40)\n",
+        "\n",
+        "for sector, valor in zip(sectores, valores):\n",
+        "    barra = \"█\" * int(valor / 2)  # Gráfico simple\n",
+        "    print(f\"{sector:15} {valor:6.1f}% {barra}\")\n",
+        "\n",
+        "# Total\n",
+        "total = sum(valores)\n",
+        "print(\"=\" * 40)\n",
+        "print(f\"{'TOTAL':15} {total:6.1f}%\")"
+      ],
+      "id": "88e4ecb0",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Solicitando entrada del usuario\n",
+        "\n",
+        "La función `input()` permite interactuar con el usuario, solicitando datos durante la ejecución del programa.\n",
+        "\n",
+        "## Uso básico de input()"
+      ],
+      "id": "7fe93cc7"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# | eval: false\n",
+        "# | echo: true\n",
+        "\n",
+        "# Solicitar nombre\n",
+        "nombre = input(\"Ingrese su nombre: \")\n",
+        "print(f\"Hola, {nombre}!\")\n",
+        "\n",
+        "# Solicitar país\n",
+        "pais = input(\"¿De qué país eres? \")\n",
+        "print(f\"Interesante, {pais} es un gran país.\")"
+      ],
+      "id": "f6df88c1",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Conversión de entrada a números\n",
+        "\n",
+        "Importante: `input()` siempre devuelve un string. Para trabajar con números, debemos convertir:"
+      ],
+      "id": "45baba00"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# | eval: false\n",
+        "# | echo: true\n",
+        "\n",
+        "# Solicitar edad (necesita conversión a int)\n",
+        "edad_texto = input(\"Ingrese su edad: \")\n",
+        "edad = int(edad_texto)\n",
+        "print(f\"Usted tiene {edad} años\")\n",
+        "\n",
+        "# Forma abreviada\n",
+        "edad = int(input(\"Ingrese su edad: \"))\n",
+        "\n",
+        "# Solicitar valor decimal\n",
+        "precio = float(input(\"Ingrese el precio del producto: \"))\n",
+        "cantidad = int(input(\"Ingrese la cantidad: \"))\n",
+        "total = precio * cantidad\n",
+        "print(f\"Total a pagar: S/ {total:.2f}\")"
+      ],
+      "id": "95d5bdc1",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Manejo de errores en la entrada"
+      ],
+      "id": "13c318db"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# | eval: false\n",
+        "# | echo: true\n",
+        "\n",
+        "# Si el usuario ingresa texto cuando esperamos número\n",
+        "try:\n",
+        "    edad = int(input(\"Ingrese su edad: \"))\n",
+        "    print(f\"Su edad es {edad}\")\n",
+        "except ValueError:\n",
+        "    print(\"Error: Debe ingresar un número válido\")"
+      ],
+      "id": "3f41ad4c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Aplicación económica: Calculadora de interés simple"
+      ],
+      "id": "e8a6bf59"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# | eval: false\n",
+        "# | echo: true\n",
+        "\n",
+        "# Calculadora interactiva de interés simple\n",
+        "print(\"=\" * 50)\n",
+        "print(\"CALCULADORA DE INTERÉS SIMPLE\")\n",
+        "print(\"=\" * 50)\n",
+        "\n",
+        "# Solicitar datos al usuario\n",
+        "capital = float(input(\"Ingrese el capital inicial (S/): \"))\n",
+        "tasa = float(input(\"Ingrese la tasa de interés anual (%): \"))\n",
+        "tiempo = int(input(\"Ingrese el tiempo en años: \"))\n",
+        "\n",
+        "# Cálculos\n",
+        "tasa_decimal = tasa / 100\n",
+        "interes = capital * tasa_decimal * tiempo\n",
+        "monto_final = capital + interes\n",
+        "\n",
+        "# Resultados\n",
+        "print(\"\\n\" + \"=\" * 50)\n",
+        "print(\"RESULTADOS\")\n",
+        "print(\"=\" * 50)\n",
+        "print(f\"Capital inicial:  S/ {capital:,.2f}\")\n",
+        "print(f\"Tasa de interés:  {tasa}%\")\n",
+        "print(f\"Tiempo:           {tiempo} años\")\n",
+        "print(f\"Interés ganado:   S/ {interes:,.2f}\")\n",
+        "print(f\"Monto final:      S/ {monto_final:,.2f}\")\n",
+        "print(\"=\" * 50)"
+      ],
+      "id": "27c731e1",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Ejemplo: Calculadora de elasticidad"
+      ],
+      "id": "99682512"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# | eval: false\n",
+        "# | echo: true\n",
+        "\n",
+        "# Calculadora de elasticidad precio de la demanda\n",
+        "print(\"CALCULADORA DE ELASTICIDAD PRECIO DE LA DEMANDA\")\n",
+        "print(\"-\" * 50)\n",
+        "\n",
+        "# Datos iniciales\n",
+        "print(\"\\nDatos iniciales:\")\n",
+        "precio_inicial = float(input(\"Precio inicial: \"))\n",
+        "cantidad_inicial = float(input(\"Cantidad inicial: \"))\n",
+        "\n",
+        "# Datos finales\n",
+        "print(\"\\nDatos finales:\")\n",
+        "precio_final = float(input(\"Precio final: \"))\n",
+        "cantidad_final = float(input(\"Cantidad final: \"))\n",
+        "\n",
+        "# Cálculos\n",
+        "var_precio = ((precio_final - precio_inicial) / precio_inicial) * 100\n",
+        "var_cantidad = ((cantidad_final - cantidad_inicial) / cantidad_inicial) * 100\n",
+        "elasticidad = var_cantidad / var_precio\n",
+        "\n",
+        "# Resultados\n",
+        "print(\"\\n\" + \"=\" * 50)\n",
+        "print(\"RESULTADOS\")\n",
+        "print(\"=\" * 50)\n",
+        "print(f\"Variación del precio:    {var_precio:+.2f}%\")\n",
+        "print(f\"Variación de la cantidad: {var_cantidad:+.2f}%\")\n",
+        "print(f\"Elasticidad:             {elasticidad:.2f}\")\n",
+        "\n",
+        "# Interpretación\n",
+        "print(\"\\nInterpretación:\")\n",
+        "if abs(elasticidad) > 1:\n",
+        "    print(\"La demanda es ELÁSTICA\")\n",
+        "    print(\"Los consumidores son sensibles a cambios en el precio\")\n",
+        "elif abs(elasticidad) < 1:\n",
+        "    print(\"La demanda es INELÁSTICA\")\n",
+        "    print(\"Los consumidores son poco sensibles a cambios en el precio\")\n",
+        "else:\n",
+        "    print(\"La demanda es UNITARIA\")\n",
+        "    print(\"La sensibilidad es proporcional\")"
+      ],
+      "id": "a340d615",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Comentarios\n",
+        "\n",
+        "Los comentarios son líneas de código que Python ignora. Sirven para documentar y explicar el código.\n",
+        "\n",
+        "## Comentarios de una línea"
+      ],
+      "id": "f1d9060e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Este es un comentario de una línea\n",
+        "# Python ignora esta línea\n",
+        "\n",
+        "# Cálculo del PIB per cápita\n",
+        "pib_total = 242632  # PIB en millones de USD\n",
+        "poblacion = 33715471  # Población total\n",
+        "\n",
+        "# Realizar el cálculo\n",
+        "pib_per_capita = (pib_total / poblacion) * 1000000  # Convertir a USD"
+      ],
+      "id": "1619d074",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Comentarios de múltiples líneas"
+      ],
+      "id": "2b0c07fd"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "\"\"\"\n",
+        "Este es un comentario de múltiples líneas.\n",
+        "Útil para documentación más extensa.\n",
+        "Se puede usar comillas triples simples o dobles.\n",
+        "\"\"\"\n",
+        "\n",
+        "'''\n",
+        "Análisis de Indicadores Macroeconómicos\n",
+        "Autor: Edison Achalma\n",
+        "Fecha: Enero 2026\n",
+        "Descripción: Este script calcula los principales\n",
+        "indicadores macroeconómicos del Perú.\n",
+        "'''\n",
+        "\n",
+        "def calcular_pib_per_capita(pib, poblacion):\n",
+        "    \"\"\"\n",
+        "    Calcula el PIB per cápita.\n",
+        "    \n",
+        "    Parámetros:\n",
+        "    pib: PIB total en millones de USD\n",
+        "    poblacion: Población total\n",
+        "    \n",
+        "    Retorna:\n",
+        "    PIB per cápita en USD\n",
+        "    \"\"\"\n",
+        "    return (pib / poblacion) * 1000000"
+      ],
+      "id": "f82e1a11",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Buenas prácticas en comentarios"
+      ],
+      "id": "473a9ed9"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# | eval: false\n",
+        "# | echo: true\n",
+        "\n",
+        "# Mal: comentario obvio\n",
+        "x = 5  # asignar 5 a x\n",
+        "\n",
+        "# Bien: comentario que explica el propósito\n",
+        "tasa_igv = 0.18  # Tasa de IGV vigente en Perú\n",
+        "\n",
+        "# Mal: comentario redundante\n",
+        "precio = precio + 10  # sumar 10 al precio\n",
+        "\n",
+        "# Bien: comentario que explica la lógica de negocio\n",
+        "precio += 10  # Ajuste por inflación mensual\n",
+        "\n",
+        "# Comentarios para secciones\n",
+        "# ============================================================\n",
+        "# CÁLCULOS MACROECONÓMICOS\n",
+        "# ============================================================\n",
+        "\n",
+        "# Variables de entrada\n",
+        "pib_nominal = 242632\n",
+        "deflactor = 1.15\n",
+        "\n",
+        "# Cálculo del PIB real\n",
+        "pib_real = pib_nominal / deflactor\n",
+        "\n",
+        "# ============================================================\n",
+        "# GENERACIÓN DE REPORTES\n",
+        "# ============================================================"
+      ],
+      "id": "944d9ff2",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Comentarios para debugging"
+      ],
+      "id": "791fced2"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Cálculo de elasticidad\n",
+        "precio_inicial = 100\n",
+        "precio_final = 110\n",
+        "cantidad_inicial = 1000\n",
+        "cantidad_final = 950\n",
+        "\n",
+        "# print(\"Debug - precio_inicial:\", precio_inicial)  # Comentado temporalmente\n",
+        "# print(\"Debug - cantidad_inicial:\", cantidad_inicial)\n",
+        "\n",
+        "elasticidad = ((cantidad_final - cantidad_inicial) / cantidad_inicial) / \\\n",
+        "              ((precio_final - precio_inicial) / precio_inicial)\n",
+        "\n",
+        "print(f\"Elasticidad: {elasticidad:.2f}\")"
+      ],
+      "id": "99930b05",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Nombres de variables mnemotécnicos\n",
+        "\n",
+        "Los nombres mnemotécnicos son nombres de variables que ayudan a recordar su propósito sin necesidad de comentarios.\n",
+        "\n",
+        "## Principios generales\n",
+        "\n",
+        "**Usa nombres descriptivos**"
+      ],
+      "id": "9bf565cf"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Mal\n",
+        "x = 242632\n",
+        "y = 33715471\n",
+        "z = x / y * 1000000\n",
+        "\n",
+        "# Bien\n",
+        "pib_total_millones = 242632\n",
+        "poblacion_total = 33715471\n",
+        "pib_per_capita = pib_total_millones / poblacion_total * 1000000"
+      ],
+      "id": "6b388976",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "**Usa convenciones consistentes**"
+      ],
+      "id": "d5ad88ef"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Consistente para tasas\n",
+        "tasa_interes_activa = 0.12\n",
+        "tasa_interes_pasiva = 0.05\n",
+        "tasa_inflacion_anual = 0.035\n",
+        "\n",
+        "# Consistente para precios\n",
+        "precio_producto_a = 25.50\n",
+        "precio_producto_b = 30.00\n",
+        "precio_promedio = (precio_producto_a + precio_producto_b) / 2"
+      ],
+      "id": "a0269cf0",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "**Usa prefijos y sufijos significativos**"
+      ],
+      "id": "0cf41ec7"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Prefijos temporales\n",
+        "pib_2022 = 238000\n",
+        "pib_2023 = 242632\n",
+        "pib_2024_proyectado = 250000\n",
+        "\n",
+        "# Sufijos de unidades\n",
+        "ingreso_mensual_soles = 3500\n",
+        "ingreso_anual_soles = ingreso_mensual_soles * 12\n",
+        "ingreso_anual_usd = ingreso_anual_soles / 3.75\n",
+        "\n",
+        "# Sufijos de tipo\n",
+        "tasa_interes_nominal = 0.12\n",
+        "tasa_interes_real = 0.087\n",
+        "tasa_interes_efectiva = 0.1268"
+      ],
+      "id": "3eadf422",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Ejemplos en contexto económico"
+      ],
+      "id": "f08b75e7"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Variables macroeconómicas\n",
+        "pib_nominal_millones_usd = 242632\n",
+        "pib_real_millones_usd = 210897\n",
+        "deflactor_pib = pib_nominal_millones_usd / pib_real_millones_usd\n",
+        "\n",
+        "# Variables de empleo\n",
+        "poblacion_economicamente_activa = 18500000\n",
+        "poblacion_ocupada = 17200000\n",
+        "poblacion_desocupada = poblacion_economicamente_activa - poblacion_ocupada\n",
+        "tasa_desempleo_porcentaje = (poblacion_desocupada / poblacion_economicamente_activa) * 100\n",
+        "\n",
+        "# Variables de comercio exterior\n",
+        "exportaciones_millones_usd = 63200\n",
+        "importaciones_millones_usd = 53800\n",
+        "balanza_comercial_millones_usd = exportaciones_millones_usd - importaciones_millones_usd\n",
+        "es_superavit_comercial = balanza_comercial_millones_usd > 0\n",
+        "\n",
+        "# Variables financieras\n",
+        "capital_inicial_soles = 10000\n",
+        "tasa_interes_anual_decimal = 0.08\n",
+        "numero_periodos_anos = 5\n",
+        "capital_final_soles = capital_inicial_soles * (1 + tasa_interes_anual_decimal) ** numero_periodos_anos"
+      ],
+      "id": "03ea8c10",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Abreviaciones aceptables en economía"
+      ],
+      "id": "6612918c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Abreviaciones comunes y aceptadas\n",
+        "pib = 242632  # Producto Bruto Interno\n",
+        "pnb = 245000  # Producto Nacional Bruto\n",
+        "ipc = 113.5   # Índice de Precios al Consumidor\n",
+        "inpc = 115.2  # Índice Nacional de Precios al Consumidor\n",
+        "igv = 0.18    # Impuesto General a las Ventas\n",
+        "ir = 0.295    # Impuesto a la Renta\n",
+        "var = 12.5    # Valor Agregado Rentable\n",
+        "vpn = 25000   # Valor Presente Neto\n",
+        "tir = 0.15    # Tasa Interna de Retorno\n",
+        "\n",
+        "# Cuando usar abreviaciones\n",
+        "# Bien: indicadores conocidos\n",
+        "var_pib = ((pib_2023 - pib_2022) / pib_2022) * 100\n",
+        "\n",
+        "# Bien: dentro de contexto claro\n",
+        "def calcular_vpn(flujos, tasa):\n",
+        "    \"\"\"Calcula el Valor Presente Neto\"\"\"\n",
+        "    vpn = sum(flujo / (1 + tasa) ** t for t, flujo in enumerate(flujos))\n",
+        "    return vpn"
+      ],
+      "id": "de2b7389",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Evitar ambigüedades"
+      ],
+      "id": "538e9d50"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Ambiguo\n",
+        "tasa = 0.05  # ¿Qué tipo de tasa?\n",
+        "\n",
+        "# Claro\n",
+        "tasa_impuesto_renta = 0.295\n",
+        "tasa_interes_prestamo = 0.12\n",
+        "tasa_crecimiento_pib = 0.027\n",
+        "\n",
+        "# Ambiguo\n",
+        "precio = 100  # ¿En qué moneda? ¿Qué producto?\n",
+        "\n",
+        "# Claro\n",
+        "precio_petroleo_barril_usd = 75.50\n",
+        "precio_pan_unidad_soles = 0.50\n",
+        "precio_dolar_interbancario_soles = 3.75"
+      ],
+      "id": "826c5c1a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Ejercicios aplicados a economía\n",
+        "\n",
+        "## Ejercicio 1: Calculadora de índice de pobreza\n",
+        "\n",
+        "Crea un programa que calcule el índice de pobreza dado el ingreso per cápita y la línea de pobreza."
+      ],
+      "id": "9f155154"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# | eval: false\n",
+        "# | echo: true\n",
+        "\n",
+        "# Ingreso per cápita mensual del hogar\n",
+        "ingreso_per_capita = float(input(\"Ingrese el ingreso per cápita mensual (S/): \"))\n",
+        "\n",
+        "# Línea de pobreza (valor oficial)\n",
+        "linea_pobreza_monetaria = 378.00  # S/ mensuales (valor hipotético)\n",
+        "linea_pobreza_extrema = 201.00  # S/ mensuales (valor hipotético)\n",
+        "\n",
+        "# Clasificación\n",
+        "if ingreso_per_capita < linea_pobreza_extrema:\n",
+        "    clasificacion = \"Pobreza extrema\"\n",
+        "elif ingreso_per_capita < linea_pobreza_monetaria:\n",
+        "    clasificacion = \"Pobreza no extrema\"\n",
+        "else:\n",
+        "    clasificacion = \"No pobre\"\n",
+        "\n",
+        "# Calcular brecha\n",
+        "if ingreso_per_capita < linea_pobreza_monetaria:\n",
+        "    brecha = linea_pobreza_monetaria - ingreso_per_capita\n",
+        "    porcentaje_brecha = (brecha / linea_pobreza_monetaria) * 100\n",
+        "else:\n",
+        "    brecha = 0\n",
+        "    porcentaje_brecha = 0\n",
+        "\n",
+        "# Resultados\n",
+        "print(\"\\n\" + \"=\" * 50)\n",
+        "print(\"ANÁLISIS DE POBREZA MONETARIA\")\n",
+        "print(\"=\" * 50)\n",
+        "print(f\"Ingreso per cápita:       S/ {ingreso_per_capita:.2f}\")\n",
+        "print(f\"Línea de pobreza:         S/ {linea_pobreza_monetaria:.2f}\")\n",
+        "print(f\"Clasificación:            {clasificacion}\")\n",
+        "if brecha > 0:\n",
+        "    print(f\"Brecha de pobreza:        S/ {brecha:.2f}\")\n",
+        "    print(f\"Porcentaje de brecha:     {porcentaje_brecha:.1f}%\")"
+      ],
+      "id": "08a2bd32",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Ejercicio 2: Cálculo del índice de Gini simplificado"
+      ],
+      "id": "b907a1a3"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# | eval: false\n",
+        "# | echo: true\n",
+        "\n",
+        "# Datos de ingreso de 5 hogares (del más pobre al más rico)\n",
+        "print(\"Ingrese los ingresos de 5 hogares (de menor a mayor):\")\n",
+        "ingreso_1 = float(input(\"Hogar 1 (más pobre): \"))\n",
+        "ingreso_2 = float(input(\"Hogar 2: \"))\n",
+        "ingreso_3 = float(input(\"Hogar 3: \"))\n",
+        "ingreso_4 = float(input(\"Hogar 4: \"))\n",
+        "ingreso_5 = float(input(\"Hogar 5 (más rico): \"))\n",
+        "\n",
+        "# Total de ingresos\n",
+        "total_ingresos = ingreso_1 + ingreso_2 + ingreso_3 + ingreso_4 + ingreso_5\n",
+        "\n",
+        "# Proporción acumulada de ingresos\n",
+        "prop_1 = ingreso_1 / total_ingresos\n",
+        "prop_2 = (ingreso_1 + ingreso_2) / total_ingresos\n",
+        "prop_3 = (ingreso_1 + ingreso_2 + ingreso_3) / total_ingresos\n",
+        "prop_4 = (ingreso_1 + ingreso_2 + ingreso_3 + ingreso_4) / total_ingresos\n",
+        "prop_5 = 1.0\n",
+        "\n",
+        "# Cálculo simplificado del Gini (método trapezoidal)\n",
+        "area_bajo_lorenz = (\n",
+        "    (0.2 * prop_1)\n",
+        "    + (0.2 * (prop_1 + prop_2)) / 2\n",
+        "    + (0.2 * (prop_2 + prop_3)) / 2\n",
+        "    + (0.2 * (prop_3 + prop_4)) / 2\n",
+        "    + (0.2 * (prop_4 + prop_5)) / 2\n",
+        ")\n",
+        "\n",
+        "gini = (0.5 - area_bajo_lorenz) / 0.5\n",
+        "\n",
+        "# Resultados\n",
+        "print(\"\\n\" + \"=\" * 50)\n",
+        "print(\"ANÁLISIS DE DESIGUALDAD - ÍNDICE DE GINI\")\n",
+        "print(\"=\" * 50)\n",
+        "print(f\"Total de ingresos: S/ {total_ingresos:,.2f}\")\n",
+        "print(f\"\\nDistribución acumulada:\")\n",
+        "print(f\"20% más pobre:  {prop_1 * 100:.1f}% del ingreso\")\n",
+        "print(f\"40% más pobre:  {prop_2 * 100:.1f}% del ingreso\")\n",
+        "print(f\"60% más pobre:  {prop_3 * 100:.1f}% del ingreso\")\n",
+        "print(f\"80% más pobre:  {prop_4 * 100:.1f}% del ingreso\")\n",
+        "print(f\"\\nÍndice de Gini: {gini:.3f}\")\n",
+        "\n",
+        "# Interpretación\n",
+        "if gini < 0.3:\n",
+        "    interpretacion = \"Baja desigualdad\"\n",
+        "elif gini < 0.5:\n",
+        "    interpretacion = \"Desigualdad moderada\"\n",
+        "else:\n",
+        "    interpretacion = \"Alta desigualdad\"\n",
+        "\n",
+        "print(f\"Interpretación: {interpretacion}\")"
+      ],
+      "id": "e1dc13cc",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Ejercicio 3: Análisis de punto de equilibrio"
+      ],
+      "id": "b6898826"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# | eval: false\n",
+        "# | echo: true\n",
+        "\n",
+        "# Análisis de punto de equilibrio para una empresa\n",
+        "print(\"ANÁLISIS DE PUNTO DE EQUILIBRIO\")\n",
+        "print(\"=\" * 50)\n",
+        "\n",
+        "# Datos de costos\n",
+        "costos_fijos = float(input(\"Costos fijos mensuales (S/): \"))\n",
+        "costo_variable_unitario = float(input(\"Costo variable por unidad (S/): \"))\n",
+        "precio_venta_unitario = float(input(\"Precio de venta por unidad (S/): \"))\n",
+        "\n",
+        "# Validación\n",
+        "if precio_venta_unitario <= costo_variable_unitario:\n",
+        "    print(\"\\nError: El precio de venta debe ser mayor al costo variable.\")\n",
+        "else:\n",
+        "    # Cálculo del punto de equilibrio\n",
+        "    margen_contribucion_unitario = precio_venta_unitario - costo_variable_unitario\n",
+        "    margen_contribucion_porcentaje = (\n",
+        "        margen_contribucion_unitario / precio_venta_unitario\n",
+        "    ) * 100\n",
+        "\n",
+        "    punto_equilibrio_unidades = costos_fijos / margen_contribucion_unitario\n",
+        "    punto_equilibrio_soles = punto_equilibrio_unidades * precio_venta_unitario\n",
+        "\n",
+        "    # Resultados\n",
+        "    print(\"\\n\" + \"=\" * 50)\n",
+        "    print(\"RESULTADOS DEL ANÁLISIS\")\n",
+        "    print(\"=\" * 50)\n",
+        "    print(f\"Costos fijos:                 S/ {costos_fijos:,.2f}\")\n",
+        "    print(f\"Costo variable unitario:      S/ {costo_variable_unitario:,.2f}\")\n",
+        "    print(f\"Precio de venta unitario:     S/ {precio_venta_unitario:,.2f}\")\n",
+        "    print(f\"Margen de contribución:       S/ {margen_contribucion_unitario:,.2f}\")\n",
+        "    print(f\"Margen de contribución:       {margen_contribucion_porcentaje:.1f}%\")\n",
+        "    print(\"\\n\" + \"-\" * 50)\n",
+        "    print(f\"Punto de equilibrio:          {punto_equilibrio_unidades:.0f} unidades\")\n",
+        "    print(f\"Punto de equilibrio:          S/ {punto_equilibrio_soles:,.2f}\")\n",
+        "    print(\"=\" * 50)\n",
+        "\n",
+        "    # Análisis adicional\n",
+        "    print(\"\\nAnálisis de sensibilidad:\")\n",
+        "    unidades_vender = float(input(\"¿Cuántas unidades espera vender? \"))\n",
+        "\n",
+        "    if unidades_vender > punto_equilibrio_unidades:\n",
+        "        diferencia = unidades_vender - punto_equilibrio_unidades\n",
+        "        utilidad = diferencia * margen_contribucion_unitario\n",
+        "        print(f\"Utilidad esperada: S/ {utilidad:,.2f}\")\n",
+        "        print(\"La empresa obtendría ganancias.\")\n",
+        "    elif unidades_vender < punto_equilibrio_unidades:\n",
+        "        diferencia = punto_equilibrio_unidades - unidades_vender\n",
+        "        perdida = diferencia * margen_contribucion_unitario\n",
+        "        print(f\"Pérdida esperada: S/ {perdida:,.2f}\")\n",
+        "        print(\"La empresa tendría pérdidas.\")\n",
+        "    else:\n",
+        "        print(\n",
+        "            \"La empresa estaría en el punto de equilibrio (sin ganancias ni pérdidas).\"\n",
+        "        )"
+      ],
+      "id": "408e67df",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Ejercicio 4: Cálculo de la tasa de actividad y desempleo"
+      ],
+      "id": "c4b5314e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# | eval: false\n",
+        "# | echo: true\n",
+        "\n",
+        "# Indicadores del mercado laboral\n",
+        "print(\"CÁLCULO DE INDICADORES DEL MERCADO LABORAL\")\n",
+        "print(\"=\" * 50)\n",
+        "\n",
+        "# Datos de población\n",
+        "poblacion_total = int(input(\"Población total: \"))\n",
+        "poblacion_menor_14 = int(input(\"Población menor de 14 años: \"))\n",
+        "poblacion_ocupada = int(input(\"Población ocupada: \"))\n",
+        "poblacion_desocupada = int(input(\"Población desocupada: \"))\n",
+        "\n",
+        "# Cálculos\n",
+        "poblacion_14_mas = poblacion_total - poblacion_menor_14\n",
+        "poblacion_economicamente_activa = poblacion_ocupada + poblacion_desocupada\n",
+        "poblacion_economicamente_inactiva = poblacion_14_mas - poblacion_economicamente_activa\n",
+        "\n",
+        "# Tasas\n",
+        "tasa_actividad = (poblacion_economicamente_activa / poblacion_14_mas) * 100\n",
+        "tasa_desempleo = (poblacion_desocupada / poblacion_economicamente_activa) * 100\n",
+        "tasa_ocupacion = (poblacion_ocupada / poblacion_14_mas) * 100\n",
+        "tasa_inactividad = (poblacion_economicamente_inactiva / poblacion_14_mas) * 100\n",
+        "\n",
+        "# Resultados\n",
+        "print(\"\\n\" + \"=\" * 50)\n",
+        "print(\"INDICADORES DEL MERCADO LABORAL\")\n",
+        "print(\"=\" * 50)\n",
+        "print(f\"Población total:              {poblacion_total:,}\")\n",
+        "print(f\"Población de 14 años y más:   {poblacion_14_mas:,}\")\n",
+        "print(f\"PEA (activa):                 {poblacion_economicamente_activa:,}\")\n",
+        "print(f\"  - Ocupada:                  {poblacion_ocupada:,}\")\n",
+        "print(f\"  - Desocupada:               {poblacion_desocupada:,}\")\n",
+        "print(f\"PEI (inactiva):               {poblacion_economicamente_inactiva:,}\")\n",
+        "print(\"\\n\" + \"-\" * 50)\n",
+        "print(\"TASAS\")\n",
+        "print(\"-\" * 50)\n",
+        "print(f\"Tasa de actividad:            {tasa_actividad:.2f}%\")\n",
+        "print(f\"Tasa de desempleo:            {tasa_desempleo:.2f}%\")\n",
+        "print(f\"Tasa de ocupación:            {tasa_ocupacion:.2f}%\")\n",
+        "print(f\"Tasa de inactividad:          {tasa_inactividad:.2f}%\")\n",
+        "print(\"=\" * 50)\n",
+        "\n",
+        "# Análisis\n",
+        "print(\"\\nAnálisis:\")\n",
+        "if tasa_desempleo < 5:\n",
+        "    print(\"Situación de pleno empleo (desempleo friccional)\")\n",
+        "elif tasa_desempleo < 10:\n",
+        "    print(\"Nivel de desempleo moderado\")\n",
+        "else:\n",
+        "    print(\"Nivel de desempleo elevado\")\n",
+        "\n",
+        "if tasa_actividad > 60:\n",
+        "    print(\"Alta participación laboral\")\n",
+        "else:\n",
+        "    print(\"Baja participación laboral\")"
+      ],
+      "id": "51093c99",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Ejercicio 5: Conversor de monedas con múltiples divisas"
+      ],
+      "id": "1120159c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# | eval: false\n",
+        "# | echo: true\n",
+        "\n",
+        "# Conversor de monedas\n",
+        "print(\"CONVERSOR DE MONEDAS\")\n",
+        "print(\"=\" * 50)\n",
+        "\n",
+        "# Tipos de cambio (respecto al sol peruano)\n",
+        "TC_USD = 3.75  # 1 USD = 3.75 PEN\n",
+        "TC_EUR = 4.10  # 1 EUR = 4.10 PEN\n",
+        "TC_BRL = 0.75  # 1 BRL = 0.75 PEN\n",
+        "TC_CLP = 0.0042  # 1 CLP = 0.0042 PEN\n",
+        "\n",
+        "# Menú\n",
+        "print(\"\\nMonedas disponibles:\")\n",
+        "print(\"1. Soles (PEN)\")\n",
+        "print(\"2. Dólares americanos (USD)\")\n",
+        "print(\"3. Euros (EUR)\")\n",
+        "print(\"4. Reales brasileños (BRL)\")\n",
+        "print(\"5. Pesos chilenos (CLP)\")\n",
+        "\n",
+        "# Selección de monedas\n",
+        "moneda_origen = int(input(\"\\nSeleccione la moneda de origen (1-5): \"))\n",
+        "moneda_destino = int(input(\"Seleccione la moneda de destino (1-5): \"))\n",
+        "monto = float(input(\"Ingrese el monto a convertir: \"))\n",
+        "\n",
+        "# Convertir a soles primero\n",
+        "if moneda_origen == 1:\n",
+        "    monto_en_soles = monto\n",
+        "elif moneda_origen == 2:\n",
+        "    monto_en_soles = monto * TC_USD\n",
+        "elif moneda_origen == 3:\n",
+        "    monto_en_soles = monto * TC_EUR\n",
+        "elif moneda_origen == 4:\n",
+        "    monto_en_soles = monto * TC_BRL\n",
+        "elif moneda_origen == 5:\n",
+        "    monto_en_soles = monto * TC_CLP\n",
+        "else:\n",
+        "    print(\"Moneda de origen inválida\")\n",
+        "    monto_en_soles = 0\n",
+        "\n",
+        "# Convertir de soles a moneda destino\n",
+        "if monto_en_soles > 0:\n",
+        "    if moneda_destino == 1:\n",
+        "        monto_final = monto_en_soles\n",
+        "        simbolo_destino = \"S/\"\n",
+        "    elif moneda_destino == 2:\n",
+        "        monto_final = monto_en_soles / TC_USD\n",
+        "        simbolo_destino = \"USD\"\n",
+        "    elif moneda_destino == 3:\n",
+        "        monto_final = monto_en_soles / TC_EUR\n",
+        "        simbolo_destino = \"EUR\"\n",
+        "    elif moneda_destino == 4:\n",
+        "        monto_final = monto_en_soles / TC_BRL\n",
+        "        simbolo_destino = \"BRL\"\n",
+        "    elif moneda_destino == 5:\n",
+        "        monto_final = monto_en_soles / TC_CLP\n",
+        "        simbolo_destino = \"CLP\"\n",
+        "    else:\n",
+        "        print(\"Moneda de destino inválida\")\n",
+        "        monto_final = 0\n",
+        "        simbolo_destino = \"\"\n",
+        "\n",
+        "    # Resultados\n",
+        "    if monto_final > 0:\n",
+        "        print(\"\\n\" + \"=\" * 50)\n",
+        "        print(\"RESULTADO DE LA CONVERSIÓN\")\n",
+        "        print(\"=\" * 50)\n",
+        "        print(f\"Monto convertido: {simbolo_destino} {monto_final:,.2f}\")\n",
+        "        print(\"=\" * 50)"
+      ],
+      "id": "34bd6f30",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Conclusión\n",
+        "\n",
+        "En esta guía hemos cubierto los fundamentos de Python para análisis económico:\n",
+        "\n",
+        "**Tipos de datos básicos**\n",
+        "\n",
+        "Los cuatro tipos fundamentales son integers, floats, strings y booleans. Cada uno tiene usos específicos en análisis económico.\n",
+        "\n",
+        "**Variables y nombres**\n",
+        "\n",
+        "Las variables deben tener nombres descriptivos que sigan las convenciones de Python (snake_case). Los nombres mnemotécnicos mejoran la legibilidad del código.\n",
+        "\n",
+        "**Operadores**\n",
+        "\n",
+        "Python proporciona operadores aritméticos, de comparación y lógicos que son fundamentales para cálculos económicos.\n",
+        "\n",
+        "**Expresiones**\n",
+        "\n",
+        "Las expresiones combinan valores y operadores. Python sigue un orden de precedencia específico que puede controlarse con paréntesis.\n",
+        "\n",
+        "**Strings**\n",
+        "\n",
+        "Los strings son esenciales para trabajar con datos textuales. Python ofrece múltiples métodos para manipularlos y formatearlos.\n",
+        "\n",
+        "**Input del usuario**\n",
+        "\n",
+        "La función `input()` permite crear programas interactivos. Es importante recordar convertir la entrada a números cuando sea necesario.\n",
+        "\n",
+        "**Comentarios**\n",
+        "\n",
+        "Los comentarios documentan el código. Son esenciales para mantener código legible y mantenible.\n",
+        "\n",
+        "## Próximos pasos\n",
+        "\n",
+        "En la siguiente guía (Guía 3: Objetos de Python) exploraremos estructuras de datos más complejas:\n",
+        "\n",
+        "- Listas: colecciones ordenadas de elementos\n",
+        "- Diccionarios: pares clave-valor para datos estructurados\n",
+        "- Tuplas: colecciones inmutables\n",
+        "- Operaciones con estas estructuras aplicadas a economía\n",
+        "\n",
+        "## Recursos adicionales\n",
+        "\n",
+        "Para profundizar en estos conceptos, se recomienda:\n",
+        "\n",
+        "- Documentación oficial de Python: docs.python.org\n",
+        "- Práctica constante con ejercicios económicos\n",
+        "- Exploración de bibliotecas como NumPy y Pandas\n",
+        "\n",
+        "\n",
+        "# Publicaciones Similares\n",
+        "\n",
+        "Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:\n",
+        "\n",
+        "\n",
+        "1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/index.pdf) [Instalacion De Anaconda](https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda)\n",
+        "2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf) [Configurar Entorno Virtual Python Anaconda](https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda)\n",
+        "3. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python/index.pdf) [01 Introducion A La Programacion Con Python](https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python)\n",
+        "4. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python/index.pdf) [02 Variables Expresiones Y Statements Con Python](https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python)\n",
+        "5. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python/index.pdf) [03 Objetos De Python](https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python)\n",
+        "6. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python/index.pdf) [04 Ejecucion Condicional Con Python](https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python)\n",
+        "7. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python/index.pdf) [05 Iteraciones Con Python](https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python)\n",
+        "8. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python/index.pdf) [06 Funciones Con Python](https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python)\n",
+        "9. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python/index.pdf) [07 Dataframes Con Python](https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python)\n",
+        "10. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python/index.pdf) [08 Prediccion Y Metrica De Performance Con Python](https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python)\n",
+        "11. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python/index.pdf) [09 Metodos De Machine Learning Para Clasificacion Con Python](https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python)\n",
+        "12. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python/index.pdf) [10 Metodos De Machine Learning Para Regresion Con Python](https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python)\n",
+        "13. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2022-10-31-11-validacion-cruzada-y-composicion-del-modelo-con-python/index.pdf) [11 Validacion Cruzada Y Composicion Del Modelo Con Python](https://numerus-scriptum.netlify.app/python/2022-10-31-11-validacion-cruzada-y-composicion-del-modelo-con-python)\n",
+        "14. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf) [Visualizacion De Datos Con Python](https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python)\n",
+        "\n",
+        "\n",
+        "Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!\n"
+      ],
+      "id": "538395f8"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "/home/achalmaedison/anaconda3/share/jupyter/kernels/python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

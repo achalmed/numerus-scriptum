@@ -1,7 +1,7 @@
 ---
 copyrightnotice: 2020
 copyrightext: All rights reserved
-title: Instalación de R y RStudio
+title: Guía completa de instalación de R y RStudio Desktop
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
 keywords:
@@ -32,111 +32,551 @@ citation:
   type: article-journal
   author:
   - Edison Achalma
-  pdf-url: https://numerus-scriptum.netlify.app/r/2020-06-10-011-instalacion-de-r/index.pdf
+  pdf-url: https://numerus-scriptum.netlify.app/r/2020-06-10-11-instalacion-de-r/index.pdf
 date: 06/10/2020
 draft: false
 image: ../featured.jpg
 ---
 
-# Instalación
+# Guía completa de instalación de R y RStudio Desktop
 
-En este artículo, te guiaré para descargar e instalar R y RStudio en sistema operativo Ubuntu Linux.
+> Referencia técnica independiente sobre la instalación de **R** (lenguaje y entorno estadístico) y **RStudio Desktop** (IDE de Posit, PBC) en tres sistemas: Kubuntu/Ubuntu (Debian-based), Arch Linux, y Windows. Basada en la documentación oficial de CRAN (cran.r-project.org), ArchWiki (wiki.archlinux.org) y Posit Docs (docs.posit.co / posit.co).
 
-## Paso 1. Descargar R en Ubuntu Linux
+---
 
-Para comenzar, necesitarás descargar el paquete de instalación de R desde el sitio web oficial de R. Abre tu navegador web y sigue este enlace: [Enlace de descarga de R](https://cloud.r-project.org/)
+## Tabla de contenidos
 
-> R es un lenguaje de programación ampliamente utilizado en la comunidad estadística y de análisis de datos, y es especialmente popular entre los científicos de datos y los investigadores.
+1. [Conceptos previos](#1-conceptos-previos)
+2. [Instalación de R en Kubuntu / Ubuntu](#2-instalación-de-r-en-kubuntu--ubuntu)
+3. [Instalación de R en Arch Linux](#3-instalación-de-r-en-arch-linux)
+4. [Instalación de R en Windows](#4-instalación-de-r-en-windows)
+5. [Instalación de RStudio Desktop en Kubuntu / Ubuntu](#5-instalación-de-rstudio-desktop-en-kubuntu--ubuntu)
+6. [Instalación de RStudio Desktop en Arch Linux](#6-instalación-de-rstudio-desktop-en-arch-linux)
+7. [Instalación de RStudio Desktop en Windows](#7-instalación-de-rstudio-desktop-en-windows)
+8. [Verificación post-instalación](#8-verificación-post-instalación)
+9. [Dependencias de sistema para paquetes de R (Linux)](#9-dependencias-de-sistema-para-paquetes-de-r-linux)
+10. [Gestión de paquetes de R](#10-gestión-de-paquetes-de-r)
+11. [Actualización y desinstalación](#11-actualización-y-desinstalación)
+12. [Solución de problemas comunes](#12-solución-de-problemas-comunes)
+13. [Referencias oficiales](#13-referencias-oficiales)
 
-![](index_files/figure-html/Screenshot_20230610_222900.png)
+---
 
-## Paso 2. Instalar R en Ubuntu Linux
+## 1. Conceptos previos
 
-Los paquetes para la versión actual de R 4.2 están disponibles para la mayoría de las versiones estables de Ubuntu Desktop. Sin embargo, solo la última versión de Soporte a Largo Plazo (LTS) cuenta con soporte completo. A partir del 2 de mayo de 2022, las versiones compatibles son:
+### 1.1. R vs. RStudio
 
--   Jammy Jellyfish (22.04, solo amd64)
--   Impish Indri (21.10, solo amd64)
--   Focal Fossa (20.04; LTS y solo amd64)
--   Bionic Beaver (18.04; LTS)
--   Xenial Xerus (16.04; LTS)
+**R** es el lenguaje de programación y el entorno de ejecución para computación estadística y gráficos, desarrollado por la R Foundation. Se instala primero porque es el "motor".
 
-Ejecuta estas líneas (si eres `root`, omite `sudo`) para informar a Ubuntu sobre los binarios de R en CRAN.
+**RStudio Desktop** es un IDE (entorno de desarrollo integrado) desarrollado por **Posit, PBC** (antes RStudio, PBC) que se ejecuta *sobre* una instalación de R ya existente. RStudio no incluye R: siempre hay que instalar R primero y RStudio después, y RStudio detecta automáticamente la(s) instalación(es) de R presentes en el sistema.
 
-``` bash
-# Actualizar índices
+### 1.2. Orden de instalación recomendado
+
+1. Instalar R (desde el repositorio oficial de tu distribución o desde CRAN).
+2. Verificar que R funciona desde la terminal (`R --version`).
+3. Instalar RStudio Desktop (paquete binario oficial de Posit).
+4. Verificar que RStudio detecta la instalación de R.
+
+### 1.3. Compatibilidad de plataformas (RStudio Desktop)
+
+Es importante saber que **Posit ya no construye RStudio Desktop para todas las distribuciones Linux indefinidamente**. Desde la versión 2025.05.0 ("Mariposa Orchid"), Posit dejó de generar binarios de RStudio Desktop para SLES 15, Ubuntu 20.04 LTS (Focal Fossa) y RHEL 8, debido a dependencias de software incompatibles. Si usas Kubuntu/Ubuntu, se recomienda una versión 22.04 LTS o superior para garantizar compatibilidad con las versiones más recientes de RStudio.
+
+---
+
+## 2. Instalación de R en Kubuntu / Ubuntu
+
+Kubuntu comparte la base de paquetes de Ubuntu (APT/`.deb`), por lo que todo lo siguiente aplica igual a ambas. Existen dos rutas oficiales: el repositorio de Ubuntu (más simple, versión puede no ser la más reciente) o el repositorio de **CRAN** (versión más actualizada, recomendado para trabajo serio en R).
+
+### 2.1. Opción A — Repositorio de Ubuntu (rápida, versión potencialmente desactualizada)
+
+```bash
+sudo apt update
+sudo apt install --no-install-recommends r-base r-base-dev
+```
+
+Esta vía es la más simple, pero la versión de R que entrega depende del ciclo de paquetes de tu versión de Ubuntu/Kubuntu y puede quedar rezagada respecto a la última versión estable de R.
+
+### 2.2. Opción B — Repositorio oficial de CRAN (recomendada)
+
+CRAN mantiene un repositorio APT específico para Ubuntu con builds actualizados de R 4.x, compilados por Michael Rutter y mantenido junto con Dirk Eddelbuettel. Estos son los pasos oficiales (README breve de CRAN):
+
+**Paso 1 — Actualizar índices e instalar paquetes auxiliares**
+
+```bash
 sudo apt update -qq
-# Instalar dos paquetes auxiliares necesarios
 sudo apt install --no-install-recommends software-properties-common dirmngr
-# Agregar la clave de firma (de Michael Rutter) para estos repositorios
-# Para verificar la clave, ejecuta: gpg --show-keys /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
-# Huella digital: E298A3A825C0D65DFD57CBB651716619E084DAB9
-wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
-# Agregar el repositorio de R 4.0 de CRAN -- ajustar 'focal' a 'groovy' o 'bionic' según sea necesario
+```
+
+> En versiones recientes de Ubuntu/Kubuntu, `software-properties-common` y `dirmngr` suelen venir preinstalados; el comando no hará daño si ya están presentes.
+
+**Paso 2 — Importar la clave de firma del repositorio CRAN**
+
+```bash
+wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | \
+  sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+```
+
+La huella digital (fingerprint) oficial de esta clave es:
+
+```
+E298A3A825C0D65DFD57CBB651716619E084DAB9
+```
+
+Puedes verificarla con:
+
+```bash
+gpg --show-keys /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+```
+
+**Paso 3 — Añadir el repositorio CRAN**
+
+El comando usa `lsb_release -cs` para detectar automáticamente el nombre en clave de tu versión de Ubuntu (p. ej. `noble`, `jammy`):
+
+```bash
 sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
 ```
 
-Aquí utilizamos `lsb_release -cs` para acceder a la versión de Ubuntu que estás utilizando: "jammy", "impish", "focal", "bionic", ...
+> `cloud.r-project.org` redirige automáticamente a un espejo (mirror) de CRAN cercano a tu ubicación.
 
-Luego, ejecuta
+**Paso 4 — Instalar R**
 
-``` bash
+```bash
+sudo apt update
 sudo apt install --no-install-recommends r-base
 ```
 
-## Obtén más de 5000 paquetes de CRAN
+**Paso 5 — Instalar herramientas de compilación (recomendado)**
 
-Ejecuta este comando (como `root` o agregando `sudo` como prefijo) para agregar el repositorio actual de R 4.0 o posterior 'c2d4u':
+Si vas a instalar paquetes de CRAN que requieren compilación desde código fuente (lo cual es habitual con `install.packages()`), instala también `r-base-dev`:
 
-``` bash
-sudo add-apt-repository ppa:c2d4u.team/c2d4u4.0+
+```bash
+sudo apt install --no-install-recommends r-base-dev
 ```
 
-para agregar el ID de clave de este repositorio, agregar el repositorio y actualizar el índice. Ahora puedes hacer `apt install --no-install-recommends r-cran-rstan` o `apt install --no-install-recommends r-cran-tidyverse` (nuevamente como usuario `root` o a través de `sudo`).
+### 2.3. Nota sobre versiones de Ubuntu soportadas
 
-## Paso 3. Descargar RStudio en Ubuntu Linux
+CRAN publica binarios de R 4.x para las versiones de escritorio de Ubuntu actualmente soportadas (hasta su fecha oficial de fin de vida). Solo la última versión LTS recibe soporte completo. Si tu versión de Kubuntu ya superó su fin de vida (EOL), considera actualizar el sistema antes de continuar.
 
-Puedes descargar la última versión de RStudio desde su sitio web oficial: [Enlace de descarga de RStudio](https://www.rstudio.com/products/rstudio/download/)
+### 2.4. Instalación masiva de paquetes CRAN como binarios (`r2u`)
 
-> RStudio RStudio es un entorno de desarrollo integrado (IDE) muy popular para trabajar con R. Proporciona una interfaz gráfica intuitiva y muchas herramientas útiles para la programación en R.
+Para evitar compilar cada paquete de R desde código fuente (proceso lento), el proyecto **r2u**, mantenido por Dirk Eddelbuettel, permite instalar miles de paquetes CRAN y Bioconductor como binarios `.deb` listos para usar mediante un repositorio adicional. Es opcional, pero muy recomendable si trabajas con muchos paquetes (tidyverse, sf, etc.). Consulta la documentación del proyecto r2u para los pasos de configuración específicos de tu versión de Ubuntu.
 
-![](index_files/figure-html//Screenshot_20230610_224818.png)
+---
 
-## Paso 4. Instalar RStudio en Ubuntu Linux
+## 3. Instalación de R en Arch Linux
 
-### Instalar dependencias
+En Arch Linux, R está disponible directamente en el repositorio oficial **extra**, gestionado por `pacman`. No se requieren repositorios de terceros para obtener una versión reciente.
 
-Antes de instalar RStudio, es posible que debas instalar algunas dependencias en tu sistema. Abre la terminal y ejecuta los siguientes comandos para instalar las dependencias requeridas:
+### 3.1. Instalación con pacman
 
-``` bash
+```bash
+sudo pacman -Syu r
+```
+
+Esto instala el paquete `r`, que incluye el binario `R`, `Rscript`, y las herramientas básicas de compilación de paquetes de R (R en Arch ya integra lo equivalente a `r-base-dev`).
+
+### 3.2. Estructura de bibliotecas de paquetes en Arch
+
+Según la documentación oficial (ArchWiki), conviene separar:
+
+- **Paquetes gestionados por pacman**: se instalan en `/usr/lib/R/library`.
+- **Paquetes instalados por el usuario vía `install.packages()`**: se instalan en una ruta de usuario, por ejemplo `~/R/library` o similar, definida por `.libPaths()`.
+
+La recomendación oficial es **no mezclar** ambos métodos de gestión para un mismo paquete: si pacman gestiona un paquete de sistema, no debe reinstalarse manualmente desde R, y viceversa.
+
+### 3.3. Paquetes de R adicionales vía pacman
+
+Arch empaqueta también una colección creciente de paquetes de R individuales con el prefijo `r-` (por ejemplo `r-tidyverse`, `r-ggplot2`, si están disponibles en los repositorios oficiales o en AUR). Puedes buscarlos así:
+
+```bash
+pacman -Ss ^r-
+```
+
+### 3.4. Instalación de paquetes CRAN desde dentro de R
+
+Para paquetes no empaquetados por Arch, se instalan igual que en cualquier sistema, desde la consola de R:
+
+```r
+install.packages("nombre_del_paquete")
+```
+
+Si no tienes permisos de escritura en la biblioteca de sistema, R te ofrecerá crear automáticamente una biblioteca personal en tu directorio `$HOME` (acepta con `yes`/`y` cuando se te pregunte).
+
+### 3.5. Repositorios de terceros para binarios precompilados (opcional)
+
+Existen iniciativas comunitarias como **BioArchLinux** que ofrecen binarios precompilados de paquetes CRAN/Bioconductor para Arch, integrables con pacman mediante la herramienta `bspm` (permite que `install.packages()` use pacman por debajo). Esto es opcional y pensado para quienes instalan muchos paquetes con frecuencia; revisa la wiki de BioArchLinux para la configuración exacta si te interesa.
+
+---
+
+## 4. Instalación de R en Windows
+
+### 4.1. Descarga desde CRAN
+
+1. Visita el espejo oficial de CRAN: **https://cran.r-project.org/**
+2. Haz clic en **"Download R for Windows"**.
+3. Selecciona **"base"** (es la opción para una instalación nueva).
+4. Haz clic en el enlace **"Download R-X.X.X for Windows"** (donde X.X.X es la versión más reciente).
+5. Ejecuta el instalador `.exe` descargado.
+
+### 4.2. Pasos del instalador
+
+1. Selecciona el idioma de instalación.
+2. Acepta la licencia (GPL).
+3. Elige la ruta de instalación (por defecto suele ser `C:\Program Files\R\R-X.X.X`).
+4. Selecciona los componentes a instalar (se recomienda dejar todos marcados: archivos principales de 64-bit, archivos de ayuda en HTML, traducciones de mensajes).
+5. Configura las opciones de inicio (puedes dejar las opciones SDI/MDI por defecto si no tienes preferencia).
+6. Elige si deseas crear un ícono en el escritorio y entradas en el menú de inicio.
+7. Finaliza la instalación.
+
+### 4.3. Verificación
+
+Abre el menú de inicio y busca "R x64 X.X.X" o abre una terminal (`cmd` o PowerShell) y ejecuta:
+
+```cmd
+R --version
+```
+
+Si el comando no es reconocido, es porque R no se agregó automáticamente al `PATH` del sistema; en ese caso, abre R desde su acceso directo del menú de inicio, o agrega manualmente la carpeta `bin` de la instalación (p. ej. `C:\Program Files\R\R-X.X.X\bin`) a la variable de entorno `PATH`.
+
+### 4.4. Rtools (opcional pero recomendado)
+
+Si vas a compilar paquetes de R desde código fuente en Windows (necesario para algunos paquetes de CRAN que no tienen binario precompilado para Windows), instala **Rtools**, disponible también desde la página de descargas de CRAN para Windows (sección "Rtools"). Rtools provee las herramientas de compilación (gcc, make, etc.) necesarias en ese entorno.
+
+---
+
+## 5. Instalación de RStudio Desktop en Kubuntu / Ubuntu
+
+> **Prerrequisito**: R debe estar instalado antes de este paso (ver sección 2).
+
+### 5.1. Descarga del paquete `.deb`
+
+1. Visita la página oficial de descargas: **https://posit.co/download/rstudio-desktop/**
+2. La página detecta tu sistema operativo y te ofrece el instalador correspondiente; descarga el paquete `.deb` para Ubuntu/Debian (arquitectura `amd64`).
+3. Alternativamente, puedes descargar directamente con `wget` usando la URL del paquete vigente que indique la página de descargas (las URLs cambian con cada versión, por lo que se recomienda copiar el enlace actualizado directamente desde el sitio de Posit en el momento de instalar).
+
+### 5.2. Instalación del paquete `.deb`
+
+Desde la carpeta donde se descargó el archivo:
+
+```bash
+sudo apt install ./rstudio-2026.XX.X-XXX-amd64.deb
+```
+
+> El uso de `apt install ./archivo.deb` (en vez de `dpkg -i`) es preferible porque `apt` resuelve automáticamente las dependencias faltantes.
+
+Si por alguna razón usaste `dpkg`, corrige dependencias faltantes después con:
+
+```bash
+sudo dpkg -i rstudio-2026.XX.X-XXX-amd64.deb
+sudo apt --fix-broken install
+```
+
+### 5.3. Verificación de la firma del paquete (opcional, recomendado)
+
+RStudio Desktop publica binarios firmados. Los usuarios de escritorio Linux pueden necesitar importar la clave pública de firma de código de Posit antes de instalar, dependiendo de la política de seguridad de tu sistema. Esto es opcional para uso normal vía `apt install`, pero recomendable si quieres verificar la integridad del paquete manualmente (especialmente si lo descargaste desde un espejo o enlace no oficial).
+
+### 5.4. Distribuciones soportadas
+
+RStudio Desktop genera binarios dirigidos a un conjunto específico de distribuciones Linux de 64 bits. Revisa siempre la página oficial de descargas para confirmar que tu versión de Kubuntu/Ubuntu está dentro de las soportadas en el momento de tu instalación, ya que Posit retira soporte para versiones antiguas con cada ciclo de lanzamientos (ver nota de la sección 1.3 sobre Ubuntu 20.04).
+
+---
+
+## 6. Instalación de RStudio Desktop en Arch Linux
+
+> **Importante**: RStudio Desktop **no está en los repositorios oficiales** de Arch Linux (`core`/`extra`). Solo está disponible mediante el **AUR** (Arch User Repository), que contiene contenido producido por la comunidad, no por los desarrolladores oficiales de Arch ni de Posit.
+
+> **Prerrequisito**: R debe estar instalado antes de este paso (ver sección 3).
+
+### 6.1. Opciones disponibles en AUR
+
+Existen varios paquetes en AUR relacionados con RStudio; los dos relevantes para RStudio Desktop (IDE de Posit) son:
+
+| Paquete AUR | Descripción | Ventaja | Desventaja |
+|---|---|---|---|
+| `rstudio-desktop-bin` | Empaqueta el `.deb` oficial de Posit (binario distribuido para Ubuntu) | Instalación rápida, no requiere compilar | Depende de que el mantenedor actualice el paquete con cada release |
+| `rstudio-desktop` | Compila RStudio desde el código fuente | Más actualizado, optimizado para el sistema | Compilación larga (requiere GWT, Boost, etc.) y más propensa a romperse con actualizaciones del sistema (p. ej. cambios en `libboost`) |
+
+Para uso cotidiano sin compilar, **`rstudio-desktop-bin`** es la opción más práctica para la mayoría de usuarios.
+
+### 6.2. Instalación con un ayudante de AUR (recomendado)
+
+Si usas un ayudante de AUR como `yay` o `paru` (no incluidos en Arch base, hay que instalarlos antes desde el propio AUR):
+
+```bash
+yay -S rstudio-desktop-bin
+```
+
+o, si prefieres compilar desde código fuente:
+
+```bash
+yay -S rstudio-desktop
+```
+
+### 6.3. Instalación manual desde AUR (sin ayudante)
+
+Si no usas un ayudante de AUR, el proceso oficial documentado por ArchWiki es:
+
+```bash
+git clone https://aur.archlinux.org/rstudio-desktop-bin.git
+cd rstudio-desktop-bin
+makepkg -si
+```
+
+El flag `-si` le indica a `makepkg` que instale las dependencias necesarias y luego instale el paquete resultante con `pacman -U` automáticamente.
+
+### 6.4. Notas importantes para Arch / Archcraft
+
+- El paquete `rstudio-desktop` (compilado desde fuente) puede romperse temporalmente tras actualizaciones de librerías base del sistema (por ejemplo, `libboost`); si esto ocurre, conviene forzar una reconstrucción con `pacman -Syudd` antes de reconstruir el paquete, o cambiar temporalmente a `rstudio-desktop-bin` mientras se resuelve.
+- Dado que ambos paquetes son mantenidos por voluntarios de la comunidad (no por Posit oficialmente), revisa los comentarios recientes en la página de AUR del paquete antes de instalar, por si hay incidencias activas no resueltas.
+- En sistemas con gestor de ventanas tipo *tiling* tal como los usados en Archcraft, no debería haber incompatibilidades particulares con RStudio (es una aplicación Electron/Qt estándar), pero usuarios de Wayland han reportado necesitar banderas adicionales de lanzamiento para Electron; si tienes problemas de renderizado bajo Wayland, prueba forzando XWayland o revisa los comentarios del paquete en AUR para *workarounds* conocidos.
+
+---
+
+## 7. Instalación de RStudio Desktop en Windows
+
+> **Prerrequisito**: R debe estar instalado antes de este paso (ver sección 4).
+
+### 7.1. Descarga
+
+1. Visita **https://posit.co/download/rstudio-desktop/**
+2. Descarga el instalador autoextraíble (`.exe`) para Windows. RStudio para Windows requiere una edición de 64 bits de Windows 10 o superior.
+
+### 7.2. Instalación
+
+1. Ejecuta el archivo `.exe` descargado.
+2. Sigue el asistente de instalación (setup wizard).
+3. Se requieren permisos de administrador para completar la instalación.
+4. El instalador crea automáticamente un acceso directo de RStudio y una entrada en "Agregar o quitar programas" para una futura desinstalación.
+
+### 7.3. Alternativa portable (.zip)
+
+Si prefieres no usar el instalador (por ejemplo, en un entorno restringido o para tener una versión portable), Posit también distribuye un archivo `.zip`:
+
+1. Descarga el `.zip` desde la misma página de descargas.
+2. Extráelo en la ubicación que prefieras.
+3. Ejecuta RStudio directamente desde `rstudio.exe`, ubicado en la subcarpeta `bin` del directorio extraído.
+
+---
+
+## 8. Verificación post-instalación
+
+### 8.1. Verificar R desde terminal (Linux y Windows)
+
+```bash
+R --version
+Rscript --version
+```
+
+Deberías ver información de versión similar a:
+
+```
+R version 4.X.X (20XX-XX-XX) -- "Nombre en clave"
+```
+
+### 8.2. Verificar R desde su propia consola interactiva
+
+```bash
+R
+```
+
+Esto abre la consola interactiva de R. Para salir:
+
+```r
+q()
+```
+
+Te preguntará si deseas guardar la imagen del espacio de trabajo; puedes responder `n` si no lo necesitas.
+
+### 8.3. Verificar que RStudio detecta R
+
+Al abrir RStudio Desktop por primera vez, revisa la consola integrada (panel inferior izquierdo por defecto): debe mostrar la versión de R detectada al iniciar. Si tienes varias versiones de R instaladas, puedes elegir cuál usar desde:
+
+`Tools` → `Global Options` → `General` → sección **R version** (en Linux/Windows el menú es equivalente, aunque la ruta exacta puede variar ligeramente entre versiones de RStudio).
+
+---
+
+## 9. Dependencias de sistema para paquetes de R (Linux)
+
+Muchos paquetes de R populares (por ejemplo, los del *tidyverse*, paquetes espaciales como `sf`, paquetes con gráficos avanzados, etc.) requieren bibliotecas de sistema adicionales para compilarse correctamente desde código fuente. Posit documenta un conjunto curado de dependencias por distribución.
+
+### 9.1. Ejemplo para Ubuntu / Debian
+
+A modo de referencia (lista no exhaustiva; revisa siempre la documentación oficial de Posit para la lista completa y actualizada según tu versión exacta de Ubuntu):
+
+```bash
 sudo apt update
-sudo apt install gdebi-core
+sudo apt install -y \
+  build-essential \
+  libcurl4-openssl-dev \
+  libssl-dev \
+  libxml2-dev \
+  libfontconfig1-dev \
+  libharfbuzz-dev \
+  libfribidi-dev \
+  libfreetype6-dev \
+  libpng-dev \
+  libtiff5-dev \
+  libjpeg-dev \
+  libgit2-dev
 ```
 
-Estos comandos actualizarán los repositorios de paquetes y luego instalarán `gdebi-core`, una utilidad necesaria para instalar paquetes `.deb` de forma sencilla y para resolver dependencias automáticamente.
+Esta lista cubre dependencias habituales de paquetes como `devtools`, `httr`, `xml2`, `ragg`, `textshaping`, `git2r`, entre otros.
 
-### Instalar RStudio
+### 9.2. Ejemplo para Arch Linux
 
-Una vez que hayas descargado el archivo de instalación de RStudio y hayas instalado las dependencias necesarias, puedes proceder con la instalación. Ve al directorio donde descargaste el archivo de instalación y ejecuta el siguiente comando en la terminal:
+En Arch, la mayoría de estas bibliotecas suelen instalarse automáticamente como dependencias declaradas en el `PKGBUILD` del paquete `r-*` correspondiente o se resuelven directamente al compilar con `install.packages()`, siempre que tengas el grupo `base-devel` instalado:
 
-``` bash
-sudo gdebi <nombre_del_archivo_de_instalación>.deb
+```bash
+sudo pacman -S --needed base-devel
 ```
 
-Reemplaza `<nombre_del_archivo_de_instalación>` con el nombre real del archivo de instalación descargado.
+### 9.3. Detección automática de dependencias
 
-El comando `gdebi` instalará RStudio y resolverá automáticamente las dependencias necesarias.
+Posit ofrece una herramienta de **detección de dependencias de sistema** que analiza qué bibliotecas de sistema requiere un conjunto de paquetes de R antes de instalarlos, evitando errores de compilación. Es útil si planeas instalar muchos paquetes de una sola vez (por ejemplo, en un servidor o máquina nueva). Consulta la documentación oficial de Posit ("System Dependency Detection") para más detalles sobre su uso.
 
-## Paso 5. Iniciar RStudio
+---
 
-Una vez completada la instalación, puedes iniciar RStudio desde el menú de aplicaciones de Ubuntu o ejecutando el siguiente comando en la terminal:
+## 10. Gestión de paquetes de R
 
-``` bash
-rstudio
+### 10.1. Instalar paquetes desde CRAN
+
+Desde la consola de R (en cualquier sistema operativo):
+
+```r
+install.packages("ggplot2")
+install.packages(c("dplyr", "tidyr", "readr"))  # instalación múltiple
 ```
 
-RStudio se abrirá en una ventana separada, lo que te permitirá comenzar a trabajar con R y aprovechar todas las funciones y características que ofrece el IDE.
+### 10.2. Cargar un paquete instalado
 
-![](index_files/figure-html//Screenshot_20230610_231407.png)
+```r
+library(ggplot2)
+```
+
+### 10.3. Actualizar todos los paquetes instalados
+
+```r
+update.packages(ask = FALSE)
+```
+
+### 10.4. Ver la biblioteca de paquetes activa
+
+```r
+.libPaths()
+```
+
+### 10.5. Instalar paquetes desde GitHub (requiere `remotes` o `devtools`)
+
+```r
+install.packages("remotes")
+remotes::install_github("usuario/repositorio")
+```
+
+---
+
+## 11. Actualización y desinstalación
+
+### 11.1. Actualizar R en Kubuntu/Ubuntu (repositorio CRAN)
+
+```bash
+sudo apt update
+sudo apt upgrade r-base
+```
+
+### 11.2. Actualizar R en Arch Linux
+
+Arch usa un modelo de lanzamiento continuo (*rolling release*); R se actualiza junto con el resto del sistema:
+
+```bash
+sudo pacman -Syu
+```
+
+### 11.3. Actualizar RStudio Desktop
+
+En todos los sistemas, la actualización de RStudio Desktop se realiza descargando e instalando el nuevo paquete/instalador desde la página oficial de descargas (no existe, en la edición open-source, un mecanismo de auto-actualización integrado en la aplicación). En Arch vía AUR, basta con actualizar el paquete con tu ayudante de AUR habitual (`yay -Syu`, por ejemplo).
+
+### 11.4. Desinstalación
+
+**Kubuntu/Ubuntu:**
+
+```bash
+sudo apt remove r-base r-base-dev
+sudo apt remove rstudio
+```
+
+**Arch Linux:**
+
+```bash
+sudo pacman -Rns r
+yay -Rns rstudio-desktop-bin   # o rstudio-desktop, según cuál hayas instalado
+```
+
+**Windows:**
+
+Usa el panel "Agregar o quitar programas" de Windows y desinstala "R" y "RStudio" por separado, ya que son aplicaciones independientes.
+
+---
+
+## 12. Solución de problemas comunes
+
+### 12.1. `add-apt-repository: command not found` (Ubuntu/Kubuntu)
+
+Falta el paquete `software-properties-common`. Instálalo con:
+
+```bash
+sudo apt install software-properties-common
+```
+
+### 12.2. Error de clave GPG no válida al añadir el repositorio CRAN
+
+Verifica que la huella digital coincide con `E298A3A825C0D65DFD57CBB651716619E084DAB9`. Si la descarga de la clave falla, intenta nuevamente o usa un espejo de CRAN alternativo listado en https://cran.r-project.org/mirrors.html.
+
+### 12.3. RStudio no detecta R recién instalado (Linux)
+
+Cierra y vuelve a abrir RStudio. Si el problema persiste, revisa `Tools` → `Global Options` → `General` y selecciona manualmente la ruta del binario de R (normalmente `/usr/lib/R` en sistemas basados en Debian/Ubuntu, o `/usr/lib/R` también en Arch tras instalar el paquete `r`).
+
+### 12.4. Falla la compilación de un paquete de R por falta de una librería de sistema (Linux)
+
+El mensaje de error en R suele indicar el nombre de la librería faltante (por ejemplo, `libcurl` o `libxml2`). Instala el paquete de desarrollo (`-dev` en Debian/Ubuntu, sin sufijo o con nombre equivalente en Arch) correspondiente y reintenta `install.packages()`.
+
+### 12.5. El paquete `rstudio-desktop` de AUR no compila tras una actualización del sistema (Arch)
+
+Es un problema conocido y documentado en los comentarios del propio paquete AUR, generalmente vinculado a cambios en `libboost` u otras librerías del sistema. Prueba:
+
+```bash
+sudo pacman -Syudd
+```
+
+antes de reconstruir, o cambia temporalmente al paquete `rstudio-desktop-bin`, que usa un binario precompilado y no depende de compilar contra las librerías actuales del sistema.
+
+### 12.6. En Windows, `R` no es reconocido como comando
+
+El instalador de R para Windows no siempre agrega el ejecutable al `PATH` del sistema automáticamente. Agrega manualmente la ruta `bin` de tu instalación de R (p. ej. `C:\Program Files\R\R-X.X.X\bin\x64`) a la variable de entorno `PATH` desde el Panel de Control → Sistema → Configuración avanzada del sistema → Variables de entorno.
+
+---
+
+## 13. Referencias oficiales
+
+- **CRAN — R Project**: https://cran.r-project.org/
+- **CRAN — Instrucciones para Ubuntu (breve)**: https://cran.r-project.org/bin/linux/ubuntu/
+- **CRAN — Instrucciones para Ubuntu (completas / README)**: https://cran.r-project.org/bin/linux/ubuntu/fullREADME.html
+- **CRAN — R para Windows**: https://cran.r-project.org/bin/windows/base/
+- **ArchWiki — R**: https://wiki.archlinux.org/title/R
+- **ArchWiki — Pacman**: https://wiki.archlinux.org/title/Pacman
+- **AUR — rstudio-desktop-bin**: https://aur.archlinux.org/packages/rstudio-desktop-bin
+- **AUR — rstudio-desktop**: https://aur.archlinux.org/packages/rstudio-desktop
+- **Posit — Descargas de RStudio Desktop**: https://posit.co/download/rstudio-desktop/
+- **Posit Docs — Instalación de R (Install R)**: https://docs.posit.co/resources/install-r.html
+- **Posit Docs — Soporte de plataformas**: https://docs.posit.co/platform-support.html
+- **Posit Docs — Guía del IDE de RStudio**: https://docs.posit.co/ide/user/
+
+---
+
+
+**Edison Achalma**
+Economista — Universidad Nacional de San Cristóbal de Huamanga (UNSCH)
+Ayacucho, Perú
+ORCID: [0000-0001-6996-3364](https://orcid.org/0000-0001-6996-3364)
 
 # Publicaciones Similares
 
