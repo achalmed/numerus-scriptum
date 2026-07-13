@@ -1,0 +1,1660 @@
+\documentclass[
+  jou,
+  floatsintext,
+  longtable,
+  a4paper,
+  nolmodern,
+  notxfonts,
+  notimes,
+  12pt,
+  colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{apa7}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+
+
+\usepackage[bidi=default]{babel}
+\babelprovide[main,import]{spanish}
+
+
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+
+\RequirePackage{longtable}
+\RequirePackage{threeparttablex}
+
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-.5em}%
+	{\normalfont\normalsize\bfseries\typesectitle}}
+
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{0.5em}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-\z@\relax}%
+	{\normalfont\normalsize\bfseries\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
+
+
+
+\usepackage{longtable, booktabs, multirow, multicol, colortbl, hhline, caption, array, float, xpatch}
+\usepackage{subcaption}
+
+
+\renewcommand\thesubfigure{\Alph{subfigure}}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,theorems, breakable, skins}
+\usepackage{fontawesome5}
+
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{ACACAC}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582EC}
+\definecolor{quarto-callout-important-color-frame}{HTML}{D9534F}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{F0AD4E}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02B875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{FD7E14}
+
+%\newlength\Oldarrayrulewidth
+%\newlength\Oldtabcolsep
+
+
+\usepackage{hyperref}
+
+
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+
+
+\usepackage{newtx}
+
+\defaultfontfeatures{Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+
+
+
+
+
+\title{Introducción al entorno R}
+
+
+\shorttitle{INTRO R PROGRAMACIÓN}
+
+
+\usepackage{etoolbox}
+
+
+
+\ccoppy{\textcopyright~2021}
+
+
+
+\author{Edison Achalma}
+
+
+
+\affiliation{
+{Escuela Profesional de Economía, Universidad Nacional de San Cristóbal
+de Huamanga}}
+
+
+
+
+\leftheader{Achalma}
+
+\date{2021-03-02}
+
+
+\abstract{Este abstract será actualizado una vez que se complete el
+contenido final del artículo. }
+
+\keywords{keyword1, keyword2}
+
+\authornote{\par{\addORCIDlink{Edison Achalma}{0000-0001-6996-3364}} 
+\par{ }
+\par{   El autor no tiene conflictos de interés que revelar.    Los
+roles de autor se clasificaron utilizando la taxonomía de roles de
+colaborador (CRediT; https://credit.niso.org/) de la siguiente
+manera:  Edison Achalma:   conceptualización, metodología, análisis
+formal, investigación, recursos, curación de
+datos, redacción, visualización, supervisión, administración del
+proyecto}
+\par{La correspondencia relativa a este artículo debe dirigirse a Edison
+Achalma, Escuela Profesional de Economía, Universidad Nacional de San
+Cristóbal de Huamanga, Portal Independencia N°
+57, Ayacucho, AYA 5001, Perú, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
+}
+
+\usepackage{pbalance}
+% \usepackage{float}
+\makeatletter
+\let\oldtpt\ThreePartTable
+\let\endoldtpt\endThreePartTable
+\def\ThreePartTable{\@ifnextchar[\ThreePartTable@i \ThreePartTable@ii}
+\def\ThreePartTable@i[#1]{\begin{figure}[!htbp]
+\onecolumn
+\begin{minipage}{0.485\textwidth}
+\oldtpt[#1]
+}
+\def\ThreePartTable@ii{\begin{figure}[!htbp]
+\onecolumn
+\begin{minipage}{0.48\textwidth}
+\oldtpt
+}
+\def\endThreePartTable{
+\endoldtpt
+\end{minipage}
+\twocolumn
+\end{figure}}
+\makeatother
+
+
+\makeatletter
+\let\endoldlt\endlongtable		
+\def\endlongtable{
+\hline
+\endoldlt}
+\makeatother
+
+\newenvironment{twocolumntable}% environment name
+{% begin code
+\begin{table*}[!htbp]%
+\onecolumn%
+}%
+{%
+\twocolumn%
+\end{table*}%
+}% end code
+
+\urlstyle{same}
+
+
+
+\hypersetup{
+  pdftitle={Introducci\'{o}n al entorno R},
+  pdfauthor={Autor}
+}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Tabla de contenidos}
+\else
+  \newcommand\contentsname{Tabla de contenidos}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{Lista de Figuras}
+\else
+  \newcommand\listfigurename{Lista de Figuras}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{Lista de Tablas}
+\else
+  \newcommand\listtablename{Lista de Tablas}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figura}
+\else
+  \newcommand\figurename{Figura}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Tabla}
+\else
+  \newcommand\tablename{Tabla}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listados}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\makeatother
+
+% From https://tex.stackexchange.com/a/645996/211326
+%%% apa7 doesn't want to add appendix section titles in the toc
+%%% let's make it do it
+\makeatletter
+\xpatchcmd{\appendix}
+  {\par}
+  {\addcontentsline{toc}{section}{\@currentlabelname}\par}
+  {}{}
+\makeatother
+
+%% Disable longtable counter
+%% https://tex.stackexchange.com/a/248395/211326
+
+\usepackage{etoolbox}
+
+\makeatletter
+\patchcmd{\LT@caption}
+  {\bgroup}
+  {\bgroup\global\LTpatch@captiontrue}
+  {}{}
+\patchcmd{\longtable}
+  {\par}
+  {\par\global\LTpatch@captionfalse}
+  {}{}
+\apptocmd{\endlongtable}
+  {\ifLTpatch@caption\else\addtocounter{table}{-1}\fi}
+  {}{}
+\newif\ifLTpatch@caption
+\makeatother
+
+\begin{document}
+
+\maketitle
+
+
+\hypertarget{toc}{}
+\tableofcontents
+\newpage
+\section[Introduction]{Introducción al entorno R}
+
+\setcounter{secnumdepth}{3}
+
+\setlength\LTleft{0pt}
+
+
+
+
+\section{Guía completa de introducción a
+R}\label{guuxeda-completa-de-introducciuxf3n-a-r}
+
+\begin{quote}
+Referencia técnica independiente sobre los \textbf{fundamentos del
+lenguaje R}: qué es, cómo se usa de forma interactiva, su sintaxis
+básica, objetos, modos, atributos, operadores, funciones y el sistema de
+ayuda --- todo lo previo a la manipulación de datos propiamente dicha
+(data frames, importación de datos, \texttt{dplyr}, etc., que se tratan
+en una guía aparte). Basada en el manual oficial \textbf{``An
+Introduction to R''} del R Core Team, publicado por CRAN
+(cran.r-project.org/doc/manuals), no en blogs ni tutoriales de terceros.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Tabla de contenidos}\label{tabla-de-contenidos}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \hyperref[1-quuxe9-es-r]{¿Qué es R?}
+\item
+  \hyperref[2-r-y-la-estaduxedstica-una-diferencia-de-filosofuxeda]{R y
+  la estadística: una diferencia de filosofía}
+\item
+  \hyperref[3-usar-r-de-forma-interactiva]{Usar R de forma interactiva}
+\item
+  \hyperref[4-el-sistema-de-ayuda-de-r]{El sistema de ayuda de R}
+\item
+  \hyperref[5-sintaxis-buxe1sica-comandos-sensibilidad-a-mayuxfasculas-comentarios]{Sintaxis
+  básica: comandos, sensibilidad a mayúsculas, comentarios}
+\item
+  \hyperref[6-asignaciuxf3n-de-variables]{Asignación de variables}
+\item
+  \hyperref[7-historial-de-comandos]{Historial de comandos}
+\item
+  \hyperref[8-ejecutar-comandos-desde-un-archivo-y-redirigir-salida]{Ejecutar
+  comandos desde un archivo y redirigir salida}
+\item
+  \hyperref[9-permanencia-de-datos-y-el-espacio-de-trabajo]{Permanencia
+  de datos y el espacio de trabajo}
+\item
+  \hyperref[10-vectores-la-estructura-fundamental]{Vectores: la
+  estructura fundamental}
+\item
+  \hyperref[11-aritmuxe9tica-vectorizada-y-la-regla-de-reciclaje]{Aritmética
+  vectorizada y la regla de reciclaje}
+\item
+  \hyperref[12-generaciuxf3n-de-secuencias]{Generación de secuencias}
+\item
+  \hyperref[13-vectores-luxf3gicos]{Vectores lógicos}
+\item
+  \hyperref[14-valores-faltantes-na-y-nan]{Valores faltantes:
+  \texttt{NA} y \texttt{NaN}}
+\item
+  \hyperref[15-vectores-de-caracteres]{Vectores de caracteres}
+\item
+  \hyperref[16-vectores-de-uxedndices-seleccionar-y-modificar-subconjuntos]{Vectores
+  de índices: seleccionar y modificar subconjuntos}
+\item
+  \hyperref[17-objetos-modo-longitud-y-atributos]{Objetos: modo,
+  longitud y atributos}
+\item
+  \hyperref[18-coerciuxf3n-entre-modos]{Coerción entre modos}
+\item
+  \hyperref[19-la-clase-de-un-objeto]{La clase de un objeto}
+\item
+  \hyperref[20-estructuras-de-control-condicionales-y-bucles]{Estructuras
+  de control: condicionales y bucles}
+\item
+  \hyperref[21-funciones-propias]{Funciones propias}
+\item
+  \hyperref[22-paquetes-el-sistema-de-extensiuxf3n-de-r]{Paquetes: el
+  sistema de extensión de R}
+\item
+  \hyperref[23-espacios-de-nombres-namespaces]{Espacios de nombres
+  (namespaces)}
+\item
+  \hyperref[24-buenas-pruxe1cticas-seguxfan-el-manual-oficial]{Buenas
+  prácticas según el manual oficial}
+\item
+  \hyperref[25-referencias-oficiales]{Referencias oficiales}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1. ¿Qué es R?}\label{quuxe9-es-r}
+
+Según la documentación oficial, R es un \textbf{conjunto integrado de
+herramientas de software} para manipulación de datos, cálculo y
+representación gráfica. Entre otras cosas, ofrece:
+
+\begin{itemize}
+\tightlist
+\item
+  una herramienta efectiva de manejo y almacenamiento de datos,
+\item
+  un conjunto de operadores para cálculos sobre arreglos, en particular
+  matrices,
+\item
+  una colección amplia, coherente e integrada de herramientas
+  intermedias para análisis de datos,
+\item
+  herramientas gráficas para análisis y visualización de datos, tanto en
+  pantalla como en copia impresa,
+\item
+  un lenguaje de programación bien desarrollado, simple y efectivo
+  (llamado \textbf{S}), que incluye condicionales, bucles, funciones
+  recursivas definidas por el usuario, y funciones de entrada y salida.
+\end{itemize}
+
+El término ``entorno'' (\emph{environment}) pretende caracterizar a R
+como un sistema plenamente planeado y coherente, en lugar de una
+acumulación incremental de herramientas muy específicas e inflexibles,
+como ocurre frecuentemente con otro software de análisis de datos.
+
+R puede considerarse una implementación del lenguaje \textbf{S},
+desarrollado originalmente en los Laboratorios Bell por Rick Becker,
+John Chambers y Allan Wilks, y que también es la base de los sistemas
+S-PLUS.
+
+R es, sobre todo, un vehículo para el desarrollo de nuevos métodos de
+análisis de datos interactivo. Se ha extendido rápidamente mediante una
+gran colección de \textbf{paquetes} (\emph{packages}). La mayoría de los
+programas escritos en R son, según el propio manual, esencialmente
+efímeros: escritos para un único análisis de datos puntual.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2. R y la estadística: una diferencia de
+filosofía}\label{r-y-la-estaduxedstica-una-diferencia-de-filosofuxeda}
+
+El manual oficial señala una diferencia importante de filosofía entre R
+(y S) y otros sistemas estadísticos clásicos como SAS o SPSS. En estos
+últimos, un análisis estadístico típicamente produce una salida
+abundante de forma inmediata. En S (y por tanto en R), un análisis
+estadístico normalmente se realiza como \textbf{una serie de pasos}, con
+resultados intermedios almacenados en objetos: R produce una salida
+mínima en cada paso y almacena los resultados en un objeto (por ejemplo,
+un objeto de ajuste de un modelo) para su posterior interrogación
+mediante otras funciones de R.
+
+Esto tiene una implicación práctica importante para quien empieza: en R,
+\emph{no ver} una salida extensa tras ajustar un modelo no significa que
+algo haya fallado; significa que el resultado quedó guardado en un
+objeto, listo para ser examinado con las funciones apropiadas
+(\texttt{summary()}, \texttt{print()}, etc.).
+
+R incluye unos 25 paquetes llamados ``estándar'' y ``recomendados'' que
+vienen junto con cualquier instalación de R, y muchos más disponibles a
+través de la red de sitios CRAN (cran.r-project.org).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3. Usar R de forma
+interactiva}\label{usar-r-de-forma-interactiva}
+
+\subsubsection{3.1. El prompt}\label{el-prompt}
+
+Cuando se usa el programa R, este emite un \emph{prompt} (símbolo de
+espera de instrucción) cuando espera comandos de entrada. El prompt por
+defecto es \texttt{\textgreater{}}. Si un comando no está completo al
+final de una línea, R emite un prompt distinto por defecto:
+
+\begin{verbatim}
++
+\end{verbatim}
+
+en la segunda línea y subsiguientes, y continúa leyendo hasta que el
+comando esté sintácticamente completo.
+
+\subsubsection{3.2. Procedimiento recomendado al usar R por primera vez
+(Linux/Unix)}\label{procedimiento-recomendado-al-usar-r-por-primera-vez-linuxunix}
+
+El manual recomienda, para una primera sesión bajo UNIX/Linux, el
+siguiente procedimiento:
+
+\textbf{Paso 1 --- Crear un subdirectorio de trabajo separado}, por
+ejemplo llamado \texttt{work}, para contener los archivos de datos sobre
+los que se trabajará en ese problema concreto:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{$}\NormalTok{ mkdir work}
+\ExtensionTok{$}\NormalTok{ cd work}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Paso 2 --- Iniciar el programa R}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{$}\NormalTok{ R}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Paso 3} --- A partir de aquí, pueden emitirse comandos de R.
+
+\textbf{Paso 4 --- Salir del programa} con el comando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{q}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+En ese momento se preguntará si se desea guardar los datos de la sesión
+(workspace). Según el sistema, esto aparecerá como un cuadro de diálogo
+o como un prompt de texto al que se puede responder \texttt{yes},
+\texttt{no} o \texttt{cancel} (basta una sola letra de abreviación) para
+guardar los datos antes de salir, salir sin guardar, o volver a la
+sesión. Los datos guardados estarán disponibles en futuras sesiones de
+R.
+
+Sesiones posteriores son simples: situarse en el directorio
+\texttt{work} e iniciar el programa de nuevo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{$}\NormalTok{ cd work}
+\ExtensionTok{$}\NormalTok{ R}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{3.3. En Windows}\label{en-windows}
+
+El procedimiento es básicamente el mismo: se crea una carpeta como
+directorio de trabajo, y esta se establece en el campo ``Start In'' del
+acceso directo de R. Luego se lanza R haciendo doble clic en el ícono.
+
+\begin{quote}
+\textbf{Nota práctica}: si usas RStudio (en cualquier sistema
+operativo), el equivalente moderno y recomendado a ``crear una carpeta
+de trabajo separada'' es usar \textbf{RStudio Projects} (\texttt{File} →
+\texttt{New\ Project...}), que gestiona automáticamente el directorio de
+trabajo, el historial y el workspace por proyecto.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4. El sistema de ayuda de R}\label{el-sistema-de-ayuda-de-r}
+
+R incluye un sistema de ayuda integrado, similar a la utilidad
+\texttt{man} de UNIX. Es, según el propio manual, la primera herramienta
+a dominar antes de avanzar.
+
+\subsubsection{4.1. Ayuda sobre una función
+específica}\label{ayuda-sobre-una-funciuxf3n-especuxedfica}
+
+Para obtener información sobre una función específica, por ejemplo
+\texttt{solve}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{help}\NormalTok{(solve)}
+\end{Highlighting}
+\end{Shaded}
+
+Forma alternativa, más breve:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ ?solve}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{4.2. Ayuda sobre operadores o palabras con significado
+sintáctico}\label{ayuda-sobre-operadores-o-palabras-con-significado-sintuxe1ctico}
+
+Para una característica especificada por caracteres especiales, el
+argumento debe ir entre comillas dobles o simples, convirtiéndolo en una
+``cadena de caracteres'' (\emph{character string}). Esto también es
+necesario para algunas palabras con significado sintáctico, incluyendo
+\texttt{if}, \texttt{for} y \texttt{function}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{help}\NormalTok{(}\StringTok{"[["}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{4.3. Ayuda en formato HTML
+navegable}\label{ayuda-en-formato-html-navegable}
+
+En la mayoría de las instalaciones de R, la ayuda está disponible en
+formato HTML mediante:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{help.start}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Esto lanza un navegador web que permite explorar las páginas de ayuda
+mediante hipervínculos. El enlace ``Search Engine and Keywords'' en la
+página cargada por \texttt{help.start()} es particularmente útil, ya que
+contiene una lista de conceptos de alto nivel que permite buscar entre
+las funciones disponibles --- una forma muy eficiente de orientarse
+rápidamente y entender la amplitud de lo que R ofrece.
+
+\subsubsection{4.4. Búsqueda de ayuda por palabra
+clave}\label{buxfasqueda-de-ayuda-por-palabra-clave}
+
+El comando \texttt{help.search} (alternativamente \texttt{??}) permite
+buscar ayuda de varias formas:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ ??solve}
+\end{Highlighting}
+\end{Shaded}
+
+Para más detalles y ejemplos, se recomienda consultar
+\texttt{?help.search}.
+
+\subsubsection{4.5. Ejecutar los ejemplos de un tema de
+ayuda}\label{ejecutar-los-ejemplos-de-un-tema-de-ayuda}
+
+Los ejemplos incluidos en un tema de ayuda normalmente pueden ejecutarse
+con:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{example}\NormalTok{(topic)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5. Sintaxis básica: comandos, sensibilidad a mayúsculas,
+comentarios}\label{sintaxis-buxe1sica-comandos-sensibilidad-a-mayuxfasculas-comentarios}
+
+Técnicamente, R es un \textbf{lenguaje de expresiones} (\emph{expression
+language}) con una sintaxis muy simple.
+
+\subsubsection{5.1. Sensibilidad a mayúsculas y
+minúsculas}\label{sensibilidad-a-mayuxfasculas-y-minuxfasculas}
+
+R \textbf{distingue mayúsculas de minúsculas} (\emph{case sensitive}),
+como la mayoría de los paquetes basados en UNIX. Esto significa que
+\texttt{A} y \texttt{a} son símbolos distintos y se refieren a variables
+diferentes.
+
+\subsubsection{5.2. Nombres válidos}\label{nombres-vuxe1lidos}
+
+El conjunto de símbolos que pueden usarse en nombres de R depende del
+sistema operativo y del país en el que se ejecuta R (técnicamente, de la
+configuración regional o \emph{locale} en uso). Normalmente se permiten
+todos los símbolos alfanuméricos (y en algunos países esto incluye
+letras acentuadas), además del punto (\texttt{.}) y el guion bajo
+(\texttt{\_}), con la restricción de que un nombre debe empezar con un
+punto o una letra, y si empieza con un punto, el segundo carácter no
+puede ser un dígito. Los nombres son, en la práctica, ilimitados en
+longitud.
+
+\begin{quote}
+\textbf{Nota de portabilidad}: para código R portable (incluido el
+destinado a paquetes de R), el manual recomienda usar únicamente los
+caracteres \texttt{A–Za–z0–9}.
+\end{quote}
+
+\subsubsection{5.3. Expresiones y
+asignaciones}\label{expresiones-y-asignaciones}
+
+Los comandos elementales consisten en \textbf{expresiones} o
+\textbf{asignaciones}:
+
+\begin{itemize}
+\tightlist
+\item
+  Si se da una expresión como comando, esta se \textbf{evalúa}, se
+  \textbf{imprime} (a menos que se haga explícitamente invisible), y el
+  valor se pierde.
+\item
+  Una asignación también evalúa una expresión y pasa el valor a una
+  variable, pero el resultado \textbf{no se imprime automáticamente}.
+\end{itemize}
+
+\subsubsection{5.4. Separación de comandos y
+agrupación}\label{separaciuxf3n-de-comandos-y-agrupaciuxf3n}
+
+Los comandos se separan mediante punto y coma (\texttt{;}) o mediante un
+salto de línea. Los comandos elementales pueden agruparse en una sola
+expresión compuesta mediante llaves (\texttt{\{} y \texttt{\}}).
+
+\subsubsection{5.5. Comentarios}\label{comentarios}
+
+Los comentarios pueden colocarse casi en cualquier parte, comenzando con
+el símbolo numeral (\texttt{\#}); todo lo que sigue hasta el final de la
+línea es un comentario:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# esto es un comentario completo}
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{5}  \CommentTok{\# esto es un comentario al final de una línea}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{5.6. Límite de longitud de
+línea}\label{luxedmite-de-longitud-de-luxednea}
+
+Las líneas de comando introducidas en la consola están limitadas a
+aproximadamente 4095 bytes (no caracteres).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6. Asignación de
+variables}\label{asignaciuxf3n-de-variables}
+
+El operador de asignación estándar y tradicional en R es la flecha hacia
+la izquierda:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{10.4}\NormalTok{, }\FloatTok{5.6}\NormalTok{, }\FloatTok{3.1}\NormalTok{, }\FloatTok{6.4}\NormalTok{, }\FloatTok{21.7}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Esto crea un vector llamado \texttt{x} con cinco elementos. El símbolo
+\texttt{\textless{}-} puede leerse como ``se le asigna a'', y es la
+forma documentada en el manual oficial para crear y nombrar objetos en
+R. (El operador \texttt{=} también funciona como asignación en la
+mayoría de los contextos, y es ampliamente usado en la práctica moderna,
+pero el manual de referencia introduce y emplea consistentemente
+\texttt{\textless{}-}).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7. Historial de comandos}\label{historial-de-comandos}
+
+Bajo muchas versiones de UNIX y en Windows, R ofrece un mecanismo para
+recordar y reejecutar comandos previos. Las flechas verticales del
+teclado permiten desplazarse hacia adelante y atrás por un
+\textbf{historial de comandos} (\emph{command history}). Una vez
+localizado un comando de esta forma, el cursor puede moverse dentro del
+comando usando las flechas horizontales, y los caracteres pueden
+eliminarse con la tecla \texttt{DEL} o añadirse con las demás teclas.
+
+Las capacidades de recuperación y edición bajo UNIX son altamente
+personalizables, mediante la biblioteca \texttt{readline}.
+Alternativamente, el editor de texto Emacs ofrece mecanismos de soporte
+más generales (vía ESS, \emph{Emacs Speaks Statistics}) para trabajar
+interactivamente con R.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8. Ejecutar comandos desde un archivo y redirigir
+salida}\label{ejecutar-comandos-desde-un-archivo-y-redirigir-salida}
+
+\subsubsection{8.1. Ejecutar un script}\label{ejecutar-un-script}
+
+Si los comandos están almacenados en un archivo externo, por ejemplo
+\texttt{commands.R} en el directorio de trabajo \texttt{work}, pueden
+ejecutarse en cualquier momento de una sesión de R con el comando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{source}\NormalTok{(}\StringTok{"commands.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+En Windows, la opción \textbf{Source} también está disponible en el menú
+\textbf{File}.
+
+\subsubsection{8.2. Redirigir la salida a un
+archivo}\label{redirigir-la-salida-a-un-archivo}
+
+La función \texttt{sink()} desvía toda la salida posterior de la consola
+hacia un archivo externo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{sink}\NormalTok{(}\StringTok{"record.lis"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+El comando, sin argumentos, restaura la salida a la consola nuevamente:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{sink}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{9. Permanencia de datos y el espacio de
+trabajo}\label{permanencia-de-datos-y-el-espacio-de-trabajo}
+
+Las entidades que R crea y manipula se conocen como \textbf{objetos}.
+Pueden ser variables, arreglos de números, cadenas de caracteres,
+funciones, o estructuras más generales construidas a partir de tales
+componentes.
+
+\subsubsection{9.1. Listar los objetos
+actuales}\label{listar-los-objetos-actuales}
+
+Durante una sesión de R, los objetos se crean y almacenan por nombre. El
+comando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{objects}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+(alternativamente, \texttt{ls()}) muestra los nombres de (la mayoría de)
+los objetos actualmente almacenados en R. La colección de objetos
+actualmente almacenada se llama el \textbf{espacio de trabajo}
+(\emph{workspace}).
+
+\subsubsection{9.2. Eliminar objetos}\label{eliminar-objetos}
+
+Para eliminar objetos está disponible la función \texttt{rm}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{rm}\NormalTok{(x, y, z, ink, junk, temp, foo, bar)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{9.3. Guardado del espacio de trabajo entre
+sesiones}\label{guardado-del-espacio-de-trabajo-entre-sesiones}
+
+Todos los objetos creados durante una sesión de R pueden almacenarse
+permanentemente en un archivo para uso en sesiones futuras. Al final de
+cada sesión de R, se ofrece la oportunidad de guardar todos los objetos
+actualmente disponibles. Si se indica que se desea hacerlo, los objetos
+se escriben a un archivo llamado \texttt{.RData} en el directorio
+actual, y las líneas de comando usadas en la sesión se guardan en un
+archivo llamado \texttt{.Rhistory}.
+
+Cuando R se inicia más tarde desde el mismo directorio, recarga el
+espacio de trabajo desde ese archivo. Al mismo tiempo se recarga el
+historial de comandos asociado.
+
+\subsubsection{9.4. Recomendación oficial sobre directorios de
+trabajo}\label{recomendaciuxf3n-oficial-sobre-directorios-de-trabajo}
+
+El manual recomienda explícitamente usar \textbf{directorios de trabajo
+separados} para distintos análisis realizados con R. Es bastante común
+que se creen objetos con nombres como \texttt{x} e \texttt{y} durante un
+análisis; estos nombres suelen ser significativos en el contexto de un
+único análisis, pero puede ser bastante difícil decidir qué
+representaban cuando se han realizado varios análisis distintos en el
+mismo directorio.
+
+\begin{quote}
+\textbf{Nota práctica}: este es, precisamente, el problema que
+\textbf{RStudio Projects} (y, para la gestión de paquetes por proyecto,
+\texttt{renv}) resuelven de forma moderna y estructurada.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{10. Vectores: la estructura
+fundamental}\label{vectores-la-estructura-fundamental}
+
+R opera sobre estructuras de datos con nombre. La estructura más simple
+es el \textbf{vector numérico}, una entidad única que consiste en una
+colección ordenada de números.
+
+\subsubsection{\texorpdfstring{10.1. Crear un vector con
+\texttt{c()}}{10.1. Crear un vector con c()}}\label{crear-un-vector-con-c}
+
+Para configurar un vector llamado \texttt{x}, por ejemplo, consistente
+en cinco números (10.4, 5.6, 3.1, 6.4 y 21.7), se usa la función
+\texttt{c()} (\emph{combine}):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{10.4}\NormalTok{, }\FloatTok{5.6}\NormalTok{, }\FloatTok{3.1}\NormalTok{, }\FloatTok{6.4}\NormalTok{, }\FloatTok{21.7}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Esta es, según el manual, una \textbf{asignación de vector} usando la
+función \texttt{c()}, que en este contexto puede tomar un número
+arbitrario de argumentos vectoriales y cuyo valor resultante es un
+vector obtenido al concatenar sus argumentos uno tras otro.
+
+\subsubsection{10.2. Asignaciones
+equivalentes}\label{asignaciones-equivalentes}
+
+El manual señala explícitamente que las siguientes formas son
+equivalentes a la anterior:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{assign}\NormalTok{(}\StringTok{"x"}\NormalTok{, }\FunctionTok{c}\NormalTok{(}\FloatTok{10.4}\NormalTok{, }\FloatTok{5.6}\NormalTok{, }\FloatTok{3.1}\NormalTok{, }\FloatTok{6.4}\NormalTok{, }\FloatTok{21.7}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+y, en orden inverso (aunque poco usada en la práctica):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{c}\NormalTok{(}\FloatTok{10.4}\NormalTok{, }\FloatTok{5.6}\NormalTok{, }\FloatTok{3.1}\NormalTok{, }\FloatTok{6.4}\NormalTok{, }\FloatTok{21.7}\NormalTok{) }\OtherTok{{-}\textgreater{}}\NormalTok{ x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{11. Aritmética vectorizada y la regla de
+reciclaje}\label{aritmuxe9tica-vectorizada-y-la-regla-de-reciclaje}
+
+R opera sobre vectores completos sin necesidad de bucles explícitos para
+operaciones aritméticas básicas. Por ejemplo, si \texttt{x} es un vector
+ya definido, este comando crea un nuevo vector \texttt{y} con 11
+entradas:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ y }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(x, }\DecValTok{0}\NormalTok{, x)}
+\end{Highlighting}
+\end{Shaded}
+
+Los vectores pueden usarse en expresiones aritméticas, en cuyo caso las
+operaciones se realizan \textbf{elemento por elemento}. Los vectores que
+ocurren en la misma expresión no necesitan tener la misma longitud. Si
+no tienen la misma longitud, el valor del resultado es el de la
+expresión más larga, y los valores en el vector más corto se
+\textbf{reciclan} tantas veces como sea necesario (posiblemente de forma
+fraccionaria) hasta que coincidan en longitud con el vector más largo.
+En particular, una constante numérica simple es, en este sentido, un
+vector de longitud uno que se recicla tantas veces como sea necesario.
+Esta es la conocida \textbf{regla de reciclaje} (\emph{recycling rule}).
+
+Los operadores aritméticos elementales son los habituales \texttt{+},
+\texttt{-}, \texttt{*}, \texttt{/} y \texttt{\^{}} (potencia). Además,
+todas las funciones matemáticas comunes están disponibles: \texttt{log},
+\texttt{exp}, \texttt{sin}, \texttt{cos}, \texttt{tan}, \texttt{sqrt},
+entre otras.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{12. Generación de
+secuencias}\label{generaciuxf3n-de-secuencias}
+
+R provee varias formas de generar secuencias de números.
+
+\subsubsection{\texorpdfstring{12.1. El operador
+\texttt{:}}{12.1. El operador :}}\label{el-operador}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{30}
+\end{Highlighting}
+\end{Shaded}
+
+genera la secuencia de enteros del 1 al 30.
+
+\subsubsection{\texorpdfstring{12.2. La función
+\texttt{seq()}}{12.2. La función seq()}}\label{la-funciuxf3n-seq}
+
+La función \texttt{seq()} es una forma más general de generar
+secuencias, permitiendo especificar incrementos distintos de 1, o la
+longitud deseada de la secuencia en vez del valor final.
+
+\subsubsection{\texorpdfstring{12.3. La función
+\texttt{rep()}}{12.3. La función rep()}}\label{la-funciuxf3n-rep}
+
+La función \texttt{rep()} permite generar secuencias repitiendo un
+vector dado un número determinado de veces.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{13. Vectores lógicos}\label{vectores-luxf3gicos}
+
+Además de las cantidades numéricas, R permite manipular
+\textbf{cantidades lógicas} (\emph{logical quantities}). Los elementos
+de un vector lógico pueden tomar los valores \texttt{TRUE},
+\texttt{FALSE}, o \texttt{NA} (valor ``no disponible'').
+
+Los vectores lógicos se generan mediante condiciones. Por ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ temp }\OtherTok{\textless{}{-}}\NormalTok{ x }\SpecialCharTok{\textgreater{}} \DecValTok{13}
+\end{Highlighting}
+\end{Shaded}
+
+establece \texttt{temp} como un vector de la misma longitud que
+\texttt{x}, con valores \texttt{TRUE} o \texttt{FALSE} según si el
+elemento correspondiente de \texttt{x} es mayor que 13 o no.
+
+Los operadores condicionales habituales son \texttt{\textless{}},
+\texttt{\textless{}=}, \texttt{\textgreater{}},
+\texttt{\textgreater{}=}, \texttt{==} (igualdad exacta) y \texttt{!=}
+(diferente). Además, si \texttt{c1} y \texttt{c2} son expresiones
+lógicas, \texttt{c1\ \&\ c2} es su intersección (``y''),
+\texttt{c1\ \textbar{}\ c2} es su unión (``o''), y \texttt{!c1} es la
+negación de \texttt{c1}.
+
+Los valores lógicos se coercionan a valores numéricos en expresiones
+numéricas, con \texttt{FALSE} convertido en 0 y \texttt{TRUE} convertido
+en 1.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{\texorpdfstring{14. Valores faltantes: \texttt{NA} y
+\texttt{NaN}}{14. Valores faltantes: NA y NaN}}\label{valores-faltantes-na-y-nan}
+
+En algunos casos, los componentes de un vector pueden no estar
+disponibles. Cuando un elemento o valor no está disponible, se le asigna
+un valor particular, \texttt{NA}. En general, cualquier operación sobre
+un \texttt{NA} se convierte en \texttt{NA}. Esto permite que cualquier
+proceso computacional que reciba \texttt{NA} como argumento se propague
+de forma transparente a través de cálculos posteriores, dejando un
+resultado igualmente desconocido o faltante.
+
+La función \texttt{is.na(x)} da un resultado lógico que indica si cada
+elemento de \texttt{x} es \texttt{NA} o no.
+
+\subsubsection{\texorpdfstring{14.1. \texttt{NaN} --- Not a
+Number}{14.1. NaN --- Not a Number}}\label{nan-not-a-number}
+
+Hay una segunda clase de valores no disponibles producidos por cálculos
+numéricos, conocida como valores \textbf{\texttt{NaN}} (\emph{Not a
+Number}), por ejemplo el resultado de \texttt{0/0}. Los valores
+\texttt{NaN} son todos \texttt{NA}, pero la afirmación inversa no es
+cierta. La función \texttt{is.nan(x)} se usa específicamente para
+detectar valores \texttt{NaN}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{15. Vectores de caracteres}\label{vectores-de-caracteres}
+
+Las secuencias de caracteres también son una estructura de vectores de
+R, generalmente utilizadas como etiquetas para componentes de un objeto.
+Por ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ labs }\OtherTok{\textless{}{-}} \FunctionTok{paste}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"X"}\NormalTok{,}\StringTok{"Y"}\NormalTok{), }\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{, }\AttributeTok{sep=}\StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+crea un vector de longitud 10 mediante concatenación de pares de
+cadenas. La función \texttt{paste()} permite combinar cualquier número
+de argumentos, de manera elemento por elemento, en una sola cadena de
+caracteres.
+
+Las cadenas de caracteres se escriben usando comillas dobles
+(preferencia indicada por el propio manual) o simples; cualquiera de las
+dos puede usarse para ``escapar'' a la otra, como en
+\texttt{"It\textquotesingle{}s\ important"}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{16. Vectores de índices: seleccionar y modificar
+subconjuntos}\label{vectores-de-uxedndices-seleccionar-y-modificar-subconjuntos}
+
+Los subconjuntos de los elementos de un vector pueden seleccionarse
+añadiendo un \textbf{vector de índices} entre corchetes
+(\texttt{{[}{]}}), justo después del nombre del vector. El manual
+oficial distingue cuatro tipos de vectores de índices:
+
+\subsubsection{16.1. Vector lógico}\label{vector-luxf3gico}
+
+El vector de índices es en sí mismo un vector lógico, de la misma
+longitud que el vector del que se extraen los elementos. Los valores
+correspondientes a \texttt{TRUE} en el vector de índices se seleccionan,
+y los correspondientes a \texttt{FALSE} se omiten. Por ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ y }\OtherTok{\textless{}{-}}\NormalTok{ x[}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(x)]}
+\end{Highlighting}
+\end{Shaded}
+
+crea un objeto \texttt{y} que contiene los elementos no faltantes de
+\texttt{x}, en el mismo orden en que ocurren en \texttt{x}.
+
+\subsubsection{16.2. Vector de enteros
+positivos}\label{vector-de-enteros-positivos}
+
+El vector de índices puede consistir en un conjunto de valores enteros
+positivos (o vacío). En este caso, los valores del vector de índices
+deben estar en el conjunto \texttt{\{1,\ 2,\ ...,\ length(x)\}}. Los
+elementos del vector seleccionados se especifican mediante su índice, en
+el orden indicado.
+
+\subsubsection{16.3. Vector de enteros
+negativos}\label{vector-de-enteros-negativos}
+
+El vector de índices puede consistir en un conjunto de números enteros
+negativos. En este caso, el vector de índices especifica los valores que
+\textbf{se excluyen}, en lugar de los que se incluyen.
+
+\subsubsection{16.4. Vector de cadenas de
+caracteres}\label{vector-de-cadenas-de-caracteres}
+
+Finalmente, en el caso de un vector con nombres asociados a sus
+elementos (mediante el atributo \texttt{names}), el vector de índices
+puede ser un vector de cadenas de caracteres, refiriéndose a los
+elementos por nombre en lugar de por posición.
+
+\subsubsection{16.5. Reemplazo de elementos mediante
+indexación}\label{reemplazo-de-elementos-mediante-indexaciuxf3n}
+
+Un vector indexado puede usarse en el lado izquierdo de una asignación,
+en cuyo caso la asignación solo opera sobre los elementos del vector
+indicados por el vector de índices. Por ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ x[}\FunctionTok{is.na}\NormalTok{(x)] }\OtherTok{\textless{}{-}} \DecValTok{0}
+\end{Highlighting}
+\end{Shaded}
+
+reemplaza todos los valores \texttt{NA} de \texttt{x} por ceros.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{17. Objetos: modo, longitud y
+atributos}\label{objetos-modo-longitud-y-atributos}
+
+\subsubsection{\texorpdfstring{17.1. Modo
+(\emph{mode})}{17.1. Modo (mode)}}\label{modo-mode}
+
+Las entidades sobre las que opera R se conocen técnicamente como
+\textbf{objetos}: ejemplos son vectores de valores numéricos (reales) o
+complejos, vectores de valores lógicos y vectores de cadenas de
+caracteres. Se conocen como estructuras ``atómicas'' porque todos sus
+componentes son del mismo tipo, o \textbf{modo}, a saber:
+\emph{numeric}, \emph{complex}, \emph{logical}, \emph{character} y
+\emph{raw}.
+
+Los vectores deben tener todos sus valores \textbf{del mismo modo}. Así,
+cualquier vector dado debe ser inequívocamente lógico, numérico,
+complejo, de caracteres, o raw. Una excepción aparente a esta regla es
+el valor especial \texttt{NA}, para cantidades no disponibles (aunque,
+de hecho, existen varios tipos de \texttt{NA}). Un vector puede estar
+vacío y aun así tener un modo: el vector vacío de caracteres se lista
+como \texttt{character(0)}, y el vector numérico vacío como
+\texttt{numeric(0)}.
+
+R también opera sobre objetos llamados \textbf{listas} (\emph{lists}),
+de modo \emph{list}: son secuencias ordenadas de objetos que
+individualmente pueden ser de cualquier modo. Las listas se conocen como
+estructuras ``recursivas'' en lugar de ``atómicas'', porque sus
+componentes pueden a su vez ser listas en sí mismas.
+
+Las otras estructuras recursivas son las de modo \emph{function} y
+\emph{expression}.
+
+\subsubsection{\texorpdfstring{17.2. Longitud
+(\emph{length})}{17.2. Longitud (length)}}\label{longitud-length}
+
+Otra propiedad de todo objeto es su \textbf{longitud}. Las funciones
+\texttt{mode(objeto)} y \texttt{length(objeto)} permiten averiguar el
+modo y la longitud de cualquier estructura definida. Modo y longitud se
+llaman, por esto, ``atributos intrínsecos'' de un objeto.
+
+\subsubsection{17.3. Cambiar el tamaño de un
+objeto}\label{cambiar-el-tamauxf1o-de-un-objeto}
+
+Un objeto ``vacío'' puede aun así tener un modo. Por ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ e }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+hace de \texttt{e} un vector vacío de modo numérico. Una vez creado un
+objeto de cualquier tamaño, pueden añadírsele nuevos componentes
+simplemente asignándole un valor de índice fuera de su rango previo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ e[}\DecValTok{3}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{17}
+\end{Highlighting}
+\end{Shaded}
+
+esto convierte a \texttt{e} en un vector de longitud 3 (los dos primeros
+componentes son, en este punto, ambos \texttt{NA}).
+
+Inversamente, truncar el tamaño de un objeto solo requiere una
+asignación apropiada:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ alpha }\OtherTok{\textless{}{-}}\NormalTok{ alpha[}\DecValTok{2} \SpecialCharTok{*} \DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+o, más directamente:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{length}\NormalTok{(alpha) }\OtherTok{\textless{}{-}} \DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{17.4. Obtener y establecer
+atributos}\label{obtener-y-establecer-atributos}
+
+La función \texttt{attributes(objeto)} devuelve una lista de todos los
+atributos no intrínsecos actualmente definidos para ese objeto. La
+función \texttt{attr(objeto,\ nombre)} permite seleccionar un atributo
+específico. Por ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{attr}\NormalTok{(z, }\StringTok{"dim"}\NormalTok{) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+permite a R tratar a \texttt{z} como si fuera una matriz de 10 por 10.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{18. Coerción entre modos}\label{coerciuxf3n-entre-modos}
+
+R permite cambios de modo prácticamente en cualquier lugar donde resulte
+razonable hacerlo (y en algunos donde podría no serlo). Por ejemplo,
+con:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ z }\OtherTok{\textless{}{-}} \DecValTok{0}\SpecialCharTok{:}\DecValTok{9}
+\end{Highlighting}
+\end{Shaded}
+
+se podría escribir:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ digits }\OtherTok{\textless{}{-}} \FunctionTok{as.character}\NormalTok{(z)}
+\end{Highlighting}
+\end{Shaded}
+
+tras lo cual \texttt{digits} es el vector de caracteres
+\texttt{c("0",\ "1",\ "2",\ ...,\ "9")}. Una coerción adicional
+reconstruye el vector numérico de nuevo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ d }\OtherTok{\textless{}{-}} \FunctionTok{as.integer}\NormalTok{(digits)}
+\end{Highlighting}
+\end{Shaded}
+
+Existe una amplia colección de funciones de la forma \texttt{as.algo()}
+para coercionar de un modo a otro, o para dotar a un objeto de algún
+otro atributo que aún no posea.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{19. La clase de un objeto}\label{la-clase-de-un-objeto}
+
+Todos los objetos en R tienen una \textbf{clase}, reportada por la
+función \texttt{class()}. Para vectores simples, esta es simplemente el
+modo (por ejemplo \texttt{"numeric"}, \texttt{"logical"},
+\texttt{"character"} o \texttt{"list"}), pero \texttt{"matrix"},
+\texttt{"array"}, \texttt{"factor"} y \texttt{"data.frame"} son otros
+valores posibles.
+
+La clase es un atributo especial que permite un estilo de programación
+orientado a objetos en R. Por ejemplo, si un objeto tiene clase
+\texttt{"data.frame"}, se imprimirá de cierta forma, la función
+\texttt{plot()} lo mostrará gráficamente de cierta manera, y otras
+funciones llamadas ``genéricas'', como \texttt{summary()}, reaccionarán
+a él como argumento de una forma sensible a su clase.
+
+Para remover temporalmente los efectos de la clase, se usa la función
+\texttt{unclass()}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{20. Estructuras de control: condicionales y
+bucles}\label{estructuras-de-control-condicionales-y-bucles}
+
+R, como lenguaje, incluye las estructuras de control habituales de un
+lenguaje de programación moderno.
+
+\subsubsection{\texorpdfstring{20.1. Condicional
+\texttt{if}}{20.1. Condicional if}}\label{condicional-if}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (condicion) \{}
+\NormalTok{  expresion\_verdadera}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{  expresion\_falsa}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{\texorpdfstring{20.2. Bucle
+\texttt{for}}{20.2. Bucle for}}\label{bucle-for}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (nombre }\ControlFlowTok{in}\NormalTok{ vector) \{}
+\NormalTok{  expresion}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{\texorpdfstring{20.3. Bucles \texttt{while} y
+\texttt{repeat}}{20.3. Bucles while y repeat}}\label{bucles-while-y-repeat}
+
+R también incluye \texttt{while} (que repite mientras una condición sea
+verdadera) y \texttt{repeat} (que repite indefinidamente hasta un
+\texttt{break} explícito). Las palabras clave \texttt{break} y
+\texttt{next} permiten, respectivamente, salir de un bucle o saltar a la
+siguiente iteración.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{21. Funciones propias}\label{funciones-propias}
+
+Una de las grandes fortalezas de R, según el propio manual, es la
+facilidad con la que el usuario puede escribir sus propias funciones. La
+sintaxis básica es:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nombre\_funcion }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(arg1, arg2, ...) \{}
+  \CommentTok{\# cuerpo de la función}
+\NormalTok{  resultado}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+El valor devuelto por una función es, por defecto, el valor de la última
+expresión evaluada en su cuerpo, aunque puede hacerse explícito con
+\texttt{return()}.
+
+Las funciones en R son objetos de primera clase: pueden almacenarse en
+variables, pasarse como argumentos a otras funciones, y devolverse como
+resultado de otras funciones, igual que cualquier otro objeto de R.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{22. Paquetes: el sistema de extensión de
+R}\label{paquetes-el-sistema-de-extensiuxf3n-de-r}
+
+Todas las funciones y conjuntos de datos de R se almacenan en
+\textbf{paquetes} (\emph{packages}). Solo cuando un paquete se carga, su
+contenido está disponible. Esto se hace tanto por eficiencia (la lista
+completa de funciones ocuparía más memoria y tomaría más tiempo de
+búsqueda que un subconjunto), como para ayudar a los desarrolladores de
+paquetes, que quedan protegidos de colisiones de nombres con otro
+código.
+
+\subsubsection{22.1. Ver qué paquetes están
+instalados}\label{ver-quuxe9-paquetes-estuxe1n-instalados}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{library}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+(sin argumentos) muestra los paquetes instalados en el sistema.
+
+\subsubsection{22.2. Cargar un paquete}\label{cargar-un-paquete}
+
+Para cargar un paquete particular, por ejemplo el paquete \textbf{boot}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{library}\NormalTok{(boot)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{22.3. Instalar y actualizar
+paquetes}\label{instalar-y-actualizar-paquetes}
+
+Los usuarios conectados a Internet pueden usar las funciones
+\texttt{install.packages()} y \texttt{update.packages()} (disponibles
+también a través del menú \texttt{Packages} en las interfaces gráficas
+de Windows y macOS) para instalar y actualizar paquetes.
+
+\subsubsection{22.4. Ver qué paquetes están
+cargados}\label{ver-quuxe9-paquetes-estuxe1n-cargados}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{search}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+muestra la lista de búsqueda (\emph{search list}). Algunos paquetes
+pueden estar cargados pero no aparecer en la lista de búsqueda (por usar
+espacios de nombres); estos se incluyen en la lista entregada por:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \FunctionTok{loadedNamespaces}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{22.5. Paquetes estándar (base) vs.~paquetes
+contribuidos}\label{paquetes-estuxe1ndar-base-vs.-paquetes-contribuidos}
+
+Los paquetes \textbf{estándar} (o \emph{base}) se consideran parte del
+código fuente de R: contienen las funciones básicas que permiten que R
+funcione, junto con los conjuntos de datos y las funciones estadísticas
+y gráficas estándar descritas en el manual oficial. Deben estar
+disponibles automáticamente en cualquier instalación de R.
+
+Existen, además, miles de \textbf{paquetes contribuidos}, escritos por
+muchos autores distintos. Algunos implementan métodos estadísticos
+especializados, otros dan acceso a datos o hardware, y otros están
+diseñados para complementar libros de texto. Algunos (los paquetes
+``recomendados'') se distribuyen junto con toda distribución binaria de
+R. La mayoría están disponibles para descarga desde CRAN
+(cran.r-project.org y sus espejos) y otros repositorios como
+Bioconductor (bioconductor.org).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{23. Espacios de nombres
+(namespaces)}\label{espacios-de-nombres-namespaces}
+
+Los paquetes tienen \textbf{espacios de nombres} (\emph{namespaces}),
+que cumplen tres funciones:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Permiten al autor de un paquete ocultar funciones y datos destinados
+  únicamente a uso interno.
+\item
+  Evitan que las funciones se rompan cuando un usuario (u otro autor de
+  paquete) elige un nombre que colisiona con uno ya existente en el
+  paquete.
+\item
+  Proveen una forma de referirse a un objeto dentro de un paquete
+  particular.
+\end{enumerate}
+
+\subsubsection{\texorpdfstring{23.1. El operador de doble dos puntos
+\texttt{::}}{23.1. El operador de doble dos puntos ::}}\label{el-operador-de-doble-dos-puntos}
+
+Por ejemplo, \texttt{t()} es la función de transposición en R, pero un
+usuario podría definir su propia función llamada \texttt{t}. Los
+espacios de nombres evitan que la definición del usuario tenga
+precedencia y rompa cualquier función que intente transponer una matriz.
+El operador \texttt{::} selecciona definiciones de un espacio de nombres
+particular: la función de transposición siempre estará disponible como
+\texttt{base::t}, porque está definida en el paquete \texttt{base}. Solo
+las funciones exportadas desde un paquete pueden recuperarse de esta
+forma.
+
+\subsubsection{\texorpdfstring{23.2. El operador de triple dos puntos
+\texttt{:::}}{23.2. El operador de triple dos puntos :::}}\label{el-operador-de-triple-dos-puntos}
+
+El operador \texttt{:::} actúa como el operador \texttt{::}, pero
+también permite acceder a objetos ocultos. Es más probable que los
+usuarios recurran a la función \texttt{getAnywhere()}, que busca en
+múltiples paquetes.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{24. Buenas prácticas según el manual
+oficial}\label{buenas-pruxe1cticas-seguxfan-el-manual-oficial}
+
+A modo de síntesis, estas son recomendaciones que el propio manual de
+CRAN hace explícitas a lo largo del texto, antes de entrar en
+manipulación de datos:
+
+\begin{itemize}
+\tightlist
+\item
+  Usar \textbf{un directorio de trabajo separado por análisis}, para
+  evitar confusión entre objetos con el mismo nombre (típicamente
+  \texttt{x}, \texttt{y}) creados en distintos análisis no relacionados.
+\item
+  Familiarizarse primero con \texttt{help()}, \texttt{?},
+  \texttt{help.search()} y \texttt{help.start()} antes de buscar ayuda
+  externa: el sistema de ayuda integrado de R es, según el manual,
+  completo y debe ser el primer recurso.
+\item
+  Recordar que R \textbf{distingue mayúsculas de minúsculas} en todos
+  los nombres.
+\item
+  Aprovechar la naturaleza \textbf{vectorizada} de R: operar sobre
+  vectores completos en lugar de escribir bucles explícitos siempre que
+  sea razonable, ya que esto es parte del diseño fundamental del
+  lenguaje, no solo una optimización de estilo.
+\item
+  Entender la diferencia entre \texttt{NA} (valor no disponible, de
+  cualquier tipo) y \texttt{NaN} (resultado numérico inválido
+  específicamente, como \texttt{0/0}), y usar \texttt{is.na()} /
+  \texttt{is.nan()} según corresponda.
+\item
+  Recordar que, en R, los resultados de un análisis estadístico
+  normalmente se almacenan en un objeto para su examen posterior, en
+  lugar de imprimirse exhaustivamente de inmediato.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{25. Referencias oficiales}\label{referencias-oficiales}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{CRAN --- ``An Introduction to R'' (HTML, versión release)}:
+  https://cran.r-project.org/doc/manuals/r-release/R-intro.html
+\item
+  \textbf{CRAN --- ``An Introduction to R'' (PDF, versión release)}:
+  https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf
+\item
+  \textbf{R Manuals (réplica oficial restilizada) --- Índice general}:
+  https://rstudio.github.io/r-manuals/r-intro/index.html
+\item
+  \textbf{R Manuals --- Cap. 1: Introduction and preliminaries}:
+  https://rstudio.github.io/r-manuals/r-intro/Introduction-and-preliminaries.html
+\item
+  \textbf{R Manuals --- Cap. 2: Simple manipulations; numbers and
+  vectors}:
+  https://rstudio.github.io/r-manuals/r-intro/Simple-manipulations-numbers-and-vectors.html
+\item
+  \textbf{R Manuals --- Cap. 3: Objects, their modes and attributes}:
+  https://rstudio.github.io/r-manuals/r-intro/Objects.html
+\item
+  \textbf{R Manuals --- Cap. 9: Grouping, loops and conditional
+  execution}:
+  https://rstudio.github.io/r-manuals/r-intro/Loops-and-conditional-execution.html
+\item
+  \textbf{R Manuals --- Cap. 10: Writing your own functions}:
+  https://rstudio.github.io/r-manuals/r-intro/Writing-your-own-functions.html
+\item
+  \textbf{R Manuals --- Cap. 13: Packages}:
+  https://rstudio.github.io/r-manuals/r-intro/Packages.html
+\item
+  \textbf{CRAN --- R FAQ (oficial)}:
+  https://cran.r-project.org/doc/manuals/r-release/R-FAQ.html
+\item
+  \textbf{CRAN --- Manuales completos de R (índice)}:
+  https://cran.r-project.org/manuals.html
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Edison Achalma} Economista --- Universidad Nacional de San
+Cristóbal de Huamanga (UNSCH) Ayacucho, Perú ORCID:
+\href{https://orcid.org/0000-0001-6996-3364}{0000-0001-6996-3364}
+
+\section{Publicaciones Similares}\label{publicaciones-similares}
+
+Si te interesó este artículo, te recomendamos que explores otros blogs y
+recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo
+algunas sugerencias:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{https://numerus-scriptum.netlify.app/r/2020-06-10-011-instalacion-de-r/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2020-06-10-011-instalacion-de-r}{011
+  Instalacion De R}
+\item
+  \href{https://numerus-scriptum.netlify.app/r/2020-06-10-012-configurar-entorno-virtual-r/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2020-06-10-012-configurar-entorno-virtual-r}{012
+  Configurar Entorno Virtual R}
+\item
+  \href{https://numerus-scriptum.netlify.app/r/2020-06-10-013-lo-que-debemos-saber-de-r/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2020-06-10-013-lo-que-debemos-saber-de-r}{013
+  Lo Que Debemos Saber De R}
+\item
+  \href{https://numerus-scriptum.netlify.app/r/2021-04-05-02-manipulacion-de-datos/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2021-04-05-02-manipulacion-de-datos}{02
+  Manipulacion De Datos}
+\item
+  \href{https://numerus-scriptum.netlify.app/r/2021-04-12-03-visualizacion-de-datos/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2021-04-12-03-visualizacion-de-datos}{03
+  Visualizacion De Datos}
+\item
+  \href{https://numerus-scriptum.netlify.app/r/2022-11-07-04-modelo-de-machine-learning-i-analisis-exploratorio/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2022-11-07-04-modelo-de-machine-learning-i-analisis-exploratorio}{04
+  Modelo De Machine Learning I Analisis Exploratorio}
+\item
+  \href{https://numerus-scriptum.netlify.app/r/2022-11-14-05-modelo-de-machine-learning-ii-modelo-de-clasificacion/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2022-11-14-05-modelo-de-machine-learning-ii-modelo-de-clasificacion}{05
+  Modelo De Machine Learning Ii Modelo De Clasificacion}
+\item
+  \href{https://numerus-scriptum.netlify.app/r/2022-11-21-06-modelo-de-machine-learning-iii-modelo-de-regresion/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2022-11-21-06-modelo-de-machine-learning-iii-modelo-de-regresion}{06
+  Modelo De Machine Learning Iii Modelo De Regresion}
+\item
+  \href{https://numerus-scriptum.netlify.app/r/2022-11-28-07-modelo-de-machine-learning-iv-tex-mining/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2022-11-28-07-modelo-de-machine-learning-iv-tex-mining}{07
+  Modelo De Machine Learning Iv Tex Mining}
+\end{enumerate}
+
+Esperamos que encuentres estas publicaciones igualmente interesantes y
+útiles. ¡Disfruta de la lectura!
+
+
+
+
+
+
+\end{document}

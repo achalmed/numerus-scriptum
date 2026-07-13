@@ -124,6 +124,7 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -227,6 +228,10 @@ Cristóbal de Huamanga, Portal Independencia N°
 
 
 
+\hypersetup{
+  pdftitle={Variables y expresiones en Python},
+  pdfauthor={Autor}
+}
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -409,13 +414,6 @@ Python nos permite verificar el tipo de cualquier valor con la función
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-<class 'int'>
-<class 'float'>
-<class 'str'>
-<class 'bool'>
-\end{verbatim}
-
 \subsection{Conversión entre tipos}\label{conversiuxf3n-entre-tipos}
 
 Frecuentemente necesitamos convertir datos de un tipo a otro. Python
@@ -442,13 +440,6 @@ proporciona funciones para esto:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-3
-7.0
-El año es: 2023
-3.75
-\end{verbatim}
-
 Nota importante sobre conversión de float a int:
 
 \begin{Shaded}
@@ -463,14 +454,6 @@ Nota importante sobre conversión de float a int:
 \BuiltInTok{print}\NormalTok{(}\BuiltInTok{round}\NormalTok{(}\FloatTok{4.1}\NormalTok{))  }\CommentTok{\# Resultado: 4}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-4
-4
--4
-5
-4
-\end{verbatim}
 
 \subsection{Ejemplo aplicado: Cálculo del
 IPC}\label{ejemplo-aplicado-cuxe1lculo-del-ipc}
@@ -494,15 +477,6 @@ IPC}\label{ejemplo-aplicado-cuxe1lculo-del-ipc}
 \BuiltInTok{print}\NormalTok{(}\StringTok{"Tipo de dato del IPC:"}\NormalTok{, }\BuiltInTok{type}\NormalTok{(ipc))}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-Cálculo del Índice de Precios al Consumidor
-Año base: 2020
-Precio canasta base: S/ 750.0
-Precio canasta actual: S/ 850.5
-IPC: 113.4
-Tipo de dato del IPC: <class 'float'>
-\end{verbatim}
 
 \section{Nombres de variables y palabras
 reservadas}\label{nombres-de-variables-y-palabras-reservadas}
@@ -616,13 +590,6 @@ Python sigue convenciones (no obligatorias pero recomendadas):
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-Precio unitario: S/ 25.50
-Cantidad vendida: 120 unidades
-Subtotal (cálculo intermedio): S/ 3,060.00
-Valor temporal interno: 100
-\end{verbatim}
-
 \subsection{Nombres descriptivos
 vs.~cortos}\label{nombres-descriptivos-vs.-cortos}
 
@@ -646,19 +613,6 @@ código auto-documentado:
     \BuiltInTok{print}\NormalTok{(i)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-0
-1
-2
-3
-4
-5
-6
-7
-8
-9
-\end{verbatim}
 
 \subsection{Ejemplo económico
 completo}\label{ejemplo-econuxf3mico-completo}
@@ -692,14 +646,6 @@ completo}\label{ejemplo-econuxf3mico-completo}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Economía emergente: }\SpecialCharTok{\{}\NormalTok{es\_economia\_emergente}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-Análisis Económico - Perú (PER)
-PIB nominal: USD 242,632 millones
-Población: 33,715,471 habitantes
-PIB per cápita: USD 7,196.46
-Economía emergente: True
-\end{verbatim}
 
 \section{Operadores y operandos}\label{operadores-y-operandos}
 
@@ -752,16 +698,6 @@ los valores sobre los que se opera.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-Ingreso total: 10500
-Ahorro: 1000
-Valor de venta: 2550.0
-PIB per cápita: 10.0
-Capital final: 11576.25
-Lotes completos: 13
-Unidades restantes: 25
-\end{verbatim}
-
 \subsection{Operadores de
 comparación}\label{operadores-de-comparaciuxf3n}
 
@@ -795,15 +731,6 @@ Estos operadores comparan valores y devuelven True o False:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-False
-True
-True
-False
-True
-False
-\end{verbatim}
-
 \subsection{Operadores lógicos}\label{operadores-luxf3gicos}
 
 Los operadores lógicos combinan expresiones booleanas:
@@ -831,12 +758,6 @@ Los operadores lógicos combinan expresiones booleanas:
 \BuiltInTok{print}\NormalTok{(}\StringTok{"En recesión:"}\NormalTok{, en\_recesion)  }\CommentTok{\# False}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-Economía estable: True
-Hay problema económico: False
-En recesión: False
-\end{verbatim}
 
 \subsection{Operadores de asignación}\label{operadores-de-asignaciuxf3n}
 
@@ -871,14 +792,6 @@ compuestos:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-Capital después de aporte: 11500
-Capital después de retiro: 9500
-Capital con interés: 9975.0
-Capital dividido: 4987.5
-Tasa al cubo: 8
-\end{verbatim}
-
 \subsection{Ejemplo económico: Cálculo de interés
 compuesto}\label{ejemplo-econuxf3mico-cuxe1lculo-de-interuxe9s-compuesto}
 
@@ -907,16 +820,6 @@ compuesto}\label{ejemplo-econuxf3mico-cuxe1lculo-de-interuxe9s-compuesto}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Intereses ganados: S/ }\SpecialCharTok{\{}\NormalTok{capital\_final\_1 }\OperatorTok{{-}}\NormalTok{ capital\_inicial}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-Préstamo con Interés Compuesto
-Capital inicial: S/ 50,000.00
-Tasa anual: 8.0%
-Periodo: 5 años
-Capital final (método 1): S/ 73,466.40
-Capital final (método 2): S/ 73,466.40
-Intereses ganados: S/ 23,466.40
-\end{verbatim}
 
 \section{Expresiones}\label{expresiones}
 
@@ -962,11 +865,6 @@ Python puede evaluar para producir un resultado.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-Propensión marginal al consumo: 0.5
-Multiplicador keynesiano: 2.00
-\end{verbatim}
-
 \subsection{Expresiones en contexto
 económico}\label{expresiones-en-contexto-econuxf3mico}
 
@@ -1002,13 +900,6 @@ económico}\label{expresiones-en-contexto-econuxf3mico}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"La demanda es }\SpecialCharTok{\{}\NormalTok{tipo\_demanda}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-Variación del precio: 10.00%
-Variación de la cantidad: -5.00%
-Elasticidad precio de la demanda: -0.50
-La demanda es inelástica
-\end{verbatim}
 
 \section{Orden de operaciones}\label{orden-de-operaciones}
 
@@ -1065,13 +956,6 @@ De mayor a menor precedencia:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-14
-20
-50
-50
-\end{verbatim}
-
 \subsection{Aplicación económica: Valor presente neto
 (VPN)}\label{aplicaciuxf3n-econuxf3mica-valor-presente-neto-vpn}
 
@@ -1105,12 +989,6 @@ De mayor a menor precedencia:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-Inversión inicial: S/ 100,000.00
-VPN del proyecto: S/ -2,103.68
-Decisión: Rechazar el proyecto
-\end{verbatim}
-
 \subsection{Uso de paréntesis para
 claridad}\label{uso-de-paruxe9ntesis-para-claridad}
 
@@ -1132,10 +1010,6 @@ legible:
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Tasa efectiva anual: }\SpecialCharTok{\{}\NormalTok{tasa\_efectiva }\OperatorTok{*} \DecValTok{100}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-Tasa efectiva anual: 12.68%
-\end{verbatim}
 
 \section{Operaciones con strings}\label{operaciones-con-strings}
 
@@ -1161,11 +1035,6 @@ economía: nombres de países, descripciones de sectores, códigos, etc.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-Perú está ubicado en América del Sur
-Edison Achalma, Economista
-\end{verbatim}
-
 \subsection{Repetición de strings}\label{repeticiuxf3n-de-strings}
 
 \begin{Shaded}
@@ -1180,13 +1049,6 @@ Edison Achalma, Economista
 \BuiltInTok{print}\NormalTok{(}\StringTok{"="} \OperatorTok{*} \DecValTok{40}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
---------------------------------------------------
-========================================
-           REPORTE ECONÓMICO            
-========================================
-\end{verbatim}
 
 \subsection{Formato de strings}\label{formato-de-strings}
 
@@ -1212,12 +1074,6 @@ Python ofrece varias formas de formatear strings:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-El PIB de Perú es USD 242632 millones
-La inflación es 3.25%
-Edison tiene 30 años
-\end{verbatim}
-
 \textbf{Método format()}
 
 \begin{Shaded}
@@ -1242,14 +1098,6 @@ Edison tiene 30 años
 \BuiltInTok{print}\NormalTok{(}\StringTok{"PIB: USD }\SpecialCharTok{\{:,\}}\StringTok{"}\NormalTok{.}\BuiltInTok{format}\NormalTok{(pib\_grande))  }\CommentTok{\# Con comas}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-El PIB de Perú es USD 242632 millones
-El PIB de Perú es USD 242632 millones. Perú es un país emergente.
-El PIB de Perú es USD 242632 millones
-Inflación: 3.25%
-PIB: USD 242,632,000,000
-\end{verbatim}
 
 \textbf{F-strings (Recomendado, Python 3.6+)}
 
@@ -1280,14 +1128,6 @@ PIB: USD 242,632,000,000
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Valor total: S/ }\SpecialCharTok{\{}\NormalTok{precio }\OperatorTok{*}\NormalTok{ cantidad}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-El PIB de Perú es USD 242632 millones
-PIB per cápita: USD 7196.46
-Inflación: 3.25%
-Población: 33,715,471 habitantes
-Valor total: S/ 5,000.00
-\end{verbatim}
 
 \subsection{Métodos de strings}\label{muxe9todos-de-strings}
 
@@ -1331,17 +1171,6 @@ Valor total: S/ 5,000.00
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-AGRICULTURA, GANADERÍA Y PESCA
-producto bruto interno
-Agricultura, Ganadería Y Pesca
-Agricultura, ganadería y pesca
-La tasa de interés es 6%
-['Minería', 'Agricultura', 'Manufactura', 'Servicios']
-Producto Bruto Interno
-'PIB'
-\end{verbatim}
-
 \subsection{Indexación y slicing de
 strings}\label{indexaciuxf3n-y-slicing-de-strings}
 
@@ -1370,20 +1199,6 @@ Los strings son secuencias de caracteres que pueden ser indexados:
 \BuiltInTok{print}\NormalTok{(indicador[::}\OperatorTok{{-}}\DecValTok{1}\NormalTok{])  }\CommentTok{\# ONRETNI OTURB OTCUDORP (invertido)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-P
-R
-O
-N
-PRODUCTO
-PRODUCTO
-BRUTO
-INTERNO
-PRODUCTO BRUTO INTERNO
-POUT RT NEN
-ONRETNI OTURB OTCUDORP
-\end{verbatim}
 
 \subsection{Verificación de
 contenido}\label{verificaciuxf3n-de-contenido}
@@ -1418,18 +1233,6 @@ contenido}\label{verificaciuxf3n-de-contenido}
 \BuiltInTok{print}\NormalTok{(moneda.isalpha())  }\CommentTok{\# True}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-True
-False
-True
-True
-True
-False
-True
-False
-True
-\end{verbatim}
 
 \subsection{Ejemplo aplicado: Procesamiento de datos
 económicos}\label{ejemplo-aplicado-procesamiento-de-datos-econuxf3micos}
@@ -1466,17 +1269,6 @@ económicos}\label{ejemplo-aplicado-procesamiento-de-datos-econuxf3micos}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\StringTok{\textquotesingle{}TOTAL\textquotesingle{}}\SpecialCharTok{:15\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{total}\SpecialCharTok{:6.1f\}}\SpecialStringTok{\%"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-CONTRIBUCIÓN SECTORIAL AL PIB
-========================================
-Minería           45.2% ██████████████████████
-Agricultura       12.8% ██████
-Manufactura       23.5% ███████████
-Servicios         67.9% █████████████████████████████████
-========================================
-TOTAL            149.4%
-\end{verbatim}
 
 \section{Solicitando entrada del
 usuario}\label{solicitando-entrada-del-usuario}
@@ -1725,10 +1517,6 @@ debugging}\label{comentarios-para-debugging}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Elasticidad: }\SpecialCharTok{\{}\NormalTok{elasticidad}\SpecialCharTok{:.2f\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-Elasticidad: -0.50
-\end{verbatim}
 
 \section{Nombres de variables
 mnemotécnicos}\label{nombres-de-variables-mnemotuxe9cnicos}

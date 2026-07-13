@@ -53,7 +53,7 @@ En economía y ciencias sociales frecuentemente necesitamos predecir eventos fut
 - ¿Un estudiante completará o abandonará sus estudios?
 - ¿Un producto se venderá o no se venderá?
 
-::: {#5ba7e26c .cell}
+::: {#b52cd1b6 .cell}
 ``` {.python .cell-code}
 import pandas as pd
 import numpy as np
@@ -72,7 +72,7 @@ plt.rcParams['figure.figsize'] = (10, 6)
 
 ## Flujo de decisión con predicción
 
-::: {#5183060d .cell}
+::: {#e8056263 .cell}
 ``` {.python .cell-code}
 print("""
 FLUJO DE TOMA DE DECISIONES CON PREDICCIÓN
@@ -105,7 +105,7 @@ FLUJO DE TOMA DE DECISIONES CON PREDICCIÓN
 
 ## Problema de admisión académica
 
-::: {#451e37bc .cell}
+::: {#74c1697a .cell}
 ``` {.python .cell-code}
 # Crear dataset de ejemplo: admisión a programa de posgrado
 np.random.seed(42)
@@ -141,7 +141,7 @@ print(f"\nTasa de admisión: {datos_admision['admitido'].mean()*100:.1f}%")
 
 ## Entrenar modelo de clasificación
 
-::: {#03b9dc1e .cell}
+::: {#e39ec814 .cell}
 ``` {.python .cell-code}
 # Separar variables predictoras y objetivo
 X = datos_admision[['puntaje_examen', 'gpa', 'experiencia_laboral', 'publicaciones']]
@@ -171,7 +171,7 @@ for variable, coef in zip(X.columns, modelo.coef_[0]):
 
 ## Concepto de probabilidades
 
-::: {#e1dd5ad0 .cell}
+::: {#f7eb141c .cell}
 ``` {.python .cell-code}
 # Obtener probabilidades de predicción
 probabilidades = modelo.predict_proba(X_test)
@@ -199,7 +199,7 @@ print(resultados['prob_admitido'].describe())
 
 ## Efecto del umbral
 
-::: {#079a408a .cell}
+::: {#8fbf7dc6 .cell}
 ``` {.python .cell-code}
 # Experimentar con diferentes umbrales
 umbrales = [0.3, 0.5, 0.7, 0.9]
@@ -224,7 +224,7 @@ for umbral in umbrales:
 
 ## Visualizar distribución de probabilidades
 
-::: {#ea1773e8 .cell}
+::: {#2303292d .cell}
 ``` {.python .cell-code}
 # Crear gráfico de distribución de probabilidades
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
@@ -267,7 +267,7 @@ print("\nGráfico guardado como 'distribucion_probabilidades.png'")
 
 La matriz de confusión es una tabla que describe el desempeño de un modelo de clasificación.
 
-::: {#82fcaea3 .cell}
+::: {#1484c469 .cell}
 ``` {.python .cell-code}
 print("""
 MATRIZ DE CONFUSIÓN - ESTRUCTURA
@@ -292,7 +292,7 @@ Donde:
 
 ## Calcular matriz de confusión
 
-::: {#0e7c0716 .cell}
+::: {#5ef45d31 .cell}
 ``` {.python .cell-code}
 # Predicciones con umbral 0.5
 y_pred = modelo.predict(X_test)
@@ -321,7 +321,7 @@ print(f"  Verdaderos Positivos (TP): {TP}")
 
 ## Función personalizada para matriz de confusión
 
-::: {#843210c3 .cell}
+::: {#e7932f44 .cell}
 ``` {.python .cell-code}
 def calcular_matriz_confusion(y_real, y_pred):
     """
@@ -355,7 +355,7 @@ print(f"\nVerificación: TP={TP}, TN={TN}, FP={FP}, FN={FN}")
 
 ## Visualizar matriz de confusión
 
-::: {#b1a9b276 .cell}
+::: {#fc3babe6 .cell}
 ``` {.python .cell-code}
 def graficar_matriz_confusion(cm, nombres_clases=['No', 'Sí']):
     """
@@ -399,7 +399,7 @@ print("Matriz de confusión guardada como 'matriz_confusion.png'")
 
 ## Resumen de métricas principales
 
-::: {#4da9155f .cell}
+::: {#636564e0 .cell}
 ``` {.python .cell-code}
 print("""
 MÉTRICAS DE CLASIFICACIÓN
@@ -438,7 +438,7 @@ MÉTRICAS DE CLASIFICACIÓN
 
 ## Cálculo e interpretación
 
-::: {#0de13438 .cell}
+::: {#d5ebebbd .cell}
 ``` {.python .cell-code}
 def calcular_accuracy(y_real, y_pred):
     """Calcula accuracy"""
@@ -461,7 +461,7 @@ print(f"El modelo clasifica correctamente el {accuracy*100:.1f}% de los casos")
 
 ## Limitaciones del accuracy
 
-::: {#f22ccbd6 .cell}
+::: {#52e2a2ad .cell}
 ``` {.python .cell-code}
 # Ejemplo con dataset desbalanceado
 print("\nEJEMPLO: LIMITACIÓN DEL ACCURACY CON CLASES DESBALANCEADAS")
@@ -493,7 +493,7 @@ print("\nObservación: TP = 0 (no detecta ningún positivo)")
 
 ## Cálculo e interpretación
 
-::: {#2d485f90 .cell}
+::: {#35be5b53 .cell}
 ``` {.python .cell-code}
 def calcular_precision(y_real, y_pred):
     """Calcula precision"""
@@ -520,7 +520,7 @@ print("(Predichos como admitidos pero en realidad no lo fueron)")
 
 ## Ejemplo económico: Aprobación de créditos
 
-::: {#f744f0d8 .cell}
+::: {#f3ab2153 .cell}
 ``` {.python .cell-code}
 print("\n\nEJEMPLO ECONÓMICO: APROBACIÓN DE CRÉDITOS")
 print("=" * 70)
@@ -556,7 +556,7 @@ print(f"\nConlusión: Alta precision reduce pérdidas por morosidad")
 
 ## Cálculo e interpretación
 
-::: {#aa1a480c .cell}
+::: {#fb03e56c .cell}
 ``` {.python .cell-code}
 def calcular_recall(y_real, y_pred):
     """Calcula recall (sensibilidad)"""
@@ -583,7 +583,7 @@ print("(No fueron identificados como admitidos cuando sí lo fueron)")
 
 ## Ejemplo económico: Detección de fraude
 
-::: {#09cbff00 .cell}
+::: {#5c3a08d5 .cell}
 ``` {.python .cell-code}
 print("\n\nEJEMPLO ECONÓMICO: DETECCIÓN DE FRAUDE")
 print("=" * 70)
@@ -628,7 +628,7 @@ print("(No queremos perder fraudes reales, aunque tengamos falsas alarmas)")
 
 ## Cálculo e interpretación
 
-::: {#9a3cd32c .cell}
+::: {#ab64d28d .cell}
 ``` {.python .cell-code}
 def calcular_f1(y_real, y_pred):
     """Calcula F1-score"""
@@ -658,7 +658,7 @@ print(f"Un F1 de {f1:.2f} indica un {'buen' if f1 > 0.7 else 'regular' if f1 > 0
 
 ## Trade-off entre Precision y Recall
 
-::: {#f39c3665 .cell}
+::: {#56f5356b .cell}
 ``` {.python .cell-code}
 # Demostrar trade-off
 umbrales = [0.1, 0.3, 0.5, 0.7, 0.9]
@@ -688,7 +688,7 @@ print("- Umbral alto → Mayor Precision (menos falsas alarmas) pero menor Recal
 
 ## Generar curva Precision-Recall
 
-::: {#57c21f7c .cell}
+::: {#049fab34 .cell}
 ``` {.python .cell-code}
 def calcular_curva_precision_recall(y_real, probabilidades):
     """
@@ -726,7 +726,7 @@ precision_sklearn, recall_sklearn, _ = precision_recall_curve(
 
 ## Visualizar curva Precision-Recall
 
-::: {#8e43200f .cell}
+::: {#3d75e616 .cell}
 ``` {.python .cell-code}
 # Crear gráfico
 fig, ax = plt.subplots(figsize=(10, 8))
@@ -767,7 +767,7 @@ print("Curva Precision-Recall guardada como 'curva_precision_recall.png'")
 
 ## Concepto de ROC
 
-::: {#ec2081bf .cell}
+::: {#e77efa91 .cell}
 ``` {.python .cell-code}
 print("""
 CURVA ROC (Receiver Operating Characteristic)
@@ -791,7 +791,7 @@ Interpretación:
 
 ## Calcular TPR y FPR
 
-::: {#a8d8eb37 .cell}
+::: {#de35bd7e .cell}
 ``` {.python .cell-code}
 def calcular_tpr(y_real, y_pred):
     """Calcula True Positive Rate (TPR) = Recall"""
@@ -845,7 +845,7 @@ print(f"AUC (Area Under Curve): {roc_auc:.4f}")
 
 ## Visualizar curva ROC
 
-::: {#b5fa36b0 .cell}
+::: {#f8aec3ef .cell}
 ``` {.python .cell-code}
 # Crear gráfico
 fig, ax = plt.subplots(figsize=(10, 8))
@@ -883,7 +883,7 @@ print("Curva ROC guardada como 'curva_roc.png'")
 
 ## Interpretación del AUC
 
-::: {#c96539c7 .cell}
+::: {#d84ad6ee .cell}
 ``` {.python .cell-code}
 def interpretar_auc(auc_score):
     """Interpreta el valor de AUC"""
@@ -915,7 +915,7 @@ print(f"el {roc_auc*100:.1f}% de las veces.")
 
 ## Aplicación 1: Predicción de incumplimiento crediticio
 
-::: {#846ce21a .cell}
+::: {#dea89581 .cell}
 ``` {.python .cell-code}
 print("\n\nAPLICACIÓN: PREDICCIÓN DE INCUMPLIMIENTO CREDITICIO")
 print("=" * 70)
@@ -1024,7 +1024,7 @@ if precision_c < 0.5:
 
 ## Aplicación 2: Clasificación de empresas por riesgo de quiebra
 
-::: {#9e189758 .cell}
+::: {#15ccacb9 .cell}
 ``` {.python .cell-code}
 print("\n\n\nAPLICACIÓN: CLASIFICACIÓN DE RIESGO DE QUIEBRA EMPRESARIAL")
 print("=" * 70)
@@ -1126,7 +1126,7 @@ print("  4. Análisis de cartera de inversiones")
 
 ## Ejercicio 1: Optimizar umbral según costo
 
-::: {#2c224618 .cell}
+::: {#01a4d788 .cell}
 ``` {.python .cell-code}
 print("\n\n\nEJERCICIO: OPTIMIZACIÓN DE UMBRAL SEGÚN COSTOS")
 print("=" * 70)

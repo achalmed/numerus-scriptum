@@ -78,6 +78,7 @@ Un vector es una colección ordenada de elementos del mismo tipo de dato. Puede 
 
 Concatenación de elementos con **`c()`**: Se utiliza la función `c()` para concatenar elementos y crear vectores en R.
 
+
 ::: {.cell}
 
 ```{.r .cell-code}
@@ -89,6 +90,7 @@ c(1 + 0i, 2 + 4i) # números complejos (complex)
 c("a", "b", "c") # caracteres (character)
 ```
 :::
+
 
 **Acciones con vectores**
 
@@ -586,6 +588,9 @@ Un data frame es una estructura similar a una matriz, pero más flexible. Puede 
 
 **Acciones con data frames:**
 
+
+
+
 1.  Verificamos el número de filas del data frame utilizando la función `nrow()`:
 
 
@@ -722,7 +727,7 @@ Si te interesó este artículo, te recomendamos que explores otros blogs y recur
 
 
 1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/r/2020-06-10-011-instalacion-de-r/index.pdf) [011 Instalacion De R](https://numerus-scriptum.netlify.app/r/2020-06-10-011-instalacion-de-r)
-2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/r/2020-06-10-012-que-ofrece-r/index.pdf) [012 Que Ofrece R](https://numerus-scriptum.netlify.app/r/2020-06-10-012-que-ofrece-r)
+2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/r/2020-06-10-012-configurar-entorno-virtual-r/index.pdf) [012 Configurar Entorno Virtual R](https://numerus-scriptum.netlify.app/r/2020-06-10-012-configurar-entorno-virtual-r)
 3. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/r/2020-06-10-013-lo-que-debemos-saber-de-r/index.pdf) [013 Lo Que Debemos Saber De R](https://numerus-scriptum.netlify.app/r/2020-06-10-013-lo-que-debemos-saber-de-r)
 4. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/r/2021-04-05-02-manipulacion-de-datos/index.pdf) [02 Manipulacion De Datos](https://numerus-scriptum.netlify.app/r/2021-04-05-02-manipulacion-de-datos)
 5. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/r/2021-04-12-03-visualizacion-de-datos/index.pdf) [03 Visualizacion De Datos](https://numerus-scriptum.netlify.app/r/2021-04-12-03-visualizacion-de-datos)

@@ -47,7 +47,7 @@ Las expresiones booleanas son expresiones que evalúan a uno de dos valores posi
 
 ## Valores booleanos
 
-::: {#b035203b .cell}
+::: {#df4f7d93 .cell}
 ``` {.python .cell-code}
 # Valores booleanos básicos
 valor_verdadero = True
@@ -69,7 +69,7 @@ meta_inflacion_cumplida = True
 
 La función `bool()` convierte valores a booleanos:
 
-::: {#c1deec85 .cell}
+::: {#6bce94ea .cell}
 ``` {.python .cell-code}
 # Valores que evalúan a False
 print(bool(0))        # False
@@ -93,7 +93,7 @@ print(bool({'a': 1})) # True
 
 ## Aplicación económica
 
-::: {#c56b789d .cell}
+::: {#974a2388 .cell}
 ``` {.python .cell-code}
 # Evaluar datos económicos
 pib = 242632
@@ -123,7 +123,7 @@ Los operadores de comparación comparan dos valores y retornan un booleano:
 
 ## Operadores básicos
 
-::: {#4da9d2d7 .cell}
+::: {#acead078 .cell}
 ``` {.python .cell-code}
 # Datos económicos para comparar
 pib_2022 = 240000
@@ -160,7 +160,7 @@ print(meta_inflacion <= 3.0)  # True
 
 ## Comparación de strings
 
-::: {#6db9fc53 .cell}
+::: {#7725765b .cell}
 ``` {.python .cell-code}
 # Los strings se comparan lexicográficamente
 pais_1 = "Argentina"
@@ -183,7 +183,7 @@ print(sector_1.lower() == sector_2.lower())  # True
 
 ## Comparación de listas
 
-::: {#a64f6dba .cell}
+::: {#40227e0c .cell}
 ``` {.python .cell-code}
 # Listas se comparan elemento por elemento
 precios_2022 = [100, 105, 110]
@@ -204,7 +204,7 @@ print(lista_a == lista_b)  # False
 
 ## Ejemplo aplicado: Clasificación de economías
 
-::: {#123aaef7 .cell}
+::: {#4ac2cf5b .cell}
 ``` {.python .cell-code}
 # Clasificar países por PIB per cápita
 pib_pc_peru = 7196
@@ -232,7 +232,7 @@ Los operadores lógicos combinan múltiples expresiones booleanas:
 
 El operador `and` retorna True solo si ambas condiciones son verdaderas:
 
-::: {#a0ecdaa1 .cell}
+::: {#3b355114 .cell}
 ``` {.python .cell-code}
 # Tabla de verdad de AND
 print(True and True)    # True
@@ -272,7 +272,7 @@ print(f"¿Aprobar crédito? {aprobar_credito}")  # True
 
 El operador `or` retorna True si al menos una condición es verdadera:
 
-::: {#e06473a5 .cell}
+::: {#1204eef4 .cell}
 ``` {.python .cell-code}
 # Tabla de verdad de OR
 print(True or True)     # True
@@ -310,7 +310,7 @@ print(f"¿Elegible para programa? {elegible}")  # True
 
 El operador `not` invierte el valor booleano:
 
-::: {#9c45c683 .cell}
+::: {#e130beed .cell}
 ``` {.python .cell-code}
 # Tabla de verdad de NOT
 print(not True)   # False
@@ -337,7 +337,7 @@ print(f"¿Necesita ajuste de política? {no_cumple_meta}")  # True
 
 ## Combinación de operadores
 
-::: {#48d99e02 .cell}
+::: {#acf8191d .cell}
 ``` {.python .cell-code}
 # Los operadores se pueden combinar
 # Precedencia: not > and > or
@@ -379,7 +379,7 @@ La estructura `if` ejecuta código solo si una condición es verdadera:
 
 ## Sintaxis básica
 
-::: {#addd3543 .cell}
+::: {#2317402f .cell}
 ``` {.python .cell-code}
 # Estructura básica
 condicion = True
@@ -396,7 +396,7 @@ print("Este código siempre se ejecuta")
 
 ## Ejemplos económicos
 
-::: {#0e518025 .cell}
+::: {#bcdaf3dc .cell}
 ``` {.python .cell-code}
 # Ejemplo 1: Alerta de inflación
 inflacion_mensual = 0.6
@@ -429,7 +429,7 @@ if stock_actual < stock_minimo:
 
 ## Importancia de la indentación
 
-::: {#1910cdc9 .cell}
+::: {#009c06b8 .cell}
 ``` {.python .cell-code}
 # Python usa indentación para delimitar bloques
 x = 10
@@ -457,7 +457,7 @@ La estructura `if-else` ejecuta un bloque si la condición es verdadera, y otro 
 
 ## Sintaxis if-else
 
-::: {#b22a3d12 .cell}
+::: {#fe2aa58f .cell}
 ``` {.python .cell-code}
 # Estructura básica
 condicion = True
@@ -472,7 +472,7 @@ else:
 
 ## Ejemplos económicos
 
-::: {#45447611 .cell}
+::: {#b0b9e9e5 .cell}
 ``` {.python .cell-code}
 # Ejemplo 1: Clasificar inflación
 inflacion = 3.5
@@ -522,7 +522,7 @@ else:
 
 Python permite escribir if-else en una línea:
 
-::: {#80d8d273 .cell}
+::: {#da9204e5 .cell}
 ``` {.python .cell-code}
 # Sintaxis: valor_si_true if condicion else valor_si_false
 
@@ -552,7 +552,7 @@ La estructura `if-elif-else` permite evaluar múltiples condiciones en secuencia
 
 ## Sintaxis if-elif-else
 
-::: {#3b1acebb .cell}
+::: {#ff96f285 .cell}
 ``` {.python .cell-code}
 # Estructura básica
 x = 10
@@ -571,7 +571,7 @@ else:
 
 ## Ejemplos económicos
 
-::: {#0823ff57 .cell}
+::: {#4bf68b9e .cell}
 ``` {.python .cell-code}
 # Ejemplo 1: Clasificación de inflación
 inflacion = 4.5
@@ -647,7 +647,7 @@ print(f"Grupo: {grupo}")
 
 ## Orden de evaluación
 
-::: {#3768dc5f .cell}
+::: {#00eda036 .cell}
 ``` {.python .cell-code}
 # El orden importa: se evalúa de arriba hacia abajo
 # Solo se ejecuta el primer bloque que cumple la condición
@@ -686,7 +686,7 @@ Los condicionales pueden contener otros condicionales dentro:
 
 ## Estructura básica
 
-::: {#d9ff2dd8 .cell}
+::: {#6a26b6a6 .cell}
 ``` {.python .cell-code}
 # Condicional anidado simple
 x = 10
@@ -705,7 +705,7 @@ else:
 
 ## Ejemplos económicos
 
-::: {#7635b89a .cell}
+::: {#50278d5a .cell}
 ``` {.python .cell-code}
 # Ejemplo 1: Análisis de elegibilidad para crédito hipotecario
 ingreso_mensual = 8000
@@ -809,7 +809,7 @@ print(f"Clasificación: {clasificacion}")
 
 Los condicionales muy anidados pueden dificultar la lectura. Es mejor usar `elif`:
 
-::: {#bcb339d3 .cell}
+::: {#c47256db .cell}
 ``` {.python .cell-code}
 # Evitar anidamiento excesivo
 ingreso = 5000
@@ -853,7 +853,7 @@ else:
 
 Verifica si un elemento está en una secuencia:
 
-::: {#3fc1a0c9 .cell}
+::: {#1434e400 .cell}
 ``` {.python .cell-code}
 # Verificar en listas
 sectores_primarios = ['Agricultura', 'Pesca', 'Minería', 'Petróleo']
@@ -894,7 +894,7 @@ if edad in range(18, 65):
 
 Verifica identidad de objetos (mismo objeto en memoria):
 
-::: {#edaa2e1c .cell}
+::: {#c86d797c .cell}
 ``` {.python .cell-code}
 # Comparar identidad vs igualdad
 a = [1, 2, 3]
@@ -933,7 +933,7 @@ else:
 
 Verifica el tipo de un objeto:
 
-::: {#a8b18859 .cell}
+::: {#b89fbe92 .cell}
 ``` {.python .cell-code}
 # Verificar tipos
 pib = 242632
@@ -987,7 +987,7 @@ El manejo de excepciones permite capturar y manejar errores sin que el programa 
 
 ## Estructura básica
 
-::: {#f53f83b4 .cell}
+::: {#3c5b41ef .cell}
 ``` {.python .cell-code}
 # Sin manejo de errores (genera error)
 # numero = int("abc")  # ValueError
@@ -1006,7 +1006,7 @@ print("El programa continúa")
 
 ## Capturar excepciones específicas
 
-::: {#7abcd890 .cell}
+::: {#eefcb316 .cell}
 ``` {.python .cell-code}
 # Capturar tipos específicos de errores
 try:
@@ -1036,7 +1036,7 @@ except ValueError:
 
 ## Múltiples except
 
-::: {#f889cf9c .cell}
+::: {#8c214a61 .cell}
 ``` {.python .cell-code}
 # Manejar diferentes errores
 def dividir(a, b):
@@ -1057,7 +1057,7 @@ print(dividir(10, "2"))    # Error: los valores deben ser numéricos
 
 ## Cláusula else y finally
 
-::: {#18230e6a .cell}
+::: {#db4c15c1 .cell}
 ``` {.python .cell-code}
 # else: se ejecuta si no hay error
 # finally: siempre se ejecuta
@@ -1078,7 +1078,7 @@ finally:
 
 ## Aplicaciones económicas
 
-::: {#625b0f9e .cell}
+::: {#ac03a272 .cell}
 ``` {.python .cell-code}
 # Ejemplo 1: Validar entrada de datos
 def calcular_tasa_crecimiento(valor_inicial, valor_final):
@@ -1152,7 +1152,7 @@ print(calcular_pib_per_capita("242632", 33715471))  # Error: valores...
 
 ## Obtener información del error
 
-::: {#47b881be .cell}
+::: {#e92a3f82 .cell}
 ``` {.python .cell-code}
 # Capturar el mensaje de error
 try:
@@ -1190,7 +1190,7 @@ Python evalúa expresiones booleanas de izquierda a derecha y se detiene cuando 
 
 ## Cortocircuito con AND
 
-::: {#4de90790 .cell}
+::: {#842ec824 .cell}
 ``` {.python .cell-code}
 # and: se detiene en el primer False
 def funcion_a():
@@ -1224,7 +1224,7 @@ else:
 
 ## Cortocircuito con OR
 
-::: {#4b892d7f .cell}
+::: {#6f9cc18a .cell}
 ``` {.python .cell-code}
 # or: se detiene en el primer True
 def funcion_c():
@@ -1256,7 +1256,7 @@ print(pais_mostrar)  # "Perú"
 
 ## Uso práctico en economía
 
-::: {#9be4ccb0 .cell}
+::: {#094962d6 .cell}
 ``` {.python .cell-code}
 # Ejemplo 1: Validación eficiente
 def analizar_empresa(datos):
@@ -1335,7 +1335,7 @@ print(f"PIB encontrado: {pib}")
 
 ## Aplicación 1: Sistema de clasificación de riesgo país
 
-::: {#20470c2c .cell}
+::: {#18eb40d0 .cell}
 ``` {.python .cell-code}
 def clasificar_riesgo_pais(datos):
     """
@@ -1494,7 +1494,7 @@ clasificacion_vzla = clasificar_riesgo_pais(venezuela_datos)
 
 ## Aplicación 2: Calculadora de impuestos progresivos
 
-::: {#a4c37510 .cell}
+::: {#6e3fc0a6 .cell}
 ``` {.python .cell-code}
 def calcular_impuesto_renta(ingreso_anual):
     """
@@ -1644,7 +1644,7 @@ calcular_impuesto_renta(300000)
 
 ## Ejercicio 1: Sistema de evaluación de proyectos de inversión
 
-::: {#bae5df53 .cell}
+::: {#7e4da980 .cell}
 ``` {.python .cell-code}
 def evaluar_proyecto(datos_proyecto):
     """
@@ -1746,7 +1746,7 @@ vpn_b = evaluar_proyecto(proyecto_b)
 
 ## Ejercicio 2: Simulador de política monetaria
 
-::: {#ac2348f5 .cell}
+::: {#bae41dda .cell}
 ``` {.python .cell-code}
 def simular_politica_monetaria(estado_economia):
     """

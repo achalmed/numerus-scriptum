@@ -39,1222 +39,438 @@ draft: false
 image: ../featured.jpg
 ---
 
-# ¿Por qué es importante aprender un lenguaje de programación?
+---
+title: "Introducción a la programación con Python"
+subtitle: "Guía rigurosa basada en la documentación oficial de Python — sin variables, tipos, condicionales ni funciones"
+author: "Edison Achalma"
+affiliation: "Universidad Nacional de San Cristóbal de Huamanga (UNSCH)"
+date: "2026-06-21"
+---
 
-## La transformación digital de la economía
+# Introducción a la programación con Python
 
-En las últimas décadas, la economía ha experimentado una revolución digital sin precedentes. Como economistas, nos enfrentamos diariamente a:
+> Esta guía es una introducción **pura** al lenguaje Python, construida exclusivamente sobre la documentación oficial: el *Python Tutorial* (docs.python.org/3/tutorial) y la página oficial de descargas (python.org/downloads). Trata **únicamente** qué es Python, su filosofía de diseño, cómo instalarlo y cómo invocar el intérprete (modo interactivo y modo script). **Deliberadamente no cubre** variables, expresiones, statements, objetos, ejecución condicional, iteraciones, funciones, dataframes ni machine learning — esos temas se abordan en guías posteriores y separadas, siguiendo tu propia secuencia ya establecida (02 a 11). Esta guía es, en ese sentido, el "capítulo 0": el terreno que hay que pisar antes de escribir la primera línea de código con sentido.
 
-- **Grandes volúmenes de datos**: Series temporales macroeconómicas, microdatos de encuestas de hogares, datos de transacciones financieras, registros administrativos, entre otros.
-- **Análisis cada vez más complejos**: Modelos econométricos avanzados, análisis de impacto, predicciones económicas, evaluación de políticas públicas.
-- **Necesidad de reproducibilidad**: La investigación económica moderna exige que nuestros análisis sean replicables y transparentes.
+---
 
-## Ventajas de programar como economista
+## Tabla de contenidos
 
-**Automatización de tareas repetitivas**
+1. [¿Qué es Python? Definición oficial](#1-qué-es-python-definición-oficial)
+2. [¿Por qué existe Python? La motivación original](#2-por-qué-existe-python-la-motivación-original)
+3. [Características que distinguen a Python como lenguaje](#3-características-que-distinguen-a-python-como-lenguaje)
+4. [Por qué los programas en Python son compactos y legibles](#4-por-qué-los-programas-en-python-son-compactos-y-legibles)
+5. [Extensibilidad: Python como lenguaje de extensión](#5-extensibilidad-python-como-lenguaje-de-extensión)
+6. [Origen del nombre "Python"](#6-origen-del-nombre-python)
+7. [Estructura oficial del tutorial de Python](#7-estructura-oficial-del-tutorial-de-python)
+8. [Versiones de Python y ciclo de vida oficial](#8-versiones-de-python-y-ciclo-de-vida-oficial)
+9. [Instalación de Python: documentación oficial](#9-instalación-de-python-documentación-oficial)
+10. [Verificación de la integridad del instalador](#10-verificación-de-la-integridad-del-instalador)
+11. [Invocar el intérprete: conceptos generales](#11-invocar-el-intérprete-conceptos-generales)
+12. [El modo interactivo](#12-el-modo-interactivo)
+13. [Edición de línea de comandos en el intérprete](#13-edición-de-línea-de-comandos-en-el-intérprete)
+14. [Ejecutar Python como script (modo no interactivo)](#14-ejecutar-python-como-script-modo-no-interactivo)
+15. [La opción `-c`: ejecutar un comando directo](#15-la-opción--c-ejecutar-un-comando-directo)
+16. [La opción `-m`: ejecutar un módulo como script](#16-la-opción--m-ejecutar-un-módulo-como-script)
+17. [La opción `-i`: modo interactivo después de un script](#17-la-opción--i-modo-interactivo-después-de-un-script)
+18. [Paso de argumentos: `sys.argv`](#18-paso-de-argumentos-sysargv)
+19. [El intérprete y su entorno: codificación del código fuente](#19-el-intérprete-y-su-entorno-codificación-del-código-fuente)
+20. [La línea shebang en Unix/Linux](#20-la-línea-shebang-en-unixlinux)
+21. [Salir del intérprete](#21-salir-del-intérprete)
+22. [Comentarios en Python](#22-comentarios-en-python)
+23. [El intérprete como calculadora: una vista previa controlada](#23-el-intérprete-como-calculadora-una-vista-previa-controlada)
+24. [PYTHONSTARTUP: personalizar el inicio del modo interactivo](#24-pythonstartup-personalizar-el-inicio-del-modo-interactivo)
+25. [Glosario mínimo para esta etapa](#25-glosario-mínimo-para-esta-etapa)
+26. [Qué sigue: hoja de ruta de las próximas guías](#26-qué-sigue-hoja-de-ruta-de-las-próximas-guías)
+27. [Referencias oficiales](#27-referencias-oficiales)
 
-Imagina que necesitas calcular el índice de Gini para los 25 departamentos del Perú utilizando la Encuesta Nacional de Hogares (ENAHO). Sin programación, esto implicaría:
+---
 
-- Abrir cada archivo de datos manualmente
-- Realizar cálculos en Excel repetidamente
-- Alto riesgo de errores humanos
-- Horas o días de trabajo
+## 1. ¿Qué es Python? Definición oficial
 
-Con programación, este proceso se reduce a minutos y es 100% reproducible.
+Antes de instalar nada, conviene fijar con precisión qué es Python según su propia documentación, en vez de partir de descripciones de terceros.
 
-**Análisis de datos más sofisticados**
+El *Python Tutorial* oficial lo resume así: Python es, ante todo, un lenguaje pensado para **automatizar tareas** que surgen del trabajo cotidiano con computadoras — por ejemplo, hacer búsqueda y reemplazo sobre un gran número de archivos de texto, o renombrar y reorganizar un conjunto de archivos de fotos de forma compleja. También sirve para escribir una base de datos pequeña y personalizada, una aplicación gráfica (GUI) especializada, o un juego sencillo.
 
-La programación te permite:
+La documentación es explícita sobre dónde se ubica Python frente a otras alternativas: comparado con scripts de shell de Unix o archivos batch de Windows (buenos para mover archivos y cambiar datos de texto, pero no aptos para aplicaciones GUI o juegos) y comparado con programas en C/C++/Java (que pueden tardar mucho tiempo de desarrollo incluso para un primer borrador), Python ocupa un punto intermedio: **es simple de usar pero es un lenguaje de programación real**, con mucha más estructura y soporte para programas grandes que lo que ofrecen los scripts de shell o los archivos batch — y al mismo tiempo, ofrece bastante más verificación de errores que C.
 
-- Implementar modelos econométricos avanzados (VAR, GARCH, modelos de panel dinámico)
-- Realizar simulaciones de Monte Carlo para análisis de riesgo
-- Aplicar técnicas de machine learning para predicción económica
-- Crear visualizaciones interactivas de datos económicos
+---
 
-**Ventaja competitiva en el mercado laboral**
+## 2. ¿Por qué existe Python? La motivación original
 
-Las instituciones que más demandan economistas hoy en día buscan profesionales con habilidades de programación:
+Python nació para resolver una frustración concreta y muy específica del desarrollo de software profesional. Si trabajas con varias bibliotecas en C/C++/Java, el ciclo habitual de escribir/compilar/probar/recompilar puede resultar demasiado lento. Si estás escribiendo un conjunto de pruebas (*test suite*) para una de esas bibliotecas, escribir el código de prueba puede volverse una tarea tediosa. O quizás escribiste un programa que podría beneficiarse de un lenguaje de extensión, pero no quieres diseñar e implementar un lenguaje completamente nuevo solo para esa aplicación.
 
-- Banco Central de Reserva del Perú (BCRP)
-- Ministerio de Economía y Finanzas (MEF)
-- Instituciones financieras privadas
-- Consultorias económicas
-- Organismos internacionales (BID, Banco Mundial, FMI)
+Python, según la documentación oficial, **es justamente el lenguaje para esos casos**.
 
-## Casos de uso en economía
+---
 
-**Ejemplo 1: Análisis macroeconómico**
+## 3. Características que distinguen a Python como lenguaje
 
-Un economista del BCRP necesita analizar la relación entre la tasa de interés y la inflación en los últimos 20 años. Con Python puede:
+La documentación oficial atribuye a Python las siguientes características distintivas, descritas con precisión técnica (sin entrar todavía en cómo se usan, eso corresponde a guías futuras):
 
-::: {#12a2499e .cell}
-``` {.python .cell-code}
-# Importar datos del BCRP
-# Limpiar y transformar los datos
-# Estimar modelos VAR
-# Generar funciones impulso-respuesta
-# Crear gráficos profesionales para reportes
-```
-:::
+**Lenguaje de muy alto nivel (*very-high-level language*)**: Python tiene tipos de datos de alto nivel incorporados de fábrica, como arreglos flexibles y diccionarios. Por sus tipos de datos más generales, Python es aplicable a un dominio de problemas mucho más amplio que Awk o incluso Perl, aunque muchas cosas son al menos igual de sencillas en Python que en esos lenguajes.
 
+**Modularidad**: Python permite dividir un programa en módulos que pueden reutilizarse en otros programas Python. Viene con una amplia colección de módulos estándar que se pueden usar como base para tus propios programas, o como ejemplos para empezar a aprender a programar. Algunos de esos módulos proveen funcionalidades como E/S de archivos, llamadas al sistema, sockets, e incluso interfaces a kits de herramientas de interfaz gráfica de usuario como Tk.
 
-**Ejemplo 2: Evaluación de impacto**
+**Lenguaje interpretado**: Python es un lenguaje interpretado, lo cual puede ahorrar tiempo considerable durante el desarrollo de un programa porque no es necesaria ninguna compilación ni enlazado (*linking*). El intérprete puede usarse de forma interactiva, lo que facilita experimentar con características del lenguaje, escribir programas desechables, o probar funciones durante un desarrollo de programa de abajo hacia arriba (*bottom-up*). También funciona, según la propia documentación oficial, como una práctica calculadora de escritorio.
 
-Un investigador evalúa el impacto de un programa social en los ingresos familiares:
+Cada una de estas características —tipos de datos de alto nivel, módulos, naturaleza interpretada— se desarrollará con mucho más detalle en las guías siguientes (variables y expresiones, objetos, funciones). Aquí solo se presentan como rasgos definitorios del lenguaje, tal como los describe su documentación oficial.
 
-::: {#71fd4a6a .cell}
-``` {.python .cell-code}
-# Cargar microdatos de encuestas
-# Implementar matching propensity score
-# Estimar diferencias en diferencias
-# Calcular errores estándar robustos
-# Generar tablas de resultados automáticas
-```
-:::
+---
 
+## 4. Por qué los programas en Python son compactos y legibles
 
-**Ejemplo 3: Predicción económica**
+La documentación oficial explica que Python permite escribir programas de forma compacta y legible, y que los programas escritos en Python son típicamente mucho más cortos que programas equivalentes en C, C++ o Java, por varias razones explícitas:
 
-Un analista financiero predice el tipo de cambio:
+- Los tipos de datos de alto nivel permiten expresar operaciones complejas en una sola sentencia (*statement*).
+- El agrupamiento de sentencias se hace mediante **indentación**, en vez de llaves de apertura y cierre.
+- No son necesarias declaraciones de variables ni de argumentos.
 
-::: {#9ce540de .cell}
-``` {.python .cell-code}
-# Obtener datos históricos del tipo de cambio
-# Aplicar modelos ARIMA y GARCH
-# Comparar con modelos de machine learning
-# Evaluar precisión de predicciones
-# Automatizar reportes diarios
-```
-:::
+Estos tres puntos son, según la propia documentación, la explicación oficial de por qué el código Python suele "leerse" de forma más directa que el de otros lenguajes de propósito similar. El detalle de cómo funciona cada uno de ellos (qué es exactamente una sentencia, cómo opera la indentación en la práctica, cómo se declaran variables sin declaración explícita) corresponde a la guía 02 ("Variables, expresiones y statements"), no a esta introducción.
 
+---
 
-# Curva de aprendizaje y alcance de distintos lenguajes
+## 5. Extensibilidad: Python como lenguaje de extensión
 
-## Comparación de lenguajes para análisis económico
+Otro rasgo que la documentación oficial destaca explícitamente es que Python es **extensible** (*extensible*): si sabes programar en C, es sencillo añadir una nueva función o módulo incorporado (*built-in*) al intérprete, ya sea para realizar operaciones críticas a la máxima velocidad, o para enlazar programas Python con bibliotecas que solo estén disponibles en forma binaria (como una biblioteca gráfica específica de un proveedor). Una vez que te enganchas de verdad con el lenguaje, puedes enlazar el intérprete de Python dentro de una aplicación escrita en C y usarlo como lenguaje de extensión o de comandos para esa aplicación.
 
-### **Stata**
+Esta característica es la que explica, por ejemplo, por qué bibliotecas científicas de alto rendimiento (NumPy, pandas, scikit-learn, entre muchas otras que aparecerán en guías posteriores de este recorrido) pueden combinar la facilidad de uso de Python con un núcleo de cómputo escrito en C o C++.
 
-**Ventajas:**
+---
 
-- Diseñado específicamente para econometría
-- Sintaxis intuitiva para economistas
-- Excelente documentación de métodos econométricos
-- Ampliamente usado en investigación académica
+## 6. Origen del nombre "Python"
 
-**Desventajas:**
+Un dato que la propia documentación oficial menciona explícitamente, y anima a repetir: el lenguaje recibe su nombre del programa de la BBC *Monty Python's Flying Circus*, y **no tiene nada que ver con reptiles**. Hacer referencias a sketches de Monty Python en la documentación no solo está permitido, sino que la documentación oficial lo anima activamente.
 
-- Licencia costosa (aproximadamente $1,200 USD para estudiantes)
-- Limitado para tareas fuera de econometría tradicional
-- Menos flexible para automatización compleja
-- Comunidad más pequeña que Python o R
+---
 
-**Curva de aprendizaje:** Baja-Media (2-3 meses para dominar lo básico)
+## 7. Estructura oficial del tutorial de Python
 
-**Ejemplo en Stata:**
+Antes de entrar en instalación y manejo del intérprete, vale la pena tener clara la hoja de ruta completa que sigue el tutorial oficial de Python, tal como la describe su propia introducción: el tutorial presenta varias funcionalidades del lenguaje y del sistema a través de ejemplos, comenzando por expresiones simples, sentencias y tipos de datos, pasando luego por funciones y módulos, y finalmente abordando conceptos más avanzados como excepciones y clases definidas por el usuario.
 
-```stata
-* Regresión simple
-regress ingreso educacion experiencia
+Esta hoja de ruta oficial **coincide, en su orden general, con la secuencia que ya seguías** en tus guías 02-11 (variables/expresiones/statements → objetos → condicionales → iteraciones → funciones → dataframes → predicción/ML). Esta guía de introducción se ubica, por tanto, exactamente donde la documentación oficial la ubicaría: antes de todo eso.
 
-* Efectos fijos
-xtreg ingreso educacion, fe
-```
+La documentación también es honesta sobre el método de aprendizaje recomendado: dado que la mejor forma de aprender un lenguaje es usándolo, el tutorial invita a jugar con el intérprete de Python mientras se lee. El siguiente capítulo del tutorial oficial explica la mecánica de uso del intérprete — información que, según la propia documentación, "es bastante mundana, pero esencial para poder probar los ejemplos que se muestran más adelante". Las secciones 9 en adelante de esta guía cubren exactamente esa mecánica.
 
-### **R**
+---
 
-**Ventajas:**
+## 8. Versiones de Python y ciclo de vida oficial
 
-- Gratuito y de código abierto
-- Excelente para estadística y visualización de datos
-- Gran cantidad de paquetes econométricos (plm, AER, forecast)
-- RStudio como entorno amigable
+Python sigue un calendario de mantenimiento formal definido en PEPs (*Python Enhancement Proposals*) específicos para cada serie de versiones (por ejemplo, PEP 619 para la serie 3.10, PEP 664 para la 3.11). Cada serie pasa por etapas: desarrollo activo, mantenimiento con correcciones de errores regulares, y finalmente una etapa de "solo correcciones de seguridad" antes de su fin de soporte (*end of support*).
 
-**Desventajas:**
+Al momento de escribir esta guía, según la página oficial de descargas (python.org/downloads), la serie estable más reciente es **Python 3.14**, con la serie 3.13 también vigente y recibiendo actualizaciones regulares; las series 3.9, 3.10 y 3.11 se encuentran ya en la etapa de "solo correcciones de seguridad", lo que significa que ya no reciben correcciones de errores regulares y, en el caso de algunas, ya no se proveen instaladores binarios nuevos para ellas.
 
-- Sintaxis puede ser inconsistente entre paquetes
-- Menor rendimiento con grandes volúmenes de datos
-- Menos usado fuera del ámbito académico/estadístico
+> **Recomendación práctica derivada de esto**: para un entorno nuevo de aprendizaje (como el que construirás en las guías siguientes con conda/mamba), conviene partir de una versión dentro del rango de mantenimiento activo (actualmente 3.12, 3.13 o 3.14), evitando series que ya estén solo en modo de parches de seguridad.
 
-**Curva de aprendizaje:** Media (3-4 meses para dominar lo básico)
+---
 
-**Ejemplo en R:**
+## 9. Instalación de Python: documentación oficial
 
-```r
-# Regresión simple
-modelo <- lm(ingreso ~ educacion + experiencia, data = datos)
-summary(modelo)
+Aunque ya configuraste Miniconda/Anaconda en guías previas —que incluyen su propia distribución de Python integrada—, esta sección documenta la instalación de Python **directamente desde la fuente oficial del lenguaje** (python.org), independiente de cualquier distribución de terceros, siguiendo la página oficial de descargas.
 
-# Visualización
-ggplot(datos, aes(x = educacion, y = ingreso)) + geom_point()
-```
+### 9.1. Dónde descargar
 
-### **Python**
+La fuente oficial y única recomendada por el propio proyecto Python es **python.org/downloads**. Esa página lista, para cada serie de versión, su estado de mantenimiento, fecha de primer lanzamiento, fecha de fin de soporte, y el PEP que rige su calendario de lanzamientos.
 
-**Ventajas:**
+### 9.2. Windows
 
-- Gratuito y de código abierto
-- Lenguaje de propósito general (útil más allá del análisis de datos)
-- Ecosistema completo: análisis, machine learning, web scraping, automatización
-- Gran demanda en el mercado laboral
-- Comunidad masiva y en crecimiento
-- Integración con otras tecnologías
+python.org/downloads/windows ofrece actualmente el **Python install manager** como mecanismo recomendado de instalación y gestión de versiones de Python en Windows, además de los instaladores tradicionales `.exe` para cada versión específica (por ejemplo, Python 3.14.x, Python 3.13.x). Cada entrada de versión indica explícitamente compatibilidad de sistema operativo — por ejemplo, la documentación oficial advierte que ciertas versiones recientes de Python 3.13 **no pueden usarse en Windows 7 o anterior**.
 
-**Desventajas:**
+### 9.3. Verificación de firma digital en Windows y macOS
 
-- Curva de aprendizaje inicial más pronunciada
-- Requiere aprender varios paquetes (pandas, numpy, statsmodels)
-- Menos paquetes econométricos especializados que Stata o R
+La documentación oficial detalla un mecanismo de verificación de autenticidad específico por plataforma:
 
-**Curva de aprendizaje:** Media-Alta (4-6 meses para dominar lo básico)
+- **Windows**: los ejecutables de instalación están firmados digitalmente. Esto puede verificarse viendo las propiedades del archivo ejecutable, en la pestaña de Firmas Digitales (*Digital Signatures*), y confirmando el nombre del firmante. El sujeto completo del certificado oficial es `CN = Python Software Foundation, O = Python Software Foundation, L = Beaverton, S = Oregon, C = US`, y desde el 14 de octubre de 2024 la autoridad certificadora es Microsoft Identity Verification Root Certificate Authority (anteriormente, los certificados eran emitidos por DigiCert). La documentación aclara que algunos ejecutables pueden no estar firmados —notablemente, el comando `pip` por defecto—, ya que no se construyen como parte de Python sino que se incluyen desde bibliotecas de terceros.
+- **macOS**: los paquetes instaladores descargables desde python.org están firmados con un certificado Apple Developer ID Installer. Desde Python 3.11.4 y 3.12.0b1 (23 de mayo de 2023), los paquetes instaladores de release se firman con certificados emitidos a la Python Software Foundation.
 
-**Ejemplo en Python:**
+### 9.4. Linux: nota sobre el alcance de esta guía
 
-::: {#063dd25e .cell}
-``` {.python .cell-code}
-import pandas as pd
-import statsmodels.formula.api as smf
+En Kubuntu y Arch Linux, una versión de Python suele venir preinstalada como parte del sistema, o se gestiona vía el gestor de paquetes de la distribución (`apt`/`pacman`) o, como ya documentaste en guías previas, vía Miniconda/Anaconda. La instalación de Python "puro" desde fuente en Linux (compilación desde el código fuente publicado en python.org) es un procedimiento avanzado que excede el alcance de esta introducción; la documentación oficial recomienda, para la mayoría de usuarios de Linux, usar el gestor de paquetes de la distribución o una distribución como Anaconda/Miniconda — que es exactamente la vía que ya tienes configurada.
 
-# Regresión simple
-modelo = smf.ols('ingreso ~ educacion + experiencia', data=datos).fit()
-print(modelo.summary())
+---
 
-# Visualización
-import matplotlib.pyplot as plt
-plt.scatter(datos['educacion'], datos['ingreso'])
-plt.show()
-```
-:::
+## 10. Verificación de la integridad del instalador
 
+Más allá de la firma digital descrita en la sección anterior, la práctica general (consistente con lo ya documentado en tu guía de instalación de Miniconda/Anaconda) es verificar que el archivo descargado no haya sido alterado ni corrompido, comparando su hash con el valor publicado oficialmente junto al instalador en la página de descargas correspondiente, antes de ejecutarlo.
 
-### **C++**
+---
 
-**Ventajas:**
+## 11. Invocar el intérprete: conceptos generales
 
-- Máximo rendimiento computacional
-- Control total sobre recursos del sistema
+A partir de aquí, la guía sigue de cerca el capítulo oficial "Using the Python Interpreter" (*Usando el intérprete de Python*) del tutorial.
 
-**Desventajas:**
+### 11.1. Ubicación habitual del ejecutable
 
-- Curva de aprendizaje muy alta
-- Desarrollo lento
-- No diseñado para análisis de datos
-- Innecesario para la mayoría de aplicaciones en economía
-
-**Curva de aprendizaje:** Muy Alta (12+ meses)
-
-## Tabla comparativa
-
-| Característica         | Stata | R     | Python | C++   |
-|------------------------|-------|-------|--------|-------|
-| Costo                  | Alto  | Gratis| Gratis | Gratis|
-| Curva de aprendizaje   | Baja  | Media | Media  | Alta  |
-| Econometría            | Excelente | Muy buena | Buena | Baja |
-| Machine Learning       | Básico| Muy buena | Excelente | Media |
-| Visualización          | Buena | Excelente | Muy buena | Baja |
-| Automatización         | Básica| Buena | Excelente | Muy buena |
-| Velocidad de ejecución | Media | Baja  | Media  | Excelente |
-| Demanda laboral        | Media | Media | Muy alta | Alta  |
-| Tamaño de comunidad    | Media | Grande| Muy grande | Grande |
-
-## Recomendación para economistas
-
-**Si eres estudiante de pregrado:**
-
-- Comienza con **Python**. Te dará la mayor versatilidad y mejores oportunidades laborales.
-- Aprende Stata si tu programa lo requiere (muchos cursos de econometría lo usan).
-
-**Si eres estudiante de posgrado en economía:**
-
-- **Python** o **R**, dependiendo de tu área de especialización.
-- Macroeconomía/Finanzas: Python
-- Microeconometría/Evaluación de impacto: R o Python
-- Economía computacional: Python definitivamente
-
-**Si trabajas en el sector público:**
-
-- **Python** o **Stata**, dependiendo de la institución.
-- MEF y BCRP están adoptando cada vez más Python.
-
-
-# ¿Qué es Data Science? ¿Qué es Machine Learning?
-
-## Data Science (Ciencia de Datos)
-
-**Definición:**
-
-Data Science es un campo interdisciplinario que utiliza métodos científicos, procesos, algoritmos y sistemas para extraer conocimiento e insights de datos estructurados y no estructurados.
-
-**En términos económicos:**
-
-Data Science es el conjunto de técnicas y herramientas que nos permiten:
-
-1. **Recolectar** datos económicos de múltiples fuentes
-2. **Limpiar y procesar** datos (a menudo el 80% del trabajo)
-3. **Analizar** patrones y relaciones
-4. **Visualizar** resultados de forma comprensible
-5. **Comunicar** hallazgos para la toma de decisiones
-
-**Componentes del Data Science:**
-
-```
-Data Science = Matemáticas + Estadística + Programación + Conocimiento del dominio
-```
-
-Para economistas:
-
-- **Matemáticas**: Cálculo, álgebra lineal, optimización
-- **Estadística**: Inferencia, pruebas de hipótesis, econometría
-- **Programación**: Python, SQL, manejo de datos
-- **Conocimiento del dominio**: Teoría económica, instituciones, contexto
-
-## Machine Learning (Aprendizaje Automático)
-
-**Definición:**
-
-Machine Learning es un subcampo de la inteligencia artificial que permite a las computadoras aprender patrones de los datos sin ser programadas explícitamente.
-
-**Diferencia con econometría tradicional:**
-
-**Econometría tradicional:**
-
-- Enfoque: Inferencia causal y prueba de teorías
-- Objetivo: Entender **por qué** sucede algo
-- Ejemplo: ¿Cuál es el efecto causal de la educación sobre los ingresos?
-- Prioridad: Interpretabilidad y validez causal
-
-**Machine Learning:**
-
-- Enfoque: Predicción y reconocimiento de patrones
-- Objetivo: Predecir **qué** va a suceder
-- Ejemplo: ¿Cuál será el ingreso de una persona dado su perfil?
-- Prioridad: Precisión predictiva
-
-##  Tipos de Machine Learning
-
-### Aprendizaje Supervisado (Supervised Learning)
-
-Aprendemos de datos etiquetados (conocemos la respuesta correcta).
-
-**Ejemplos:**
-
-1. **Clasificación**: Predecir si una empresa caerá en default (sí/no)
-
-   - Variable objetivo: Binaria (default o no default)
-   - Algoritmos: Regresión logística, árboles de decisión, random forests
-
-2. **Regresión**: Predecir el precio de una vivienda
-
-   - Variable objetivo: Continua (precio en soles)
-   - Algoritmos: Regresión lineal, regresión ridge, redes neuronales
-
-### Aprendizaje No Supervisado (Unsupervised Learning)
-
-Encontramos patrones en datos sin etiquetas.
-
-**Ejemplos:**
-
-1. **Clustering**: Segmentar consumidores en grupos similares
-
-   - Identificar perfiles de ahorradores
-   - Agrupar países por nivel de desarrollo
-
-2. **Reducción de dimensionalidad**: Simplificar datos con muchas variables
-
-   - Análisis de componentes principales (PCA)
-   - Crear índices sintéticos
-
-## Aplicaciones de Machine Learning en economía
-
-### Caso 1: Predicción de morosidad bancaria
-
-Un banco necesita predecir qué clientes tienen mayor probabilidad de no pagar su préstamo.
-
-**Enfoque tradicional (Regresión logística):**
-
-```
-P(default) = f(ingresos, historial_crediticio, edad, educación)
-```
-
-**Enfoque ML (Random Forest):**
-
-- Considera interacciones complejas entre variables
-- Puede capturar relaciones no lineales
-- Mayor precisión predictiva (pero menos interpretable)
-
-### Caso 2: Detección de fraude fiscal
-
-SUNAT quiere identificar empresas con alta probabilidad de evasión tributaria.
-
-**Variables:**
-
-- Ingresos declarados vs. estimados por sector
-- Patrones inusuales en deducciones
-- Relaciones con proveedores
-- Historial de fiscalizaciones
-
-**Algoritmo:** Anomaly detection o clasificación supervisada
-
-### Caso 3: Predicción del tipo de cambio
-
-**Modelos tradicionales:**
-
-- ARIMA: Serie temporal univariada
-- VAR: Múltiples series, relaciones lineales
-
-**Modelos ML:**
-
-- Redes neuronales LSTM: Capturan patrones temporales complejos
-- Ensemble methods: Combinan múltiples modelos para mejor predicción
-
-## La revolución del Big Data en economía
-
-**Nuevas fuentes de datos:**
-
-1. **Datos transaccionales**: Compras con tarjetas de crédito en tiempo real
-2. **Web scraping**: Precios de e-commerce, anuncios de empleo
-3. **Redes sociales**: Sentimiento económico, expectativas
-4. **Imágenes satelitales**: Actividad económica nocturna, agricultura
-5. **Datos de telefonía**: Movilidad, redes sociales
-
-**Ejemplo: Medición de pobreza con imágenes satelitales**
-
-Investigadores han usado machine learning para:
-
-- Analizar imágenes satelitales de luz nocturna
-- Predecir niveles de ingreso y pobreza
-- Útil en países con escasas encuestas de hogares
-
-**Proceso:**
-1. Recolectar imágenes satelitales
-2. Entrenar modelos de visión computacional
-3. Predecir indicadores económicos
-4. Validar con encuestas tradicionales
-
-
-# ¿Por qué Python?
-
-## Python en el ecosistema de Data Science
-
-Python se ha convertido en el lenguaje dominante para Data Science y Machine Learning. Según encuestas recientes:
-
-- 65% de científicos de datos usan Python como lenguaje principal
-- 9 de las 10 principales empresas tecnológicas usan Python
-
-## Ventajas específicas de Python para economistas
-
-### 1. Ecosistema completo para análisis económico
-
-**Librerías fundamentales:**
-
-- **NumPy**: Computación numérica, álgebra lineal
-- **Pandas**: Manipulación de datos (como Excel pero programable)
-- **Matplotlib/Seaborn**: Visualización de datos
-- **Statsmodels**: Econometría tradicional
-- **Scikit-learn**: Machine Learning
-- **TensorFlow/PyTorch**: Deep Learning
-
-**Ejemplo de workflow típico:**
-
-::: {#05078b65 .cell}
-``` {.python .cell-code}
-import pandas as pd                # Cargar y limpiar datos
-import matplotlib.pyplot as plt    # Visualizar
-import statsmodels.api as sm      # Econometría
-from sklearn.ensemble import RandomForestRegressor  # ML
-
-# 1. Cargar datos
-datos = pd.read_csv('enaho_2023.csv')
-
-# 2. Limpiar y transformar
-datos = datos.dropna()
-datos['log_ingreso'] = np.log(datos['ingreso'])
-
-# 3. Análisis estadístico
-modelo_ols = sm.OLS(datos['log_ingreso'], datos[['educacion', 'experiencia']]).fit()
-print(modelo_ols.summary())
-
-# 4. Machine Learning
-modelo_ml = RandomForestRegressor()
-modelo_ml.fit(X_train, y_train)
-
-# 5. Visualización
-plt.scatter(datos['educacion'], datos['ingreso'])
-plt.show()
-```
-:::
-
-
-### 2. Automatización de reportes económicos
-
-Python te permite crear reportes automatizados que se actualizan con nuevos datos:
-
-::: {#e05df6b2 .cell}
-``` {.python .cell-code}
-# Script que corre automáticamente cada mes
-def generar_reporte_inflacion():
-    # 1. Descargar datos del BCRP
-    inflacion = descargar_datos_bcrp()
-    
-    # 2. Calcular estadísticas
-    inflacion_mensual = calcular_inflacion_mensual(inflacion)
-    inflacion_anual = calcular_inflacion_anual(inflacion)
-    
-    # 3. Crear gráficos
-    crear_graficos(inflacion_mensual, inflacion_anual)
-    
-    # 4. Generar documento Word o PDF
-    crear_reporte_word(inflacion_mensual, inflacion_anual)
-    
-    # 5. Enviar por email automáticamente
-    enviar_email_reporte()
-```
-:::
-
-
-### 3. Web scraping para investigación económica
-
-Recolecta datos económicos de internet automáticamente:
-
-::: {#55fbf2a4 .cell}
-``` {.python .cell-code}
-import requests
-from bs4 import BeautifulSoup
-
-# Extraer precios de productos de supermercados online
-def scrape_precios_supermercado(url):
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, 'html.parser')
-    
-    productos = []
-    for item in soup.find_all('div', class_='producto'):
-        nombre = item.find('h3').text
-        precio = float(item.find('span', class_='precio').text.replace('S/', ''))
-        productos.append({'nombre': nombre, 'precio': precio})
-    
-    return pd.DataFrame(productos)
-
-# Crear tu propio índice de precios en tiempo real
-precios_hoy = scrape_precios_supermercado('https://...')
-```
-:::
-
-
-### 4. APIs para datos económicos
-
-Accede a bases de datos económicas programáticamente:
-
-::: {#6805d4a7 .cell}
-``` {.python .cell-code}
-# Ejemplo: Datos del Banco Mundial
-import pandas_datareader as pdr
-from datetime import datetime
-
-# PIB de Perú desde 2000
-pib_peru = pdr.get_data_world_bank(
-    'NY.GDP.MKTP.CD',  # Código de PIB
-    countries=['PER'],
-    start=datetime(2000, 1, 1),
-    end=datetime.now()
-)
-
-# Datos del BCRP
-import requests
-url_bcrp = 'https://estadisticas.bcrp.gob.pe/estadisticas/series/api/...'
-response = requests.get(url_bcrp)
-datos = response.json()
-```
-:::
-
-
-### 5. Reproducibilidad e investigación transparente
-
-Todo tu análisis queda documentado en código:
-
-::: {#fc1544be .cell}
-``` {.python .cell-code}
-"""
-Análisis de determinantes del ingreso en Perú
-Autor: Edison Achalma
-Fecha: Enero 2026
-Datos: ENAHO 2023
-
-Este script replica el análisis del paper:
-"Educación y retornos en el mercado laboral peruano"
-"""
-
-# El código es tu metodología explícita
-# Cualquiera puede replicar tus resultados
-# Cambios en datos o método son fáciles de implementar
-```
-:::
-
-
-## Python vs otros lenguajes: Decisión informada
-
-**Elige Python si:**
-
-- Quieres máxima versatilidad (análisis + automatización + machine learning)
-- Planeas trabajar en sector privado o startups
-- Te interesa data science más allá de econometría
-- Quieres habilidades transferibles a otros campos
-
-**Elige Stata si:**
-
-- Tu departamento/institución lo usa exclusivamente
-- Haces principalmente econometría de panel y series de tiempo
-- Necesitas comandos econométricos muy específicos
-- Prefieres soluciones "out of the box"
-
-**Elige R si:**
-
-- Te enfocas en estadística y visualización académica
-- Tu comunidad de investigación usa R
-- Trabajarás principalmente en investigación académica
-
-**La mejor opción: Aprende Python + conocimientos básicos de Stata/R**
-
-- Python como lenguaje principal
-- Stata/R para situaciones específicas
-- Maximiza tu empleabilidad
-
-## Testimonios del mundo real
-
-**Banco Central de Reserva del Perú (BCRP):**
-
-- División de Modelamiento Macroeconómico usa Python para nowcasting
-- Scripts de Python automatizan extracción de datos de Bloomberg
-- Modelos DSGE implementados en Python
-
-**Ministerio de Economía y Finanzas (MEF):**
-
-- Uso creciente de Python para análisis de datos fiscales
-- Automatización de reportes presupuestarios
-
-**Sector privado:**
-
-- Bancos: Scoring de crédito con machine learning en Python
-- Consultoras: Análisis de mercado y predicciones en Python
-- Fintech: Toda su infraestructura en Python
-
-
-# Preparando tu entorno de trabajo
-
-## Instalación de Python
-
-### Opción 1: Anaconda (Recomendada para principiantes)
-
-Anaconda es una distribución de Python que incluye:
-
-- Python
-- Jupyter Notebook (entorno interactivo)
-- Librerías principales pre-instaladas
-- Gestor de paquetes (conda)
-
-**Pasos de instalación:**
-
-1. Visita [anaconda.com/download](https://www.anaconda.com/download)
-2. Descarga la versión para tu sistema operativo (Windows/Mac/Linux)
-3. Ejecuta el instalador
-4. Sigue las instrucciones (deja opciones por defecto)
-5. Verifica la instalación:
+Según la documentación oficial, el intérprete de Python suele instalarse como `/usr/local/bin/python3.14` (ajustando el número de versión según corresponda) en las máquinas donde está disponible; agregar `/usr/local/bin` a la ruta de búsqueda de tu shell de Unix permite iniciarlo escribiendo el comando:
 
 ```bash
-# Abre terminal o Anaconda Prompt
-python --version
-# Debería mostrar: Python 3.11.x o similar
+python3.14
 ```
 
-### Opción 2: Python.org (Instalación mínima)
+La documentación aclara que, dado que la elección del directorio donde vive el intérprete es una opción de instalación, son posibles otras ubicaciones (por ejemplo, `/usr/local/python` es una alternativa popular); conviene verificar con la administración del sistema o la documentación de la propia distribución si hay dudas.
 
-Si prefieres una instalación más ligera:
+> **Nota oficial relevante para Kubuntu/Arch**: en Unix, el intérprete de Python 3.x **no se instala por defecto** con el ejecutable llamado simplemente `python`, precisamente para no entrar en conflicto con una instalación simultánea de un ejecutable de Python 2.x. Esta es la razón oficial por la que, en muchos sistemas Linux, el comando correcto suele ser `python3` y no `python`.
 
-1. Visita [python.org/downloads](https://www.python.org/downloads)
-2. Descarga Python 3.11 o superior
-3. Durante instalación, marca "Add Python to PATH"
-4. Instala paquetes individualmente:
+### 11.2. En Windows
+
+En máquinas Windows donde instalaste Python desde la Microsoft Store, el comando `python3.14` (o el número de versión correspondiente) estará disponible. Si tienes instalado el lanzador `py.exe`, puedes usar el comando `py`. La documentación oficial remite a la sección sobre el *Python install manager* para conocer otras formas de iniciar Python en Windows.
+
+### 11.3. Comportamiento general, similar al shell de Unix
+
+El intérprete opera de forma parecida al shell de Unix: cuando se le llama con la entrada estándar conectada a un dispositivo tty, lee y ejecuta comandos de forma interactiva; cuando se le llama con un argumento de nombre de archivo, o con un archivo como entrada estándar, lee y ejecuta un *script* desde ese archivo.
+
+---
+
+## 12. El modo interactivo
+
+Cuando los comandos se leen desde un tty, se dice que el intérprete está en **modo interactivo** (*interactive mode*). En este modo, solicita el siguiente comando con el **prompt primario**, normalmente tres signos de mayor que (`>>>`); para líneas de continuación, solicita con el **prompt secundario**, por defecto tres puntos (`...`).
+
+El intérprete imprime un mensaje de bienvenida indicando su número de versión y un aviso de copyright antes de mostrar el primer prompt:
+
+```
+$ python3.14
+Python 3.14 (default, April 4 2024, 09:25:04)
+[GCC 10.2.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+```
+
+Las líneas de continuación son necesarias al introducir una construcción de varias líneas. El ejemplo que la propia documentación oficial usa para ilustrarlo (sin que esto sea todavía una explicación de condicionales, que corresponde a la guía 04) es el siguiente:
+
+```python
+>>> the_world_is_flat = True
+>>> if the_world_is_flat:
+...     print("Be careful not to fall off!")
+...
+Be careful not to fall off!
+```
+
+Para esta guía, lo relevante de ese ejemplo no es *qué hace* el `if` (eso es tema de una guía futura), sino *cómo se ve* la interacción con el intérprete: el prompt primario `>>>` para la primera línea, el prompt secundario `...` para las líneas de continuación, y una línea en blanco con solo `...` para indicarle al intérprete que el bloque de varias líneas ha terminado.
+
+---
+
+## 13. Edición de línea de comandos en el intérprete
+
+Las funciones de edición de línea del intérprete incluyen edición interactiva, sustitución de historial, y autocompletado de código en la mayoría de los sistemas, según la documentación oficial.
+
+La forma más rápida de comprobar si tu sistema soporta edición de línea de comandos es escribir una palabra en el prompt de Python y luego presionar la flecha izquierda (o `Control-b`). Si el cursor se mueve, tienes edición de línea de comandos disponible. Si no ocurre nada visible, o aparece una secuencia como `^[[D` o `^B`, la edición de línea de comandos no está disponible, y solo podrás usar la tecla de retroceso (*backspace*) para borrar caracteres de la línea actual.
+
+---
+
+## 14. Ejecutar Python como script (modo no interactivo)
+
+Cuando se le da al intérprete un argumento con el nombre de un archivo, lee y ejecuta ese archivo como un *script*, en vez de entrar en modo interactivo. Esta es la forma habitual de ejecutar programas Python guardados en un archivo `.py`:
 
 ```bash
-pip install numpy pandas matplotlib jupyter statsmodels scikit-learn
+python3 mi_programa.py
 ```
 
-## Entornos de desarrollo
+Esta guía no desarrolla todavía el contenido que iría dentro de `mi_programa.py` —eso corresponde a partir de la guía 02 en adelante—, pero sí establece la mecánica de invocación, que es información de esta etapa "previa al código" según la propia estructura del tutorial oficial.
 
-### Jupyter Notebook (Recomendado para empezar)
+---
 
-Jupyter es un entorno interactivo ideal para análisis exploratorio y aprendizaje.
+## 15. La opción `-c`: ejecutar un comando directo
 
-**Iniciar Jupyter:**
+Una segunda forma de iniciar el intérprete es `python -c comando [arg] ...`, que ejecuta la(s) sentencia(s) en *comando*, de forma análoga a la opción `-c` del shell. Dado que las sentencias de Python suelen contener espacios u otros caracteres especiales para el shell, la documentación oficial recomienda encerrar *comando* entre comillas en su totalidad.
 
 ```bash
-# Desde terminal o Anaconda Prompt
-jupyter notebook
+python3 -c "print('hola')"
 ```
 
-Esto abrirá tu navegador con una interfaz donde puedes:
+---
 
-- Crear notebooks (.ipynb)
-- Combinar código, resultados y texto explicativo
-- Ver gráficos en línea
-- Exportar a PDF, HTML, etc.
+## 16. La opción `-m`: ejecutar un módulo como script
 
-**Estructura de un notebook:**
-
-::: {#ee7cb937 .cell}
-``` {.python .cell-code}
-# Celda 1: Importar librerías
-import pandas as pd
-import numpy as np
-
-# Celda 2: Cargar datos
-datos = pd.read_csv('datos.csv')
-
-# Celda 3: Análisis
-print(datos.describe())
-
-# Celda 4: Visualización
-datos['ingreso'].hist()
-```
-:::
-
-
-### Visual Studio Code (Para proyectos más grandes)
-
-VS Code es un editor profesional con excelente soporte para Python.
-
-**Instalación:**
-
-1. Descarga desde [code.visualstudio.com](https://code.visualstudio.com)
-2. Instala la extensión de Python
-3. Configura tu intérprete de Python
-
-**Ventajas:**
-
-- IntelliSense (autocompletado inteligente)
-- Depuración integrada
-- Control de versiones con Git
-- Extensiones para todo tipo de tareas
-
-### Google Colab (Opción en la nube, sin instalación)
-
-Si no quieres instalar nada en tu computadora:
-
-1. Visita [colab.research.google.com](https://colab.research.google.com)
-2. Inicia sesión con tu cuenta de Google
-3. Crea un nuevo notebook
-
-**Ventajas:**
-
-- No requiere instalación
-- GPU gratuita para cálculos pesados
-- Fácil compartir con colaboradores
-
-**Desventajas:**
-
-- Requiere internet
-- Sesiones limitadas en tiempo
-- Menos control sobre el entorno
-
-## Organización de proyectos
-
-**Estructura recomendada:**
-
-```
-mi_proyecto_economia/
-│
-├── datos/
-│   ├── raw/                 # Datos originales (NUNCA modificar)
-│   │   └── enaho_2023.csv
-│   ├── processed/           # Datos procesados
-│   │   └── enaho_limpia.csv
-│   └── external/            # Datos externos
-│       └── indicadores_bcrp.csv
-│
-├── notebooks/               # Jupyter notebooks para exploración
-│   ├── 01_exploracion.ipynb
-│   ├── 02_limpieza.ipynb
-│   └── 03_analisis.ipynb
-│
-├── src/                     # Scripts de Python
-│   ├── data_cleaning.py
-│   ├── analysis.py
-│   └── visualization.py
-│
-├── outputs/                 # Resultados
-│   ├── figuras/
-│   │   └── grafico_ingresos.png
-│   └── tablas/
-│       └── regresion_resultados.csv
-│
-├── requirements.txt         # Lista de paquetes necesarios
-└── README.md               # Descripción del proyecto
-```
-
-**Ejemplo de requirements.txt:**
-
-```
-numpy==1.24.3
-pandas==2.0.3
-matplotlib==3.7.2
-seaborn==0.12.2
-statsmodels==0.14.0
-scikit-learn==1.3.0
-jupyter==1.0.0
-```
-
-**Instalar dependencias:**
+Algunos módulos de Python también son útiles como scripts. Pueden invocarse usando `python -m módulo [arg] ...`, lo cual ejecuta el archivo fuente correspondiente a *módulo* como si hubieras escrito su nombre completo en la línea de comandos.
 
 ```bash
-pip install -r requirements.txt
+python3 -m venv mi_entorno
 ```
 
-## Primeros pasos en Jupyter
+(el ejemplo anterior es solo ilustrativo de la sintaxis `-m`; el manejo de entornos virtuales con `venv` no es tema de esta guía, ya que tu flujo de trabajo usa conda/mamba, documentado en guías previas).
 
-**Crear tu primer notebook:**
+---
 
-1. Abre Jupyter Notebook
-2. Click en "New" → "Python 3"
-3. Renombra el notebook: "mi_primer_analisis.ipynb"
+## 17. La opción `-i`: modo interactivo después de un script
 
-**Atajos útiles:**
+Cuando se usa un archivo de script, a veces es útil poder ejecutar el script y luego entrar en modo interactivo. Esto puede hacerse pasando `-i` antes del script:
 
-- **Shift + Enter**: Ejecutar celda y avanzar
-- **Ctrl + Enter**: Ejecutar celda sin avanzar
-- **A**: Insertar celda arriba
-- **B**: Insertar celda abajo
-- **D, D**: Eliminar celda
-- **M**: Cambiar a celda de Markdown (texto)
-- **Y**: Cambiar a celda de código
-
-**Celdas de Markdown para documentación:**
-
-```markdown
-# Análisis de Ingresos en Perú
-
-# Objetivo
-Analizar los determinantes del ingreso utilizando datos de la ENAHO 2023.
-
-# Metodología
-1. Cargar y limpiar datos
-2. Análisis descriptivo
-3. Regresión lineal múltiple
-4. Interpretación de resultados
-
-# Resultados preliminares
-- Observaciones: 15,342
-- Variable dependiente: Ingreso mensual (log)
+```bash
+python3 -i mi_programa.py
 ```
 
-# Tu primer programa en Python
+Todas las opciones de línea de comandos están descritas, según remite la documentación oficial, en la sección "Command line and environment" de la referencia de Python.
 
-## Hola Mundo del economista
+---
 
-Abre un nuevo notebook de Jupyter y escribe:
+## 18. Paso de argumentos: `sys.argv`
 
-::: {#165e7b52 .cell}
-``` {.python .cell-code}
-# Mi primer programa en Python
-print("¡Hola, mundo económico!")
-print("Estudiante de economía de la UNSCH")
-```
-:::
+Cuando el intérprete los reconoce, el nombre del script y los argumentos adicionales que le siguen se convierten en una lista de cadenas de texto y se asignan a la variable `argv` dentro del módulo `sys`. Se puede acceder a esa lista ejecutando `import sys`.
 
+Algunos detalles precisos de la documentación oficial sobre esta variable:
 
-Ejecuta con **Shift + Enter**. Deberías ver:
+- La longitud de la lista es de al menos uno; cuando no se da ningún script ni argumentos, `sys.argv[0]` es una cadena vacía.
+- Cuando el nombre del script se da como `'-'` (es decir, entrada estándar), `sys.argv[0]` se fija como `'-'`.
+- Cuando se usa `-c comando`, `sys.argv[0]` se fija como `'-c'`.
+- Cuando se usa `-m módulo`, `sys.argv[0]` se fija con el nombre completo del módulo localizado.
+- Las opciones que aparecen después de `-c comando` o `-m módulo` no son consumidas por el procesamiento de opciones del propio intérprete de Python, sino que se dejan en `sys.argv` para que las maneje el comando o módulo correspondiente.
 
-```
-¡Hola, mundo económico!
-Estudiante de economía de la UNSCH
-```
+> Esta sección se documenta aquí por completitud y rigor (es parte literal del capítulo oficial sobre el intérprete), aunque su uso práctico pleno requiere conceptos de listas y módulos que se desarrollarán en guías posteriores.
 
-## Calculadora básica
+---
 
-Python puede funcionar como calculadora:
+## 19. El intérprete y su entorno: codificación del código fuente
 
-::: {#a307a030 .cell}
-``` {.python .cell-code}
-# Operaciones básicas
-print(2 + 3)        # Suma: 5
-print(10 - 4)       # Resta: 6
-print(3 * 7)        # Multiplicación: 21
-print(15 / 3)       # División: 5.0
-print(2 ** 3)       # Potencia: 8
-print(17 // 5)      # División entera: 3
-print(17 % 5)       # Módulo (residuo): 2
-```
-:::
+Por defecto, los archivos fuente de Python se tratan como codificados en **UTF-8**. En esa codificación, pueden usarse simultáneamente caracteres de la mayoría de los idiomas del mundo en literales de cadena, identificadores y comentarios — aunque la biblioteca estándar solo usa caracteres ASCII para identificadores, una convención que cualquier código portable debería seguir. Para mostrar correctamente todos esos caracteres, tu editor debe reconocer que el archivo está en UTF-8 y debe usar una fuente que soporte todos los caracteres del archivo.
 
+> **Nota práctica para tu entorno**: dado que trabajas con Neovim sobre Kubuntu/Arch, UTF-8 es generalmente la codificación por defecto en ambos sistemas, por lo que normalmente no necesitarás declarar nada adicional para escribir comentarios o cadenas en español con tildes y eñes.
 
-**Aplicación económica: Calcular IPC**
+### 19.1. Declarar una codificación distinta a la predeterminada
 
-::: {#000ea884 .cell}
-``` {.python .cell-code}
-# Calcular índice de precios al consumidor (IPC)
-precio_canasta_hoy = 850.50
-precio_canasta_base = 750.00
+Para declarar una codificación distinta de la predeterminada, debe agregarse una línea de comentario especial como **primera línea** del archivo, con la siguiente sintaxis:
 
-# IPC = (Precio actual / Precio base) * 100
-ipc = (precio_canasta_hoy / precio_canasta_base) * 100
-
-print(f"El IPC es: {ipc:.2f}")
-# Salida: El IPC es: 113.40
-```
-:::
-
-
-## Variables y tipos de datos
-
-::: {#75bba849 .cell}
-``` {.python .cell-code}
-# Variables numéricas
-pib_peru = 242_632  # PIB en millones de USD (guiones bajos para legibilidad)
-poblacion = 33_715_471
-tasa_inflacion = 3.25  # Porcentaje
-
-# Variables de texto (strings)
-pais = "Perú"
-moneda = "Sol"
-
-# Variables booleanas (True/False)
-es_pais_emergente = True
-esta_en_recesion = False
-
-# Imprimir información
-print(f"País: {pais}")
-print(f"PIB: ${pib_peru:,} millones")
-print(f"PIB per cápita: ${pib_peru / poblacion * 1_000_000:.2f}")
-```
-:::
-
-
-**Salida:**
-
-```
-País: Perú
-PIB: $242,632 millones
-PIB per cápita: $7,196.21
+```python
+# -*- coding: encoding -*-
 ```
 
-## Listas: Colecciones de datos
+donde *encoding* es uno de los códecs (`codecs`) válidos soportados por Python. Por ejemplo, para declarar que se use la codificación Windows-1252, la primera línea del archivo fuente debería ser:
 
-::: {#d2d628af .cell}
-``` {.python .cell-code}
-# Lista de tasas de crecimiento del PIB (últimos 5 años)
-crecimiento_pib = [2.4, 4.0, -11.0, 13.3, 2.7]
-
-# Acceder a elementos (índices empiezan en 0)
-print(f"Crecimiento en 2020 (pandemia): {crecimiento_pib[2]}%")
-
-# Agregar nuevo dato
-crecimiento_pib.append(3.5)  # Proyección 2024
-
-# Calcular promedio
-promedio = sum(crecimiento_pib) / len(crecimiento_pib)
-print(f"Crecimiento promedio: {promedio:.2f}%")
-```
-:::
-
-
-## Diccionarios: Datos etiquetados
-
-::: {#62e8587e .cell}
-``` {.python .cell-code}
-# Información económica de un país
-economia_peru = {
-    'pib': 242_632,
-    'poblacion': 33_715_471,
-    'inflacion': 3.25,
-    'desempleo': 7.1,
-    'moneda': 'PEN'
-}
-
-# Acceder a datos
-print(f"Tasa de desempleo: {economia_peru['desempleo']}%")
-print(f"Inflación: {economia_peru['inflacion']}%")
-
-# Agregar nuevo indicador
-economia_peru['reservas_internacionales'] = 74_500  # Millones USD
-
-# Calcular PIB per cápita
-pib_per_capita = economia_peru['pib'] / economia_peru['poblacion'] * 1_000_000
-economia_peru['pib_per_capita'] = pib_per_capita
-
-print(f"PIB per cápita: ${economia_peru['pib_per_capita']:.2f}")
-```
-:::
-
-
-## Tu primer análisis de datos con Pandas
-
-::: {#7c723211 .cell}
-``` {.python .cell-code}
-import pandas as pd
-
-# Crear un DataFrame con datos de regiones de Perú
-datos_regiones = {
-    'region': ['Lima', 'Arequipa', 'Cusco', 'La Libertad', 'Piura'],
-    'poblacion': [9_674_755, 1_497_438, 1_357_075, 2_016_771, 2_047_954],
-    'pib_millones': [234_000, 18_500, 12_300, 24_100, 16_800]
-}
-
-df = pd.DataFrame(datos_regiones)
-
-# Calcular PIB per cápita
-df['pib_per_capita'] = df['pib_millones'] / df['poblacion'] * 1_000_000
-
-# Mostrar resultados
-print(df)
-
-# Estadísticas descriptivas
-print("\nEstadísticas descriptivas:")
-print(df['pib_per_capita'].describe())
-
-# Región con mayor PIB per cápita
-region_mas_rica = df.loc[df['pib_per_capita'].idxmax(), 'region']
-print(f"\nRegión con mayor PIB per cápita: {region_mas_rica}")
-```
-:::
-
-
-**Salida:**
-
-```
-        region  poblacion  pib_millones  pib_per_capita
-0         Lima    9674755        234000    24192.831729
-1     Arequipa    1497438         18500    12353.806853
-2        Cusco    1357075         12300     9063.043478
-3  La Libertad    2016771         24100    11949.742268
-4        Piura    2047954         16800     8202.633428
-
-Estadísticas descriptivas:
-count        5.000000
-mean     13152.411551
-std       6406.398824
-min       8202.633428
-25%       9063.043478
-50%      11949.742268
-75%      12353.806853
-max      24192.831729
-Name: pib_per_capita, dtype: float64
-
-Región con mayor PIB per cápita: Lima
+```python
+# -*- coding: cp1252 -*-
 ```
 
-## Visualización básica
+---
 
-::: {#b8a91c0d .cell}
-``` {.python .cell-code}
-import matplotlib.pyplot as plt
+## 20. La línea shebang en Unix/Linux
 
-# Crear gráfico de barras
-plt.figure(figsize=(10, 6))
-plt.bar(df['region'], df['pib_per_capita'], color='steelblue')
-plt.xlabel('Región')
-plt.ylabel('PIB per cápita (USD)')
-plt.title('PIB per cápita por región en Perú')
-plt.xticks(rotation=45)
-plt.grid(axis='y', alpha=0.3)
-plt.tight_layout()
-plt.show()
+Una excepción a la regla de "primera línea" es cuando el código fuente comienza con una **línea shebang** de Unix. En ese caso, la declaración de codificación debe agregarse como **segunda línea** del archivo. Ejemplo oficial:
+
+```python
+#!/usr/bin/env python3
+# -*- coding: cp1252 -*-
 ```
-:::
 
+La línea shebang (`#!/usr/bin/env python3`) es lo que permite, en Kubuntu y Arch Linux, hacer un script ejecutable directamente (`./mi_script.py`) sin tener que invocar `python3` explícitamente, siempre que el archivo tenga el permiso de ejecución correspondiente (otorgado, por ejemplo, con `chmod +x`).
 
-# Ejercicios prácticos
+---
 
-## Ejercicio 1: Calculadora de inflación acumulada
+## 21. Salir del intérprete
 
-Crea un programa que calcule la inflación acumulada dados los índices de precios mensuales.
+Escribir un carácter de fin de archivo (*end-of-file*) — `Control-D` en Unix, `Control-Z` en Windows — en el prompt primario hace que el intérprete salga con un estado de salida cero. Si eso no funciona, puedes salir del intérprete escribiendo el siguiente comando:
 
-**Datos:**
-
-::: {#f05cf55d .cell}
-``` {.python .cell-code}
-ipc_mensual = [100.0, 100.5, 101.2, 101.8, 102.5, 103.0]
+```python
+quit()
 ```
-:::
 
+---
 
-**Tareas:**
-1. Calcula la inflación mensual (variación porcentual)
-2. Calcula la inflación acumulada
-3. Imprime los resultados
+## 22. Comentarios en Python
 
-**Solución esperada:**
+Los comentarios son una de las pocas piezas de sintaxis que sí corresponde introducir aquí, porque son necesarios para leer y escribir cualquier ejemplo de código desde el primer momento, incluso antes de cubrir variables o expresiones en profundidad.
 
-::: {#8480b284 .cell}
-``` {.python .cell-code}
-# Tu código aquí
+Según la documentación oficial: **los comentarios en Python comienzan con el carácter numeral (`#`) y se extienden hasta el final de la línea física**. Un comentario puede aparecer al inicio de una línea, o después de espacio en blanco o código, pero **no dentro de un literal de cadena de texto**. Un carácter `#` dentro de un literal de cadena es simplemente un carácter numeral, no el inicio de un comentario.
+
+Ejemplo oficial textual:
+
+```python
+# this is the first comment
+spam = 1  # and this is the second comment
+          # ... and now a third!
+text = "# This is not a comment because it's inside quotes."
 ```
-:::
 
+Dado que los comentarios sirven para clarificar el código y no son interpretados por Python, la documentación oficial señala que pueden omitirse al transcribir los ejemplos del propio tutorial — una observación útil para cuando, en guías futuras, copies y adaptes ejemplos de código.
 
-::: {#b1c455e9 .cell}
-``` {.python .cell-code}
-ipc_mensual = [100.0, 100.5, 101.2, 101.8, 102.5, 103.0]
+---
 
-# Calcular inflación mensual
-inflacion_mensual = []
-for i in range(1, len(ipc_mensual)):
-    inflacion = ((ipc_mensual[i] - ipc_mensual[i-1]) / ipc_mensual[i-1]) * 100
-    inflacion_mensual.append(inflacion)
-    print(f"Mes {i}: {inflacion:.2f}%")
+## 23. El intérprete como calculadora: una vista previa controlada
 
-# Inflación acumulada
-inflacion_acumulada = ((ipc_mensual[-1] - ipc_mensual[0]) / ipc_mensual[0]) * 100
-print(f"\nInflación acumulada: {inflacion_acumulada:.2f}%")
+El tutorial oficial, inmediatamente después de explicar cómo invocar el intérprete, presenta a Python "actuando como una simple calculadora": puedes escribir una expresión y el intérprete escribirá su valor. Se incluye aquí únicamente como evidencia de la naturaleza interactiva del intérprete —no como introducción a expresiones o tipos numéricos, que se desarrollarán con rigor en la guía 02—, mostrando el ejemplo textual oficial:
+
+```python
+>>> 2 + 2
+4
+>>> 50 - 5*6
+20
+>>> (50 - 5*6) / 4
+5.0
+>>> 8 / 5  # la división siempre devuelve un número de punto flotante
+1.6
 ```
-:::
+
+Lo único que esta guía retiene de este ejemplo, deliberadamente, es la mecánica de interacción (escribes después de `>>>`, el intérprete responde en la línea siguiente sin prompt) y el hecho documentado de que la división con `/` siempre devuelve un valor de tipo flotante. El desarrollo completo de tipos de datos, operadores aritméticos, precedencia, y todo lo demás relacionado a expresiones queda, tal como pediste, para la guía 02 ("Variables, expresiones y statements con Python").
+
+---
+
+## 24. PYTHONSTARTUP: personalizar el inicio del modo interactivo
+
+Cuando usas Python de forma interactiva, suele ser útil tener algunos comandos estándar ejecutándose automáticamente cada vez que se inicia el intérprete. Esto puede lograrse fijando una variable de entorno llamada `PYTHONSTARTUP` con el nombre de un archivo que contenga esos comandos de inicio — de forma similar a la funcionalidad `.profile` de los shells de Unix.
+
+Puntos oficiales relevantes sobre este mecanismo:
+
+- Este archivo **solo se lee en sesiones interactivas**, no cuando Python lee comandos desde un script.
+- Se ejecuta en el mismo espacio de nombres donde se ejecutan los comandos interactivos, de modo que los objetos que define o importa pueden usarse sin calificación adicional en la sesión interactiva.
+- También es posible cambiar los prompts `sys.ps1` y `sys.ps2` desde ese archivo.
+
+> Esta funcionalidad se documenta aquí por rigor y completitud frente a la fuente oficial, aunque su configuración práctica (qué poner dentro de ese archivo) requiere conceptos —importación de módulos, asignación de variables— que se desarrollarán en guías posteriores.
+
+---
+
+## 25. Glosario mínimo para esta etapa
+
+Para cerrar esta introducción sin adelantar contenido de guías futuras, este glosario recoge únicamente los términos que aparecieron en esta guía, con la definición estrictamente ligada al alcance ya cubierto:
+
+| Término | Definición en el alcance de esta guía |
+|---|---|
+| Intérprete | Programa que lee y ejecuta código Python, ya sea de forma interactiva o desde un archivo de script |
+| Modo interactivo | Modo del intérprete activado cuando lee comandos desde un tty; usa los prompts `>>>` y `...` |
+| Script | Archivo de texto con extensión `.py` que el intérprete lee y ejecuta de forma no interactiva |
+| Prompt primario | El símbolo `>>>` que indica que el intérprete espera una nueva instrucción |
+| Prompt secundario | El símbolo `...` que indica que el intérprete espera la continuación de una instrucción de varias líneas |
+| Comentario | Texto que comienza con `#` y se extiende hasta el final de la línea física; ignorado por el intérprete |
+| Shebang | Línea inicial de un script Unix (`#!/usr/bin/env python3`) que indica qué intérprete debe ejecutarlo |
+| `sys.argv` | Lista de cadenas de texto con el nombre del script y los argumentos pasados en la línea de comandos |
+
+---
+
+## 26. Qué sigue: hoja de ruta de las próximas guías
+
+Siguiendo exactamente la secuencia que ya estableciste, y que coincide con la estructura del propio tutorial oficial de Python (sección 7 de esta guía), las siguientes guías cubrirán, en este orden:
+
+1. **Variables, expresiones y statements con Python** — tipos de datos numéricos y de texto, operadores, precedencia, asignación, convenciones de nombres.
+2. **Objetos de Python** — el modelo de objetos del lenguaje.
+3. **Ejecución condicional con Python** — `if`, `elif`, `else`, operadores de comparación y lógicos.
+4. **Iteraciones con Python** — `while`, `for`, control de bucles.
+5. **Funciones con Python** — definición, parámetros, retorno de valores, ámbito.
+6. **Dataframes con Python** — introducción a pandas.
+7. **Predicción y métricas de performance con Python**.
+8. **Métodos de Machine Learning para clasificación con Python**.
+9. **Métodos de Machine Learning para regresión con Python**.
+10. **Validación cruzada y composición del modelo con Python**.
+
+Esta guía no se adelanta a ninguno de esos contenidos; su función es exclusivamente la de establecer, con la documentación oficial como única fuente, qué es Python y cómo se invoca el intérprete, antes de empezar a escribir código con sentido semántico.
+
+---
+
+## 27. Referencias oficiales
+
+- **Python Tutorial — Índice general**: https://docs.python.org/3/tutorial/index.html
+- **Python Tutorial — Cap. 1: Whetting Your Appetite**: https://docs.python.org/3/tutorial/appetite.html
+- **Python Tutorial — Cap. 2: Using the Python Interpreter**: https://docs.python.org/3/tutorial/interpreter.html
+- **Python Tutorial — Cap. 3: An Informal Introduction to Python** (solo sección de comentarios usada en esta guía): https://docs.python.org/3/tutorial/introduction.html
+- **Python — Página oficial de descargas**: https://www.python.org/downloads/
+- **Python — Descargas para Windows**: https://www.python.org/downloads/windows/
+- **PEP 619 — Python 3.10 Release Schedule**: https://peps.python.org/pep-0619/
+- **PEP 664 — Python 3.11 Release Schedule**: https://peps.python.org/pep-0664/
+- **Python — Glosario oficial**: https://docs.python.org/3/glossary.html
+- **Python — Command line and environment (referencia completa de opciones del intérprete)**: https://docs.python.org/3/using/cmdline.html
+
+---
 
 
-</details>
-
-## Ejercicio 2: Análisis de datos de exportaciones
-
-Tienes datos de exportaciones de Perú por sectores.
-
-::: {#62cf4cb1 .cell}
-``` {.python .cell-code}
-exportaciones = {
-    'sector': ['Minería', 'Agricultura', 'Pesca', 'Manufactura'],
-    'valor_2022': [35_600, 7_200, 2_800, 12_400],  # Millones USD
-    'valor_2023': [38_100, 7_850, 2_950, 13_200]
-}
-```
-:::
-
-
-**Tareas:**
-
-1. Crea un DataFrame con estos datos
-2. Calcula la variación porcentual por sector
-3. Identifica el sector con mayor crecimiento
-4. Calcula el total exportado en cada año
-
-::: {#364b2ed1 .cell}
-``` {.python .cell-code}
-import pandas as pd
-
-exportaciones = {
-    'sector': ['Minería', 'Agricultura', 'Pesca', 'Manufactura'],
-    'valor_2022': [35_600, 7_200, 2_800, 12_400],
-    'valor_2023': [38_100, 7_850, 2_950, 13_200]
-}
-
-df_exp = pd.DataFrame(exportaciones)
-
-# Calcular variación porcentual
-df_exp['variacion_%'] = ((df_exp['valor_2023'] - df_exp['valor_2022']) / df_exp['valor_2022']) * 100
-
-print("Exportaciones por sector:")
-print(df_exp)
-
-# Sector con mayor crecimiento
-idx_max = df_exp['variacion_%'].idxmax()
-print(f"\nSector con mayor crecimiento: {df_exp.loc[idx_max, 'sector']} ({df_exp.loc[idx_max, 'variacion_%']:.2f}%)")
-
-# Total exportado
-total_2022 = df_exp['valor_2022'].sum()
-total_2023 = df_exp['valor_2023'].sum()
-print(f"\nTotal exportado 2022: ${total_2022:,} millones")
-print(f"Total exportado 2023: ${total_2023:,} millones")
-print(f"Crecimiento total: {((total_2023 - total_2022) / total_2022) * 100:.2f}%")
-```
-:::
-
-
-</details>
-
-## Ejercicio 3: Función de utilidad
-
-Crea una función que calcule la utilidad de un consumidor según la función Cobb-Douglas:
-
-U(x, y) = x^α * y^(1-α)
-
-Donde x e y son bienes consumidos y α es el parámetro de preferencia.
-
-::: {#cf0a4da1 .cell}
-``` {.python .cell-code}
-def utilidad_cobb_douglas(x, y, alpha):
-    """
-    Calcula la utilidad según función Cobb-Douglas
-    
-    Parámetros:
-    x: cantidad del bien 1
-    y: cantidad del bien 2
-    alpha: parámetro de preferencia (0 < alpha < 1)
-    
-    Retorna:
-    Utilidad total
-    """
-    # Tu código aquí
-    pass
-
-# Prueba la función
-u = utilidad_cobb_douglas(x=10, y=20, alpha=0.5)
-print(f"Utilidad: {u:.2f}")
-```
-:::
-
-
-::: {#e9317e84 .cell}
-``` {.python .cell-code}
-def utilidad_cobb_douglas(x, y, alpha):
-    """
-    Calcula la utilidad según función Cobb-Douglas
-    """
-    utilidad = (x ** alpha) * (y ** (1 - alpha))
-    return utilidad
-
-# Prueba con diferentes combinaciones
-print("Análisis de utilidad:")
-print("-" * 40)
-
-combinaciones = [
-    (10, 20, 0.3),
-    (10, 20, 0.5),
-    (10, 20, 0.7),
-    (20, 10, 0.5),
-]
-
-for x, y, alpha in combinaciones:
-    u = utilidad_cobb_douglas(x, y, alpha)
-    print(f"U({x}, {y}) con α={alpha}: {u:.2f}")
-```
-:::
-
-
-</details>
-
-
-# Conclusión
-
-Has completado la primera guía de Python para economistas. Has aprendido:
-
-- Por qué es importante programar como economista
-- Las diferencias entre lenguajes de programación
-- Qué son Data Science y Machine Learning
-- Por qué Python es ideal para economistas
-- Cómo configurar tu entorno de trabajo
-- Los fundamentos básicos de Python
-
-**En la siguiente guía aprenderás:**
-
-- Variables, expresiones y statements en profundidad
-- Tipos de datos y conversiones
-- Operadores y precedencia
-- Entrada de datos del usuario
-- Convenciones de nombres de variables
-
-**Recursos adicionales recomendados:**
-
-1. **Documentación oficial de Python:** [docs.python.org](https://docs.python.org)
-2. **Pandas para análisis de datos:** [pandas.pydata.org](https://pandas.pydata.org)
-3. **Statsmodels para econometría:** [statsmodels.org](https://www.statsmodels.org)
-4. **Kaggle Learn:** Tutoriales interactivos gratuitos
-
-
-¡Nos vemos en la siguiente guía!
-
+**Edison Achalma**
+Economista — Universidad Nacional de San Cristóbal de Huamanga (UNSCH)
+Ayacucho, Perú
+ORCID: [0000-0001-6996-3364](https://orcid.org/0000-0001-6996-3364)
 
 # Publicaciones Similares
 

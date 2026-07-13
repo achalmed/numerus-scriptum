@@ -124,6 +124,7 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -227,6 +228,10 @@ Cristóbal de Huamanga, Portal Independencia N°
 
 
 
+\hypersetup{
+  pdftitle={Validaci\'{o}n cruzada y pipelines Python},
+  pdfauthor={Autor}
+}
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -433,10 +438,6 @@ error total.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-Librerías importadas exitosamente
-\end{verbatim}
-
 \subsection{Ilustración del
 overfitting}\label{ilustraciuxf3n-del-overfitting}
 
@@ -494,29 +495,6 @@ overfitting}\label{ilustraciuxf3n-del-overfitting}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-ILUSTRACIÓN DE OVERFITTING
-======================================================================
-
-Simple (k=50):
-  Train: 0.8190
-  Test:  0.8222
-  Gap:   -0.0032
-  ✓ Balance adecuado
-
-Balanceado (k=5):
-  Train: 0.8476
-  Test:  0.7778
-  Gap:   0.0698
-  ✓ Balance adecuado
-
-Complejo (k=1):
-  Train: 0.9619
-  Test:  0.7111
-  Gap:   0.2508
-  ⚠️  Posible overfitting detectado
-\end{verbatim}
-
 \subsection{Visualización del
 trade-off}\label{visualizaciuxf3n-del-trade-off}
 
@@ -563,13 +541,6 @@ trade-off}\label{visualizaciuxf3n-del-trade-off}
 \BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Gráfico guardado como \textquotesingle{}bias\_variance\_tradeoff.png\textquotesingle{}"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-
-Gráfico guardado como 'bias_variance_tradeoff.png'
-\end{verbatim}
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-4-output-2.pdf}}
 
 \section{Validación cruzada
 (Cross-Validation)}\label{validaciuxf3n-cruzada-cross-validation}
@@ -706,19 +677,6 @@ Repetir K-Fold con diferentes particiones aleatorias y promediar.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-
-
-VALIDACIÓN CRUZADA
-======================================================================
-
-K-Fold Cross-Validation (K=5):
-Scores por fold: [0.9        0.83333333 0.76666667 0.7        0.73333333]
-Media: 0.7867
-Desviación estándar: 0.0718
-Intervalo 95% confianza: [0.6459, 0.9274]
-\end{verbatim}
-
 \subsection{Stratified
 Cross-Validation}\label{stratified-cross-validation}
 
@@ -747,20 +705,6 @@ Cross-Validation}\label{stratified-cross-validation}
       \SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{scores\_stratified}\SpecialCharTok{.}\NormalTok{mean() }\OperatorTok{{-}}\NormalTok{ scores}\SpecialCharTok{.}\NormalTok{mean()}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-
-
-Distribución de clases:
-Clase 0: 100 (66.7%)
-Clase 1: 50 (33.3%)
-
-Stratified K-Fold CV:
-Media: 0.7867
-Desv. est: 0.0686
-
-Diferencia con K-Fold estándar: 0.0000
-\end{verbatim}
 
 \subsection{Cross-validation con múltiples
 métricas}\label{cross-validation-con-muxfaltiples-muxe9tricas}
@@ -796,38 +740,6 @@ métricas}\label{cross-validation-con-muxfaltiples-muxe9tricas}
     \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Gap:   }\SpecialCharTok{\{}\NormalTok{train\_scores}\SpecialCharTok{.}\NormalTok{mean() }\OperatorTok{{-}}\NormalTok{ test\_scores}\SpecialCharTok{.}\NormalTok{mean()}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-
-
-RESULTADOS CROSS-VALIDATION - MÚLTIPLES MÉTRICAS
-======================================================================
-
-ACCURACY:
-  Train: 0.8067 ± 0.0178
-  Test:  0.7867 ± 0.0686
-  Gap:   0.0200
-
-PRECISION:
-  Train: 0.7260 ± 0.0285
-  Test:  0.6984 ± 0.0893
-  Gap:   0.0276
-
-RECALL:
-  Train: 0.6750 ± 0.0316
-  Test:  0.6400 ± 0.2154
-  Gap:   0.0350
-
-F1:
-  Train: 0.6994 ± 0.0282
-  Test:  0.6479 ± 0.1519
-  Gap:   0.0514
-
-ROC_AUC:
-  Train: 0.8888 ± 0.0162
-  Test:  0.8935 ± 0.0611
-  Gap:   -0.0047
-\end{verbatim}
 
 \subsection{Visualización de resultados
 CV}\label{visualizaciuxf3n-de-resultados-cv}
@@ -874,13 +786,6 @@ CV}\label{visualizaciuxf3n-de-resultados-cv}
 \BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Gráfico guardado como \textquotesingle{}cv\_multiple\_metrics.png\textquotesingle{}"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-
-Gráfico guardado como 'cv_multiple_metrics.png'
-\end{verbatim}
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-8-output-2.pdf}}
 
 \section{Grid Search y optimización de
 hiperparámetros}\label{grid-search-y-optimizaciuxf3n-de-hiperparuxe1metros}
@@ -1026,21 +931,6 @@ Search}\label{implementaciuxf3n-de-grid-search}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-
-
-GRID SEARCH - OPTIMIZACIÓN DE HIPERPARÁMETROS
-======================================================================
-Espacio de búsqueda:
-  n_estimators: [50, 100, 200]
-  max_depth: [3, 5, 10, None]
-  min_samples_split: [2, 5, 10]
-  min_samples_leaf: [1, 2, 4]
-
-Total de combinaciones: 108
-Con CV de 5-fold: 540 modelos a entrenar
-\end{verbatim}
-
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Ejecutar Grid Search}
@@ -1079,31 +969,6 @@ Con CV de 5-fold: 540 modelos a entrenar
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-
-Ejecutando Grid Search...
-Fitting 5 folds for each of 108 candidates, totalling 540 fits
-
-
-RESULTADOS GRID SEARCH
-======================================================================
-
-Mejores hiperparámetros:
-  max_depth: 3
-  min_samples_leaf: 1
-  min_samples_split: 10
-  n_estimators: 200
-
-Mejor score (ROC-AUC): 0.8810
-
-Performance del mejor modelo:
-  Accuracy: 0.8400
-  Precision: 0.7500
-  Recall: 0.7800
-  F1-Score: 0.7647
-  ROC-AUC: 0.9141
-\end{verbatim}
-
 \subsection{Análisis de resultados Grid
 Search}\label{anuxe1lisis-de-resultados-grid-search}
 
@@ -1128,73 +993,6 @@ Search}\label{anuxe1lisis-de-resultados-grid-search}
     \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Tiempo: }\SpecialCharTok{\{}\NormalTok{row[}\StringTok{\textquotesingle{}mean\_fit\_time\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:.2f\}}\SpecialStringTok{s"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-
-
-TOP 10 CONFIGURACIONES
-======================================================================
-
-Rank 1:
-  Parámetros: {'max_depth': 3, 'min_samples_leaf': 1, 'min_samples_split': 10, 'n_estimators': 200}
-  Test Score: 0.8810 ± 0.0557
-  Train Score: 0.9245
-  Tiempo: 1.14s
-
-Rank 2:
-  Parámetros: {'max_depth': 3, 'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 200}
-  Test Score: 0.8785 ± 0.0569
-  Train Score: 0.9262
-  Tiempo: 1.11s
-
-Rank 3:
-  Parámetros: {'max_depth': 3, 'min_samples_leaf': 4, 'min_samples_split': 2, 'n_estimators': 200}
-  Test Score: 0.8780 ± 0.0645
-  Train Score: 0.9183
-  Tiempo: 1.15s
-
-Rank 3:
-  Parámetros: {'max_depth': 3, 'min_samples_leaf': 4, 'min_samples_split': 5, 'n_estimators': 200}
-  Test Score: 0.8780 ± 0.0645
-  Train Score: 0.9183
-  Tiempo: 1.17s
-
-Rank 5:
-  Parámetros: {'max_depth': 3, 'min_samples_leaf': 4, 'min_samples_split': 10, 'n_estimators': 200}
-  Test Score: 0.8770 ± 0.0615
-  Train Score: 0.9170
-  Tiempo: 1.20s
-
-Rank 6:
-  Parámetros: {'max_depth': 3, 'min_samples_leaf': 2, 'min_samples_split': 10, 'n_estimators': 200}
-  Test Score: 0.8770 ± 0.0595
-  Train Score: 0.9228
-  Tiempo: 1.07s
-
-Rank 7:
-  Parámetros: {'max_depth': 3, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 200}
-  Test Score: 0.8765 ± 0.0567
-  Train Score: 0.9275
-  Tiempo: 1.09s
-
-Rank 8:
-  Parámetros: {'max_depth': 3, 'min_samples_leaf': 2, 'min_samples_split': 2, 'n_estimators': 200}
-  Test Score: 0.8755 ± 0.0565
-  Train Score: 0.9244
-  Tiempo: 1.19s
-
-Rank 9:
-  Parámetros: {'max_depth': 3, 'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 100}
-  Test Score: 0.8750 ± 0.0527
-  Train Score: 0.9266
-  Tiempo: 0.53s
-
-Rank 9:
-  Parámetros: {'max_depth': 3, 'min_samples_leaf': 1, 'min_samples_split': 10, 'n_estimators': 50}
-  Test Score: 0.8750 ± 0.0576
-  Train Score: 0.9241
-  Tiempo: 0.28s
-\end{verbatim}
 
 \subsection{Visualización de Grid
 Search}\label{visualizaciuxf3n-de-grid-search}
@@ -1267,13 +1065,6 @@ Search}\label{visualizaciuxf3n-de-grid-search}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-
-Gráfico guardado como 'grid_search_analysis.png'
-\end{verbatim}
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-12-output-2.pdf}}
-
 \subsection{Random Search
 implementation}\label{random-search-implementation}
 
@@ -1323,29 +1114,6 @@ implementation}\label{random-search-implementation}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Diferencia:          }\SpecialCharTok{\{}\NormalTok{random\_search}\SpecialCharTok{.}\NormalTok{best\_score\_ }\OperatorTok{{-}}\NormalTok{ grid\_search}\SpecialCharTok{.}\NormalTok{best\_score\_}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-
-
-RANDOM SEARCH
-======================================================================
-Ejecutando Random Search (100 iteraciones)...
-Fitting 5 folds for each of 100 candidates, totalling 500 fits
-
-Mejores hiperparámetros:
-  max_depth: 3
-  max_features: sqrt
-  min_samples_leaf: 6
-  min_samples_split: 17
-  n_estimators: 142
-
-Mejor score: 0.8830
-
-Comparación:
-  Grid Search score:   0.8810
-  Random Search score: 0.8830
-  Diferencia:          0.0020
-\end{verbatim}
 
 \section{Curvas de aprendizaje}\label{curvas-de-aprendizaje}
 
@@ -1492,58 +1260,6 @@ Para tamaños de muestra \(m \in \{m_1, m_2, \ldots, m_k\}\) donde
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-
-
-CURVAS DE APRENDIZAJE
-======================================================================
-\end{verbatim}
-
-\begin{verbatim}
-
-Gráfico guardado como 'learning_curve_logistic_regression.png'
-
-Diagnóstico para Learning Curve: Logistic Regression:
-  Final training score: 0.8033
-  Final validation score: 0.7867
-  Gap: 0.0167
-  ✓ Balance adecuado
-
-Gráfico guardado como 'learning_curve_decision_tree_(depth=3).png'
-
-Diagnóstico para Learning Curve: Decision Tree (depth=3):
-  Final training score: 0.8283
-  Final validation score: 0.7267
-  Gap: 0.1017
-  ✓ Balance adecuado
-
-Gráfico guardado como 'learning_curve_decision_tree_(depth=20).png'
-
-Diagnóstico para Learning Curve: Decision Tree (depth=20):
-  Final training score: 0.9400
-  Final validation score: 0.7000
-  Gap: 0.2400
-  ⚠️  High variance (overfitting)
-  Recomendaciones: Más datos, regularización, modelo más simple
-
-Gráfico guardado como 'learning_curve_random_forest.png'
-
-Diagnóstico para Learning Curve: Random Forest:
-  Final training score: 0.9367
-  Final validation score: 0.7400
-  Gap: 0.1967
-  ⚠️  High variance (overfitting)
-  Recomendaciones: Más datos, regularización, modelo más simple
-\end{verbatim}
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-14-output-3.pdf}}
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-14-output-4.pdf}}
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-14-output-5.pdf}}
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-14-output-6.pdf}}
-
 \subsection{Comparación de modelos}\label{comparaciuxf3n-de-modelos}
 
 \begin{Shaded}
@@ -1580,13 +1296,6 @@ Diagnóstico para Learning Curve: Random Forest:
 \BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Comparación guardada como \textquotesingle{}learning\_curves\_comparison.png\textquotesingle{}"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-
-Comparación guardada como 'learning_curves_comparison.png'
-\end{verbatim}
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-15-output-2.pdf}}
 
 \section{Contribución de la data al
 modelo}\label{contribuciuxf3n-de-la-data-al-modelo}
@@ -1629,46 +1338,6 @@ muestra}\label{anuxe1lisis-de-sensibilidad-al-tamauxf1o-de-muestra}
 \NormalTok{df\_sizes }\OperatorTok{=}\NormalTok{ pd.DataFrame(resultados\_sizes)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-
-
-CONTRIBUCIÓN DE LA DATA AL MODELO
-======================================================================
-\end{verbatim}
-
-\begin{verbatim}
-
-Proporción: 0.1 (n=15)
-  AUC: nan ± nan
-
-Proporción: 0.2 (n=30)
-  AUC: 0.8500 ± 0.1458
-
-Proporción: 0.3 (n=45)
-  AUC: 0.8778 ± 0.0648
-
-Proporción: 0.4 (n=60)
-  AUC: 0.7569 ± 0.1366
-
-Proporción: 0.5 (n=75)
-  AUC: 0.7460 ± 0.0774
-
-Proporción: 0.6 (n=90)
-  AUC: 0.8688 ± 0.0530
-
-Proporción: 0.7 (n=105)
-  AUC: 0.8603 ± 0.0990
-
-Proporción: 0.8 (n=120)
-  AUC: 0.7810 ± 0.0831
-
-Proporción: 0.9 (n=135)
-  AUC: 0.8302 ± 0.0457
-
-Proporción: 1.0 (n=150)
-  AUC: 0.8460 ± 0.0724
-\end{verbatim}
 
 \subsection{Visualización}\label{visualizaciuxf3n}
 
@@ -1718,24 +1387,6 @@ Proporción: 1.0 (n=150)
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-
-Gráfico guardado como 'data_contribution.png'
-
-
-ANÁLISIS DE RENDIMIENTOS:
-Con 10% de datos (n=15): AUC = nan
-Con 50% de datos (n=75): AUC = 0.7460
-Con 100% de datos (n=150): AUC = 0.8460
-
-Mejora 10%→50%: nan
-Mejora 50%→100%: 0.1000
-
-✓ Más datos aún beneficioso
-\end{verbatim}
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-17-output-2.pdf}}
-
 \section{Contribución de las
 variables}\label{contribuciuxf3n-de-las-variables}
 
@@ -1768,20 +1419,6 @@ características}\label{importancia-de-caracteruxedsticas}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-
-
-CONTRIBUCIÓN DE LAS VARIABLES AL MODELO
-======================================================================
-
-Importancia de características (Random Forest):
-======================================================================
-1. petal length (cm)              0.4842
-2. petal width (cm)               0.3874
-3. sepal length (cm)              0.1014
-4. sepal width (cm)               0.0269
-\end{verbatim}
-
 \subsection{Análisis de
 permutación}\label{anuxe1lisis-de-permutaciuxf3n}
 
@@ -1809,19 +1446,6 @@ permutación}\label{anuxe1lisis-de-permutaciuxf3n}
           \SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{perm\_importance}\SpecialCharTok{.}\NormalTok{importances\_mean[i]}\SpecialCharTok{:\textless{}15.4f\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-
-
-COMPARACIÓN DE MÉTODOS DE IMPORTANCIA
-======================================================================
-Característica                 RF Importance   Perm Importance
-----------------------------------------------------------------------
-petal length (cm)              0.4842          0.2142         
-petal width (cm)               0.3874          0.1627         
-sepal length (cm)              0.1014          0.0084         
-sepal width (cm)               0.0269          0.0113         
-\end{verbatim}
 
 \subsection{Visualización de
 importancia}\label{visualizaciuxf3n-de-importancia}
@@ -1854,13 +1478,6 @@ importancia}\label{visualizaciuxf3n-de-importancia}
 \BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Gráfico guardado como \textquotesingle{}feature\_importance.png\textquotesingle{}"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-
-Gráfico guardado como 'feature_importance.png'
-\end{verbatim}
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-20-output-2.pdf}}
 
 \subsection{Selección de
 características}\label{selecciuxf3n-de-caracteruxedsticas}
@@ -1909,25 +1526,6 @@ características}\label{selecciuxf3n-de-caracteruxedsticas}
 \BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Gráfico guardado como \textquotesingle{}rfecv\_results.png\textquotesingle{}"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-
-
-SELECCIÓN DE CARACTERÍSTICAS
-======================================================================
-
-Número óptimo de características: 4
-
-Características seleccionadas:
-  ✓ sepal length (cm)
-  ✓ sepal width (cm)
-  ✓ petal length (cm)
-  ✓ petal width (cm)
-
-Gráfico guardado como 'rfecv_results.png'
-\end{verbatim}
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-21-output-2.pdf}}
 
 \subsection{Análisis incremental de
 variables}\label{anuxe1lisis-incremental-de-variables}
@@ -1982,29 +1580,6 @@ variables}\label{anuxe1lisis-incremental-de-variables}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-
-
-ANÁLISIS INCREMENTAL DE VARIABLES
-======================================================================
-
-1 feature(s): petal length (cm)
-  AUC: 0.9740 ± 0.0174
-
-2 feature(s): petal width (cm)
-  AUC: 0.9880 ± 0.0240
-
-3 feature(s): sepal length (cm)
-  AUC: 0.9885 ± 0.0206
-
-4 feature(s): sepal width (cm)
-  AUC: 0.9945 ± 0.0110
-
-Gráfico guardado como 'incremental_features.png'
-\end{verbatim}
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-22-output-2.pdf}}
-
 \section{Aplicaciones económicas}\label{aplicaciones-econuxf3micas}
 
 \subsection{Aplicación 1: Predicción de incumplimiento
@@ -2057,17 +1632,6 @@ crediticio}\label{aplicaciuxf3n-1-predicciuxf3n-de-incumplimiento-crediticio}
 \NormalTok{y\_credito }\OperatorTok{=}\NormalTok{ datos\_credito[}\StringTok{\textquotesingle{}incumplimiento\textquotesingle{}}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-
-
-
-APLICACIÓN: OPTIMIZACIÓN DE MODELO DE CRÉDITO
-======================================================================
-Dataset de crédito generado:
-  Total clientes: 1000
-  Tasa de incumplimiento: 2.60%
-\end{verbatim}
 
 \subsection{Pipeline completo de
 optimización}\label{pipeline-completo-de-optimizaciuxf3n}
@@ -2191,72 +1755,6 @@ optimización}\label{pipeline-completo-de-optimizaciuxf3n}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-
-
-COMPARACIÓN DE MODELOS
-======================================================================
-\end{verbatim}
-
-\begin{verbatim}
-
-Logistic Regression:
-  AUC: 0.6643
-  Precision: 0.0000
-  Recall: 0.0000
-\end{verbatim}
-
-\begin{verbatim}
-
-Random Forest:
-  AUC: 0.5305
-  Precision: 0.0000
-  Recall: 0.0000
-
-Decision Tree:
-  AUC: 0.5261
-  Precision: 0.0833
-  Recall: 0.0800
-
-
-OPTIMIZACIÓN DE HIPERPARÁMETROS
-======================================================================
-Ejecutando Grid Search...
-
-Mejores parámetros:
-  class_weight: balanced
-  max_depth: 10
-  min_samples_split: 2
-  n_estimators: 300
-
-Mejor AUC: 0.6431
-
-
-IMPORTANCIA DE VARIABLES
-======================================================================
-antiguedad_laboral        0.2290 ███████████
-score_crediticio          0.1828 █████████
-ratio_deuda_ingreso       0.1591 ███████
-edad                      0.1563 ███████
-ingreso_mensual           0.1367 ██████
-num_creditos_anteriores   0.0709 ███
-tiene_ahorros             0.0384 █
-tiene_hipoteca            0.0267 █
-
-
-CURVAS DE APRENDIZAJE
-======================================================================
-Curva guardada como 'learning_curve_credito.png'
-
-Diagnóstico:
-  Training AUC: 1.0000
-  Validation AUC: 0.6431
-  Gap: 0.3569
-  ⚠️  Overfitting significativo
-\end{verbatim}
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-24-output-4.pdf}}
-
 \section{Mejores prácticas}\label{mejores-pruxe1cticas}
 
 \subsection{Checklist de validación de
@@ -2330,72 +1828,6 @@ modelos}\label{checklist-de-validaciuxf3n-de-modelos}
 \BuiltInTok{print}\NormalTok{(checklist)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-
-
-
-CHECKLIST DE VALIDACIÓN DE MODELOS
-======================================================================
-
-□ DIVISIÓN DE DATOS
-  ✓ Separar train/test antes de cualquier análisis
-  ✓ Usar stratified split para clases desbalanceadas
-  ✓ Mantener test set intocado hasta evaluación final
-
-□ VALIDACIÓN CRUZADA
-  ✓ Usar K-Fold (típicamente K=5 o K=10)
-  ✓ Stratified K-Fold para clasificación
-  ✓ Repetir con diferentes seeds
-  ✓ Reportar media ± desviación estándar
-
-□ OPTIMIZACIÓN DE HIPERPARÁMETROS
-  ✓ Definir grilla razonable de hiperparámetros
-  ✓ Usar validación cruzada anidada
-  ✓ Considerar Random Search para espacios grandes
-  ✓ Guardar mejores parámetros
-
-□ EVALUACIÓN DE OVERFITTING
-  ✓ Comparar performance train vs test
-  ✓ Analizar curvas de aprendizaje
-  ✓ Verificar gap < 0.15
-  ✓ Usar regularización si es necesario
-
-□ ANÁLISIS DE DATOS
-  ✓ Evaluar si más datos ayudarían
-  ✓ Verificar rendimientos decrecientes
-  ✓ Considerar costo de recolección
-
-□ SELECCIÓN DE VARIABLES
-  ✓ Analizar importancia de características
-  ✓ Considerar RFECV para reducir dimensionalidad
-  ✓ Evaluar contribución incremental
-  ✓ Remover variables redundantes
-
-□ MÉTRICAS APROPIADAS
-  ✓ Elegir métrica según objetivo de negocio
-  ✓ Considerar costos de errores (FP vs FN)
-  ✓ Reportar múltiples métricas
-  ✓ Usar curvas ROC/PR para panorama completo
-
-□ ROBUSTEZ
-  ✓ Probar con diferentes particiones
-  ✓ Validar en período temporal diferente
-  ✓ Verificar estabilidad con diferentes seeds
-  ✓ Detectar data leakage
-
-□ DOCUMENTACIÓN
-  ✓ Guardar hiperparámetros óptimos
-  ✓ Documentar proceso de selección
-  ✓ Registrar performance en test
-  ✓ Explicar decisiones de diseño
-
-□ COMPARACIÓN
-  ✓ Establecer baseline simple
-  ✓ Comparar múltiples algoritmos
-  ✓ Usar mismos datos para comparación
-  ✓ Considerar trade-offs (interpretabilidad vs accuracy)
-\end{verbatim}
 
 \subsection{Función de pipeline
 completo}\label{funciuxf3n-de-pipeline-completo}
@@ -2578,82 +2010,6 @@ completo}\label{funciuxf3n-de-pipeline-completo}
 \NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-
-
-EJEMPLO DE PIPELINE COMPLETO
-======================================================================
-======================================================================
-PIPELINE DE VALIDACIÓN COMPLETO
-======================================================================
-
-1. COMPARACIÓN INICIAL DE MODELOS
-----------------------------------------------------------------------
-
-Evaluando Logistic Regression...
-\end{verbatim}
-
-\begin{verbatim}
-  AUC: 0.6901 ± 0.1161
-  Gap: 0.0524
-
-Evaluando Random Forest...
-\end{verbatim}
-
-\begin{verbatim}
-  AUC: 0.5376 ± 0.0664
-  Gap: 0.4624
-
-Evaluando Decision Tree...
-  AUC: 0.5025 ± 0.0438
-  Gap: 0.4975
-
-
-2. OPTIMIZACIÓN DE HIPERPARÁMETROS
-----------------------------------------------------------------------
-
-Optimizando Random Forest...
-  Mejor AUC: 0.6043
-  Mejores parámetros: {'max_depth': 5, 'min_samples_split': 2, 'n_estimators': 100}
-
-Optimizando Decision Tree...
-  Mejor AUC: 0.5301
-  Mejores parámetros: {'max_depth': 3, 'min_samples_split': 2}
-
-
-3. ANÁLISIS DE IMPORTANCIA DE VARIABLES
-----------------------------------------------------------------------
-
-Random Forest:
-  antiguedad_laboral             0.2271
-  ingreso_mensual                0.2201
-  score_crediticio               0.1674
-  edad                           0.1661
-  ratio_deuda_ingreso            0.1243
-  num_creditos_anteriores        0.0530
-  tiene_ahorros                  0.0284
-  tiene_hipoteca                 0.0136
-
-Decision Tree:
-  antiguedad_laboral             0.3298
-  ingreso_mensual                0.3279
-  edad                           0.2752
-  score_crediticio               0.0671
-  num_creditos_anteriores        0.0000
-  tiene_hipoteca                 0.0000
-  tiene_ahorros                  0.0000
-  ratio_deuda_ingreso            0.0000
-
-
-4. DIAGNÓSTICO Y RECOMENDACIONES
-----------------------------------------------------------------------
-
-Mejor modelo: Logistic Regression
-AUC: 0.6901
-
-✓ Modelo bien balanceado
-\end{verbatim}
 
 \section{Conclusión}\label{conclusiuxf3n}
 

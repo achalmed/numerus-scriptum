@@ -124,6 +124,7 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -165,10 +166,10 @@
 
 
 
-\title{Entornos virtuales con Conda}
+\title{Configuración de entornos virtuales con Conda}
 
 
-\shorttitle{Entornos virtuales con Conda}
+\shorttitle{Configuración de entornos virtuales con Conda}
 
 
 \usepackage{etoolbox}
@@ -219,9 +220,14 @@ mantener un sistema ligero y organizado. }
 \par{   El autor no tiene conflictos de interés que revelar.    Los
 roles de autor se clasificaron utilizando la taxonomía de roles de
 colaborador (CRediT; https://credit.niso.org/) de la siguiente
-manera:  Edison Achalma:   conceptualización, redacción}
+manera:  Edison Achalma:   conceptualización, metodología, análisis
+formal, investigación, recursos, curación de
+datos, redacción, visualización, supervisión, administración del
+proyecto}
 \par{La correspondencia relativa a este artículo debe dirigirse a Edison
-Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
+Achalma, Escuela Profesional de Economía, Universidad Nacional de San
+Cristóbal de Huamanga, Portal Independencia N°
+57, Ayacucho, AYA 5001, Perú, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
 }
 
 \makeatletter
@@ -236,6 +242,10 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 
 
 
+\hypersetup{
+  pdftitle={Configuraci\'{o}n de entornos virtuales con Conda},
+  pdfauthor={Autor}
+}
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -268,8 +278,8 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 \@ifpackageloaded{float}{}{\usepackage{float}}
 \floatstyle{ruled}
 \@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
-\floatname{codelisting}{Listing}
-\newcommand*\listoflistings{\listof{codelisting}{Lista de Listings}}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listados}}
 \makeatother
 \makeatletter
 \makeatother
@@ -319,7 +329,7 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 \hypertarget{toc}{}
 \tableofcontents
 \newpage
-\section[Introduction]{Entornos virtuales con Conda}
+\section[Introduction]{Configuración de entornos virtuales con Conda}
 
 \setcounter{secnumdepth}{3}
 
@@ -328,111 +338,1437 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 
 
 
-\section{Filosofía de Entornos
-Virtuales}\label{filosofuxeda-de-entornos-virtuales}
+\section{Guía completa de configuración de entornos virtuales con
+Conda}\label{guuxeda-completa-de-configuraciuxf3n-de-entornos-virtuales-con-conda}
 
-\subsection{¿Por Qué Usar Entornos
-Separados?}\label{por-quuxe9-usar-entornos-separados}
+\begin{quote}
+Referencia técnica independiente sobre la \textbf{configuración y
+gestión de entornos virtuales} con conda (y mamba como acelerador),
+aplicable en Kubuntu/Ubuntu, Arch Linux y Windows. Basada en la
+documentación oficial de \textbf{conda} (docs.conda.io) y organizada
+siguiendo la misma estrategia de entornos por propósito que ya usas en
+tu flujo de trabajo (econblog, scripts-env, datascience, teaching),
+documentada previamente en tu publicación ``Entornos virtuales con
+Conda'' (numerus-scriptum.netlify.app). Esta guía asume que conda/mamba
+ya están instalados; para instalación, consulta la guía dedicada a ese
+tema.
+\end{quote}
 
-\textbf{Problema:} Sin entornos, todos los paquetes comparten el mismo
-espacio.
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\textbf{Consecuencias:}
+\subsection{Tabla de contenidos}\label{tabla-de-contenidos}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \hyperref[1-conceptos-fundamentales-bibliotecas-y-repositorios]{Conceptos
+  fundamentales: bibliotecas y repositorios}
+\item
+  \hyperref[2-filosofuxeda-de-entornos-separados]{Filosofía de entornos
+  separados}
+\item
+  \hyperref[3-creaciuxf3n-de-entornos]{Creación de entornos}
+\item
+  \hyperref[4-creaciuxf3n-de-entornos-desde-environmentyml]{Creación de
+  entornos desde \texttt{environment.yml}}
+\item
+  \hyperref[5-ubicaciuxf3n-de-entornos-por-nombre-vs-por-prefijo]{Ubicación
+  de entornos: por nombre vs.~por prefijo}
+\item
+  \hyperref[6-plataforma-de-destino-de-un-entorno]{Plataforma de destino
+  de un entorno}
+\item
+  \hyperref[7-activaciuxf3n-y-desactivaciuxf3n]{Activación y
+  desactivación}
+\item
+  \hyperref[8-conda-init-e-integraciuxf3n-con-shells]{\texttt{conda\ init}
+  e integración con shells}
+\item
+  \hyperref[9-activaciuxf3n-anidada-stacking]{Activación anidada
+  (\emph{stacking})}
+\item
+  \hyperref[10-gestiuxf3n-de-canales]{Gestión de canales}
+\item
+  \hyperref[11-gestiuxf3n-de-paquetes-dentro-de-un-entorno]{Gestión de
+  paquetes dentro de un entorno}
+\item
+  \hyperref[12-conda-y-pip-cuxf3mo-combinarlos-correctamente]{Conda y
+  pip: cómo combinarlos correctamente}
+\item
+  \hyperref[13-actualizar-un-entorno-existente]{Actualizar un entorno
+  existente}
+\item
+  \hyperref[14-congelar-un-entorno-frozen-environments]{Congelar un
+  entorno (frozen environments)}
+\item
+  \hyperref[15-clonar-un-entorno]{Clonar un entorno}
+\item
+  \hyperref[16-exportar-entornos-formatos-y-estrategias]{Exportar
+  entornos: formatos y estrategias}
+\item
+  \hyperref[17-construir-entornos-iduxe9nticos-con-especificaciones-expluxedcitas]{Construir
+  entornos idénticos con especificaciones explícitas}
+\item
+  \hyperref[18-restaurar-un-entorno-a-una-revisiuxf3n-anterior]{Restaurar
+  un entorno a una revisión anterior}
+\item
+  \hyperref[19-eliminar-entornos]{Eliminar entornos}
+\item
+  \hyperref[20-variables-de-entorno-asociadas-a-un-entorno-conda]{Variables
+  de entorno asociadas a un entorno conda}
+\item
+  \hyperref[21-estrategia-de-entornos-por-propuxf3sito-para-tu-flujo-de-trabajo]{Estrategia
+  de entornos por propósito para tu flujo de trabajo}
+\item
+  \hyperref[22-environmentyml-de-referencia-para-cada-entorno]{\texttt{environment.yml}
+  de referencia para cada entorno}
+\item
+  \hyperref[23-reproducibilidad-y-colaboraciuxf3n-vuxeda-git]{Reproducibilidad
+  y colaboración vía Git}
+\item
+  \hyperref[24-integraciuxf3n-con-jupyter-lab]{Integración con Jupyter
+  Lab}
+\item
+  \hyperref[25-integraciuxf3n-con-vs-code]{Integración con VS Code}
+\item
+  \hyperref[26-mamba-como-acelerador]{Mamba como acelerador}
+\item
+  \hyperref[27-resoluciuxf3n-de-problemas-comunes]{Resolución de
+  problemas comunes}
+\item
+  \hyperref[28-checklist-de-buenas-pruxe1cticas]{Checklist de buenas
+  prácticas}
+\item
+  \hyperref[29-referencia-ruxe1pida-de-comandos]{Referencia rápida de
+  comandos}
+\item
+  \hyperref[30-referencias-oficiales]{Referencias oficiales}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1. Conceptos fundamentales: bibliotecas y
+repositorios}\label{conceptos-fundamentales-bibliotecas-y-repositorios}
+
+Antes de gestionar entornos, conviene fijar dos términos que la
+documentación oficial de conda distingue:
 
 \begin{itemize}
 \tightlist
 \item
-  Conflictos de versiones (pandas 1.5 vs 2.0)
+  \textbf{Canal (\emph{channel})}: una ubicación (típicamente una URL)
+  donde se almacenan paquetes conda. El comando \texttt{conda} busca,
+  por defecto, en un conjunto predeterminado de canales, y los paquetes
+  se descargan y actualizan automáticamente desde el canal por defecto
+  (\texttt{repo.anaconda.com/pkgs/}). El canal comunitario más usado
+  para ciencia de datos es \textbf{\texttt{conda-forge}}.
 \item
-  Dependencias rotas al actualizar
-\item
-  Imposible reproducir análisis antiguos
-\item
-  Proyectos diferentes interfieren entre sí
+  \textbf{Entorno (\emph{environment})}: una biblioteca de paquetes
+  aislada y autocontenida, con su propia versión de Python y su propio
+  conjunto de paquetes, independiente de cualquier otro entorno o de la
+  biblioteca de sistema.
 \end{itemize}
 
-\textbf{Solución:} Un entorno aislado por proyecto o tipo de trabajo.
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\subsection{Principios Fundamentales}\label{principios-fundamentales}
+\subsection{2. Filosofía de entornos
+separados}\label{filosofuxeda-de-entornos-separados}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  \textbf{NUNCA instalar paquetes en base}
+\textbf{El problema sin entornos}: sin aislamiento, todos los paquetes
+comparten el mismo espacio. Esto provoca conflictos de versiones (por
+ejemplo \texttt{pandas\ 1.5} vs \texttt{pandas\ 2.0} requeridos por
+proyectos distintos), dependencias rotas al actualizar, imposibilidad de
+reproducir análisis antiguos, y proyectos que interfieren entre sí.
+
+\textbf{La solución}: un entorno aislado por proyecto o por tipo de
+trabajo.
+
+\subsubsection{\texorpdfstring{2.1. Principio fundamental: nunca
+instalar paquetes en
+\texttt{base}}{2.1. Principio fundamental: nunca instalar paquetes en base}}\label{principio-fundamental-nunca-instalar-paquetes-en-base}
+
+El entorno \texttt{base} es el que conda activa por defecto al
+inicializar la shell. Instalar paquetes de proyecto directamente ahí
+termina, con el tiempo, recreando el mismo problema que los entornos
+buscan evitar: un único espacio compartido y contaminado.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# INCORRECTO}
 \ExtensionTok{conda}\NormalTok{ activate base}
-\ExtensionTok{mamba}\NormalTok{ install pandas  }\CommentTok{\# NO HACER ESTO}
+\ExtensionTok{mamba}\NormalTok{ install pandas   }\CommentTok{\# NO HACER ESTO}
 
 \CommentTok{\# CORRECTO}
 \ExtensionTok{conda}\NormalTok{ activate mi{-}proyecto}
-\ExtensionTok{mamba}\NormalTok{ install pandas  }\CommentTok{\# Instalar en entorno específico}
+\ExtensionTok{mamba}\NormalTok{ install pandas   }\CommentTok{\# instalar en el entorno específico}
 \end{Highlighting}
 \end{Shaded}
-\item
-  \textbf{Un entorno por propósito}
 
-  \begin{itemize}
-  \tightlist
-  \item
-    Blog → entorno \texttt{econblog}
-  \item
-    Scripts → entorno \texttt{scripts-env}
-  \item
-    Análisis temporal → entorno desechable
-  \end{itemize}
-\item
-  \textbf{Documentar dependencias}
+\texttt{base} debería contener, como máximo, conda/mamba mismos y
+herramientas de gestión de entornos; nada de las dependencias de un
+proyecto particular.
 
-  \begin{itemize}
-  \tightlist
-  \item
-    Siempre crear \texttt{environment.yml}
-  \item
-    Mantener actualizado el archivo
-  \item
-    Versionar en Git
-  \end{itemize}
-\item
-  \textbf{Entornos reproducibles}
+\subsubsection{2.2. Un entorno por propósito, no por proyecto
+individual}\label{un-entorno-por-propuxf3sito-no-por-proyecto-individual}
 
-  \begin{itemize}
-  \tightlist
-  \item
-    Especificar versiones exactas cuando sea crítico
-  \item
-    Usar canales consistentes (conda-forge)
-  \item
-    Exportar entornos regularmente
-  \end{itemize}
+No es necesario (ni conveniente) crear un entorno nuevo por cada
+repositorio. La estrategia más sostenible es agrupar proyectos que
+comparten el mismo conjunto de dependencias bajo un mismo entorno con
+nombre temático (por ejemplo \texttt{econblog}, \texttt{scripts-env}),
+reservando entornos dedicados para casos con requisitos claramente
+distintos (paquetes pesados, versiones fijas para estudiantes, etc.).
+Esto se desarrolla con detalle en la sección 21.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3. Creación de entornos}\label{creaciuxf3n-de-entornos}
+
+\subsubsection{3.1. Crear un entorno
+vacío}\label{crear-un-entorno-vacuxedo}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ create }\AttributeTok{{-}{-}name}\NormalTok{ mi{-}entorno}
+\end{Highlighting}
+\end{Shaded}
+
+Cuando conda pregunte si proceder, escribe \texttt{y}. Esto crea el
+entorno en el directorio \texttt{envs/} de tu instalación, sin paquetes
+instalados.
+
+\subsubsection{3.2. Crear un entorno con una versión específica de
+Python}\label{crear-un-entorno-con-una-versiuxf3n-especuxedfica-de-python}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ create }\AttributeTok{{-}n}\NormalTok{ myenv python=3.9}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{3.3. Crear un entorno con un paquete
+específico}\label{crear-un-entorno-con-un-paquete-especuxedfico}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ create }\AttributeTok{{-}n}\NormalTok{ myenv scipy}
+\end{Highlighting}
+\end{Shaded}
+
+o, equivalentemente, en dos pasos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ create }\AttributeTok{{-}n}\NormalTok{ myenv python}
+\ExtensionTok{conda}\NormalTok{ install }\AttributeTok{{-}n}\NormalTok{ myenv scipy}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{3.4. Crear un entorno con una versión específica de un
+paquete}\label{crear-un-entorno-con-una-versiuxf3n-especuxedfica-de-un-paquete}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ create }\AttributeTok{{-}n}\NormalTok{ myenv scipy=0.17.3}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{3.5. Crear un entorno con Python y múltiples paquetes a
+la
+vez}\label{crear-un-entorno-con-python-y-muxfaltiples-paquetes-a-la-vez}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ create }\AttributeTok{{-}n}\NormalTok{ myenv python=3.9 scipy=0.17.3 astroid babel}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Recomendación oficial importante}: instala todos los programas
+que quieras en un entorno \textbf{al mismo tiempo}. Instalarlos uno por
+uno, en comandos separados, puede provocar conflictos de dependencias
+que un único comando de resolución conjunta evitaría.
+\end{quote}
+
+\subsubsection{3.6. Paquetes por defecto en cada entorno
+nuevo}\label{paquetes-por-defecto-en-cada-entorno-nuevo}
+
+Para que conda instale automáticamente pip (u otro programa) cada vez
+que creas un entorno nuevo, agrega los paquetes por defecto a la sección
+\texttt{create\_default\_packages} de tu archivo \texttt{.condarc}. Si
+en un caso puntual no deseas esos paquetes por defecto:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ create }\AttributeTok{{-}{-}no{-}default{-}packages} \AttributeTok{{-}n}\NormalTok{ myenv python}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{\texorpdfstring{4. Creación de entornos desde
+\texttt{environment.yml}}{4. Creación de entornos desde environment.yml}}\label{creaciuxf3n-de-entornos-desde-environment.yml}
+
+Este es el método recomendado para entornos reproducibles y
+compartibles, y el que usarás en la práctica para tus proyectos (ver
+sección 22).
+
+\subsubsection{\texorpdfstring{4.1. Estructura básica de un
+\texttt{environment.yml}}{4.1. Estructura básica de un environment.yml}}\label{estructura-buxe1sica-de-un-environment.yml}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# environment.yml}
+\FunctionTok{name}\KeywordTok{:}\AttributeTok{ myenv}
+\FunctionTok{channels}\KeywordTok{:}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ conda{-}forge}
+\FunctionTok{dependencies}\KeywordTok{:}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ python}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ numpy}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{4.2. Crear el entorno desde el
+archivo}\label{crear-el-entorno-desde-el-archivo}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ create }\AttributeTok{{-}{-}file}\NormalTok{ environment.yml}
+\end{Highlighting}
+\end{Shaded}
+
+El nombre del entorno se toma del campo \texttt{name:} dentro del propio
+archivo.
+
+\begin{quote}
+\textbf{Nota oficial sobre sintaxis histórica}: crear entornos desde
+archivos YAML solía hacerse con
+\texttt{conda\ env\ create\ -\/-file\ \textless{}archivo\textgreater{}}.
+Esta forma \textbf{sigue funcionando} y se mantiene por compatibilidad
+con scripts y automatizaciones existentes, pero
+\texttt{conda\ create\ -\/-file} es ahora la forma preferida según la
+documentación oficial.
+\end{quote}
+
+\subsubsection{4.3. Activar y verificar}\label{activar-y-verificar}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ activate myenv}
+\ExtensionTok{conda}\NormalTok{ env list}
+\end{Highlighting}
+\end{Shaded}
+
+(también puedes usar \texttt{conda\ info\ -\/-envs}, equivalente).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5. Ubicación de entornos: por nombre vs.~por
+prefijo}\label{ubicaciuxf3n-de-entornos-por-nombre-vs.-por-prefijo}
+
+\subsubsection{5.1. Entornos por nombre (comportamiento por
+defecto)}\label{entornos-por-nombre-comportamiento-por-defecto}
+
+Por defecto, los entornos creados con \texttt{-\/-name}/\texttt{-n}
+viven en la carpeta \texttt{envs/} de tu instalación de conda (por
+ejemplo \texttt{\textasciitilde{}/miniconda3/envs/}).
+
+\subsubsection{5.2. Entornos por prefijo (ubicación
+personalizada)}\label{entornos-por-prefijo-ubicaciuxf3n-personalizada}
+
+Puedes controlar dónde vive un entorno indicando una ruta de destino con
+\texttt{-\/-prefix}/\texttt{-p}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ create }\AttributeTok{{-}{-}prefix}\NormalTok{ ./envs jupyterlab=3.2 matplotlib=3.5 numpy=1.21}
+\end{Highlighting}
+\end{Shaded}
+
+Se activa igual que un entorno por nombre, pero usando la ruta:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ activate ./envs}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Ventajas documentadas oficialmente de usar \texttt{-\/-prefix}
+dentro de la carpeta del proyecto}:
+
+\begin{itemize}
+\tightlist
+\item
+  Es fácil saber, con solo ver la estructura de carpetas, si tu proyecto
+  usa un entorno aislado (aparece como subcarpeta).
+\item
+  El proyecto queda más autocontenido: todo, incluido el software
+  requerido, vive dentro de un único directorio de proyecto.
+\item
+  Te permite reutilizar el mismo nombre de subcarpeta (por ejemplo
+  \texttt{envs} o \texttt{env}) en todos tus proyectos, en vez de tener
+  que inventar un nombre distinto para cada entorno.
+\end{itemize}
+
+\textbf{Consideraciones a tener en cuenta} si usas \texttt{-\/-prefix}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Conda ya no puede encontrar tu entorno con la bandera
+  \texttt{-\/-name}; generalmente necesitarás pasar \texttt{-\/-prefix}
+  junto con la ruta completa del entorno.
+\item
+  Tu prompt mostrará la ruta absoluta completa del entorno activo en vez
+  de su nombre, lo cual puede resultar en prefijos largos en la
+  terminal, por ejemplo:
 \end{enumerate}
 
-\section{Estrategia de Entornos para Tus
-Proyectos}\label{estrategia-de-entornos-para-tus-proyectos}
-
-\subsection{Mapa de Entornos
-Recomendado}\label{mapa-de-entornos-recomendado}
-
 \begin{verbatim}
-~/miniconda3/
-├── envs/
-│   ├── econblog/          # Blogs académicos (epsilon-y-beta, axiomata, etc.)
-│   ├── scripts-env/       # Scripts de automatización
-│   ├── datascience/       # Análisis avanzado temporal
-│   └── teaching/          # Material educativo (notebooks para estudiantes)
+(/home/achalmaedison/Proyectos/mi-proyecto/envs) $
 \end{verbatim}
 
-\subsection{Matriz de Decisión}\label{matriz-de-decisiuxf3n}
+Para evitar ese prefijo largo, ajusta la configuración
+\texttt{env\_prompt} en tu \texttt{.condarc}:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ config }\AttributeTok{{-}{-}set}\NormalTok{ env\_prompt }\StringTok{\textquotesingle{}(\{name\})\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+Esto edita (o crea) tu archivo \texttt{.condarc}, y a partir de ahí el
+prompt mostrará solo el nombre genérico del entorno (el nombre de su
+carpeta raíz):
+
+\begin{verbatim}
+$ cd project-directory
+$ conda activate ./env
+(env) project-directory $
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6. Plataforma de destino de un
+entorno}\label{plataforma-de-destino-de-un-entorno}
+
+Por defecto, conda crea entornos dirigidos a la plataforma sobre la que
+se está ejecutando. Puedes consultar tu plataforma actual con
+\texttt{conda\ info} (campo \texttt{platform}).
+
+En casos avanzados, puedes especificar una plataforma distinta con la
+bandera \texttt{-\/-platform}, disponible en \texttt{conda\ create} y
+\texttt{conda\ env\ create}. Por ejemplo, para crear un entorno
+orientado a procesadores Intel desde una Mac con Apple Silicon (emulado
+vía Rosetta):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ create }\AttributeTok{{-}{-}platform}\NormalTok{ osx{-}64 }\AttributeTok{{-}{-}name}\NormalTok{ python{-}x64 python}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Nota oficial}: no se puede especificar \texttt{-\/-platform}
+para entornos ya existentes; una vez creado, el entorno queda anotado
+con esa configuración y las operaciones posteriores recuerdan la
+plataforma de destino. La documentación oficial también advierte que
+especificar un sistema operativo distinto (por ejemplo, crear un entorno
+Linux desde macOS) no se recomienda fuera de operaciones
+\texttt{-\/-dry-run}, ya que suele fallar por paquetes virtuales
+faltantes o por incompatibilidades de sistema de archivos.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7. Activación y
+desactivación}\label{activaciuxf3n-y-desactivaciuxf3n}
+
+\subsubsection{7.1. Qué hace realmente la
+activación}\label{quuxe9-hace-realmente-la-activaciuxf3n}
+
+Activar un entorno cumple dos funciones principales: añade entradas al
+\texttt{PATH} correspondientes al entorno, y ejecuta cualquier script de
+activación que el entorno pueda contener (estos scripts son cómo los
+paquetes configuran variables de entorno arbitrarias necesarias para su
+funcionamiento). La activación antepone rutas al \texttt{PATH} solo
+mientras el entorno está activo en esa sesión de terminal; no es un
+cambio global del sistema.
+
+\begin{quote}
+\textbf{Advertencia oficial importante}: durante la instalación de
+Anaconda/Miniconda existe la opción ``Add Anaconda to my PATH
+environment variable'' --- \textbf{no se recomienda usarla}, porque
+\emph{añade} (append) Anaconda al PATH sin llamar a los scripts de
+activación correspondientes. La forma correcta de integrar conda con tu
+shell es \texttt{conda\ init} (ver sección 8), no esa casilla del
+instalador.
+\end{quote}
+
+\subsubsection{7.2. Activar un entorno}\label{activar-un-entorno}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ activate myenv}
+\end{Highlighting}
+\end{Shaded}
+
+(sustituye \texttt{myenv} por el nombre del entorno, o por la ruta si lo
+creaste con \texttt{-\/-prefix}).
+
+Si ves una advertencia indicando que el intérprete de Python está en un
+entorno conda pero el entorno no fue activado correctamente, significa
+que necesitas activar el entorno apropiadamente (en Windows, ejecutando
+\texttt{c:\textbackslash{}Anaconda3\textbackslash{}Scripts\textbackslash{}activate}
+si es necesario).
+
+\begin{quote}
+\textbf{Nota oficial sobre Windows}: Windows es especialmente sensible a
+una activación correcta, porque su cargador de bibliotecas no soporta el
+concepto de bibliotecas y ejecutables que saben dónde buscar sus propias
+dependencias (RPATH, como sí ocurre en Linux/macOS). Windows depende en
+cambio de un orden de búsqueda de bibliotecas de enlace dinámico. Si los
+entornos no están activos correctamente, las bibliotecas no se
+encontrarán y aparecerán muchos errores --- los errores de HTTP o SSL
+son comunes cuando el Python de un entorno hijo no puede encontrar la
+biblioteca OpenSSL necesaria.
+\end{quote}
+
+\subsubsection{7.3. Desactivar un entorno}\label{desactivar-un-entorno}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ deactivate}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Nota oficial}: para simplemente volver al entorno por defecto,
+es mejor llamar a \texttt{conda\ activate} sin especificar ningún
+entorno, en vez de intentar desactivar repetidamente. Si ejecutas
+\texttt{conda\ deactivate} estando en tu entorno \texttt{base}, podrías
+perder la capacidad de ejecutar \texttt{conda} en esa shell (no es
+grave: es local a esa sesión, basta con abrir una nueva terminal). Sin
+embargo, si el entorno fue activado con \texttt{-\/-stack} (o se apiló
+automáticamente), sí es preferible usar \texttt{conda\ deactivate} para
+deshacerlo correctamente.
+\end{quote}
+
+\subsubsection{7.4. Determinar tu entorno activo
+actual}\label{determinar-tu-entorno-activo-actual}
+
+Por defecto, el entorno activo se muestra entre paréntesis \texttt{()} o
+corchetes \texttt{{[}{]}} al inicio de tu prompt:
+
+\begin{verbatim}
+(myenv) $
+\end{verbatim}
+
+Si no ves esto, ejecuta \texttt{conda\ info\ -\/-envs}; tu entorno
+actual aparecerá marcado con un asterisco (\texttt{*}).
+
+Para deshabilitar/habilitar que el nombre del entorno aparezca en el
+prompt:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ config }\AttributeTok{{-}{-}set}\NormalTok{ changeps1 false   }\CommentTok{\# deshabilitar}
+\ExtensionTok{conda}\NormalTok{ config }\AttributeTok{{-}{-}set}\NormalTok{ changeps1 true    }\CommentTok{\# rehabilitar}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{\texorpdfstring{8. \texttt{conda\ init} e integración con
+shells}{8. conda init e integración con shells}}\label{conda-init-e-integraciuxf3n-con-shells}
+
+Versiones tempranas de conda requerían pasos manuales adicionales para
+que \texttt{conda\ activate} funcionara correctamente. Conda 4.4
+introdujo \texttt{conda\ activate}, y conda 4.6 añadió soporte de
+inicialización extensivo para que conda funcione de forma más rápida y
+menos disruptiva en una amplia variedad de shells: \textbf{bash, zsh,
+csh, fish, xonsh, y más}. Esto es lo que ejecuta el instalador cuando
+aceptas inicializar conda (ver guía de instalación).
+
+\begin{quote}
+\textbf{Relevante para tu configuración (zsh + kitty)}: dado que tu
+shell por defecto es \texttt{zsh}, \texttt{conda\ init} detecta y
+modifica \texttt{\textasciitilde{}/.zshrc} automáticamente. Si en algún
+contexto necesitas integrar conda con \texttt{fish} además de
+\texttt{zsh}, puedes ejecutar \texttt{conda\ init\ fish} adicionalmente;
+ambas inicializaciones pueden coexistir.
+\end{quote}
+
+\subsubsection{\texorpdfstring{8.1. Inicialización mínima
+(\texttt{-\/-condabin})}{8.1. Inicialización mínima (-\/-condabin)}}\label{inicializaciuxf3n-muxednima---condabin}
+
+Si prefieres no instalar una función de shell completa en tu perfil,
+\texttt{conda\ init\ -\/-condabin} añade únicamente el directorio
+\texttt{\$CONDA\_PREFIX/condabin/} al \texttt{PATH}. Esa carpeta solo
+contiene el ejecutable \texttt{conda}, por lo que es mínimamente
+invasiva.
+
+\subsubsection{8.2. Activación automática del entorno por
+defecto}\label{activaciuxf3n-automuxe1tica-del-entorno-por-defecto}
+
+El ajuste \texttt{auto\_activate} (booleano) controla si conda activa
+automáticamente el entorno por defecto cada vez que arranca tu shell. El
+comando \texttt{conda} estará disponible de cualquier forma, pero sin
+activar el entorno, ningún otro programa del entorno por defecto estará
+disponible hasta que lo actives explícitamente con
+\texttt{conda\ activate}.
+
+El entorno a activar por defecto se configura con:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{default\_activation\_env:}\NormalTok{ str}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+Algunas personas desactivan \texttt{auto\_activate} para acelerar el
+arranque de su shell, o para evitar que software instalado vía conda
+oculte automáticamente otro software del sistema.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{\texorpdfstring{9. Activación anidada
+(\emph{stacking})}{9. Activación anidada (stacking)}}\label{activaciuxf3n-anidada-stacking}
+
+Por defecto, \texttt{conda\ activate} \textbf{desactiva} el entorno
+actual antes de activar el nuevo, y lo reactiva al desactivar el nuevo.
+A veces interesa conservar las entradas de \texttt{PATH} del entorno
+actual para seguir teniendo acceso fácil a programas de línea de
+comandos de ese primer entorno (común cuando ciertas utilidades están
+instaladas en el entorno por defecto).
+
+Para conservar el entorno actual en el \texttt{PATH} al activar uno
+nuevo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ activate }\AttributeTok{{-}{-}stack}\NormalTok{ myenv}
+\end{Highlighting}
+\end{Shaded}
+
+Para que esto ocurra automáticamente siempre que actives un entorno
+desde el entorno más externo (típicamente el entorno por defecto):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ config }\AttributeTok{{-}{-}set}\NormalTok{ auto\_stack 1}
+\end{Highlighting}
+\end{Shaded}
+
+Puedes especificar un número mayor para permitir niveles más profundos
+de apilamiento automático, aunque la documentación \textbf{no lo
+recomienda}, ya que niveles más profundos de stacking tienden a generar
+confusión.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{10. Gestión de canales}\label{gestiuxf3n-de-canales}
+
+\subsubsection{10.1. Qué son y cómo se resuelven
+colisiones}\label{quuxe9-son-y-cuxf3mo-se-resuelven-colisiones}
+
+Los canales son las ubicaciones donde se almacenan los paquetes.
+Distintos canales pueden tener el mismo paquete, por lo que conda debe
+resolver estas colisiones. No hay colisiones si usas únicamente el canal
+por defecto, ni si todos tus canales contienen paquetes que no se
+solapan entre sí.
+
+Cuando hay colisión, conda procesa los paquetes con el mismo nombre
+across todos los canales listados de la siguiente forma:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Ordena los paquetes de mayor a menor prioridad de canal.
+\item
+  Entre paquetes empatados en prioridad de canal, ordena de mayor a
+  menor número de versión.
+\item
+  Entre paquetes aún empatados (mismo canal, misma versión), ordena de
+  mayor a menor número de build.
+\item
+  Instala el primer paquete de la lista ordenada que satisface las
+  especificaciones de instalación.
+\end{enumerate}
+
+\subsubsection{10.2. Agregar un canal}\label{agregar-un-canal}
+
+Para añadir un canal al principio de la lista (máxima prioridad):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ config }\AttributeTok{{-}{-}add}\NormalTok{ channels new\_channel}
+\end{Highlighting}
+\end{Shaded}
+
+(equivalente explícito:
+\texttt{conda\ config\ -\/-prepend\ channels\ new\_channel}).
+
+Para añadirlo al final (mínima prioridad):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ config }\AttributeTok{{-}{-}append}\NormalTok{ channels new\_channel}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{10.3. Prioridad estricta de canales
+(recomendada)}\label{prioridad-estricta-de-canales-recomendada}
+
+Desde la versión 4.6.0, conda ofrece la función de \textbf{prioridad
+estricta de canales}, que puede acelerar dramáticamente las operaciones
+de conda y reducir problemas de incompatibilidad entre paquetes. La
+documentación oficial \textbf{recomienda activar \texttt{strict} cuando
+sea posible}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ config }\AttributeTok{{-}{-}set}\NormalTok{ channel\_priority strict}
+\end{Highlighting}
+\end{Shaded}
+
+Valores posibles de \texttt{channel\_priority}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{strict}: los paquetes en canales de menor prioridad ni
+  siquiera se consideran si el mismo paquete existe en un canal de mayor
+  prioridad.
+\item
+  \texttt{flexible} (valor por defecto): el solver puede buscar en
+  canales de menor prioridad para satisfacer dependencias, en vez de
+  fallar con un error de no-satisfacibilidad.
+\item
+  \texttt{disabled}: la versión del paquete tiene precedencia; la
+  prioridad de canal configurada solo se usa para desempatar.
+\end{itemize}
+
+\subsubsection{\texorpdfstring{10.4. Canal por defecto de tu proyecto:
+\texttt{conda-forge}}{10.4. Canal por defecto de tu proyecto: conda-forge}}\label{canal-por-defecto-de-tu-proyecto-conda-forge}
+
+Siguiendo la convención que ya usas en tus \texttt{environment.yml}
+(econblog, scripts-env, etc.), \texttt{conda-forge} es el canal
+comunitario estándar para ciencia de datos en el ecosistema conda, con
+una cobertura de paquetes mucho más amplia que el canal
+\texttt{defaults} de Anaconda Inc.~Puedes especificar un canal puntual
+para un solo paquete dentro de un \texttt{environment.yml} con la
+sintaxis \texttt{canal::paquete}, sin necesidad de que ese canal esté en
+la lista \texttt{channels:} general (ver sección 22 para ejemplos
+completos).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{11. Gestión de paquetes dentro de un
+entorno}\label{gestiuxf3n-de-paquetes-dentro-de-un-entorno}
+
+\subsubsection{11.1. Listar paquetes
+instalados}\label{listar-paquetes-instalados}
+
+Entorno activado:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ list}
+\end{Highlighting}
+\end{Shaded}
+
+Entorno no activado, especificándolo por nombre:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ list }\AttributeTok{{-}n}\NormalTok{ myenv}
+\end{Highlighting}
+\end{Shaded}
+
+Verificar si un paquete específico está instalado:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ list }\AttributeTok{{-}n}\NormalTok{ myenv scipy}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{11.2. Instalar paquetes}\label{instalar-paquetes}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ install paquete}
+\ExtensionTok{conda}\NormalTok{ install paquete=1.0.0          }\CommentTok{\# versión específica}
+\ExtensionTok{conda}\NormalTok{ install }\AttributeTok{{-}c}\NormalTok{ conda{-}forge paquete  }\CommentTok{\# desde un canal específico}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{11.3. Actualizar paquetes}\label{actualizar-paquetes}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ update paquete}
+\ExtensionTok{conda}\NormalTok{ update }\AttributeTok{{-}{-}all}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{11.4. Buscar paquetes}\label{buscar-paquetes}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ search paquete}
+\ExtensionTok{conda}\NormalTok{ search paquete }\AttributeTok{{-}{-}info}   \CommentTok{\# información detallada}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{12. Conda y pip: cómo combinarlos
+correctamente}\label{conda-y-pip-cuxf3mo-combinarlos-correctamente}
+
+Es habitual necesitar paquetes que solo existen en PyPI (no en
+conda-forge ni en el canal por defecto). La documentación oficial es
+explícita sobre el orden y la disciplina necesarios para que esto no
+genere conflictos.
+
+\subsubsection{12.1. Instalar pip dentro de un entorno
+conda}\label{instalar-pip-dentro-de-un-entorno-conda}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ install }\AttributeTok{{-}n}\NormalTok{ myenv pip}
+\ExtensionTok{conda}\NormalTok{ activate myenv}
+\ExtensionTok{pip} \OperatorTok{\textless{}}\NormalTok{subcomando{-}de{-}pip}\OperatorTok{\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{12.2. Reglas oficiales para combinar conda y
+pip}\label{reglas-oficiales-para-combinar-conda-y-pip}
+
+\textbf{Usa pip solo después de conda:} - Instala tantos requisitos como
+sea posible con conda, y usa pip solo para lo que falte. - pip debería
+ejecutarse con \texttt{-\/-upgrade-strategy\ only-if-needed} (que es, de
+hecho, el comportamiento por defecto). - No uses pip con el argumento
+\texttt{-\/-user}; evita instalaciones ``para todos los usuarios''.
+
+\textbf{Usa entornos conda para aislamiento:} - Crea un entorno conda
+específicamente para aislar cualquier cambio que haga pip. - Los
+entornos ocupan poco espacio adicional gracias a los \emph{hard links}
+que usa conda internamente. - Ten cuidado de no ejecutar pip en el
+entorno raíz/\texttt{base}.
+
+\textbf{Recrea el entorno si necesitas hacer cambios:} - Una vez que pip
+ha sido usado, conda \textbf{ya no es consciente} de esos cambios. -
+Para instalar paquetes conda adicionales después de haber usado pip, lo
+más seguro es \textbf{recrear el entorno} desde cero, en vez de
+simplemente correr conda de nuevo encima.
+
+\textbf{Guarda los requisitos de conda y pip en archivos de texto:} -
+Los requisitos de conda pueden pasarse vía el argumento
+\texttt{-\/-file}. - pip acepta una lista de paquetes Python con
+\texttt{-r}/\texttt{-\/-requirements}. - \texttt{conda\ env} exporta o
+crea entornos basados en un archivo combinado de requisitos conda y pip
+(ver sección 22).
+
+\subsubsection{12.3. Orden correcto en la
+práctica}\label{orden-correcto-en-la-pruxe1ctica}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{mamba}\NormalTok{ install pandas matplotlib }\AttributeTok{{-}y}   \CommentTok{\# 1. primero conda/mamba}
+\ExtensionTok{pip}\NormalTok{ install wooldridge               }\CommentTok{\# 2. luego pip, solo lo que falte}
+
+\CommentTok{\# NUNCA mezclar en el mismo comando o cadena:}
+\CommentTok{\# conda install pandas \&\& pip install wooldridge   \# evitar este patrón}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{13. Actualizar un entorno
+existente}\label{actualizar-un-entorno-existente}
+
+Puede que necesites actualizar tu entorno por varias razones: una
+dependencia central lanzó una nueva versión, necesitas un paquete
+adicional para un análisis, o encontraste un paquete mejor y ya no
+necesitas el anterior.
+
+En cualquiera de estos casos, actualiza el contenido de tu
+\texttt{environment.yml} y luego ejecuta:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ env update }\AttributeTok{{-}{-}file}\NormalTok{ environment.yml }\AttributeTok{{-}{-}prune}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Nota oficial sobre \texttt{-\/-prune}}: esta opción hace que
+conda elimine del entorno cualquier dependencia que ya no sea requerida
+según el archivo actualizado. Sin \texttt{-\/-prune}, los paquetes
+removidos del \texttt{environment.yml} permanecerían instalados aunque
+ya no estén declarados.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{14. Congelar un entorno (frozen
+environments)}\label{congelar-un-entorno-frozen-environments}
+
+Una función relativamente reciente del estándar conda (CEP 22) introduce
+un archivo marcador de entorno que indica a conda que \textbf{no permita
+modificaciones} en un entorno dado.
+
+Al intentar añadir, actualizar o eliminar un paquete en un entorno
+congelado, obtendrás por defecto un error:
+
+\begin{verbatim}
+EnvironmentIsFrozenError: Cannot not modify '~/.conda/envs/my-env'.
+The environment is marked as frozen. You can ignore this error with
+the `--override-frozen` flag, at your own risk.
+\end{verbatim}
+
+Es posible pasar la bandera \texttt{-\/-override-frozen} para forzar la
+modificación, pero la documentación oficial \textbf{no lo recomienda}:
+solo debería usarse por usuarios avanzados conscientes de los riesgos y
+capaces de resolver las posibles complicaciones derivadas de esa
+operación.
+
+\begin{quote}
+\textbf{Caso de uso relevante para ti}: esto encaja con tu entorno
+\texttt{teaching}, donde quieres versiones estables y probadas para tus
+estudiantes; congelar ese entorno una vez validado evita modificaciones
+accidentales que rompan el material de clase a mitad de semestre.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{15. Clonar un entorno}\label{clonar-un-entorno}
+
+Para hacer una copia exacta de un entorno existente:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ create }\AttributeTok{{-}{-}name}\NormalTok{ myclone }\AttributeTok{{-}{-}clone}\NormalTok{ myenv}
+\end{Highlighting}
+\end{Shaded}
+
+(sustituye \texttt{myclone} por el nombre del nuevo entorno, y
+\texttt{myenv} por el entorno existente a copiar).
+
+Verificar que la copia se haya creado:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ info }\AttributeTok{{-}{-}envs}
+\end{Highlighting}
+\end{Shaded}
+
+Deberías ver ambos entornos ---el original y la copia nueva--- en la
+lista.
+
+\begin{quote}
+\textbf{Uso práctico}: clonar es ideal para experimentar con cambios
+riesgosos (por ejemplo, probar una actualización mayor de
+\texttt{pandas} o \texttt{statsmodels}) sin arriesgar tu entorno de
+producción; si el experimento sale mal, simplemente eliminas el clon.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{16. Exportar entornos: formatos y
+estrategias}\label{exportar-entornos-formatos-y-estrategias}
+
+\subsubsection{\texorpdfstring{16.1. El comando moderno
+\texttt{conda\ export} (conda 25.7.x en
+adelante)}{16.1. El comando moderno conda export (conda 25.7.x en adelante)}}\label{el-comando-moderno-conda-export-conda-25.7.x-en-adelante}
+
+Según la documentación oficial, \texttt{conda\ export} fue
+significativamente mejorado con una arquitectura basada en plugins,
+soporte de múltiples formatos de salida, y funcionalidad ampliada.
+
+\textbf{Formatos disponibles:}
+
+{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3846}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3462}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2692}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
-Proyecto
+Formato
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Descripción
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{environment-yaml} & Formato YAML multiplataforma (por
+defecto) \\
+\texttt{environment-json} & Formato JSON multiplataforma \\
+\texttt{explicit} & URLs explícitas específicas de la plataforma
+(compatible con CEP 23) \\
+\texttt{requirements} & Formato de requisitos específico de la
+plataforma \\
+\end{longtable}
+}
+
+\textbf{Uso básico:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ export }\OperatorTok{\textgreater{}}\NormalTok{ environment.yaml                          }\CommentTok{\# YAML por defecto}
+\ExtensionTok{conda}\NormalTok{ export }\AttributeTok{{-}{-}name}\NormalTok{ myenv }\AttributeTok{{-}{-}format}\OperatorTok{=}\NormalTok{environment{-}yaml       }\CommentTok{\# entorno específico}
+\ExtensionTok{conda}\NormalTok{ export }\AttributeTok{{-}{-}file}\OperatorTok{=}\NormalTok{environment.yaml                      }\CommentTok{\# detección automática por extensión}
+\ExtensionTok{conda}\NormalTok{ export }\AttributeTok{{-}{-}file}\OperatorTok{=}\NormalTok{explicit.txt                          }\CommentTok{\# detecta formato explícito}
+\ExtensionTok{conda}\NormalTok{ export }\AttributeTok{{-}{-}file}\OperatorTok{=}\NormalTok{requirements.txt                       }\CommentTok{\# detecta formato requirements}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Formato explícito} (reproducción exacta en la misma plataforma):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ export }\AttributeTok{{-}{-}format}\OperatorTok{=}\NormalTok{explicit }\AttributeTok{{-}{-}file}\OperatorTok{=}\NormalTok{explicit.txt}
+\end{Highlighting}
+\end{Shaded}
+
+Genera URLs completas de paquetes:
+
+\begin{verbatim}
+@EXPLICIT
+https://repo.anaconda.com/pkgs/main/osx-64/python-3.9.7-h88f2d9e_0.tar.bz2
+https://repo.anaconda.com/pkgs/main/osx-64/numpy-1.21.0-py39h2e5f516_0.tar.bz2
+\end{verbatim}
+
+\subsubsection{\texorpdfstring{16.2. Compatibilidad multiplataforma con
+\texttt{-\/-from-history}}{16.2. Compatibilidad multiplataforma con -\/-from-history}}\label{compatibilidad-multiplataforma-con---from-history}
+
+Para máxima portabilidad entre sistemas operativos (por ejemplo,
+exportar desde Kubuntu y restaurar en Windows), usa
+\texttt{-\/-from-history}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ export }\AttributeTok{{-}{-}from{-}history} \AttributeTok{{-}{-}format}\OperatorTok{=}\NormalTok{environment{-}yaml}
+\end{Highlighting}
+\end{Shaded}
+
+Esto exporta \textbf{únicamente los paquetes que instalaste
+explícitamente}, excluyendo dependencias específicas de plataforma que
+se resolvieron automáticamente. Si creas un entorno e instalas, por
+ejemplo, \texttt{python=3.7} y \texttt{codecov}, conda descargará e
+instalará numerosos paquetes adicionales para resolver dependencias;
+muchos de esos paquetes auxiliares podrían no ser compatibles entre
+plataformas. \texttt{-\/-from-history} exporta solo lo que tú elegiste
+explícitamente:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{name}\KeywordTok{:}\AttributeTok{ env{-}name}
+\FunctionTok{channels}\KeywordTok{:}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ conda{-}forge}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ defaults}
+\FunctionTok{dependencies}\KeywordTok{:}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ python=3.7}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ codecov}
+\FunctionTok{prefix}\KeywordTok{:}\AttributeTok{ /Users/username/anaconda3/envs/env{-}name}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Nota oficial}: la bandera \texttt{-\/-from-history} solo
+funciona con formatos estructurados (\texttt{environment-yaml},
+\texttt{environment-json}); no es compatible con los formatos de texto
+(\texttt{explicit}, \texttt{requirements}).
+\end{quote}
+
+\subsubsection{\texorpdfstring{16.3. El comando tradicional
+\texttt{conda\ env\ export}}{16.3. El comando tradicional conda env export}}\label{el-comando-tradicional-conda-env-export}
+
+También puedes usar el comando tradicional, exclusivo para YAML:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ activate myenv}
+\ExtensionTok{conda}\NormalTok{ env export }\OperatorTok{\textgreater{}}\NormalTok{ environment.yml}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Advertencia oficial}: si ya tienes un archivo
+\texttt{environment.yml} en tu directorio actual, será
+\textbf{sobrescrito} durante esta operación. Este archivo gestiona tanto
+los paquetes de pip como los de conda dentro del entorno.
+\end{quote}
+
+\subsubsection{\texorpdfstring{16.4. Crear un \texttt{environment.yml}
+manualmente}{16.4. Crear un environment.yml manualmente}}\label{crear-un-environment.yml-manualmente}
+
+También puedes escribir el archivo a mano, sin exportar desde un entorno
+existente:
+
+\textbf{Ejemplo simple:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{name}\KeywordTok{:}\AttributeTok{ stats}
+\FunctionTok{dependencies}\KeywordTok{:}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ numpy}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ pandas}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Ejemplo más completo, con canal específico por paquete y sección
+pip:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{name}\KeywordTok{:}\AttributeTok{ stats2}
+\FunctionTok{channels}\KeywordTok{:}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ javascript}
+\FunctionTok{dependencies}\KeywordTok{:}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ python=3.9}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ bokeh=2.4.2}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ conda{-}forge::numpy=1.21.*}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ nodejs=16.13.*}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ flask}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ pip}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{pip}\KeywordTok{:}
+\AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ Flask{-}Testing}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Notas sobre esta sintaxis (oficiales):}
+
+\begin{itemize}
+\tightlist
+\item
+  El uso del comodín \texttt{*} (por ejemplo \texttt{1.21.*}) mantiene
+  fijas las versiones mayor y menor, permitiendo cualquier número de
+  parche; esto te da actualizaciones de errores (\emph{bugfixes}) sin
+  perder consistencia en el entorno.
+\item
+  La sintaxis \texttt{canal::paquete} permite especificar de qué canal
+  instalar un paquete puntual, sin necesidad de que ese canal aparezca
+  en la lista \texttt{channels:} general --- útil si quieres que
+  \textbf{solo algunos} paquetes (no todos) vengan de un canal
+  comunitario como conda-forge.
+\item
+  Puedes excluir los canales por defecto agregando \texttt{nodefaults} a
+  la lista de canales:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{channels}\KeywordTok{:}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ javascript}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ nodefaults}
+\end{Highlighting}
+\end{Shaded}
+
+Esto equivale a pasar \texttt{-\/-override-channels} a la mayoría de
+comandos \texttt{conda}. Agregar \texttt{nodefaults} en un
+\texttt{environment.yml} afecta solo a ese entorno, mientras que quitar
+\texttt{defaults} de tu \texttt{.condarc} afectaría a todos tus
+entornos.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{17. Construir entornos idénticos con especificaciones
+explícitas}\label{construir-entornos-iduxe9nticos-con-especificaciones-expluxedcitas}
+
+Para reproducir un entorno de forma exacta en la \textbf{misma
+plataforma de sistema operativo} (misma máquina u otra distinta):
+
+\subsubsection{17.1. Generar la especificación
+explícita}\label{generar-la-especificaciuxf3n-expluxedcita}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ list }\AttributeTok{{-}{-}explicit}
+\end{Highlighting}
+\end{Shaded}
+
+Esto produce una lista como:
+
+\begin{verbatim}
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: osx-64
+@EXPLICIT
+https://repo.anaconda.com/pkgs/free/osx-64/mkl-11.3.3-0.tar.bz2
+https://repo.anaconda.com/pkgs/free/osx-64/numpy-1.11.1-py35_0.tar.bz2
+...
+\end{verbatim}
+
+Guardarlo en un archivo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ list }\AttributeTok{{-}{-}explicit} \OperatorTok{\textgreater{}}\NormalTok{ spec{-}file.txt}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Nota oficial}: un archivo de especificación explícita
+normalmente \textbf{no es multiplataforma}; por eso incluye un
+comentario como \texttt{\#\ platform:\ osx-64} indicando dónde se generó
+y dónde se sabe que funciona. En otras plataformas, los paquetes
+listados podrían no estar disponibles, o faltar dependencias para
+algunos paquetes clave.
+\end{quote}
+
+\subsubsection{17.2. Usar el archivo para crear un entorno
+idéntico}\label{usar-el-archivo-para-crear-un-entorno-iduxe9ntico}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ create }\AttributeTok{{-}{-}name}\NormalTok{ myenv }\AttributeTok{{-}{-}file}\NormalTok{ spec{-}file.txt}
+\end{Highlighting}
+\end{Shaded}
+
+O para instalar esos paquetes dentro de un entorno ya existente:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ install }\AttributeTok{{-}{-}name}\NormalTok{ myenv }\AttributeTok{{-}{-}file}\NormalTok{ spec{-}file.txt}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+Conda \textbf{no verifica} arquitectura ni dependencias al instalar
+desde un archivo de especificación. Para asegurar que funcione
+correctamente, el archivo debe haberse generado desde un entorno
+funcional, y usarse en la misma arquitectura, sistema operativo y
+plataforma (por ejemplo \texttt{linux-64} o \texttt{osx-64}).
+\end{quote}
+
+\subsubsection{17.3. Generar lockfiles explícitos sin crear un
+entorno}\label{generar-lockfiles-expluxedcitos-sin-crear-un-entorno}
+
+Si solo necesitas el archivo de bloqueo (\emph{lockfile}) sin tener que
+crear y luego borrar un entorno temporal, puedes invocar conda en modo
+JSON y procesar la salida con \texttt{jq} (necesitas tener \texttt{jq}
+instalado, por ejemplo vía \texttt{conda\ create\ -n\ jq\ jq} o el
+gestor de paquetes de tu sistema):
+
+\textbf{Linux/macOS:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{echo} \StringTok{"@EXPLICIT"} \OperatorTok{\textgreater{}}\NormalTok{ explicit.txt}
+\VariableTok{CONDA\_PKGS\_DIRS}\OperatorTok{=}\VariableTok{$(}\FunctionTok{mktemp} \AttributeTok{{-}d}\VariableTok{)} \ExtensionTok{conda}\NormalTok{ create }\AttributeTok{{-}{-}dry{-}run}\NormalTok{ MATCHSPECS\_AQUI }\AttributeTok{{-}{-}json} \KeywordTok{|} \ExtensionTok{jq} \AttributeTok{{-}r} \StringTok{\textquotesingle{}.actions.FETCH[] | .url + "\#" + .md5\textquotesingle{}} \OperatorTok{\textgreater{}\textgreater{}}\NormalTok{ explicit.txt}
+\end{Highlighting}
+\end{Shaded}
+
+El archivo \texttt{explicit.txt} resultante puede usarse para crear un
+nuevo entorno:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ create }\AttributeTok{{-}n}\NormalTok{ new{-}environment }\AttributeTok{{-}{-}file}\NormalTok{ explicit.txt}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{18. Restaurar un entorno a una revisión
+anterior}\label{restaurar-un-entorno-a-una-revisiuxf3n-anterior}
+
+Conda mantiene un historial de todos los cambios hechos a un entorno,
+permitiendo ``retroceder'' fácilmente a una versión previa.
+
+Listar el historial de cambios del entorno actual:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ list }\AttributeTok{{-}{-}revisions}
+\end{Highlighting}
+\end{Shaded}
+
+Restaurar a una revisión previa:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ install }\AttributeTok{{-}{-}revision}\OperatorTok{=}\NormalTok{REVNUM}
+\end{Highlighting}
+\end{Shaded}
+
+(o \texttt{conda\ install\ -\/-rev\ REVNUM}). Por ejemplo, para volver a
+la revisión 8:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ install }\AttributeTok{{-}{-}rev}\NormalTok{ 8}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Uso práctico}: esto es útil como red de seguridad rápida cuando
+una actualización de paquetes rompe algo y quieres revertir sin
+reconstruir el entorno entero desde un \texttt{environment.yml} de
+respaldo.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{19. Eliminar entornos}\label{eliminar-entornos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ remove }\AttributeTok{{-}{-}name}\NormalTok{ myenv }\AttributeTok{{-}{-}all}
+\end{Highlighting}
+\end{Shaded}
+
+(equivalente: \texttt{conda\ env\ remove\ -\/-name\ myenv}).
+
+Verificar que el entorno fue eliminado:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ info }\AttributeTok{{-}{-}envs}
+\end{Highlighting}
+\end{Shaded}
+
+El entorno eliminado ya no debería aparecer en la lista.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{20. Variables de entorno asociadas a un entorno
+conda}\label{variables-de-entorno-asociadas-a-un-entorno-conda}
+
+\subsubsection{20.1. Vía la API de configuración
+(recomendado)}\label{vuxeda-la-api-de-configuraciuxf3n-recomendado}
+
+La documentación oficial recomienda este método sobre escribir scripts
+de activación/desactivación manualmente, ya que estos últimos son
+ejecución de código arbitrario que puede no ser segura.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ create }\AttributeTok{{-}n}\NormalTok{ test{-}env}
+\ExtensionTok{conda}\NormalTok{ activate test{-}env}
+\ExtensionTok{conda}\NormalTok{ env config vars set my\_var=value}
+\ExtensionTok{conda}\NormalTok{ activate test{-}env   }\CommentTok{\# reactivar para que tome efecto}
+\end{Highlighting}
+\end{Shaded}
+
+Verificar:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{echo} \VariableTok{$my\_var}                    \CommentTok{\# \%my\_var\% en Windows}
+\ExtensionTok{conda}\NormalTok{ env config vars list}
+\end{Highlighting}
+\end{Shaded}
+
+Eliminar la variable:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ env config vars unset my\_var }\AttributeTok{{-}n}\NormalTok{ test{-}env}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+Las variables establecidas con \texttt{conda\ env\ config\ vars} se
+conservan en la salida de \texttt{conda\ env\ export}, y también pueden
+declararse directamente en el \texttt{environment.yml}:
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{name}\KeywordTok{:}\AttributeTok{ env{-}name}
+\FunctionTok{channels}\KeywordTok{:}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ conda{-}forge}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ defaults}
+\FunctionTok{dependencies}\KeywordTok{:}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ python=3.7}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ codecov}
+\FunctionTok{variables}\KeywordTok{:}
+\AttributeTok{  }\FunctionTok{VAR1}\KeywordTok{:}\AttributeTok{ valueA}
+\AttributeTok{  }\FunctionTok{VAR2}\KeywordTok{:}\AttributeTok{ valueB}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{20.2. Vía scripts de activación/desactivación
+(avanzado)}\label{vuxeda-scripts-de-activaciuxf3ndesactivaciuxf3n-avanzado}
+
+Si necesitas que un paquete propio o un flujo personalizado configure
+variables al activar un entorno, puedes crear scripts dedicados.
+
+\textbf{En Linux/macOS:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{cd} \VariableTok{$CONDA\_PREFIX}
+\FunctionTok{mkdir} \AttributeTok{{-}p}\NormalTok{ ./etc/conda/activate.d}
+\FunctionTok{mkdir} \AttributeTok{{-}p}\NormalTok{ ./etc/conda/deactivate.d}
+\FunctionTok{touch}\NormalTok{ ./etc/conda/activate.d/env\_vars.sh}
+\FunctionTok{touch}\NormalTok{ ./etc/conda/deactivate.d/env\_vars.sh}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{./etc/conda/activate.d/env\_vars.sh}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#!/bin/sh}
+\BuiltInTok{export} \VariableTok{MY\_KEY}\OperatorTok{=}\StringTok{\textquotesingle{}secret{-}key{-}value\textquotesingle{}}
+\BuiltInTok{export} \VariableTok{MY\_FILE}\OperatorTok{=}\NormalTok{/path/to/my/file/}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{./etc/conda/deactivate.d/env\_vars.sh}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#!/bin/sh}
+\BuiltInTok{unset} \VariableTok{MY\_KEY}
+\BuiltInTok{unset} \VariableTok{MY\_FILE}
+\end{Highlighting}
+\end{Shaded}
+
+Al ejecutar \texttt{conda\ activate\ analytics}, las variables se
+establecen; al ejecutar \texttt{conda\ deactivate}, se eliminan
+automáticamente.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{21. Estrategia de entornos por propósito para tu flujo de
+trabajo}\label{estrategia-de-entornos-por-propuxf3sito-para-tu-flujo-de-trabajo}
+
+Esta sección documenta la estrategia que ya implementaste y mantienes
+activamente, organizada según la matriz de decisión de tu publicación
+previa, ahora alineada con la sintaxis y mejores prácticas oficiales
+descritas arriba.
+
+\subsubsection{21.1. Mapa de entornos}\label{mapa-de-entornos}
+
+\begin{verbatim}
+~/miniconda3/envs/
+├── econblog/      # Blogs académicos (epsilon-y-beta, axiomata, methodica, etc.)
+├── scripts-env/   # Scripts de automatización (Quarto, Calibre, Zotero, LibreOffice, Linux)
+├── datascience/   # Análisis avanzado temporal (paquetes pesados: ML, deep learning)
+└── teaching/      # Material educativo con versiones fijas y estables
+\end{verbatim}
+
+\subsubsection{21.2. Matriz de decisión}\label{matriz-de-decisiuxf3n}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Proyecto / tarea
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Entorno
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -442,52 +1778,28 @@ Razón
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-epsilon-y-beta, axiomata, methodica & \texttt{econblog} & Comparten
-dependencias: Quarto, pandas, statsmodels \\
-Scripts Quarto, Calibre, Zotero & \texttt{scripts-env} & Scripts de
-automatización compartidos \\
-Análisis econométrico complejo & \texttt{datascience} & Paquetes pesados
-(tensorflow, pytorch) \\
-Notebooks para clases & \texttt{teaching} & Versiones estables para
-estudiantes \\
+epsilon-y-beta, axiomata, methodica, aequilibria, optimums,
+pecunia-fluxus, actus-mercator, res-publica, dialectica-y-mercado,
+numerus-scriptum & \texttt{econblog} & Comparten dependencias: Quarto,
+pandas, statsmodels \\
+Scripts de Quarto, Calibre, LibreOffice, Linux, Zotero &
+\texttt{scripts-env} & Automatización compartida, dependencias
+ligeras \\
+Análisis econométrico complejo, machine learning & \texttt{datascience}
+& Paquetes pesados (tensorflow, pytorch, xgboost) \\
+Notebooks para clases & \texttt{teaching} & Versiones estables y fijas
+para estudiantes \\
 \end{longtable}
+}
 
-\section{Entorno 1: econblog (Blogs
-Académicos)}\label{entorno-1-econblog-blogs-acaduxe9micos}
+\subsubsection{\texorpdfstring{21.3. Entorno
+\texttt{econblog}}{21.3. Entorno econblog}}\label{entorno-econblog}
 
-\subsection{Propósito}\label{propuxf3sito}
-
-\textbf{Blogs que usa este entorno:}
-
-\begin{itemize}
-\tightlist
-\item
-  epsilon-y-beta (Econometría)
-\item
-  axiomata (Matemáticas para economistas)
-\item
-  methodica (Metodología de investigación)
-\item
-  aequilibria (Macroeconomía)
-\item
-  optimums (Microeconomía)
-\item
-  pecunia-fluxus (Finanzas)
-\item
-  actus-mercator (Gestión empresarial)
-\item
-  res-publica (Gestión pública)
-\item
-  dialectica-y-mercado (Filosofía)
-\item
-  numerus-scriptum (Programación)
-\end{itemize}
-
-\subsection{Paso 1: Crear el Entorno}\label{paso-1-crear-el-entorno}
+\textbf{Creación inicial} (instalando todo de una vez, siguiendo la
+recomendación oficial de la sección 3.5):
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Crear entorno con paquetes fundamentales}
 \ExtensionTok{mamba}\NormalTok{ create }\AttributeTok{{-}n}\NormalTok{ econblog python=3.12 }\DataTypeTok{\textbackslash{}}
 \NormalTok{  jupyterlab }\DataTypeTok{\textbackslash{}}
 \NormalTok{  pandas }\DataTypeTok{\textbackslash{}}
@@ -507,17 +1819,11 @@ Académicos)}\label{entorno-1-econblog-blogs-acaduxe9micos}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Tiempo estimado:} 5-10 minutos (con mamba).
-
-\subsection{Paso 2: Activar y Agregar Paquetes
-Adicionales}\label{paso-2-activar-y-agregar-paquetes-adicionales}
+\textbf{Paquetes adicionales de conda-forge:}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Activar entorno}
 \ExtensionTok{conda}\NormalTok{ activate econblog}
-
-\CommentTok{\# Paquetes de conda{-}forge}
 \ExtensionTok{mamba}\NormalTok{ install }\AttributeTok{{-}c}\NormalTok{ conda{-}forge }\DataTypeTok{\textbackslash{}}
 \NormalTok{  jupyterlab{-}lsp }\DataTypeTok{\textbackslash{}}
 \NormalTok{  myst{-}parser }\DataTypeTok{\textbackslash{}}
@@ -525,8 +1831,14 @@ Adicionales}\label{paso-2-activar-y-agregar-paquetes-adicionales}
 \NormalTok{  ipywidgets }\DataTypeTok{\textbackslash{}}
 \NormalTok{  notebook }\DataTypeTok{\textbackslash{}}
   \AttributeTok{{-}y}
+\end{Highlighting}
+\end{Shaded}
 
-\CommentTok{\# Paquetes solo disponibles en PyPI}
+\textbf{Paquetes exclusivos de PyPI} (instalando con pip \emph{después}
+de conda, siguiendo la regla de la sección 12):
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \ExtensionTok{pip}\NormalTok{ install }\DataTypeTok{\textbackslash{}}
 \NormalTok{  wooldridge }\DataTypeTok{\textbackslash{}}
 \NormalTok{  econml }\DataTypeTok{\textbackslash{}}
@@ -537,163 +1849,11 @@ Adicionales}\label{paso-2-activar-y-agregar-paquetes-adicionales}
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Paso 3: Verificar
-Instalación}\label{paso-3-verificar-instalaciuxf3n}
+\subsubsection{\texorpdfstring{21.4. Entorno
+\texttt{scripts-env}}{21.4. Entorno scripts-env}}\label{entorno-scripts-env}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Verificar que todo funcione}
-\ExtensionTok{python} \AttributeTok{{-}c} \StringTok{"}
-\StringTok{import pandas as pd}
-\StringTok{import statsmodels.api as sm}
-\StringTok{import linearmodels as lm}
-\StringTok{import wooldridge as wd}
-\StringTok{print(\textquotesingle{}Todos los paquetes cargados correctamente\textquotesingle{})}
-\StringTok{print(f\textquotesingle{}Pandas \{pd.\_\_version\_\_\}\textquotesingle{})}
-\StringTok{print(f\textquotesingle{}Statsmodels \{sm.\_\_version\_\_\}\textquotesingle{})}
-\StringTok{"}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{Paso 4: Exportar
-Configuración}\label{paso-4-exportar-configuraciuxf3n}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Exportar entorno completo}
-\ExtensionTok{conda}\NormalTok{ env export }\AttributeTok{{-}{-}no{-}builds} \OperatorTok{\textgreater{}}\NormalTok{ \textasciitilde{}/achalmaedison/publicaciones/epsilon{-}y{-}beta/environment.yml}
-
-\CommentTok{\# O crear manualmente (más limpio)}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{environment.yml para
-econblog}\label{environment.yml-para-econblog}
-
-\textbf{Crear archivo:}
-\texttt{\textasciitilde{}/achalmaedison/publicaciones/epsilon-y-beta/environment.yml}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# ========================================================================}
-\CommentTok{\# ENTORNO: econblog}
-\CommentTok{\# Propósito: Blogs académicos de economía, econometría y ciencia de datos}
-\CommentTok{\# Autor: Edison Achalma (achalmaedison)}
-\CommentTok{\# Institución: UNSCH}
-\CommentTok{\# Fecha: Enero 2026}
-\CommentTok{\# ========================================================================}
-
-\FunctionTok{name}\KeywordTok{:}\AttributeTok{ econblog}
-
-\FunctionTok{channels}\KeywordTok{:}
-
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ conda{-}forge}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ defaults}
-
-\FunctionTok{dependencies}\KeywordTok{:}
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\CommentTok{  \# Python}
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ python=3.12}
-\AttributeTok{  }
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\CommentTok{  \# Jupyter y Notebooks}
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ jupyterlab\textgreater{}=4.0}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ jupyterlab{-}lsp}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ ipywidgets}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ notebook}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ nbconvert}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ myst{-}parser}
-\AttributeTok{  }
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\CommentTok{  \# Manipulación de Datos}
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ pandas\textgreater{}=2.0}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ numpy\textgreater{}=1.24}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ pyarrow}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ openpyxl}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ xlrd}
-\AttributeTok{  }
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\CommentTok{  \# Visualización}
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ matplotlib\textgreater{}=3.7}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ seaborn\textgreater{}=0.12}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ plotly\textgreater{}=5.14}
-\AttributeTok{  }
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\CommentTok{  \# Estadística y Econometría}
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ statsmodels\textgreater{}=0.14}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ linearmodels}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ pingouin}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ scipy\textgreater{}=1.11}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ scikit{-}learn\textgreater{}=1.3}
-\AttributeTok{  }
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\CommentTok{  \# Utilidades}
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ pip}
-\AttributeTok{  }
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\CommentTok{  \# Paquetes de PyPI (solo disponibles con pip)}
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{pip}\KeywordTok{:}
-\AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ wooldridge}\CommentTok{         \# Datasets de econometría}
-\AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ econml}\CommentTok{            \# Machine learning causal}
-\AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ causalml}\CommentTok{          \# Inferencia causal}
-\AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ upsetplot}\CommentTok{         \# Gráficos de conjuntos}
-\AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ arch}\CommentTok{              \# Modelos ARCH/GARCH}
-\AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ pmdarima}\CommentTok{          \# ARIMA automático}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{Paso 5: Crear Alias
-Personalizados}\label{paso-5-crear-alias-personalizados}
-
-\textbf{Agregar a \texttt{\textasciitilde{}/.config/fish/config.fish}:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{\# Alias para blog de econometría}
-\NormalTok{alias econblog="conda activate econblog \&\& cd \textasciitilde{}/Proyectos/epsilon{-}y{-}beta"}
-\NormalTok{alias eboff="conda deactivate"}
-
-\NormalTok{\# Jupyter Lab para blog}
-\NormalTok{alias jlab{-}blog="conda activate econblog \&\& jupyter lab {-}{-}notebook{-}dir=\textasciitilde{}/Proyectos/epsilon{-}y{-}beta"}
-
-\NormalTok{\# Quarto para blog}
-\NormalTok{alias qblog="conda activate econblog \&\& cd \textasciitilde{}/Proyectos/epsilon{-}y{-}beta \&\& quarto preview"}
-\end{Highlighting}
-\end{Shaded}
-
-\section{Entorno 2: scripts-env
-(Automatización)}\label{entorno-2-scripts-env-automatizaciuxf3n}
-
-\subsection{Propósito}\label{propuxf3sito-1}
-
-\textbf{Scripts que usa este entorno:}
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{scripts\_for\_quarto/} (sincronización, metadata, tags)
-\item
-  \texttt{scripts\_for\_calibre/} (gestión de PDFs)
-\item
-  \texttt{scripts\_for\_libreoffice/} (conversión de documentos)
-\item
-  \texttt{scripts\_for\_linux/} (utilidades del sistema)
-\item
-  \texttt{scripts\_for\_zotero/} (gestión bibliográfica)
-\end{itemize}
-
-\subsection{Paso 1: Crear el Entorno}\label{paso-1-crear-el-entorno-1}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Crear entorno ligero para scripts}
 \ExtensionTok{mamba}\NormalTok{ create }\AttributeTok{{-}n}\NormalTok{ scripts{-}env python=3.12 }\DataTypeTok{\textbackslash{}}
 \NormalTok{  pyyaml }\DataTypeTok{\textbackslash{}}
 \NormalTok{  pandas }\DataTypeTok{\textbackslash{}}
@@ -704,107 +1864,150 @@ Personalizados}\label{paso-5-crear-alias-personalizados}
 \NormalTok{  beautifulsoup4 }\DataTypeTok{\textbackslash{}}
 \NormalTok{  lxml }\DataTypeTok{\textbackslash{}}
   \AttributeTok{{-}c}\NormalTok{ conda{-}forge }\AttributeTok{{-}y}
-\end{Highlighting}
-\end{Shaded}
 
-\subsection{Paso 2: Activar y Agregar Paquetes
-Adicionales}\label{paso-2-activar-y-agregar-paquetes-adicionales-1}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Activar entorno}
 \ExtensionTok{conda}\NormalTok{ activate scripts{-}env}
+\ExtensionTok{mamba}\NormalTok{ install }\AttributeTok{{-}c}\NormalTok{ conda{-}forge black ruff pytest }\AttributeTok{{-}y}
 
-\CommentTok{\# Paquetes adicionales}
-\ExtensionTok{mamba}\NormalTok{ install }\AttributeTok{{-}c}\NormalTok{ conda{-}forge }\DataTypeTok{\textbackslash{}}
-\NormalTok{  black }\DataTypeTok{\textbackslash{}}
-\NormalTok{  ruff }\DataTypeTok{\textbackslash{}}
-\NormalTok{  pytest }\DataTypeTok{\textbackslash{}}
-  \AttributeTok{{-}y}
-
-\CommentTok{\# Paquetes de PyPI}
-\ExtensionTok{pip}\NormalTok{ install }\DataTypeTok{\textbackslash{}}
-\NormalTok{  pypdf2 }\DataTypeTok{\textbackslash{}}
-\NormalTok{  pdfrw }\DataTypeTok{\textbackslash{}}
-\NormalTok{  python{-}frontmatter }\DataTypeTok{\textbackslash{}}
-\NormalTok{  watchdog}
+\ExtensionTok{pip}\NormalTok{ install pypdf2 pdfrw python{-}frontmatter watchdog}
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Paso 3: Verificar
-Instalación}\label{paso-3-verificar-instalaciuxf3n-1}
+\subsubsection{\texorpdfstring{21.5. Entorno
+\texttt{datascience}}{21.5. Entorno datascience}}\label{entorno-datascience}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Prueba rápida}
-\ExtensionTok{python} \AttributeTok{{-}c} \StringTok{"}
-\StringTok{import yaml}
-\StringTok{import pandas as pd}
-\StringTok{from docx import Document}
-\StringTok{print(\textquotesingle{}Entorno de scripts listo\textquotesingle{})}
-\StringTok{"}
+\ExtensionTok{mamba}\NormalTok{ create }\AttributeTok{{-}n}\NormalTok{ datascience python=3.12 }\DataTypeTok{\textbackslash{}}
+\NormalTok{  jupyterlab pandas numpy scipy scikit{-}learn statsmodels }\DataTypeTok{\textbackslash{}}
+\NormalTok{  xgboost lightgbm matplotlib seaborn plotly bokeh altair networkx }\DataTypeTok{\textbackslash{}}
+  \AttributeTok{{-}c}\NormalTok{ conda{-}forge }\AttributeTok{{-}y}
+
+\ExtensionTok{conda}\NormalTok{ activate datascience}
+\ExtensionTok{pip}\NormalTok{ install tensorflow torch shap optuna linearmodels arch pymc arviz}
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{environment.yml para
-scripts-env}\label{environment.yml-para-scripts-env}
-
-\textbf{Crear archivo:}
-\texttt{\textasciitilde{}/Proyectos/scripts/environment.yml}
+\subsubsection{\texorpdfstring{21.6. Entorno
+\texttt{teaching}}{21.6. Entorno teaching}}\label{entorno-teaching}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# ========================================================================}
-\CommentTok{\# ENTORNO: scripts{-}env}
-\CommentTok{\# Propósito: Scripts de automatización para Quarto, Calibre, LibreOffice, etc.}
-\CommentTok{\# Autor: Edison Achalma}
-\CommentTok{\# Fecha: Enero 2026}
-\CommentTok{\# ========================================================================}
+\ExtensionTok{mamba}\NormalTok{ create }\AttributeTok{{-}n}\NormalTok{ teaching python=3.11 }\DataTypeTok{\textbackslash{}}
+\NormalTok{  jupyterlab }\DataTypeTok{\textbackslash{}}
+\NormalTok{  pandas=2.0 }\DataTypeTok{\textbackslash{}}
+\NormalTok{  numpy=1.24 }\DataTypeTok{\textbackslash{}}
+\NormalTok{  matplotlib=3.7 }\DataTypeTok{\textbackslash{}}
+\NormalTok{  seaborn=0.12 }\DataTypeTok{\textbackslash{}}
+\NormalTok{  scipy=1.11 }\DataTypeTok{\textbackslash{}}
+\NormalTok{  statsmodels=0.14 }\DataTypeTok{\textbackslash{}}
+  \AttributeTok{{-}c}\NormalTok{ conda{-}forge }\AttributeTok{{-}y}
 
-\FunctionTok{name}\KeywordTok{:}\AttributeTok{ scripts{-}env}
+\ExtensionTok{conda}\NormalTok{ activate teaching}
+\ExtensionTok{pip}\NormalTok{ install wooldridge jupyter{-}book jupyterlab{-}spellchecker}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Candidato natural para congelar (sección 14)}: una vez validado
+al inicio del semestre, considera marcar este entorno como congelado
+para evitar modificaciones accidentales mientras lo usan tus
+estudiantes.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{\texorpdfstring{22. \texttt{environment.yml} de referencia
+para cada
+entorno}{22. environment.yml de referencia para cada entorno}}\label{environment.yml-de-referencia-para-cada-entorno}
+
+\subsubsection{\texorpdfstring{22.1.
+\texttt{econblog/environment.yml}}{22.1. econblog/environment.yml}}\label{econblogenvironment.yml}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{name}\KeywordTok{:}\AttributeTok{ econblog}
 
 \FunctionTok{channels}\KeywordTok{:}
-
 \AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ conda{-}forge}
 \AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ defaults}
 
 \FunctionTok{dependencies}\KeywordTok{:}
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \CommentTok{  \# Python}
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ python=3.12}
-\AttributeTok{  }
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\CommentTok{  \# Manipulación de Archivos}
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+
+\CommentTok{  \# Jupyter y Notebooks}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ jupyterlab\textgreater{}=4.0}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ jupyterlab{-}lsp}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ ipywidgets}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ notebook}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ nbconvert}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ myst{-}parser}
+
+\CommentTok{  \# Manipulación de datos}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ pandas\textgreater{}=2.0}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ numpy\textgreater{}=1.24}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ pyarrow}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ openpyxl}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ xlrd}
+
+\CommentTok{  \# Visualización}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ matplotlib\textgreater{}=3.7}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ seaborn\textgreater{}=0.12}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ plotly\textgreater{}=5.14}
+
+\CommentTok{  \# Estadística y econometría}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ statsmodels\textgreater{}=0.14}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ linearmodels}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ pingouin}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ scipy\textgreater{}=1.11}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ scikit{-}learn\textgreater{}=1.3}
+
+\CommentTok{  \# Utilidades}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ pip}
+
+\CommentTok{  \# Paquetes exclusivos de PyPI}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{pip}\KeywordTok{:}
+\AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ wooldridge}
+\AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ econml}
+\AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ causalml}
+\AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ upsetplot}
+\AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ arch}
+\AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ pmdarima}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{\texorpdfstring{22.2.
+\texttt{scripts-env/environment.yml}}{22.2. scripts-env/environment.yml}}\label{scripts-envenvironment.yml}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{name}\KeywordTok{:}\AttributeTok{ scripts{-}env}
+
+\FunctionTok{channels}\KeywordTok{:}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ conda{-}forge}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ defaults}
+
+\FunctionTok{dependencies}\KeywordTok{:}
+\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ python=3.12}
+
+\CommentTok{  \# Manipulación de archivos}
 \AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ pyyaml}
 \AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ pandas}
 \AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ openpyxl}
 \AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ python{-}docx}
 \AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ pillow}
-\AttributeTok{  }
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\CommentTok{  \# Web Scraping y Requests}
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+
+\CommentTok{  \# Web scraping y requests}
 \AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ requests}
 \AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ beautifulsoup4}
 \AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ lxml}
-\AttributeTok{  }
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\CommentTok{  \# Desarrollo y Testing}
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+
+\CommentTok{  \# Desarrollo y testing}
 \AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ black}
 \AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ ruff}
 \AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ pytest}
-\AttributeTok{  }
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\CommentTok{  \# Utilidades}
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+
 \AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ pip}
-\AttributeTok{  }
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\CommentTok{  \# Paquetes de PyPI}
-\CommentTok{  \# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{pip}\KeywordTok{:}
 \AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ pypdf2}
 \AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ pdfrw}
@@ -813,79 +2016,18 @@ scripts-env}\label{environment.yml-para-scripts-env}
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Paso 4: Crear Alias}\label{paso-4-crear-alias}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{\# Alias para scripts}
-\NormalTok{alias scripts="conda activate scripts{-}env \&\& cd \textasciitilde{}/Proyectos/scripts"}
-\NormalTok{alias soff="conda deactivate"}
-\end{Highlighting}
-\end{Shaded}
-
-\section{Entorno 3: datascience (Análisis
-Avanzado)}\label{entorno-3-datascience-anuxe1lisis-avanzado}
-
-\subsection{Propósito}\label{propuxf3sito-2}
-
-Análisis econométrico avanzado, machine learning, y visualizaciones
-complejas para investigaciones específicas.
-
-\subsection{Crear el Entorno}\label{crear-el-entorno}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Entorno completo de ciencia de datos}
-\ExtensionTok{mamba}\NormalTok{ create }\AttributeTok{{-}n}\NormalTok{ datascience python=3.12 }\DataTypeTok{\textbackslash{}}
-\NormalTok{  jupyterlab }\DataTypeTok{\textbackslash{}}
-\NormalTok{  pandas }\DataTypeTok{\textbackslash{}}
-\NormalTok{  numpy }\DataTypeTok{\textbackslash{}}
-\NormalTok{  scipy }\DataTypeTok{\textbackslash{}}
-\NormalTok{  scikit{-}learn }\DataTypeTok{\textbackslash{}}
-\NormalTok{  statsmodels }\DataTypeTok{\textbackslash{}}
-\NormalTok{  xgboost }\DataTypeTok{\textbackslash{}}
-\NormalTok{  lightgbm }\DataTypeTok{\textbackslash{}}
-\NormalTok{  matplotlib }\DataTypeTok{\textbackslash{}}
-\NormalTok{  seaborn }\DataTypeTok{\textbackslash{}}
-\NormalTok{  plotly }\DataTypeTok{\textbackslash{}}
-\NormalTok{  bokeh }\DataTypeTok{\textbackslash{}}
-\NormalTok{  altair }\DataTypeTok{\textbackslash{}}
-\NormalTok{  networkx }\DataTypeTok{\textbackslash{}}
-  \AttributeTok{{-}c}\NormalTok{ conda{-}forge }\AttributeTok{{-}y}
-
-\CommentTok{\# Activar y agregar más}
-\ExtensionTok{conda}\NormalTok{ activate datascience}
-
-\CommentTok{\# Machine learning}
-\ExtensionTok{pip}\NormalTok{ install }\DataTypeTok{\textbackslash{}}
-\NormalTok{  tensorflow }\DataTypeTok{\textbackslash{}}
-\NormalTok{  torch }\DataTypeTok{\textbackslash{}}
-\NormalTok{  shap }\DataTypeTok{\textbackslash{}}
-\NormalTok{  optuna}
-
-\CommentTok{\# Econometría avanzada}
-\ExtensionTok{pip}\NormalTok{ install }\DataTypeTok{\textbackslash{}}
-\NormalTok{  linearmodels }\DataTypeTok{\textbackslash{}}
-\NormalTok{  arch }\DataTypeTok{\textbackslash{}}
-\NormalTok{  pymc }\DataTypeTok{\textbackslash{}}
-\NormalTok{  arviz}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{environment.yml para
-datascience}\label{environment.yml-para-datascience}
+\subsubsection{\texorpdfstring{22.3.
+\texttt{datascience/environment.yml}}{22.3. datascience/environment.yml}}\label{datascienceenvironment.yml}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{name}\KeywordTok{:}\AttributeTok{ datascience}
 
 \FunctionTok{channels}\KeywordTok{:}
-
 \AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ conda{-}forge}
 \AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ defaults}
 
 \FunctionTok{dependencies}\KeywordTok{:}
-
 \AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ python=3.12}
 \AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ jupyterlab}
 \AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ pandas}
@@ -914,594 +2056,205 @@ datascience}\label{environment.yml-para-datascience}
 \end{Highlighting}
 \end{Shaded}
 
-\section{Entorno 4: teaching (Material
-Educativo)}\label{entorno-4-teaching-material-educativo}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\subsection{Propósito}\label{propuxf3sito-3}
+\subsection{23. Reproducibilidad y colaboración vía
+Git}\label{reproducibilidad-y-colaboraciuxf3n-vuxeda-git}
 
-Notebooks y material educativo para estudiantes con versiones estables y
-probadas.
+\subsubsection{23.1. Replicar un entorno en otra
+máquina}\label{replicar-un-entorno-en-otra-muxe1quina}
 
-\subsection{Crear el Entorno}\label{crear-el-entorno-1}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Entorno simple y estable para enseñanza}
-\ExtensionTok{mamba}\NormalTok{ create }\AttributeTok{{-}n}\NormalTok{ teaching python=3.11 }\DataTypeTok{\textbackslash{}}
-\NormalTok{  jupyterlab }\DataTypeTok{\textbackslash{}}
-\NormalTok{  pandas=2.0 }\DataTypeTok{\textbackslash{}}
-\NormalTok{  numpy=1.24 }\DataTypeTok{\textbackslash{}}
-\NormalTok{  matplotlib=3.7 }\DataTypeTok{\textbackslash{}}
-\NormalTok{  seaborn=0.12 }\DataTypeTok{\textbackslash{}}
-\NormalTok{  scipy=1.11 }\DataTypeTok{\textbackslash{}}
-\NormalTok{  statsmodels=0.14 }\DataTypeTok{\textbackslash{}}
-  \AttributeTok{{-}c}\NormalTok{ conda{-}forge }\AttributeTok{{-}y}
-
-\CommentTok{\# Activar}
-\ExtensionTok{conda}\NormalTok{ activate teaching}
-
-\CommentTok{\# Paquetes educativos}
-\ExtensionTok{pip}\NormalTok{ install }\DataTypeTok{\textbackslash{}}
-\NormalTok{  wooldridge }\DataTypeTok{\textbackslash{}}
-\NormalTok{  jupyter{-}book }\DataTypeTok{\textbackslash{}}
-\NormalTok{  jupyterlab{-}spellchecker}
-\end{Highlighting}
-\end{Shaded}
-
-\section{Gestión Diaria de
-Entornos}\label{gestiuxf3n-diaria-de-entornos}
-
-\subsection{Comandos Esenciales}\label{comandos-esenciales}
+\textbf{En la máquina original:}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# ========================================================================}
-\CommentTok{\# LISTAR Y ACTIVAR}
-\CommentTok{\# ========================================================================}
-
-\CommentTok{\# Listar todos los entornos}
-\ExtensionTok{conda}\NormalTok{ env list}
-
-\CommentTok{\# Activar entorno}
 \ExtensionTok{conda}\NormalTok{ activate econblog}
-
-\CommentTok{\# Desactivar entorno actual}
-\ExtensionTok{conda}\NormalTok{ deactivate}
-
-\CommentTok{\# ========================================================================}
-\CommentTok{\# INSTALAR Y ACTUALIZAR PAQUETES}
-\CommentTok{\# ========================================================================}
-
-\CommentTok{\# Instalar paquete nuevo}
-\ExtensionTok{mamba}\NormalTok{ install pandas }\AttributeTok{{-}y}
-
-\CommentTok{\# Instalar versión específica}
-\ExtensionTok{mamba}\NormalTok{ install pandas=2.0.0 }\AttributeTok{{-}y}
-
-\CommentTok{\# Instalar desde canal específico}
-\ExtensionTok{mamba}\NormalTok{ install }\AttributeTok{{-}c}\NormalTok{ conda{-}forge paquete }\AttributeTok{{-}y}
-
-\CommentTok{\# Actualizar paquete}
-\ExtensionTok{mamba}\NormalTok{ update pandas }\AttributeTok{{-}y}
-
-\CommentTok{\# Actualizar todos los paquetes}
-\ExtensionTok{mamba}\NormalTok{ update }\AttributeTok{{-}{-}all} \AttributeTok{{-}y}
-
-\CommentTok{\# Instalar con pip (si no está en conda)}
-\ExtensionTok{pip}\NormalTok{ install wooldridge}
-
-\CommentTok{\# ========================================================================}
-\CommentTok{\# INFORMACIÓN Y BÚSQUEDA}
-\CommentTok{\# ========================================================================}
-
-\CommentTok{\# Listar paquetes instalados}
-\ExtensionTok{conda}\NormalTok{ list}
-
-\CommentTok{\# Buscar paquete}
-\ExtensionTok{conda}\NormalTok{ search pandas}
-
-\CommentTok{\# Ver info de paquete específico}
-\ExtensionTok{conda}\NormalTok{ list pandas}
-
-\CommentTok{\# Ver dependencias de paquete}
-\ExtensionTok{conda}\NormalTok{ search pandas }\AttributeTok{{-}{-}info}
-
-\CommentTok{\# ========================================================================}
-\CommentTok{\# LIMPIAR Y MANTENER}
-\CommentTok{\# ========================================================================}
-
-\CommentTok{\# Limpiar caché de paquetes}
-\ExtensionTok{conda}\NormalTok{ clean }\AttributeTok{{-}{-}all} \AttributeTok{{-}y}
-
-\CommentTok{\# Ver espacio usado por entornos}
-\FunctionTok{du} \AttributeTok{{-}sh}\NormalTok{ \textasciitilde{}/miniconda3/envs/}\PreprocessorTok{*}
-
-\CommentTok{\# Eliminar entorno}
-\ExtensionTok{conda}\NormalTok{ env remove }\AttributeTok{{-}n}\NormalTok{ nombre{-}entorno }\AttributeTok{{-}y}
-
-\CommentTok{\# ========================================================================}
-\CommentTok{\# EXPORTAR E IMPORTAR}
-\CommentTok{\# ========================================================================}
-
-\CommentTok{\# Exportar entorno actual}
-\ExtensionTok{conda}\NormalTok{ env export }\AttributeTok{{-}{-}no{-}builds} \OperatorTok{\textgreater{}}\NormalTok{ environment.yml}
-
-\CommentTok{\# Crear entorno desde archivo}
-\ExtensionTok{conda}\NormalTok{ env create }\AttributeTok{{-}f}\NormalTok{ environment.yml}
-
-\CommentTok{\# Actualizar entorno desde archivo}
-\ExtensionTok{conda}\NormalTok{ env update }\AttributeTok{{-}f}\NormalTok{ environment.yml }\AttributeTok{{-}{-}prune}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{Workflow Típico Diario}\label{workflow-tuxedpico-diario}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# 1. Activar entorno de blogs}
-\ExtensionTok{conda}\NormalTok{ activate econblog}
-
-\CommentTok{\# 2. Navegar al proyecto}
-\BuiltInTok{cd}\NormalTok{ \textasciitilde{}/achalmaedison/publicaciones/epsilon{-}y{-}beta}
-
-\CommentTok{\# 3. Iniciar Jupyter Lab}
-\ExtensionTok{jupyter}\NormalTok{ lab}
-
-\CommentTok{\# 4. O trabajar con Quarto}
-\ExtensionTok{quarto}\NormalTok{ preview}
-
-\CommentTok{\# 5. Al terminar, desactivar}
-\ExtensionTok{conda}\NormalTok{ deactivate}
-\end{Highlighting}
-\end{Shaded}
-
-\section{Archivos de Requisitos}\label{archivos-de-requisitos}
-
-\subsection{Tipos de Archivos}\label{tipos-de-archivos}
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3913}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3913}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2174}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Archivo
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Formato
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Uso
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-\texttt{environment.yml} & YAML (Conda) & Reproducción exacta de entorno
-conda \\
-\texttt{requirements.txt} & Texto (pip) & Solo paquetes de PyPI \\
-\texttt{environment-minimal.yml} & YAML & Solo paquetes esenciales (sin
-versiones) \\
-\end{longtable}
-
-\subsection{1. environment.yml
-(Completo)}\label{environment.yml-completo}
-
-\textbf{Exportar automáticamente:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Activar entorno}
-\ExtensionTok{conda}\NormalTok{ activate econblog}
-
-\CommentTok{\# Exportar }\AlertTok{TODO}\CommentTok{ (incluye pip)}
-\ExtensionTok{conda}\NormalTok{ env export }\AttributeTok{{-}{-}no{-}builds} \OperatorTok{\textgreater{}}\NormalTok{ environment.yml}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Resultado:} Archivo con todas las dependencias exactas.
-
-\subsection{2. environment-minimal.yml
-(Simplificado)}\label{environment-minimal.yml-simplificado}
-
-\textbf{Crear manualmente:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{name}\KeywordTok{:}\AttributeTok{ econblog}
-
-\FunctionTok{channels}\KeywordTok{:}
-
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ conda{-}forge}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ defaults}
-
-\FunctionTok{dependencies}\KeywordTok{:}
-
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ python=3.12}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ jupyterlab}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ pandas}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ statsmodels}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ pip}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{pip}\KeywordTok{:}
-\AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ wooldridge}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Ventaja:} Más portable, conda resuelve versiones compatibles.
-
-\subsection{3. requirements.txt (Solo
-pip)}\label{requirements.txt-solo-pip}
-
-\textbf{Exportar paquetes pip:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Activar entorno}
-\ExtensionTok{conda}\NormalTok{ activate econblog}
-
-\CommentTok{\# Exportar solo pip}
-\ExtensionTok{pip}\NormalTok{ freeze }\OperatorTok{\textgreater{}}\NormalTok{ requirements.txt}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Instalar desde requirements.txt:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ExtensionTok{pip}\NormalTok{ install }\AttributeTok{{-}r}\NormalTok{ requirements.txt}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{4. Combinar Conda + Pip}\label{combinar-conda-pip}
-
-\textbf{Mejor práctica:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{name}\KeywordTok{:}\AttributeTok{ econblog}
-
-\FunctionTok{channels}\KeywordTok{:}
-
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ conda{-}forge}
-
-\FunctionTok{dependencies}\KeywordTok{:}
-\CommentTok{  \# Paquetes de conda}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ python=3.12}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ pandas}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ matplotlib}
-\AttributeTok{  }
-\CommentTok{  \# Paquetes de pip}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ pip}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{pip}\KeywordTok{:}
-\AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ {-}r file:requirements.txt}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Luego crear \texttt{requirements.txt} separado:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{wooldridge==0.4.4}
-\NormalTok{econml==0.14.1}
-\NormalTok{causalml==0.15.0}
-\end{Highlighting}
-\end{Shaded}
-
-\section{Reproducibilidad y
-Colaboración}\label{reproducibilidad-y-colaboraciuxf3n}
-
-\subsection{Escenario 1: Replicar Entorno en Otra
-Máquina}\label{escenario-1-replicar-entorno-en-otra-muxe1quina}
-
-\textbf{En máquina original:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# 1. Activar entorno}
-\ExtensionTok{conda}\NormalTok{ activate econblog}
-
-\CommentTok{\# 2. Exportar}
-\ExtensionTok{conda}\NormalTok{ env export }\AttributeTok{{-}{-}no{-}builds} \OperatorTok{\textgreater{}}\NormalTok{ environment.yml}
-
-\CommentTok{\# 3. Subir a Git}
+\ExtensionTok{conda}\NormalTok{ env export }\AttributeTok{{-}{-}from{-}history} \AttributeTok{{-}{-}format}\OperatorTok{=}\NormalTok{environment{-}yaml }\OperatorTok{\textgreater{}}\NormalTok{ environment.yml}
 \FunctionTok{git}\NormalTok{ add environment.yml}
 \FunctionTok{git}\NormalTok{ commit }\AttributeTok{{-}m} \StringTok{"Add environment configuration"}
 \FunctionTok{git}\NormalTok{ push}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{En máquina nueva:}
+\textbf{En la máquina nueva:}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# 1. Clonar repositorio}
 \FunctionTok{git}\NormalTok{ clone https://github.com/achalmed/epsilon{-}y{-}beta.git}
 \BuiltInTok{cd}\NormalTok{ epsilon{-}y{-}beta}
-
-\CommentTok{\# 2. Crear entorno desde archivo}
 \ExtensionTok{conda}\NormalTok{ env create }\AttributeTok{{-}f}\NormalTok{ environment.yml}
-
-\CommentTok{\# 3. Activar}
 \ExtensionTok{conda}\NormalTok{ activate econblog}
-
-\CommentTok{\# 4. Verificar}
 \ExtensionTok{conda}\NormalTok{ list}
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Escenario 2: Compartir con
-Colaboradores}\label{escenario-2-compartir-con-colaboradores}
-
-\textbf{Crear archivo \texttt{README.md} con instrucciones:}
+\subsubsection{\texorpdfstring{23.2. Compartir con colaboradores:
+instrucciones en
+\texttt{README.md}}{23.2. Compartir con colaboradores: instrucciones en README.md}}\label{compartir-con-colaboradores-instrucciones-en-readme.md}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{\# Configuración del Entorno}
+\FunctionTok{\# Configuración del entorno}
 
-\FunctionTok{\# Prerrequisitos}
-
+\FunctionTok{\#\# Prerrequisitos}
 \SpecialStringTok{{-} }\NormalTok{Miniconda o Anaconda instalado}
 \SpecialStringTok{{-} }\NormalTok{Git}
 
-\FunctionTok{\# Instalación}
+\FunctionTok{\#\# Instalación}
+\SpecialStringTok{1. }\NormalTok{Clonar el repositorio:}
+\NormalTok{   git clone https://github.com/achalmed/epsilon{-}y{-}beta.git}
+\NormalTok{   cd epsilon{-}y{-}beta}
 
-\SpecialStringTok{1. }\NormalTok{Clonar repositorio:}
+\SpecialStringTok{2. }\NormalTok{Crear el entorno:}
+\NormalTok{   conda env create {-}f environment.yml}
 
-   \InformationTok{\textasciigrave{}\textasciigrave{}\textasciigrave{}bash}
-   \FunctionTok{git}\NormalTok{ clone https://github.com/achalmed/epsilon{-}y{-}beta.git}
-   \BuiltInTok{cd}\NormalTok{ epsilon{-}y{-}beta}
+\SpecialStringTok{3. }\NormalTok{Activar el entorno:}
+\NormalTok{   conda activate econblog}
+
+\SpecialStringTok{4. }\NormalTok{Verificar instalación:}
+\NormalTok{   python {-}c "import pandas, statsmodels; print(\textquotesingle{}Entorno listo\textquotesingle{})"}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
-\item
-  Crear entorno:
+\subsubsection{\texorpdfstring{23.3. Actualizar un entorno existente
+tras cambios en
+\texttt{environment.yml}}{23.3. Actualizar un entorno existente tras cambios en environment.yml}}\label{actualizar-un-entorno-existente-tras-cambios-en-environment.yml}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\ExtensionTok{conda}\NormalTok{ env create }\AttributeTok{{-}f}\NormalTok{ environment.yml}
-\end{Highlighting}
-\end{Shaded}
-\item
-  Activar entorno:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ExtensionTok{conda}\NormalTok{ activate econblog}
-\end{Highlighting}
-\end{Shaded}
-\item
-  Verificar instalación:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ExtensionTok{python} \AttributeTok{{-}c} \StringTok{"import pandas, statsmodels; print(\textquotesingle{}Entorno listo\textquotesingle{})"}
-\end{Highlighting}
-\end{Shaded}
-\end{enumerate}
-
-\section{Uso}\label{uso}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Activar entorno}
-\ExtensionTok{conda}\NormalTok{ activate econblog}
-
-\CommentTok{\# Iniciar Jupyter Lab}
-\ExtensionTok{jupyter}\NormalTok{ lab}
-
-\CommentTok{\# O previsualizar Quarto}
-\ExtensionTok{quarto}\NormalTok{ preview}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-
-## Escenario 3: Actualizar Entorno Existente
-
-**Cuando agregas paquetes nuevos:**
-
-```bash
-# 1. Instalar paquete nuevo
-mamba install nuevo-paquete -y
-
-# 2. Actualizar archivo
-conda env export --no-builds > environment.yml
-
-# 3. Commit y push
-git add environment.yml
-git commit -m "Add nuevo-paquete dependency"
-git push
-\end{verbatim}
-
-\textbf{En otras máquinas:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Actualizar entorno desde archivo}
+\CommentTok{\# Alguien actualizó environment.yml en GitHub}
+\FunctionTok{git}\NormalTok{ pull}
 \ExtensionTok{conda}\NormalTok{ env update }\AttributeTok{{-}f}\NormalTok{ environment.yml }\AttributeTok{{-}{-}prune}
+\ExtensionTok{conda}\NormalTok{ activate econblog}
+\ExtensionTok{python} \AttributeTok{{-}c} \StringTok{"import pandas, statsmodels; print(\textquotesingle{}Actualización exitosa\textquotesingle{})"}
 \end{Highlighting}
 \end{Shaded}
 
-\section{Integración con Jupyter
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{24. Integración con Jupyter
 Lab}\label{integraciuxf3n-con-jupyter-lab}
 
-\subsection{1. Instalar Jupyter en Cada
-Entorno}\label{instalar-jupyter-en-cada-entorno}
+\subsubsection{24.1. Jupyter debe instalarse en cada entorno que lo
+use}\label{jupyter-debe-instalarse-en-cada-entorno-que-lo-use}
 
-\textbf{Importante:} Jupyter debe estar instalado en cada entorno que
-uses.
+A diferencia de otros gestores, conda no comparte automáticamente
+Jupyter entre entornos: cada entorno que vaya a usarse desde Jupyter Lab
+necesita su propia instalación de \texttt{jupyterlab} (o, como mínimo,
+de \texttt{ipykernel}).
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# En entorno econblog}
-\ExtensionTok{conda}\NormalTok{ activate econblog}
-\ExtensionTok{mamba}\NormalTok{ install jupyterlab }\AttributeTok{{-}y}
-
-\CommentTok{\# En entorno scripts{-}env}
-\ExtensionTok{conda}\NormalTok{ activate scripts{-}env}
-\ExtensionTok{mamba}\NormalTok{ install jupyterlab }\AttributeTok{{-}y}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{2. Configurar Kernels}\label{configurar-kernels}
+\subsubsection{24.2. Registrar un kernel para un
+entorno}\label{registrar-un-kernel-para-un-entorno}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Activar entorno}
 \ExtensionTok{conda}\NormalTok{ activate econblog}
-
-\CommentTok{\# Instalar kernel}
 \ExtensionTok{python} \AttributeTok{{-}m}\NormalTok{ ipykernel install }\AttributeTok{{-}{-}user} \AttributeTok{{-}{-}name}\NormalTok{ econblog }\AttributeTok{{-}{-}display{-}name} \StringTok{"Python (econblog)"}
-
-\CommentTok{\# Verificar kernels disponibles}
 \ExtensionTok{jupyter}\NormalTok{ kernelspec list}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Resultado:} Podrás seleccionar ``Python (econblog)'' en Jupyter
-Lab.
+Esto te permite seleccionar ``Python (econblog)'' como kernel dentro de
+Jupyter Lab, independientemente de desde qué entorno hayas lanzado el
+propio Jupyter Lab.
 
-\subsection{3. Iniciar Jupyter Lab}\label{iniciar-jupyter-lab}
+\subsubsection{24.3. Iniciar Jupyter Lab desde un entorno
+específico}\label{iniciar-jupyter-lab-desde-un-entorno-especuxedfico}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Desde entorno específico}
 \ExtensionTok{conda}\NormalTok{ activate econblog}
 \ExtensionTok{jupyter}\NormalTok{ lab }\AttributeTok{{-}{-}notebook{-}dir}\OperatorTok{=}\NormalTok{\textasciitilde{}/Proyectos/epsilon{-}y{-}beta}
-
-\CommentTok{\# O usar alias (configurado anteriormente)}
-\ExtensionTok{jlab{-}blog}
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{4. Extensiones Útiles para Jupyter
-Lab}\label{extensiones-uxfatiles-para-jupyter-lab}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Activar entorno}
-\ExtensionTok{conda}\NormalTok{ activate econblog}
+\subsection{25. Integración con VS
+Code}\label{integraciuxf3n-con-vs-code}
 
-\CommentTok{\# Extensiones recomendadas}
-\ExtensionTok{mamba}\NormalTok{ install }\AttributeTok{{-}c}\NormalTok{ conda{-}forge }\DataTypeTok{\textbackslash{}}
-\NormalTok{  jupyterlab{-}git }\DataTypeTok{\textbackslash{}}
-\NormalTok{  jupyterlab{-}lsp }\DataTypeTok{\textbackslash{}}
-\NormalTok{  jupyterlab{-}spellchecker }\DataTypeTok{\textbackslash{}}
-  \AttributeTok{{-}y}
+\subsubsection{25.1. Seleccionar el intérprete de
+conda}\label{seleccionar-el-intuxe9rprete-de-conda}
 
-\CommentTok{\# Extensión para Quarto}
-\ExtensionTok{pip}\NormalTok{ install jupyterlab{-}quarto}
-\end{Highlighting}
-\end{Shaded}
+Desde la paleta de comandos (\texttt{Ctrl+Shift+P}): \textbf{``Python:
+Select Interpreter''}, y elige el intérprete correspondiente al entorno,
+por ejemplo
+\texttt{Python\ 3.12.x\ (\textquotesingle{}econblog\textquotesingle{})}.
 
-\subsection{5. Configuración de
-Jupyter}\label{configuraciuxf3n-de-jupyter}
+\subsubsection{25.2. Configurar el
+workspace}\label{configurar-el-workspace}
 
-\textbf{Crear archivo
-\texttt{\textasciitilde{}/.jupyter/jupyter\_lab\_config.py}:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Configuración personalizada de Jupyter Lab}
-\NormalTok{c.ServerApp.open\_browser }\OperatorTok{=} \VariableTok{True}
-\NormalTok{c.ServerApp.notebook\_dir }\OperatorTok{=} \StringTok{\textquotesingle{}/home/achalmaedison/Proyectos\textquotesingle{}}
-\NormalTok{c.ServerApp.terminado\_settings }\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}shell\_command\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}/usr/bin/fish\textquotesingle{}}\NormalTok{]\}}
-\end{Highlighting}
-\end{Shaded}
-
-\section{Integración con VS Code}\label{integraciuxf3n-con-vs-code}
-
-\subsection{1. Instalar Extensión de
-Python}\label{instalar-extensiuxf3n-de-python}
-
-\textbf{En VS Code:} 1. Ir a Extensions (Ctrl+Shift+X) 2. Buscar
-``Python'' 3. Instalar ``Python'' de Microsoft
-
-\subsection{2. Seleccionar Intérprete de
-Conda}\label{seleccionar-intuxe9rprete-de-conda}
-
-\textbf{Método 1: Command Palette}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Abrir Command Palette (Ctrl+Shift+P)
-\item
-  Escribir: ``Python: Select Interpreter''
-\item
-  Seleccionar:
-  \texttt{Python\ 3.12.x\ (\textquotesingle{}econblog\textquotesingle{})}
-\end{enumerate}
-
-\textbf{Método 2: Barra de Estado}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Click en la barra inferior (muestra Python actual)
-\item
-  Seleccionar entorno deseado
-\end{enumerate}
-
-\subsection{3. Configurar Workspace}\label{configurar-workspace}
-
-\textbf{Crear \texttt{.vscode/settings.json} en proyecto:}
+\texttt{.vscode/settings.json} dentro del proyecto:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{\{}
-  \DataTypeTok{"python.defaultInterpreterPath"}\FunctionTok{:} \StringTok{"/home/achalmaedison/miniconda3/envs/econblog/bin/python"}\FunctionTok{,}
-  \DataTypeTok{"python.terminal.activateEnvironment"}\FunctionTok{:} \KeywordTok{true}\FunctionTok{,}
-  \DataTypeTok{"python.formatting.provider"}\FunctionTok{:} \StringTok{"black"}\FunctionTok{,}
-  \DataTypeTok{"python.linting.enabled"}\FunctionTok{:} \KeywordTok{true}\FunctionTok{,}
-  \DataTypeTok{"python.linting.ruffEnabled"}\FunctionTok{:} \KeywordTok{true}\FunctionTok{,}
-  \DataTypeTok{"[python]"}\FunctionTok{:} \FunctionTok{\{}
-    \DataTypeTok{"editor.formatOnSave"}\FunctionTok{:} \KeywordTok{true}\FunctionTok{,}
-    \DataTypeTok{"editor.codeActionsOnSave"}\FunctionTok{:} \FunctionTok{\{}
-      \DataTypeTok{"source.organizeImports"}\FunctionTok{:} \KeywordTok{true}
-    \FunctionTok{\}}
-  \FunctionTok{\}}
+  \DataTypeTok{"python.defaultInterpreterPath"}\FunctionTok{:} \StringTok{"/home/\textless{}usuario\textgreater{}/miniconda3/envs/econblog/bin/python"}\FunctionTok{,}
+  \DataTypeTok{"python.terminal.activateEnvironment"}\FunctionTok{:} \KeywordTok{true}
 \FunctionTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{4. Terminal Integrado}\label{terminal-integrado}
-
-\textbf{VS Code activará automáticamente el entorno} cuando abras una
-terminal.
-
-\textbf{Verificar:}
+\subsubsection{25.3. Verificar activación en la terminal
+integrada}\label{verificar-activaciuxf3n-en-la-terminal-integrada}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# En terminal de VS Code}
 \BuiltInTok{echo} \VariableTok{$CONDA\_DEFAULT\_ENV}
-\CommentTok{\# Debe mostrar: econblog}
 \end{Highlighting}
 \end{Shaded}
 
-\section{Resolución de Problemas}\label{resoluciuxf3n-de-problemas}
+Debería mostrar el nombre del entorno activo, confirmando que VS Code
+activó correctamente el entorno configurado.
 
-\subsection{Problema 1: ``Kernel died'' en
-Jupyter}\label{problema-1-kernel-died-en-jupyter}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\textbf{Causa:} Paquetes incompatibles o falta de memoria.
+\subsection{26. Mamba como acelerador}\label{mamba-como-acelerador}
 
-\textbf{Solución:}
+\texttt{mamba} es una reimplementación del solucionador (\emph{solver})
+de dependencias de conda, compatible en sintaxis con \texttt{conda} (la
+mayoría de comandos \texttt{conda\ install}/\texttt{conda\ create}
+funcionan igual con \texttt{mamba\ install}/\texttt{mamba\ create}),
+pero significativamente más rápida para resolver entornos complejos. Es
+ampliamente usado precisamente para los casos de esta guía: entornos con
+muchos paquetes y dependencias cruzadas (como \texttt{econblog} o
+\texttt{datascience}), donde el solver clásico de conda puede tardar
+considerablemente más.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Reinstalar kernel}
+\ExtensionTok{mamba}\NormalTok{ create }\AttributeTok{{-}n}\NormalTok{ entorno python=3.12 paquete1 paquete2 }\AttributeTok{{-}y}
+\ExtensionTok{mamba}\NormalTok{ install paquete }\AttributeTok{{-}y}
+\ExtensionTok{mamba}\NormalTok{ update }\AttributeTok{{-}{-}all} \AttributeTok{{-}y}
+\end{Highlighting}
+\end{Shaded}
+
+Para la documentación oficial completa de mamba, consulta
+mamba.readthedocs.io (ver sección de referencias).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{27. Resolución de problemas
+comunes}\label{resoluciuxf3n-de-problemas-comunes}
+
+\subsubsection{27.1. ``Kernel died'' en
+Jupyter}\label{kernel-died-en-jupyter}
+
+Suele deberse a paquetes incompatibles o falta de memoria. Reinstala el
+kernel forzando la sobrescritura:
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \ExtensionTok{conda}\NormalTok{ activate econblog}
 \ExtensionTok{python} \AttributeTok{{-}m}\NormalTok{ ipykernel install }\AttributeTok{{-}{-}user} \AttributeTok{{-}{-}name}\NormalTok{ econblog }\AttributeTok{{-}{-}display{-}name} \StringTok{"Python (econblog)"} \AttributeTok{{-}{-}force}
-
-\CommentTok{\# Verificar}
 \ExtensionTok{jupyter}\NormalTok{ kernelspec list}
+\end{Highlighting}
+\end{Shaded}
 
-\CommentTok{\# Si persiste, recrear entorno}
+Si persiste, recrea el entorno desde un respaldo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \ExtensionTok{conda}\NormalTok{ env export }\AttributeTok{{-}{-}no{-}builds} \OperatorTok{\textgreater{}}\NormalTok{ backup{-}environment.yml}
 \ExtensionTok{conda}\NormalTok{ deactivate}
 \ExtensionTok{conda}\NormalTok{ env remove }\AttributeTok{{-}n}\NormalTok{ econblog }\AttributeTok{{-}y}
@@ -1509,403 +2262,189 @@ Jupyter}\label{problema-1-kernel-died-en-jupyter}
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Problema 2: ``ModuleNotFoundError'' en
-Jupyter}\label{problema-2-modulenotfounderror-en-jupyter}
+\subsubsection{\texorpdfstring{27.2. \texttt{ModuleNotFoundError} en
+Jupyter pese a tener el paquete
+instalado}{27.2. ModuleNotFoundError en Jupyter pese a tener el paquete instalado}}\label{modulenotfounderror-en-jupyter-pese-a-tener-el-paquete-instalado}
 
-\textbf{Causa:} Jupyter usa kernel de otro entorno.
-
-\textbf{Solución:}
+Causa típica: Jupyter está usando el kernel de otro entorno. Verifica el
+kernel activo en \texttt{Kernel\ \textgreater{}\ Change\ kernel}, o
+reinstala \texttt{ipykernel} para el entorno correcto:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Verificar qué kernel está activo}
-\CommentTok{\# En Jupyter, ir a Kernel \textgreater{} Change kernel \textgreater{} Python (econblog)}
-
-\CommentTok{\# O reinstalar ipykernel}
 \ExtensionTok{conda}\NormalTok{ activate econblog}
 \ExtensionTok{mamba}\NormalTok{ install ipykernel }\AttributeTok{{-}y}
 \ExtensionTok{python} \AttributeTok{{-}m}\NormalTok{ ipykernel install }\AttributeTok{{-}{-}user} \AttributeTok{{-}{-}name}\NormalTok{ econblog }\AttributeTok{{-}{-}display{-}name} \StringTok{"Python (econblog)"}
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Problema 3: Conflictos de
-Versiones}\label{problema-3-conflictos-de-versiones}
-
-\textbf{Causa:} Paquetes incompatibles entre sí.
-
-\textbf{Solución:}
+\subsubsection{27.3. Conflictos de versiones entre
+paquetes}\label{conflictos-de-versiones-entre-paquetes}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Opción 1: Usar mamba (mejor resolver)}
-\ExtensionTok{conda}\NormalTok{ activate econblog}
+\CommentTok{\# Opción 1: usar mamba (mejor resolución de dependencias)}
 \ExtensionTok{mamba}\NormalTok{ install paquete{-}conflictivo }\AttributeTok{{-}y}
 
-\CommentTok{\# Opción 2: Especificar versiones compatibles}
+\CommentTok{\# Opción 2: fijar versiones compatibles explícitamente}
 \ExtensionTok{mamba}\NormalTok{ install paquete1=1.0 paquete2=2.0 }\AttributeTok{{-}y}
 
-\CommentTok{\# Opción 3: Recrear entorno limpio}
+\CommentTok{\# Opción 3: recrear el entorno limpio desde el environment.yml}
 \ExtensionTok{conda}\NormalTok{ env remove }\AttributeTok{{-}n}\NormalTok{ econblog }\AttributeTok{{-}y}
 \ExtensionTok{mamba}\NormalTok{ create }\AttributeTok{{-}n}\NormalTok{ econblog }\AttributeTok{{-}f}\NormalTok{ environment.yml}
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Problema 4: Entorno Muy
-Grande}\label{problema-4-entorno-muy-grande}
-
-\textbf{Causa:} Demasiados paquetes instalados.
-
-\textbf{Solución:}
+\subsubsection{27.4. Entorno demasiado grande en
+disco}\label{entorno-demasiado-grande-en-disco}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Ver tamaño de entorno}
-\FunctionTok{du} \AttributeTok{{-}sh}\NormalTok{ \textasciitilde{}/miniconda3/envs/econblog}
+\FunctionTok{du} \AttributeTok{{-}sh}\NormalTok{ \textasciitilde{}/miniconda3/envs/econblog   }\CommentTok{\# ver tamaño}
+\ExtensionTok{conda}\NormalTok{ clean }\AttributeTok{{-}{-}all} \AttributeTok{{-}y}                \CommentTok{\# limpiar caché de paquetes descargados}
+\end{Highlighting}
+\end{Shaded}
 
-\CommentTok{\# Limpiar paquetes no usados}
-\ExtensionTok{conda}\NormalTok{ clean }\AttributeTok{{-}{-}all} \AttributeTok{{-}y}
+Si el problema persiste, exporta, edita manualmente el
+\texttt{environment.yml} para quitar paquetes innecesarios, y recrea el
+entorno:
 
-\CommentTok{\# Recrear entorno minimalista}
+\begin{Shaded}
+\begin{Highlighting}[]
 \ExtensionTok{conda}\NormalTok{ env export }\AttributeTok{{-}{-}no{-}builds} \OperatorTok{\textgreater{}}\NormalTok{ backup.yml}
-\CommentTok{\# Editar backup.yml y eliminar paquetes innecesarios}
+\CommentTok{\# editar backup.yml manualmente}
 \ExtensionTok{conda}\NormalTok{ env remove }\AttributeTok{{-}n}\NormalTok{ econblog }\AttributeTok{{-}y}
 \ExtensionTok{conda}\NormalTok{ env create }\AttributeTok{{-}f}\NormalTok{ backup.yml}
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Problema 5: Pip vs Conda
-Conflicts}\label{problema-5-pip-vs-conda-conflicts}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\textbf{Causa:} Mezclar pip y conda incorrectamente.
-
-\textbf{Mejores Prácticas:}
+\subsection{28. Referencia rápida de
+comandos}\label{referencia-ruxe1pida-de-comandos}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# 1. Siempre instalar con conda/mamba primero}
-\ExtensionTok{mamba}\NormalTok{ install pandas matplotlib }\AttributeTok{{-}y}
-
-\CommentTok{\# 2. Usar pip solo para paquetes no disponibles en conda}
-\ExtensionTok{pip}\NormalTok{ install wooldridge}
-
-\CommentTok{\# 3. NUNCA mezclar en el mismo comando}
-\CommentTok{\# INCORRECTO:}
-\CommentTok{\# conda install pandas \&\& pip install wooldridge  \#}
-
-\CommentTok{\# CORRECTO:}
-\ExtensionTok{mamba}\NormalTok{ install pandas }\AttributeTok{{-}y}  \CommentTok{\# Primero conda}
-\ExtensionTok{pip}\NormalTok{ install wooldridge   }\CommentTok{\# Luego pip}
-\end{Highlighting}
-\end{Shaded}
-
-\section{Workflows Completos}\label{workflows-completos}
-
-\subsection{Workflow 1: Nuevo Post de
-Blog}\label{workflow-1-nuevo-post-de-blog}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# 1. Activar entorno}
-\ExtensionTok{conda}\NormalTok{ activate econblog}
-
-\CommentTok{\# 2. Ir al blog}
-\BuiltInTok{cd}\NormalTok{ \textasciitilde{}/Proyectos/epsilon{-}y{-}beta}
-
-\CommentTok{\# 3. Crear carpeta de post}
-\FunctionTok{mkdir} \AttributeTok{{-}p}\NormalTok{ posts/2026{-}01{-}analisis{-}inflacion}
-\BuiltInTok{cd}\NormalTok{ posts/2026{-}01{-}analisis{-}inflacion}
-
-\CommentTok{\# 4. Crear archivo Quarto}
-\FunctionTok{nano}\NormalTok{ index.qmd}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Contenido de \texttt{index.qmd}:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\PreprocessorTok{{-}{-}{-}}
-\FunctionTok{title}\KeywordTok{:}\AttributeTok{ }\StringTok{"Análisis de Inflación en Perú 2010{-}2025"}
-\FunctionTok{author}\KeywordTok{:}\AttributeTok{ }\StringTok{"Edison Achalma"}
-\FunctionTok{date}\KeywordTok{:}\AttributeTok{ }\StringTok{"2026{-}01{-}03"}
-\FunctionTok{categories}\KeywordTok{:}\AttributeTok{ }\KeywordTok{[}\AttributeTok{macroeconomía}\KeywordTok{,}\AttributeTok{ inflación}\KeywordTok{,}\AttributeTok{ análisis{-}temporal}\KeywordTok{]}
-\FunctionTok{jupyter}\KeywordTok{:}\AttributeTok{ python3}
-\PreprocessorTok{{-}{-}{-}}
-
-\CommentTok{\# Introducción}
-
-\AttributeTok{Análisis de la inflación en Perú usando datos del BCRP.}
-
-\AttributeTok{\textasciigrave{}\textasciigrave{}\{python\}}
-\AttributeTok{import pandas as pd}
-\AttributeTok{import matplotlib.pyplot as plt}
-\AttributeTok{import wooldridge as wd}
-\AttributeTok{\textasciigrave{}\textasciigrave{}}
-\end{Highlighting}
-\end{Shaded}
-
-Continuar
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# 5. Previsualizar}
-\ExtensionTok{quarto}\NormalTok{ preview}
-
-\CommentTok{\# 6. O usar Jupyter para análisis exploratorio}
-\ExtensionTok{jupyter}\NormalTok{ lab}
-
-\CommentTok{\# 7. Renderizar final}
-\ExtensionTok{quarto}\NormalTok{ render}
-
-\CommentTok{\# 8. Commit y push}
-\FunctionTok{git}\NormalTok{ add .}
-\FunctionTok{git}\NormalTok{ commit }\AttributeTok{{-}m} \StringTok{"Add: Análisis de inflación 2010{-}2025"}
-\FunctionTok{git}\NormalTok{ push}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{Workflow 2: Ejecutar Script de
-Automatización}\label{workflow-2-ejecutar-script-de-automatizaciuxf3n}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# 1. Activar entorno de scripts}
-\ExtensionTok{conda}\NormalTok{ activate scripts{-}env}
-
-\CommentTok{\# 2. Ir al directorio de scripts}
-\BuiltInTok{cd}\NormalTok{ \textasciitilde{}/Proyectos/scripts/scripts\_for\_quarto}
-
-\CommentTok{\# 3. Ejecutar script}
-\ExtensionTok{python}\NormalTok{ 1\_sincronizar\_fecha\_carpeta\_en\_index\_qmd.py}
-
-\CommentTok{\# 4. Verificar resultados}
-\FunctionTok{cat}\NormalTok{ ../epsilon{-}y{-}beta/posts/2026{-}01{-}analisis{-}inflacion/index.qmd}
-
-\CommentTok{\# 5. Desactivar entorno}
-\ExtensionTok{conda}\NormalTok{ deactivate}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{Workflow 3: Análisis Econométrico
-Completo}\label{workflow-3-anuxe1lisis-economuxe9trico-completo}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# 1. Activar entorno}
-\ExtensionTok{conda}\NormalTok{ activate econblog}
-
-\CommentTok{\# 2. Iniciar Jupyter Lab}
-\ExtensionTok{jupyter}\NormalTok{ lab }\AttributeTok{{-}{-}notebook{-}dir}\OperatorTok{=}\NormalTok{\textasciitilde{}/Proyectos/epsilon{-}y{-}beta/posts}
-
-\CommentTok{\# 3. En Jupyter, crear nuevo notebook}
-\CommentTok{\# {-} Kernel: Python (econblog)}
-\CommentTok{\# {-} Nombre: analisis{-}econometrico.ipynb}
-
-\CommentTok{\# 4. Desarrollar análisis completo}
-
-\CommentTok{\# 5. Convertir notebook a Quarto}
-\ExtensionTok{quarto}\NormalTok{ convert analisis{-}econometrico.ipynb}
-
-\CommentTok{\# 6. Renderizar}
-\ExtensionTok{quarto}\NormalTok{ render analisis{-}econometrico.qmd}
-
-\CommentTok{\# 7. Revisar resultado}
-\ExtensionTok{firefox}\NormalTok{ analisis{-}econometrico.html}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{Workflow 4: Actualizar Entorno Después de
-Cambios}\label{workflow-4-actualizar-entorno-despuuxe9s-de-cambios}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# 1. Alguien actualizó environment.yml en GitHub}
-\BuiltInTok{cd}\NormalTok{ \textasciitilde{}/Proyectos/epsilon{-}y{-}beta}
-\FunctionTok{git}\NormalTok{ pull}
-
-\CommentTok{\# 2. Actualizar tu entorno local}
-\ExtensionTok{conda}\NormalTok{ env update }\AttributeTok{{-}f}\NormalTok{ environment.yml }\AttributeTok{{-}{-}prune}
-
-\CommentTok{\# 3. Verificar que todo funcione}
-\ExtensionTok{conda}\NormalTok{ activate econblog}
-\ExtensionTok{python} \AttributeTok{{-}c} \StringTok{"import pandas, statsmodels; print(\textquotesingle{}Actualización exitosa\textquotesingle{})"}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{Workflow 5: Crear Entorno Temporal para
-Experimento}\label{workflow-5-crear-entorno-temporal-para-experimento}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# 1. Crear entorno temporal rápido}
-\ExtensionTok{mamba}\NormalTok{ create }\AttributeTok{{-}n}\NormalTok{ temp{-}experiment python=3.12 pandas numpy matplotlib }\AttributeTok{{-}y}
-
-\CommentTok{\# 2. Activar}
-\ExtensionTok{conda}\NormalTok{ activate temp{-}experiment}
-
-\CommentTok{\# 3. Experimentar}
-\ExtensionTok{python}\NormalTok{ mi\_experimento.py}
-
-\CommentTok{\# 4. Si funciona, agregar paquetes a entorno principal}
-\CommentTok{\# Si no, eliminar entorno sin afectar nada}
-\ExtensionTok{conda}\NormalTok{ deactivate}
-\ExtensionTok{conda}\NormalTok{ env remove }\AttributeTok{{-}n}\NormalTok{ temp{-}experiment }\AttributeTok{{-}y}
-\end{Highlighting}
-\end{Shaded}
-
-\section{Checklist de Mejores
-Prácticas}\label{checklist-de-mejores-pruxe1cticas}
-
-\subsection{Antes de Crear un Entorno}\label{antes-de-crear-un-entorno}
-
-\begin{itemize}
-\tightlist
-\item[$\square$]
-  Definir propósito claro del entorno
-\item[$\square$]
-  Listar paquetes necesarios
-\item[$\square$]
-  Verificar disponibilidad en conda-forge
-\item[$\square$]
-  Planificar estructura de archivos \texttt{environment.yml}
-\end{itemize}
-
-\subsection{Al Crear un Entorno}\label{al-crear-un-entorno}
-
-\begin{itemize}
-\tightlist
-\item[$\square$]
-  Usar \texttt{mamba} en lugar de \texttt{conda} (más rápido)
-\item[$\square$]
-  Especificar versión de Python
-\item[$\square$]
-  Instalar paquetes de conda primero
-\item[$\square$]
-  Luego instalar paquetes de pip
-\item[$\square$]
-  Verificar que todo funcione
-\item[$\square$]
-  Exportar a \texttt{environment.yml}
-\end{itemize}
-
-\subsection{Uso Diario}\label{uso-diario}
-
-\begin{itemize}
-\tightlist
-\item[$\square$]
-  Activar entorno apropiado para cada tarea
-\item[$\square$]
-  NO instalar paquetes en \texttt{base}
-\item[$\square$]
-  Documentar cambios en \texttt{environment.yml}
-\item[$\square$]
-  Versionar archivos de configuración en Git
-\item[$\square$]
-  Limpiar caché periódicamente
-\end{itemize}
-
-\subsection{Colaboración}\label{colaboraciuxf3n}
-
-\begin{itemize}
-\tightlist
-\item[$\square$]
-  Mantener \texttt{environment.yml} actualizado
-\item[$\square$]
-  Agregar instrucciones en \texttt{README.md}
-\item[$\square$]
-  Usar versiones específicas para reproducibilidad
-\item[$\square$]
-  Probar entorno en máquina limpia antes de compartir
-\end{itemize}
-
-\section{Mis Comandos de Referencia
-Rápida}\label{mis-comandos-de-referencia-ruxe1pida}
-
-\subsection{Gestión Básica}\label{gestiuxf3n-buxe1sica}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Crear entorno}
-\ExtensionTok{mamba}\NormalTok{ create }\AttributeTok{{-}n}\NormalTok{ nombre python=3.12 paquetes }\AttributeTok{{-}y}
-
-\CommentTok{\# Listar entornos}
-\ExtensionTok{conda}\NormalTok{ env list}
-
-\CommentTok{\# Activar}
-\ExtensionTok{conda}\NormalTok{ activate nombre}
-
-\CommentTok{\# Desactivar}
-\ExtensionTok{conda}\NormalTok{ deactivate}
-
-\CommentTok{\# Eliminar}
-\ExtensionTok{conda}\NormalTok{ env remove }\AttributeTok{{-}n}\NormalTok{ nombre }\AttributeTok{{-}y}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{Paquetes}\label{paquetes}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Instalar}
-\ExtensionTok{mamba}\NormalTok{ install paquete }\AttributeTok{{-}y}
-
-\CommentTok{\# Actualizar}
-\ExtensionTok{mamba}\NormalTok{ update paquete }\AttributeTok{{-}y}
-
-\CommentTok{\# Desinstalar}
-\ExtensionTok{conda}\NormalTok{ remove paquete }\AttributeTok{{-}y}
-
-\CommentTok{\# Listar}
-\ExtensionTok{conda}\NormalTok{ list}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{Exportar/Importar}\label{exportarimportar}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Exportar completo}
-\ExtensionTok{conda}\NormalTok{ env export }\AttributeTok{{-}{-}no{-}builds} \OperatorTok{\textgreater{}}\NormalTok{ environment.yml}
-
-\CommentTok{\# Exportar minimal}
-\ExtensionTok{conda}\NormalTok{ env export }\AttributeTok{{-}{-}from{-}history} \OperatorTok{\textgreater{}}\NormalTok{ environment{-}minimal.yml}
-
-\CommentTok{\# Crear desde archivo}
+\CommentTok{\# ============================================================}
+\CommentTok{\# CREAR Y LISTAR}
+\CommentTok{\# ============================================================}
+\ExtensionTok{conda}\NormalTok{ create }\AttributeTok{{-}n}\NormalTok{ nombre python=3.12 paquetes }\AttributeTok{{-}y}
 \ExtensionTok{conda}\NormalTok{ env create }\AttributeTok{{-}f}\NormalTok{ environment.yml}
+\ExtensionTok{conda}\NormalTok{ env list                       }\CommentTok{\# o: conda info {-}{-}envs}
 
-\CommentTok{\# Actualizar desde archivo}
+\CommentTok{\# ============================================================}
+\CommentTok{\# ACTIVAR / DESACTIVAR}
+\CommentTok{\# ============================================================}
+\ExtensionTok{conda}\NormalTok{ activate nombre}
+\ExtensionTok{conda}\NormalTok{ deactivate}
+
+\CommentTok{\# ============================================================}
+\CommentTok{\# PAQUETES}
+\CommentTok{\# ============================================================}
+\ExtensionTok{mamba}\NormalTok{ install paquete }\AttributeTok{{-}y}
+\ExtensionTok{mamba}\NormalTok{ install paquete=1.0.0 }\AttributeTok{{-}y}
+\ExtensionTok{mamba}\NormalTok{ install }\AttributeTok{{-}c}\NormalTok{ conda{-}forge paquete }\AttributeTok{{-}y}
+\ExtensionTok{mamba}\NormalTok{ update paquete }\AttributeTok{{-}y}
+\ExtensionTok{mamba}\NormalTok{ update }\AttributeTok{{-}{-}all} \AttributeTok{{-}y}
+\ExtensionTok{conda}\NormalTok{ remove paquete }\AttributeTok{{-}y}
+\ExtensionTok{conda}\NormalTok{ list}
+\ExtensionTok{pip}\NormalTok{ install paquete   }\CommentTok{\# solo si no está disponible vía conda}
+
+\CommentTok{\# ============================================================}
+\CommentTok{\# EXPORTAR / IMPORTAR}
+\CommentTok{\# ============================================================}
+\ExtensionTok{conda}\NormalTok{ export }\AttributeTok{{-}{-}from{-}history} \AttributeTok{{-}{-}format}\OperatorTok{=}\NormalTok{environment{-}yaml }\OperatorTok{\textgreater{}}\NormalTok{ environment.yml}
+\ExtensionTok{conda}\NormalTok{ env export }\AttributeTok{{-}{-}no{-}builds} \OperatorTok{\textgreater{}}\NormalTok{ environment.yml          }\CommentTok{\# forma tradicional}
+\ExtensionTok{conda}\NormalTok{ list }\AttributeTok{{-}{-}explicit} \OperatorTok{\textgreater{}}\NormalTok{ spec{-}file.txt                   }\CommentTok{\# reproducción exacta}
+\ExtensionTok{conda}\NormalTok{ env create }\AttributeTok{{-}f}\NormalTok{ environment.yml}
 \ExtensionTok{conda}\NormalTok{ env update }\AttributeTok{{-}f}\NormalTok{ environment.yml }\AttributeTok{{-}{-}prune}
+\ExtensionTok{conda}\NormalTok{ create }\AttributeTok{{-}{-}name}\NormalTok{ myenv }\AttributeTok{{-}{-}file}\NormalTok{ spec{-}file.txt}
+
+\CommentTok{\# ============================================================}
+\CommentTok{\# CLONAR / RESTAURAR / ELIMINAR}
+\CommentTok{\# ============================================================}
+\ExtensionTok{conda}\NormalTok{ create }\AttributeTok{{-}{-}name}\NormalTok{ myclone }\AttributeTok{{-}{-}clone}\NormalTok{ myenv}
+\ExtensionTok{conda}\NormalTok{ list }\AttributeTok{{-}{-}revisions}
+\ExtensionTok{conda}\NormalTok{ install }\AttributeTok{{-}{-}rev}\NormalTok{ REVNUM}
+\ExtensionTok{conda}\NormalTok{ env remove }\AttributeTok{{-}n}\NormalTok{ nombre }\AttributeTok{{-}y}
+
+\CommentTok{\# ============================================================}
+\CommentTok{\# MANTENIMIENTO}
+\CommentTok{\# ============================================================}
+\ExtensionTok{conda}\NormalTok{ clean }\AttributeTok{{-}{-}all} \AttributeTok{{-}y}
+\FunctionTok{du} \AttributeTok{{-}sh}\NormalTok{ \textasciitilde{}/miniconda3/envs/}\PreprocessorTok{*}
+
+\CommentTok{\# ============================================================}
+\CommentTok{\# CANALES}
+\CommentTok{\# ============================================================}
+\ExtensionTok{conda}\NormalTok{ config }\AttributeTok{{-}{-}add}\NormalTok{ channels conda{-}forge}
+\ExtensionTok{conda}\NormalTok{ config }\AttributeTok{{-}{-}set}\NormalTok{ channel\_priority strict}
 \end{Highlighting}
 \end{Shaded}
 
-\section{Coclusión}\label{coclusiuxf3n}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-En conclusión, el uso de Anaconda o Miniconda se presenta como una
-solución elegante y sencilla para abordar las desventajas de entorno de
-Python. A través de miniconda, se puede gestionar de manera eficiente la
-instalación y actualización de paquetes, así como la creación y
-exportación de entornos virtuales. Sin embargo, la implementación de
-estas funcionalidades no es mágica, requiere comprensión y familiaridad
-con los comandos y procesos asociados.
-
-Además de la gestión de paquetes, Anaconda ofrece una amplia gama de
-herramientas y paquetes para el análisis de datos, lo cual constituye
-otro aspecto valioso de su funcionalidad.
-
-\section{Recursos Adicionales}\label{recursos-adicionales}
-
-\textbf{Documentación:}
+\subsection{39. Referencias oficiales}\label{referencias-oficiales}
 
 \begin{itemize}
 \tightlist
 \item
-  Conda:
-  https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
+  \textbf{conda --- Gestión de entornos (oficial)}:
+  https://docs.conda.io/projects/conda/en/stable/user-guide/tasks/manage-environments.html
 \item
-  Mamba: https://mamba.readthedocs.io/en/latest/user\_guide/mamba.html
+  \textbf{conda --- Gestión de canales (oficial)}:
+  https://docs.conda.io/projects/conda/en/stable/user-guide/tasks/manage-channels.html
 \item
-  Jupyter: https://jupyter.org/documentation
+  \textbf{conda --- Gestión de paquetes (oficial)}:
+  https://docs.conda.io/projects/conda/en/stable/user-guide/tasks/manage-pkgs.html
+\item
+  \textbf{conda --- Gestión de la propia instalación de conda}:
+  https://docs.conda.io/projects/conda/en/stable/user-guide/tasks/manage-conda.html
+\item
+  \textbf{conda --- Archivo de configuración \texttt{.condarc}}:
+  https://docs.conda.io/projects/conda/en/stable/user-guide/configuration/use-condarc.html
+\item
+  \textbf{conda --- Ajustes de configuración (\texttt{settings})}:
+  https://docs.conda.io/projects/conda/en/stable/user-guide/configuration/settings.html
+\item
+  \textbf{conda --- Conceptos: canales}:
+  https://docs.conda.io/projects/conda/en/stable/user-guide/concepts/channels.html
+\item
+  \textbf{conda --- Conceptos: entornos}:
+  https://docs.conda.io/projects/conda/en/stable/user-guide/concepts/environments.html
+\item
+  \textbf{conda --- Comando \texttt{conda\ create}}:
+  https://docs.conda.io/projects/conda/en/stable/commands/create.html
+\item
+  \textbf{conda --- Comando \texttt{conda\ env\ export}}:
+  https://docs.conda.io/projects/conda/en/stable/commands/env/export.html
+\item
+  \textbf{conda --- Hoja de referencia (cheatsheet) oficial}:
+  https://docs.conda.io/projects/conda/en/stable/user-guide/cheatsheet.html
+\item
+  \textbf{conda --- Solución de problemas}:
+  https://docs.conda.io/projects/conda/en/stable/user-guide/troubleshooting.html
+\item
+  \textbf{mamba --- Documentación oficial}:
+  https://mamba.readthedocs.io/en/latest/user\_guide/mamba.html
+\item
+  \textbf{CEP 22 --- Frozen environments}:
+  https://conda.org/learn/ceps/cep-0022
+\item
+  \textbf{Jupyter --- Documentación oficial}:
+  https://jupyter.org/documentation
+\item
+  \textbf{Publicación previa de referencia}: Achalma, Edison. ``Entornos
+  virtuales con Conda''. numerus-scriptum.netlify.app, 2020 (actualizado
+  2026).
+  https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/
 \end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Edison Achalma} Economista --- Universidad Nacional de San
+Cristóbal de Huamanga (UNSCH) Ayacucho, Perú ORCID:
+\href{https://orcid.org/0000-0001-6996-3364}{0000-0001-6996-3364}
 
 \section{Publicaciones Similares}\label{publicaciones-similares}
 

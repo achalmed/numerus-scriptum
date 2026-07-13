@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Edison Achalma">
+<meta name="keywords" content="keyword1, keyword2">
+<meta name="description" content="Instalación, interfaz RStudio y primeros comandos para comenzar a trabajar con el lenguaje estadístico R.">
+
+<title>Introducción al entorno R – Edison Achalma B.Sc. Econ.</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/img/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c5476e714a85dbfbbcebc64b0d85118e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-cec134992aab4372cb718d1833829c4a.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c5476e714a85dbfbbcebc64b0d85118e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-06b466aced5058fffa44584b53f99f5b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5389a330c79191949d5bbb2aa435eab0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-06b466aced5058fffa44584b53f99f5b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K4GMRCPL');</script>
+<!-- End Google Tag Manager -->
+<!-- Metadatos mejorados para Zotero -->
+<meta name="citation_title" content="Introducción al entorno R">
+<meta name="citation_author" content="Edison Achalma">
+<meta name="citation_author_orcid" content="0000-0001-6996-3364">
+<meta name="citation_publication_date" content="2 de marzo de 2021">
+<meta name="citation_language" content="es">
+<meta name="citation_keywords" content="?meta:keywords-string">
+<meta name="citation_abstract" content="Este abstract será actualizado una vez que se complete el contenido final del artículo.">
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "Introducción al entorno R",
+  "author": {
+    "@type": "Person",
+    "name": "Edison Achalma",
+    "@id": "https://orcid.org/0000-0001-6996-3364"
+  },
+  "datePublished": "2 de marzo de 2021",
+  "description": "Este abstract será actualizado una vez que se complete el contenido final del artículo.",
+  "keywords": "?meta:keywords-string",
+  "inLanguage": "es"
+}
+</script>
+<meta name="quarto:status" content="draft">
+
+
+<link rel="stylesheet" href="../../assets/css/global.css">
+<link rel="stylesheet" href="../../assets/css/components/bibbase.css">
+<meta property="og:title" content="Edison Achalma B.Sc. Econ.">
+<meta property="og:description" content="Investigador y educador que aplica la ciencia de datos de forma que se dé prioridad a la equidad social.">
+<meta property="og:image" content="https://numerus-scriptum.netlify.app/r/featured.jpg">
+<meta property="og:site_name" content="Edison Achalma B.Sc. Econ.">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:title" content="Introducción al entorno R">
+<meta name="twitter:description" content="Instalación, interfaz RStudio y primeros comandos para comenzar a trabajar con el lenguaje estadístico R.">
+<meta name="twitter:image" content="https://numerus-scriptum.netlify.app/r/featured.jpg">
+<meta name="twitter:creator" content="@achalmaedison">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="citation_title" content="Introducción al entorno R">
+<meta name="citation_abstract" content="Este abstract será actualizado una vez que se complete el contenido final del artículo.">
+<meta name="citation_keywords" content="keyword1,keyword2">
+<meta name="citation_author" content="Edison Achalma">
+<meta name="citation_publication_date" content="2021-03-02">
+<meta name="citation_cover_date" content="2021-03-02">
+<meta name="citation_year" content="2021">
+<meta name="citation_online_date" content="2021-03-02">
+<meta name="citation_fulltext_html_url" content="https://numerus-scriptum.netlify.app/r/2021-03-27-01-introduccion-al-programa/">
+<meta name="citation_pdf_url" content="https://numerus-scriptum.netlify.app/r/2021-03-027-01-introduccion-al-programa/index.pdf">
+<meta name="citation_language" content="es">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Borrador</div>
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Edison Achalma B.Sc. Econ.</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://achalmaedison.netlify.app/about/"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-more" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-ellipsis-h" role="img" aria-label="More">
+</i> 
+ <span class="menu-text">More</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-more">    
+        <li>
+    <a class="dropdown-item" href="https://epsilon-y-beta.netlify.app/">
+ <span class="dropdown-text">Econometria</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://dialectica-y-mercado.netlify.app/">
+ <span class="dropdown-text">Filosofía</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://pecunia-fluxus.netlify.app/">
+ <span class="dropdown-text">Finanzas</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://actus-mercator.netlify.app/">
+ <span class="dropdown-text">Gestión empresarial</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://res-publica.netlify.app/">
+ <span class="dropdown-text">Gestión pública</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://methodica.netlify.app/">
+ <span class="dropdown-text">Metodología de la investigación</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://aequilibria.netlify.app/">
+ <span class="dropdown-text">Macroeconomía</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://axiomata.netlify.app/">
+ <span class="dropdown-text">Matemáticas</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://optimums.netlify.app/">
+ <span class="dropdown-text">Microeconomía</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://numerus-scriptum.netlify.app/">
+ <span class="dropdown-text">Programación y Software</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://chaska-x.netlify.app/">
+ <span class="dropdown-text">Seguridad informática</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/achalmed"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/achalmaedison"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../index.xml"> <i class="bi bi-rss" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns" style="position: relative; width: 100%; margin: 0; padding: 0;">
+
+  <!-- Incluir imagen de fondo si existe featured.jpg, de lo contrario, partículas -->
+    <div id="particles-js"></div>
+  
+  <!-- Contenido principal del bloque de título -->
+  <div class="title-block-content">
+    <div class="quarto-title-block"><div><h1 class="title">Introducción al entorno R</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source" data-quarto-source-url="https://github.com/achalmed/numerus-scriptum/blob/main/r/2021-03-27-01-introduccion-al-programa/index.qmd"><i class="bi"></i></button></div></div>
+    
+    <div class="quarto-title-meta-author">
+      <div class="quarto-title-meta-heading">Autor/a</div>
+      <div class="quarto-title-meta-heading">Afiliación</div>
+      
+        <div class="quarto-title-meta-contents">
+        <p class="author"><a href="https://achalmaedison.netlify.app">Edison Achalma</a> <a href="mailto:elmer.achalma.09@unsch.edu.pe" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0001-6996-3364" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+      </div>
+      <div class="quarto-title-meta-contents">
+            <p class="affiliation">
+                <a href="https://www.gob.pe/unsch">
+                Universidad Nacional de San Cristóbal de Huamanga
+                </a>
+              </p>
+          </div>
+      </div>
+
+    <div class="quarto-title-meta">
+
+          
+        <div>
+        <div class="quarto-title-meta-heading">Fecha de publicación</div>
+        <div class="quarto-title-meta-contents">
+          <p class="date">2 de marzo de 2021</p>
+        </div>
+      </div>
+      
+        <div>
+        <div class="quarto-title-meta-heading">Fecha de última modificación</div>
+        <div class="quarto-title-meta-contents">
+          <p class="date-modified">13 de julio de 2026</p>
+        </div>
+      </div>
+        
+      </div>
+      
+    <div>
+      <div class="abstract">
+        <div class="block-title">Resumen</div>
+        Este abstract será actualizado una vez que se complete el contenido final del artículo.
+      </div>
+    </div>
+
+    <div>
+      <div class="keywords">
+        <div class="block-title">Palabras clave</div>
+        <p>keyword1, keyword2</p>
+      </div>
+    </div>
+
+    <!-- Categorías tras los metadatos: fila silenciosa junto a las acciones,
+         sin competir con el título -->
+            <div class="quarto-categories">
+            <div class="quarto-category">R</div>
+          </div>
+        
+    
+    <!-- Cargar script de Particle.js desde CDN, solo si no hay featured.jpg -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+      particlesJS.load(
+        "particles-js",
+        "https://raw.githubusercontent.com/holtzy/lumo/main/_extensions/lumo/particles.json"
+      );
+    </script>
+      </div>
+</header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">Contenidos</h2>
+   
+  <ul>
+  <li><a href="#guía-completa-de-introducción-a-r" id="toc-guía-completa-de-introducción-a-r" class="nav-link active" data-scroll-target="#guía-completa-de-introducción-a-r"><span class="header-section-number">1</span> Guía completa de introducción a R</a>
+  <ul class="collapse">
+  <li><a href="#tabla-de-contenidos" id="toc-tabla-de-contenidos" class="nav-link" data-scroll-target="#tabla-de-contenidos"><span class="header-section-number">1.1</span> Tabla de contenidos</a></li>
+  <li><a href="#qué-es-r" id="toc-qué-es-r" class="nav-link" data-scroll-target="#qué-es-r"><span class="header-section-number">1.2</span> 1. ¿Qué es R?</a></li>
+  <li><a href="#r-y-la-estadística-una-diferencia-de-filosofía" id="toc-r-y-la-estadística-una-diferencia-de-filosofía" class="nav-link" data-scroll-target="#r-y-la-estadística-una-diferencia-de-filosofía"><span class="header-section-number">1.3</span> 2. R y la estadística: una diferencia de filosofía</a></li>
+  <li><a href="#usar-r-de-forma-interactiva" id="toc-usar-r-de-forma-interactiva" class="nav-link" data-scroll-target="#usar-r-de-forma-interactiva"><span class="header-section-number">1.4</span> 3. Usar R de forma interactiva</a>
+  <ul class="collapse">
+  <li><a href="#el-prompt" id="toc-el-prompt" class="nav-link" data-scroll-target="#el-prompt"><span class="header-section-number">1.4.1</span> 3.1. El prompt</a></li>
+  <li><a href="#procedimiento-recomendado-al-usar-r-por-primera-vez-linuxunix" id="toc-procedimiento-recomendado-al-usar-r-por-primera-vez-linuxunix" class="nav-link" data-scroll-target="#procedimiento-recomendado-al-usar-r-por-primera-vez-linuxunix"><span class="header-section-number">1.4.2</span> 3.2. Procedimiento recomendado al usar R por primera vez (Linux/Unix)</a></li>
+  <li><a href="#en-windows" id="toc-en-windows" class="nav-link" data-scroll-target="#en-windows"><span class="header-section-number">1.4.3</span> 3.3. En Windows</a></li>
+  </ul></li>
+  <li><a href="#el-sistema-de-ayuda-de-r" id="toc-el-sistema-de-ayuda-de-r" class="nav-link" data-scroll-target="#el-sistema-de-ayuda-de-r"><span class="header-section-number">1.5</span> 4. El sistema de ayuda de R</a>
+  <ul class="collapse">
+  <li><a href="#ayuda-sobre-una-función-específica" id="toc-ayuda-sobre-una-función-específica" class="nav-link" data-scroll-target="#ayuda-sobre-una-función-específica"><span class="header-section-number">1.5.1</span> 4.1. Ayuda sobre una función específica</a></li>
+  <li><a href="#ayuda-sobre-operadores-o-palabras-con-significado-sintáctico" id="toc-ayuda-sobre-operadores-o-palabras-con-significado-sintáctico" class="nav-link" data-scroll-target="#ayuda-sobre-operadores-o-palabras-con-significado-sintáctico"><span class="header-section-number">1.5.2</span> 4.2. Ayuda sobre operadores o palabras con significado sintáctico</a></li>
+  <li><a href="#ayuda-en-formato-html-navegable" id="toc-ayuda-en-formato-html-navegable" class="nav-link" data-scroll-target="#ayuda-en-formato-html-navegable"><span class="header-section-number">1.5.3</span> 4.3. Ayuda en formato HTML navegable</a></li>
+  <li><a href="#búsqueda-de-ayuda-por-palabra-clave" id="toc-búsqueda-de-ayuda-por-palabra-clave" class="nav-link" data-scroll-target="#búsqueda-de-ayuda-por-palabra-clave"><span class="header-section-number">1.5.4</span> 4.4. Búsqueda de ayuda por palabra clave</a></li>
+  <li><a href="#ejecutar-los-ejemplos-de-un-tema-de-ayuda" id="toc-ejecutar-los-ejemplos-de-un-tema-de-ayuda" class="nav-link" data-scroll-target="#ejecutar-los-ejemplos-de-un-tema-de-ayuda"><span class="header-section-number">1.5.5</span> 4.5. Ejecutar los ejemplos de un tema de ayuda</a></li>
+  </ul></li>
+  <li><a href="#sintaxis-básica-comandos-sensibilidad-a-mayúsculas-comentarios" id="toc-sintaxis-básica-comandos-sensibilidad-a-mayúsculas-comentarios" class="nav-link" data-scroll-target="#sintaxis-básica-comandos-sensibilidad-a-mayúsculas-comentarios"><span class="header-section-number">1.6</span> 5. Sintaxis básica: comandos, sensibilidad a mayúsculas, comentarios</a>
+  <ul class="collapse">
+  <li><a href="#sensibilidad-a-mayúsculas-y-minúsculas" id="toc-sensibilidad-a-mayúsculas-y-minúsculas" class="nav-link" data-scroll-target="#sensibilidad-a-mayúsculas-y-minúsculas"><span class="header-section-number">1.6.1</span> 5.1. Sensibilidad a mayúsculas y minúsculas</a></li>
+  <li><a href="#nombres-válidos" id="toc-nombres-válidos" class="nav-link" data-scroll-target="#nombres-válidos"><span class="header-section-number">1.6.2</span> 5.2. Nombres válidos</a></li>
+  <li><a href="#expresiones-y-asignaciones" id="toc-expresiones-y-asignaciones" class="nav-link" data-scroll-target="#expresiones-y-asignaciones"><span class="header-section-number">1.6.3</span> 5.3. Expresiones y asignaciones</a></li>
+  <li><a href="#separación-de-comandos-y-agrupación" id="toc-separación-de-comandos-y-agrupación" class="nav-link" data-scroll-target="#separación-de-comandos-y-agrupación"><span class="header-section-number">1.6.4</span> 5.4. Separación de comandos y agrupación</a></li>
+  <li><a href="#comentarios" id="toc-comentarios" class="nav-link" data-scroll-target="#comentarios"><span class="header-section-number">1.6.5</span> 5.5. Comentarios</a></li>
+  <li><a href="#límite-de-longitud-de-línea" id="toc-límite-de-longitud-de-línea" class="nav-link" data-scroll-target="#límite-de-longitud-de-línea"><span class="header-section-number">1.6.6</span> 5.6. Límite de longitud de línea</a></li>
+  </ul></li>
+  <li><a href="#asignación-de-variables" id="toc-asignación-de-variables" class="nav-link" data-scroll-target="#asignación-de-variables"><span class="header-section-number">1.7</span> 6. Asignación de variables</a></li>
+  <li><a href="#historial-de-comandos" id="toc-historial-de-comandos" class="nav-link" data-scroll-target="#historial-de-comandos"><span class="header-section-number">1.8</span> 7. Historial de comandos</a></li>
+  <li><a href="#ejecutar-comandos-desde-un-archivo-y-redirigir-salida" id="toc-ejecutar-comandos-desde-un-archivo-y-redirigir-salida" class="nav-link" data-scroll-target="#ejecutar-comandos-desde-un-archivo-y-redirigir-salida"><span class="header-section-number">1.9</span> 8. Ejecutar comandos desde un archivo y redirigir salida</a>
+  <ul class="collapse">
+  <li><a href="#ejecutar-un-script" id="toc-ejecutar-un-script" class="nav-link" data-scroll-target="#ejecutar-un-script"><span class="header-section-number">1.9.1</span> 8.1. Ejecutar un script</a></li>
+  <li><a href="#redirigir-la-salida-a-un-archivo" id="toc-redirigir-la-salida-a-un-archivo" class="nav-link" data-scroll-target="#redirigir-la-salida-a-un-archivo"><span class="header-section-number">1.9.2</span> 8.2. Redirigir la salida a un archivo</a></li>
+  </ul></li>
+  <li><a href="#permanencia-de-datos-y-el-espacio-de-trabajo" id="toc-permanencia-de-datos-y-el-espacio-de-trabajo" class="nav-link" data-scroll-target="#permanencia-de-datos-y-el-espacio-de-trabajo"><span class="header-section-number">1.10</span> 9. Permanencia de datos y el espacio de trabajo</a>
+  <ul class="collapse">
+  <li><a href="#listar-los-objetos-actuales" id="toc-listar-los-objetos-actuales" class="nav-link" data-scroll-target="#listar-los-objetos-actuales"><span class="header-section-number">1.10.1</span> 9.1. Listar los objetos actuales</a></li>
+  <li><a href="#eliminar-objetos" id="toc-eliminar-objetos" class="nav-link" data-scroll-target="#eliminar-objetos"><span class="header-section-number">1.10.2</span> 9.2. Eliminar objetos</a></li>
+  <li><a href="#guardado-del-espacio-de-trabajo-entre-sesiones" id="toc-guardado-del-espacio-de-trabajo-entre-sesiones" class="nav-link" data-scroll-target="#guardado-del-espacio-de-trabajo-entre-sesiones"><span class="header-section-number">1.10.3</span> 9.3. Guardado del espacio de trabajo entre sesiones</a></li>
+  <li><a href="#recomendación-oficial-sobre-directorios-de-trabajo" id="toc-recomendación-oficial-sobre-directorios-de-trabajo" class="nav-link" data-scroll-target="#recomendación-oficial-sobre-directorios-de-trabajo"><span class="header-section-number">1.10.4</span> 9.4. Recomendación oficial sobre directorios de trabajo</a></li>
+  </ul></li>
+  <li><a href="#vectores-la-estructura-fundamental" id="toc-vectores-la-estructura-fundamental" class="nav-link" data-scroll-target="#vectores-la-estructura-fundamental"><span class="header-section-number">1.11</span> 10. Vectores: la estructura fundamental</a>
+  <ul class="collapse">
+  <li><a href="#crear-un-vector-con-c" id="toc-crear-un-vector-con-c" class="nav-link" data-scroll-target="#crear-un-vector-con-c"><span class="header-section-number">1.11.1</span> 10.1. Crear un vector con <code>c()</code></a></li>
+  <li><a href="#asignaciones-equivalentes" id="toc-asignaciones-equivalentes" class="nav-link" data-scroll-target="#asignaciones-equivalentes"><span class="header-section-number">1.11.2</span> 10.2. Asignaciones equivalentes</a></li>
+  </ul></li>
+  <li><a href="#aritmética-vectorizada-y-la-regla-de-reciclaje" id="toc-aritmética-vectorizada-y-la-regla-de-reciclaje" class="nav-link" data-scroll-target="#aritmética-vectorizada-y-la-regla-de-reciclaje"><span class="header-section-number">1.12</span> 11. Aritmética vectorizada y la regla de reciclaje</a></li>
+  <li><a href="#generación-de-secuencias" id="toc-generación-de-secuencias" class="nav-link" data-scroll-target="#generación-de-secuencias"><span class="header-section-number">1.13</span> 12. Generación de secuencias</a>
+  <ul class="collapse">
+  <li><a href="#el-operador" id="toc-el-operador" class="nav-link" data-scroll-target="#el-operador"><span class="header-section-number">1.13.1</span> 12.1. El operador <code>:</code></a></li>
+  <li><a href="#la-función-seq" id="toc-la-función-seq" class="nav-link" data-scroll-target="#la-función-seq"><span class="header-section-number">1.13.2</span> 12.2. La función <code>seq()</code></a></li>
+  <li><a href="#la-función-rep" id="toc-la-función-rep" class="nav-link" data-scroll-target="#la-función-rep"><span class="header-section-number">1.13.3</span> 12.3. La función <code>rep()</code></a></li>
+  </ul></li>
+  <li><a href="#vectores-lógicos" id="toc-vectores-lógicos" class="nav-link" data-scroll-target="#vectores-lógicos"><span class="header-section-number">1.14</span> 13. Vectores lógicos</a></li>
+  <li><a href="#valores-faltantes-na-y-nan" id="toc-valores-faltantes-na-y-nan" class="nav-link" data-scroll-target="#valores-faltantes-na-y-nan"><span class="header-section-number">1.15</span> 14. Valores faltantes: <code>NA</code> y <code>NaN</code></a>
+  <ul class="collapse">
+  <li><a href="#nan-not-a-number" id="toc-nan-not-a-number" class="nav-link" data-scroll-target="#nan-not-a-number"><span class="header-section-number">1.15.1</span> 14.1. <code>NaN</code> — Not a Number</a></li>
+  </ul></li>
+  <li><a href="#vectores-de-caracteres" id="toc-vectores-de-caracteres" class="nav-link" data-scroll-target="#vectores-de-caracteres"><span class="header-section-number">1.16</span> 15. Vectores de caracteres</a></li>
+  <li><a href="#vectores-de-índices-seleccionar-y-modificar-subconjuntos" id="toc-vectores-de-índices-seleccionar-y-modificar-subconjuntos" class="nav-link" data-scroll-target="#vectores-de-índices-seleccionar-y-modificar-subconjuntos"><span class="header-section-number">1.17</span> 16. Vectores de índices: seleccionar y modificar subconjuntos</a>
+  <ul class="collapse">
+  <li><a href="#vector-lógico" id="toc-vector-lógico" class="nav-link" data-scroll-target="#vector-lógico"><span class="header-section-number">1.17.1</span> 16.1. Vector lógico</a></li>
+  <li><a href="#vector-de-enteros-positivos" id="toc-vector-de-enteros-positivos" class="nav-link" data-scroll-target="#vector-de-enteros-positivos"><span class="header-section-number">1.17.2</span> 16.2. Vector de enteros positivos</a></li>
+  <li><a href="#vector-de-enteros-negativos" id="toc-vector-de-enteros-negativos" class="nav-link" data-scroll-target="#vector-de-enteros-negativos"><span class="header-section-number">1.17.3</span> 16.3. Vector de enteros negativos</a></li>
+  <li><a href="#vector-de-cadenas-de-caracteres" id="toc-vector-de-cadenas-de-caracteres" class="nav-link" data-scroll-target="#vector-de-cadenas-de-caracteres"><span class="header-section-number">1.17.4</span> 16.4. Vector de cadenas de caracteres</a></li>
+  <li><a href="#reemplazo-de-elementos-mediante-indexación" id="toc-reemplazo-de-elementos-mediante-indexación" class="nav-link" data-scroll-target="#reemplazo-de-elementos-mediante-indexación"><span class="header-section-number">1.17.5</span> 16.5. Reemplazo de elementos mediante indexación</a></li>
+  </ul></li>
+  <li><a href="#objetos-modo-longitud-y-atributos" id="toc-objetos-modo-longitud-y-atributos" class="nav-link" data-scroll-target="#objetos-modo-longitud-y-atributos"><span class="header-section-number">1.18</span> 17. Objetos: modo, longitud y atributos</a>
+  <ul class="collapse">
+  <li><a href="#modo-mode" id="toc-modo-mode" class="nav-link" data-scroll-target="#modo-mode"><span class="header-section-number">1.18.1</span> 17.1. Modo (<em>mode</em>)</a></li>
+  <li><a href="#longitud-length" id="toc-longitud-length" class="nav-link" data-scroll-target="#longitud-length"><span class="header-section-number">1.18.2</span> 17.2. Longitud (<em>length</em>)</a></li>
+  <li><a href="#cambiar-el-tamaño-de-un-objeto" id="toc-cambiar-el-tamaño-de-un-objeto" class="nav-link" data-scroll-target="#cambiar-el-tamaño-de-un-objeto"><span class="header-section-number">1.18.3</span> 17.3. Cambiar el tamaño de un objeto</a></li>
+  <li><a href="#obtener-y-establecer-atributos" id="toc-obtener-y-establecer-atributos" class="nav-link" data-scroll-target="#obtener-y-establecer-atributos"><span class="header-section-number">1.18.4</span> 17.4. Obtener y establecer atributos</a></li>
+  </ul></li>
+  <li><a href="#coerción-entre-modos" id="toc-coerción-entre-modos" class="nav-link" data-scroll-target="#coerción-entre-modos"><span class="header-section-number">1.19</span> 18. Coerción entre modos</a></li>
+  <li><a href="#la-clase-de-un-objeto" id="toc-la-clase-de-un-objeto" class="nav-link" data-scroll-target="#la-clase-de-un-objeto"><span class="header-section-number">1.20</span> 19. La clase de un objeto</a></li>
+  <li><a href="#estructuras-de-control-condicionales-y-bucles" id="toc-estructuras-de-control-condicionales-y-bucles" class="nav-link" data-scroll-target="#estructuras-de-control-condicionales-y-bucles"><span class="header-section-number">1.21</span> 20. Estructuras de control: condicionales y bucles</a>
+  <ul class="collapse">
+  <li><a href="#condicional-if" id="toc-condicional-if" class="nav-link" data-scroll-target="#condicional-if"><span class="header-section-number">1.21.1</span> 20.1. Condicional <code>if</code></a></li>
+  <li><a href="#bucle-for" id="toc-bucle-for" class="nav-link" data-scroll-target="#bucle-for"><span class="header-section-number">1.21.2</span> 20.2. Bucle <code>for</code></a></li>
+  <li><a href="#bucles-while-y-repeat" id="toc-bucles-while-y-repeat" class="nav-link" data-scroll-target="#bucles-while-y-repeat"><span class="header-section-number">1.21.3</span> 20.3. Bucles <code>while</code> y <code>repeat</code></a></li>
+  </ul></li>
+  <li><a href="#funciones-propias" id="toc-funciones-propias" class="nav-link" data-scroll-target="#funciones-propias"><span class="header-section-number">1.22</span> 21. Funciones propias</a></li>
+  <li><a href="#paquetes-el-sistema-de-extensión-de-r" id="toc-paquetes-el-sistema-de-extensión-de-r" class="nav-link" data-scroll-target="#paquetes-el-sistema-de-extensión-de-r"><span class="header-section-number">1.23</span> 22. Paquetes: el sistema de extensión de R</a>
+  <ul class="collapse">
+  <li><a href="#ver-qué-paquetes-están-instalados" id="toc-ver-qué-paquetes-están-instalados" class="nav-link" data-scroll-target="#ver-qué-paquetes-están-instalados"><span class="header-section-number">1.23.1</span> 22.1. Ver qué paquetes están instalados</a></li>
+  <li><a href="#cargar-un-paquete" id="toc-cargar-un-paquete" class="nav-link" data-scroll-target="#cargar-un-paquete"><span class="header-section-number">1.23.2</span> 22.2. Cargar un paquete</a></li>
+  <li><a href="#instalar-y-actualizar-paquetes" id="toc-instalar-y-actualizar-paquetes" class="nav-link" data-scroll-target="#instalar-y-actualizar-paquetes"><span class="header-section-number">1.23.3</span> 22.3. Instalar y actualizar paquetes</a></li>
+  <li><a href="#ver-qué-paquetes-están-cargados" id="toc-ver-qué-paquetes-están-cargados" class="nav-link" data-scroll-target="#ver-qué-paquetes-están-cargados"><span class="header-section-number">1.23.4</span> 22.4. Ver qué paquetes están cargados</a></li>
+  <li><a href="#paquetes-estándar-base-vs.-paquetes-contribuidos" id="toc-paquetes-estándar-base-vs.-paquetes-contribuidos" class="nav-link" data-scroll-target="#paquetes-estándar-base-vs.-paquetes-contribuidos"><span class="header-section-number">1.23.5</span> 22.5. Paquetes estándar (base) vs.&nbsp;paquetes contribuidos</a></li>
+  </ul></li>
+  <li><a href="#espacios-de-nombres-namespaces" id="toc-espacios-de-nombres-namespaces" class="nav-link" data-scroll-target="#espacios-de-nombres-namespaces"><span class="header-section-number">1.24</span> 23. Espacios de nombres (namespaces)</a>
+  <ul class="collapse">
+  <li><a href="#el-operador-de-doble-dos-puntos" id="toc-el-operador-de-doble-dos-puntos" class="nav-link" data-scroll-target="#el-operador-de-doble-dos-puntos"><span class="header-section-number">1.24.1</span> 23.1. El operador de doble dos puntos <code>::</code></a></li>
+  <li><a href="#el-operador-de-triple-dos-puntos" id="toc-el-operador-de-triple-dos-puntos" class="nav-link" data-scroll-target="#el-operador-de-triple-dos-puntos"><span class="header-section-number">1.24.2</span> 23.2. El operador de triple dos puntos <code>:::</code></a></li>
+  </ul></li>
+  <li><a href="#buenas-prácticas-según-el-manual-oficial" id="toc-buenas-prácticas-según-el-manual-oficial" class="nav-link" data-scroll-target="#buenas-prácticas-según-el-manual-oficial"><span class="header-section-number">1.25</span> 24. Buenas prácticas según el manual oficial</a></li>
+  <li><a href="#referencias-oficiales" id="toc-referencias-oficiales" class="nav-link" data-scroll-target="#referencias-oficiales"><span class="header-section-number">1.26</span> 25. Referencias oficiales</a></li>
+  </ul></li>
+  <li><a href="#publicaciones-similares" id="toc-publicaciones-similares" class="nav-link" data-scroll-target="#publicaciones-similares"><span class="header-section-number">2</span> Publicaciones Similares</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Otros formatos</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF (apaquarto)</a></li><li><a href="index.docx"><i class="bi bi-file-word"></i>MS Word (apaquarto)</a></li></ul></div><div class="quarto-other-links"><h2>Otros Enlaces</h2><ul><li><a href="https://gravatar.com/achalmaedison"><i class="bi bi-link-45deg"></i>Gravatar</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+<style>
+  :root {
+    --primary-color: ;
+  }
+
+  #title-block-header {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .title-block-content {
+    position: relative;
+    padding-top: 60px;
+    /* Reducido de 130px */
+    padding-bottom: 60px;
+    /* Reducido de 130px */
+    max-width: 752px;
+    margin: 0 auto;
+    z-index: 1;
+  }
+
+  #particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+</style>
+
+
+
+
+<section id="guía-completa-de-introducción-a-r" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Guía completa de introducción a R</h1>
+<blockquote class="blockquote">
+<p>Referencia técnica independiente sobre los <strong>fundamentos del lenguaje R</strong>: qué es, cómo se usa de forma interactiva, su sintaxis básica, objetos, modos, atributos, operadores, funciones y el sistema de ayuda — todo lo previo a la manipulación de datos propiamente dicha (data frames, importación de datos, <code>dplyr</code>, etc., que se tratan en una guía aparte). Basada en el manual oficial <strong>“An Introduction to R”</strong> del R Core Team, publicado por CRAN (cran.r-project.org/doc/manuals), no en blogs ni tutoriales de terceros.</p>
+</blockquote>
+<hr>
+<section id="tabla-de-contenidos" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="tabla-de-contenidos"><span class="header-section-number">1.1</span> Tabla de contenidos</h2>
+<ol type="1">
+<li><a href="#1-qué-es-r">¿Qué es R?</a></li>
+<li><a href="#2-r-y-la-estadística-una-diferencia-de-filosofía">R y la estadística: una diferencia de filosofía</a></li>
+<li><a href="#3-usar-r-de-forma-interactiva">Usar R de forma interactiva</a></li>
+<li><a href="#4-el-sistema-de-ayuda-de-r">El sistema de ayuda de R</a></li>
+<li><a href="#5-sintaxis-básica-comandos-sensibilidad-a-mayúsculas-comentarios">Sintaxis básica: comandos, sensibilidad a mayúsculas, comentarios</a></li>
+<li><a href="#6-asignación-de-variables">Asignación de variables</a></li>
+<li><a href="#7-historial-de-comandos">Historial de comandos</a></li>
+<li><a href="#8-ejecutar-comandos-desde-un-archivo-y-redirigir-salida">Ejecutar comandos desde un archivo y redirigir salida</a></li>
+<li><a href="#9-permanencia-de-datos-y-el-espacio-de-trabajo">Permanencia de datos y el espacio de trabajo</a></li>
+<li><a href="#10-vectores-la-estructura-fundamental">Vectores: la estructura fundamental</a></li>
+<li><a href="#11-aritmética-vectorizada-y-la-regla-de-reciclaje">Aritmética vectorizada y la regla de reciclaje</a></li>
+<li><a href="#12-generación-de-secuencias">Generación de secuencias</a></li>
+<li><a href="#13-vectores-lógicos">Vectores lógicos</a></li>
+<li><a href="#14-valores-faltantes-na-y-nan">Valores faltantes: <code>NA</code> y <code>NaN</code></a></li>
+<li><a href="#15-vectores-de-caracteres">Vectores de caracteres</a></li>
+<li><a href="#16-vectores-de-índices-seleccionar-y-modificar-subconjuntos">Vectores de índices: seleccionar y modificar subconjuntos</a></li>
+<li><a href="#17-objetos-modo-longitud-y-atributos">Objetos: modo, longitud y atributos</a></li>
+<li><a href="#18-coerción-entre-modos">Coerción entre modos</a></li>
+<li><a href="#19-la-clase-de-un-objeto">La clase de un objeto</a></li>
+<li><a href="#20-estructuras-de-control-condicionales-y-bucles">Estructuras de control: condicionales y bucles</a></li>
+<li><a href="#21-funciones-propias">Funciones propias</a></li>
+<li><a href="#22-paquetes-el-sistema-de-extensión-de-r">Paquetes: el sistema de extensión de R</a></li>
+<li><a href="#23-espacios-de-nombres-namespaces">Espacios de nombres (namespaces)</a></li>
+<li><a href="#24-buenas-prácticas-según-el-manual-oficial">Buenas prácticas según el manual oficial</a></li>
+<li><a href="#25-referencias-oficiales">Referencias oficiales</a></li>
+</ol>
+<hr>
+</section>
+<section id="qué-es-r" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="qué-es-r"><span class="header-section-number">1.2</span> 1. ¿Qué es R?</h2>
+<p>Según la documentación oficial, R es un <strong>conjunto integrado de herramientas de software</strong> para manipulación de datos, cálculo y representación gráfica. Entre otras cosas, ofrece:</p>
+<ul>
+<li>una herramienta efectiva de manejo y almacenamiento de datos,</li>
+<li>un conjunto de operadores para cálculos sobre arreglos, en particular matrices,</li>
+<li>una colección amplia, coherente e integrada de herramientas intermedias para análisis de datos,</li>
+<li>herramientas gráficas para análisis y visualización de datos, tanto en pantalla como en copia impresa,</li>
+<li>un lenguaje de programación bien desarrollado, simple y efectivo (llamado <strong>S</strong>), que incluye condicionales, bucles, funciones recursivas definidas por el usuario, y funciones de entrada y salida.</li>
+</ul>
+<p>El término “entorno” (<em>environment</em>) pretende caracterizar a R como un sistema plenamente planeado y coherente, en lugar de una acumulación incremental de herramientas muy específicas e inflexibles, como ocurre frecuentemente con otro software de análisis de datos.</p>
+<p>R puede considerarse una implementación del lenguaje <strong>S</strong>, desarrollado originalmente en los Laboratorios Bell por Rick Becker, John Chambers y Allan Wilks, y que también es la base de los sistemas S-PLUS.</p>
+<p>R es, sobre todo, un vehículo para el desarrollo de nuevos métodos de análisis de datos interactivo. Se ha extendido rápidamente mediante una gran colección de <strong>paquetes</strong> (<em>packages</em>). La mayoría de los programas escritos en R son, según el propio manual, esencialmente efímeros: escritos para un único análisis de datos puntual.</p>
+<hr>
+</section>
+<section id="r-y-la-estadística-una-diferencia-de-filosofía" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="r-y-la-estadística-una-diferencia-de-filosofía"><span class="header-section-number">1.3</span> 2. R y la estadística: una diferencia de filosofía</h2>
+<p>El manual oficial señala una diferencia importante de filosofía entre R (y S) y otros sistemas estadísticos clásicos como SAS o SPSS. En estos últimos, un análisis estadístico típicamente produce una salida abundante de forma inmediata. En S (y por tanto en R), un análisis estadístico normalmente se realiza como <strong>una serie de pasos</strong>, con resultados intermedios almacenados en objetos: R produce una salida mínima en cada paso y almacena los resultados en un objeto (por ejemplo, un objeto de ajuste de un modelo) para su posterior interrogación mediante otras funciones de R.</p>
+<p>Esto tiene una implicación práctica importante para quien empieza: en R, <em>no ver</em> una salida extensa tras ajustar un modelo no significa que algo haya fallado; significa que el resultado quedó guardado en un objeto, listo para ser examinado con las funciones apropiadas (<code>summary()</code>, <code>print()</code>, etc.).</p>
+<p>R incluye unos 25 paquetes llamados “estándar” y “recomendados” que vienen junto con cualquier instalación de R, y muchos más disponibles a través de la red de sitios CRAN (cran.r-project.org).</p>
+<hr>
+</section>
+<section id="usar-r-de-forma-interactiva" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="usar-r-de-forma-interactiva"><span class="header-section-number">1.4</span> 3. Usar R de forma interactiva</h2>
+<section id="el-prompt" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="el-prompt"><span class="header-section-number">1.4.1</span> 3.1. El prompt</h3>
+<p>Cuando se usa el programa R, este emite un <em>prompt</em> (símbolo de espera de instrucción) cuando espera comandos de entrada. El prompt por defecto es <code>&gt;</code>. Si un comando no está completo al final de una línea, R emite un prompt distinto por defecto:</p>
+<pre><code>+</code></pre>
+<p>en la segunda línea y subsiguientes, y continúa leyendo hasta que el comando esté sintácticamente completo.</p>
+</section>
+<section id="procedimiento-recomendado-al-usar-r-por-primera-vez-linuxunix" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="procedimiento-recomendado-al-usar-r-por-primera-vez-linuxunix"><span class="header-section-number">1.4.2</span> 3.2. Procedimiento recomendado al usar R por primera vez (Linux/Unix)</h3>
+<p>El manual recomienda, para una primera sesión bajo UNIX/Linux, el siguiente procedimiento:</p>
+<p><strong>Paso 1 — Crear un subdirectorio de trabajo separado</strong>, por ejemplo llamado <code>work</code>, para contener los archivos de datos sobre los que se trabajará en ese problema concreto:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">$</span> mkdir work</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="ex">$</span> cd work</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Paso 2 — Iniciar el programa R</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">$</span> R</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Paso 3</strong> — A partir de aquí, pueden emitirse comandos de R.</p>
+<p><strong>Paso 4 — Salir del programa</strong> con el comando:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="sc">&gt;</span> <span class="fu">q</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>En ese momento se preguntará si se desea guardar los datos de la sesión (workspace). Según el sistema, esto aparecerá como un cuadro de diálogo o como un prompt de texto al que se puede responder <code>yes</code>, <code>no</code> o <code>cancel</code> (basta una sola letra de abreviación) para guardar los datos antes de salir, salir sin guardar, o volver a la sesión. Los datos guardados estarán disponibles en futuras sesiones de R.</p>
+<p>Sesiones posteriores son simples: situarse en el directorio <code>work</code> e iniciar el programa de nuevo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">$</span> cd work</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="ex">$</span> R</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="en-windows" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="en-windows"><span class="header-section-number">1.4.3</span> 3.3. En Windows</h3>
+<p>El procedimiento es básicamente el mismo: se crea una carpeta como directorio de trabajo, y esta se establece en el campo “Start In” del acceso directo de R. Luego se lanza R haciendo doble clic en el ícono.</p>
+<blockquote class="blockquote">
+<p><strong>Nota práctica</strong>: si usas RStudio (en cualquier sistema operativo), el equivalente moderno y recomendado a “crear una carpeta de trabajo separada” es usar <strong>RStudio Projects</strong> (<code>File</code> → <code>New Project...</code>), que gestiona automáticamente el directorio de trabajo, el historial y el workspace por proyecto.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="el-sistema-de-ayuda-de-r" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="el-sistema-de-ayuda-de-r"><span class="header-section-number">1.5</span> 4. El sistema de ayuda de R</h2>
+<p>R incluye un sistema de ayuda integrado, similar a la utilidad <code>man</code> de UNIX. Es, según el propio manual, la primera herramienta a dominar antes de avanzar.</p>
+<section id="ayuda-sobre-una-función-específica" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="ayuda-sobre-una-función-específica"><span class="header-section-number">1.5.1</span> 4.1. Ayuda sobre una función específica</h3>
+<p>Para obtener información sobre una función específica, por ejemplo <code>solve</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="sc">&gt;</span> <span class="fu">help</span>(solve)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Forma alternativa, más breve:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="sc">&gt;</span> ?solve</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="ayuda-sobre-operadores-o-palabras-con-significado-sintáctico" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="ayuda-sobre-operadores-o-palabras-con-significado-sintáctico"><span class="header-section-number">1.5.2</span> 4.2. Ayuda sobre operadores o palabras con significado sintáctico</h3>
+<p>Para una característica especificada por caracteres especiales, el argumento debe ir entre comillas dobles o simples, convirtiéndolo en una “cadena de caracteres” (<em>character string</em>). Esto también es necesario para algunas palabras con significado sintáctico, incluyendo <code>if</code>, <code>for</code> y <code>function</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="sc">&gt;</span> <span class="fu">help</span>(<span class="st">"[["</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="ayuda-en-formato-html-navegable" class="level3" data-number="1.5.3">
+<h3 data-number="1.5.3" class="anchored" data-anchor-id="ayuda-en-formato-html-navegable"><span class="header-section-number">1.5.3</span> 4.3. Ayuda en formato HTML navegable</h3>
+<p>En la mayoría de las instalaciones de R, la ayuda está disponible en formato HTML mediante:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="sc">&gt;</span> <span class="fu">help.start</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Esto lanza un navegador web que permite explorar las páginas de ayuda mediante hipervínculos. El enlace “Search Engine and Keywords” en la página cargada por <code>help.start()</code> es particularmente útil, ya que contiene una lista de conceptos de alto nivel que permite buscar entre las funciones disponibles — una forma muy eficiente de orientarse rápidamente y entender la amplitud de lo que R ofrece.</p>
+</section>
+<section id="búsqueda-de-ayuda-por-palabra-clave" class="level3" data-number="1.5.4">
+<h3 data-number="1.5.4" class="anchored" data-anchor-id="búsqueda-de-ayuda-por-palabra-clave"><span class="header-section-number">1.5.4</span> 4.4. Búsqueda de ayuda por palabra clave</h3>
+<p>El comando <code>help.search</code> (alternativamente <code>??</code>) permite buscar ayuda de varias formas:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="sc">&gt;</span> ??solve</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Para más detalles y ejemplos, se recomienda consultar <code>?help.search</code>.</p>
+</section>
+<section id="ejecutar-los-ejemplos-de-un-tema-de-ayuda" class="level3" data-number="1.5.5">
+<h3 data-number="1.5.5" class="anchored" data-anchor-id="ejecutar-los-ejemplos-de-un-tema-de-ayuda"><span class="header-section-number">1.5.5</span> 4.5. Ejecutar los ejemplos de un tema de ayuda</h3>
+<p>Los ejemplos incluidos en un tema de ayuda normalmente pueden ejecutarse con:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="sc">&gt;</span> <span class="fu">example</span>(topic)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="sintaxis-básica-comandos-sensibilidad-a-mayúsculas-comentarios" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="sintaxis-básica-comandos-sensibilidad-a-mayúsculas-comentarios"><span class="header-section-number">1.6</span> 5. Sintaxis básica: comandos, sensibilidad a mayúsculas, comentarios</h2>
+<p>Técnicamente, R es un <strong>lenguaje de expresiones</strong> (<em>expression language</em>) con una sintaxis muy simple.</p>
+<section id="sensibilidad-a-mayúsculas-y-minúsculas" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="sensibilidad-a-mayúsculas-y-minúsculas"><span class="header-section-number">1.6.1</span> 5.1. Sensibilidad a mayúsculas y minúsculas</h3>
+<p>R <strong>distingue mayúsculas de minúsculas</strong> (<em>case sensitive</em>), como la mayoría de los paquetes basados en UNIX. Esto significa que <code>A</code> y <code>a</code> son símbolos distintos y se refieren a variables diferentes.</p>
+</section>
+<section id="nombres-válidos" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="nombres-válidos"><span class="header-section-number">1.6.2</span> 5.2. Nombres válidos</h3>
+<p>El conjunto de símbolos que pueden usarse en nombres de R depende del sistema operativo y del país en el que se ejecuta R (técnicamente, de la configuración regional o <em>locale</em> en uso). Normalmente se permiten todos los símbolos alfanuméricos (y en algunos países esto incluye letras acentuadas), además del punto (<code>.</code>) y el guion bajo (<code>_</code>), con la restricción de que un nombre debe empezar con un punto o una letra, y si empieza con un punto, el segundo carácter no puede ser un dígito. Los nombres son, en la práctica, ilimitados en longitud.</p>
+<blockquote class="blockquote">
+<p><strong>Nota de portabilidad</strong>: para código R portable (incluido el destinado a paquetes de R), el manual recomienda usar únicamente los caracteres <code>A–Za–z0–9</code>.</p>
+</blockquote>
+</section>
+<section id="expresiones-y-asignaciones" class="level3" data-number="1.6.3">
+<h3 data-number="1.6.3" class="anchored" data-anchor-id="expresiones-y-asignaciones"><span class="header-section-number">1.6.3</span> 5.3. Expresiones y asignaciones</h3>
+<p>Los comandos elementales consisten en <strong>expresiones</strong> o <strong>asignaciones</strong>:</p>
+<ul>
+<li>Si se da una expresión como comando, esta se <strong>evalúa</strong>, se <strong>imprime</strong> (a menos que se haga explícitamente invisible), y el valor se pierde.</li>
+<li>Una asignación también evalúa una expresión y pasa el valor a una variable, pero el resultado <strong>no se imprime automáticamente</strong>.</li>
+</ul>
+</section>
+<section id="separación-de-comandos-y-agrupación" class="level3" data-number="1.6.4">
+<h3 data-number="1.6.4" class="anchored" data-anchor-id="separación-de-comandos-y-agrupación"><span class="header-section-number">1.6.4</span> 5.4. Separación de comandos y agrupación</h3>
+<p>Los comandos se separan mediante punto y coma (<code>;</code>) o mediante un salto de línea. Los comandos elementales pueden agruparse en una sola expresión compuesta mediante llaves (<code>{</code> y <code>}</code>).</p>
+</section>
+<section id="comentarios" class="level3" data-number="1.6.5">
+<h3 data-number="1.6.5" class="anchored" data-anchor-id="comentarios"><span class="header-section-number">1.6.5</span> 5.5. Comentarios</h3>
+<p>Los comentarios pueden colocarse casi en cualquier parte, comenzando con el símbolo numeral (<code>#</code>); todo lo que sigue hasta el final de la línea es un comentario:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># esto es un comentario completo</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span>  <span class="co"># esto es un comentario al final de una línea</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="límite-de-longitud-de-línea" class="level3" data-number="1.6.6">
+<h3 data-number="1.6.6" class="anchored" data-anchor-id="límite-de-longitud-de-línea"><span class="header-section-number">1.6.6</span> 5.6. Límite de longitud de línea</h3>
+<p>Las líneas de comando introducidas en la consola están limitadas a aproximadamente 4095 bytes (no caracteres).</p>
+<hr>
+</section>
+</section>
+<section id="asignación-de-variables" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="asignación-de-variables"><span class="header-section-number">1.7</span> 6. Asignación de variables</h2>
+<p>El operador de asignación estándar y tradicional en R es la flecha hacia la izquierda:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">10.4</span>, <span class="fl">5.6</span>, <span class="fl">3.1</span>, <span class="fl">6.4</span>, <span class="fl">21.7</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Esto crea un vector llamado <code>x</code> con cinco elementos. El símbolo <code>&lt;-</code> puede leerse como “se le asigna a”, y es la forma documentada en el manual oficial para crear y nombrar objetos en R. (El operador <code>=</code> también funciona como asignación en la mayoría de los contextos, y es ampliamente usado en la práctica moderna, pero el manual de referencia introduce y emplea consistentemente <code>&lt;-</code>).</p>
+<hr>
+</section>
+<section id="historial-de-comandos" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="historial-de-comandos"><span class="header-section-number">1.8</span> 7. Historial de comandos</h2>
+<p>Bajo muchas versiones de UNIX y en Windows, R ofrece un mecanismo para recordar y reejecutar comandos previos. Las flechas verticales del teclado permiten desplazarse hacia adelante y atrás por un <strong>historial de comandos</strong> (<em>command history</em>). Una vez localizado un comando de esta forma, el cursor puede moverse dentro del comando usando las flechas horizontales, y los caracteres pueden eliminarse con la tecla <code>DEL</code> o añadirse con las demás teclas.</p>
+<p>Las capacidades de recuperación y edición bajo UNIX son altamente personalizables, mediante la biblioteca <code>readline</code>. Alternativamente, el editor de texto Emacs ofrece mecanismos de soporte más generales (vía ESS, <em>Emacs Speaks Statistics</em>) para trabajar interactivamente con R.</p>
+<hr>
+</section>
+<section id="ejecutar-comandos-desde-un-archivo-y-redirigir-salida" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="ejecutar-comandos-desde-un-archivo-y-redirigir-salida"><span class="header-section-number">1.9</span> 8. Ejecutar comandos desde un archivo y redirigir salida</h2>
+<section id="ejecutar-un-script" class="level3" data-number="1.9.1">
+<h3 data-number="1.9.1" class="anchored" data-anchor-id="ejecutar-un-script"><span class="header-section-number">1.9.1</span> 8.1. Ejecutar un script</h3>
+<p>Si los comandos están almacenados en un archivo externo, por ejemplo <code>commands.R</code> en el directorio de trabajo <code>work</code>, pueden ejecutarse en cualquier momento de una sesión de R con el comando:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="sc">&gt;</span> <span class="fu">source</span>(<span class="st">"commands.R"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>En Windows, la opción <strong>Source</strong> también está disponible en el menú <strong>File</strong>.</p>
+</section>
+<section id="redirigir-la-salida-a-un-archivo" class="level3" data-number="1.9.2">
+<h3 data-number="1.9.2" class="anchored" data-anchor-id="redirigir-la-salida-a-un-archivo"><span class="header-section-number">1.9.2</span> 8.2. Redirigir la salida a un archivo</h3>
+<p>La función <code>sink()</code> desvía toda la salida posterior de la consola hacia un archivo externo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="sc">&gt;</span> <span class="fu">sink</span>(<span class="st">"record.lis"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>El comando, sin argumentos, restaura la salida a la consola nuevamente:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="sc">&gt;</span> <span class="fu">sink</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="permanencia-de-datos-y-el-espacio-de-trabajo" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="permanencia-de-datos-y-el-espacio-de-trabajo"><span class="header-section-number">1.10</span> 9. Permanencia de datos y el espacio de trabajo</h2>
+<p>Las entidades que R crea y manipula se conocen como <strong>objetos</strong>. Pueden ser variables, arreglos de números, cadenas de caracteres, funciones, o estructuras más generales construidas a partir de tales componentes.</p>
+<section id="listar-los-objetos-actuales" class="level3" data-number="1.10.1">
+<h3 data-number="1.10.1" class="anchored" data-anchor-id="listar-los-objetos-actuales"><span class="header-section-number">1.10.1</span> 9.1. Listar los objetos actuales</h3>
+<p>Durante una sesión de R, los objetos se crean y almacenan por nombre. El comando:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="sc">&gt;</span> <span class="fu">objects</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>(alternativamente, <code>ls()</code>) muestra los nombres de (la mayoría de) los objetos actualmente almacenados en R. La colección de objetos actualmente almacenada se llama el <strong>espacio de trabajo</strong> (<em>workspace</em>).</p>
+</section>
+<section id="eliminar-objetos" class="level3" data-number="1.10.2">
+<h3 data-number="1.10.2" class="anchored" data-anchor-id="eliminar-objetos"><span class="header-section-number">1.10.2</span> 9.2. Eliminar objetos</h3>
+<p>Para eliminar objetos está disponible la función <code>rm</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="sc">&gt;</span> <span class="fu">rm</span>(x, y, z, ink, junk, temp, foo, bar)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="guardado-del-espacio-de-trabajo-entre-sesiones" class="level3" data-number="1.10.3">
+<h3 data-number="1.10.3" class="anchored" data-anchor-id="guardado-del-espacio-de-trabajo-entre-sesiones"><span class="header-section-number">1.10.3</span> 9.3. Guardado del espacio de trabajo entre sesiones</h3>
+<p>Todos los objetos creados durante una sesión de R pueden almacenarse permanentemente en un archivo para uso en sesiones futuras. Al final de cada sesión de R, se ofrece la oportunidad de guardar todos los objetos actualmente disponibles. Si se indica que se desea hacerlo, los objetos se escriben a un archivo llamado <code>.RData</code> en el directorio actual, y las líneas de comando usadas en la sesión se guardan en un archivo llamado <code>.Rhistory</code>.</p>
+<p>Cuando R se inicia más tarde desde el mismo directorio, recarga el espacio de trabajo desde ese archivo. Al mismo tiempo se recarga el historial de comandos asociado.</p>
+</section>
+<section id="recomendación-oficial-sobre-directorios-de-trabajo" class="level3" data-number="1.10.4">
+<h3 data-number="1.10.4" class="anchored" data-anchor-id="recomendación-oficial-sobre-directorios-de-trabajo"><span class="header-section-number">1.10.4</span> 9.4. Recomendación oficial sobre directorios de trabajo</h3>
+<p>El manual recomienda explícitamente usar <strong>directorios de trabajo separados</strong> para distintos análisis realizados con R. Es bastante común que se creen objetos con nombres como <code>x</code> e <code>y</code> durante un análisis; estos nombres suelen ser significativos en el contexto de un único análisis, pero puede ser bastante difícil decidir qué representaban cuando se han realizado varios análisis distintos en el mismo directorio.</p>
+<blockquote class="blockquote">
+<p><strong>Nota práctica</strong>: este es, precisamente, el problema que <strong>RStudio Projects</strong> (y, para la gestión de paquetes por proyecto, <code>renv</code>) resuelven de forma moderna y estructurada.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="vectores-la-estructura-fundamental" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="vectores-la-estructura-fundamental"><span class="header-section-number">1.11</span> 10. Vectores: la estructura fundamental</h2>
+<p>R opera sobre estructuras de datos con nombre. La estructura más simple es el <strong>vector numérico</strong>, una entidad única que consiste en una colección ordenada de números.</p>
+<section id="crear-un-vector-con-c" class="level3" data-number="1.11.1">
+<h3 data-number="1.11.1" class="anchored" data-anchor-id="crear-un-vector-con-c"><span class="header-section-number">1.11.1</span> 10.1. Crear un vector con <code>c()</code></h3>
+<p>Para configurar un vector llamado <code>x</code>, por ejemplo, consistente en cinco números (10.4, 5.6, 3.1, 6.4 y 21.7), se usa la función <code>c()</code> (<em>combine</em>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">10.4</span>, <span class="fl">5.6</span>, <span class="fl">3.1</span>, <span class="fl">6.4</span>, <span class="fl">21.7</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Esta es, según el manual, una <strong>asignación de vector</strong> usando la función <code>c()</code>, que en este contexto puede tomar un número arbitrario de argumentos vectoriales y cuyo valor resultante es un vector obtenido al concatenar sus argumentos uno tras otro.</p>
+</section>
+<section id="asignaciones-equivalentes" class="level3" data-number="1.11.2">
+<h3 data-number="1.11.2" class="anchored" data-anchor-id="asignaciones-equivalentes"><span class="header-section-number">1.11.2</span> 10.2. Asignaciones equivalentes</h3>
+<p>El manual señala explícitamente que las siguientes formas son equivalentes a la anterior:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="sc">&gt;</span> <span class="fu">assign</span>(<span class="st">"x"</span>, <span class="fu">c</span>(<span class="fl">10.4</span>, <span class="fl">5.6</span>, <span class="fl">3.1</span>, <span class="fl">6.4</span>, <span class="fl">21.7</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>y, en orden inverso (aunque poco usada en la práctica):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="sc">&gt;</span> <span class="fu">c</span>(<span class="fl">10.4</span>, <span class="fl">5.6</span>, <span class="fl">3.1</span>, <span class="fl">6.4</span>, <span class="fl">21.7</span>) <span class="ot">-&gt;</span> x</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="aritmética-vectorizada-y-la-regla-de-reciclaje" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="aritmética-vectorizada-y-la-regla-de-reciclaje"><span class="header-section-number">1.12</span> 11. Aritmética vectorizada y la regla de reciclaje</h2>
+<p>R opera sobre vectores completos sin necesidad de bucles explícitos para operaciones aritméticas básicas. Por ejemplo, si <code>x</code> es un vector ya definido, este comando crea un nuevo vector <code>y</code> con 11 entradas:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="sc">&gt;</span> y <span class="ot">&lt;-</span> <span class="fu">c</span>(x, <span class="dv">0</span>, x)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Los vectores pueden usarse en expresiones aritméticas, en cuyo caso las operaciones se realizan <strong>elemento por elemento</strong>. Los vectores que ocurren en la misma expresión no necesitan tener la misma longitud. Si no tienen la misma longitud, el valor del resultado es el de la expresión más larga, y los valores en el vector más corto se <strong>reciclan</strong> tantas veces como sea necesario (posiblemente de forma fraccionaria) hasta que coincidan en longitud con el vector más largo. En particular, una constante numérica simple es, en este sentido, un vector de longitud uno que se recicla tantas veces como sea necesario. Esta es la conocida <strong>regla de reciclaje</strong> (<em>recycling rule</em>).</p>
+<p>Los operadores aritméticos elementales son los habituales <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code> y <code>^</code> (potencia). Además, todas las funciones matemáticas comunes están disponibles: <code>log</code>, <code>exp</code>, <code>sin</code>, <code>cos</code>, <code>tan</code>, <code>sqrt</code>, entre otras.</p>
+<hr>
+</section>
+<section id="generación-de-secuencias" class="level2" data-number="1.13">
+<h2 data-number="1.13" class="anchored" data-anchor-id="generación-de-secuencias"><span class="header-section-number">1.13</span> 12. Generación de secuencias</h2>
+<p>R provee varias formas de generar secuencias de números.</p>
+<section id="el-operador" class="level3" data-number="1.13.1">
+<h3 data-number="1.13.1" class="anchored" data-anchor-id="el-operador"><span class="header-section-number">1.13.1</span> 12.1. El operador <code>:</code></h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="sc">&gt;</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>genera la secuencia de enteros del 1 al 30.</p>
+</section>
+<section id="la-función-seq" class="level3" data-number="1.13.2">
+<h3 data-number="1.13.2" class="anchored" data-anchor-id="la-función-seq"><span class="header-section-number">1.13.2</span> 12.2. La función <code>seq()</code></h3>
+<p>La función <code>seq()</code> es una forma más general de generar secuencias, permitiendo especificar incrementos distintos de 1, o la longitud deseada de la secuencia en vez del valor final.</p>
+</section>
+<section id="la-función-rep" class="level3" data-number="1.13.3">
+<h3 data-number="1.13.3" class="anchored" data-anchor-id="la-función-rep"><span class="header-section-number">1.13.3</span> 12.3. La función <code>rep()</code></h3>
+<p>La función <code>rep()</code> permite generar secuencias repitiendo un vector dado un número determinado de veces.</p>
+<hr>
+</section>
+</section>
+<section id="vectores-lógicos" class="level2" data-number="1.14">
+<h2 data-number="1.14" class="anchored" data-anchor-id="vectores-lógicos"><span class="header-section-number">1.14</span> 13. Vectores lógicos</h2>
+<p>Además de las cantidades numéricas, R permite manipular <strong>cantidades lógicas</strong> (<em>logical quantities</em>). Los elementos de un vector lógico pueden tomar los valores <code>TRUE</code>, <code>FALSE</code>, o <code>NA</code> (valor “no disponible”).</p>
+<p>Los vectores lógicos se generan mediante condiciones. Por ejemplo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="sc">&gt;</span> temp <span class="ot">&lt;-</span> x <span class="sc">&gt;</span> <span class="dv">13</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>establece <code>temp</code> como un vector de la misma longitud que <code>x</code>, con valores <code>TRUE</code> o <code>FALSE</code> según si el elemento correspondiente de <code>x</code> es mayor que 13 o no.</p>
+<p>Los operadores condicionales habituales son <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>==</code> (igualdad exacta) y <code>!=</code> (diferente). Además, si <code>c1</code> y <code>c2</code> son expresiones lógicas, <code>c1 &amp; c2</code> es su intersección (“y”), <code>c1 | c2</code> es su unión (“o”), y <code>!c1</code> es la negación de <code>c1</code>.</p>
+<p>Los valores lógicos se coercionan a valores numéricos en expresiones numéricas, con <code>FALSE</code> convertido en 0 y <code>TRUE</code> convertido en 1.</p>
+<hr>
+</section>
+<section id="valores-faltantes-na-y-nan" class="level2" data-number="1.15">
+<h2 data-number="1.15" class="anchored" data-anchor-id="valores-faltantes-na-y-nan"><span class="header-section-number">1.15</span> 14. Valores faltantes: <code>NA</code> y <code>NaN</code></h2>
+<p>En algunos casos, los componentes de un vector pueden no estar disponibles. Cuando un elemento o valor no está disponible, se le asigna un valor particular, <code>NA</code>. En general, cualquier operación sobre un <code>NA</code> se convierte en <code>NA</code>. Esto permite que cualquier proceso computacional que reciba <code>NA</code> como argumento se propague de forma transparente a través de cálculos posteriores, dejando un resultado igualmente desconocido o faltante.</p>
+<p>La función <code>is.na(x)</code> da un resultado lógico que indica si cada elemento de <code>x</code> es <code>NA</code> o no.</p>
+<section id="nan-not-a-number" class="level3" data-number="1.15.1">
+<h3 data-number="1.15.1" class="anchored" data-anchor-id="nan-not-a-number"><span class="header-section-number">1.15.1</span> 14.1. <code>NaN</code> — Not a Number</h3>
+<p>Hay una segunda clase de valores no disponibles producidos por cálculos numéricos, conocida como valores <strong><code>NaN</code></strong> (<em>Not a Number</em>), por ejemplo el resultado de <code>0/0</code>. Los valores <code>NaN</code> son todos <code>NA</code>, pero la afirmación inversa no es cierta. La función <code>is.nan(x)</code> se usa específicamente para detectar valores <code>NaN</code>.</p>
+<hr>
+</section>
+</section>
+<section id="vectores-de-caracteres" class="level2" data-number="1.16">
+<h2 data-number="1.16" class="anchored" data-anchor-id="vectores-de-caracteres"><span class="header-section-number">1.16</span> 15. Vectores de caracteres</h2>
+<p>Las secuencias de caracteres también son una estructura de vectores de R, generalmente utilizadas como etiquetas para componentes de un objeto. Por ejemplo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="sc">&gt;</span> labs <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">c</span>(<span class="st">"X"</span>,<span class="st">"Y"</span>), <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">sep=</span><span class="st">""</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>crea un vector de longitud 10 mediante concatenación de pares de cadenas. La función <code>paste()</code> permite combinar cualquier número de argumentos, de manera elemento por elemento, en una sola cadena de caracteres.</p>
+<p>Las cadenas de caracteres se escriben usando comillas dobles (preferencia indicada por el propio manual) o simples; cualquiera de las dos puede usarse para “escapar” a la otra, como en <code>"It's important"</code>.</p>
+<hr>
+</section>
+<section id="vectores-de-índices-seleccionar-y-modificar-subconjuntos" class="level2" data-number="1.17">
+<h2 data-number="1.17" class="anchored" data-anchor-id="vectores-de-índices-seleccionar-y-modificar-subconjuntos"><span class="header-section-number">1.17</span> 16. Vectores de índices: seleccionar y modificar subconjuntos</h2>
+<p>Los subconjuntos de los elementos de un vector pueden seleccionarse añadiendo un <strong>vector de índices</strong> entre corchetes (<code>[]</code>), justo después del nombre del vector. El manual oficial distingue cuatro tipos de vectores de índices:</p>
+<section id="vector-lógico" class="level3" data-number="1.17.1">
+<h3 data-number="1.17.1" class="anchored" data-anchor-id="vector-lógico"><span class="header-section-number">1.17.1</span> 16.1. Vector lógico</h3>
+<p>El vector de índices es en sí mismo un vector lógico, de la misma longitud que el vector del que se extraen los elementos. Los valores correspondientes a <code>TRUE</code> en el vector de índices se seleccionan, y los correspondientes a <code>FALSE</code> se omiten. Por ejemplo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="sc">&gt;</span> y <span class="ot">&lt;-</span> x[<span class="sc">!</span><span class="fu">is.na</span>(x)]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>crea un objeto <code>y</code> que contiene los elementos no faltantes de <code>x</code>, en el mismo orden en que ocurren en <code>x</code>.</p>
+</section>
+<section id="vector-de-enteros-positivos" class="level3" data-number="1.17.2">
+<h3 data-number="1.17.2" class="anchored" data-anchor-id="vector-de-enteros-positivos"><span class="header-section-number">1.17.2</span> 16.2. Vector de enteros positivos</h3>
+<p>El vector de índices puede consistir en un conjunto de valores enteros positivos (o vacío). En este caso, los valores del vector de índices deben estar en el conjunto <code>{1, 2, ..., length(x)}</code>. Los elementos del vector seleccionados se especifican mediante su índice, en el orden indicado.</p>
+</section>
+<section id="vector-de-enteros-negativos" class="level3" data-number="1.17.3">
+<h3 data-number="1.17.3" class="anchored" data-anchor-id="vector-de-enteros-negativos"><span class="header-section-number">1.17.3</span> 16.3. Vector de enteros negativos</h3>
+<p>El vector de índices puede consistir en un conjunto de números enteros negativos. En este caso, el vector de índices especifica los valores que <strong>se excluyen</strong>, en lugar de los que se incluyen.</p>
+</section>
+<section id="vector-de-cadenas-de-caracteres" class="level3" data-number="1.17.4">
+<h3 data-number="1.17.4" class="anchored" data-anchor-id="vector-de-cadenas-de-caracteres"><span class="header-section-number">1.17.4</span> 16.4. Vector de cadenas de caracteres</h3>
+<p>Finalmente, en el caso de un vector con nombres asociados a sus elementos (mediante el atributo <code>names</code>), el vector de índices puede ser un vector de cadenas de caracteres, refiriéndose a los elementos por nombre en lugar de por posición.</p>
+</section>
+<section id="reemplazo-de-elementos-mediante-indexación" class="level3" data-number="1.17.5">
+<h3 data-number="1.17.5" class="anchored" data-anchor-id="reemplazo-de-elementos-mediante-indexación"><span class="header-section-number">1.17.5</span> 16.5. Reemplazo de elementos mediante indexación</h3>
+<p>Un vector indexado puede usarse en el lado izquierdo de una asignación, en cuyo caso la asignación solo opera sobre los elementos del vector indicados por el vector de índices. Por ejemplo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="sc">&gt;</span> x[<span class="fu">is.na</span>(x)] <span class="ot">&lt;-</span> <span class="dv">0</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>reemplaza todos los valores <code>NA</code> de <code>x</code> por ceros.</p>
+<hr>
+</section>
+</section>
+<section id="objetos-modo-longitud-y-atributos" class="level2" data-number="1.18">
+<h2 data-number="1.18" class="anchored" data-anchor-id="objetos-modo-longitud-y-atributos"><span class="header-section-number">1.18</span> 17. Objetos: modo, longitud y atributos</h2>
+<section id="modo-mode" class="level3" data-number="1.18.1">
+<h3 data-number="1.18.1" class="anchored" data-anchor-id="modo-mode"><span class="header-section-number">1.18.1</span> 17.1. Modo (<em>mode</em>)</h3>
+<p>Las entidades sobre las que opera R se conocen técnicamente como <strong>objetos</strong>: ejemplos son vectores de valores numéricos (reales) o complejos, vectores de valores lógicos y vectores de cadenas de caracteres. Se conocen como estructuras “atómicas” porque todos sus componentes son del mismo tipo, o <strong>modo</strong>, a saber: <em>numeric</em>, <em>complex</em>, <em>logical</em>, <em>character</em> y <em>raw</em>.</p>
+<p>Los vectores deben tener todos sus valores <strong>del mismo modo</strong>. Así, cualquier vector dado debe ser inequívocamente lógico, numérico, complejo, de caracteres, o raw. Una excepción aparente a esta regla es el valor especial <code>NA</code>, para cantidades no disponibles (aunque, de hecho, existen varios tipos de <code>NA</code>). Un vector puede estar vacío y aun así tener un modo: el vector vacío de caracteres se lista como <code>character(0)</code>, y el vector numérico vacío como <code>numeric(0)</code>.</p>
+<p>R también opera sobre objetos llamados <strong>listas</strong> (<em>lists</em>), de modo <em>list</em>: son secuencias ordenadas de objetos que individualmente pueden ser de cualquier modo. Las listas se conocen como estructuras “recursivas” en lugar de “atómicas”, porque sus componentes pueden a su vez ser listas en sí mismas.</p>
+<p>Las otras estructuras recursivas son las de modo <em>function</em> y <em>expression</em>.</p>
+</section>
+<section id="longitud-length" class="level3" data-number="1.18.2">
+<h3 data-number="1.18.2" class="anchored" data-anchor-id="longitud-length"><span class="header-section-number">1.18.2</span> 17.2. Longitud (<em>length</em>)</h3>
+<p>Otra propiedad de todo objeto es su <strong>longitud</strong>. Las funciones <code>mode(objeto)</code> y <code>length(objeto)</code> permiten averiguar el modo y la longitud de cualquier estructura definida. Modo y longitud se llaman, por esto, “atributos intrínsecos” de un objeto.</p>
+</section>
+<section id="cambiar-el-tamaño-de-un-objeto" class="level3" data-number="1.18.3">
+<h3 data-number="1.18.3" class="anchored" data-anchor-id="cambiar-el-tamaño-de-un-objeto"><span class="header-section-number">1.18.3</span> 17.3. Cambiar el tamaño de un objeto</h3>
+<p>Un objeto “vacío” puede aun así tener un modo. Por ejemplo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="sc">&gt;</span> e <span class="ot">&lt;-</span> <span class="fu">numeric</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>hace de <code>e</code> un vector vacío de modo numérico. Una vez creado un objeto de cualquier tamaño, pueden añadírsele nuevos componentes simplemente asignándole un valor de índice fuera de su rango previo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="sc">&gt;</span> e[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">17</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>esto convierte a <code>e</code> en un vector de longitud 3 (los dos primeros componentes son, en este punto, ambos <code>NA</code>).</p>
+<p>Inversamente, truncar el tamaño de un objeto solo requiere una asignación apropiada:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="sc">&gt;</span> alpha <span class="ot">&lt;-</span> alpha[<span class="dv">2</span> <span class="sc">*</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>o, más directamente:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="sc">&gt;</span> <span class="fu">length</span>(alpha) <span class="ot">&lt;-</span> <span class="dv">3</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="obtener-y-establecer-atributos" class="level3" data-number="1.18.4">
+<h3 data-number="1.18.4" class="anchored" data-anchor-id="obtener-y-establecer-atributos"><span class="header-section-number">1.18.4</span> 17.4. Obtener y establecer atributos</h3>
+<p>La función <code>attributes(objeto)</code> devuelve una lista de todos los atributos no intrínsecos actualmente definidos para ese objeto. La función <code>attr(objeto, nombre)</code> permite seleccionar un atributo específico. Por ejemplo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="sc">&gt;</span> <span class="fu">attr</span>(z, <span class="st">"dim"</span>) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">10</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>permite a R tratar a <code>z</code> como si fuera una matriz de 10 por 10.</p>
+<hr>
+</section>
+</section>
+<section id="coerción-entre-modos" class="level2" data-number="1.19">
+<h2 data-number="1.19" class="anchored" data-anchor-id="coerción-entre-modos"><span class="header-section-number">1.19</span> 18. Coerción entre modos</h2>
+<p>R permite cambios de modo prácticamente en cualquier lugar donde resulte razonable hacerlo (y en algunos donde podría no serlo). Por ejemplo, con:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="sc">&gt;</span> z <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">9</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>se podría escribir:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="sc">&gt;</span> digits <span class="ot">&lt;-</span> <span class="fu">as.character</span>(z)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>tras lo cual <code>digits</code> es el vector de caracteres <code>c("0", "1", "2", ..., "9")</code>. Una coerción adicional reconstruye el vector numérico de nuevo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(digits)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Existe una amplia colección de funciones de la forma <code>as.algo()</code> para coercionar de un modo a otro, o para dotar a un objeto de algún otro atributo que aún no posea.</p>
+<hr>
+</section>
+<section id="la-clase-de-un-objeto" class="level2" data-number="1.20">
+<h2 data-number="1.20" class="anchored" data-anchor-id="la-clase-de-un-objeto"><span class="header-section-number">1.20</span> 19. La clase de un objeto</h2>
+<p>Todos los objetos en R tienen una <strong>clase</strong>, reportada por la función <code>class()</code>. Para vectores simples, esta es simplemente el modo (por ejemplo <code>"numeric"</code>, <code>"logical"</code>, <code>"character"</code> o <code>"list"</code>), pero <code>"matrix"</code>, <code>"array"</code>, <code>"factor"</code> y <code>"data.frame"</code> son otros valores posibles.</p>
+<p>La clase es un atributo especial que permite un estilo de programación orientado a objetos en R. Por ejemplo, si un objeto tiene clase <code>"data.frame"</code>, se imprimirá de cierta forma, la función <code>plot()</code> lo mostrará gráficamente de cierta manera, y otras funciones llamadas “genéricas”, como <code>summary()</code>, reaccionarán a él como argumento de una forma sensible a su clase.</p>
+<p>Para remover temporalmente los efectos de la clase, se usa la función <code>unclass()</code>.</p>
+<hr>
+</section>
+<section id="estructuras-de-control-condicionales-y-bucles" class="level2" data-number="1.21">
+<h2 data-number="1.21" class="anchored" data-anchor-id="estructuras-de-control-condicionales-y-bucles"><span class="header-section-number">1.21</span> 20. Estructuras de control: condicionales y bucles</h2>
+<p>R, como lenguaje, incluye las estructuras de control habituales de un lenguaje de programación moderno.</p>
+<section id="condicional-if" class="level3" data-number="1.21.1">
+<h3 data-number="1.21.1" class="anchored" data-anchor-id="condicional-if"><span class="header-section-number">1.21.1</span> 20.1. Condicional <code>if</code></h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="cf">if</span> (condicion) {</span>
+<span id="cb36-2"><a href="#cb36-2"></a>  expresion_verdadera</span>
+<span id="cb36-3"><a href="#cb36-3"></a>} <span class="cf">else</span> {</span>
+<span id="cb36-4"><a href="#cb36-4"></a>  expresion_falsa</span>
+<span id="cb36-5"><a href="#cb36-5"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="bucle-for" class="level3" data-number="1.21.2">
+<h3 data-number="1.21.2" class="anchored" data-anchor-id="bucle-for"><span class="header-section-number">1.21.2</span> 20.2. Bucle <code>for</code></h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="cf">for</span> (nombre <span class="cf">in</span> vector) {</span>
+<span id="cb37-2"><a href="#cb37-2"></a>  expresion</span>
+<span id="cb37-3"><a href="#cb37-3"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="bucles-while-y-repeat" class="level3" data-number="1.21.3">
+<h3 data-number="1.21.3" class="anchored" data-anchor-id="bucles-while-y-repeat"><span class="header-section-number">1.21.3</span> 20.3. Bucles <code>while</code> y <code>repeat</code></h3>
+<p>R también incluye <code>while</code> (que repite mientras una condición sea verdadera) y <code>repeat</code> (que repite indefinidamente hasta un <code>break</code> explícito). Las palabras clave <code>break</code> y <code>next</code> permiten, respectivamente, salir de un bucle o saltar a la siguiente iteración.</p>
+<hr>
+</section>
+</section>
+<section id="funciones-propias" class="level2" data-number="1.22">
+<h2 data-number="1.22" class="anchored" data-anchor-id="funciones-propias"><span class="header-section-number">1.22</span> 21. Funciones propias</h2>
+<p>Una de las grandes fortalezas de R, según el propio manual, es la facilidad con la que el usuario puede escribir sus propias funciones. La sintaxis básica es:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>nombre_funcion <span class="ot">&lt;-</span> <span class="cf">function</span>(arg1, arg2, ...) {</span>
+<span id="cb38-2"><a href="#cb38-2"></a>  <span class="co"># cuerpo de la función</span></span>
+<span id="cb38-3"><a href="#cb38-3"></a>  resultado</span>
+<span id="cb38-4"><a href="#cb38-4"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>El valor devuelto por una función es, por defecto, el valor de la última expresión evaluada en su cuerpo, aunque puede hacerse explícito con <code>return()</code>.</p>
+<p>Las funciones en R son objetos de primera clase: pueden almacenarse en variables, pasarse como argumentos a otras funciones, y devolverse como resultado de otras funciones, igual que cualquier otro objeto de R.</p>
+<hr>
+</section>
+<section id="paquetes-el-sistema-de-extensión-de-r" class="level2" data-number="1.23">
+<h2 data-number="1.23" class="anchored" data-anchor-id="paquetes-el-sistema-de-extensión-de-r"><span class="header-section-number">1.23</span> 22. Paquetes: el sistema de extensión de R</h2>
+<p>Todas las funciones y conjuntos de datos de R se almacenan en <strong>paquetes</strong> (<em>packages</em>). Solo cuando un paquete se carga, su contenido está disponible. Esto se hace tanto por eficiencia (la lista completa de funciones ocuparía más memoria y tomaría más tiempo de búsqueda que un subconjunto), como para ayudar a los desarrolladores de paquetes, que quedan protegidos de colisiones de nombres con otro código.</p>
+<section id="ver-qué-paquetes-están-instalados" class="level3" data-number="1.23.1">
+<h3 data-number="1.23.1" class="anchored" data-anchor-id="ver-qué-paquetes-están-instalados"><span class="header-section-number">1.23.1</span> 22.1. Ver qué paquetes están instalados</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>(sin argumentos) muestra los paquetes instalados en el sistema.</p>
+</section>
+<section id="cargar-un-paquete" class="level3" data-number="1.23.2">
+<h3 data-number="1.23.2" class="anchored" data-anchor-id="cargar-un-paquete"><span class="header-section-number">1.23.2</span> 22.2. Cargar un paquete</h3>
+<p>Para cargar un paquete particular, por ejemplo el paquete <strong>boot</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(boot)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="instalar-y-actualizar-paquetes" class="level3" data-number="1.23.3">
+<h3 data-number="1.23.3" class="anchored" data-anchor-id="instalar-y-actualizar-paquetes"><span class="header-section-number">1.23.3</span> 22.3. Instalar y actualizar paquetes</h3>
+<p>Los usuarios conectados a Internet pueden usar las funciones <code>install.packages()</code> y <code>update.packages()</code> (disponibles también a través del menú <code>Packages</code> en las interfaces gráficas de Windows y macOS) para instalar y actualizar paquetes.</p>
+</section>
+<section id="ver-qué-paquetes-están-cargados" class="level3" data-number="1.23.4">
+<h3 data-number="1.23.4" class="anchored" data-anchor-id="ver-qué-paquetes-están-cargados"><span class="header-section-number">1.23.4</span> 22.4. Ver qué paquetes están cargados</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="sc">&gt;</span> <span class="fu">search</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>muestra la lista de búsqueda (<em>search list</em>). Algunos paquetes pueden estar cargados pero no aparecer en la lista de búsqueda (por usar espacios de nombres); estos se incluyen en la lista entregada por:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="sc">&gt;</span> <span class="fu">loadedNamespaces</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="paquetes-estándar-base-vs.-paquetes-contribuidos" class="level3" data-number="1.23.5">
+<h3 data-number="1.23.5" class="anchored" data-anchor-id="paquetes-estándar-base-vs.-paquetes-contribuidos"><span class="header-section-number">1.23.5</span> 22.5. Paquetes estándar (base) vs.&nbsp;paquetes contribuidos</h3>
+<p>Los paquetes <strong>estándar</strong> (o <em>base</em>) se consideran parte del código fuente de R: contienen las funciones básicas que permiten que R funcione, junto con los conjuntos de datos y las funciones estadísticas y gráficas estándar descritas en el manual oficial. Deben estar disponibles automáticamente en cualquier instalación de R.</p>
+<p>Existen, además, miles de <strong>paquetes contribuidos</strong>, escritos por muchos autores distintos. Algunos implementan métodos estadísticos especializados, otros dan acceso a datos o hardware, y otros están diseñados para complementar libros de texto. Algunos (los paquetes “recomendados”) se distribuyen junto con toda distribución binaria de R. La mayoría están disponibles para descarga desde CRAN (cran.r-project.org y sus espejos) y otros repositorios como Bioconductor (bioconductor.org).</p>
+<hr>
+</section>
+</section>
+<section id="espacios-de-nombres-namespaces" class="level2" data-number="1.24">
+<h2 data-number="1.24" class="anchored" data-anchor-id="espacios-de-nombres-namespaces"><span class="header-section-number">1.24</span> 23. Espacios de nombres (namespaces)</h2>
+<p>Los paquetes tienen <strong>espacios de nombres</strong> (<em>namespaces</em>), que cumplen tres funciones:</p>
+<ol type="1">
+<li>Permiten al autor de un paquete ocultar funciones y datos destinados únicamente a uso interno.</li>
+<li>Evitan que las funciones se rompan cuando un usuario (u otro autor de paquete) elige un nombre que colisiona con uno ya existente en el paquete.</li>
+<li>Proveen una forma de referirse a un objeto dentro de un paquete particular.</li>
+</ol>
+<section id="el-operador-de-doble-dos-puntos" class="level3" data-number="1.24.1">
+<h3 data-number="1.24.1" class="anchored" data-anchor-id="el-operador-de-doble-dos-puntos"><span class="header-section-number">1.24.1</span> 23.1. El operador de doble dos puntos <code>::</code></h3>
+<p>Por ejemplo, <code>t()</code> es la función de transposición en R, pero un usuario podría definir su propia función llamada <code>t</code>. Los espacios de nombres evitan que la definición del usuario tenga precedencia y rompa cualquier función que intente transponer una matriz. El operador <code>::</code> selecciona definiciones de un espacio de nombres particular: la función de transposición siempre estará disponible como <code>base::t</code>, porque está definida en el paquete <code>base</code>. Solo las funciones exportadas desde un paquete pueden recuperarse de esta forma.</p>
+</section>
+<section id="el-operador-de-triple-dos-puntos" class="level3" data-number="1.24.2">
+<h3 data-number="1.24.2" class="anchored" data-anchor-id="el-operador-de-triple-dos-puntos"><span class="header-section-number">1.24.2</span> 23.2. El operador de triple dos puntos <code>:::</code></h3>
+<p>El operador <code>:::</code> actúa como el operador <code>::</code>, pero también permite acceder a objetos ocultos. Es más probable que los usuarios recurran a la función <code>getAnywhere()</code>, que busca en múltiples paquetes.</p>
+<hr>
+</section>
+</section>
+<section id="buenas-prácticas-según-el-manual-oficial" class="level2" data-number="1.25">
+<h2 data-number="1.25" class="anchored" data-anchor-id="buenas-prácticas-según-el-manual-oficial"><span class="header-section-number">1.25</span> 24. Buenas prácticas según el manual oficial</h2>
+<p>A modo de síntesis, estas son recomendaciones que el propio manual de CRAN hace explícitas a lo largo del texto, antes de entrar en manipulación de datos:</p>
+<ul>
+<li>Usar <strong>un directorio de trabajo separado por análisis</strong>, para evitar confusión entre objetos con el mismo nombre (típicamente <code>x</code>, <code>y</code>) creados en distintos análisis no relacionados.</li>
+<li>Familiarizarse primero con <code>help()</code>, <code>?</code>, <code>help.search()</code> y <code>help.start()</code> antes de buscar ayuda externa: el sistema de ayuda integrado de R es, según el manual, completo y debe ser el primer recurso.</li>
+<li>Recordar que R <strong>distingue mayúsculas de minúsculas</strong> en todos los nombres.</li>
+<li>Aprovechar la naturaleza <strong>vectorizada</strong> de R: operar sobre vectores completos en lugar de escribir bucles explícitos siempre que sea razonable, ya que esto es parte del diseño fundamental del lenguaje, no solo una optimización de estilo.</li>
+<li>Entender la diferencia entre <code>NA</code> (valor no disponible, de cualquier tipo) y <code>NaN</code> (resultado numérico inválido específicamente, como <code>0/0</code>), y usar <code>is.na()</code> / <code>is.nan()</code> según corresponda.</li>
+<li>Recordar que, en R, los resultados de un análisis estadístico normalmente se almacenan en un objeto para su examen posterior, en lugar de imprimirse exhaustivamente de inmediato.</li>
+</ul>
+<hr>
+</section>
+<section id="referencias-oficiales" class="level2" data-number="1.26">
+<h2 data-number="1.26" class="anchored" data-anchor-id="referencias-oficiales"><span class="header-section-number">1.26</span> 25. Referencias oficiales</h2>
+<ul>
+<li><strong>CRAN — “An Introduction to R” (HTML, versión release)</strong>: https://cran.r-project.org/doc/manuals/r-release/R-intro.html</li>
+<li><strong>CRAN — “An Introduction to R” (PDF, versión release)</strong>: https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf</li>
+<li><strong>R Manuals (réplica oficial restilizada) — Índice general</strong>: https://rstudio.github.io/r-manuals/r-intro/index.html</li>
+<li><strong>R Manuals — Cap. 1: Introduction and preliminaries</strong>: https://rstudio.github.io/r-manuals/r-intro/Introduction-and-preliminaries.html</li>
+<li><strong>R Manuals — Cap. 2: Simple manipulations; numbers and vectors</strong>: https://rstudio.github.io/r-manuals/r-intro/Simple-manipulations-numbers-and-vectors.html</li>
+<li><strong>R Manuals — Cap. 3: Objects, their modes and attributes</strong>: https://rstudio.github.io/r-manuals/r-intro/Objects.html</li>
+<li><strong>R Manuals — Cap. 9: Grouping, loops and conditional execution</strong>: https://rstudio.github.io/r-manuals/r-intro/Loops-and-conditional-execution.html</li>
+<li><strong>R Manuals — Cap. 10: Writing your own functions</strong>: https://rstudio.github.io/r-manuals/r-intro/Writing-your-own-functions.html</li>
+<li><strong>R Manuals — Cap. 13: Packages</strong>: https://rstudio.github.io/r-manuals/r-intro/Packages.html</li>
+<li><strong>CRAN — R FAQ (oficial)</strong>: https://cran.r-project.org/doc/manuals/r-release/R-FAQ.html</li>
+<li><strong>CRAN — Manuales completos de R (índice)</strong>: https://cran.r-project.org/manuals.html</li>
+</ul>
+<hr>
+<p><strong>Edison Achalma</strong> Economista — Universidad Nacional de San Cristóbal de Huamanga (UNSCH) Ayacucho, Perú ORCID: <a href="https://orcid.org/0000-0001-6996-3364">0000-0001-6996-3364</a></p>
+</section>
+</section>
+<section id="publicaciones-similares" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Publicaciones Similares</h1>
+<p>Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:</p>
+<ol type="1">
+<li><a href="https://numerus-scriptum.netlify.app/r/2020-06-10-011-instalacion-de-r/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/r/2020-06-10-011-instalacion-de-r">011 Instalacion De R</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/r/2020-06-10-012-configurar-entorno-virtual-r/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/r/2020-06-10-012-configurar-entorno-virtual-r">012 Configurar Entorno Virtual R</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/r/2020-06-10-013-lo-que-debemos-saber-de-r/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/r/2020-06-10-013-lo-que-debemos-saber-de-r">013 Lo Que Debemos Saber De R</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/r/2021-04-05-02-manipulacion-de-datos/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/r/2021-04-05-02-manipulacion-de-datos">02 Manipulacion De Datos</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/r/2021-04-12-03-visualizacion-de-datos/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/r/2021-04-12-03-visualizacion-de-datos">03 Visualizacion De Datos</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/r/2022-11-07-04-modelo-de-machine-learning-i-analisis-exploratorio/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/r/2022-11-07-04-modelo-de-machine-learning-i-analisis-exploratorio">04 Modelo De Machine Learning I Analisis Exploratorio</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/r/2022-11-14-05-modelo-de-machine-learning-ii-modelo-de-clasificacion/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/r/2022-11-14-05-modelo-de-machine-learning-ii-modelo-de-clasificacion">05 Modelo De Machine Learning Ii Modelo De Clasificacion</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/r/2022-11-21-06-modelo-de-machine-learning-iii-modelo-de-regresion/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/r/2022-11-21-06-modelo-de-machine-learning-iii-modelo-de-regresion">06 Modelo De Machine Learning Iii Modelo De Regresion</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/r/2022-11-28-07-modelo-de-machine-learning-iv-tex-mining/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/r/2022-11-28-07-modelo-de-machine-learning-iv-tex-mining">07 Modelo De Machine Learning Iv Tex Mining</a></li>
+</ol>
+<p>Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reutilización</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-achalma2021" class="csl-entry quarto-appendix-citeas" role="listitem">
+Achalma, Edison. 2021. <em>Introducción al entorno R</em>. accepted,
+March 2. <a href="https://numerus-scriptum.netlify.app/r/2021-03-27-01-introduccion-al-programa/">https://numerus-scriptum.netlify.app/r/2021-03-27-01-introduccion-al-programa/</a>.
+</div></div></section></div></main> <!-- /main -->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4GMRCPL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!-- ==========================================================================
+  MICROINTERACCIONES — "QUIET LABORATORY" (cargador de módulos)
+  ===========================================================================
+  Inyectado en todas las páginas vía include-after-body (_quarto.yml).
+  El código vive en módulos independientes en assets/js/ (ver su README):
+
+    · navbar.js         → clase .lab-scrolled al hacer scroll
+    · cursor.js         → iluminación que sigue el puntero (--lab-mx/--lab-my)
+    · hero.js           → ajuste del hero de portada al alto visible
+    · scroll-effects.js → aparición escalonada (.lab-reveal/.lab-in)
+
+  Rutas absolutas (/assets/js/...) para funcionar a cualquier profundidad.
+  Sin JS el sitio queda íntegro: nada se oculta por defecto.
+=========================================================================== -->
+<script src="../../assets/js/navbar.js"></script>
+<script src="../../assets/js/cursor.js"></script>
+<script src="../../assets/js/hero.js"></script>
+<script src="../../assets/js/scroll-effects.js"></script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/numerus-scriptum\.netlify\.app\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<script src="https://utteranc.es/client.js" repo="achalmed/website-achalma" issue-term="title" theme="boxy-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Edison Achalma ∙ Made with <a href="https://quarto.org">Quarto</a></p>
+</div>   
+    <div class="nav-footer-center">
+<p><a class="link-dark me-1" href="../../accessibility.html" title="Accessibility commitment" target="_blank" rel="noopener"><i class="fa-solid fa-universal-access" aria-label="universal-access"></i></a> <a class="link-dark me-1" href="https://fosstodon.org/@achalmaedison" title="mastodon" target="_blank" rel="noopener"><i class="fa-brands fa-mastodon" aria-label="mastodon"></i></a> <a class="link-dark me-1" href="https://github.com/achalmed" title="github" target="_blank" rel="noopener"><i class="fa-brands fa-github" aria-label="github"></i></a> <a class="link-dark me-1" href="https://linkedin.com/in/achalmaedison" title="LinkedIn" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin" aria-label="linkedin"></i></a></p>
+</div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="https://achalmaedison.netlify.app/accessibility">
+<p>Accessibility</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://achalmaedison.netlify.app/contact">
+<p>Contact</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://achalmaedison.netlify.app/license">
+<p>License</p>
+</a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="../../index.xml">
+      <i class="bi bi-rss" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

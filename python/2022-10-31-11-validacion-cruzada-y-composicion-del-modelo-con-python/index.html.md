@@ -100,7 +100,7 @@ Aumentar la complejidad del modelo:
 
 4. **Inestabilidad**: Pequeños cambios en datos → grandes cambios en modelo
 
-::: {#ed607c2d .cell}
+::: {#022fbed8 .cell}
 ``` {.python .cell-code}
 import pandas as pd
 import numpy as np
@@ -136,7 +136,7 @@ print("Librerías importadas exitosamente")
 
 ## Ilustración del overfitting
 
-::: {#c0dd5095 .cell}
+::: {#b757bf29 .cell}
 ``` {.python .cell-code}
 # Cargar datos
 iris = load_iris()
@@ -193,7 +193,7 @@ df_resultados = pd.DataFrame(resultados)
 
 ## Visualización del trade-off
 
-::: {#e90c3663 .cell}
+::: {#f7c2f1f5 .cell}
 ``` {.python .cell-code}
 # Evaluar KNN con diferentes k
 k_values = range(1, 51)
@@ -321,7 +321,7 @@ Repetir K-Fold con diferentes particiones aleatorias y promediar.
 
 ## Implementación básica
 
-::: {#b40877e2 .cell}
+::: {#151de8f1 .cell}
 ``` {.python .cell-code}
 print("\n\nVALIDACIÓN CRUZADA")
 print("=" * 70)
@@ -350,7 +350,7 @@ print(f"Intervalo 95% confianza: [{scores.mean() - 1.96*scores.std():.4f}, "
 
 ## Stratified Cross-Validation
 
-::: {#d8985061 .cell}
+::: {#755660c8 .cell}
 ``` {.python .cell-code}
 # Verificar distribución de clases
 print(f"\n\nDistribución de clases:")
@@ -379,7 +379,7 @@ print(f"\nDiferencia con K-Fold estándar: "
 
 ## Cross-validation con múltiples métricas
 
-::: {#46ac9224 .cell}
+::: {#fd3ee1df .cell}
 ``` {.python .cell-code}
 # Evaluar múltiples métricas simultáneamente
 scoring = {
@@ -414,7 +414,7 @@ for metric in ['accuracy', 'precision', 'recall', 'f1', 'roc_auc']:
 
 ## Visualización de resultados CV
 
-::: {#a2fa7950 .cell}
+::: {#f166e5c1 .cell}
 ``` {.python .cell-code}
 # Crear DataFrame para visualización
 metrics_data = []
@@ -527,7 +527,7 @@ $$
 
 ## Implementación de Grid Search
 
-::: {#dd5ceeb7 .cell}
+::: {#54deb27e .cell}
 ``` {.python .cell-code}
 print("\n\nGRID SEARCH - OPTIMIZACIÓN DE HIPERPARÁMETROS")
 print("=" * 70)
@@ -559,7 +559,7 @@ print(f"Con CV de 5-fold: {n_combinations * 5} modelos a entrenar")
 :::
 
 
-::: {#a546e887 .cell}
+::: {#e91e2482 .cell}
 ``` {.python .cell-code}
 # Ejecutar Grid Search
 grid_search = GridSearchCV(
@@ -600,7 +600,7 @@ print(f"  ROC-AUC: {roc_auc_score(y, y_proba):.4f}")
 
 ## Análisis de resultados Grid Search
 
-::: {#3729361b .cell}
+::: {#8697f156 .cell}
 ``` {.python .cell-code}
 # Convertir resultados a DataFrame
 results = pd.DataFrame(grid_search.cv_results_)
@@ -625,7 +625,7 @@ for idx, row in top_10.iterrows():
 
 ## Visualización de Grid Search
 
-::: {#af705425 .cell}
+::: {#b201502d .cell}
 ``` {.python .cell-code}
 # Analizar efecto de hiperparámetros clave
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))
@@ -696,7 +696,7 @@ print("\nGráfico guardado como 'grid_search_analysis.png'")
 
 ## Random Search implementation
 
-::: {#d76bab2c .cell}
+::: {#1169da67 .cell}
 ``` {.python .cell-code}
 from sklearn.model_selection import RandomizedSearchCV
 from scipy.stats import randint, uniform
@@ -787,7 +787,7 @@ $$
 
 ## Implementación
 
-::: {#836663cc .cell}
+::: {#49345a21 .cell}
 ``` {.python .cell-code}
 print("\n\nCURVAS DE APRENDIZAJE")
 print("=" * 70)
@@ -873,7 +873,7 @@ for nombre, modelo in modelos.items():
 
 ## Comparación de modelos
 
-::: {#a429c190 .cell}
+::: {#c5e86ad3 .cell}
 ``` {.python .cell-code}
 # Comparar todas las curvas en un gráfico
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))
@@ -913,7 +913,7 @@ print("\nComparación guardada como 'learning_curves_comparison.png'")
 
 ## Análisis de sensibilidad al tamaño de muestra
 
-::: {#ea58476a .cell}
+::: {#deb3dbf5 .cell}
 ``` {.python .cell-code}
 print("\n\nCONTRIBUCIÓN DE LA DATA AL MODELO")
 print("=" * 70)
@@ -952,7 +952,7 @@ df_sizes = pd.DataFrame(resultados_sizes)
 
 ## Visualización
 
-::: {#a4fbf1db .cell}
+::: {#917d35c0 .cell}
 ``` {.python .cell-code}
 # Graficar relación tamaño-performance
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
@@ -1003,7 +1003,7 @@ else:
 
 ## Importancia de características
 
-::: {#69da35ab .cell}
+::: {#6837a523 .cell}
 ``` {.python .cell-code}
 print("\n\nCONTRIBUCIÓN DE LAS VARIABLES AL MODELO")
 print("=" * 70)
@@ -1032,7 +1032,7 @@ for i, idx in enumerate(indices):
 
 ## Análisis de permutación
 
-::: {#e32291e0 .cell}
+::: {#30c0d014 .cell}
 ``` {.python .cell-code}
 from sklearn.inspection import permutation_importance
 
@@ -1060,7 +1060,7 @@ for i in indices:
 
 ## Visualización de importancia
 
-::: {#5e27a944 .cell}
+::: {#7ccfaae9 .cell}
 ``` {.python .cell-code}
 # Graficar importancias
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
@@ -1092,7 +1092,7 @@ print("\nGráfico guardado como 'feature_importance.png'")
 
 ## Selección de características
 
-::: {#e7408837 .cell}
+::: {#44213a75 .cell}
 ``` {.python .cell-code}
 from sklearn.feature_selection import RFECV
 
@@ -1140,7 +1140,7 @@ print("\nGráfico guardado como 'rfecv_results.png'")
 
 ## Análisis incremental de variables
 
-::: {#1579a03a .cell}
+::: {#b2275596 .cell}
 ``` {.python .cell-code}
 # Evaluar contribución incremental de cada variable
 print("\n\nANÁLISIS INCREMENTAL DE VARIABLES")
@@ -1195,7 +1195,7 @@ print("\nGráfico guardado como 'incremental_features.png'")
 
 ## Aplicación 1: Predicción de incumplimiento crediticio
 
-::: {#3d39a948 .cell}
+::: {#9b0384ee .cell}
 ``` {.python .cell-code}
 print("\n\n\nAPLICACIÓN: OPTIMIZACIÓN DE MODELO DE CRÉDITO")
 print("=" * 70)
@@ -1246,7 +1246,7 @@ y_credito = datos_credito['incumplimiento']
 
 ## Pipeline completo de optimización
 
-::: {#c7c6470d .cell}
+::: {#2529bdef .cell}
 ``` {.python .cell-code}
 # 1. Comparar múltiples modelos con CV
 modelos_credito = {
@@ -1370,7 +1370,7 @@ else:
 
 ## Checklist de validación de modelos
 
-::: {#9e81ef10 .cell}
+::: {#38e7b916 .cell}
 ``` {.python .cell-code}
 print("\n\n\nCHECKLIST DE VALIDACIÓN DE MODELOS")
 print("=" * 70)
@@ -1442,7 +1442,7 @@ print(checklist)
 
 ## Función de pipeline completo
 
-::: {#1a06beab .cell}
+::: {#7033cddb .cell}
 ``` {.python .cell-code}
 def pipeline_validacion_completo(X, y, modelos, param_grids, feature_names=None):
     """

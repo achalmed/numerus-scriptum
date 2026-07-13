@@ -47,7 +47,7 @@ En esta décima guía exploraremos los principales algoritmos de machine learnin
 
 La regresión es un método para predecir valores numéricos continuos (a diferencia de clasificación que predice categorías discretas).
 
-::: {#e312c295 .cell}
+::: {#1a91079b .cell}
 ``` {.python .cell-code}
 import pandas as pd
 import numpy as np
@@ -109,7 +109,7 @@ print("Librerías importadas exitosamente")
 
 ## Generar datos de ejemplo
 
-::: {#01a2bbd3 .cell}
+::: {#5ca5be4e .cell}
 ``` {.python .cell-code}
 def generar_datos_regresion(n=200, ruido=1.0, seed=42):
     """
@@ -168,7 +168,7 @@ print("\nGráfico guardado como 'datos_regresion.png'")
 
 ## Dividir datos
 
-::: {#07a3f912 .cell}
+::: {#963ff1ed .cell}
 ``` {.python .cell-code}
 # Dividir en entrenamiento y prueba
 X_train, X_test, y_train, y_test = train_test_split(
@@ -415,7 +415,7 @@ En Python, `sklearn.linear_model.LinearRegression` utiliza descomposición SVD p
 
 ## Implementación
 
-::: {#7e52b1fd .cell}
+::: {#58f9f9df .cell}
 ``` {.python .cell-code}
 # Entrenar modelo OLS
 modelo_ols = LinearRegression()
@@ -452,7 +452,7 @@ print(f"MSE Test:  {mse_test:.4f}")
 
 ## Visualización de predicciones
 
-::: {#9e8ebddc .cell}
+::: {#37180df4 .cell}
 ``` {.python .cell-code}
 # Gráfico de valores reales vs predichos
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
@@ -488,7 +488,7 @@ print("\nGráfico guardado como 'ols_predictions.png'")
 
 ## Análisis de residuos
 
-::: {#bfb84a79 .cell}
+::: {#e9f86659 .cell}
 ``` {.python .cell-code}
 # Calcular residuos
 residuos_train = y_train - y_pred_ols_train
@@ -756,7 +756,7 @@ donde $\text{MSE}_k(\alpha)$ es el error cuadrático medio en el k-ésimo fold.
 
 ## Implementación
 
-::: {#ae169aa2 .cell}
+::: {#ce59007f .cell}
 ``` {.python .cell-code}
 # Probar diferentes valores de alpha
 alphas = [0.001, 0.01, 0.1, 1, 10, 100, 1000]
@@ -795,7 +795,7 @@ df_ridge = pd.DataFrame(resultados_ridge)
 
 ## Visualización del efecto de regularización
 
-::: {#f4793e81 .cell}
+::: {#7500bc85 .cell}
 ``` {.python .cell-code}
 # Gráfico de coeficientes vs alpha
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
@@ -1119,7 +1119,7 @@ donde típicamente $w_j = 1/|\hat{\beta}_j^{\text{OLS}}|^{\gamma}$ con $\gamma >
 
 ## Implementación
 
-::: {#86679ef8 .cell}
+::: {#329c6625 .cell}
 ``` {.python .cell-code}
 # Probar diferentes valores de alpha
 alphas_lasso = [0.001, 0.01, 0.1, 0.5, 1, 2, 5]
@@ -1163,7 +1163,7 @@ df_lasso = pd.DataFrame(resultados_lasso)
 
 ## Comparación Ridge vs Lasso
 
-::: {#3a2c3ac3 .cell}
+::: {#30c182e3 .cell}
 ``` {.python .cell-code}
 # Visualización comparativa
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))
@@ -1465,7 +1465,7 @@ donde los pesos se derivan de estimaciones preliminares.
 
 ## Implementación
 
-::: {#aa2cb2e7 .cell}
+::: {#a2ff6798 .cell}
 ``` {.python .cell-code}
 # Entrenar Elastic Net
 modelo_elastic = ElasticNet(alpha=0.1, l1_ratio=0.5, max_iter=10000)
@@ -1829,7 +1829,7 @@ donde $f_j$ son funciones suaves no paramétricas.
 
 ## Implementación
 
-::: {#cea77c5f .cell}
+::: {#544959e9 .cell}
 ``` {.python .cell-code}
 # Generar datos con relación no lineal
 np.random.seed(42)
@@ -2273,7 +2273,7 @@ Los pesos se pueden aprender para mejorar performance.
 
 ## Implementación
 
-::: {#3fefb7c7 .cell}
+::: {#f6e1b009 .cell}
 ``` {.python .cell-code}
 # Estandarizar datos (importante para KNN)
 scaler = StandardScaler()
@@ -2726,7 +2726,7 @@ $$
 
 ## Implementación de métricas
 
-::: {#20a5cf04 .cell}
+::: {#2664c7de .cell}
 ``` {.python .cell-code}
 def calcular_metricas(y_true, y_pred, modelo_nombre="Modelo"):
     """Calcula todas las métricas de regresión"""
@@ -2803,7 +2803,7 @@ print(df_metricas.to_string(index=False))
 
 ## Tabla y visualización comparativa
 
-::: {#cccb0f7f .cell}
+::: {#4f7404a3 .cell}
 ``` {.python .cell-code}
 # Visualización comparativa
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))
@@ -2859,7 +2859,7 @@ print("Tabla guardada como 'metricas_comparacion.csv'")
 
 ## Aplicación 1: Predicción de precios de vivienda
 
-::: {#dcb31166 .cell}
+::: {#80b31aba .cell}
 ``` {.python .cell-code}
 print("\n\n\nAPLICACIÓN: PREDICCIÓN DE PRECIOS DE VIVIENDA")
 print("=" * 70)
@@ -2999,7 +2999,7 @@ for nombre, modelo in modelos_vivienda.items():
 
 ## Aplicación 2: Predicción de ventas
 
-::: {#336d1829 .cell}
+::: {#2cf2fb13 .cell}
 ``` {.python .cell-code}
 print("\n\n\nAPLICACIÓN: PREDICCIÓN DE VENTAS")
 print("=" * 70)
@@ -3150,7 +3150,7 @@ else:
 
 ## Ejercicio: Validación cruzada
 
-::: {#54da4001 .cell}
+::: {#7d140dcc .cell}
 ``` {.python .cell-code}
 print("\n\n\nEJERCICIO: VALIDACIÓN CRUZADA")
 print("=" * 70)

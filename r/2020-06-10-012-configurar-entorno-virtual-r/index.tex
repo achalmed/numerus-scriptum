@@ -122,6 +122,7 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -163,10 +164,10 @@
 
 
 
-\title{Capacidades y ventajas de R}
+\title{Guía completa de entornos virtuales en R con RStudio (renv)}
 
 
-\shorttitle{Capacidades y ventajas de R}
+\shorttitle{Guía completa de entornos virtuales en R con RStudio (renv)}
 
 
 \usepackage{etoolbox}
@@ -203,9 +204,14 @@ contenido final del artículo. }
 \par{   El autor no tiene conflictos de interés que revelar.    Los
 roles de autor se clasificaron utilizando la taxonomía de roles de
 colaborador (CRediT; https://credit.niso.org/) de la siguiente
-manera:  Edison Achalma:   conceptualización, redacción}
+manera:  Edison Achalma:   conceptualización, metodología, análisis
+formal, investigación, recursos, curación de
+datos, redacción, visualización, supervisión, administración del
+proyecto}
 \par{La correspondencia relativa a este artículo debe dirigirse a Edison
-Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
+Achalma, Escuela Profesional de Economía, Universidad Nacional de San
+Cristóbal de Huamanga, Portal Independencia N°
+57, Ayacucho, AYA 5001, Perú, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
 }
 
 \makeatletter
@@ -220,6 +226,10 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 
 
 
+\hypersetup{
+  pdftitle={Gu\'{\i}a completa de entornos virtuales en R con RStudio (renv)},
+  pdfauthor={Autor}
+}
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -252,8 +262,8 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 \@ifpackageloaded{float}{}{\usepackage{float}}
 \floatstyle{ruled}
 \@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
-\floatname{codelisting}{Listing}
-\newcommand*\listoflistings{\listof{codelisting}{Lista de Listings}}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listados}}
 \makeatother
 \makeatletter
 \makeatother
@@ -303,7 +313,8 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 \hypertarget{toc}{}
 \tableofcontents
 \newpage
-\section[Introduction]{Capacidades y ventajas de R}
+\section[Introduction]{Guía completa de entornos virtuales en R con
+RStudio (renv)}
 
 \setcounter{secnumdepth}{3}
 
@@ -312,452 +323,1073 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 
 
 
-\section{¿Qúe nos ofrece RStudio?}\label{quxfae-nos-ofrece-rstudio}
+\section{Guía completa de entornos virtuales en R con
+RStudio}\label{guuxeda-completa-de-entornos-virtuales-en-r-con-rstudio}
 
-\subsection{Beneficios del software
-RStudio}\label{beneficios-del-software-rstudio}
+\begin{quote}
+Referencia técnica independiente sobre \textbf{entornos virtuales en R},
+centrada en \texttt{renv}, el paquete oficial recomendado por
+Posit/RStudio para crear bibliotecas de paquetes aisladas por proyecto.
+Basada en la documentación oficial: rstudio.github.io/renv, el
+repositorio GitHub rstudio/renv, y la documentación de RStudio IDE sobre
+Projects y entornos.
+\end{quote}
 
-RStudio es una herramienta poderosa que brinda numerosas ventajas para
-los usuarios. A continuación, destacamos algunas de las funcionalidades
-que ofrece:
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  \textbf{Potente editor de código:} RStudio proporciona un entorno de
-  desarrollo integrado (IDE) que cuenta con un editor de código robusto.
-  Este editor permite escribir, editar y ejecutar código de manera
-  eficiente, lo que facilita el trabajo con el lenguaje de programación
-  R.
-\item
-  \textbf{Gestión del espacio de trabajo:} RStudio ofrece
-  características avanzadas para el manejo del espacio de trabajo.
-  Puedes explorar y administrar fácilmente los objetos, variables y
-  funciones utilizados en tu sesión de R, lo que facilita el seguimiento
-  y la organización de tus datos y resultados.
-\item
-  \textbf{Depuración y resaltado de sintaxis:} La función de depuración
-  de RStudio te permite identificar y corregir errores en tu código de
-  manera eficiente. Además, el resaltado de sintaxis te ayuda a
-  visualizar y comprender mejor la estructura de tu código, lo que
-  facilita su lectura y mantenimiento.
-\item
-  \textbf{Autocompletado inteligente:} RStudio ofrece una función de
-  autocompletado inteligente, que te sugiere opciones de código a medida
-  que escribes. Esto acelera el proceso de codificación al proporcionar
-  sugerencias contextuales y facilitar la escritura correcta de las
-  funciones y objetos de R.
-\item
-  \textbf{Interoperabilidad con otros software y plataformas:} RStudio
-  es compatible con una amplia gama de herramientas y plataformas.
-  Puedes integrar fácilmente tus análisis en flujos de trabajo
-  existentes, colaborar con otros profesionales y compartir tus
-  resultados en diferentes formatos, como informes, gráficos
-  interactivos o aplicaciones web.
-\end{enumerate}
-
-\begin{figure}[H]
-
-\caption{Interfaz de RStudio: Una poderosa herramienta para el
-desarrollo en R}
-
-{\centering \pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-html/Screenshot_20230610_233058.png}}
-
-}
-
-\end{figure}%
-
-\subsection{Archivos de Script en R
-(.R)}\label{archivos-de-script-en-r-.r}
-
-En el mundo del análisis de datos y programación en R, los archivos de
-script (.R) desempeñan un papel fundamental. Estos archivos contienen la
-secuencia de comandos necesaria para realizar análisis y manipulación de
-datos de manera sistemática y reproducible.
-
-\subsubsection{Ventajas de utilizar archivos de script en
-R:}\label{ventajas-de-utilizar-archivos-de-script-en-r}
+\subsection{Tabla de contenidos}\label{tabla-de-contenidos}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
+\tightlist
 \item
-  \textbf{Documentación de tareas}: Al escribir nuestros comandos en un
-  archivo de script, estamos creando una documentación detallada de los
-  pasos y procesos utilizados en nuestro análisis. Esto facilita la
-  comprensión y revisión de nuestro trabajo, tanto para nosotros mismos
-  como para otros colaboradores.
+  \hyperref[1-quuxe9-es-un-entorno-virtual-en-r]{¿Qué es un entorno
+  virtual en R?}
 \item
-  \textbf{Automatización de tareas repetitivas}: Los archivos de script
-  permiten automatizar tareas que se repiten con frecuencia. Podemos
-  definir una serie de comandos en el archivo y ejecutarlos de forma
-  rápida y eficiente cada vez que sea necesario. Esto ahorra tiempo y
-  reduce la posibilidad de errores.
+  \hyperref[2-renv-el-estuxe1ndar-oficial]{renv: el estándar oficial}
 \item
-  \textbf{Evaluación de cambios}: Al tener nuestros comandos en un
-  archivo de script, podemos realizar modificaciones y ajustes en el
-  análisis de manera más ágil. Podemos realizar pruebas y evaluaciones
-  de los cambios sin necesidad de volver a escribir todo el código desde
-  cero. Esto nos brinda flexibilidad y nos permite iterar y mejorar
-  nuestro análisis de manera más eficiente.
+  \hyperref[3-conceptos-clave-biblioteca-repositorio-cachuxe9-lockfile]{Conceptos
+  clave: biblioteca, repositorio, caché, lockfile}
+\item
+  \hyperref[4-instalaciuxf3n-de-renv]{Instalación de renv}
+\item
+  \hyperref[5-flujo-de-trabajo-buxe1sico]{Flujo de trabajo básico}
+\item
+  \hyperref[6-integraciuxf3n-con-rstudio-projects]{Integración con
+  RStudio Projects}
+\item
+  \hyperref[7-caso-de-uso-1--tesis-o-trabajo-de-investigaciuxf3n-individual]{Caso
+  de uso 1 --- Tesis o trabajo de investigación individual}
+\item
+  \hyperref[8-caso-de-uso-2--curso-o-asignatura-con-muxfaltiples-pruxe1cticas]{Caso
+  de uso 2 --- Curso o asignatura con múltiples prácticas}
+\item
+  \hyperref[9-caso-de-uso-3--colaboraciuxf3n-en-equipo--proyecto-compartido-en-git]{Caso
+  de uso 3 --- Colaboración en equipo / proyecto compartido en Git}
+\item
+  \hyperref[10-caso-de-uso-4--muxfaltiples-proyectos-en-la-misma-muxe1quina-aislamiento]{Caso
+  de uso 4 --- Múltiples proyectos en la misma máquina (aislamiento)}
+\item
+  \hyperref[11-caso-de-uso-5--reportes-reproducibles-con-quarto--r-markdown]{Caso
+  de uso 5 --- Reportes reproducibles con Quarto / R Markdown}
+\item
+  \hyperref[12-caso-de-uso-6--migrar-un-proyecto-antiguo-sin-renv-a-un-entorno-reproducible]{Caso
+  de uso 6 --- Migrar un proyecto antiguo (sin renv) a un entorno
+  reproducible}
+\item
+  \hyperref[13-caso-de-uso-7--perfiles-muxfaltiples-dentro-de-un-mismo-proyecto]{Caso
+  de uso 7 --- Perfiles múltiples dentro de un mismo proyecto}
+\item
+  \hyperref[14-caso-de-uso-8--reproducibilidad-a-largo-plazo-archivar-un-proyecto-terminado]{Caso
+  de uso 8 --- Reproducibilidad a largo plazo (archivar un proyecto
+  terminado)}
+\item
+  \hyperref[15-caso-de-uso-9--despliegue-en-servidor--docker--posit-connect]{Caso
+  de uso 9 --- Despliegue en servidor / Docker / Posit Connect}
+\item
+  \hyperref[16-caso-de-uso-10--desarrollo-de-un-paquete-de-r-propio]{Caso
+  de uso 10 --- Desarrollo de un paquete de R propio}
+\item
+  \hyperref[17-referencia-ruxe1pida-de-funciones]{Referencia rápida de
+  funciones}
+\item
+  \hyperref[18-luxedmites-de-renv-lo-que-no-resuelve]{Límites de renv:
+  lo que NO resuelve}
+\item
+  \hyperref[19-soluciuxf3n-de-problemas-comunes]{Solución de problemas
+  comunes}
+\item
+  \hyperref[20-referencias-oficiales]{Referencias oficiales}
 \end{enumerate}
 
-\subsubsection{Creando y Ejecutando un Script en
-RStudio}\label{creando-y-ejecutando-un-script-en-rstudio}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-Los scripts nos permiten escribir y ejecutar una serie de comandos de
-manera secuencial, lo que facilita la automatización y reproducción de
-tareas en nuestros análisis de datos.
+\subsection{1. ¿Qué es un entorno virtual en
+R?}\label{quuxe9-es-un-entorno-virtual-en-r}
 
-\textbf{Paso 1: Crear un nuevo archivo de script}
+En R, todos los paquetes se instalan por defecto en una
+\textbf{biblioteca de sistema} (system library) compartida por todas las
+sesiones y proyectos. Esto significa que si un proyecto necesita
+\texttt{dplyr} versión 1.0 y otro necesita la versión 1.1, ambos se
+pisan entre sí: actualizar un paquete para un proyecto puede romper
+silenciosamente otro proyecto que dependía de una versión anterior.
 
-En primer lugar, abrimos RStudio y creamos un nuevo archivo de script.
-Para hacer esto, seleccionamos ``Archivo'' en la barra de menú, luego
-``Nuevo archivo'' y finalmente ``Script R''. Esto abrirá un nuevo editor
-de texto donde podemos escribir nuestro código.
+Un \textbf{entorno virtual} en R resuelve esto dando a cada proyecto su
+propia biblioteca de paquetes, completamente independiente de la
+biblioteca de sistema y de la de cualquier otro proyecto. La idea es
+análoga a \texttt{venv} en Python o a un \texttt{node\_modules} por
+proyecto en Node.js, pero adaptada a las particularidades de R.
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-html/Screenshot_20230611_001234.png}}
+El paquete oficial de Posit/RStudio para esto es \textbf{\texttt{renv}}
+(abreviatura de \emph{reproducible environment}), sucesor de un paquete
+anterior llamado \texttt{packrat}. \texttt{renv} es, en la práctica,
+\textbf{el estándar actual} para este propósito en el ecosistema R.
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-html/Screenshot_20230611_001615.png}}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\textbf{Paso 2: Escribir el código en el script}
+\subsection{2. renv: el estándar
+oficial}\label{renv-el-estuxe1ndar-oficial}
 
-Una vez que tenemos nuestro archivo de script abierto, podemos comenzar
-a escribir nuestro código en R. Podemos utilizar cualquier comando o
-función de R en el script para realizar análisis de datos, manipulación
-de variables, visualización, entre otros. Es importante asegurarse de
-que el código esté escrito correctamente y tenga una sintaxis válida.
+Según la documentación oficial, \texttt{renv} ayuda a que los proyectos
+de R sean:
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-html/Screenshot_20230611_004241.png}}
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Aislados (isolated)}: instalar o actualizar un paquete en un
+  proyecto no afecta a otros proyectos, porque cada uno tiene su propia
+  biblioteca privada.
+\item
+  \textbf{Portables (portable)}: es fácil transportar un proyecto de una
+  máquina a otra, incluso entre distintas plataformas (Linux, Windows,
+  etc.).
+\item
+  \textbf{Reproducibles (reproducible)}: \texttt{renv} registra las
+  versiones exactas de los paquetes usados y garantiza que esas mismas
+  versiones se instalen en cualquier lugar donde se restaure el
+  proyecto.
+\end{itemize}
+
+Estos tres pilares ---aislamiento, portabilidad, reproducibilidad--- son
+el motivo por el cual \texttt{renv} es relevante en prácticamente
+cualquier flujo de trabajo serio en R: desde un script personal hasta un
+pipeline de producción.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3. Conceptos clave: biblioteca, repositorio, caché,
+lockfile}\label{conceptos-clave-biblioteca-repositorio-cachuxe9-lockfile}
+
+Antes de usar \texttt{renv} conviene tener claros cuatro términos que la
+documentación oficial distingue cuidadosamente:
+
+\subsubsection{\texorpdfstring{3.1. Biblioteca
+(\emph{library})}{3.1. Biblioteca (library)}}\label{biblioteca-library}
+
+Una \textbf{biblioteca} es un directorio que contiene paquetes
+instalados. Es una fuente común de confusión, porque al escribir
+\texttt{library(dplyr)} parece que se está ``cargando la biblioteca
+dplyr'', cuando en realidad se está cargando el \emph{paquete} dplyr
+desde una biblioteca (carpeta). Por defecto, todos los paquetes van a
+una única biblioteca de sistema compartida; con \texttt{renv}, cada
+proyecto obtiene su propia \textbf{biblioteca de proyecto}
+(\texttt{renv/library}).
+
+Puedes ver tus bibliotecas activas con:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Este es un ejemplo de un script básico en R}
-
-\CommentTok{\# Comentario de una línea: los comentarios se utilizan para agregar notas o explicaciones al código}
-
-\CommentTok{\# Variables}
-\NormalTok{nombre }\OtherTok{\textless{}{-}} \StringTok{"Juan"} \CommentTok{\# Variable de tipo texto (cadena de caracteres)}
-\NormalTok{edad }\OtherTok{\textless{}{-}} \DecValTok{25} \CommentTok{\# Variable numérica}
-
-\CommentTok{\# Imprimir en la consola}
-\FunctionTok{cat}\NormalTok{(}\StringTok{"Hola,"}\NormalTok{, nombre, }\StringTok{"tienes"}\NormalTok{, edad, }\StringTok{"años.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
-
-\CommentTok{\# Operaciones aritméticas}
-\NormalTok{suma }\OtherTok{\textless{}{-}} \DecValTok{10} \SpecialCharTok{+} \DecValTok{5}
-\NormalTok{resta }\OtherTok{\textless{}{-}} \DecValTok{10} \SpecialCharTok{{-}} \DecValTok{5}
-\NormalTok{multiplicacion }\OtherTok{\textless{}{-}} \DecValTok{10} \SpecialCharTok{*} \DecValTok{5}
-\NormalTok{division }\OtherTok{\textless{}{-}} \DecValTok{10} \SpecialCharTok{/} \DecValTok{5}
-
-\CommentTok{\# Imprimir los resultados}
-\FunctionTok{cat}\NormalTok{(}\StringTok{"La suma es:"}\NormalTok{, suma, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
-\FunctionTok{cat}\NormalTok{(}\StringTok{"La resta es:"}\NormalTok{, resta, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
-\FunctionTok{cat}\NormalTok{(}\StringTok{"La multiplicación es:"}\NormalTok{, multiplicacion, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
-\FunctionTok{cat}\NormalTok{(}\StringTok{"La división es:"}\NormalTok{, division, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\FunctionTok{.libPaths}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Paso 3: Ejecutar el script}
+\subsubsection{\texorpdfstring{3.2. Repositorio
+(\emph{repository})}{3.2. Repositorio (repository)}}\label{repositorio-repository}
 
-Una vez que hemos escrito nuestro código en el archivo de script,
-podemos ejecutarlo para obtener los resultados deseados. Para hacer
-esto, podemos utilizar el atajo de teclado ``Ctrl + Enter'' o
-simplemente hacer clic en el botón ``Ejecutar'' en la parte superior del
-editor de texto.
+Un \textbf{repositorio} es una fuente de paquetes (por ejemplo CRAN,
+Bioconductor, GitHub, o el Posit Public Package Manager).
+\texttt{install.packages()} descarga un paquete desde un repositorio y
+lo coloca en una biblioteca.
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-html/Screenshot_20230611_005354.png}}
+\subsubsection{3.3. Caché global de renv}\label{cachuxe9-global-de-renv}
 
-RStudio ejecutará el código línea por línea y mostrará los resultados en
-la consola.
+Para no tener que descargar o compilar el mismo paquete una y otra vez
+para cada proyecto, \texttt{renv} mantiene una \textbf{caché global}
+compartida en el sistema. Cuando instalas un paquete por primera vez, se
+descarga y compila una sola vez; para cada proyecto adicional que lo
+necesite, \texttt{renv} simplemente crea un enlace desde la biblioteca
+del proyecto hacia esa copia en caché, ahorrando tiempo y espacio en
+disco.
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-html/Screenshot_20230611_010256.png}}
+\subsubsection{\texorpdfstring{3.4. Lockfile
+(\texttt{renv.lock})}{3.4. Lockfile (renv.lock)}}\label{lockfile-renv.lock}
 
-\textbf{Paso 4: Guardar el script}
+El \textbf{lockfile} es un archivo JSON, siempre llamado
+\texttt{renv.lock}, que registra toda la información necesaria para
+recrear el proyecto en el futuro: la versión de R usada, los
+repositorios de origen, y un registro por cada paquete con su versión
+exacta, fuente (CRAN, GitHub, etc.) y hash de verificación. Es el
+``contrato'' que permite reproducir el entorno en otra máquina.
 
-Es importante guardar regularmente nuestro script para evitar perder
-nuestro trabajo. Para guardar el archivo de script, seleccionamos
-``Archivo'' en la barra de menú y luego ``Guardar'' o ``Guardar como''.
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-html/Screenshot_20230611_010854.png}}
+\subsection{4. Instalación de renv}\label{instalaciuxf3n-de-renv}
 
-Podemos elegir una ubicación y un nombre de archivo apropiados para
-guardar nuestro script.
+\texttt{renv} se instala como cualquier paquete de R, desde la consola
+(en RStudio o en R puro, sobre cualquier sistema operativo donde ya
+tengas R y RStudio instalados):
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-html/Screenshot_20230611_012736.png}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"renv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-html/Screenshot_20230611_013135.png}}
+Verifica la instalación:
 
-\textbf{Paso 5: Continuar escribiendo y ejecutando el código}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(renv)}
+\FunctionTok{packageVersion}\NormalTok{(}\StringTok{"renv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-Podemos continuar escribiendo y ejecutando más código en nuestro script
-según nuestras necesidades. Podemos agregar nuevas líneas de código,
-modificar las existentes o eliminar las que ya no necesitamos. Es
-recomendable guardar el script regularmente a medida que realizamos
-cambios.
+No requiere ninguna instalación adicional a nivel de sistema operativo:
+a diferencia de \texttt{venv} en Python, \texttt{renv} es un paquete de
+R puro y funciona igual en Kubuntu, Arch Linux o Windows, siempre que R
+y (opcionalmente) RStudio ya estén instalados.
 
-\textbf{Paso 6: Exportar los resultados (opcional)}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-Si deseamos guardar los resultados de nuestro análisis, podemos
-exportarlos a archivos o formatos específicos. Por ejemplo, podemos
-guardar tablas de datos en archivos CSV, gráficos en imágenes o informes
-en formatos de texto. Esto nos permite compartir y utilizar los
-resultados fuera de RStudio.
+\subsection{5. Flujo de trabajo
+básico}\label{flujo-de-trabajo-buxe1sico}
+
+Este es el ciclo de trabajo central documentado oficialmente, y se
+repite (con variaciones) en todos los casos de uso de las secciones
+siguientes.
+
+\subsubsection{Paso 1 --- Inicializar renv en el
+proyecto}\label{paso-1-inicializar-renv-en-el-proyecto}
+
+Desde la consola de R, \textbf{con el directorio de trabajo ubicado en
+la carpeta del proyecto}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{init}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Esto hace lo siguiente automáticamente:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Crea la biblioteca de proyecto en \texttt{renv/library}.
+\item
+  Detecta los paquetes que ya estás usando en el proyecto (rastreando
+  los archivos \texttt{.R}/\texttt{.Rmd}/\texttt{.qmd} en busca de
+  llamadas a \texttt{library()}, \texttt{require()}, etc., mediante
+  \texttt{renv::dependencies()}).
+\item
+  Instala esos paquetes detectados en la biblioteca del proyecto
+  (mediante \texttt{renv::hydrate()}, que copia desde tu biblioteca de
+  usuario existente cuando es posible, en vez de reinstalar todo desde
+  cero).
+\item
+  Crea el lockfile \texttt{renv.lock} con el estado inicial.
+\item
+  Crea (o modifica) un \texttt{.Rprofile} local al proyecto, que se
+  ejecuta automáticamente cada vez que abres R en esa carpeta, activando
+  la biblioteca del proyecto sin que tengas que hacer nada manualmente.
+\item
+  Reinicia la sesión de R (si estás dentro de RStudio).
+\end{enumerate}
+
+\subsubsection{Paso 2 --- Trabajar con
+normalidad}\label{paso-2-trabajar-con-normalidad}
+
+Sigues usando \texttt{install.packages()}, \texttt{update.packages()},
+etc. como siempre. También puedes usar las variantes propias de renv:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{install}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{)          }\CommentTok{\# instalar un paquete}
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{install}\NormalTok{(}\StringTok{"usuario/repo"}\NormalTok{)   }\CommentTok{\# instalar desde GitHub}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Paso 3 --- Tomar una ``fotografía'' del entorno
+(snapshot)}\label{paso-3-tomar-una-fotografuxeda-del-entorno-snapshot}
+
+Cuando confirmes que tu código funciona con el conjunto de paquetes
+actual:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{snapshot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Esto actualiza \texttt{renv.lock} con las versiones exactas de los
+paquetes actualmente instalados en la biblioteca del proyecto.
+
+\subsubsection{Paso 4 --- Restaurar el entorno en otra máquina (o más
+adelante)}\label{paso-4-restaurar-el-entorno-en-otra-muxe1quina-o-muxe1s-adelante}
+
+Si compartes el proyecto, o lo abres en otra computadora, o simplemente
+quieres volver al estado exacto registrado en el lockfile:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{restore}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Esto reinstala exactamente las versiones de paquetes anotadas en
+\texttt{renv.lock}, sin importar qué versiones tengas instaladas en ese
+momento en tu biblioteca de usuario.
+
+\subsubsection{Resumen visual del ciclo}\label{resumen-visual-del-ciclo}
+
+\begin{verbatim}
+renv::init()        →  crea infraestructura del proyecto
+       ↓
+trabajas, instalas/actualizas paquetes
+       ↓
+renv::snapshot()    →  registra el estado actual en renv.lock
+       ↓
+(compartes el proyecto / cambias de máquina)
+       ↓
+renv::restore()     →  reinstala exactamente lo que dice renv.lock
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6. Integración con RStudio
+Projects}\label{integraciuxf3n-con-rstudio-projects}
+
+RStudio (el IDE) tiene soporte nativo para \texttt{renv} integrado en el
+flujo de \textbf{RStudio Projects}.
+
+Al crear un nuevo proyecto en RStudio (\texttt{File} →
+\texttt{New\ Project...}), el asistente incluye una casilla
+\textbf{``Use renv with this project''}. Si la marcas, RStudio crea
+automáticamente toda la infraestructura de \texttt{renv} (equivalente a
+haber corrido \texttt{renv::init()} manualmente) en el momento mismo de
+crear el proyecto, antes incluso de escribir una sola línea de código.
+
+Esto es la forma más cómoda de empezar un proyecto nuevo con entorno
+virtual desde cero: no hace falta recordar ejecutar ningún comando, el
+propio flujo de creación de proyecto en RStudio ya lo deja activado.
+
+Para proyectos ya existentes (creados sin esa casilla marcada),
+simplemente ejecuta \texttt{renv::init()} manualmente una vez, como se
+describió en la sección 5.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7. Caso de uso 1 --- Tesis o trabajo de investigación
+individual}\label{caso-de-uso-1-tesis-o-trabajo-de-investigaciuxf3n-individual}
+
+\textbf{Escenario}: estás escribiendo tu tesis o un artículo y usas
+R/RStudio para el análisis estadístico, con un conjunto de paquetes (por
+ejemplo \texttt{tidyverse}, \texttt{lme4}, \texttt{apaTables}) que
+pueden actualizarse con el tiempo mientras dura el trabajo (meses o
+años).
+
+\textbf{Por qué importa}: si una actualización de un paquete cambia el
+comportamiento de una función estadística a mitad de tu tesis, tus
+resultados podrían dejar de ser reproducibles exactamente, incluso en tu
+propia máquina, varios meses después.
+
+\textbf{Flujo recomendado}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Al iniciar el proyecto de tesis}
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{init}\NormalTok{()}
+
+\CommentTok{\# Trabajas normalmente, instalando lo que necesites}
+\FunctionTok{install.packages}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{, }\StringTok{"lme4"}\NormalTok{, }\StringTok{"apaTables"}\NormalTok{))}
+
+\CommentTok{\# Cada vez que termines una etapa importante (p. ej. antes de}
+\CommentTok{\# enviar un capítulo a tu asesor, o antes de la sustentación)}
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{snapshot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Beneficio concreto}: el día de la sustentación o defensa, si un
+jurado o evaluador quiere reproducir exactamente tus resultados en otra
+computadora, basta con que reciba la carpeta del proyecto (incluyendo
+\texttt{renv.lock}) y ejecute \texttt{renv::restore()}. Obtendrá las
+mismas versiones de paquete que usaste tú, eliminando una fuente común
+de ``en mi máquina sí funciona''.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8. Caso de uso 2 --- Curso o asignatura con múltiples
+prácticas}\label{caso-de-uso-2-curso-o-asignatura-con-muxfaltiples-pruxe1cticas}
+
+\textbf{Escenario}: dictas o llevas un curso de econometría, estadística
+o programación en R con varias prácticas o controles a lo largo del
+semestre, cada una con requisitos de paquetes ligeramente distintos (una
+práctica usa \texttt{forecast}, otra usa \texttt{plm}, otra usa
+\texttt{caret}).
+
+\textbf{Problema sin entornos virtuales}: instalar \texttt{caret} para
+la práctica 5 puede arrastrar actualizaciones de dependencias
+compartidas que rompan silenciosamente el código de la práctica 2, que
+ya habías entregado y calificado.
+
+\textbf{Flujo recomendado}: crear \textbf{un proyecto de RStudio por
+práctica o por unidad}, cada uno con su propio \texttt{renv}:
+
+\begin{verbatim}
+curso-econometria/
+├── practica-01-regresion-lineal/   (renv propio)
+├── practica-02-series-tiempo/      (renv propio)
+├── practica-03-panel-data/         (renv propio)
+└── practica-04-machine-learning/   (renv propio)
+\end{verbatim}
+
+En cada subcarpeta, al crearla como proyecto de RStudio, marcas ``Use
+renv with this project'', o ejecutas \texttt{renv::init()} manualmente.
+Cada práctica queda completamente aislada: actualizar \texttt{caret} en
+la práctica 4 no afecta en absoluto a la práctica 1.
+
+\textbf{Beneficio adicional para docentes}: puedes distribuir cada
+práctica a tus estudiantes incluyendo el \texttt{renv.lock}
+correspondiente, garantizando que todos en el curso usen exactamente las
+mismas versiones de paquetes que tú usaste para diseñar y probar los
+ejercicios, evitando errores de ``a mí me sale un resultado distinto''
+por diferencias de versión.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{9. Caso de uso 3 --- Colaboración en equipo / proyecto
+compartido en
+Git}\label{caso-de-uso-3-colaboraciuxf3n-en-equipo-proyecto-compartido-en-git}
+
+\textbf{Escenario}: trabajas con coautores o colegas en un repositorio
+Git compartido (por ejemplo en GitHub, bajo tu cuenta
+\texttt{@achalmed}), con varios contribuyentes ejecutando el mismo
+código de análisis en distintas máquinas.
+
+\textbf{Flujo recomendado}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Quien crea el proyecto ejecuta \texttt{renv::init()} y hace el primer
+  \texttt{renv::snapshot()}.
+\item
+  Se hace commit a Git de los archivos generados por renv:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ add renv.lock .Rprofile renv/settings.json renv/activate.R}
+\FunctionTok{git}\NormalTok{ commit }\AttributeTok{{-}m} \StringTok{"Configurar entorno renv del proyecto"}
+\FunctionTok{git}\NormalTok{ push}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{renv} genera automáticamente un \texttt{.gitignore} apropiado
+dentro de la carpeta \texttt{renv/}, de modo que la biblioteca de
+paquetes en sí (\texttt{renv/library}, que puede pesar cientos de MB)
+\textbf{no} se sube al repositorio; solo se sube el lockfile y la
+infraestructura ligera necesaria para reconstruirla.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  Cuando un colaborador clona el repositorio y abre el proyecto en
+  RStudio, \texttt{renv} se autoarranca (\emph{bootstrap}): detecta que
+  el proyecto usa renv, descarga e instala automáticamente la versión
+  apropiada del propio paquete \texttt{renv}, y le pregunta al
+  colaborador si desea instalar todos los paquetes necesarios ejecutando
+  \texttt{renv::restore()}.
+\item
+  Cuando alguien instala o actualiza un paquete nuevo para el proyecto,
+  debe correr \texttt{renv::snapshot()} y avisar al resto del equipo
+  (vía commit/push) que el lockfile cambió, para que los demás corran
+  \texttt{renv::restore()} y se sincronicen.
+\end{enumerate}
+
+\textbf{Regla práctica para el equipo}: ``si tocas paquetes, haces
+snapshot y avisas; si te avisan que el lockfile cambió, haces restore
+antes de seguir trabajando''.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{10. Caso de uso 4 --- Múltiples proyectos en la misma
+máquina
+(aislamiento)}\label{caso-de-uso-4-muxfaltiples-proyectos-en-la-misma-muxe1quina-aislamiento}
+
+\textbf{Escenario}: en tu propia computadora mantienes en paralelo
+varios proyectos activos: tus sitios Quarto académicos, scripts de
+tutoría en economía, un proyecto de análisis de datos para una
+consultoría, y experimentos personales con paquetes nuevos de ciencia de
+datos.
+
+\textbf{Problema sin entornos virtuales}: probar la última versión de un
+paquete experimental para un proyecto personal puede romper, sin que te
+des cuenta, un script de tutoría que dependía de un comportamiento
+anterior de ese mismo paquete.
+
+\textbf{Flujo recomendado}: activar \texttt{renv} en \textbf{cada
+proyecto independiente} que mantengas activo simultáneamente. Gracias a
+la caché global de renv (sección 3.3), esto no implica descargar ni
+compilar cada paquete una vez por proyecto: si \texttt{ggplot2} ya está
+en caché por haberlo instalado en un proyecto, los demás proyectos
+simplemente enlazan a esa misma copia, sin gasto adicional relevante de
+espacio en disco ni tiempo de instalación, mientras cada proyecto
+conserva su propio registro independiente de qué versión está usando.
+
+\textbf{Resultado}: puedes actualizar libremente los paquetes de tu
+proyecto experimental sin ningún riesgo de afectar tus otros proyectos
+en producción o entrega.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{11. Caso de uso 5 --- Reportes reproducibles con Quarto / R
+Markdown}\label{caso-de-uso-5-reportes-reproducibles-con-quarto-r-markdown}
+
+\textbf{Escenario}: generas documentos con Quarto o R Markdown
+(\texttt{.qmd} / \texttt{.Rmd}) que combinan texto y código R, por
+ejemplo reportes económicos, material didáctico o capítulos de tesis con
+\texttt{apaquarto}.
+
+\textbf{Por qué aplica renv aquí}: \texttt{renv::dependencies()} rastrea
+automáticamente los bloques de código dentro de archivos \texttt{.qmd} y
+\texttt{.Rmd}, igual que lo hace con scripts \texttt{.R} normales, por
+lo que \texttt{renv::init()} y \texttt{renv::hydrate()} detectan
+correctamente los paquetes usados dentro de tus documentos
+Quarto/RMarkdown sin configuración adicional.
+
+\textbf{Flujo recomendado}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{init}\NormalTok{()      }\CommentTok{\# detecta paquetes usados en tus .qmd / .Rmd}
+\CommentTok{\# ... renderizas el documento, revisas que todo funcione ...}
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{snapshot}\NormalTok{()  }\CommentTok{\# fija las versiones que produjeron ese render}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Advertencia importante (limitación documentada oficialmente)}:
+\texttt{renv} solo gestiona \textbf{paquetes de R}. El motor de
+renderizado \textbf{Pandoc}, del cual depende fuertemente
+\texttt{rmarkdown} para convertir el documento a su formato final (PDF,
+HTML, Word), \textbf{no} está empaquetado dentro del paquete
+\texttt{rmarkdown} ni es gestionado por \texttt{renv}. Esto significa
+que restaurar el lockfile garantiza las mismas versiones de paquetes de
+R, pero \textbf{no} garantiza, por sí solo, que obtengas exactamente el
+mismo render visual si la versión de Pandoc instalada en la máquina de
+destino es distinta. Si esto te genera problemas de reproducibilidad
+visual, puedes usar el paquete \texttt{pandoc} (gestor de versiones de
+Pandoc) como complemento.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{12. Caso de uso 6 --- Migrar un proyecto antiguo (sin renv)
+a un entorno
+reproducible}\label{caso-de-uso-6-migrar-un-proyecto-antiguo-sin-renv-a-un-entorno-reproducible}
+
+\textbf{Escenario}: tienes un proyecto de R ya avanzado (por ejemplo uno
+de tus repositorios \texttt{website-achalma} con scripts de análisis, o
+un script de tutoría antiguo) que nunca usó \texttt{renv}, y quieres
+empezar a protegerlo hacia adelante sin reescribir nada.
+
+\textbf{Flujo recomendado}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Ubícate (setwd o abre el proyecto) en la carpeta del proyecto existente}
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{init}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Como se describió en la sección 5, \texttt{init()} detecta
+automáticamente qué paquetes ya está usando el código existente, los
+copia (cuando es posible) desde tu biblioteca de usuario actual hacia la
+nueva biblioteca de proyecto (evitando reinstalar todo desde cero), y
+genera el lockfile con el estado funcional actual del proyecto.
+
+\textbf{Resultado}: a partir de ese momento, ese proyecto queda
+``congelado'' en un estado conocido y reproducible, sin haber tenido que
+identificar manualmente la lista de dependencias ni sus versiones.
+
+\textbf{Variante --- inicialización en blanco}: si prefieres no instalar
+nada automáticamente y declarar tú mismo los paquetes desde cero, puedes
+inicializar con biblioteca vacía:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{init}\NormalTok{(}\AttributeTok{bare =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{13. Caso de uso 7 --- Perfiles múltiples dentro de un mismo
+proyecto}\label{caso-de-uso-7-perfiles-muxfaltiples-dentro-de-un-mismo-proyecto}
+
+\textbf{Escenario}: un mismo proyecto necesita comportarse de forma
+distinta según el contexto. Ejemplos documentados oficialmente:
+
+\begin{itemize}
+\tightlist
+\item
+  Un perfil de \textbf{``desarrollo''} (\texttt{dev}) mientras pruebas y
+  depuras código.
+\item
+  Un perfil de \textbf{``producción''} (\texttt{prod}) para despliegues
+  finales, con un conjunto más controlado de paquetes.
+\item
+  Un perfil de \textbf{``shiny''} específico si el proyecto también
+  contiene una aplicación Shiny con dependencias propias (por ejemplo
+  \texttt{shiny}, \texttt{tidyverse}) que no necesitas cargar en el
+  resto del proyecto.
+\end{itemize}
+
+\textbf{Por qué importa}: en vez de mantener varias copias del proyecto,
+\texttt{renv} permite que un mismo proyecto tenga \textbf{múltiples
+bibliotecas y lockfiles alternativos}, uno por perfil, todos viviendo
+dentro del mismo árbol de carpetas.
+
+\textbf{Flujo recomendado}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear y activar el perfil "dev" como perfil por defecto del proyecto}
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{activate}\NormalTok{(}\AttributeTok{profile =} \StringTok{"dev"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Con esto, las rutas de biblioteca y lockfile del proyecto pasan a
+resolverse dentro de \texttt{renv/profiles/dev/}, en vez de las rutas
+por defecto.
+
+Para activar un perfil solo durante una sesión puntual, sin cambiar el
+valor por defecto del proyecto:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Sys.setenv}\NormalTok{(}\AttributeTok{RENV\_PROFILE =} \StringTok{"dev"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+o, desde la línea de comandos (por ejemplo en tu \texttt{zsh}), antes de
+lanzar R:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{export} \VariableTok{RENV\_PROFILE}\OperatorTok{=}\NormalTok{dev}
+\end{Highlighting}
+\end{Shaded}
+
+Para volver al perfil estándar:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{activate}\NormalTok{(}\AttributeTok{profile =} \StringTok{"default"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Declarar dependencias específicas de un perfil}: se hace en el
+archivo \texttt{DESCRIPTION} del proyecto, con un campo dedicado por
+perfil, por ejemplo:
+
+\begin{verbatim}
+Config/renv/profiles/shiny/dependencies: shiny, tidyverse
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{14. Caso de uso 8 --- Reproducibilidad a largo plazo
+(archivar un proyecto
+terminado)}\label{caso-de-uso-8-reproducibilidad-a-largo-plazo-archivar-un-proyecto-terminado}
+
+\textbf{Escenario}: terminaste una investigación, tesis o reporte y
+quieres archivarlo de forma que, dentro de dos o tres años, alguien
+(incluido tú mismo) pueda volver a ejecutarlo exactamente igual, aunque
+CRAN ya haya avanzado varias versiones de los paquetes involucrados.
+
+\textbf{Flujo recomendado al cerrar el proyecto}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{snapshot}\NormalTok{()   }\CommentTok{\# última fotografía del entorno funcional final}
+\end{Highlighting}
+\end{Shaded}
+
+Y conservar junto al código fuente:
+
+\begin{itemize}
+\tightlist
+\item
+  El archivo \texttt{renv.lock}.
+\item
+  El \texttt{.Rprofile} del proyecto.
+\item
+  La carpeta \texttt{renv/} (sin la subcarpeta \texttt{library}, que es
+  regenerable).
+\end{itemize}
+
+\textbf{Al reabrir el proyecto archivado, meses o años después}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{restore}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{renv} reinstalará las versiones exactas registradas, incluso si
+en CRAN ya existen versiones más nuevas de esos mismos paquetes, siempre
+que los binarios/fuentes originales sigan disponibles en algún
+repositorio accesible.
+
+\textbf{Limitación honesta que reconoce la propia documentación}: si un
+paquete fue instalado originalmente desde un binario que posteriormente
+deja de estar disponible (por ejemplo, retirado de un repositorio),
+\texttt{renv} intentará compilarlo desde el código fuente como
+alternativa, pero esto puede fallar si faltan las dependencias de
+sistema necesarias para compilar (ver la sección de dependencias de
+sistema en la guía de instalación de R/RStudio). Por esta razón,
+\textbf{renv no es una garantía absoluta de reproducibilidad eterna},
+pero sí resuelve la parte más importante y más frecuente del problema:
+las versiones de paquetes de R.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{15. Caso de uso 9 --- Despliegue en servidor / Docker /
+Posit
+Connect}\label{caso-de-uso-9-despliegue-en-servidor-docker-posit-connect}
+
+\textbf{Escenario}: necesitas que tu análisis o aplicación (por ejemplo
+una app Shiny, o un pipeline de reportes) se ejecute de forma idéntica
+en un servidor, contenedor Docker, integración continua (CI), o en una
+plataforma de publicación como Posit Connect.
+
+\textbf{Por qué aplica renv aquí}: el mismo lockfile que usas en tu
+laptop es el artefacto que le indica al entorno remoto exactamente qué
+instalar. La documentación oficial cubre tres escenarios de despliegue
+específicos:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Integración continua (CI)}: en pipelines de CI (por ejemplo
+  GitHub Actions), se puede usar \texttt{renv::restore()} como paso de
+  configuración del entorno antes de correr pruebas, garantizando que el
+  CI use las mismas versiones que tu máquina de desarrollo.
+\item
+  \textbf{Docker}: se recomienda copiar el \texttt{renv.lock} (y la
+  infraestructura de renv) dentro de la imagen y ejecutar
+  \texttt{renv::restore()} como parte del \texttt{Dockerfile}, de modo
+  que la imagen final tenga exactamente el entorno de paquetes esperado.
+  La caché de renv puede aprovecharse entre builds de imágenes para
+  acelerar reconstrucciones.
+\item
+  \textbf{Posit Connect}: al publicar contenido (apps Shiny, reportes
+  Quarto/RMarkdown) hacia Posit Connect, el servidor usa el
+  \texttt{renv.lock} del proyecto para reconstruir el entorno de
+  paquetes necesario en el servidor remoto.
+\end{itemize}
+
+\textbf{Flujo conceptual mínimo para cualquiera de estos casos}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# En tu máquina de desarrollo, antes de desplegar}
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{snapshot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# En el entorno remoto / imagen / pipeline}
+\CommentTok{\# (usualmente en un script de arranque o en el Dockerfile)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{restore}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{quote}
-Recuerda que practicar y experimentar con diferentes comandos y
-funciones en RStudio te ayudará a familiarizarte con el entorno y
-mejorar tus habilidades de programación en R. ¡Diviértete explorando el
-mundo del análisis de datos con RStudio!
+Para los detalles específicos de sintaxis de cada plataforma (ejemplo de
+\texttt{Dockerfile}, configuración de un workflow de GitHub Actions,
+opciones de Posit Connect), consulta los artículos oficiales dedicados:
+\emph{Using renv with continuous integration}, \emph{Using renv with
+Docker} y \emph{Using renv with Posit Connect}, enlazados en la sección
+de referencias.
 \end{quote}
 
-\subsection{Shortcuts}\label{shortcuts}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-Aquí tienes una tabla con algunos atajos de teclado útiles en RStudio
-para usuarios de Ubuntu Linux:
+\subsection{16. Caso de uso 10 --- Desarrollo de un paquete de R
+propio}\label{caso-de-uso-10-desarrollo-de-un-paquete-de-r-propio}
 
+\textbf{Escenario}: estás desarrollando tu propio paquete de R (por
+ejemplo, una herramienta interna para tus prompts/scripts educativos, o
+un paquete que planeas publicar en CRAN).
+
+\textbf{Particularidad de este caso}: cuando \texttt{renv} se usa dentro
+de un proyecto de \textbf{desarrollo de paquete} (es decir, un proyecto
+que contiene su propio archivo \texttt{DESCRIPTION} de paquete, no solo
+de análisis), el comportamiento es ligeramente distinto al de un
+proyecto de análisis normal: en vez de usar siempre la biblioteca de
+proyecto, \texttt{renv} puede usar una biblioteca externa al directorio
+del proyecto, para evitar mezclar la infraestructura del propio paquete
+en desarrollo con su entorno de pruebas.
+
+\textbf{Casos típicos dentro de este escenario}:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Probar contra la última versión disponible en CRAN} de tus
+  dependencias (recomendado si planeas publicar el paquete en CRAN, ya
+  que CRAN exige compatibilidad con el ecosistema actual):
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{restore}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  \textbf{Probar contra versiones de desarrollo} de otras dependencias
+  (por ejemplo si dependes de una rama no publicada aún de otro paquete
+  tuyo o de un colaborador), declarando esas dependencias de desarrollo
+  en el campo \texttt{Remotes} del \texttt{DESCRIPTION} del paquete.
+\item
+  \textbf{Integración continua del propio paquete}: es habitual usar
+  \texttt{renv} dentro del flujo de CI del paquete (por ejemplo en
+  GitHub Actions) para acelerar la instalación de dependencias de prueba
+  aprovechando la caché global, en vez de reinstalar todo desde cero en
+  cada ejecución del pipeline.
+\end{itemize}
+
+\begin{quote}
+Importante: si vas a enviar tu paquete a CRAN, \textbf{no debe incluirse
+la infraestructura de renv} dentro del tarball fuente que se sube a
+CRAN; \texttt{renv} es una herramienta para tu flujo de desarrollo, no
+parte del paquete distribuido.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{17. Referencia rápida de
+funciones}\label{referencia-ruxe1pida-de-funciones}
+
+{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.7222}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2778}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
-Acción
+Función
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Atajo de teclado
+Propósito
 \end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-Ejecutar el código / selección actual y saltar a la línea siguiente &
-Ctrl + Enter \\
-Ejecutar el código / selección actual y no saltar a la línea siguiente &
-Alt + Enter \\
-Ejecutar línea de código & Shift + Enter \\
-Comentar/descomentar línea de código & Ctrl + Shift + C \\
-Copiar línea de código & Ctrl + Shift + D \\
-Pegar línea de código & Ctrl + Shift + V \\
-Ir a la línea & Ctrl + G \\
-Ir al inicio del documento & Ctrl + Home \\
-Ir al final del documento & Ctrl + End \\
-Completar código & Tab \\
-Abrir ayuda & F1 \\
-Guardar el archivo actual & Ctrl + S \\
-Cerrar archivo & Ctrl + W \\
-Deshacer & Ctrl + Z \\
-Rehacer & Ctrl + Y \\
-Abrir consola de R & Ctrl + Shift + Enter \\
-Buscar en el archivo & Ctrl + F \\
-Buscar y reemplazar en el archivo & Ctrl + Shift + F \\
-Colapsar/expandir bloque de código & Ctrl + Shift + \\
-Aumentar tamaño de fuente & Ctrl + + \\
-Disminuir tamaño de fuente & Ctrl + - \\
-Nuevo archivo Script R & Shift + Ctrl + N \\
-Abrir archivo & Ctrl + O \\
-Ejecutar todo el script & Ctrl + Alt + R \\
-Ejecutar el código desde el principio hasta la línea actual & Ctrl + Alt
-+ B \\
-Ejecutar el código desde la línea actual hasta el final & Ctrl + Alt +
-E \\
-Mover el cursor al editor de código fuente & Ctrl + 1 \\
-Mover el cursor a la consola & Ctrl + 2 \\
-Eliminar selección actual & Ctrl + D \\
-Limpiar consola & Ctrl + L \\
-Navegar por el historial de la consola & arriba/abajo \\
-Mover la línea de código arriba y abajo (evita el trabajo de copiar y
-pegar) & Alt + arriba/abajo \\
-Interrumpir el comando en ejecución & Esc \\
+\texttt{renv::init()} & Inicializa renv en el proyecto actual (crea
+biblioteca, lockfile y \texttt{.Rprofile}) \\
+\texttt{renv::init(bare\ =\ TRUE)} & Inicializa con biblioteca vacía,
+sin instalar nada automáticamente \\
+\texttt{renv::snapshot()} & Registra en \texttt{renv.lock} el estado
+actual de la biblioteca del proyecto \\
+\texttt{renv::restore()} & Reinstala en la biblioteca del proyecto las
+versiones exactas del \texttt{renv.lock} \\
+\texttt{renv::install("pkg")} & Instala un paquete (alternativa a
+\texttt{install.packages()}, soporta GitHub, Bioconductor, etc.) \\
+\texttt{renv::update()} & Actualiza todas las dependencias del proyecto
+a sus últimas versiones disponibles \\
+\texttt{renv::upgrade()} & Actualiza únicamente el propio paquete
+\texttt{renv} \\
+\texttt{renv::dependencies()} & Lista los paquetes que el código del
+proyecto está usando actualmente \\
+\texttt{renv::hydrate()} & Instala en la biblioteca de proyecto los
+paquetes detectados por \texttt{dependencies()} \\
+\texttt{renv::status()} & Compara el estado actual de la biblioteca
+contra lo registrado en el lockfile \\
+\texttt{renv::history()} & Muestra el historial de versiones anteriores
+del lockfile (vía Git) \\
+\texttt{renv::revert()} & Revierte el lockfile a una versión anterior
+del historial \\
+\texttt{renv::activate()} & Activa renv en la sesión actual (o cambia de
+perfil con \texttt{profile=}) \\
+\texttt{renv::deactivate()} & Desactiva renv en el proyecto (mantiene
+los archivos) \\
+\texttt{renv::deactivate(clean\ =\ TRUE)} & Elimina por completo la
+infraestructura de renv del proyecto \\
+\texttt{renv::paths\$root()} & Devuelve la ruta de la caché/raíz global
+de renv en el sistema \\
 \end{longtable}
+}
 
-Estos atajos de teclado te ayudarán a agilizar tu flujo de trabajo en
-RStudio en Ubuntu Linux. Recuerda que también puedes personalizar los
-atajos de teclado según tus preferencias en la sección de configuración
-de RStudio.
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\subsection{Espacio de trabajo
-(.Rdata)}\label{espacio-de-trabajo-.rdata}
+\subsection{18. Límites de renv: lo que NO
+resuelve}\label{luxedmites-de-renv-lo-que-no-resuelve}
 
-El espacio de trabajo en R consiste en todos los objetos que se crean o
-cargan durante una sesión de R.
+La propia documentación oficial es explícita sobre esto, y conviene
+tenerlo presente para no asumir una falsa sensación de seguridad total:
 
-\subsubsection{Creación de objetos de
-datos}\label{creaciuxf3n-de-objetos-de-datos}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
+\begin{itemize}
 \tightlist
 \item
-  Utiliza el operador de asignación (\texttt{\textless{}-}) para crear
-  un objeto de datos. Por ejemplo:
-  \texttt{mi\_objeto\ \textless{}-\ c(1,\ 2,\ 3,\ 4,\ 5)}.
-\end{enumerate}
+  \textbf{Versión de R}: \texttt{renv} registra qué versión de R se usó,
+  pero no instala ni cambia versiones de R por ti (no puede, porque
+  corre dentro de la propia R). Para gestionar múltiples versiones de R
+  en una misma máquina, la documentación oficial sugiere herramientas
+  externas como \texttt{rig}.
+\item
+  \textbf{Pandoc}: como se explicó en el caso de uso 5, Pandoc no viaja
+  dentro del lockfile de \texttt{renv}, aunque \texttt{rmarkdown}/Quarto
+  dependan fuertemente de él.
+\item
+  \textbf{Sistema operativo, librerías de sistema, versión del
+  compilador}: mantener una imagen de sistema ``estable'' es un problema
+  aparte; la solución recomendada oficialmente para esto es
+  \textbf{Docker}, no \texttt{renv} por sí solo.
+\item
+  \textbf{Disponibilidad futura de binarios}: si un paquete fue
+  instalado desde un binario que luego deja de publicarse,
+  \texttt{restore()} intentará compilar desde fuente, lo cual puede
+  fallar si faltan dependencias de sistema.
+\end{itemize}
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-html/Screenshot_20230611_092644.png}}
+En palabras de la propia documentación: hacer un proyecto reproducible
+siempre exige reflexión, no solo el uso mecánico de una herramienta.
+\texttt{renv} resuelve muy bien \textbf{una} parte importante del
+problema (los paquetes de R), no todo el problema de reproducibilidad de
+punta a punta.
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{19. Solución de problemas
+comunes}\label{soluciuxf3n-de-problemas-comunes}
+
+\subsubsection{\texorpdfstring{19.1. \texttt{renv::restore()} falla al
+intentar compilar un paquete desde
+fuente}{19.1. renv::restore() falla al intentar compilar un paquete desde fuente}}\label{renvrestore-falla-al-intentar-compilar-un-paquete-desde-fuente}
+
+Suele deberse a dependencias de sistema faltantes (ver la guía de
+instalación de R/RStudio, sección de ``Dependencias de sistema para
+paquetes de R''). Instala la librería de sistema indicada en el mensaje
+de error y reintenta.
+
+\subsubsection{19.2. Un colaborador abre el proyecto y no ve activarse
+renv
+automáticamente}\label{un-colaborador-abre-el-proyecto-y-no-ve-activarse-renv-automuxe1ticamente}
+
+Verifica que se haya hecho commit de \texttt{.Rprofile},
+\texttt{renv.lock}, \texttt{renv/settings.json} y
+\texttt{renv/activate.R} al repositorio Git. Si alguno de estos archivos
+quedó fuera del control de versiones (por ejemplo por un
+\texttt{.gitignore} mal configurado), el autoarranque de renv no
+ocurrirá en la máquina del colaborador.
+
+\subsubsection{19.3. Quiero saber si mi biblioteca actual coincide con
+el
+lockfile}\label{quiero-saber-si-mi-biblioteca-actual-coincide-con-el-lockfile}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{status}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Esto compara la biblioteca actual del proyecto contra lo registrado en
+\texttt{renv.lock} y reporta diferencias (paquetes instalados que no
+están en el lockfile, o viceversa).
+
+\subsubsection{19.4. Necesito volver a una versión anterior del lockfile
+(no solo a la
+última)}\label{necesito-volver-a-una-versiuxf3n-anterior-del-lockfile-no-solo-a-la-uxfaltima}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{history}\NormalTok{()   }\CommentTok{\# ver versiones anteriores registradas en Git}
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{revert}\NormalTok{()    }\CommentTok{\# revertir a una versión específica}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{19.5. El proyecto ya no necesita
+renv}\label{el-proyecto-ya-no-necesita-renv}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{deactivate}\NormalTok{()              }\CommentTok{\# desactiva pero conserva los archivos}
+\NormalTok{renv}\SpecialCharTok{::}\FunctionTok{deactivate}\NormalTok{(}\AttributeTok{clean =} \ConstantTok{TRUE}\NormalTok{)  }\CommentTok{\# elimina toda la infraestructura de renv del proyecto}
+\end{Highlighting}
+\end{Shaded}
+
+Para eliminar también la caché global de renv del sistema (afecta a
+\emph{todos} tus proyectos con renv, úsalo con cuidado):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{root }\OtherTok{\textless{}{-}}\NormalTok{ renv}\SpecialCharTok{::}\NormalTok{paths}\SpecialCharTok{$}\FunctionTok{root}\NormalTok{()}
+\FunctionTok{unlink}\NormalTok{(root, }\AttributeTok{recursive =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Y finalmente, si ya no quieres usar renv en ningún proyecto:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{utils}\SpecialCharTok{::}\FunctionTok{remove.packages}\NormalTok{(}\StringTok{"renv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{20. Referencias oficiales}\label{referencias-oficiales}
+
+\begin{itemize}
 \tightlist
 \item
-  Selecciona todo el código que contiene los objetos de datos y
-  ejecútalo en la consola de RStudio.
-\end{enumerate}
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-html/Screenshot_20230611_093536.png}}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{2}
-\tightlist
+  \textbf{renv --- Sitio oficial de documentación}:
+  https://rstudio.github.io/renv/
 \item
-  El código se evaluará y los objetos de datos se crearán en el espacio
-  de trabajo. Sin embargo, no verás ningún resultado en la consola.
-\end{enumerate}
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-html/Screenshot_20230611_094001.png}}
-
-Los objetos de datos creados se almacenan en el entorno global, que es
-parte del espacio de trabajo de R.
-
-\subsubsection{Inspección de objetos de
-datos}\label{inspecciuxf3n-de-objetos-de-datos}
-
-Puedes inspeccionar los objetos de datos haciendo clic sobre ellos en el
-panel de entorno o en el panel de objetos. Esto abrirá una vista previa
-del objeto en un nuevo archivo. Ten en cuenta que esta vista previa no
-afecta los objetos en el espacio de trabajo y se puede cerrar sin perder
-ninguna información.
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-html/Screenshot_20230611_094530.png}}
-
-\subsubsection{Guardado del espacio de
-trabajo}\label{guardado-del-espacio-de-trabajo}
-
-En RStudio, puedes guardar todos los objetos en tu espacio de trabajo en
-un archivo llamado \texttt{.Rdata}. Esta función te permite almacenar y
-cargar el espacio de trabajo completo en futuras sesiones de RStudio.
-
-Para guardar el espacio de trabajo, simplemente ve al menú ``Session'' y
-selecciona ``Save Workspace As\ldots{}''. A continuación, elige la
-ubicación y el nombre de archivo deseados para guardar el archivo
-\texttt{.Rdata}.
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-html/Screenshot_20230611_095350.png}}
-
-Esta función es especialmente útil cuando trabajas en proyectos largos o
-cuando deseas retomar tu trabajo en otro momento sin tener que volver a
-crear o cargar manualmente todos los objetos y configuraciones.
-
-\begin{quote}
-Recuerda que al guardar y cargar el espacio de trabajo, asegúrate de
-mantener un respaldo de tus archivos en caso de cualquier eventualidad.
-¡Disfruta de la conveniencia de mantener tus objetos y configuraciones
-en tu espacio de trabajo guardado!
-\end{quote}
-
-\subsubsection{Carga del espacio de
-trabajo}\label{carga-del-espacio-de-trabajo}
-
-Para cargar el espacio de trabajo previamente guardado, sigue estos
-pasos:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
+  \textbf{renv --- Introducción (vignette principal)}:
+  https://rstudio.github.io/renv/articles/renv.html
 \item
-  Abre RStudio y ve al menú ``Session'' en la barra de herramientas
-  superior.
+  \textbf{renv --- Instalación de paquetes y caché}:
+  https://rstudio.github.io/renv/articles/package-install.html
 \item
-  Selecciona la opción ``Cargar'' del menú desplegable.
+  \textbf{renv --- Fuentes de paquetes (CRAN, GitHub, Bioconductor,
+  etc.)}: https://rstudio.github.io/renv/articles/package-sources.html
 \item
-  Aparecerá una ventana emergente que te permite buscar el archivo
-  \texttt{.Rdata} que contiene tu espacio de trabajo guardado. Navega
-  hasta la ubicación donde guardaste el archivo.
+  \textbf{renv --- Perfiles de proyecto}:
+  https://rstudio.github.io/renv/articles/profiles.html
 \item
-  Selecciona el archivo \texttt{.Rdata} y haz clic en el botón
-  ``Abrir''.
+  \textbf{renv --- Desarrollo de paquetes con renv}:
+  https://rstudio.github.io/renv/articles/packages.html
 \item
-  RStudio cargará automáticamente el archivo y restaurará todos los
-  objetos y sus valores en tu entorno de trabajo actual.
-\end{enumerate}
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-html/Screenshot_20230611_100949.png}}
-
-Una vez completados estos pasos, podrás acceder a todos los objetos y
-continuar trabajando con ellos como lo hiciste en la sesión en la que
-guardaste el espacio de trabajo.
-
-\begin{quote}
-¡Con esta opción de carga, podrás retomar fácilmente tus proyectos
-anteriores y continuar donde lo dejaste sin tener que volver a crear los
-objetos desde cero!
-\end{quote}
-
-\subsection{Historial (.Rhistory)}\label{historial-.rhistory}
-
-El archivo de historial es un archivo de texto que registra todos los
-comandos ejecutados durante una sesión de RStudio.
-
-\subsubsection{Inspección del historial de
-comandos}\label{inspecciuxf3n-del-historial-de-comandos}
-
-Puedes ver el historial de comandos ejecutados durante tu sesión de
-trabajo haciendo clic en la pestaña ``History'' en la parte superior
-derecha de la ventana de RStudio. Aquí encontrarás una lista de todos
-los comandos ejecutados, lo que te permite revisarlos y volver a
-utilizarlos según sea necesario.
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-html/Screenshot_20230611_101644.png}}
-
-\subsubsection{Guardado del historial de
-comandos}\label{guardado-del-historial-de-comandos}
-
-Si deseas guardar tu historial de comandos, puedes hacerlo en cualquier
-momento durante tu sesión de trabajo. Esto te permitirá acceder a tus
-comandos previos en futuras sesiones.
-
-Si deseas guardar tu historial de comandos en RStudio, sigue estos
-pasos:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
+  \textbf{renv --- Integración continua (CI)}:
+  https://rstudio.github.io/renv/articles/ci.html
 \item
-  En el panel de superior derecha selecciona la opción ``Save History''
-  (Guardar Historial).
+  \textbf{renv --- Uso con Docker}:
+  https://rstudio.github.io/renv/articles/docker.html
 \item
-  Aparecerá una ventana emergente que te permitirá seleccionar la
-  ubicación y el nombre de archivo para guardar tu historial de
-  comandos. El archivo tendrá una extensión \texttt{.Rhistory} por
-  defecto.
+  \textbf{renv --- Uso con Posit Connect}:
+  https://rstudio.github.io/renv/articles/rsconnect.html
 \item
-  Elige la ubicación donde deseas guardar el archivo y asigna un nombre
-  descriptivo para identificarlo fácilmente.
+  \textbf{renv --- Preguntas frecuentes (FAQ)}:
+  https://rstudio.github.io/renv/articles/faq.html
 \item
-  Haz clic en el botón ``Guardar'' para guardar el historial de comandos
-  en el archivo seleccionado.
-\end{enumerate}
+  \textbf{renv --- Referencia de funciones}:
+  https://rstudio.github.io/renv/reference/index.html
+\item
+  \textbf{renv --- Repositorio oficial en GitHub}:
+  https://github.com/rstudio/renv
+\item
+  \textbf{RStudio IDE --- Guía de entornos con renv}:
+  https://github.com/rstudio/rstudio/blob/main/docs/user/rstudio/ide/guide/environments/r/renv.qmd
+\end{itemize}
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-html/Screenshot_20230611_102856.png}}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\subsubsection{Reutilización del historial de
-comandos}\label{reutilizaciuxf3n-del-historial-de-comandos}
-
-El historial se guarda en un archivo llamado \texttt{.Rhistory}. Puedes
-reutilizar todo el historial de comandos haciendo clic en el archivo
-\texttt{.Rhistory} o con el nombre asignado. Luego, puedes copiarlos y
-pegarlos en tu archivo de script actual.
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-html/Screenshot_20230611_103319.png}}
-
-Inserta un código de línea seleccionado de \texttt{.Rhistory} en un
-archivo de script nuevo.
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-html/Screenshot_20230611_103755.png}}
-
-\begin{quote}
-¡Explora y aprovecha al máximo el espacio de trabajo y el historial en
-RStudio para mejorar tu flujo de trabajo y aprovechar al máximo tus
-comandos y objetos de datos!
-\end{quote}
+\textbf{Edison Achalma} Economista --- Universidad Nacional de San
+Cristóbal de Huamanga (UNSCH) Ayacucho, Perú ORCID:
+\href{https://orcid.org/0000-0001-6996-3364}{0000-0001-6996-3364}
 
 \section{Publicaciones Similares}\label{publicaciones-similares}
 
@@ -773,9 +1405,9 @@ algunas sugerencias:
   \href{https://numerus-scriptum.netlify.app/r/2020-06-10-011-instalacion-de-r}{011
   Instalacion De R}
 \item
-  \href{https://numerus-scriptum.netlify.app/r/2020-06-10-012-que-ofrece-r/index.pdf}{\faIcon{file-pdf}}
-  \href{https://numerus-scriptum.netlify.app/r/2020-06-10-012-que-ofrece-r}{012
-  Que Ofrece R}
+  \href{https://numerus-scriptum.netlify.app/r/2020-06-10-012-configurar-entorno-virtual-r/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/r/2020-06-10-012-configurar-entorno-virtual-r}{012
+  Configurar Entorno Virtual R}
 \item
   \href{https://numerus-scriptum.netlify.app/r/2020-06-10-013-lo-que-debemos-saber-de-r/index.pdf}{\faIcon{file-pdf}}
   \href{https://numerus-scriptum.netlify.app/r/2020-06-10-013-lo-que-debemos-saber-de-r}{013

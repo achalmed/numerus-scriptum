@@ -124,6 +124,7 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -165,10 +166,10 @@
 
 
 
-\title{Instalación y Configuración de Miniconda}
+\title{Guía completa de instalación de Miniconda y Anaconda}
 
 
-\shorttitle{Instalación y Configuración de Miniconda}
+\shorttitle{Guía completa de instalación de Miniconda y Anaconda}
 
 
 \usepackage{etoolbox}
@@ -218,9 +219,14 @@ instalación/resolución de dependencias. }
 \par{   El autor no tiene conflictos de interés que revelar.    Los
 roles de autor se clasificaron utilizando la taxonomía de roles de
 colaborador (CRediT; https://credit.niso.org/) de la siguiente
-manera:  Edison Achalma:   conceptualización, redacción}
+manera:  Edison Achalma:   conceptualización, metodología, análisis
+formal, investigación, recursos, curación de
+datos, redacción, visualización, supervisión, administración del
+proyecto}
 \par{La correspondencia relativa a este artículo debe dirigirse a Edison
-Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
+Achalma, Escuela Profesional de Economía, Universidad Nacional de San
+Cristóbal de Huamanga, Portal Independencia N°
+57, Ayacucho, AYA 5001, Perú, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
 }
 
 \makeatletter
@@ -235,6 +241,10 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 
 
 
+\hypersetup{
+  pdftitle={Gu\'{\i}a completa de instalaci\'{o}n de Miniconda y Anaconda},
+  pdfauthor={Autor}
+}
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -267,8 +277,8 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 \@ifpackageloaded{float}{}{\usepackage{float}}
 \floatstyle{ruled}
 \@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
-\floatname{codelisting}{Listing}
-\newcommand*\listoflistings{\listof{codelisting}{Lista de Listings}}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listados}}
 \makeatother
 \makeatletter
 \makeatother
@@ -318,7 +328,8 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 \hypertarget{toc}{}
 \tableofcontents
 \newpage
-\section[Introduction]{Instalación y Configuración de Miniconda}
+\section[Introduction]{Guía completa de instalación de Miniconda y
+Anaconda}
 
 \setcounter{secnumdepth}{3}
 
@@ -327,916 +338,1165 @@ Achalma, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@uns
 
 
 
-\section{¿Qué es Anaconda?}\label{quuxe9-es-anaconda}
+\section{Guía completa de instalación de Miniconda y
+Anaconda}\label{guuxeda-completa-de-instalaciuxf3n-de-miniconda-y-anaconda}
 
-Anaconda es una plataforma de gestión de paquetes y entornos virtuales
-diseñada para facilitar el desarrollo en Python y otros lenguajes de
-programación populares. Imagina que tienes una caja de herramientas
-repleta de todo lo que necesitas para construir aplicaciones, analizar
-datos o desarrollar proyectos de aprendizaje automático. Esa es
-Anaconda: una caja de herramientas poderosa y completa que te brinda
-todo lo que necesitas para trabajar con Python de manera eficiente.
+\begin{quote}
+Referencia técnica independiente sobre la \textbf{instalación} de
+Miniconda y Anaconda Distribution en Kubuntu/Ubuntu, Arch Linux y
+Windows, basada en la documentación oficial de \textbf{conda}
+(docs.conda.io), \textbf{Anaconda} (anaconda.com/docs) y
+\textbf{ArchWiki} (wiki.archlinux.org/title/Conda). Esta guía cubre
+\textbf{únicamente instalación y desinstalación}; la configuración del
+entorno (canales, \texttt{.condarc}, gestión de entornos virtuales,
+integración con shells, etc.) se tratará en una guía aparte.
+\end{quote}
 
-Esta guía está diseñada específicamente para mi flujo de trabajo como
-economista que:
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\begin{itemize}
-\tightlist
-\item
-  Mantiene múltiples blogs académicos (epsilon-y-beta, axiomata,
-  methodica, etc.)
-\item
-  Desarrolla scripts de automatización en Python
-\item
-  Trabaja con análisis econométrico y ciencia de datos
-\item
-  Usa Quarto para publicaciones académicas
-\item
-  Necesita entornos reproducibles para colaboración
-\end{itemize}
-
-\section{Por Qué Miniconda en Lugar de
-Anaconda}\label{por-quuxe9-miniconda-en-lugar-de-anaconda}
-
-\subsection{Comparación}\label{comparaciuxf3n}
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3265}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2245}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4490}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Característica
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Miniconda
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Anaconda Distribution
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Tamaño inicial & \textasciitilde50 MB & \textasciitilde3-5 GB \\
-Paquetes preinstalados & Mínimos (conda, Python, pip) & 250+ paquetes \\
-Control total & Sí & Limitado \\
-Velocidad de instalación & Rápida & Lenta \\
-Ideal para & Usuarios avanzados, servidores & Principiantes \\
-\end{longtable}
-
-\subsection{Ventajas}\label{ventajas}
+\subsection{Tabla de contenidos}\label{tabla-de-contenidos}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Control Total:} Instalas solo lo que necesitas para cada
-  proyecto
+  \hyperref[1-quuxe9-son-miniconda-y-anaconda]{¿Qué son Miniconda y
+  Anaconda?}
 \item
-  \textbf{Múltiples Entornos:} Ideal para mis 10+ blogs con dependencias
-  diferentes
+  \hyperref[2-cuuxe1l-elegir-miniconda-o-anaconda-distribution]{¿Cuál
+  elegir: Miniconda o Anaconda Distribution?}
 \item
-  \textbf{Reproducibilidad:} Archivos \texttt{environment.yml} más
-  pequeños y claros
+  \hyperref[3-nota-importante-sobre-los-tuxe9rminos-de-servicio-de-anaconda]{Nota
+  importante sobre los Términos de Servicio de Anaconda}
 \item
-  \textbf{Velocidad:} Con Mamba, la resolución de dependencias es
-  ultrarrápida
+  \hyperref[4-verificaciuxf3n-de-integridad-del-instalador-todas-las-plataformas]{Verificación
+  de integridad del instalador (todas las plataformas)}
 \item
-  \textbf{Integración con Sistema:} Usa Quarto y R del sistema (pacman),
-  Python de conda
+  \hyperref[5-instalaciuxf3n-en-kubuntu--ubuntu--miniconda]{Instalación
+  en Kubuntu / Ubuntu --- Miniconda}
+\item
+  \hyperref[6-instalaciuxf3n-en-kubuntu--ubuntu--anaconda-distribution]{Instalación
+  en Kubuntu / Ubuntu --- Anaconda Distribution}
+\item
+  \hyperref[7-instalaciuxf3n-en-arch-linux--miniconda]{Instalación en
+  Arch Linux --- Miniconda}
+\item
+  \hyperref[8-instalaciuxf3n-en-arch-linux--anaconda-distribution]{Instalación
+  en Arch Linux --- Anaconda Distribution}
+\item
+  \hyperref[9-instalaciuxf3n-en-windows--miniconda]{Instalación en
+  Windows --- Miniconda}
+\item
+  \hyperref[10-instalaciuxf3n-en-windows--anaconda-distribution]{Instalación
+  en Windows --- Anaconda Distribution}
+\item
+  \hyperref[11-instalaciuxf3n-en-modo-silencioso-avanzado]{Instalación
+  en modo silencioso (avanzado)}
+\item
+  \hyperref[12-verificaciuxf3n-final-de-la-instalaciuxf3n]{Verificación
+  final de la instalación}
+\item
+  \hyperref[13-desinstalaciuxf3n-en-kubuntu--ubuntu]{Desinstalación en
+  Kubuntu / Ubuntu}
+\item
+  \hyperref[14-desinstalaciuxf3n-en-arch-linux]{Desinstalación en Arch
+  Linux}
+\item
+  \hyperref[15-desinstalaciuxf3n-en-windows]{Desinstalación en Windows}
+\item
+  \hyperref[16-soluciuxf3n-de-problemas-comunes-de-instalaciuxf3n]{Solución
+  de problemas comunes de instalación}
+\item
+  \hyperref[17-referencias-oficiales]{Referencias oficiales}
 \end{enumerate}
 
-\section{Preparación del Sistema}\label{preparaciuxf3n-del-sistema}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\subsection{1. Verificar Instalaciones
-Existentes}\label{verificar-instalaciones-existentes}
+\subsection{1. ¿Qué son Miniconda y
+Anaconda?}\label{quuxe9-son-miniconda-y-anaconda}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Verificar si conda ya está instalado}
-\FunctionTok{which}\NormalTok{ conda}
+\textbf{Conda} es el gestor de paquetes y entornos en el que se basan
+tanto Miniconda como Anaconda Distribution. Existen dos formas oficiales
+de obtenerlo:
 
-\CommentTok{\# Verificar versión (si existe)}
-\ExtensionTok{conda} \AttributeTok{{-}{-}version}
+\begin{itemize}
+\item
+  \textbf{Miniconda}: según la documentación oficial, es una instalación
+  \textbf{mínima y gratuita} de Anaconda Distribution que incluye
+  únicamente \texttt{conda}, Python, los paquetes de los que ambos
+  dependen, y un pequeño número de paquetes adicionales útiles. Si se
+  necesitan más paquetes, se usa el comando \texttt{conda\ install} para
+  instalarlos desde miles de paquetes disponibles por defecto en el
+  repositorio público de Anaconda, o desde otros canales como
+  \texttt{conda-forge} o \texttt{bioconda}.
+\item
+  \textbf{Anaconda Distribution}: es la distribución completa, que
+  incluye conda, Python, y \textbf{miles de paquetes preinstalados}
+  orientados a ciencia de datos y machine learning (NumPy, pandas,
+  Jupyter Notebook, scikit-learn, entre otros), además de
+  \textbf{Anaconda Navigator}, una aplicación de escritorio para
+  gestionar paquetes y entornos sin usar la línea de comandos.
+\end{itemize}
 
-\CommentTok{\# Verificar entornos existentes}
-\ExtensionTok{conda}\NormalTok{ env list}
-\end{Highlighting}
-\end{Shaded}
+Ambas instalan el mismo gestor \texttt{conda} por debajo; la diferencia
+está en cuánto software adicional viene preinstalado de fábrica.
 
-\subsection{2. Desinstalar Instalaciones
-Previas}\label{desinstalar-instalaciones-previas}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\textbf{Si tienes Anaconda o Miniconda antiguo:}
+\subsection{2. ¿Cuál elegir: Miniconda o Anaconda
+Distribution?}\label{cuuxe1l-elegir-miniconda-o-anaconda-distribution}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Desactivar entorno base}
-\ExtensionTok{conda}\NormalTok{ deactivate}
-
-\CommentTok{\# Eliminar directorio de instalación}
-\FunctionTok{rm} \AttributeTok{{-}rf}\NormalTok{ \textasciitilde{}/miniconda3}
-\CommentTok{\# O si instalaste Anaconda:}
-\FunctionTok{rm} \AttributeTok{{-}rf}\NormalTok{ \textasciitilde{}/anaconda3}
-
-\CommentTok{\# Limpiar configuraciones (OPCIONAL {-} solo si quieres empezar de cero)}
-\FunctionTok{rm} \AttributeTok{{-}rf}\NormalTok{ \textasciitilde{}/.conda}
-\FunctionTok{rm} \AttributeTok{{-}f}\NormalTok{ \textasciitilde{}/.condarc}
-
-\CommentTok{\# Limpiar inicialización de shells}
-\CommentTok{\# Fish}
-\FunctionTok{nano}\NormalTok{ \textasciitilde{}/.config/fish/config.fish  }\CommentTok{\# Eliminar bloque conda initialize}
-
-\CommentTok{\# Bash}
-\FunctionTok{nano}\NormalTok{ \textasciitilde{}/.bashrc  }\CommentTok{\# Eliminar bloque conda initialize}
-
-\CommentTok{\# Zsh}
-\FunctionTok{nano}\NormalTok{ \textasciitilde{}/.zshrc  }\CommentTok{\# Eliminar bloque conda initialize}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{3. Verificar Herramientas del
-Sistema}\label{verificar-herramientas-del-sistema}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Verificar Quarto (debe estar instalado)}
-\ExtensionTok{quarto} \AttributeTok{{-}{-}version}
-
-\CommentTok{\# Verificar R (debe estar instalado)}
-\ExtensionTok{R} \AttributeTok{{-}{-}version}
-
-\CommentTok{\# Verificar LaTeX (para PDFs en Quarto)}
-\ExtensionTok{pdflatex} \AttributeTok{{-}{-}version}
-
-\CommentTok{\# Si falta algo, instalar con pacman}
-\FunctionTok{sudo}\NormalTok{ pacman }\AttributeTok{{-}S}\NormalTok{ quarto r texlive{-}most}
-\end{Highlighting}
-\end{Shaded}
-
-\section{Instalación de Miniconda}\label{instalaciuxf3n-de-miniconda}
-
-\subsection{Método 1: Instalación
-Rápida}\label{muxe9todo-1-instalaciuxf3n-ruxe1pida}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# 1. Crear directorio temporal}
-\FunctionTok{mkdir} \AttributeTok{{-}p}\NormalTok{ \textasciitilde{}/miniconda3}
-
-\CommentTok{\# 2. Descargar instalador (x86\_64 para Arch Linux estándar)}
-\ExtensionTok{curl}\NormalTok{ https://repo.anaconda.com/miniconda/Miniconda3{-}latest{-}Linux{-}x86\_64.sh }\DataTypeTok{\textbackslash{}}
-  \AttributeTok{{-}o}\NormalTok{ \textasciitilde{}/miniconda3/miniconda.sh}
-
-\CommentTok{\# 3. Verificar integridad (RECOMENDADO)}
-\FunctionTok{sha256sum}\NormalTok{ \textasciitilde{}/miniconda3/miniconda.sh}
-\CommentTok{\# Comparar con el hash oficial en https://repo.anaconda.com/miniconda/}
-
-\CommentTok{\# 4. Ejecutar instalador}
-\FunctionTok{bash}\NormalTok{ \textasciitilde{}/miniconda3/miniconda.sh }\AttributeTok{{-}b} \AttributeTok{{-}u} \AttributeTok{{-}p}\NormalTok{ \textasciitilde{}/miniconda3}
-
-\CommentTok{\# 5. Eliminar instalador}
-\FunctionTok{rm}\NormalTok{ \textasciitilde{}/miniconda3/miniconda.sh}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Opciones:}
+Esta es una pregunta que la propia documentación oficial de Anaconda
+responde explícitamente en su página de comparación (``Choosing between
+Anaconda Distribution and Miniconda''). A modo de resumen orientativo:
 
 \begin{itemize}
 \tightlist
 \item
-  \texttt{-b}: Modo batch (sin prompts interactivos)
+  \textbf{Miniconda} es preferible si se quiere mantener una huella de
+  instalación pequeña, control total sobre qué paquetes se instalan, o
+  se trabaja en un entorno con espacio en disco o ancho de banda
+  limitado.
 \item
-  \texttt{-u}: Actualizar instalación existente si la hay
-\item
-  \texttt{-p\ \textasciitilde{}/miniconda3}: Ruta de instalación
+  \textbf{Anaconda Distribution} es preferible si se quiere tener de
+  inmediato, en un solo paso, Python junto con miles de paquetes de
+  ciencia de datos ya instalados y verificados, además de una interfaz
+  gráfica (Navigator) para quienes prefieren no usar la terminal.
 \end{itemize}
 
-\subsection{Método 2: Instalación
-Interactiva}\label{muxe9todo-2-instalaciuxf3n-interactiva}
+Ambas opciones son válidas para Kubuntu, Arch Linux y Windows; esta guía
+cubre la instalación de \textbf{ambas} en los tres sistemas.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3. Nota importante sobre los Términos de Servicio de
+Anaconda}\label{nota-importante-sobre-los-tuxe9rminos-de-servicio-de-anaconda}
+
+Según la documentación oficial de conda, \textbf{tanto Miniconda como
+Anaconda Distribution vienen preconfiguradas para usar el repositorio de
+Anaconda} (Anaconda Repository), y instalar o usar paquetes desde ese
+repositorio está sujeto a los \textbf{Términos de Servicio de Anaconda},
+lo cual puede requerir una licencia comercial de pago según el caso.
+Existen excepciones para individuos, universidades y empresas con menos
+de 200 empleados (vigente desde septiembre de 2024).
+
+\begin{quote}
+\textbf{Relevante para tu contexto académico (UNSCH)}: como individuo
+afiliado a una universidad, normalmente caes dentro de las excepciones
+declaradas por Anaconda para uso académico/de investigación, pero se
+recomienda revisar los términos vigentes y el documento oficial ``Update
+on Anaconda's Terms of Service for Academia and Research'' antes de un
+uso institucional o de gran escala, ya que estas políticas pueden
+cambiar.
+\end{quote}
+
+Esta nota aplica por igual a Kubuntu, Arch Linux y Windows, ya que es
+una condición del repositorio de paquetes de Anaconda, no del sistema
+operativo.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4. Verificación de integridad del instalador (todas las
+plataformas)}\label{verificaciuxf3n-de-integridad-del-instalador-todas-las-plataformas}
+
+La documentación oficial recomienda \textbf{verificar el hash SHA-256}
+del instalador descargado antes de ejecutarlo, para confirmar que no fue
+alterado ni corrompido durante la descarga. No se recomienda usar
+verificación MD5, ya que SHA-256 es más seguro.
+
+\subsubsection{4.1. Dónde obtener el hash
+oficial}\label{duxf3nde-obtener-el-hash-oficial}
+
+\begin{itemize}
+\tightlist
+\item
+  Para Miniconda: visita \textbf{repo.anaconda.com/miniconda}, donde se
+  lista el hash SHA-256 oficial correspondiente a cada instalador.
+\item
+  Para Anaconda Distribution: el hash se publica junto al archivo de
+  descarga correspondiente en la documentación oficial de Anaconda.
+\end{itemize}
+
+\subsubsection{4.2. Verificación en Linux (Kubuntu y
+Arch)}\label{verificaciuxf3n-en-linux-kubuntu-y-arch}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# 1. Descargar instalador}
+\FunctionTok{sha256sum}\NormalTok{ nombre{-}del{-}archivo.sh}
+\end{Highlighting}
+\end{Shaded}
+
+Compara el valor mostrado con el hash oficial publicado. Si coinciden,
+el instalador es seguro de usar.
+
+\subsubsection{4.3. Verificación en
+Windows}\label{verificaciuxf3n-en-windows}
+
+Puedes usar la herramienta de verificación en línea de Microsoft, o
+desde el símbolo del sistema (Command Prompt):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CertUtil }\AttributeTok{{-}hashfile}\NormalTok{ nombre}\AttributeTok{{-}del{-}archivo}\NormalTok{.exe SHA256}
+\end{Highlighting}
+\end{Shaded}
+
+Compara el resultado con el hash oficial publicado para ese instalador.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5. Instalación en Kubuntu / Ubuntu ---
+Miniconda}\label{instalaciuxf3n-en-kubuntu-ubuntu-miniconda}
+
+\subsubsection{5.1. Descargar el
+instalador}\label{descargar-el-instalador}
+
+Desde la documentación oficial de conda, el instalador de Miniconda para
+Linux se descarga desde la página oficial de Miniconda
+(docs.anaconda.com/miniconda) o directamente desde el repositorio de
+archivos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \FunctionTok{wget}\NormalTok{ https://repo.anaconda.com/miniconda/Miniconda3{-}latest{-}Linux{-}x86\_64.sh}
+\end{Highlighting}
+\end{Shaded}
 
-\CommentTok{\# 2. Ejecutar instalador interactivo}
+\begin{quote}
+\textbf{Nota}: \texttt{Miniconda3-latest-Linux-x86\_64.sh} apunta
+siempre a la versión más reciente disponible para arquitectura x86\_64
+(la habitual en la mayoría de laptops y PCs de escritorio). Si tu
+hardware usa otra arquitectura (por ejemplo ARM/aarch64), ajusta el
+nombre del archivo según lo indicado en repo.anaconda.com/miniconda.
+\end{quote}
+
+\subsubsection{5.2. Verificar el hash
+(recomendado)}\label{verificar-el-hash-recomendado}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sha256sum}\NormalTok{ Miniconda3{-}latest{-}Linux{-}x86\_64.sh}
+\end{Highlighting}
+\end{Shaded}
+
+Compara contra el hash oficial publicado en repo.anaconda.com/miniconda.
+
+\subsubsection{5.3. Ejecutar el
+instalador}\label{ejecutar-el-instalador}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \FunctionTok{bash}\NormalTok{ Miniconda3{-}latest{-}Linux{-}x86\_64.sh}
-
-\CommentTok{\# Seguir instrucciones:}
-\CommentTok{\# {-} Aceptar licencia: yes}
-\CommentTok{\# {-} Ubicación: /home/achalmaedison/miniconda3 (default)}
-\CommentTok{\# {-} Inicializar conda: yes (IMPORTANTE)}
-
-\CommentTok{\# 3. Eliminar instalador}
-\FunctionTok{rm}\NormalTok{ Miniconda3{-}latest{-}Linux{-}x86\_64.sh}
 \end{Highlighting}
 \end{Shaded}
 
-\section{Configuración Inicial}\label{configuraciuxf3n-inicial}
+\subsubsection{5.4. Seguir las indicaciones del
+instalador}\label{seguir-las-indicaciones-del-instalador}
 
-\subsection{1. Inicializar Conda para Todos los
-Shells}\label{inicializar-conda-para-todos-los-shells}
+El procedimiento documentado oficialmente es:
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Activar conda temporalmente}
-\BuiltInTok{source}\NormalTok{ \textasciitilde{}/miniconda3/bin/activate}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Presiona \texttt{Enter} para revisar el acuerdo de licencia.
+\item
+  Desplázate (barra espaciadora) hasta el final del acuerdo.
+\item
+  Escribe \texttt{yes} y presiona \texttt{Enter} para aceptar los
+  términos.
+\item
+  Confirma o cambia la ruta de instalación (por defecto, algo como
+  \texttt{/home/\textless{}usuario\textgreater{}/miniconda3}). Presiona
+  \texttt{Enter} para aceptar la ruta por defecto, o escribe una ruta
+  alternativa.
+\item
+  Al finalizar la instalación, el instalador preguntará si deseas
+  \textbf{inicializar conda} (\texttt{conda\ init}). Se recomienda
+  responder \texttt{yes}: esto modifica la configuración de tu shell
+  (por ejemplo \texttt{\textasciitilde{}/.bashrc} o
+  \texttt{\textasciitilde{}/.zshrc}) para que conda se inicialice
+  automáticamente cada vez que abras una nueva terminal y reconozca los
+  comandos \texttt{conda} sin pasos adicionales.
+\end{enumerate}
 
-\CommentTok{\# Inicializar para todos los shells disponibles}
-\ExtensionTok{conda}\NormalTok{ init }\AttributeTok{{-}{-}all}
+\begin{quote}
+\textbf{Nota para usuarios de zsh}: dado que tu entorno usa \texttt{zsh}
+con \texttt{kitty}, el instalador detecta y modifica automáticamente
+\texttt{\textasciitilde{}/.zshrc} si esa es tu shell por defecto al
+ejecutar el instalador. Si usas múltiples shells, puedes ejecutar
+\texttt{conda\ init} manualmente más adelante para shells adicionales
+(esto se profundizará en la guía de configuración).
+\end{quote}
 
-\CommentTok{\# O solo para fish}
+\subsubsection{5.5. Aplicar los cambios}\label{aplicar-los-cambios}
 
-\ExtensionTok{conda}\NormalTok{ init fish}
+Para que los cambios tengan efecto, cierra y vuelve a abrir tu terminal
+(o tu sesión de \texttt{kitty}).
 
-\CommentTok{\# Resultado: Modifica automáticamente:}
-\CommentTok{\# {-} \textasciitilde{}/.bashrc (Bash)}
-\CommentTok{\# {-} \textasciitilde{}/.zshrc (Zsh)}
-\CommentTok{\# {-} \textasciitilde{}/.config/fish/config.fish (Fish)}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{2. Recargar Shell}\label{recargar-shell}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Fish}
-\BuiltInTok{exec}\NormalTok{ fish}
-
-\CommentTok{\# Bash}
-\BuiltInTok{source}\NormalTok{ \textasciitilde{}/.bashrc}
-
-\CommentTok{\# Zsh}
-\BuiltInTok{source}\NormalTok{ \textasciitilde{}/.zshrc}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Verificación:} Deberías ver \texttt{(base)} al inicio de tu
-prompt.
-
-\subsection{3. Desactivar Auto-Activación de Base
-(RECOMENDADO)}\label{desactivar-auto-activaciuxf3n-de-base-recomendado}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Evitar que base se active automáticamente}
-\ExtensionTok{conda}\NormalTok{ config }\AttributeTok{{-}{-}set}\NormalTok{ auto\_activate\_base false}
-
-\CommentTok{\# Recargar shell}
-\BuiltInTok{exec}\NormalTok{ fish  }\CommentTok{\# o source \textasciitilde{}/.bashrc / source \textasciitilde{}/.zshrc}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Razón:} Es mejor práctica activar entornos específicos
-manualmente.
-
-\section{Instalación de Mamba}\label{instalaciuxf3n-de-mamba}
-
-Mamba es un solver ultrarrápido para conda que acelera la instalación de
-paquetes hasta 10x.
-
-\subsection{1. Instalar Mamba en el Entorno
-Base}\label{instalar-mamba-en-el-entorno-base}
+\subsubsection{5.6. Probar la
+instalación}\label{probar-la-instalaciuxf3n}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Activar base}
-\ExtensionTok{conda}\NormalTok{ activate base}
-
-\CommentTok{\# Instalar mamba desde conda{-}forge}
-\ExtensionTok{conda}\NormalTok{ install mamba }\AttributeTok{{-}c}\NormalTok{ conda{-}forge }\AttributeTok{{-}y}
-
-\CommentTok{\# Configurar mamba como solver por defecto}
-\ExtensionTok{conda}\NormalTok{ config }\AttributeTok{{-}{-}set}\NormalTok{ solver libmamba}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{2. Verificar Instalación}\label{verificar-instalaciuxf3n}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Verificar versión}
-\ExtensionTok{mamba} \AttributeTok{{-}{-}version}
-
-\CommentTok{\# Debería mostrar algo como: mamba 1.5.x}
-\end{Highlighting}
-\end{Shaded}
-
-\section{Configuración de Fish
-Shell}\label{configuraciuxf3n-de-fish-shell}
-
-\subsection{1. Inicialización
-Automática}\label{inicializaciuxf3n-automuxe1tica}
-
-\textbf{Conda ya debería haber configurado Fish automáticamente.}
-Verificar:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{\# Abrir configuración de Fish}
-\NormalTok{nano \textasciitilde{}/.config/fish/config.fish}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Debe contener algo como:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{\# \textgreater{}\textgreater{}\textgreater{} conda initialize \textgreater{}\textgreater{}\textgreater{}}
-\NormalTok{\# !! Contents within this block are managed by \textquotesingle{}conda init\textquotesingle{} !!}
-\NormalTok{if test {-}f /home/achalmaedison/miniconda3/bin/conda}
-\NormalTok{    eval /home/achalmaedison/miniconda3/bin/conda "shell.fish" "hook" $argv | source}
-\NormalTok{else}
-\NormalTok{    if test {-}f "/home/achalmaedison/miniconda3/etc/fish/conf.d/conda.fish"}
-\NormalTok{        . "/home/achalmaedison/miniconda3/etc/fish/conf.d/conda.fish"}
-\NormalTok{    else}
-\NormalTok{        set {-}x PATH "/home/achalmaedison/miniconda3/bin" $PATH}
-\NormalTok{    end}
-\NormalTok{end}
-\NormalTok{\# \textless{}\textless{}\textless{} conda initialize \textless{}\textless{}\textless{}}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{2. Agregar Alias Útiles}\label{agregar-alias-uxfatiles}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{\# Editar configuración de Fish}
-\NormalTok{nano \textasciitilde{}/.config/fish/config.fish}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Agregar al final:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{\# ========================================================================}
-\NormalTok{\# ALIASES DE CONDA Y PROYECTOS}
-\NormalTok{\# ========================================================================}
-
-\NormalTok{\# Gestión de entornos}
-\NormalTok{alias ce="conda env list"}
-\NormalTok{alias ca="conda activate"}
-\NormalTok{alias cda="conda deactivate"}
-
-\NormalTok{\# Blogs}
-\NormalTok{alias blog="conda activate econblog \&\& cd \textasciitilde{}/Proyectos/epsilon{-}y{-}beta"}
-\NormalTok{alias blogoff="conda deactivate"}
-
-\NormalTok{\# Scripts}
-\NormalTok{alias scripts="conda activate scripts{-}env \&\& cd \textasciitilde{}/Proyectos/scripts"}
-\NormalTok{alias scriptsoff="conda deactivate"}
-
-\NormalTok{\# Limpieza}
-\NormalTok{alias conda{-}clean="conda clean {-}{-}all {-}y"}
-
-\NormalTok{\# Actualización}
-\NormalTok{alias conda{-}update="conda update {-}n base conda {-}y \&\& mamba update {-}{-}all {-}y"}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Recargar configuración:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{source \textasciitilde{}/.config/fish/config.fish}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{3. Configuración para Bash/Zsh
-(Opcional)}\label{configuraciuxf3n-para-bashzsh-opcional}
-
-\textbf{Si también usas Bash o Zsh:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Bash: \textasciitilde{}/.bashrc}
-\CommentTok{\# Zsh: \textasciitilde{}/.zshrc}
-
-\CommentTok{\# Agregar aliases}
-\BuiltInTok{alias}\NormalTok{ ce=}\StringTok{"conda env list"}
-\BuiltInTok{alias}\NormalTok{ ca=}\StringTok{"conda activate"}
-\BuiltInTok{alias}\NormalTok{ cda=}\StringTok{"conda deactivate"}
-\BuiltInTok{alias}\NormalTok{ blog=}\StringTok{"conda activate econblog \&\& cd \textasciitilde{}/Proyectos/epsilon{-}y{-}beta"}
-\BuiltInTok{alias}\NormalTok{ scripts=}\StringTok{"conda activate scripts{-}env \&\& cd \textasciitilde{}/Proyectos/scripts"}
-\BuiltInTok{alias}\NormalTok{ conda{-}clean=}\StringTok{"conda clean {-}{-}all {-}y"}
-\BuiltInTok{alias}\NormalTok{ conda{-}update=}\StringTok{"conda update {-}n base conda {-}y \&\& mamba update {-}{-}all {-}y"}
-\end{Highlighting}
-\end{Shaded}
-
-\section{Configuración Óptima de
-Conda}\label{configuraciuxf3n-uxf3ptima-de-conda}
-
-\subsection{1. Crear Archivo de
-Configuración}\label{crear-archivo-de-configuraciuxf3n}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# El archivo \textasciitilde{}/.condarc almacena la configuración global de conda}
-\FunctionTok{nano}\NormalTok{ \textasciitilde{}/.condarc}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{2. Mi Configuración}\label{mi-configuraciuxf3n}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# ========================================================================}
-\CommentTok{\# CONFIGURACIÓN GLOBAL DE CONDA}
-\CommentTok{\# Usuario: Edison Achalma (achalmaedison)}
-\CommentTok{\# Sistema: Arch Linux}
-\CommentTok{\# Fecha: Enero 2026}
-\CommentTok{\# ========================================================================}
-
-\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\CommentTok{\# Canales (Prioridad de búsqueda de paquetes)}
-\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\FunctionTok{channels}\KeywordTok{:}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ conda{-}forge}\CommentTok{        \# Canal principal (comunidad, actualizado)}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ defaults}\CommentTok{           \# Canal oficial de Anaconda}
-
-\CommentTok{\# Prioridad estricta (usar en orden de la lista)}
-\FunctionTok{channel\_priority}\KeywordTok{:}\AttributeTok{ strict}
-
-\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\CommentTok{\# Solver (Motor de resolución de dependencias)}
-\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\FunctionTok{solver}\KeywordTok{:}\AttributeTok{ libmamba}\CommentTok{      \# Usar mamba (mucho más rápido que classic)}
-
-\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\CommentTok{\# Activación Automática}
-\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\FunctionTok{auto\_activate\_base}\KeywordTok{:}\AttributeTok{ }\CharTok{false}\CommentTok{   \# NO activar base automáticamente}
-
-\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\CommentTok{\# Notificaciones y Actualizaciones}
-\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\FunctionTok{auto\_update\_conda}\KeywordTok{:}\AttributeTok{ }\CharTok{false}\CommentTok{    \# NO actualizar conda automáticamente}
-\FunctionTok{notify\_outdated\_conda}\KeywordTok{:}\AttributeTok{ }\CharTok{true}\CommentTok{ \# Notificar si hay nueva versión}
-
-\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\CommentTok{\# Gestión de Paquetes}
-\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\FunctionTok{pip\_interop\_enabled}\KeywordTok{:}\AttributeTok{ }\CharTok{true}\CommentTok{   \# Permitir interoperabilidad con pip}
-\FunctionTok{always\_yes}\KeywordTok{:}\AttributeTok{ }\CharTok{false}\CommentTok{           \# Pedir confirmación antes de instalar}
-
-\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\CommentTok{\# Almacenamiento}
-\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\FunctionTok{pkgs\_dirs}\KeywordTok{:}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ \textasciitilde{}/.conda/pkgs}\CommentTok{           \# Directorio de caché de paquetes}
-
-\FunctionTok{envs\_dirs}\KeywordTok{:}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ \textasciitilde{}/miniconda3/envs}\CommentTok{       \# Directorio de entornos}
-\AttributeTok{  }\KeywordTok{{-}}\AttributeTok{ \textasciitilde{}/.conda/envs}\CommentTok{           \# Directorio adicional de entornos}
-
-\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\CommentTok{\# Interfaz de Usuario}
-\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\FunctionTok{show\_channel\_urls}\KeywordTok{:}\AttributeTok{ }\CharTok{true}\CommentTok{     \# Mostrar URL del canal en listados}
-\FunctionTok{json}\KeywordTok{:}\AttributeTok{ }\CharTok{false}\CommentTok{                 \# Salida en texto (no JSON)}
-\FunctionTok{quiet}\KeywordTok{:}\AttributeTok{ }\CharTok{false}\CommentTok{                \# Mostrar mensajes normales}
-
-\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\CommentTok{\# Seguridad}
-\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\FunctionTok{ssl\_verify}\KeywordTok{:}\AttributeTok{ }\CharTok{true}\CommentTok{            \# Verificar certificados SSL}
-
-\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\CommentTok{\# Proxy (Descomentar si usas proxy corporativo)}
-\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\CommentTok{\# proxy\_servers:}
-\CommentTok{\#   http: http://proxy.empresa.com:8080}
-\CommentTok{\#   https: https://proxy.empresa.com:8080}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{3. Verificar
-Configuración}\label{verificar-configuraciuxf3n}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Ver configuración actual}
-\ExtensionTok{conda}\NormalTok{ config }\AttributeTok{{-}{-}show}
-
-\CommentTok{\# Ver solo configuraciones modificadas}
-\ExtensionTok{conda}\NormalTok{ config }\AttributeTok{{-}{-}show{-}sources}
-\end{Highlighting}
-\end{Shaded}
-
-\section{Integración con Herramientas del
-Sistema}\label{integraciuxf3n-con-herramientas-del-sistema}
-
-\subsection{1. Usar Quarto del Sistema (No de
-Conda)}\label{usar-quarto-del-sistema-no-de-conda}
-
-\textbf{Ventaja:} Quarto de pacman es más estable y actualizado.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Verificar que Quarto está en PATH del sistema}
-\FunctionTok{which}\NormalTok{ quarto}
-\CommentTok{\# Debe mostrar: /usr/bin/quarto}
-
-\CommentTok{\# Verificar versión}
-\ExtensionTok{quarto} \AttributeTok{{-}{-}version}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{En entornos conda, Quarto del sistema se usará automáticamente.}
-
-\subsection{2. Usar R del Sistema (No de
-Conda)}\label{usar-r-del-sistema-no-de-conda}
-
-\textbf{Ventaja:} RStudio funciona mejor con R de pacman.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Verificar R del sistema}
-\FunctionTok{which}\NormalTok{ R}
-\CommentTok{\# Debe mostrar: /usr/bin/R}
-
-\CommentTok{\# Verificar versión}
-\ExtensionTok{R} \AttributeTok{{-}{-}version}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{R del sistema estará disponible en todos los entornos conda.}
-
-\subsection{3. Usar LaTeX del Sistema}\label{usar-latex-del-sistema}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Verificar LaTeX}
-\FunctionTok{which}\NormalTok{ pdflatex}
-\CommentTok{\# Debe mostrar: /usr/bin/pdflatex}
-
-\CommentTok{\# Verificar distribución}
-\ExtensionTok{pdflatex} \AttributeTok{{-}{-}version}
-\end{Highlighting}
-\end{Shaded}
-
-\section{Verificación de la
-Instalación}\label{verificaciuxf3n-de-la-instalaciuxf3n}
-
-\subsection{1. Verificación Básica}\label{verificaciuxf3n-buxe1sica}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Versión de conda}
-\ExtensionTok{conda} \AttributeTok{{-}{-}version}
-
-\CommentTok{\# Versión de mamba}
-\ExtensionTok{mamba} \AttributeTok{{-}{-}version}
-
-\CommentTok{\# Versión de Python (en base)}
-\ExtensionTok{python} \AttributeTok{{-}{-}version}
-
-\CommentTok{\# Información del sistema}
-\ExtensionTok{conda}\NormalTok{ info}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{2. Verificación de
-Configuración}\label{verificaciuxf3n-de-configuraciuxf3n}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Ver configuración}
-\ExtensionTok{conda}\NormalTok{ config }\AttributeTok{{-}{-}show}
-
-\CommentTok{\# Ver canales}
-\ExtensionTok{conda}\NormalTok{ config }\AttributeTok{{-}{-}show}\NormalTok{ channels}
-
-\CommentTok{\# Ver solver}
-\ExtensionTok{conda}\NormalTok{ config }\AttributeTok{{-}{-}show}\NormalTok{ solver}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{3. Prueba de Funcionamiento}\label{prueba-de-funcionamiento}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Crear entorno de prueba}
-\ExtensionTok{mamba}\NormalTok{ create }\AttributeTok{{-}n}\NormalTok{ test{-}env python=3.12 pandas }\AttributeTok{{-}y}
-
-\CommentTok{\# Activar entorno}
-\ExtensionTok{conda}\NormalTok{ activate test{-}env}
-
-\CommentTok{\# Verificar instalación}
-\ExtensionTok{python} \AttributeTok{{-}c} \StringTok{"import pandas; print(f\textquotesingle{}Pandas \{pandas.\_\_version\_\_\} funcionando correctamente\textquotesingle{})"}
-
-\CommentTok{\# Desactivar}
-\ExtensionTok{conda}\NormalTok{ deactivate}
-
-\CommentTok{\# Eliminar entorno de prueba}
-\ExtensionTok{conda}\NormalTok{ env remove }\AttributeTok{{-}n}\NormalTok{ test{-}env }\AttributeTok{{-}y}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\section{Resolución de Problemas}\label{resoluciuxf3n-de-problemas}
-
-\subsection{Problema 1: ``conda: command not
-found''}\label{problema-1-conda-command-not-found}
-
-\textbf{Causa:} Conda no está inicializado en tu shell.
-
-\textbf{Solución:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Inicializar manualmente}
-\BuiltInTok{source}\NormalTok{ \textasciitilde{}/miniconda3/bin/activate}
-\ExtensionTok{conda}\NormalTok{ init fish  }\CommentTok{\# o bash / zsh}
-
-\CommentTok{\# Recargar shell}
-\BuiltInTok{exec}\NormalTok{ fish}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{Problema 2: ``(base) No Aparece en el
-Prompt''}\label{problema-2-base-no-aparece-en-el-prompt}
-
-\textbf{Causa:} \texttt{auto\_activate\_base} está en \texttt{false}.
-
-\textbf{Solución (si quieres que aparezca):}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ExtensionTok{conda}\NormalTok{ config }\AttributeTok{{-}{-}set}\NormalTok{ auto\_activate\_base true}
-\BuiltInTok{exec}\NormalTok{ fish}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{O activar manualmente:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ExtensionTok{conda}\NormalTok{ activate base}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{Problema 3: ``Mamba No
-Funciona''}\label{problema-3-mamba-no-funciona}
-
-\textbf{Causa:} Mamba no está instalado o no está en PATH.
-
-\textbf{Solución:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Verificar instalación}
-\ExtensionTok{conda}\NormalTok{ activate base}
-\ExtensionTok{conda}\NormalTok{ list }\KeywordTok{|} \FunctionTok{grep}\NormalTok{ mamba}
-
-\CommentTok{\# Si no está, instalar}
-\ExtensionTok{conda}\NormalTok{ install mamba }\AttributeTok{{-}c}\NormalTok{ conda{-}forge }\AttributeTok{{-}y}
-
-\CommentTok{\# Configurar como solver}
-\ExtensionTok{conda}\NormalTok{ config }\AttributeTok{{-}{-}set}\NormalTok{ solver libmamba}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{Problema 4: ``Instalación de Paquetes es Muy
-Lenta''}\label{problema-4-instalaciuxf3n-de-paquetes-es-muy-lenta}
-
-\textbf{Causa:} Usando solver clásico en lugar de mamba.
-
-\textbf{Solución:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Configurar mamba como solver}
-\ExtensionTok{conda}\NormalTok{ config }\AttributeTok{{-}{-}set}\NormalTok{ solver libmamba}
-
-\CommentTok{\# O usar mamba directamente}
-\ExtensionTok{mamba}\NormalTok{ install paquete{-}nombre}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{Problema 5: ``Conflictos de
-Dependencias''}\label{problema-5-conflictos-de-dependencias}
-
-\textbf{Causa:} Paquetes incompatibles en el mismo entorno.
-
-\textbf{Solución:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Opción 1: Usar mamba (mejor resolución)}
-\ExtensionTok{mamba}\NormalTok{ install paquete{-}nombre}
-
-\CommentTok{\# Opción 2: Crear entorno nuevo limpio}
-\ExtensionTok{mamba}\NormalTok{ create }\AttributeTok{{-}n}\NormalTok{ nuevo{-}env python=3.12 paquete{-}nombre}
-
-\CommentTok{\# Opción 3: Actualizar todos los paquetes}
-\ExtensionTok{mamba}\NormalTok{ update }\AttributeTok{{-}{-}all}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{Problema 6: ``Espacio en Disco
-Lleno''}\label{problema-6-espacio-en-disco-lleno}
-
-\textbf{Causa:} Caché de paquetes acumulado.
-
-\textbf{Solución:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Limpiar caché de paquetes}
-\ExtensionTok{conda}\NormalTok{ clean }\AttributeTok{{-}{-}all} \AttributeTok{{-}y}
-
-\CommentTok{\# Ver espacio usado}
-\FunctionTok{du} \AttributeTok{{-}sh}\NormalTok{ \textasciitilde{}/.conda/pkgs}
-
-\CommentTok{\# Eliminar entornos no usados}
-\ExtensionTok{conda}\NormalTok{ env list}
-\ExtensionTok{conda}\NormalTok{ env remove }\AttributeTok{{-}n}\NormalTok{ nombre{-}entorno{-}viejo}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{Problema 7: ``Fish No Reconoce
-Conda''}\label{problema-7-fish-no-reconoce-conda}
-
-\textbf{Causa:} Inicialización incorrecta de Fish.
-
-\textbf{Solución:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Verificar bloque de inicialización}
-\FunctionTok{cat}\NormalTok{ \textasciitilde{}/.config/fish/config.fish }\KeywordTok{|} \FunctionTok{grep}\NormalTok{ conda}
-
-\CommentTok{\# Si no existe, agregar manualmente}
-\FunctionTok{nano}\NormalTok{ \textasciitilde{}/.config/fish/config.fish}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Agregar:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{\# \textgreater{}\textgreater{}\textgreater{} conda initialize \textgreater{}\textgreater{}\textgreater{}}
-\NormalTok{eval /home/achalmaedison/miniconda3/bin/conda "shell.fish" "hook" $argv | source}
-\NormalTok{\# \textless{}\textless{}\textless{} conda initialize \textless{}\textless{}\textless{}}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Recargar:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{exec fish}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\section{Comandos de Referencia
-Rápida}\label{comandos-de-referencia-ruxe1pida}
-
-\subsection{Gestión de Conda}\label{gestiuxf3n-de-conda}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Actualizar conda}
-\ExtensionTok{conda}\NormalTok{ update }\AttributeTok{{-}n}\NormalTok{ base conda }\AttributeTok{{-}y}
-
-\CommentTok{\# Actualizar mamba}
-\ExtensionTok{mamba}\NormalTok{ update mamba }\AttributeTok{{-}y}
-
-\CommentTok{\# Información del sistema}
-\ExtensionTok{conda}\NormalTok{ info}
-
-\CommentTok{\# Ver configuración}
-\ExtensionTok{conda}\NormalTok{ config }\AttributeTok{{-}{-}show}
-
-\CommentTok{\# Limpiar caché}
-\ExtensionTok{conda}\NormalTok{ clean }\AttributeTok{{-}{-}all} \AttributeTok{{-}y}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{Gestión de Entornos}\label{gestiuxf3n-de-entornos}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Listar entornos}
-\ExtensionTok{conda}\NormalTok{ env list}
-
-\CommentTok{\# Crear entorno}
-\ExtensionTok{mamba}\NormalTok{ create }\AttributeTok{{-}n}\NormalTok{ nombre{-}env python=3.12 paquete1 paquete2 }\AttributeTok{{-}y}
-
-\CommentTok{\# Activar entorno}
-\ExtensionTok{conda}\NormalTok{ activate nombre{-}env}
-
-\CommentTok{\# Desactivar entorno}
-\ExtensionTok{conda}\NormalTok{ deactivate}
-
-\CommentTok{\# Eliminar entorno}
-\ExtensionTok{conda}\NormalTok{ env remove }\AttributeTok{{-}n}\NormalTok{ nombre{-}env }\AttributeTok{{-}y}
-
-\CommentTok{\# Exportar entorno}
-\ExtensionTok{conda}\NormalTok{ env export }\AttributeTok{{-}{-}no{-}builds} \OperatorTok{\textgreater{}}\NormalTok{ environment.yml}
-
-\CommentTok{\# Crear desde archivo}
-\ExtensionTok{conda}\NormalTok{ env create }\AttributeTok{{-}f}\NormalTok{ environment.yml}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{Gestión de Paquetes}\label{gestiuxf3n-de-paquetes}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Listar paquetes (entorno activo)}
 \ExtensionTok{conda}\NormalTok{ list}
-
-\CommentTok{\# Buscar paquete}
-\ExtensionTok{conda}\NormalTok{ search nombre{-}paquete}
-
-\CommentTok{\# Instalar paquete}
-\ExtensionTok{mamba}\NormalTok{ install nombre{-}paquete }\AttributeTok{{-}y}
-
-\CommentTok{\# Instalar desde canal específico}
-\ExtensionTok{mamba}\NormalTok{ install }\AttributeTok{{-}c}\NormalTok{ conda{-}forge nombre{-}paquete }\AttributeTok{{-}y}
-
-\CommentTok{\# Instalar versión específica}
-\ExtensionTok{mamba}\NormalTok{ install nombre{-}paquete=1.2.3 }\AttributeTok{{-}y}
-
-\CommentTok{\# Actualizar paquete}
-\ExtensionTok{mamba}\NormalTok{ update nombre{-}paquete }\AttributeTok{{-}y}
-
-\CommentTok{\# Actualizar todos los paquetes}
-\ExtensionTok{mamba}\NormalTok{ update }\AttributeTok{{-}{-}all} \AttributeTok{{-}y}
-
-\CommentTok{\# Desinstalar paquete}
-\ExtensionTok{conda}\NormalTok{ remove nombre{-}paquete }\AttributeTok{{-}y}
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Uso con Pip}\label{uso-con-pip}
+Si la instalación fue correcta, aparecerá una lista de los paquetes
+instalados.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6. Instalación en Kubuntu / Ubuntu --- Anaconda
+Distribution}\label{instalaciuxf3n-en-kubuntu-ubuntu-anaconda-distribution}
+
+\subsubsection{6.1. Descargar el
+instalador}\label{descargar-el-instalador-1}
+
+Según la documentación oficial de Anaconda para Linux, se descarga el
+instalador con \texttt{wget} o \texttt{curl} desde la terminal, según la
+arquitectura del sistema (la URL exacta cambia con cada versión; se
+recomienda copiar el enlace vigente desde la página oficial de
+descargas, anaconda.com/download):
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Instalar con pip (dentro de entorno conda)}
-\ExtensionTok{pip}\NormalTok{ install nombre{-}paquete}
-
-\CommentTok{\# Listar paquetes pip}
-\ExtensionTok{pip}\NormalTok{ list}
-
-\CommentTok{\# Actualizar paquete pip}
-\ExtensionTok{pip}\NormalTok{ install }\AttributeTok{{-}{-}upgrade}\NormalTok{ nombre{-}paquete}
-
-\CommentTok{\# Desinstalar paquete pip}
-\ExtensionTok{pip}\NormalTok{ uninstall nombre{-}paquete}
+\FunctionTok{wget}\NormalTok{ https://repo.anaconda.com/archive/Anaconda3{-}}\OperatorTok{\textless{}}\NormalTok{version}\OperatorTok{\textgreater{}}\NormalTok{{-}Linux{-}x86\_64.sh}
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Información y Debugging}\label{informaciuxf3n-y-debugging}
+\begin{quote}
+\textbf{Nota oficial sobre Raspberry Pi / ARM}: los paquetes para
+\texttt{linux-aarch64} podrían no ser compatibles con ciertas
+configuraciones de Raspberry Pi, ya que Anaconda Distribution usa
+opciones de compilador orientadas a la microarquitectura de clase
+servidor Neoverse N1/N2.
+\end{quote}
+
+\subsubsection{6.2. Verificar el hash
+(recomendado)}\label{verificar-el-hash-recomendado-1}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Información de entorno activo}
-\ExtensionTok{conda}\NormalTok{ info }\AttributeTok{{-}{-}envs}
-
-\CommentTok{\# Información de paquete específico}
-\ExtensionTok{conda}\NormalTok{ list nombre{-}paquete}
-
-\CommentTok{\# Ver dependencias de paquete}
-\ExtensionTok{conda}\NormalTok{ search nombre{-}paquete }\AttributeTok{{-}{-}info}
-
-\CommentTok{\# Verificar integridad de entorno}
-\ExtensionTok{conda}\NormalTok{ doctor}
-
-\CommentTok{\# Modo verbose (más información)}
-\ExtensionTok{conda}\NormalTok{ install }\AttributeTok{{-}{-}debug}\NormalTok{ nombre{-}paquete}
+\FunctionTok{sha256sum}\NormalTok{ Anaconda3{-}}\OperatorTok{\textless{}}\NormalTok{version}\OperatorTok{\textgreater{}}\NormalTok{{-}Linux{-}x86\_64.sh}
 \end{Highlighting}
 \end{Shaded}
 
-\section{Recursos Adicionales}\label{recursos-adicionales}
+\subsubsection{6.3. Ejecutar el
+instalador}\label{ejecutar-el-instalador-1}
 
-\textbf{Documentación Oficial:}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{bash}\NormalTok{ Anaconda3{-}}\OperatorTok{\textless{}}\NormalTok{version}\OperatorTok{\textgreater{}}\NormalTok{{-}Linux{-}x86\_64.sh}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{6.4. Seguir las indicaciones del
+instalador}\label{seguir-las-indicaciones-del-instalador-1}
+
+El procedimiento documentado oficialmente es:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Presiona \texttt{Enter} para continuar y revisar los Términos de
+  Servicio (puedes consultarlos también en anaconda.com/legal).
+\item
+  Escribe \texttt{yes} para aceptar los Términos de Servicio.
+\item
+  Presiona \texttt{Enter} para aceptar la ubicación de instalación por
+  defecto
+  (\texttt{PREFIX=/home/\textless{}usuario\textgreater{}/anaconda3}), o
+  escribe otra ruta para especificar un directorio alternativo.
+\item
+  La instalación puede tardar varios minutos en completarse (Anaconda
+  Distribution es considerablemente más grande que Miniconda).
+\item
+  Cuando se pregunte si deseas inicializar conda, elige \texttt{yes}.
+  Esto modifica la configuración de tu shell para inicializar conda
+  automáticamente cada vez que abras una nueva terminal.
+\end{enumerate}
+
+\subsubsection{6.5. Dependencias de sistema para Anaconda Navigator
+(importante en
+Kubuntu)}\label{dependencias-de-sistema-para-anaconda-navigator-importante-en-kubuntu}
+
+Anaconda Navigator (la interfaz gráfica) y sus dependencias de Qt se
+instalan automáticamente junto con Anaconda Distribution. Sin embargo,
+en instalaciones Linux mínimas ---lo cual puede aplicar a ciertas
+configuraciones de Kubuntu, especialmente si no usas el entorno de
+escritorio KDE completo--- podrías necesitar instalar bibliotecas de
+sistema adicionales para que las aplicaciones gráficas funcionen
+correctamente. La documentación oficial de Anaconda indica, para
+distribuciones basadas en Debian/Ubuntu:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ apt{-}get install libgl1 libegl1 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2t64 libxi6 libxtst6 libxcb{-}cursor0 libxkbcommon0}
+\end{Highlighting}
+\end{Shaded}
+
+Las bibliotecas clave de las que depende Navigator, según la
+documentación oficial, son: OpenGL (\texttt{libGL}, \texttt{libEGL}),
+bibliotecas de visualización X11/XCB (\texttt{libxcb-cursor},
+\texttt{libxkbcommon}, \texttt{libXi}, \texttt{libXtst},
+\texttt{libXrandr}, \texttt{libXcomposite}, \texttt{libXcursor},
+\texttt{libXScrnSaver}), y audio ALSA (\texttt{libasound}).
+
+\begin{quote}
+Dado que Kubuntu usa KDE Plasma como entorno de escritorio completo, es
+probable que la mayoría de estas bibliotecas ya estén presentes; este
+paso es más relevante en instalaciones de servidor o entornos
+minimalistas sin entorno gráfico completo.
+\end{quote}
+
+\subsubsection{6.6. Aplicar cambios y
+probar}\label{aplicar-cambios-y-probar}
+
+Cierra y vuelve a abrir la terminal. Anaconda Navigator se abre
+automáticamente al completarse la instalación; si necesitas abrirlo
+manualmente más adelante:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{anaconda{-}navigator}
+\end{Highlighting}
+\end{Shaded}
+
+Para verificar la instalación de conda:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ list}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7. Instalación en Arch Linux ---
+Miniconda}\label{instalaciuxf3n-en-arch-linux-miniconda}
+
+\begin{quote}
+\textbf{Importante}: ni Miniconda ni Anaconda forman parte de los
+repositorios oficiales de Arch (\texttt{core}/\texttt{extra}). Según la
+\textbf{ArchWiki oficial} (wiki.archlinux.org/title/Conda), las opciones
+disponibles son: el paquete \textbf{\texttt{python-conda}} (AUR) si solo
+se desea el gestor \texttt{conda}, el paquete
+\textbf{\texttt{miniconda3}} (AUR) para una instalación tipo Miniconda,
+o \textbf{Miniforge} (descargado directamente desde su repositorio en
+GitHub, que usa \texttt{conda-forge} como canal por defecto en vez del
+canal por defecto de Anaconda Inc.).
+\end{quote}
+
+Esta sección cubre la vía AUR para \texttt{miniconda3} y también la vía
+de instalación manual del script oficial (recomendada por la comunidad
+de Arch cuando se prefiere evitar dependencias de AUR para software que
+se autoactualiza por su cuenta).
+
+\subsubsection{\texorpdfstring{7.1. Opción A --- Vía AUR (paquete
+\texttt{miniconda3})}{7.1. Opción A --- Vía AUR (paquete miniconda3)}}\label{opciuxf3n-a-vuxeda-aur-paquete-miniconda3}
+
+Con un ayudante de AUR como \texttt{yay} o \texttt{paru}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{yay} \AttributeTok{{-}S}\NormalTok{ miniconda3}
+\end{Highlighting}
+\end{Shaded}
+
+Esto instala Miniconda típicamente en \texttt{/opt/miniconda3}.
+
+\textbf{Activación del entorno conda tras instalar vía AUR}: a
+diferencia de la instalación manual (que ofrece inicializar conda
+automáticamente), el paquete de AUR no modifica tu shell por ti. Debes
+activarlo manualmente. Para Bash o variantes Bourne, para el usuario
+actual:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{echo} \StringTok{"[ {-}f /opt/miniconda3/etc/profile.d/conda.sh ] \&\& source /opt/miniconda3/etc/profile.d/conda.sh"} \OperatorTok{\textgreater{}\textgreater{}}\NormalTok{ \textasciitilde{}/.bashrc}
+\end{Highlighting}
+\end{Shaded}
+
+Para \texttt{zsh} (tu shell), el equivalente es agregar la misma línea a
+\texttt{\textasciitilde{}/.zshrc}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{echo} \StringTok{"[ {-}f /opt/miniconda3/etc/profile.d/conda.sh ] \&\& source /opt/miniconda3/etc/profile.d/conda.sh"} \OperatorTok{\textgreater{}\textgreater{}}\NormalTok{ \textasciitilde{}/.zshrc}
+\end{Highlighting}
+\end{Shaded}
+
+O, para habilitarlo para todos los usuarios del sistema:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ ln }\AttributeTok{{-}s}\NormalTok{ /opt/miniconda3/etc/profile.d/conda.sh /etc/profile.d/conda.sh}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{7.2. Opción B --- Instalación manual del script oficial
+(alternativa recomendada por la
+comunidad)}\label{opciuxf3n-b-instalaciuxf3n-manual-del-script-oficial-alternativa-recomendada-por-la-comunidad}
+
+Esta vía evita depender del mantenimiento del paquete AUR y te da
+control total sobre la ubicación de instalación, instalando en tu
+directorio personal en vez de \texttt{/opt} (que requiere privilegios de
+root para escribir):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{wget}\NormalTok{ https://repo.anaconda.com/miniconda/Miniconda3{-}latest{-}Linux{-}x86\_64.sh}
+\FunctionTok{sha256sum}\NormalTok{ Miniconda3{-}latest{-}Linux{-}x86\_64.sh   }\CommentTok{\# verificación recomendada}
+\FunctionTok{bash}\NormalTok{ Miniconda3{-}latest{-}Linux{-}x86\_64.sh}
+\end{Highlighting}
+\end{Shaded}
+
+Sigue las mismas indicaciones descritas en la sección 5.4 (aceptar
+licencia, elegir ruta de instalación, aceptar inicialización de conda).
+Al estar en tu \texttt{\$HOME} (por ejemplo
+\texttt{\textasciitilde{}/miniconda3}), no se requieren privilegios de
+administrador.
+
+\subsubsection{7.3. Nota sobre actualizaciones del paquete
+AUR}\label{nota-sobre-actualizaciones-del-paquete-aur}
+
+Los comentarios oficiales del mantenedor del paquete \texttt{miniconda3}
+en AUR (consultable en aur.archlinux.org/packages/miniconda3) indican un
+procedimiento particular para actualizar sin romper la integración con
+tu shell: antes de actualizar, comenta temporalmente la línea de
+activación de conda en tu
+\texttt{\textasciitilde{}/.bashrc}/\texttt{\textasciitilde{}/.zshrc},
+realiza la actualización del paquete con tu ayudante de AUR habitual, y
+luego descomenta la línea nuevamente.
+
+\subsubsection{7.4. Verificación de la
+instalación}\label{verificaciuxf3n-de-la-instalaciuxf3n}
+
+Cierra y vuelve a abrir tu terminal, luego:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ list}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8. Instalación en Arch Linux --- Anaconda
+Distribution}\label{instalaciuxf3n-en-arch-linux-anaconda-distribution}
+
+\begin{quote}
+Igual que con Miniconda, Anaconda Distribution no está en los
+repositorios oficiales de Arch; según ArchWiki, la vía documentada es a
+través de AUR.
+\end{quote}
+
+\subsubsection{\texorpdfstring{8.1. Vía AUR (paquete
+\texttt{anaconda})}{8.1. Vía AUR (paquete anaconda)}}\label{vuxeda-aur-paquete-anaconda}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{yay} \AttributeTok{{-}S}\NormalTok{ anaconda}
+\end{Highlighting}
+\end{Shaded}
+
+Esto compila/instala el paquete \texttt{anaconda} desde AUR, típicamente
+también orientado a \texttt{/opt}. Como con cualquier paquete AUR, este
+es contenido producido por la comunidad, no por Anaconda Inc.~ni por los
+desarrolladores oficiales de Arch; revisa los comentarios recientes del
+paquete en aur.archlinux.org antes de instalar, por si hay incidencias
+activas sin resolver.
+
+\subsubsection{\texorpdfstring{8.2. Consideración importante sobre
+permisos en \texttt{/opt} (discutida en los foros oficiales de
+Arch)}{8.2. Consideración importante sobre permisos en /opt (discutida en los foros oficiales de Arch)}}\label{consideraciuxf3n-importante-sobre-permisos-en-opt-discutida-en-los-foros-oficiales-de-arch}
+
+Una discusión documentada en los foros oficiales de Arch Linux
+(bbs.archlinux.org) señala un punto operativo relevante: Anaconda, por
+defecto, instala en \texttt{/opt}, lo cual requiere permisos de root
+para escribir, y mezclar esto con los entornos propios de conda
+gestionados habitualmente por el propio usuario puede ser inconveniente.
+La recomendación de la comunidad de Arch, cuando se prefiere evitar
+esto, es descargar el instalador oficial como usuario sin privilegios e
+instalarlo directamente en el directorio personal (\texttt{\$HOME}),
+igual que se describió para Miniconda en la sección 7.2, en vez de usar
+el paquete de AUR que apunta a \texttt{/opt}.
+
+\subsubsection{8.3. Opción alternativa --- Instalación manual del script
+oficial}\label{opciuxf3n-alternativa-instalaciuxf3n-manual-del-script-oficial}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{wget}\NormalTok{ https://repo.anaconda.com/archive/Anaconda3{-}}\OperatorTok{\textless{}}\NormalTok{version}\OperatorTok{\textgreater{}}\NormalTok{{-}Linux{-}x86\_64.sh}
+\FunctionTok{sha256sum}\NormalTok{ Anaconda3{-}}\OperatorTok{\textless{}}\NormalTok{version}\OperatorTok{\textgreater{}}\NormalTok{{-}Linux{-}x86\_64.sh   }\CommentTok{\# verificación recomendada}
+\FunctionTok{bash}\NormalTok{ Anaconda3{-}}\OperatorTok{\textless{}}\NormalTok{version}\OperatorTok{\textgreater{}}\NormalTok{{-}Linux{-}x86\_64.sh}
+\end{Highlighting}
+\end{Shaded}
+
+Sigue las mismas indicaciones descritas en la sección 6.4, eligiendo una
+ruta dentro de tu \texttt{\$HOME} (por ejemplo
+\texttt{\textasciitilde{}/anaconda3}) si prefieres evitar \texttt{/opt}.
+
+\subsubsection{8.4. Dependencias gráficas para Anaconda Navigator en
+Arch}\label{dependencias-gruxe1ficas-para-anaconda-navigator-en-arch}
+
+Si usas Archcraft (basado en gestores de ventanas minimalistas tipo
+\emph{tiling}), es más probable que falten algunas de las bibliotecas
+gráficas que Navigator requiere, comparado con un entorno de escritorio
+completo como KDE Plasma en Kubuntu. Si al ejecutar
+\texttt{anaconda-navigator} encuentras errores relacionados con OpenGL,
+X11/XCB o ALSA, instala los paquetes equivalentes de Arch para las
+bibliotecas listadas en la sección 6.5 (\texttt{libgl}/mesa,
+\texttt{libxrandr}, \texttt{libxss}, \texttt{libxcursor},
+\texttt{libxcomposite}, \texttt{alsa-lib}, \texttt{libxi},
+\texttt{libxtst}, \texttt{libxcb}, \texttt{libxkbcommon}), usando
+\texttt{pacman\ -S} con los nombres de paquete correspondientes de los
+repositorios oficiales de Arch.
+
+\subsubsection{8.5. Verificación de la
+instalación}\label{verificaciuxf3n-de-la-instalaciuxf3n-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ list}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{9. Instalación en Windows ---
+Miniconda}\label{instalaciuxf3n-en-windows-miniconda}
+
+\subsubsection{9.1. Descargar el
+instalador}\label{descargar-el-instalador-2}
+
+Descarga el instalador \texttt{.exe} de Miniconda para Windows desde la
+página oficial: \textbf{docs.anaconda.com/miniconda} (o directamente
+desde repo.anaconda.com/miniconda).
+
+\subsubsection{9.2. Verificar el hash
+(recomendado)}\label{verificar-el-hash-recomendado-2}
+
+Desde el símbolo del sistema (Command Prompt), en la carpeta donde se
+descargó el archivo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CertUtil }\AttributeTok{{-}hashfile}\NormalTok{ Miniconda3}\AttributeTok{{-}latest{-}Windows{-}x86\_64}\NormalTok{.exe SHA256}
+\end{Highlighting}
+\end{Shaded}
+
+Compara contra el hash oficial publicado en repo.anaconda.com/miniconda.
+
+\subsubsection{9.3. Ejecutar el
+instalador}\label{ejecutar-el-instalador-2}
+
+Ve a tu carpeta de Descargas (o a la carpeta Home si se descargó vía
+línea de comandos) y haz doble clic en el instalador para lanzarlo.
+
+\begin{quote}
+\textbf{Advertencia oficial}: para evitar errores de permisos, no lances
+el instalador desde la carpeta de ``Favoritos'' (\emph{Favorites}). Si
+encuentras problemas durante la instalación, desactiva temporalmente tu
+software antivirus durante el proceso, y vuelve a activarlo al
+finalizar.
+\end{quote}
+
+\subsubsection{9.4. Seguir el asistente de
+instalación}\label{seguir-el-asistente-de-instalaciuxf3n}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Lee las instrucciones del archivo ``Read Me'' y haz clic en
+  \textbf{Continuar}.
+\item
+  Lee los Términos de Servicio (TOS) de Anaconda y haz clic en
+  \textbf{Continuar}, luego en \textbf{Agree} (Aceptar) para aceptar los
+  términos.
+\item
+  Selecciona el tipo de instalación:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Just Me (Recommended)} --- instala Miniconda para la cuenta
+    de usuario actual únicamente. Esta es la opción recomendada por la
+    documentación oficial.
+  \item
+    \textbf{All Users} --- instala Miniconda para todas las cuentas de
+    usuario del equipo (requiere privilegios de administrador de
+    Windows).
+  \end{itemize}
+\item
+  Haz clic en \textbf{Next} (Siguiente) y luego en \textbf{Install}
+  (Instalar).
+\end{enumerate}
+
+\begin{quote}
+\textbf{Nota oficial de seguridad importante}: desde Anaconda
+Distribution 2022.05 y Miniconda 4.12.0, la opción de agregar Anaconda a
+la variable de entorno \texttt{PATH} durante una instalación \textbf{All
+Users} fue \textbf{deshabilitada}, como medida para abordar una
+vulnerabilidad de seguridad documentada (CVE-2022-26526). Aún es posible
+agregar Anaconda al \texttt{PATH} durante una instalación \textbf{Just
+Me}.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Si instalaste para ``All Users'' y luego tienes problemas, la
+  documentación recomienda desinstalar Miniconda y reinstalarlo
+  únicamente con la opción ``Just Me''.
+\end{enumerate}
+
+\subsubsection{9.5. Finalizar}\label{finalizar}
+
+Cuando la instalación finalice, abre desde el menú \textbf{Start}
+(``Inicio'') la aplicación \textbf{``Anaconda Prompt''} (también
+disponible la opción de PowerShell). Deberías ver \texttt{(base)} al
+inicio de la línea de comandos, lo que indica que estás dentro del
+entorno base de conda.
+
+\subsubsection{9.6. Probar la
+instalación}\label{probar-la-instalaciuxf3n-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{conda list}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{10. Instalación en Windows --- Anaconda
+Distribution}\label{instalaciuxf3n-en-windows-anaconda-distribution}
+
+\subsubsection{10.1. Descargar el
+instalador}\label{descargar-el-instalador-3}
+
+Descarga el instalador \texttt{.exe} de Anaconda Distribution para
+Windows desde \textbf{anaconda.com/download}.
+
+\subsubsection{10.2. Verificar el hash
+(recomendado)}\label{verificar-el-hash-recomendado-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CertUtil }\AttributeTok{{-}hashfile}\NormalTok{ Anaconda3{-}}\KeywordTok{\textless{}}\NormalTok{version}\KeywordTok{\textgreater{}}\NormalTok{{-}Windows{-}x86\_64.exe SHA256}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{10.3. Ejecutar el
+instalador}\label{ejecutar-el-instalador-3}
+
+Haz doble clic en el archivo \texttt{.exe} descargado (evita lanzarlo
+desde la carpeta de ``Favoritos''; desactiva temporalmente el antivirus
+si hay problemas durante la instalación, y reactívalo después).
+
+\subsubsection{10.4. Seguir el asistente de
+instalación}\label{seguir-el-asistente-de-instalaciuxf3n-1}
+
+El procedimiento es equivalente al de Miniconda (sección 9.4):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Acepta los Términos de Servicio (TOS).
+\item
+  Elige \textbf{Just Me (Recommended)} o \textbf{All Users} según tu
+  necesidad (recuerda la limitación de PATH para instalaciones All Users
+  explicada en la sección 9.4).
+\item
+  Confirma o cambia la ruta de instalación.
+\item
+  Haz clic en \textbf{Install}. Dado que Anaconda Distribution es
+  considerablemente más grande que Miniconda, este paso puede tardar
+  varios minutos.
+\end{enumerate}
+
+\subsubsection{10.5. Finalizar}\label{finalizar-1}
+
+Al completarse la instalación, busca \textbf{``Anaconda Prompt''} en la
+barra de búsqueda del menú \textbf{Start} y selecciónalo. Verás
+\texttt{(base)} al inicio de la línea de comandos.
+
+Anaconda Navigator se instala automáticamente junto con Anaconda
+Distribution en Windows; puedes buscarlo también desde el menú Start
+como \textbf{``Anaconda Navigator''}.
+
+\subsubsection{10.6. Probar la
+instalación}\label{probar-la-instalaciuxf3n-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{conda list}
+\NormalTok{conda {-}}\AttributeTok{{-}version}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{11. Instalación en modo silencioso
+(avanzado)}\label{instalaciuxf3n-en-modo-silencioso-avanzado}
+
+La documentación oficial cubre instalación silenciosa para
+automatización, pruebas, o despliegue (por ejemplo en GitHub Actions u
+otros sistemas de construcción), aplicable tanto a Miniconda como a
+Anaconda Distribution.
+
+\subsubsection{11.1. Modo silencioso en Linux (Kubuntu y
+Arch)}\label{modo-silencioso-en-linux-kubuntu-y-arch}
+
+Se especifican los argumentos \texttt{-b} y \texttt{-p} del instalador
+bash:
 
 \begin{itemize}
 \tightlist
 \item
-  Conda: https://docs.conda.io/
+  \texttt{-b}: modo \emph{batch}, sin modificar scripts de shell
+  (\texttt{.bashrc}, \texttt{.zshrc}, etc.). Asume que aceptas el
+  acuerdo de licencia.
 \item
-  Mamba: https://mamba.readthedocs.io/
-\item
-  Conda-Forge: https://conda-forge.org/
+  \texttt{-p}: ruta de instalación.
 \end{itemize}
 
-\textbf{Comunidad:}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{wget}\NormalTok{ https://repo.anaconda.com/miniconda/Miniconda3{-}latest{-}Linux{-}x86\_64.sh }\AttributeTok{{-}O}\NormalTok{ \textasciitilde{}/miniconda.sh}
+\FunctionTok{bash}\NormalTok{ \textasciitilde{}/miniconda.sh }\AttributeTok{{-}b} \AttributeTok{{-}p} \VariableTok{$HOME}\NormalTok{/miniconda}
+\end{Highlighting}
+\end{Shaded}
+
+Tras la instalación silenciosa, para inicializar conda manualmente:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{source} \OperatorTok{\textless{}}\NormalTok{ruta{-}de{-}instalación}\OperatorTok{\textgreater{}}\NormalTok{/bin/activate}
+\ExtensionTok{conda}\NormalTok{ init }\AttributeTok{{-}{-}all}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{11.2. Modo silencioso en
+Windows}\label{modo-silencioso-en-windows}
+
+Se usa el argumento \texttt{/S}, con argumentos opcionales adicionales
+(todos sensibles a mayúsculas/minúsculas):
 
 \begin{itemize}
 \tightlist
 \item
-  Conda Discourse: https://conda.discourse.group/
+  \texttt{/InstallationType={[}JustMe\textbar{}AllUsers{]}} --- por
+  defecto \texttt{JustMe}.
 \item
-  GitHub Issues: https://github.com/conda/conda/issues
+  \texttt{/AddToPath={[}0\textbar{}1{]}} --- por defecto \texttt{0}.
+\item
+  \texttt{/RegisterPython={[}0\textbar{}1{]}} --- si se registra como el
+  Python por defecto del sistema.
+\item
+  \texttt{/S} --- instala en modo silencioso.
+\item
+  \texttt{/D=\textless{}ruta\ de\ instalación\textgreater{}} --- debe
+  ser el último argumento, sin comillas; obligatorio si se usa
+  \texttt{/S}.
 \end{itemize}
+
+Ejemplo oficial, instalando Miniconda para el usuario actual sin
+registrar Python como el predeterminado del sistema:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{start} \AttributeTok{/wait} \StringTok{""}\NormalTok{ Miniconda3}\AttributeTok{{-}latest{-}Windows{-}x86\_64}\NormalTok{.exe }\AttributeTok{/InstallationType}\NormalTok{=JustMe }\AttributeTok{/RegisterPython}\NormalTok{=0 }\AttributeTok{/S} \AttributeTok{/D}\NormalTok{=}\PreprocessorTok{\%}\VariableTok{UserProfile}\PreprocessorTok{\%}\NormalTok{\textbackslash{}Miniconda3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{12. Verificación final de la
+instalación}\label{verificaciuxf3n-final-de-la-instalaciuxf3n}
+
+Independientemente del sistema operativo o de si instalaste Miniconda o
+Anaconda, estos comandos confirman que la instalación fue exitosa:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda} \AttributeTok{{-}{-}version}
+\ExtensionTok{conda}\NormalTok{ list}
+\ExtensionTok{conda}\NormalTok{ info}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{conda\ -\/-version} muestra la versión instalada de conda.
+\item
+  \texttt{conda\ list} muestra los paquetes instalados en el entorno
+  actualmente activo (por defecto, \texttt{base}).
+\item
+  \texttt{conda\ info} muestra información detallada del sistema conda:
+  rutas de instalación, canales configurados, versión de Python base,
+  plataforma, entre otros.
+\end{itemize}
+
+En la línea de comandos, deberías ver el prefijo \texttt{(base)} antes
+del prompt habitual, indicando que el entorno base de conda está activo.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{13. Desinstalación en Kubuntu /
+Ubuntu}\label{desinstalaciuxf3n-en-kubuntu-ubuntu}
+
+Según la documentación oficial de conda para Linux:
+
+\subsubsection{13.1. Eliminar el directorio de
+instalación}\label{eliminar-el-directorio-de-instalaciuxf3n}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rm} \AttributeTok{{-}rf}\NormalTok{ \textasciitilde{}/miniconda3   }\CommentTok{\# o la ruta donde hayas instalado Miniconda/Anaconda}
+\end{Highlighting}
+\end{Shaded}
+
+(la ruta puede variar según lo que hayas indicado durante la
+instalación, por ejemplo \texttt{\textasciitilde{}/anaconda3} para
+Anaconda Distribution).
+
+\subsubsection{13.2. (Opcional) Revertir cambios en los scripts de
+inicialización de
+shell}\label{opcional-revertir-cambios-en-los-scripts-de-inicializaciuxf3n-de-shell}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{conda}\NormalTok{ init }\AttributeTok{{-}{-}reverse} \AttributeTok{{-}{-}all}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{13.3. (Opcional) Eliminar archivos y carpetas ocultos
+asociados}\label{opcional-eliminar-archivos-y-carpetas-ocultos-asociados}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rm} \AttributeTok{{-}rf}\NormalTok{ \textasciitilde{}/.condarc \textasciitilde{}/.conda \textasciitilde{}/.continuum}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{14. Desinstalación en Arch
+Linux}\label{desinstalaciuxf3n-en-arch-linux}
+
+\subsubsection{14.1. Si instalaste manualmente (script oficial, fuera de
+AUR)}\label{si-instalaste-manualmente-script-oficial-fuera-de-aur}
+
+El procedimiento es idéntico al de Kubuntu/Ubuntu (sección 13), ya que
+en ambos casos se trata del mismo instalador oficial de conda:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rm} \AttributeTok{{-}rf}\NormalTok{ \textasciitilde{}/miniconda3   }\CommentTok{\# o la ruta de instalación que hayas usado}
+\ExtensionTok{conda}\NormalTok{ init }\AttributeTok{{-}{-}reverse} \AttributeTok{{-}{-}all}
+\FunctionTok{rm} \AttributeTok{{-}rf}\NormalTok{ \textasciitilde{}/.condarc \textasciitilde{}/.conda \textasciitilde{}/.continuum}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{\texorpdfstring{14.2. Si instalaste vía AUR
+(\texttt{miniconda3} o
+\texttt{anaconda})}{14.2. Si instalaste vía AUR (miniconda3 o anaconda)}}\label{si-instalaste-vuxeda-aur-miniconda3-o-anaconda}
+
+Usa tu ayudante de AUR habitual para desinstalar el paquete, igual que
+con cualquier paquete de pacman/AUR:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{yay} \AttributeTok{{-}Rns}\NormalTok{ miniconda3}
+\CommentTok{\# o}
+\ExtensionTok{yay} \AttributeTok{{-}Rns}\NormalTok{ anaconda}
+\end{Highlighting}
+\end{Shaded}
+
+Esto elimina el paquete gestionado por pacman, pero \textbf{no elimina
+automáticamente} la línea de activación de conda que hayas agregado
+manualmente a \texttt{\textasciitilde{}/.bashrc} o
+\texttt{\textasciitilde{}/.zshrc} (ver sección 7.1); revisa y elimina
+esa línea manualmente si ya no usarás conda en el sistema.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{15. Desinstalación en
+Windows}\label{desinstalaciuxf3n-en-windows}
+
+Según la documentación oficial de conda para Windows:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Abre el \textbf{Panel de Control} de Windows.
+\item
+  Haz clic en \textbf{Agregar o quitar programas} (\emph{Add or Remove
+  Program}).
+\item
+  Selecciona \textbf{``Python X.X (Miniconda)''} (donde X.X es tu
+  versión de Python), o el nombre correspondiente si instalaste Anaconda
+  Distribution.
+\item
+  Haz clic en \textbf{Quitar programa} (\emph{Remove Program}).
+\end{enumerate}
+
+\begin{quote}
+\textbf{Nota oficial}: el proceso de eliminar un programa varía
+ligeramente en Windows 10 respecto a versiones anteriores; sigue el
+flujo estándar de desinstalación de aplicaciones de tu versión
+específica de Windows.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{16. Solución de problemas comunes de
+instalación}\label{soluciuxf3n-de-problemas-comunes-de-instalaciuxf3n}
+
+\subsubsection{\texorpdfstring{16.1. El comando \texttt{conda} no se
+reconoce tras instalar
+(Linux)}{16.1. El comando conda no se reconoce tras instalar (Linux)}}\label{el-comando-conda-no-se-reconoce-tras-instalar-linux}
+
+Asegúrate de haber cerrado y vuelto a abrir la terminal después de la
+instalación, para que los cambios en
+\texttt{\textasciitilde{}/.bashrc}/\texttt{\textasciitilde{}/.zshrc}
+surtan efecto. Si instalaste vía AUR en Arch, recuerda que la activación
+de conda \textbf{no} es automática (ver sección 7.1): debes agregar
+manualmente la línea de \texttt{source} correspondiente a tu archivo de
+configuración de shell.
+
+\subsubsection{\texorpdfstring{16.2. Error de OpenSSL /
+\texttt{cryptography} al ejecutar \texttt{conda} (reportado
+específicamente en Arch
+Linux)}{16.2. Error de OpenSSL / cryptography al ejecutar conda (reportado específicamente en Arch Linux)}}\label{error-de-openssl-cryptography-al-ejecutar-conda-reportado-especuxedficamente-en-arch-linux}
+
+Es un problema documentado en los comentarios oficiales del paquete
+\texttt{miniconda3} en AUR, relacionado con la versión de OpenSSL del
+sistema y el ``legacy provider'' de la librería \texttt{cryptography}.
+La solución reportada por la comunidad es exportar la siguiente variable
+de entorno (por ejemplo, agregándola a \texttt{/etc/profile.d/conda.sh}
+o a tu \texttt{\textasciitilde{}/.zshrc}):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{export} \VariableTok{CRYPTOGRAPHY\_OPENSSL\_NO\_LEGACY}\OperatorTok{=}\StringTok{\textquotesingle{}1\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{\texorpdfstring{16.3. Falla la actualización del paquete
+\texttt{miniconda3} de
+AUR}{16.3. Falla la actualización del paquete miniconda3 de AUR}}\label{falla-la-actualizaciuxf3n-del-paquete-miniconda3-de-aur}
+
+Reportado en los comentarios oficiales del paquete: si una actualización
+vía AUR falla a mitad de proceso, purgar los remanentes de la
+instalación fallida y volver a intentar (o, si es urgente, reinstalar la
+versión previa que funcionaba) suele resolver el problema. Recuerda
+también el procedimiento de la sección 7.3 (comentar la línea de
+activación de conda antes de actualizar).
+
+\subsubsection{16.4. Anaconda Navigator no abre o muestra errores
+gráficos
+(Linux)}\label{anaconda-navigator-no-abre-o-muestra-errores-gruxe1ficos-linux}
+
+Revisa la sección 6.5 (Kubuntu) o 8.4 (Arch) sobre dependencias de
+sistema para interfaces gráficas (OpenGL, X11/XCB, ALSA). Esto es más
+probable en instalaciones minimalistas o entornos sin un entorno de
+escritorio completo.
+
+\subsubsection{\texorpdfstring{16.5. Errores de permisos al instalar en
+\texttt{/opt} (Arch, vía
+AUR)}{16.5. Errores de permisos al instalar en /opt (Arch, vía AUR)}}\label{errores-de-permisos-al-instalar-en-opt-arch-vuxeda-aur}
+
+Como se discute en los foros oficiales de Arch Linux (sección 8.2),
+instalar en \texttt{/opt} requiere privilegios de root, lo cual puede
+generar fricciones de permisos al gestionar entornos conda
+posteriormente como usuario normal. La alternativa documentada por la
+comunidad es instalar manualmente el script oficial directamente en tu
+\texttt{\$HOME}, evitando \texttt{/opt} por completo.
+
+\subsubsection{\texorpdfstring{16.6. Quiero usar conda con
+\texttt{fish\ shell}, no
+\texttt{zsh}/\texttt{bash}}{16.6. Quiero usar conda con fish shell, no zsh/bash}}\label{quiero-usar-conda-con-fish-shell-no-zshbash}
+
+Aunque tu configuración habitual usa \texttt{zsh}, si en algún momento
+necesitas integrarlo con \texttt{fish} (documentación oficial de conda
+para Linux):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fish\_add\_path \textless{}ruta{-}de{-}instalación{-}conda\textgreater{}/condabin}
+\NormalTok{conda init fish}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{17. Referencias oficiales}\label{referencias-oficiales}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Documentación oficial de conda --- Instalación (índice)}:
+  https://docs.conda.io/projects/conda/en/stable/user-guide/install/index.html
+\item
+  \textbf{Documentación oficial de conda --- Instalación en Linux}:
+  https://docs.conda.io/projects/conda/en/stable/user-guide/install/linux.html
+\item
+  \textbf{Documentación oficial de conda --- Instalación en Windows}:
+  https://docs.conda.io/projects/conda/en/stable/user-guide/install/windows.html
+\item
+  \textbf{Documentación oficial de conda --- Instalación en macOS}
+  (referencia para instalación silenciosa):
+  https://docs.conda.io/projects/conda/en/stable/user-guide/install/macos.html
+\item
+  \textbf{Anaconda --- Página de descargas (Miniconda y Anaconda
+  Distribution)}: https://www.anaconda.com/download
+\item
+  \textbf{Anaconda --- Documentación oficial: instalación de Miniconda}:
+  https://www.anaconda.com/docs/getting-started/miniconda/main
+\item
+  \textbf{Anaconda --- Documentación oficial: instalación de Anaconda
+  Distribution en Linux}:
+  https://www.anaconda.com/docs/getting-started/anaconda/install/linux-install
+\item
+  \textbf{Anaconda --- Archivo de instaladores y hashes de Miniconda}:
+  https://repo.anaconda.com/miniconda
+\item
+  \textbf{Anaconda --- Archivo de instaladores de Anaconda
+  Distribution}: https://repo.anaconda.com/archive
+\item
+  \textbf{ArchWiki --- Conda (oficial)}:
+  https://wiki.archlinux.org/title/Conda
+\item
+  \textbf{AUR --- Paquete \texttt{miniconda3}}:
+  https://aur.archlinux.org/packages/miniconda3
+\item
+  \textbf{AUR --- Paquete \texttt{anaconda}}:
+  https://aur.archlinux.org/packages/anaconda
+\item
+  \textbf{AUR --- Paquete \texttt{python-conda}}:
+  https://aur.archlinux.org/packages/python-conda
+\item
+  \textbf{Foros oficiales de Arch Linux --- Discusión sobre instalación
+  de Anaconda}: https://bbs.archlinux.org/viewtopic.php?id=249731
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Edison Achalma} Economista --- Universidad Nacional de San
+Cristóbal de Huamanga (UNSCH) Ayacucho, Perú ORCID:
+\href{https://orcid.org/0000-0001-6996-3364}{0000-0001-6996-3364}
 
 \section{Publicaciones Similares}\label{publicaciones-similares}
 

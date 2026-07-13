@@ -1,0 +1,609 @@
+# ============================================================
+# Proyecto : pub_numerus-scriptum
+# Ruta     : /home/achalmaedison/Documents/pub_numerus-scriptum
+# Generado : 2026-07-10 22:06:49
+# Script   : main.sh v2.1.0
+# Profund. : 6 niveles
+# Formato  : txt
+# Excluye  : _extensions _freeze _partials _site site_libs build __pycache__ log output temp .git .quarto node_modules .Rproj.user index_cache __MACOSX *.aux *.log *.out *.toc *.bbl *.blg *.synctex.gz *.fff *.ttt *.fls *.fdb_latexmk *.pyc *.pyo *.egg-info *.ipynb_checkpoints .DS_Store Thumbs.db .Rhistory .RData estructura.txt
+# ============================================================
+
+[4.0K Jul  2 20:16]  /home/achalmaedison/Documents/pub_numerus-scriptum
+├── [ 259 Jun 20 11:43]  404.qmd
+├── [ 940 Jun 20 11:44]  CITATION.cff
+├── [ 16K Jun 20 11:43]  LICENSE
+├── [ 619 Jun 20 11:43]  SECURITY.md
+├── [ 106 Jun 20 11:43]  _contenido-final.qmd
+├── [ 197 Jun 20 11:43]  _contenido-inicio.qmd
+├── [4.0K Jul  2 19:33]  _filters
+│   ├── [1.3K Jun 20 11:46]  _metadata-pdf.lua
+│   └── [6.5K Jul  2 16:52]  apa-floats-html.lua
+├── [6.0K Jul  2 15:14]  _quarto.yml
+├── [4.0K Jul  2 19:33]  assets
+│   ├── [4.0K Jul  2 09:51]  css
+│   │   ├── [4.0K Jul  2 19:33]  components
+│   │   │   └── [2.4K Jul  2 08:13]  bibbase.css
+│   │   ├── [1.9K Jul  2 08:13]  global.css
+│   │   └── [4.0K Jul  2 19:33]  pages
+│   │       ├── [2.8K Jul  9 05:02]  about.css
+│   │       ├── [2.7K Jul  9 05:02]  contact.css
+│   │       ├── [7.6K Jul  9 05:02]  home.css
+│   │       └── [2.2K Jul  9 05:02]  listing.css
+│   ├── [4.0K Jun 20 11:44]  fonts
+│   │   ├── [ 33K Jun 20 11:44]  DankMono-Bold.woff2
+│   │   ├── [ 32K Jun 20 11:44]  DankMono-Italic.woff2
+│   │   ├── [ 30K Jun 20 11:44]  DankMono-Regular.woff2
+│   │   ├── [ 25K Jun 20 11:44]  petrona-v16-latin-500.eot
+│   │   ├── [ 79K Jun 20 11:44]  petrona-v16-latin-500.svg
+│   │   ├── [ 48K Jun 20 11:44]  petrona-v16-latin-500.ttf
+│   │   ├── [ 26K Jun 20 11:44]  petrona-v16-latin-500.woff
+│   │   ├── [ 22K Jun 20 11:44]  petrona-v16-latin-500.woff2
+│   │   ├── [ 25K Jun 20 11:44]  petrona-v16-latin-regular.eot
+│   │   ├── [ 79K Jun 20 11:44]  petrona-v16-latin-regular.svg
+│   │   ├── [ 48K Jun 20 11:44]  petrona-v16-latin-regular.ttf
+│   │   ├── [ 26K Jun 20 11:44]  petrona-v16-latin-regular.woff
+│   │   ├── [ 21K Jun 20 11:44]  petrona-v16-latin-regular.woff2
+│   │   ├── [ 22K Jun 20 11:44]  red-hat-text-v3-latin-500.eot
+│   │   ├── [ 53K Jun 20 11:44]  red-hat-text-v3-latin-500.svg
+│   │   ├── [ 45K Jun 20 11:44]  red-hat-text-v3-latin-500.ttf
+│   │   ├── [ 23K Jun 20 11:44]  red-hat-text-v3-latin-500.woff
+│   │   ├── [ 19K Jun 20 11:44]  red-hat-text-v3-latin-500.woff2
+│   │   ├── [ 22K Jun 20 11:44]  red-hat-text-v3-latin-500italic.eot
+│   │   ├── [ 55K Jun 20 11:44]  red-hat-text-v3-latin-500italic.svg
+│   │   ├── [ 45K Jun 20 11:44]  red-hat-text-v3-latin-500italic.ttf
+│   │   ├── [ 23K Jun 20 11:44]  red-hat-text-v3-latin-500italic.woff
+│   │   ├── [ 19K Jun 20 11:44]  red-hat-text-v3-latin-500italic.woff2
+│   │   ├── [ 22K Jun 20 11:44]  red-hat-text-v3-latin-italic.eot
+│   │   ├── [ 55K Jun 20 11:44]  red-hat-text-v3-latin-italic.svg
+│   │   ├── [ 45K Jun 20 11:44]  red-hat-text-v3-latin-italic.ttf
+│   │   ├── [ 23K Jun 20 11:44]  red-hat-text-v3-latin-italic.woff
+│   │   ├── [ 19K Jun 20 11:44]  red-hat-text-v3-latin-italic.woff2
+│   │   ├── [ 21K Jun 20 11:44]  red-hat-text-v3-latin-regular.eot
+│   │   ├── [ 53K Jun 20 11:44]  red-hat-text-v3-latin-regular.svg
+│   │   ├── [ 44K Jun 20 11:44]  red-hat-text-v3-latin-regular.ttf
+│   │   ├── [ 22K Jun 20 11:44]  red-hat-text-v3-latin-regular.woff
+│   │   └── [ 18K Jun 20 11:44]  red-hat-text-v3-latin-regular.woff2
+│   ├── [ 243 Jun 20 11:44]  gtm-body.html
+│   ├── [ 419 Jun 20 11:44]  gtm-head.html
+│   ├── [4.0K Jun 20 11:44]  img
+│   │   ├── [281K Jun 20 11:44]  achalma-social.png
+│   │   ├── [1.1M Jun 20 11:44]  default-preview.jpg
+│   │   ├── [ 31K Jun 20 11:44]  favicon.png
+│   │   └── [1.1M Jun 20 11:44]  sidebar.jpg
+│   ├── [1.0K Jul  2 10:44]  interactions.html
+│   ├── [4.0K Jul  2 19:33]  js
+│   │   ├── [2.1K Jul  2 10:57]  README.md
+│   │   ├── [1.5K Jul  2 10:43]  cursor.js
+│   │   ├── [1.8K Jul  2 10:43]  hero.js
+│   │   ├── [ 974 Jul  2 10:43]  navbar.js
+│   │   └── [1.6K Jul  2 10:43]  scroll-effects.js
+│   └── [4.0K Jul  2 19:33]  scss
+│       ├── [4.0K Jul  2 19:33]  00-settings
+│       │   ├── [1.9K Jul  2 09:47]  _bootstrap.scss
+│       │   ├── [ 882 Jul  2 09:46]  _layout.scss
+│       │   ├── [1.6K Jul  2 09:45]  _palette-dark.scss
+│       │   ├── [1.9K Jul  2 09:45]  _palette-light.scss
+│       │   ├── [5.1K Jul  2 09:46]  _tokens-dark.scss
+│       │   ├── [5.5K Jul  2 09:46]  _tokens-light.scss
+│       │   └── [1.7K Jul  2 09:46]  _typography.scss
+│       ├── [4.0K Jul  2 19:33]  01-tools
+│       │   └── [1.3K Jul  2 09:47]  _mixins.scss
+│       ├── [4.0K Jul  2 19:33]  02-base
+│       │   ├── [3.8K Jul  2 09:47]  _fonts.scss
+│       │   ├── [1.1K Jul  2 09:47]  _reset.scss
+│       │   ├── [1.5K Jul  2 09:47]  _root.scss
+│       │   └── [3.4K Jul  2 09:48]  _typography.scss
+│       ├── [4.0K Jul  2 19:33]  03-layout
+│       │   ├── [1.3K Jul  2 09:49]  _footer.scss
+│       │   ├── [3.0K Jul  2 09:48]  _navbar.scss
+│       │   ├── [1.3K Jul  2 09:50]  _responsive.scss
+│       │   └── [4.7K Jul  2 12:36]  _toc.scss
+│       ├── [4.0K Jul  2 20:10]  04-components
+│       │   ├── [1.4K Jul  2 09:49]  _buttons.scss
+│       │   ├── [1.0K Jul  2 09:49]  _callouts.scss
+│       │   ├── [1.2K Jul  2 09:49]  _citations.scss
+│       │   ├── [1.9K Jul  2 09:48]  _code.scss
+│       │   ├── [2.6K Jul  2 16:54]  _floats.scss
+│       │   ├── [2.8K Jul  2 09:48]  _listings.scss
+│       │   ├── [ 781 Jul  2 09:49]  _math.scss
+│       │   ├── [1.1K Jul  2 09:49]  _pagination.scss
+│       │   ├── [ 848 Jul  2 09:49]  _search.scss
+│       │   ├── [2.5K Jul  2 11:45]  _section-numbers.scss
+│       │   ├── [ 866 Jul  2 09:49]  _social.scss
+│       │   ├── [1.5K Jul  2 09:49]  _tables.scss
+│       │   └── [1.9K Jul  2 09:48]  _title-block.scss
+│       ├── [4.0K Jul  2 19:33]  05-interactions
+│       │   └── [2.2K Jul  2 09:50]  _microinteractions.scss
+│       ├── [4.0K Jul  2 19:33]  05-pages
+│       │   ├── [ 956 Jul  2 10:42]  _blog.scss
+│       │   ├── [ 946 Jul  2 10:42]  _courses.scss
+│       │   ├── [ 935 Jul  2 10:42]  _post.scss
+│       │   ├── [ 940 Jul  2 10:42]  _projects.scss
+│       │   ├── [1022 Jul  2 10:42]  _publications.scss
+│       │   ├── [3.4K Jul  2 10:42]  about.scss
+│       │   ├── [3.3K Jul  2 10:42]  contact.scss
+│       │   ├── [8.3K Jul  2 10:42]  home.scss
+│       │   └── [2.9K Jul  2 10:42]  listing.scss
+│       ├── [4.0K Jul  2 19:33]  06-themes
+│       │   └── [1.9K Jul  2 09:50]  _dark-adjustments.scss
+│       ├── [6.0K Jul  2 10:57]  README.md
+│       ├── [2.1K Jul  2 20:06]  theme-dark.scss
+│       └── [1.9K Jul  2 20:06]  theme-light.scss
+├── [4.0K Jun 22 23:47]  bloomberg
+│   ├── [ 16K Jul  2 14:59]  _metadata.yml
+│   └── [1.1M Jun 20 11:44]  featured.jpg
+├── [4.0K Jun 22 23:47]  cpp
+│   ├── [ 16K Jul  2 14:59]  _metadata.yml
+│   └── [1.1M Jun 20 11:44]  featured.jpg
+├── [4.0K Jul  2 20:16]  docs
+│   └── [ 15K Jul  2 19:39]  README.md
+├── [4.0K Jun 22 23:47]  eviews
+│   ├── [4.0K Jun 20 11:44]  2021-08-30-01-introduccion-a-la-programacion-con-eviews
+│   │   ├── [2.9K Jun 20 11:44]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [9.0K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2021-09-06-02-empleo-de-bucles-y-variables-temporales
+│   │   ├── [3.0K Jun 20 11:44]  index.html.md
+│   │   ├── [1.3K Jun 20 11:44]  index.qmd
+│   │   └── [9.1K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2021-09-13-03-metodos-de-estimacion-objeto-equatio-objeto-table
+│   │   ├── [3.0K Jun 20 11:44]  index.html.md
+│   │   ├── [1.3K Jun 20 11:44]  index.qmd
+│   │   └── [9.1K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2022-02-07-05-objetos-avanzados
+│   │   ├── [3.0K Jun 20 11:44]  index.html.md
+│   │   ├── [1.3K Jun 20 11:44]  index.qmd
+│   │   └── [9.1K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2022-02-14-06-empleo-de-subrutinas
+│   │   ├── [2.9K Jun 20 11:44]  index.html.md
+│   │   ├── [1.3K Jun 20 11:44]  index.qmd
+│   │   └── [9.1K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2022-02-21-07-modelacion
+│   │   ├── [2.9K Jun 20 11:44]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [9.1K Jun 20 11:44]  index.tex
+│   ├── [1.5K Jun 20 11:44]  _contenido_eviews.qmd
+│   ├── [ 16K Jul  2 14:59]  _metadata.yml
+│   └── [1.1M Jun 20 11:44]  featured.jpg
+├── [4.0K Jun 22 23:47]  fundamentos-programacion
+│   ├── [4.0K Jun 20 11:44]  2018-06-09-typografia
+│   │   ├── [7.5K Jun 20 11:44]  index.html.md
+│   │   ├── [6.0K Jun 20 11:44]  index.qmd
+│   │   └── [ 15K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2019-08-13-organizando-tipos-de-archivos-de-softwares
+│   │   ├── [ 14K Jun 20 11:44]  index.html.md
+│   │   ├── [ 12K Jun 20 11:44]  index.qmd
+│   │   └── [ 18K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2021-01-04-01-pensamiento-logico
+│   │   ├── [2.8K Jun 20 11:44]  index.html.md
+│   │   ├── [1.3K Jun 20 11:44]  index.qmd
+│   │   └── [8.9K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2021-01-11-02-introduccion-a-los-algoritmos
+│   │   ├── [2.9K Jun 20 11:44]  index.html.md
+│   │   ├── [1.3K Jun 20 11:44]  index.qmd
+│   │   └── [8.9K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2021-01-18-03-programacion-basica-en-html
+│   │   ├── [2.8K Jun 20 11:44]  index.html.md
+│   │   ├── [1.3K Jun 20 11:44]  index.qmd
+│   │   └── [8.9K Jun 20 11:44]  index.tex
+│   ├── [1.4K Jun 20 11:44]  _contenido_fundamentos-programacion.qmd
+│   ├── [ 16K Jul  2 14:59]  _metadata.yml
+│   └── [1.1M Jun 20 11:44]  featured.jpg
+├── [2.3K Jul  2 15:08]  index.qmd
+├── [4.0K Jun 22 23:47]  latex
+│   ├── [4.0K Jun 20 11:44]  2015-07-12-01-introduccion-al-latex
+│   │   ├── [2.7K Jun 20 11:44]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [8.9K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2015-07-13-02-latex-y-matematica
+│   │   ├── [2.7K Jun 20 11:44]  index.html.md
+│   │   ├── [1.3K Jun 20 11:44]  index.qmd
+│   │   └── [8.9K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2015-07-14-03-latex-como-editor-de-texto
+│   │   ├── [2.7K Jun 20 11:44]  index.html.md
+│   │   ├── [1.3K Jun 20 11:44]  index.qmd
+│   │   └── [8.9K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2015-07-15-04-latex-y-referencias
+│   │   ├── [2.7K Jun 20 11:44]  index.html.md
+│   │   ├── [1.3K Jun 20 11:44]  index.qmd
+│   │   └── [8.9K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2015-07-16-05-presentaciones-en-beamer
+│   │   ├── [2.7K Jun 20 11:44]  index.html.md
+│   │   ├── [1.3K Jun 20 11:44]  index.qmd
+│   │   └── [8.9K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2015-07-17-06-tikz
+│   │   ├── [2.7K Jun 20 11:44]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [8.9K Jun 20 11:44]  index.tex
+│   ├── [1.3K Jun 20 11:44]  _contenido_latex.qmd
+│   ├── [ 16K Jul  2 14:59]  _metadata.yml
+│   └── [1.1M Jun 20 11:44]  featured.jpg
+├── [4.0K Jun 22 23:47]  matlab
+│   ├── [4.0K Jun 20 11:44]  2022-07-25-01-primeros-pasos-en-matlab
+│   │   ├── [4.0K Jun 20 11:44]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [ 10K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2022-08-01-02-elementos-basicos-en-matlab-i
+│   │   ├── [4.0K Jun 20 11:44]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [ 10K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2022-08-08-03-elementos-basicos-en-matlab-ii
+│   │   ├── [4.0K Jun 20 11:44]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [ 10K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2022-08-15-04-programacion-en-matlab
+│   │   ├── [3.9K Jun 20 11:44]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [ 10K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2022-08-22-05-visualizacion-de-datos-en-matlab
+│   │   ├── [4.0K Jun 20 11:44]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [ 10K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2022-08-29-06-sentencias-de-control
+│   │   ├── [3.9K Jun 20 11:44]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [ 10K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2022-09-05-07-metodos-numericos
+│   │   ├── [4.0K Jun 20 11:44]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [ 10K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2022-09-12-08-tipos-de-datos-heterogeneos
+│   │   ├── [3.9K Jun 20 11:44]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [ 10K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2022-09-19-09-funciones-avanzadas
+│   │   ├── [3.9K Jun 20 11:44]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [ 10K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2022-09-26-10-toolbox-optimization
+│   │   ├── [3.9K Jun 20 11:44]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [ 10K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2022-10-03-11-aplicaciones
+│   │   ├── [3.9K Jun 20 11:44]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [ 10K Jun 20 11:44]  index.tex
+│   ├── [2.6K Jun 20 11:44]  _contenido_matlab.qmd
+│   ├── [ 16K Jul  2 14:59]  _metadata.yml
+│   └── [1.1M Jun 20 11:44]  featured.jpg
+├── [4.0K Jun 22 23:47]  ofimatica
+│   ├── [4.0K Jun 20 11:44]  2022-12-05-01-introduccion-al-lenguaje-y-editor-vba
+│   │   ├── [4.9K Jun 20 11:44]  index.html.md
+│   │   ├── [1.3K Jun 20 11:44]  index.qmd
+│   │   └── [ 11K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2022-12-12-02-grabar-y-modificar
+│   │   ├── [4.9K Jun 20 11:44]  index.html.md
+│   │   ├── [1.3K Jun 20 11:44]  index.qmd
+│   │   └── [ 11K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2022-12-19-03-procedimientos
+│   │   ├── [4.8K Jun 20 11:44]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [ 11K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2022-12-26-04-funciones-en-vba
+│   │   ├── [4.8K Jun 20 11:44]  index.html.md
+│   │   ├── [1.3K Jun 20 11:44]  index.qmd
+│   │   └── [ 11K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2023-01-02-05-funciones-condicionales-estructuras-condicionales
+│   │   ├── [4.9K Jun 20 11:44]  index.html.md
+│   │   ├── [1.3K Jun 20 11:44]  index.qmd
+│   │   └── [ 11K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2023-01-09-06-funciones-iterativas-estructuras-repetitivas-o-bucles
+│   │   ├── [4.9K Jun 20 11:44]  index.html.md
+│   │   ├── [1.3K Jun 20 11:44]  index.qmd
+│   │   └── [ 11K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2023-01-16-07-formularios
+│   │   ├── [4.8K Jun 20 11:44]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [ 11K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2023-01-23-08-eventos
+│   │   ├── [4.8K Jun 20 11:44]  index.html.md
+│   │   ├── [1.3K Jun 20 11:44]  index.qmd
+│   │   └── [ 11K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2023-03-17-comando-para-convertir-docx-a-odt
+│   │   ├── [9.6K Jun 20 11:44]  index.html.md
+│   │   ├── [6.0K Jun 20 11:44]  index.qmd
+│   │   └── [ 22K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2023-04-03-buscar-reemplazar-en-libreoffice
+│   │   ├── [5.1K Jun 20 11:44]  index.html.md
+│   │   ├── [1.5K Jun 20 11:44]  index.qmd
+│   │   └── [ 14K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2023-05-21-anclaje-envoltura-alineacion-y-organizacion-de-objetos-en-llibreoffice
+│   │   ├── [ 14K Jun 20 11:44]  index.html.md
+│   │   ├── [ 10K Jun 20 11:44]  index.qmd
+│   │   └── [ 22K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2023-05-31-combinando-hojas-de-excel-con-vba
+│   │   ├── [7.4K Jun 20 11:44]  index.html.md
+│   │   ├── [3.8K Jun 20 11:44]  index.qmd
+│   │   └── [ 17K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2023-06-05-separando-hojas-de-excel-en-documentos-individuales
+│   │   ├── [7.0K Jun 20 11:44]  index.html.md
+│   │   ├── [3.4K Jun 20 11:44]  index.qmd
+│   │   └── [ 13K Jun 20 11:44]  index.tex
+│   ├── [3.4K Jun 20 11:44]  _contenido_ofimatica.qmd
+│   ├── [ 16K Jul  2 14:59]  _metadata.yml
+│   └── [1.1M Jun 20 11:44]  featured.jpg
+├── [4.0K Jun 22 23:47]  power-bi
+│   ├── [4.0K Jun 20 11:44]  2022-09-12-01-introduccion-al-mundo-de-bi-y-la-suite-power
+│   │   ├── [3.3K Jun 20 11:44]  index.html.md
+│   │   ├── [1.3K Jun 20 11:44]  index.qmd
+│   │   └── [9.5K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2022-09-19-02-power-query-proceso-etl
+│   │   ├── [3.3K Jun 20 11:44]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [9.4K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2022-09-26-03-proceso-etl-2
+│   │   ├── [3.2K Jun 20 11:44]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [9.4K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2022-10-03-04-power-pivot-modelo-de-datos
+│   │   ├── [3.3K Jun 20 11:44]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [9.4K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2022-10-10-05-inteligencia-de-tiempo-dimension-de-tiempo
+│   │   ├── [3.3K Jun 20 11:44]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [9.4K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2022-10-17-06-lenguaje-de-analisis-de-datos-dax-columnas-campos-calculados
+│   │   ├── [3.3K Jun 20 11:44]  index.html.md
+│   │   ├── [1.3K Jun 20 11:44]  index.qmd
+│   │   └── [9.4K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2022-10-24-08-vizualizacion-de-datos
+│   │   ├── [3.3K Jun 20 11:44]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [9.4K Jun 20 11:44]  index.tex
+│   ├── [1.9K Jun 20 11:44]  _contenido_power-bi.qmd
+│   ├── [ 16K Jul  2 14:59]  _metadata.yml
+│   └── [1.1M Jun 20 11:44]  featured.jpg
+├── [4.0K Jun 22 23:47]  python
+│   ├── [4.0K Jun 20 11:44]  2020-06-19-instalacion-de-anaconda
+│   │   ├── [ 22K Jun 20 11:44]  index.html.md
+│   │   ├── [ 32K Jun 21 01:43]  index.qmd
+│   │   └── [ 48K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 20 11:44]  2020-06-20-configurar-entorno-virtual-python-anaconda
+│   │   ├── [ 32K Jun 30 14:59]  index.html.md
+│   │   ├── [ 50K Jun 21 01:57]  index.qmd
+│   │   └── [ 73K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jun 21 02:07]  2021-04-17-01-introducion-a-la-programacion-con-python
+│   │   ├── [ 37K Jun 20 11:44]  index.html.md
+│   │   ├── [ 35K Jun 21 02:04]  index.qmd
+│   │   ├── [ 56K Jun 21 00:55]  index.quarto_ipynb
+│   │   └── [ 71K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jul  2 15:37]  2021-05-31-02-variables-expresiones-y-statements-con-python
+│   │   ├── [ 48K Jun 20 11:44]  index.html.md
+│   │   ├── [ 43K Jun 20 11:44]  index.qmd
+│   │   ├── [ 79K Jun 21 00:58]  index.quarto_ipynb
+│   │   ├── [ 79K Jul  2 15:20]  index.quarto_ipynb_1
+│   │   └── [115K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jul  2 15:37]  2021-06-07-03-objetos-de-python
+│   │   ├── [ 49K Jun 20 11:44]  index.html.md
+│   │   ├── [ 43K Jun 20 11:44]  index.qmd
+│   │   ├── [ 78K Jun 21 00:58]  index.quarto_ipynb
+│   │   ├── [ 78K Jul  2 15:20]  index.quarto_ipynb_1
+│   │   └── [141K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jul  2 15:37]  2021-06-14-04-ejecucion-condicional-con-python
+│   │   ├── [ 57K Jun 20 11:44]  index.html.md
+│   │   ├── [ 51K Jun 20 11:44]  index.qmd
+│   │   ├── [ 88K Jun 21 00:58]  index.quarto_ipynb
+│   │   ├── [ 88K Jul  2 15:20]  index.quarto_ipynb_1
+│   │   └── [144K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jul  2 15:37]  2021-06-21-05-iteraciones-con-python
+│   │   ├── [ 39K Jun 20 11:44]  index.html.md
+│   │   ├── [ 33K Jun 20 11:44]  index.qmd
+│   │   ├── [ 61K Jun 21 00:58]  index.quarto_ipynb
+│   │   ├── [ 61K Jul  2 15:20]  index.quarto_ipynb_1
+│   │   └── [117K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jul  2 15:37]  2021-08-16-06-funciones-con-python
+│   │   ├── [ 38K Jun 20 11:44]  index.html.md
+│   │   ├── [ 33K Jun 20 11:44]  index.qmd
+│   │   ├── [ 61K Jun 21 00:58]  index.quarto_ipynb
+│   │   ├── [ 61K Jul  2 15:20]  index.quarto_ipynb_1
+│   │   └── [103K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jul  2 15:37]  2021-08-23-07-dataframes-con-python
+│   │   ├── [9.7M Jun 20 11:44]  data\ abiertos\ siscovid.csv
+│   │   ├── [250K Jun 20 11:44]  data\ fallecidos\ minsa\ covid19.csv
+│   │   ├── [ 43K Jun 20 11:44]  index.html.md
+│   │   ├── [ 38K Jun 20 11:44]  index.qmd
+│   │   ├── [ 68K Jun 21 00:58]  index.quarto_ipynb
+│   │   ├── [ 68K Jul  2 15:20]  index.quarto_ipynb_1
+│   │   ├── [134K Jun 20 11:44]  index.tex
+│   │   └── [ 70M Jun 20 11:44]  informacion\ de\ distritos\ 2020.xlsx
+│   ├── [4.0K Jul  2 15:37]  2021-11-29-08-prediccion-y-metrica-de-performance-con-python
+│   │   ├── [ 42K Jun 20 11:44]  index.html.md
+│   │   ├── [ 37K Jun 20 11:44]  index.qmd
+│   │   ├── [ 63K Jun 21 00:58]  index.quarto_ipynb
+│   │   ├── [ 63K Jul  2 15:20]  index.quarto_ipynb_1
+│   │   └── [111K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jul  2 15:37]  2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python
+│   │   ├── [ 243 Jun 20 11:44]  comparacion_modelos.csv
+│   │   ├── [607K Jun 20 11:44]  decision_tree.png
+│   │   ├── [ 82K Jun 20 11:44]  index.html.md
+│   │   ├── [ 63K Jun 20 11:44]  index.qmd
+│   │   ├── [ 99K Jun 21 00:58]  index.quarto_ipynb
+│   │   ├── [ 99K Jul  2 15:20]  index.quarto_ipynb_1
+│   │   ├── [161K Jun 20 11:44]  index.tex
+│   │   ├── [228K Jun 20 11:44]  iris_scatter.png
+│   │   ├── [661K Jun 20 11:44]  knn_comparison.png
+│   │   ├── [259K Jun 20 11:44]  knn_k_selection.png
+│   │   ├── [406K Jun 20 11:44]  logistic_regression_boundary.png
+│   │   ├── [841K Jun 20 11:44]  multiclass_comparison.png
+│   │   ├── [163K Jun 20 11:44]  random_forest_ntrees.png
+│   │   ├── [276K Jun 20 11:44]  roc_comparison.png
+│   │   └── [198K Jun 20 11:44]  tree_depth_analysis.png
+│   ├── [4.0K Jul  2 15:37]  2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python
+│   │   ├── [138K Jun 20 11:44]  curva_demanda.png
+│   │   ├── [450K Jun 20 11:44]  datos_regresion.png
+│   │   ├── [108K Jun 20 11:44]  index.html.md
+│   │   ├── [103K Jun 20 11:44]  index.qmd
+│   │   ├── [154K Jun 21 00:58]  index.quarto_ipynb
+│   │   ├── [154K Jul  2 15:20]  index.quarto_ipynb_1
+│   │   ├── [212K Jun 20 11:44]  index.tex
+│   │   ├── [200K Jun 20 11:44]  knn_regression.png
+│   │   ├── [ 426 Jun 20 11:44]  metricas_comparacion.csv
+│   │   ├── [178K Jun 20 11:44]  model_comparison.png
+│   │   ├── [533K Jun 20 11:44]  ols_diagnostics.png
+│   │   ├── [359K Jun 20 11:44]  ols_predictions.png
+│   │   ├── [436K Jun 20 11:44]  polynomial_regression.png
+│   │   ├── [208K Jun 20 11:44]  ridge_regularization.png
+│   │   └── [335K Jun 20 11:44]  ridge_vs_lasso.png
+│   ├── [4.0K Jul  2 15:37]  2022-10-31-11-validacion-cruzada-y-composicion-del-modelo-con-python
+│   │   ├── [199K Jun 20 11:44]  bias_variance_tradeoff.png
+│   │   ├── [283K Jun 20 11:44]  cv_multiple_metrics.png
+│   │   ├── [231K Jun 20 11:44]  data_contribution.png
+│   │   ├── [126K Jun 20 11:44]  feature_importance.png
+│   │   ├── [364K Jun 20 11:44]  grid_search_analysis.png
+│   │   ├── [104K Jun 20 11:44]  incremental_features.png
+│   │   ├── [ 52K Jun 20 11:44]  index.html.md
+│   │   ├── [ 47K Jun 20 11:44]  index.qmd
+│   │   ├── [ 77K Jun 21 00:58]  index.quarto_ipynb
+│   │   ├── [ 77K Jul  2 15:20]  index.quarto_ipynb_1
+│   │   ├── [155K Jun 20 11:44]  index.tex
+│   │   ├── [112K Jun 20 11:44]  learning_curve_credito.png
+│   │   ├── [139K Jun 20 11:44]  learning_curve_decision_tree_(depth=20).png
+│   │   ├── [169K Jun 20 11:44]  learning_curve_decision_tree_(depth=3).png
+│   │   ├── [172K Jun 20 11:44]  learning_curve_logistic_regression.png
+│   │   ├── [136K Jun 20 11:44]  learning_curve_random_forest.png
+│   │   ├── [270K Jun 20 11:44]  learning_curves_comparison.png
+│   │   └── [148K Jun 20 11:44]  rfecv_results.png
+│   ├── [4.0K Jul  2 15:37]  2025-05-10-visualizacion-de-datos-con-python
+│   │   ├── [ 13K Jun 20 11:44]  index.html.md
+│   │   ├── [ 13K Jun 20 11:44]  index.qmd
+│   │   ├── [ 20K Jun 21 00:58]  index.quarto_ipynb
+│   │   ├── [ 20K Jul  2 15:20]  index.quarto_ipynb_1
+│   │   ├── [ 37K Jun 20 11:44]  index.tex
+│   │   └── [4.0K Jun 20 11:44]  index_files
+│   │       └── [4.0K Jun 20 11:44]  figure-pdf
+│   │           ├── [ 66K Jun 20 11:44]  cell-10-output-1.png
+│   │           ├── [ 92K Jun 20 11:44]  cell-11-output-1.png
+│   │           ├── [174K Jun 20 11:44]  cell-12-output-1.png
+│   │           ├── [195K Jun 20 11:44]  cell-2-output-1.png
+│   │           ├── [ 94K Jun 20 11:44]  cell-3-output-1.png
+│   │           ├── [107K Jun 20 11:44]  cell-5-output-1.png
+│   │           ├── [ 79K Jun 20 11:44]  cell-6-output-1.png
+│   │           ├── [ 87K Jun 20 11:44]  cell-7-output-1.png
+│   │           ├── [182K Jun 20 11:44]  cell-8-output-1.png
+│   │           ├── [182K Jun 20 11:44]  cell-9-output-1.png
+│   │           └── [282K Jun 20 11:44]  fig-polar-output-1.png
+│   ├── [3.8K Jun 20 11:44]  _contenido_python.qmd
+│   ├── [ 16K Jul  2 14:59]  _metadata.yml
+│   └── [1.1M Jun 20 11:44]  featured.jpg
+├── [4.0K Jun 22 23:47]  r
+│   ├── [4.0K Jul  2 15:29]  2020-06-10-011-instalacion-de-r
+│   │   ├── [230K Jun 20 11:44]  Benandjerry.RData
+│   │   ├── [3.8M Jun 20 11:44]  Clase\ 1.pdf
+│   │   ├── [ 634 Jun 20 11:44]  Worksession.Rhistory
+│   │   ├── [112K Jul  2 15:29]  index.html
+│   │   ├── [ 28K Jul  2 15:29]  index.html.md
+│   │   ├── [ 53K Jul  2 15:29]  index.pdf
+│   │   ├── [ 25K Jun 21 01:09]  index.qmd
+│   │   ├── [ 50K Jul  2 15:29]  index.tex
+│   │   └── [4.0K Jul  2 15:29]  index_files
+│   │       └── [4.0K Jun 20 11:44]  figure-html
+│   │           ├── [234K Jun 20 11:44]  Screenshot_20230610_222900.png
+│   │           ├── [114K Jun 20 11:44]  Screenshot_20230610_224818.png
+│   │           └── [363K Jun 20 11:44]  Screenshot_20230610_231407.png
+│   ├── [4.0K Jun 21 10:59]  2020-06-10-012-configurar-entorno-virtual-r
+│   │   ├── [ 20K Jun 20 11:44]  index.html.md
+│   │   ├── [ 33K Jun 21 01:35]  index.qmd
+│   │   ├── [ 30K Jun 20 11:44]  index.tex
+│   │   └── [4.0K Jun 20 11:44]  index_files
+│   │       └── [4.0K Jun 20 11:44]  figure-html
+│   │           ├── [150K Jun 20 11:44]  Screenshot_20230610_233058.png
+│   │           ├── [182K Jun 20 11:44]  Screenshot_20230611_001234.png
+│   │           ├── [155K Jun 20 11:44]  Screenshot_20230611_001615.png
+│   │           ├── [193K Jun 20 11:44]  Screenshot_20230611_004241.png
+│   │           ├── [180K Jun 20 11:44]  Screenshot_20230611_005354.png
+│   │           ├── [204K Jun 20 11:44]  Screenshot_20230611_010256.png
+│   │           ├── [154K Jun 20 11:44]  Screenshot_20230611_010854.png
+│   │           ├── [310K Jun 20 11:44]  Screenshot_20230611_012736.png
+│   │           ├── [241K Jun 20 11:44]  Screenshot_20230611_013135.png
+│   │           ├── [229K Jun 20 11:44]  Screenshot_20230611_092644.png
+│   │           ├── [231K Jun 20 11:44]  Screenshot_20230611_093536.png
+│   │           ├── [216K Jun 20 11:44]  Screenshot_20230611_094001.png
+│   │           ├── [205K Jun 20 11:44]  Screenshot_20230611_094530.png
+│   │           ├── [271K Jun 20 11:44]  Screenshot_20230611_095350.png
+│   │           ├── [227K Jun 20 11:44]  Screenshot_20230611_100949.png
+│   │           ├── [245K Jun 20 11:44]  Screenshot_20230611_101644.png
+│   │           ├── [297K Jun 20 11:44]  Screenshot_20230611_102856.png
+│   │           ├── [300K Jun 20 11:44]  Screenshot_20230611_103319.png
+│   │           └── [254K Jun 20 11:44]  Screenshot_20230611_103755.png
+│   ├── [4.0K Jun 20 11:44]  2020-06-10-013-lo-que-debemos-saber-de-r
+│   │   ├── [ 21K Jun 20 11:44]  index.html.md
+│   │   ├── [ 17K Jun 21 01:25]  index.qmd
+│   │   └── [ 38K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jul  2 15:20]  2021-03-027-01-introduccion-al-programa
+│   │   ├── [ 37K Jul  2 15:20]  index.html.md
+│   │   ├── [ 35K Jun 21 01:35]  index.qmd
+│   │   └── [9.8K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jul  2 15:20]  2021-04-05-02-manipulacion-de-datos
+│   │   ├── [3.1K Jun 20 11:44]  1\ Escalar\ Vector\ Matriz\ DataFrame\ Lista\ .R
+│   │   ├── [ 190 Jun 20 11:44]  Data_objects.R
+│   │   ├── [ 295 Jun 20 11:44]  Data_objects.RData
+│   │   ├── [1.9K Jun 20 11:44]  Desafio\ 1.R
+│   │   ├── [2.9K Jun 20 11:44]  Manipulacion\ de\ datos\ parte1.R
+│   │   ├── [2.9K Jun 20 11:44]  Primer\ workspace.RData
+│   │   ├── [3.7K Jul  2 15:20]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [9.8K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jul  2 15:20]  2021-04-12-03-visualizacion-de-datos
+│   │   ├── [3.7K Jul  2 15:20]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [9.8K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jul  2 15:29]  2022-11-07-04-modelo-de-machine-learning-i-analisis-exploratorio
+│   │   ├── [3.7K Jul  2 15:28]  index.html.md
+│   │   ├── [1.3K Jun 20 11:44]  index.qmd
+│   │   └── [ 11K Jul  2 15:28]  index.tex
+│   ├── [4.0K Jul  2 15:20]  2022-11-14-05-modelo-de-machine-learning-ii-modelo-de-clasificacion
+│   │   ├── [3.7K Jul  2 15:20]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [9.8K Jun 20 11:44]  index.tex
+│   ├── [4.0K Jul  2 15:29]  2022-11-21-06-modelo-de-machine-learning-iii-modelo-de-regresion
+│   │   ├── [3.7K Jul  2 15:28]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [ 11K Jul  2 15:28]  index.tex
+│   ├── [4.0K Jul  2 15:29]  2022-11-28-07-modelo-de-machine-learning-iv-tex-mining
+│   │   ├── [3.7K Jul  2 15:28]  index.html.md
+│   │   ├── [1.2K Jun 20 11:44]  index.qmd
+│   │   └── [ 11K Jul  2 15:28]  index.tex
+│   ├── [2.3K Jun 20 11:44]  _contenido_r.qmd
+│   ├── [ 16K Jul  2 14:59]  _metadata.yml
+│   └── [1.1M Jun 20 11:44]  featured.jpg
+├── [4.0K Jul  2 19:33]  scripts
+│   └── [2.2K Jul  2 10:43]  build-page-css.sh
+└── [4.0K Jun 22 23:47]  stata
+    ├── [4.0K Jun 20 11:44]  2022-05-30-01-introduccion-al-programa
+    │   ├── [3.2K Jun 20 11:44]  index.html.md
+    │   ├── [1.2K Jun 20 11:44]  index.qmd
+    │   └── [9.4K Jun 20 11:44]  index.tex
+    ├── [4.0K Jun 20 11:44]  2022-06-06-02-manipulando-los-datos
+    │   ├── [3.2K Jun 20 11:44]  index.html.md
+    │   ├── [1.2K Jun 20 11:44]  index.qmd
+    │   └── [9.4K Jun 20 11:44]  index.tex
+    ├── [4.0K Jun 20 11:44]  2022-06-13-03-data-visualization
+    │   ├── [3.2K Jun 20 11:44]  index.html.md
+    │   ├── [1.2K Jun 20 11:44]  index.qmd
+    │   └── [9.4K Jun 20 11:44]  index.tex
+    ├── [4.0K Jun 20 11:44]  2022-06-20-04-regresiones
+    │   ├── [3.2K Jun 20 11:44]  index.html.md
+    │   ├── [1.2K Jun 20 11:44]  index.qmd
+    │   └── [9.4K Jun 20 11:44]  index.tex
+    ├── [4.0K Jun 20 11:44]  2022-06-27-05-modelos-de-seleccion-discreta
+    │   ├── [3.2K Jun 20 11:44]  index.html.md
+    │   ├── [1.2K Jun 20 11:44]  index.qmd
+    │   └── [9.4K Jun 20 11:44]  index.tex
+    ├── [4.0K Jun 20 11:44]  2022-07-04-06-series-de-tiempo
+    │   ├── [3.2K Jun 20 11:44]  index.html.md
+    │   ├── [1.2K Jun 20 11:44]  index.qmd
+    │   └── [9.4K Jun 20 11:44]  index.tex
+    ├── [4.0K Jun 20 11:44]  2022-07-11-07-paneles-de-datos
+    │   ├── [3.2K Jun 20 11:44]  index.html.md
+    │   ├── [1.2K Jun 20 11:44]  index.qmd
+    │   └── [9.4K Jun 20 11:44]  index.tex
+    ├── [4.0K Jun 20 11:44]  2022-07-18-08-modelos-de-evaluacion-de-impacto
+    │   ├── [3.2K Jun 20 11:44]  index.html.md
+    │   ├── [1.2K Jun 20 11:44]  index.qmd
+    │   └── [9.4K Jun 20 11:44]  index.tex
+    ├── [1.8K Jun 20 11:44]  _contenido_stata.qmd
+    ├── [ 16K Jul  2 14:59]  _metadata.yml
+    └── [1.1M Jun 20 11:44]  featured.jpg
+
+117 directories, 480 files

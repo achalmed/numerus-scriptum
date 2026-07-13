@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Edison Achalma">
+<meta name="keywords" content="Typography, academic writing, programming fonts, readability, monospaced typefaces">
+<meta name="description" content="Estrategias para clasificar y gestionar extensiones de archivos ejecutables, librerías y configuraciones.">
+
+<title>Organización de archivos de software – Edison Achalma B.Sc. Econ.</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/img/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c5476e714a85dbfbbcebc64b0d85118e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-cec134992aab4372cb718d1833829c4a.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c5476e714a85dbfbbcebc64b0d85118e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-06b466aced5058fffa44584b53f99f5b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5389a330c79191949d5bbb2aa435eab0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-06b466aced5058fffa44584b53f99f5b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K4GMRCPL');</script>
+<!-- End Google Tag Manager -->
+<!-- Metadatos mejorados para Zotero -->
+<meta name="citation_title" content="Organización de archivos de software">
+<meta name="citation_author" content="Edison Achalma">
+<meta name="citation_author_orcid" content="0000-0001-6996-3364">
+<meta name="citation_publication_date" content="13 de agosto de 2019">
+<meta name="citation_language" content="es">
+<meta name="citation_keywords" content="?meta:keywords-string">
+<meta name="citation_abstract" content="?meta:abstract">
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "Organización de archivos de software",
+  "author": {
+    "@type": "Person",
+    "name": "Edison Achalma",
+    "@id": "https://orcid.org/0000-0001-6996-3364"
+  },
+  "datePublished": "13 de agosto de 2019",
+  "description": "?meta:abstract",
+  "keywords": "?meta:keywords-string",
+  "inLanguage": "es"
+}
+</script>
+
+
+<link rel="stylesheet" href="../../assets/css/global.css">
+<link rel="stylesheet" href="../../assets/css/components/bibbase.css">
+<meta property="og:title" content="Edison Achalma B.Sc. Econ.">
+<meta property="og:description" content="Investigador y educador que aplica la ciencia de datos de forma que se dé prioridad a la equidad social.">
+<meta property="og:image" content="https://numerus-scriptum.netlify.app/fundamentos-programacion/featured.jpg">
+<meta property="og:site_name" content="Edison Achalma B.Sc. Econ.">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:title" content="Organización de archivos de software">
+<meta name="twitter:description" content="Estrategias para clasificar y gestionar extensiones de archivos ejecutables, librerías y configuraciones.">
+<meta name="twitter:image" content="https://numerus-scriptum.netlify.app/fundamentos-programacion/featured.jpg">
+<meta name="twitter:creator" content="@achalmaedison">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="citation_title" content="Organización de archivos de software">
+<meta name="citation_keywords" content="Typography,academic writing,programming fonts,readability,monospaced typefaces">
+<meta name="citation_author" content="Edison Achalma">
+<meta name="citation_publication_date" content="2019-08-13">
+<meta name="citation_cover_date" content="2019-08-13">
+<meta name="citation_year" content="2019">
+<meta name="citation_online_date" content="2019-08-13">
+<meta name="citation_fulltext_html_url" content="https://numerus-scriptum.netlify.app/fundamentos-programacion/2019-08-13-organizando-tipos-de-archivos-de-softwares/">
+<meta name="citation_pdf_url" content="https://numerus-scriptum.netlify.app/fundamentos-programacion/2019-08-13-organizando-tipos-de-archivos-de-softwares/index.pdf">
+<meta name="citation_language" content="es">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Edison Achalma B.Sc. Econ.</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://achalmaedison.netlify.app/about/"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-more" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-ellipsis-h" role="img" aria-label="More">
+</i> 
+ <span class="menu-text">More</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-more">    
+        <li>
+    <a class="dropdown-item" href="https://epsilon-y-beta.netlify.app/">
+ <span class="dropdown-text">Econometria</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://dialectica-y-mercado.netlify.app/">
+ <span class="dropdown-text">Filosofía</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://pecunia-fluxus.netlify.app/">
+ <span class="dropdown-text">Finanzas</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://actus-mercator.netlify.app/">
+ <span class="dropdown-text">Gestión empresarial</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://res-publica.netlify.app/">
+ <span class="dropdown-text">Gestión pública</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://methodica.netlify.app/">
+ <span class="dropdown-text">Metodología de la investigación</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://aequilibria.netlify.app/">
+ <span class="dropdown-text">Macroeconomía</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://axiomata.netlify.app/">
+ <span class="dropdown-text">Matemáticas</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://optimums.netlify.app/">
+ <span class="dropdown-text">Microeconomía</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://numerus-scriptum.netlify.app/">
+ <span class="dropdown-text">Programación y Software</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://chaska-x.netlify.app/">
+ <span class="dropdown-text">Seguridad informática</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/achalmed"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/achalmaedison"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../index.xml"> <i class="bi bi-rss" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns" style="position: relative; width: 100%; margin: 0; padding: 0;">
+
+  <!-- Incluir imagen de fondo si existe featured.jpg, de lo contrario, partículas -->
+    <div id="particles-js"></div>
+  
+  <!-- Contenido principal del bloque de título -->
+  <div class="title-block-content">
+    <div class="quarto-title-block"><div><h1 class="title">Organización de archivos de software</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source" data-quarto-source-url="https://github.com/achalmed/numerus-scriptum/blob/main/fundamentos-programacion/2019-08-13-organizando-tipos-de-archivos-de-softwares/index.qmd"><i class="bi"></i></button></div></div>
+    
+    <div class="quarto-title-meta-author">
+      <div class="quarto-title-meta-heading">Autor/a</div>
+      <div class="quarto-title-meta-heading">Afiliación</div>
+      
+        <div class="quarto-title-meta-contents">
+        <p class="author"><a href="https://achalmaedison.netlify.app">Edison Achalma</a> <a href="mailto:elmer.achalma.09@unsch.edu.pe" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0001-6996-3364" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+      </div>
+      <div class="quarto-title-meta-contents">
+            <p class="affiliation">
+                <a href="https://www.gob.pe/unsch">
+                Universidad Nacional de San Cristóbal de Huamanga
+                </a>
+              </p>
+          </div>
+      </div>
+
+    <div class="quarto-title-meta">
+
+          
+        <div>
+        <div class="quarto-title-meta-heading">Fecha de publicación</div>
+        <div class="quarto-title-meta-contents">
+          <p class="date">13 de agosto de 2019</p>
+        </div>
+      </div>
+      
+        <div>
+        <div class="quarto-title-meta-heading">Fecha de última modificación</div>
+        <div class="quarto-title-meta-contents">
+          <p class="date-modified">13 de julio de 2026</p>
+        </div>
+      </div>
+        
+      </div>
+      
+
+    <div>
+      <div class="keywords">
+        <div class="block-title">Palabras clave</div>
+        <p>Typography, academic writing, programming fonts, readability, monospaced typefaces</p>
+      </div>
+    </div>
+
+    <!-- Categorías tras los metadatos: fila silenciosa junto a las acciones,
+         sin competir con el título -->
+            <div class="quarto-categories">
+            <div class="quarto-category">Fundamentos Programacion</div>
+          </div>
+        
+    
+    <!-- Cargar script de Particle.js desde CDN, solo si no hay featured.jpg -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+      particlesJS.load(
+        "particles-js",
+        "https://raw.githubusercontent.com/holtzy/lumo/main/_extensions/lumo/particles.json"
+      );
+    </script>
+      </div>
+</header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">Contenidos</h2>
+   
+  <ul>
+  <li><a href="#publicaciones-similares" id="toc-publicaciones-similares" class="nav-link active" data-scroll-target="#publicaciones-similares"><span class="header-section-number">1</span> Publicaciones Similares</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Otros formatos</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF (apaquarto)</a></li><li><a href="index.docx"><i class="bi bi-file-word"></i>MS Word (apaquarto)</a></li></ul></div><div class="quarto-other-links"><h2>Otros Enlaces</h2><ul><li><a href="https://gravatar.com/achalmaedison"><i class="bi bi-link-45deg"></i>Gravatar</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+<style>
+  :root {
+    --primary-color: ;
+  }
+
+  #title-block-header {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .title-block-content {
+    position: relative;
+    padding-top: 60px;
+    /* Reducido de 130px */
+    padding-bottom: 60px;
+    /* Reducido de 130px */
+    max-width: 752px;
+    margin: 0 auto;
+    z-index: 1;
+  }
+
+  #particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+</style>
+
+
+
+
+<p>¡Absolutamente! Aquí tienes una tabla comparativa de los tipos de archivos más comunes que generan los software estadísticos y de programación que mencionaste, junto con sus funciones principales y extensiones comunes. Esta tabla te será de gran utilidad para organizar tus archivos de manera eficiente:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 13%">
+<col style="width: 57%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Software</th>
+<th>Tipo de Archivo</th>
+<th>Función Principal</th>
+<th>Extensión Común</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>SPSS</strong></td>
+<td>Datos</td>
+<td>Almacena datos para análisis</td>
+<td>.sav</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Sintaxis</td>
+<td>Contiene comandos para ejecutar análisis</td>
+<td>.sps</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Salida</td>
+<td>Guarda resultados de análisis</td>
+<td>.spv</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Gráficos</td>
+<td>Almacena gráficos generados</td>
+<td>.png, .jpg, .bmp</td>
+</tr>
+<tr class="odd">
+<td><strong>Minitab</strong></td>
+<td>Proyecto</td>
+<td>Contiene todo el proyecto, incluyendo datos, análisis y resultados</td>
+<td>.mpj</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Hoja de Trabajo</td>
+<td>Almacena datos para un análisis específico</td>
+<td>.mtw</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Sesión</td>
+<td>Registra la sesión de trabajo</td>
+<td>.mtw</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Gráficos</td>
+<td>Almacena gráficos generados</td>
+<td>.png, .jpg, .bmp</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Macro</td>
+<td>Contiene comandos para automatizar tareas</td>
+<td>.mac</td>
+</tr>
+<tr class="even">
+<td><strong>EViews</strong></td>
+<td>Workfile</td>
+<td>Contiene todos los objetos creados en una sesión</td>
+<td>.wf1</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Programa</td>
+<td>Contiene código para automatizar tareas</td>
+<td>.prg</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Datos</td>
+<td>Almacena datos en formato ASCII</td>
+<td>.dat</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Serie</td>
+<td>Almacena una serie de tiempo</td>
+<td>.ser</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Ecuación</td>
+<td>Almacena una ecuación estimada</td>
+<td>.equ</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Sistema</td>
+<td>Almacena un sistema de ecuaciones</td>
+<td>.sys</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Gráfico</td>
+<td>Almacena gráficos generados</td>
+<td>.wpg</td>
+</tr>
+<tr class="odd">
+<td><strong>Gretl</strong></td>
+<td>Datos</td>
+<td>Almacena datos de series de tiempo o de corte transversal</td>
+<td>.gdt</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Resultados</td>
+<td>Guarda resultados de estimaciones</td>
+<td>.gph</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Gráficos</td>
+<td>Almacena gráficos generados</td>
+<td>.png, .jpg, .pdf</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Script</td>
+<td>Contiene comandos de gretl</td>
+<td>.gpi</td>
+</tr>
+<tr class="odd">
+<td><strong>Stata</strong></td>
+<td>Datos</td>
+<td>Almacena datos para análisis</td>
+<td>.dta</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Do-file</td>
+<td>Contiene comandos de Stata</td>
+<td>.do</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Log</td>
+<td>Registra la ejecución de comandos</td>
+<td>.log</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Resultados</td>
+<td>Almacena resultados de comandos</td>
+<td>.smcl</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Gráficos</td>
+<td>Almacena gráficos generados</td>
+<td>.gph</td>
+</tr>
+<tr class="even">
+<td><strong>Octave</strong></td>
+<td>Datos</td>
+<td>Matrices y vectores</td>
+<td>.mat</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Script</td>
+<td>Contiene código de Octave</td>
+<td>.m</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Gráficos</td>
+<td>Almacena gráficos generados</td>
+<td>.png, .jpg, .pdf</td>
+</tr>
+<tr class="odd">
+<td><strong>MATLAB</strong></td>
+<td>Datos</td>
+<td>Matrices y vectores</td>
+<td>.mat</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Script</td>
+<td>Contiene código de MATLAB</td>
+<td>.m</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Gráficos</td>
+<td>Almacena gráficos generados</td>
+<td>.fig, .png, .jpg, .pdf</td>
+</tr>
+<tr class="even">
+<td><strong>Julia</strong></td>
+<td>Datos</td>
+<td>Matrices y vectores</td>
+<td>.jld2</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Script</td>
+<td>Contiene código de Julia</td>
+<td>.jl</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Gráficos</td>
+<td>Almacena gráficos generados</td>
+<td>.png, .jpg, .pdf</td>
+</tr>
+<tr class="odd">
+<td><strong>R</strong></td>
+<td>Datos</td>
+<td>Data frames</td>
+<td>.RData</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Script</td>
+<td>Contiene código de R</td>
+<td>.R</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Gráficos</td>
+<td>Almacena gráficos generados</td>
+<td>.png, .jpg, .pdf</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Observaciones:</strong></p>
+<ul>
+<li><strong>Extensiones comunes:</strong> Aunque las extensiones pueden variar ligeramente entre diferentes versiones o configuraciones, las mencionadas son las más comunes.</li>
+<li><strong>Formatos de datos:</strong> Muchos software pueden importar y exportar datos en diversos formatos (CSV, Excel, etc.), pero sus formatos nativos son los más eficientes.</li>
+<li><strong>Scripts:</strong> Los scripts son fundamentales para automatizar tareas y reproducir análisis.</li>
+<li><strong>Gráficos:</strong> Los gráficos suelen guardarse en formatos de imagen estándar para su inclusión en informes.</li>
+</ul>
+<p><strong>Recomendaciones adicionales:</strong></p>
+<ul>
+<li><strong>Organiza tus archivos:</strong> Crea una estructura de carpetas clara y lógica para cada proyecto.</li>
+<li><strong>Utiliza nombres descriptivos:</strong> Facilita la identificación de los archivos.</li>
+<li><strong>Realiza copias de seguridad:</strong> Evita la pérdida de datos importantes.</li>
+<li><strong>Documenta tu trabajo:</strong> Añade comentarios a tus scripts para explicar el código.</li>
+</ul>
+<p><strong>¿Necesitas más información sobre algún software o tipo de archivo en particular?</strong></p>
+<p>¡Absolutamente! Aquí tienes una matriz que agrupa las extensiones de archivo más comunes utilizadas en software estadístico, según su función principal. Ten en cuenta que algunas extensiones pueden tener usos más específicos o variar ligeramente entre diferentes versiones de software:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 30%">
+<col style="width: 45%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Función Principal</th>
+<th>Extensiones Comunes</th>
+<th>Software</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Datos</strong></td>
+<td>.sav, .dta, .gdt, .mtw, .csv, .xlsx</td>
+<td>SPSS, Stata, Gretl, Minitab, Excel</td>
+</tr>
+<tr class="even">
+<td><strong>Sintaxis/Script</strong></td>
+<td>.sps, .do, .gpi, .mac, .m, .jl, .R</td>
+<td>SPSS, Stata, Gretl, Minitab, Octave, MATLAB, Julia, R</td>
+</tr>
+<tr class="odd">
+<td><strong>Resultados</strong></td>
+<td>.spv, .smcl, .gph, .mtw, .txt</td>
+<td>SPSS, Stata, Gretl, Minitab</td>
+</tr>
+<tr class="even">
+<td><strong>Gráficos</strong></td>
+<td>.png, .jpg, .bmp, .pdf, .fig, .wpg</td>
+<td>Casi todos los software</td>
+</tr>
+<tr class="odd">
+<td><strong>Proyecto/Trabajo</strong></td>
+<td>.mpj, .wf1</td>
+<td>Minitab, EViews</td>
+</tr>
+<tr class="even">
+<td><strong>Sesión</strong></td>
+<td>.mtw</td>
+<td>Minitab</td>
+</tr>
+<tr class="odd">
+<td><strong>Modelo/Ecuación</strong></td>
+<td>.equ, .sys</td>
+<td>EViews</td>
+</tr>
+<tr class="even">
+<td><strong>Datos en formato binario</strong></td>
+<td>.mat, .jld2, .RData</td>
+<td>MATLAB, Julia, R</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Explicación de las agrupaciones:</strong></p>
+<ul>
+<li><strong>Datos:</strong> Almacenan los conjuntos de datos utilizados para el análisis.</li>
+<li><strong>Sintaxis/Script:</strong> Contienen los comandos o código que se ejecutan para realizar los análisis.</li>
+<li><strong>Resultados:</strong> Guardan los resultados de los análisis, como tablas, estadísticas y resultados de modelos.</li>
+<li><strong>Gráficos:</strong> Almacenan las representaciones visuales de los datos o resultados.</li>
+<li><strong>Proyecto/Trabajo:</strong> Contienen toda la información relacionada con un proyecto específico, incluyendo datos, análisis y resultados.</li>
+<li><strong>Sesión:</strong> Registran la sesión de trabajo, incluyendo los comandos ejecutados y los resultados obtenidos.</li>
+<li><strong>Modelo/Ecuación:</strong> Almacenan modelos estadísticos o ecuaciones estimadas.</li>
+<li><strong>Datos en formato binario:</strong> Almacenan datos en un formato optimizado para el software, a menudo utilizado para grandes conjuntos de datos o estructuras de datos complejas.</li>
+</ul>
+<p><strong>Observaciones adicionales:</strong></p>
+<ul>
+<li><strong>CSV (Comma Separated Values):</strong> Es un formato de texto plano muy común para intercambiar datos entre diferentes programas.</li>
+<li><strong>Excel (.xlsx):</strong> Aunque no está diseñado específicamente para análisis estadístico, se utiliza comúnmente para almacenar y manipular datos.</li>
+<li><strong>Otros formatos:</strong> Existen muchos otros formatos de archivo que pueden ser utilizados, dependiendo del software y la tarea específica.</li>
+</ul>
+<p><strong>¿Necesitas más detalles sobre alguna extensión en particular o sobre cómo convertir entre diferentes formatos?</strong></p>
+<p><strong>Ejemplo de uso:</strong></p>
+<p>Si tienes un archivo de datos en formato .csv y quieres analizarlo en SPSS, puedes importarlo a un nuevo archivo .sav. Luego, escribirías un script .sps para realizar el análisis y guardar los resultados en un archivo .spv. Finalmente, podrías exportar los gráficos generados en formato .png para incluirlos en un informe.</p>
+<p><strong>¿Hay algo más que te gustaría saber sobre los archivos en software estadístico?</strong></p>
+<p>¡Claro! Aquí tienes la misma opción en inglés, pero con algunas palabras más concisas y comunes en el ámbito de la programación y el análisis de datos:</p>
+<p><strong>Option 2: More descriptive words:</strong></p>
+<ul>
+<li><strong>Datos:</strong> Data</li>
+<li><strong>Sintaxis/Script:</strong> Code</li>
+<li><strong>Resultados:</strong> Output</li>
+<li><strong>Gráficos:</strong> Graphs</li>
+<li><strong>Proyecto:</strong> Project</li>
+<li><strong>Sesión:</strong> Session</li>
+<li><strong>Modelo:</strong> Model</li>
+<li><strong>Binario:</strong> Binary</li>
+</ul>
+<p><strong>A continuación te explicamos por qué se suelen utilizar estos términos:</strong></p>
+<ul>
+<li><strong>Datos:</strong> Este es el término más directo para la información en bruto con la que estás trabajando.</li>
+<li><strong>Código:</strong> Se refiere a las instrucciones que das al ordenador para realizar cálculos o crear visualizaciones.</li>
+<li><strong>Salida:</strong> Es el resultado de ejecutar tu código, como tablas, gráficos o resultados numéricos.</li>
+<li><strong>Gráficos:</strong> Este es un término más general para cualquier representación visual de tus datos.</li>
+<li><strong>Proyecto:</strong> Se refiere a la colección general de archivos y código relacionados con un análisis específico.</li>
+<li><strong>Sesión:</strong> Es un registro de las acciones que realizaste durante un periodo de trabajo específico.</li>
+<li><strong>Modelo:</strong> Se refiere a una representación matemática de un fenómeno del mundo real.</li>
+<li><strong>Binario:</strong> Se refiere a los datos almacenados en un formato binario, que a menudo se utiliza para la eficiencia.</li>
+</ul>
+<p><strong>¿Quieres que te dé ejemplos de cómo utilizar estos términos en los nombres de los archivos?</strong></p>
+<p>Traducción realizada con la versión gratuita del traductor DeepL.com</p>
+<section id="publicaciones-similares" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Publicaciones Similares</h1>
+<p>Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:</p>
+<ol type="1">
+<li><a href="https://numerus-scriptum.netlify.app/fundamentos-programacion/2018-06-09-typografia/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/fundamentos-programacion/2018-06-09-typografia">Typografia</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/fundamentos-programacion/2019-08-13-organizando-tipos-de-archivos-de-softwares/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/fundamentos-programacion/2019-08-13-organizando-tipos-de-archivos-de-softwares">Organizando Tipos De Archivos De Softwares</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/fundamentos-programacion/2021-01-04-01-pensamiento-logico/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/fundamentos-programacion/2021-01-04-01-pensamiento-logico">01 Pensamiento Logico</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/fundamentos-programacion/2021-01-11-02-introduccion-a-los-algoritmos/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/fundamentos-programacion/2021-01-11-02-introduccion-a-los-algoritmos">02 Introduccion A Los Algoritmos</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/fundamentos-programacion/2021-01-18-03-programacion-basica-en-html/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/fundamentos-programacion/2021-01-18-03-programacion-basica-en-html">03 Programacion Basica En Html</a></li>
+</ol>
+<p>Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reutilización</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-achalma2019" class="csl-entry quarto-appendix-citeas" role="listitem">
+Achalma, Edison. 2019. <em>Organización de archivos de software</em>.
+accepted, August 13. <a href="https://numerus-scriptum.netlify.app/fundamentos-programacion/2019-08-13-organizando-tipos-de-archivos-de-softwares/">https://numerus-scriptum.netlify.app/fundamentos-programacion/2019-08-13-organizando-tipos-de-archivos-de-softwares/</a>.
+</div></div></section></div></main> <!-- /main -->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4GMRCPL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!-- ==========================================================================
+  MICROINTERACCIONES — "QUIET LABORATORY" (cargador de módulos)
+  ===========================================================================
+  Inyectado en todas las páginas vía include-after-body (_quarto.yml).
+  El código vive en módulos independientes en assets/js/ (ver su README):
+
+    · navbar.js         → clase .lab-scrolled al hacer scroll
+    · cursor.js         → iluminación que sigue el puntero (--lab-mx/--lab-my)
+    · hero.js           → ajuste del hero de portada al alto visible
+    · scroll-effects.js → aparición escalonada (.lab-reveal/.lab-in)
+
+  Rutas absolutas (/assets/js/...) para funcionar a cualquier profundidad.
+  Sin JS el sitio queda íntegro: nada se oculta por defecto.
+=========================================================================== -->
+<script src="../../assets/js/navbar.js"></script>
+<script src="../../assets/js/cursor.js"></script>
+<script src="../../assets/js/hero.js"></script>
+<script src="../../assets/js/scroll-effects.js"></script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/numerus-scriptum\.netlify\.app\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<script src="https://utteranc.es/client.js" repo="achalmed/website-achalma" issue-term="title" theme="boxy-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Edison Achalma ∙ Made with <a href="https://quarto.org">Quarto</a></p>
+</div>   
+    <div class="nav-footer-center">
+<p><a class="link-dark me-1" href="../../accessibility.html" title="Accessibility commitment" target="_blank" rel="noopener"><i class="fa-solid fa-universal-access" aria-label="universal-access"></i></a> <a class="link-dark me-1" href="https://fosstodon.org/@achalmaedison" title="mastodon" target="_blank" rel="noopener"><i class="fa-brands fa-mastodon" aria-label="mastodon"></i></a> <a class="link-dark me-1" href="https://github.com/achalmed" title="github" target="_blank" rel="noopener"><i class="fa-brands fa-github" aria-label="github"></i></a> <a class="link-dark me-1" href="https://linkedin.com/in/achalmaedison" title="LinkedIn" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin" aria-label="linkedin"></i></a></p>
+</div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="https://achalmaedison.netlify.app/accessibility">
+<p>Accessibility</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://achalmaedison.netlify.app/contact">
+<p>Contact</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://achalmaedison.netlify.app/license">
+<p>License</p>
+</a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="../../index.xml">
+      <i class="bi bi-rss" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

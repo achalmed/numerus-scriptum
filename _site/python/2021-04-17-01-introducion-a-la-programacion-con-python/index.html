@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Edison Achalma">
+<meta name="dcterms.date" content="2026-06-21">
+<meta name="keywords" content="keyword1, keyword2">
+<meta name="description" content="Primer programa, sintaxis básica y ejecución en diferentes entornos para principiantes en programación Python.">
+
+<title>Introducción a la programación con Python – Edison Achalma B.Sc. Econ.</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/img/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c5476e714a85dbfbbcebc64b0d85118e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-cec134992aab4372cb718d1833829c4a.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c5476e714a85dbfbbcebc64b0d85118e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-06b466aced5058fffa44584b53f99f5b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5389a330c79191949d5bbb2aa435eab0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-06b466aced5058fffa44584b53f99f5b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K4GMRCPL');</script>
+<!-- End Google Tag Manager -->
+<!-- Metadatos mejorados para Zotero -->
+<meta name="citation_title" content="Introducción a la programación con Python">
+<meta name="citation_author" content="Edison Achalma">
+<meta name="citation_author_orcid" content="0000-0001-6996-3364">
+<meta name="citation_publication_date" content="2026-06-21">
+<meta name="citation_language" content="es">
+<meta name="citation_keywords" content="?meta:keywords-string">
+<meta name="citation_abstract" content="Este abstract será actualizado una vez que se complete el contenido final del artículo.">
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "Introducción a la programación con Python",
+  "author": {
+    "@type": "Person",
+    "name": "Edison Achalma",
+    "@id": "https://orcid.org/0000-0001-6996-3364"
+  },
+  "datePublished": "2026-06-21",
+  "description": "Este abstract será actualizado una vez que se complete el contenido final del artículo.",
+  "keywords": "?meta:keywords-string",
+  "inLanguage": "es"
+}
+</script>
+
+
+<link rel="stylesheet" href="../../assets/css/global.css">
+<link rel="stylesheet" href="../../assets/css/components/bibbase.css">
+<meta property="og:title" content="Edison Achalma B.Sc. Econ.">
+<meta property="og:description" content="Investigador y educador que aplica la ciencia de datos de forma que se dé prioridad a la equidad social.">
+<meta property="og:image" content="https://numerus-scriptum.netlify.app/python/featured.jpg">
+<meta property="og:site_name" content="Edison Achalma B.Sc. Econ.">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:title" content="Introducción a la programación con Python">
+<meta name="twitter:description" content="Primer programa, sintaxis básica y ejecución en diferentes entornos para principiantes en programación Python.">
+<meta name="twitter:image" content="https://numerus-scriptum.netlify.app/python/featured.jpg">
+<meta name="twitter:creator" content="@achalmaedison">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="citation_title" content="Introducción a Python para Economistas">
+<meta name="citation_abstract" content="Este abstract será actualizado una vez que se complete el contenido final del artículo.">
+<meta name="citation_keywords" content="keyword1,keyword2">
+<meta name="citation_author" content="Edison Achalma">
+<meta name="citation_publication_date" content="2021-04-17">
+<meta name="citation_cover_date" content="2021-04-17">
+<meta name="citation_year" content="2021">
+<meta name="citation_online_date" content="2021-04-17">
+<meta name="citation_fulltext_html_url" content="https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python/">
+<meta name="citation_pdf_url" content="https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python/index.pdf">
+<meta name="citation_language" content="es">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Edison Achalma B.Sc. Econ.</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://achalmaedison.netlify.app/about/"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-more" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-ellipsis-h" role="img" aria-label="More">
+</i> 
+ <span class="menu-text">More</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-more">    
+        <li>
+    <a class="dropdown-item" href="https://epsilon-y-beta.netlify.app/">
+ <span class="dropdown-text">Econometria</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://dialectica-y-mercado.netlify.app/">
+ <span class="dropdown-text">Filosofía</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://pecunia-fluxus.netlify.app/">
+ <span class="dropdown-text">Finanzas</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://actus-mercator.netlify.app/">
+ <span class="dropdown-text">Gestión empresarial</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://res-publica.netlify.app/">
+ <span class="dropdown-text">Gestión pública</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://methodica.netlify.app/">
+ <span class="dropdown-text">Metodología de la investigación</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://aequilibria.netlify.app/">
+ <span class="dropdown-text">Macroeconomía</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://axiomata.netlify.app/">
+ <span class="dropdown-text">Matemáticas</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://optimums.netlify.app/">
+ <span class="dropdown-text">Microeconomía</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://numerus-scriptum.netlify.app/">
+ <span class="dropdown-text">Programación y Software</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://chaska-x.netlify.app/">
+ <span class="dropdown-text">Seguridad informática</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/achalmed"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/achalmaedison"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../index.xml"> <i class="bi bi-rss" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns" style="position: relative; width: 100%; margin: 0; padding: 0;">
+
+  <!-- Incluir imagen de fondo si existe featured.jpg, de lo contrario, partículas -->
+    <div id="particles-js"></div>
+  
+  <!-- Contenido principal del bloque de título -->
+  <div class="title-block-content">
+    <div class="quarto-title-block"><div><h1 class="title">Introducción a la programación con Python</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source" data-quarto-source-url="https://github.com/achalmed/numerus-scriptum/blob/main/python/2021-04-17-01-introducion-a-la-programacion-con-python/index.qmd"><i class="bi"></i></button></div></div>
+        <p class="subtitle lead">Guía rigurosa basada en la documentación oficial de Python — sin variables, tipos, condicionales ni funciones</p>
+    
+    <div class="quarto-title-meta-author">
+      <div class="quarto-title-meta-heading">Autores/as</div>
+      <div class="quarto-title-meta-heading">Afiliación</div>
+      
+        <div class="quarto-title-meta-contents">
+        <p class="author"><a href="https://achalmaedison.netlify.app">Edison Achalma</a> <a href="mailto:elmer.achalma.09@unsch.edu.pe" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0001-6996-3364" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+      </div>
+      <div class="quarto-title-meta-contents">
+            <p class="affiliation">
+                <a href="https://www.gob.pe/unsch">
+                Universidad Nacional de San Cristóbal de Huamanga
+                </a>
+              </p>
+          </div>
+        <div class="quarto-title-meta-contents">
+        <p class="author">Edison Achalma </p>
+      </div>
+      <div class="quarto-title-meta-contents">
+          </div>
+      </div>
+
+    <div class="quarto-title-meta">
+
+          
+        <div>
+        <div class="quarto-title-meta-heading">Fecha de publicación</div>
+        <div class="quarto-title-meta-contents">
+          <p class="date">2026-06-21</p>
+        </div>
+      </div>
+      
+        <div>
+        <div class="quarto-title-meta-heading">Fecha de última modificación</div>
+        <div class="quarto-title-meta-contents">
+          <p class="date-modified">13 de julio de 2026</p>
+        </div>
+      </div>
+        
+      </div>
+      
+    <div>
+      <div class="abstract">
+        <div class="block-title">Resumen</div>
+        Este abstract será actualizado una vez que se complete el contenido final del artículo.
+      </div>
+    </div>
+
+    <div>
+      <div class="keywords">
+        <div class="block-title">Palabras clave</div>
+        <p>keyword1, keyword2</p>
+      </div>
+    </div>
+
+    <!-- Categorías tras los metadatos: fila silenciosa junto a las acciones,
+         sin competir con el título -->
+            <div class="quarto-categories">
+            <div class="quarto-category">Python</div>
+          </div>
+        
+    
+    <!-- Cargar script de Particle.js desde CDN, solo si no hay featured.jpg -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+      particlesJS.load(
+        "particles-js",
+        "https://raw.githubusercontent.com/holtzy/lumo/main/_extensions/lumo/particles.json"
+      );
+    </script>
+      </div>
+</header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">Contenidos</h2>
+   
+  <ul>
+  <li><a href="#introducción-a-la-programación-con-python" id="toc-introducción-a-la-programación-con-python" class="nav-link active" data-scroll-target="#introducción-a-la-programación-con-python"><span class="header-section-number">1</span> Introducción a la programación con Python</a>
+  <ul class="collapse">
+  <li><a href="#tabla-de-contenidos" id="toc-tabla-de-contenidos" class="nav-link" data-scroll-target="#tabla-de-contenidos"><span class="header-section-number">1.1</span> Tabla de contenidos</a></li>
+  <li><a href="#qué-es-python-definición-oficial" id="toc-qué-es-python-definición-oficial" class="nav-link" data-scroll-target="#qué-es-python-definición-oficial"><span class="header-section-number">1.2</span> 1. ¿Qué es Python? Definición oficial</a></li>
+  <li><a href="#por-qué-existe-python-la-motivación-original" id="toc-por-qué-existe-python-la-motivación-original" class="nav-link" data-scroll-target="#por-qué-existe-python-la-motivación-original"><span class="header-section-number">1.3</span> 2. ¿Por qué existe Python? La motivación original</a></li>
+  <li><a href="#características-que-distinguen-a-python-como-lenguaje" id="toc-características-que-distinguen-a-python-como-lenguaje" class="nav-link" data-scroll-target="#características-que-distinguen-a-python-como-lenguaje"><span class="header-section-number">1.4</span> 3. Características que distinguen a Python como lenguaje</a></li>
+  <li><a href="#por-qué-los-programas-en-python-son-compactos-y-legibles" id="toc-por-qué-los-programas-en-python-son-compactos-y-legibles" class="nav-link" data-scroll-target="#por-qué-los-programas-en-python-son-compactos-y-legibles"><span class="header-section-number">1.5</span> 4. Por qué los programas en Python son compactos y legibles</a></li>
+  <li><a href="#extensibilidad-python-como-lenguaje-de-extensión" id="toc-extensibilidad-python-como-lenguaje-de-extensión" class="nav-link" data-scroll-target="#extensibilidad-python-como-lenguaje-de-extensión"><span class="header-section-number">1.6</span> 5. Extensibilidad: Python como lenguaje de extensión</a></li>
+  <li><a href="#origen-del-nombre-python" id="toc-origen-del-nombre-python" class="nav-link" data-scroll-target="#origen-del-nombre-python"><span class="header-section-number">1.7</span> 6. Origen del nombre “Python”</a></li>
+  <li><a href="#estructura-oficial-del-tutorial-de-python" id="toc-estructura-oficial-del-tutorial-de-python" class="nav-link" data-scroll-target="#estructura-oficial-del-tutorial-de-python"><span class="header-section-number">1.8</span> 7. Estructura oficial del tutorial de Python</a></li>
+  <li><a href="#versiones-de-python-y-ciclo-de-vida-oficial" id="toc-versiones-de-python-y-ciclo-de-vida-oficial" class="nav-link" data-scroll-target="#versiones-de-python-y-ciclo-de-vida-oficial"><span class="header-section-number">1.9</span> 8. Versiones de Python y ciclo de vida oficial</a></li>
+  <li><a href="#instalación-de-python-documentación-oficial" id="toc-instalación-de-python-documentación-oficial" class="nav-link" data-scroll-target="#instalación-de-python-documentación-oficial"><span class="header-section-number">1.10</span> 9. Instalación de Python: documentación oficial</a>
+  <ul class="collapse">
+  <li><a href="#dónde-descargar" id="toc-dónde-descargar" class="nav-link" data-scroll-target="#dónde-descargar"><span class="header-section-number">1.10.1</span> 9.1. Dónde descargar</a></li>
+  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows"><span class="header-section-number">1.10.2</span> 9.2. Windows</a></li>
+  <li><a href="#verificación-de-firma-digital-en-windows-y-macos" id="toc-verificación-de-firma-digital-en-windows-y-macos" class="nav-link" data-scroll-target="#verificación-de-firma-digital-en-windows-y-macos"><span class="header-section-number">1.10.3</span> 9.3. Verificación de firma digital en Windows y macOS</a></li>
+  <li><a href="#linux-nota-sobre-el-alcance-de-esta-guía" id="toc-linux-nota-sobre-el-alcance-de-esta-guía" class="nav-link" data-scroll-target="#linux-nota-sobre-el-alcance-de-esta-guía"><span class="header-section-number">1.10.4</span> 9.4. Linux: nota sobre el alcance de esta guía</a></li>
+  </ul></li>
+  <li><a href="#verificación-de-la-integridad-del-instalador" id="toc-verificación-de-la-integridad-del-instalador" class="nav-link" data-scroll-target="#verificación-de-la-integridad-del-instalador"><span class="header-section-number">1.11</span> 10. Verificación de la integridad del instalador</a></li>
+  <li><a href="#invocar-el-intérprete-conceptos-generales" id="toc-invocar-el-intérprete-conceptos-generales" class="nav-link" data-scroll-target="#invocar-el-intérprete-conceptos-generales"><span class="header-section-number">1.12</span> 11. Invocar el intérprete: conceptos generales</a>
+  <ul class="collapse">
+  <li><a href="#ubicación-habitual-del-ejecutable" id="toc-ubicación-habitual-del-ejecutable" class="nav-link" data-scroll-target="#ubicación-habitual-del-ejecutable"><span class="header-section-number">1.12.1</span> 11.1. Ubicación habitual del ejecutable</a></li>
+  <li><a href="#en-windows" id="toc-en-windows" class="nav-link" data-scroll-target="#en-windows"><span class="header-section-number">1.12.2</span> 11.2. En Windows</a></li>
+  <li><a href="#comportamiento-general-similar-al-shell-de-unix" id="toc-comportamiento-general-similar-al-shell-de-unix" class="nav-link" data-scroll-target="#comportamiento-general-similar-al-shell-de-unix"><span class="header-section-number">1.12.3</span> 11.3. Comportamiento general, similar al shell de Unix</a></li>
+  </ul></li>
+  <li><a href="#el-modo-interactivo" id="toc-el-modo-interactivo" class="nav-link" data-scroll-target="#el-modo-interactivo"><span class="header-section-number">1.13</span> 12. El modo interactivo</a></li>
+  <li><a href="#edición-de-línea-de-comandos-en-el-intérprete" id="toc-edición-de-línea-de-comandos-en-el-intérprete" class="nav-link" data-scroll-target="#edición-de-línea-de-comandos-en-el-intérprete"><span class="header-section-number">1.14</span> 13. Edición de línea de comandos en el intérprete</a></li>
+  <li><a href="#ejecutar-python-como-script-modo-no-interactivo" id="toc-ejecutar-python-como-script-modo-no-interactivo" class="nav-link" data-scroll-target="#ejecutar-python-como-script-modo-no-interactivo"><span class="header-section-number">1.15</span> 14. Ejecutar Python como script (modo no interactivo)</a></li>
+  <li><a href="#la-opción--c-ejecutar-un-comando-directo" id="toc-la-opción--c-ejecutar-un-comando-directo" class="nav-link" data-scroll-target="#la-opción--c-ejecutar-un-comando-directo"><span class="header-section-number">1.16</span> 15. La opción <code>-c</code>: ejecutar un comando directo</a></li>
+  <li><a href="#la-opción--m-ejecutar-un-módulo-como-script" id="toc-la-opción--m-ejecutar-un-módulo-como-script" class="nav-link" data-scroll-target="#la-opción--m-ejecutar-un-módulo-como-script"><span class="header-section-number">1.17</span> 16. La opción <code>-m</code>: ejecutar un módulo como script</a></li>
+  <li><a href="#la-opción--i-modo-interactivo-después-de-un-script" id="toc-la-opción--i-modo-interactivo-después-de-un-script" class="nav-link" data-scroll-target="#la-opción--i-modo-interactivo-después-de-un-script"><span class="header-section-number">1.18</span> 17. La opción <code>-i</code>: modo interactivo después de un script</a></li>
+  <li><a href="#paso-de-argumentos-sys.argv" id="toc-paso-de-argumentos-sys.argv" class="nav-link" data-scroll-target="#paso-de-argumentos-sys.argv"><span class="header-section-number">1.19</span> 18. Paso de argumentos: <code>sys.argv</code></a></li>
+  <li><a href="#el-intérprete-y-su-entorno-codificación-del-código-fuente" id="toc-el-intérprete-y-su-entorno-codificación-del-código-fuente" class="nav-link" data-scroll-target="#el-intérprete-y-su-entorno-codificación-del-código-fuente"><span class="header-section-number">1.20</span> 19. El intérprete y su entorno: codificación del código fuente</a>
+  <ul class="collapse">
+  <li><a href="#declarar-una-codificación-distinta-a-la-predeterminada" id="toc-declarar-una-codificación-distinta-a-la-predeterminada" class="nav-link" data-scroll-target="#declarar-una-codificación-distinta-a-la-predeterminada"><span class="header-section-number">1.20.1</span> 19.1. Declarar una codificación distinta a la predeterminada</a></li>
+  </ul></li>
+  <li><a href="#la-línea-shebang-en-unixlinux" id="toc-la-línea-shebang-en-unixlinux" class="nav-link" data-scroll-target="#la-línea-shebang-en-unixlinux"><span class="header-section-number">1.21</span> 20. La línea shebang en Unix/Linux</a></li>
+  <li><a href="#salir-del-intérprete" id="toc-salir-del-intérprete" class="nav-link" data-scroll-target="#salir-del-intérprete"><span class="header-section-number">1.22</span> 21. Salir del intérprete</a></li>
+  <li><a href="#comentarios-en-python" id="toc-comentarios-en-python" class="nav-link" data-scroll-target="#comentarios-en-python"><span class="header-section-number">1.23</span> 22. Comentarios en Python</a></li>
+  <li><a href="#el-intérprete-como-calculadora-una-vista-previa-controlada" id="toc-el-intérprete-como-calculadora-una-vista-previa-controlada" class="nav-link" data-scroll-target="#el-intérprete-como-calculadora-una-vista-previa-controlada"><span class="header-section-number">1.24</span> 23. El intérprete como calculadora: una vista previa controlada</a></li>
+  <li><a href="#pythonstartup-personalizar-el-inicio-del-modo-interactivo" id="toc-pythonstartup-personalizar-el-inicio-del-modo-interactivo" class="nav-link" data-scroll-target="#pythonstartup-personalizar-el-inicio-del-modo-interactivo"><span class="header-section-number">1.25</span> 24. PYTHONSTARTUP: personalizar el inicio del modo interactivo</a></li>
+  <li><a href="#glosario-mínimo-para-esta-etapa" id="toc-glosario-mínimo-para-esta-etapa" class="nav-link" data-scroll-target="#glosario-mínimo-para-esta-etapa"><span class="header-section-number">1.26</span> 25. Glosario mínimo para esta etapa</a></li>
+  <li><a href="#qué-sigue-hoja-de-ruta-de-las-próximas-guías" id="toc-qué-sigue-hoja-de-ruta-de-las-próximas-guías" class="nav-link" data-scroll-target="#qué-sigue-hoja-de-ruta-de-las-próximas-guías"><span class="header-section-number">1.27</span> 26. Qué sigue: hoja de ruta de las próximas guías</a></li>
+  <li><a href="#referencias-oficiales" id="toc-referencias-oficiales" class="nav-link" data-scroll-target="#referencias-oficiales"><span class="header-section-number">1.28</span> 27. Referencias oficiales</a></li>
+  </ul></li>
+  <li><a href="#publicaciones-similares" id="toc-publicaciones-similares" class="nav-link" data-scroll-target="#publicaciones-similares"><span class="header-section-number">2</span> Publicaciones Similares</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Otros formatos</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF (apaquarto)</a></li><li><a href="index.docx"><i class="bi bi-file-word"></i>MS Word (apaquarto)</a></li></ul></div><div class="quarto-other-links"><h2>Otros Enlaces</h2><ul><li><a href="https://gravatar.com/achalmaedison"><i class="bi bi-link-45deg"></i>Gravatar</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+<style>
+  :root {
+    --primary-color: ;
+  }
+
+  #title-block-header {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .title-block-content {
+    position: relative;
+    padding-top: 60px;
+    /* Reducido de 130px */
+    padding-bottom: 60px;
+    /* Reducido de 130px */
+    max-width: 752px;
+    margin: 0 auto;
+    z-index: 1;
+  }
+
+  #particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+</style>
+
+
+
+
+<section id="introducción-a-la-programación-con-python" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introducción a la programación con Python</h1>
+<blockquote class="blockquote">
+<p>Esta guía es una introducción <strong>pura</strong> al lenguaje Python, construida exclusivamente sobre la documentación oficial: el <em>Python Tutorial</em> (docs.python.org/3/tutorial) y la página oficial de descargas (python.org/downloads). Trata <strong>únicamente</strong> qué es Python, su filosofía de diseño, cómo instalarlo y cómo invocar el intérprete (modo interactivo y modo script). <strong>Deliberadamente no cubre</strong> variables, expresiones, statements, objetos, ejecución condicional, iteraciones, funciones, dataframes ni machine learning — esos temas se abordan en guías posteriores y separadas, siguiendo tu propia secuencia ya establecida (02 a 11). Esta guía es, en ese sentido, el “capítulo 0”: el terreno que hay que pisar antes de escribir la primera línea de código con sentido.</p>
+</blockquote>
+<hr>
+<section id="tabla-de-contenidos" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="tabla-de-contenidos"><span class="header-section-number">1.1</span> Tabla de contenidos</h2>
+<ol type="1">
+<li><a href="#1-qué-es-python-definición-oficial">¿Qué es Python? Definición oficial</a></li>
+<li><a href="#2-por-qué-existe-python-la-motivación-original">¿Por qué existe Python? La motivación original</a></li>
+<li><a href="#3-características-que-distinguen-a-python-como-lenguaje">Características que distinguen a Python como lenguaje</a></li>
+<li><a href="#4-por-qué-los-programas-en-python-son-compactos-y-legibles">Por qué los programas en Python son compactos y legibles</a></li>
+<li><a href="#5-extensibilidad-python-como-lenguaje-de-extensión">Extensibilidad: Python como lenguaje de extensión</a></li>
+<li><a href="#6-origen-del-nombre-python">Origen del nombre “Python”</a></li>
+<li><a href="#7-estructura-oficial-del-tutorial-de-python">Estructura oficial del tutorial de Python</a></li>
+<li><a href="#8-versiones-de-python-y-ciclo-de-vida-oficial">Versiones de Python y ciclo de vida oficial</a></li>
+<li><a href="#9-instalación-de-python-documentación-oficial">Instalación de Python: documentación oficial</a></li>
+<li><a href="#10-verificación-de-la-integridad-del-instalador">Verificación de la integridad del instalador</a></li>
+<li><a href="#11-invocar-el-intérprete-conceptos-generales">Invocar el intérprete: conceptos generales</a></li>
+<li><a href="#12-el-modo-interactivo">El modo interactivo</a></li>
+<li><a href="#13-edición-de-línea-de-comandos-en-el-intérprete">Edición de línea de comandos en el intérprete</a></li>
+<li><a href="#14-ejecutar-python-como-script-modo-no-interactivo">Ejecutar Python como script (modo no interactivo)</a></li>
+<li><a href="#15-la-opción--c-ejecutar-un-comando-directo">La opción <code>-c</code>: ejecutar un comando directo</a></li>
+<li><a href="#16-la-opción--m-ejecutar-un-módulo-como-script">La opción <code>-m</code>: ejecutar un módulo como script</a></li>
+<li><a href="#17-la-opción--i-modo-interactivo-después-de-un-script">La opción <code>-i</code>: modo interactivo después de un script</a></li>
+<li><a href="#18-paso-de-argumentos-sysargv">Paso de argumentos: <code>sys.argv</code></a></li>
+<li><a href="#19-el-intérprete-y-su-entorno-codificación-del-código-fuente">El intérprete y su entorno: codificación del código fuente</a></li>
+<li><a href="#20-la-línea-shebang-en-unixlinux">La línea shebang en Unix/Linux</a></li>
+<li><a href="#21-salir-del-intérprete">Salir del intérprete</a></li>
+<li><a href="#22-comentarios-en-python">Comentarios en Python</a></li>
+<li><a href="#23-el-intérprete-como-calculadora-una-vista-previa-controlada">El intérprete como calculadora: una vista previa controlada</a></li>
+<li><a href="#24-pythonstartup-personalizar-el-inicio-del-modo-interactivo">PYTHONSTARTUP: personalizar el inicio del modo interactivo</a></li>
+<li><a href="#25-glosario-mínimo-para-esta-etapa">Glosario mínimo para esta etapa</a></li>
+<li><a href="#26-qué-sigue-hoja-de-ruta-de-las-próximas-guías">Qué sigue: hoja de ruta de las próximas guías</a></li>
+<li><a href="#27-referencias-oficiales">Referencias oficiales</a></li>
+</ol>
+<hr>
+</section>
+<section id="qué-es-python-definición-oficial" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="qué-es-python-definición-oficial"><span class="header-section-number">1.2</span> 1. ¿Qué es Python? Definición oficial</h2>
+<p>Antes de instalar nada, conviene fijar con precisión qué es Python según su propia documentación, en vez de partir de descripciones de terceros.</p>
+<p>El <em>Python Tutorial</em> oficial lo resume así: Python es, ante todo, un lenguaje pensado para <strong>automatizar tareas</strong> que surgen del trabajo cotidiano con computadoras — por ejemplo, hacer búsqueda y reemplazo sobre un gran número de archivos de texto, o renombrar y reorganizar un conjunto de archivos de fotos de forma compleja. También sirve para escribir una base de datos pequeña y personalizada, una aplicación gráfica (GUI) especializada, o un juego sencillo.</p>
+<p>La documentación es explícita sobre dónde se ubica Python frente a otras alternativas: comparado con scripts de shell de Unix o archivos batch de Windows (buenos para mover archivos y cambiar datos de texto, pero no aptos para aplicaciones GUI o juegos) y comparado con programas en C/C++/Java (que pueden tardar mucho tiempo de desarrollo incluso para un primer borrador), Python ocupa un punto intermedio: <strong>es simple de usar pero es un lenguaje de programación real</strong>, con mucha más estructura y soporte para programas grandes que lo que ofrecen los scripts de shell o los archivos batch — y al mismo tiempo, ofrece bastante más verificación de errores que C.</p>
+<hr>
+</section>
+<section id="por-qué-existe-python-la-motivación-original" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="por-qué-existe-python-la-motivación-original"><span class="header-section-number">1.3</span> 2. ¿Por qué existe Python? La motivación original</h2>
+<p>Python nació para resolver una frustración concreta y muy específica del desarrollo de software profesional. Si trabajas con varias bibliotecas en C/C++/Java, el ciclo habitual de escribir/compilar/probar/recompilar puede resultar demasiado lento. Si estás escribiendo un conjunto de pruebas (<em>test suite</em>) para una de esas bibliotecas, escribir el código de prueba puede volverse una tarea tediosa. O quizás escribiste un programa que podría beneficiarse de un lenguaje de extensión, pero no quieres diseñar e implementar un lenguaje completamente nuevo solo para esa aplicación.</p>
+<p>Python, según la documentación oficial, <strong>es justamente el lenguaje para esos casos</strong>.</p>
+<hr>
+</section>
+<section id="características-que-distinguen-a-python-como-lenguaje" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="características-que-distinguen-a-python-como-lenguaje"><span class="header-section-number">1.4</span> 3. Características que distinguen a Python como lenguaje</h2>
+<p>La documentación oficial atribuye a Python las siguientes características distintivas, descritas con precisión técnica (sin entrar todavía en cómo se usan, eso corresponde a guías futuras):</p>
+<p><strong>Lenguaje de muy alto nivel (<em>very-high-level language</em>)</strong>: Python tiene tipos de datos de alto nivel incorporados de fábrica, como arreglos flexibles y diccionarios. Por sus tipos de datos más generales, Python es aplicable a un dominio de problemas mucho más amplio que Awk o incluso Perl, aunque muchas cosas son al menos igual de sencillas en Python que en esos lenguajes.</p>
+<p><strong>Modularidad</strong>: Python permite dividir un programa en módulos que pueden reutilizarse en otros programas Python. Viene con una amplia colección de módulos estándar que se pueden usar como base para tus propios programas, o como ejemplos para empezar a aprender a programar. Algunos de esos módulos proveen funcionalidades como E/S de archivos, llamadas al sistema, sockets, e incluso interfaces a kits de herramientas de interfaz gráfica de usuario como Tk.</p>
+<p><strong>Lenguaje interpretado</strong>: Python es un lenguaje interpretado, lo cual puede ahorrar tiempo considerable durante el desarrollo de un programa porque no es necesaria ninguna compilación ni enlazado (<em>linking</em>). El intérprete puede usarse de forma interactiva, lo que facilita experimentar con características del lenguaje, escribir programas desechables, o probar funciones durante un desarrollo de programa de abajo hacia arriba (<em>bottom-up</em>). También funciona, según la propia documentación oficial, como una práctica calculadora de escritorio.</p>
+<p>Cada una de estas características —tipos de datos de alto nivel, módulos, naturaleza interpretada— se desarrollará con mucho más detalle en las guías siguientes (variables y expresiones, objetos, funciones). Aquí solo se presentan como rasgos definitorios del lenguaje, tal como los describe su documentación oficial.</p>
+<hr>
+</section>
+<section id="por-qué-los-programas-en-python-son-compactos-y-legibles" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="por-qué-los-programas-en-python-son-compactos-y-legibles"><span class="header-section-number">1.5</span> 4. Por qué los programas en Python son compactos y legibles</h2>
+<p>La documentación oficial explica que Python permite escribir programas de forma compacta y legible, y que los programas escritos en Python son típicamente mucho más cortos que programas equivalentes en C, C++ o Java, por varias razones explícitas:</p>
+<ul>
+<li>Los tipos de datos de alto nivel permiten expresar operaciones complejas en una sola sentencia (<em>statement</em>).</li>
+<li>El agrupamiento de sentencias se hace mediante <strong>indentación</strong>, en vez de llaves de apertura y cierre.</li>
+<li>No son necesarias declaraciones de variables ni de argumentos.</li>
+</ul>
+<p>Estos tres puntos son, según la propia documentación, la explicación oficial de por qué el código Python suele “leerse” de forma más directa que el de otros lenguajes de propósito similar. El detalle de cómo funciona cada uno de ellos (qué es exactamente una sentencia, cómo opera la indentación en la práctica, cómo se declaran variables sin declaración explícita) corresponde a la guía 02 (“Variables, expresiones y statements”), no a esta introducción.</p>
+<hr>
+</section>
+<section id="extensibilidad-python-como-lenguaje-de-extensión" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="extensibilidad-python-como-lenguaje-de-extensión"><span class="header-section-number">1.6</span> 5. Extensibilidad: Python como lenguaje de extensión</h2>
+<p>Otro rasgo que la documentación oficial destaca explícitamente es que Python es <strong>extensible</strong> (<em>extensible</em>): si sabes programar en C, es sencillo añadir una nueva función o módulo incorporado (<em>built-in</em>) al intérprete, ya sea para realizar operaciones críticas a la máxima velocidad, o para enlazar programas Python con bibliotecas que solo estén disponibles en forma binaria (como una biblioteca gráfica específica de un proveedor). Una vez que te enganchas de verdad con el lenguaje, puedes enlazar el intérprete de Python dentro de una aplicación escrita en C y usarlo como lenguaje de extensión o de comandos para esa aplicación.</p>
+<p>Esta característica es la que explica, por ejemplo, por qué bibliotecas científicas de alto rendimiento (NumPy, pandas, scikit-learn, entre muchas otras que aparecerán en guías posteriores de este recorrido) pueden combinar la facilidad de uso de Python con un núcleo de cómputo escrito en C o C++.</p>
+<hr>
+</section>
+<section id="origen-del-nombre-python" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="origen-del-nombre-python"><span class="header-section-number">1.7</span> 6. Origen del nombre “Python”</h2>
+<p>Un dato que la propia documentación oficial menciona explícitamente, y anima a repetir: el lenguaje recibe su nombre del programa de la BBC <em>Monty Python’s Flying Circus</em>, y <strong>no tiene nada que ver con reptiles</strong>. Hacer referencias a sketches de Monty Python en la documentación no solo está permitido, sino que la documentación oficial lo anima activamente.</p>
+<hr>
+</section>
+<section id="estructura-oficial-del-tutorial-de-python" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="estructura-oficial-del-tutorial-de-python"><span class="header-section-number">1.8</span> 7. Estructura oficial del tutorial de Python</h2>
+<p>Antes de entrar en instalación y manejo del intérprete, vale la pena tener clara la hoja de ruta completa que sigue el tutorial oficial de Python, tal como la describe su propia introducción: el tutorial presenta varias funcionalidades del lenguaje y del sistema a través de ejemplos, comenzando por expresiones simples, sentencias y tipos de datos, pasando luego por funciones y módulos, y finalmente abordando conceptos más avanzados como excepciones y clases definidas por el usuario.</p>
+<p>Esta hoja de ruta oficial <strong>coincide, en su orden general, con la secuencia que ya seguías</strong> en tus guías 02-11 (variables/expresiones/statements → objetos → condicionales → iteraciones → funciones → dataframes → predicción/ML). Esta guía de introducción se ubica, por tanto, exactamente donde la documentación oficial la ubicaría: antes de todo eso.</p>
+<p>La documentación también es honesta sobre el método de aprendizaje recomendado: dado que la mejor forma de aprender un lenguaje es usándolo, el tutorial invita a jugar con el intérprete de Python mientras se lee. El siguiente capítulo del tutorial oficial explica la mecánica de uso del intérprete — información que, según la propia documentación, “es bastante mundana, pero esencial para poder probar los ejemplos que se muestran más adelante”. Las secciones 9 en adelante de esta guía cubren exactamente esa mecánica.</p>
+<hr>
+</section>
+<section id="versiones-de-python-y-ciclo-de-vida-oficial" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="versiones-de-python-y-ciclo-de-vida-oficial"><span class="header-section-number">1.9</span> 8. Versiones de Python y ciclo de vida oficial</h2>
+<p>Python sigue un calendario de mantenimiento formal definido en PEPs (<em>Python Enhancement Proposals</em>) específicos para cada serie de versiones (por ejemplo, PEP 619 para la serie 3.10, PEP 664 para la 3.11). Cada serie pasa por etapas: desarrollo activo, mantenimiento con correcciones de errores regulares, y finalmente una etapa de “solo correcciones de seguridad” antes de su fin de soporte (<em>end of support</em>).</p>
+<p>Al momento de escribir esta guía, según la página oficial de descargas (python.org/downloads), la serie estable más reciente es <strong>Python 3.14</strong>, con la serie 3.13 también vigente y recibiendo actualizaciones regulares; las series 3.9, 3.10 y 3.11 se encuentran ya en la etapa de “solo correcciones de seguridad”, lo que significa que ya no reciben correcciones de errores regulares y, en el caso de algunas, ya no se proveen instaladores binarios nuevos para ellas.</p>
+<blockquote class="blockquote">
+<p><strong>Recomendación práctica derivada de esto</strong>: para un entorno nuevo de aprendizaje (como el que construirás en las guías siguientes con conda/mamba), conviene partir de una versión dentro del rango de mantenimiento activo (actualmente 3.12, 3.13 o 3.14), evitando series que ya estén solo en modo de parches de seguridad.</p>
+</blockquote>
+<hr>
+</section>
+<section id="instalación-de-python-documentación-oficial" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="instalación-de-python-documentación-oficial"><span class="header-section-number">1.10</span> 9. Instalación de Python: documentación oficial</h2>
+<p>Aunque ya configuraste Miniconda/Anaconda en guías previas —que incluyen su propia distribución de Python integrada—, esta sección documenta la instalación de Python <strong>directamente desde la fuente oficial del lenguaje</strong> (python.org), independiente de cualquier distribución de terceros, siguiendo la página oficial de descargas.</p>
+<section id="dónde-descargar" class="level3" data-number="1.10.1">
+<h3 data-number="1.10.1" class="anchored" data-anchor-id="dónde-descargar"><span class="header-section-number">1.10.1</span> 9.1. Dónde descargar</h3>
+<p>La fuente oficial y única recomendada por el propio proyecto Python es <strong>python.org/downloads</strong>. Esa página lista, para cada serie de versión, su estado de mantenimiento, fecha de primer lanzamiento, fecha de fin de soporte, y el PEP que rige su calendario de lanzamientos.</p>
+</section>
+<section id="windows" class="level3" data-number="1.10.2">
+<h3 data-number="1.10.2" class="anchored" data-anchor-id="windows"><span class="header-section-number">1.10.2</span> 9.2. Windows</h3>
+<p>python.org/downloads/windows ofrece actualmente el <strong>Python install manager</strong> como mecanismo recomendado de instalación y gestión de versiones de Python en Windows, además de los instaladores tradicionales <code>.exe</code> para cada versión específica (por ejemplo, Python 3.14.x, Python 3.13.x). Cada entrada de versión indica explícitamente compatibilidad de sistema operativo — por ejemplo, la documentación oficial advierte que ciertas versiones recientes de Python 3.13 <strong>no pueden usarse en Windows 7 o anterior</strong>.</p>
+</section>
+<section id="verificación-de-firma-digital-en-windows-y-macos" class="level3" data-number="1.10.3">
+<h3 data-number="1.10.3" class="anchored" data-anchor-id="verificación-de-firma-digital-en-windows-y-macos"><span class="header-section-number">1.10.3</span> 9.3. Verificación de firma digital en Windows y macOS</h3>
+<p>La documentación oficial detalla un mecanismo de verificación de autenticidad específico por plataforma:</p>
+<ul>
+<li><strong>Windows</strong>: los ejecutables de instalación están firmados digitalmente. Esto puede verificarse viendo las propiedades del archivo ejecutable, en la pestaña de Firmas Digitales (<em>Digital Signatures</em>), y confirmando el nombre del firmante. El sujeto completo del certificado oficial es <code>CN = Python Software Foundation, O = Python Software Foundation, L = Beaverton, S = Oregon, C = US</code>, y desde el 14 de octubre de 2024 la autoridad certificadora es Microsoft Identity Verification Root Certificate Authority (anteriormente, los certificados eran emitidos por DigiCert). La documentación aclara que algunos ejecutables pueden no estar firmados —notablemente, el comando <code>pip</code> por defecto—, ya que no se construyen como parte de Python sino que se incluyen desde bibliotecas de terceros.</li>
+<li><strong>macOS</strong>: los paquetes instaladores descargables desde python.org están firmados con un certificado Apple Developer ID Installer. Desde Python 3.11.4 y 3.12.0b1 (23 de mayo de 2023), los paquetes instaladores de release se firman con certificados emitidos a la Python Software Foundation.</li>
+</ul>
+</section>
+<section id="linux-nota-sobre-el-alcance-de-esta-guía" class="level3" data-number="1.10.4">
+<h3 data-number="1.10.4" class="anchored" data-anchor-id="linux-nota-sobre-el-alcance-de-esta-guía"><span class="header-section-number">1.10.4</span> 9.4. Linux: nota sobre el alcance de esta guía</h3>
+<p>En Kubuntu y Arch Linux, una versión de Python suele venir preinstalada como parte del sistema, o se gestiona vía el gestor de paquetes de la distribución (<code>apt</code>/<code>pacman</code>) o, como ya documentaste en guías previas, vía Miniconda/Anaconda. La instalación de Python “puro” desde fuente en Linux (compilación desde el código fuente publicado en python.org) es un procedimiento avanzado que excede el alcance de esta introducción; la documentación oficial recomienda, para la mayoría de usuarios de Linux, usar el gestor de paquetes de la distribución o una distribución como Anaconda/Miniconda — que es exactamente la vía que ya tienes configurada.</p>
+<hr>
+</section>
+</section>
+<section id="verificación-de-la-integridad-del-instalador" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="verificación-de-la-integridad-del-instalador"><span class="header-section-number">1.11</span> 10. Verificación de la integridad del instalador</h2>
+<p>Más allá de la firma digital descrita en la sección anterior, la práctica general (consistente con lo ya documentado en tu guía de instalación de Miniconda/Anaconda) es verificar que el archivo descargado no haya sido alterado ni corrompido, comparando su hash con el valor publicado oficialmente junto al instalador en la página de descargas correspondiente, antes de ejecutarlo.</p>
+<hr>
+</section>
+<section id="invocar-el-intérprete-conceptos-generales" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="invocar-el-intérprete-conceptos-generales"><span class="header-section-number">1.12</span> 11. Invocar el intérprete: conceptos generales</h2>
+<p>A partir de aquí, la guía sigue de cerca el capítulo oficial “Using the Python Interpreter” (<em>Usando el intérprete de Python</em>) del tutorial.</p>
+<section id="ubicación-habitual-del-ejecutable" class="level3" data-number="1.12.1">
+<h3 data-number="1.12.1" class="anchored" data-anchor-id="ubicación-habitual-del-ejecutable"><span class="header-section-number">1.12.1</span> 11.1. Ubicación habitual del ejecutable</h3>
+<p>Según la documentación oficial, el intérprete de Python suele instalarse como <code>/usr/local/bin/python3.14</code> (ajustando el número de versión según corresponda) en las máquinas donde está disponible; agregar <code>/usr/local/bin</code> a la ruta de búsqueda de tu shell de Unix permite iniciarlo escribiendo el comando:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">python3.14</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La documentación aclara que, dado que la elección del directorio donde vive el intérprete es una opción de instalación, son posibles otras ubicaciones (por ejemplo, <code>/usr/local/python</code> es una alternativa popular); conviene verificar con la administración del sistema o la documentación de la propia distribución si hay dudas.</p>
+<blockquote class="blockquote">
+<p><strong>Nota oficial relevante para Kubuntu/Arch</strong>: en Unix, el intérprete de Python 3.x <strong>no se instala por defecto</strong> con el ejecutable llamado simplemente <code>python</code>, precisamente para no entrar en conflicto con una instalación simultánea de un ejecutable de Python 2.x. Esta es la razón oficial por la que, en muchos sistemas Linux, el comando correcto suele ser <code>python3</code> y no <code>python</code>.</p>
+</blockquote>
+</section>
+<section id="en-windows" class="level3" data-number="1.12.2">
+<h3 data-number="1.12.2" class="anchored" data-anchor-id="en-windows"><span class="header-section-number">1.12.2</span> 11.2. En Windows</h3>
+<p>En máquinas Windows donde instalaste Python desde la Microsoft Store, el comando <code>python3.14</code> (o el número de versión correspondiente) estará disponible. Si tienes instalado el lanzador <code>py.exe</code>, puedes usar el comando <code>py</code>. La documentación oficial remite a la sección sobre el <em>Python install manager</em> para conocer otras formas de iniciar Python en Windows.</p>
+</section>
+<section id="comportamiento-general-similar-al-shell-de-unix" class="level3" data-number="1.12.3">
+<h3 data-number="1.12.3" class="anchored" data-anchor-id="comportamiento-general-similar-al-shell-de-unix"><span class="header-section-number">1.12.3</span> 11.3. Comportamiento general, similar al shell de Unix</h3>
+<p>El intérprete opera de forma parecida al shell de Unix: cuando se le llama con la entrada estándar conectada a un dispositivo tty, lee y ejecuta comandos de forma interactiva; cuando se le llama con un argumento de nombre de archivo, o con un archivo como entrada estándar, lee y ejecuta un <em>script</em> desde ese archivo.</p>
+<hr>
+</section>
+</section>
+<section id="el-modo-interactivo" class="level2" data-number="1.13">
+<h2 data-number="1.13" class="anchored" data-anchor-id="el-modo-interactivo"><span class="header-section-number">1.13</span> 12. El modo interactivo</h2>
+<p>Cuando los comandos se leen desde un tty, se dice que el intérprete está en <strong>modo interactivo</strong> (<em>interactive mode</em>). En este modo, solicita el siguiente comando con el <strong>prompt primario</strong>, normalmente tres signos de mayor que (<code>&gt;&gt;&gt;</code>); para líneas de continuación, solicita con el <strong>prompt secundario</strong>, por defecto tres puntos (<code>...</code>).</p>
+<p>El intérprete imprime un mensaje de bienvenida indicando su número de versión y un aviso de copyright antes de mostrar el primer prompt:</p>
+<pre><code>$ python3.14
+Python 3.14 (default, April 4 2024, 09:25:04)
+[GCC 10.2.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt;</code></pre>
+<p>Las líneas de continuación son necesarias al introducir una construcción de varias líneas. El ejemplo que la propia documentación oficial usa para ilustrarlo (sin que esto sea todavía una explicación de condicionales, que corresponde a la guía 04) es el siguiente:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="op">&gt;&gt;&gt;</span> the_world_is_flat <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="op">&gt;&gt;&gt;</span> <span class="cf">if</span> the_world_is_flat:</span>
+<span id="cb3-3"><a href="#cb3-3"></a>...     <span class="bu">print</span>(<span class="st">"Be careful not to fall off!"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4"></a>...</span>
+<span id="cb3-5"><a href="#cb3-5"></a>Be careful <span class="kw">not</span> to fall off<span class="op">!</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Para esta guía, lo relevante de ese ejemplo no es <em>qué hace</em> el <code>if</code> (eso es tema de una guía futura), sino <em>cómo se ve</em> la interacción con el intérprete: el prompt primario <code>&gt;&gt;&gt;</code> para la primera línea, el prompt secundario <code>...</code> para las líneas de continuación, y una línea en blanco con solo <code>...</code> para indicarle al intérprete que el bloque de varias líneas ha terminado.</p>
+<hr>
+</section>
+<section id="edición-de-línea-de-comandos-en-el-intérprete" class="level2" data-number="1.14">
+<h2 data-number="1.14" class="anchored" data-anchor-id="edición-de-línea-de-comandos-en-el-intérprete"><span class="header-section-number">1.14</span> 13. Edición de línea de comandos en el intérprete</h2>
+<p>Las funciones de edición de línea del intérprete incluyen edición interactiva, sustitución de historial, y autocompletado de código en la mayoría de los sistemas, según la documentación oficial.</p>
+<p>La forma más rápida de comprobar si tu sistema soporta edición de línea de comandos es escribir una palabra en el prompt de Python y luego presionar la flecha izquierda (o <code>Control-b</code>). Si el cursor se mueve, tienes edición de línea de comandos disponible. Si no ocurre nada visible, o aparece una secuencia como <code>^[[D</code> o <code>^B</code>, la edición de línea de comandos no está disponible, y solo podrás usar la tecla de retroceso (<em>backspace</em>) para borrar caracteres de la línea actual.</p>
+<hr>
+</section>
+<section id="ejecutar-python-como-script-modo-no-interactivo" class="level2" data-number="1.15">
+<h2 data-number="1.15" class="anchored" data-anchor-id="ejecutar-python-como-script-modo-no-interactivo"><span class="header-section-number">1.15</span> 14. Ejecutar Python como script (modo no interactivo)</h2>
+<p>Cuando se le da al intérprete un argumento con el nombre de un archivo, lee y ejecuta ese archivo como un <em>script</em>, en vez de entrar en modo interactivo. Esta es la forma habitual de ejecutar programas Python guardados en un archivo <code>.py</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">python3</span> mi_programa.py</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Esta guía no desarrolla todavía el contenido que iría dentro de <code>mi_programa.py</code> —eso corresponde a partir de la guía 02 en adelante—, pero sí establece la mecánica de invocación, que es información de esta etapa “previa al código” según la propia estructura del tutorial oficial.</p>
+<hr>
+</section>
+<section id="la-opción--c-ejecutar-un-comando-directo" class="level2" data-number="1.16">
+<h2 data-number="1.16" class="anchored" data-anchor-id="la-opción--c-ejecutar-un-comando-directo"><span class="header-section-number">1.16</span> 15. La opción <code>-c</code>: ejecutar un comando directo</h2>
+<p>Una segunda forma de iniciar el intérprete es <code>python -c comando [arg] ...</code>, que ejecuta la(s) sentencia(s) en <em>comando</em>, de forma análoga a la opción <code>-c</code> del shell. Dado que las sentencias de Python suelen contener espacios u otros caracteres especiales para el shell, la documentación oficial recomienda encerrar <em>comando</em> entre comillas en su totalidad.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">python3</span> <span class="at">-c</span> <span class="st">"print('hola')"</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="la-opción--m-ejecutar-un-módulo-como-script" class="level2" data-number="1.17">
+<h2 data-number="1.17" class="anchored" data-anchor-id="la-opción--m-ejecutar-un-módulo-como-script"><span class="header-section-number">1.17</span> 16. La opción <code>-m</code>: ejecutar un módulo como script</h2>
+<p>Algunos módulos de Python también son útiles como scripts. Pueden invocarse usando <code>python -m módulo [arg] ...</code>, lo cual ejecuta el archivo fuente correspondiente a <em>módulo</em> como si hubieras escrito su nombre completo en la línea de comandos.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv mi_entorno</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>(el ejemplo anterior es solo ilustrativo de la sintaxis <code>-m</code>; el manejo de entornos virtuales con <code>venv</code> no es tema de esta guía, ya que tu flujo de trabajo usa conda/mamba, documentado en guías previas).</p>
+<hr>
+</section>
+<section id="la-opción--i-modo-interactivo-después-de-un-script" class="level2" data-number="1.18">
+<h2 data-number="1.18" class="anchored" data-anchor-id="la-opción--i-modo-interactivo-después-de-un-script"><span class="header-section-number">1.18</span> 17. La opción <code>-i</code>: modo interactivo después de un script</h2>
+<p>Cuando se usa un archivo de script, a veces es útil poder ejecutar el script y luego entrar en modo interactivo. Esto puede hacerse pasando <code>-i</code> antes del script:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">python3</span> <span class="at">-i</span> mi_programa.py</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Todas las opciones de línea de comandos están descritas, según remite la documentación oficial, en la sección “Command line and environment” de la referencia de Python.</p>
+<hr>
+</section>
+<section id="paso-de-argumentos-sys.argv" class="level2" data-number="1.19">
+<h2 data-number="1.19" class="anchored" data-anchor-id="paso-de-argumentos-sys.argv"><span class="header-section-number">1.19</span> 18. Paso de argumentos: <code>sys.argv</code></h2>
+<p>Cuando el intérprete los reconoce, el nombre del script y los argumentos adicionales que le siguen se convierten en una lista de cadenas de texto y se asignan a la variable <code>argv</code> dentro del módulo <code>sys</code>. Se puede acceder a esa lista ejecutando <code>import sys</code>.</p>
+<p>Algunos detalles precisos de la documentación oficial sobre esta variable:</p>
+<ul>
+<li>La longitud de la lista es de al menos uno; cuando no se da ningún script ni argumentos, <code>sys.argv[0]</code> es una cadena vacía.</li>
+<li>Cuando el nombre del script se da como <code>'-'</code> (es decir, entrada estándar), <code>sys.argv[0]</code> se fija como <code>'-'</code>.</li>
+<li>Cuando se usa <code>-c comando</code>, <code>sys.argv[0]</code> se fija como <code>'-c'</code>.</li>
+<li>Cuando se usa <code>-m módulo</code>, <code>sys.argv[0]</code> se fija con el nombre completo del módulo localizado.</li>
+<li>Las opciones que aparecen después de <code>-c comando</code> o <code>-m módulo</code> no son consumidas por el procesamiento de opciones del propio intérprete de Python, sino que se dejan en <code>sys.argv</code> para que las maneje el comando o módulo correspondiente.</li>
+</ul>
+<blockquote class="blockquote">
+<p>Esta sección se documenta aquí por completitud y rigor (es parte literal del capítulo oficial sobre el intérprete), aunque su uso práctico pleno requiere conceptos de listas y módulos que se desarrollarán en guías posteriores.</p>
+</blockquote>
+<hr>
+</section>
+<section id="el-intérprete-y-su-entorno-codificación-del-código-fuente" class="level2" data-number="1.20">
+<h2 data-number="1.20" class="anchored" data-anchor-id="el-intérprete-y-su-entorno-codificación-del-código-fuente"><span class="header-section-number">1.20</span> 19. El intérprete y su entorno: codificación del código fuente</h2>
+<p>Por defecto, los archivos fuente de Python se tratan como codificados en <strong>UTF-8</strong>. En esa codificación, pueden usarse simultáneamente caracteres de la mayoría de los idiomas del mundo en literales de cadena, identificadores y comentarios — aunque la biblioteca estándar solo usa caracteres ASCII para identificadores, una convención que cualquier código portable debería seguir. Para mostrar correctamente todos esos caracteres, tu editor debe reconocer que el archivo está en UTF-8 y debe usar una fuente que soporte todos los caracteres del archivo.</p>
+<blockquote class="blockquote">
+<p><strong>Nota práctica para tu entorno</strong>: dado que trabajas con Neovim sobre Kubuntu/Arch, UTF-8 es generalmente la codificación por defecto en ambos sistemas, por lo que normalmente no necesitarás declarar nada adicional para escribir comentarios o cadenas en español con tildes y eñes.</p>
+</blockquote>
+<section id="declarar-una-codificación-distinta-a-la-predeterminada" class="level3" data-number="1.20.1">
+<h3 data-number="1.20.1" class="anchored" data-anchor-id="declarar-una-codificación-distinta-a-la-predeterminada"><span class="header-section-number">1.20.1</span> 19.1. Declarar una codificación distinta a la predeterminada</h3>
+<p>Para declarar una codificación distinta de la predeterminada, debe agregarse una línea de comentario especial como <strong>primera línea</strong> del archivo, con la siguiente sintaxis:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># -*- coding: encoding -*-</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>donde <em>encoding</em> es uno de los códecs (<code>codecs</code>) válidos soportados por Python. Por ejemplo, para declarar que se use la codificación Windows-1252, la primera línea del archivo fuente debería ser:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># -*- coding: cp1252 -*-</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="la-línea-shebang-en-unixlinux" class="level2" data-number="1.21">
+<h2 data-number="1.21" class="anchored" data-anchor-id="la-línea-shebang-en-unixlinux"><span class="header-section-number">1.21</span> 20. La línea shebang en Unix/Linux</h2>
+<p>Una excepción a la regla de “primera línea” es cuando el código fuente comienza con una <strong>línea shebang</strong> de Unix. En ese caso, la declaración de codificación debe agregarse como <strong>segunda línea</strong> del archivo. Ejemplo oficial:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">#!/usr/bin/env python3</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="co"># -*- coding: cp1252 -*-</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La línea shebang (<code>#!/usr/bin/env python3</code>) es lo que permite, en Kubuntu y Arch Linux, hacer un script ejecutable directamente (<code>./mi_script.py</code>) sin tener que invocar <code>python3</code> explícitamente, siempre que el archivo tenga el permiso de ejecución correspondiente (otorgado, por ejemplo, con <code>chmod +x</code>).</p>
+<hr>
+</section>
+<section id="salir-del-intérprete" class="level2" data-number="1.22">
+<h2 data-number="1.22" class="anchored" data-anchor-id="salir-del-intérprete"><span class="header-section-number">1.22</span> 21. Salir del intérprete</h2>
+<p>Escribir un carácter de fin de archivo (<em>end-of-file</em>) — <code>Control-D</code> en Unix, <code>Control-Z</code> en Windows — en el prompt primario hace que el intérprete salga con un estado de salida cero. Si eso no funciona, puedes salir del intérprete escribiendo el siguiente comando:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>quit()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="comentarios-en-python" class="level2" data-number="1.23">
+<h2 data-number="1.23" class="anchored" data-anchor-id="comentarios-en-python"><span class="header-section-number">1.23</span> 22. Comentarios en Python</h2>
+<p>Los comentarios son una de las pocas piezas de sintaxis que sí corresponde introducir aquí, porque son necesarios para leer y escribir cualquier ejemplo de código desde el primer momento, incluso antes de cubrir variables o expresiones en profundidad.</p>
+<p>Según la documentación oficial: <strong>los comentarios en Python comienzan con el carácter numeral (<code>#</code>) y se extienden hasta el final de la línea física</strong>. Un comentario puede aparecer al inicio de una línea, o después de espacio en blanco o código, pero <strong>no dentro de un literal de cadena de texto</strong>. Un carácter <code>#</code> dentro de un literal de cadena es simplemente un carácter numeral, no el inicio de un comentario.</p>
+<p>Ejemplo oficial textual:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># this is the first comment</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>spam <span class="op">=</span> <span class="dv">1</span>  <span class="co"># and this is the second comment</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>          <span class="co"># ... and now a third!</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a>text <span class="op">=</span> <span class="st">"# This is not a comment because it's inside quotes."</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Dado que los comentarios sirven para clarificar el código y no son interpretados por Python, la documentación oficial señala que pueden omitirse al transcribir los ejemplos del propio tutorial — una observación útil para cuando, en guías futuras, copies y adaptes ejemplos de código.</p>
+<hr>
+</section>
+<section id="el-intérprete-como-calculadora-una-vista-previa-controlada" class="level2" data-number="1.24">
+<h2 data-number="1.24" class="anchored" data-anchor-id="el-intérprete-como-calculadora-una-vista-previa-controlada"><span class="header-section-number">1.24</span> 23. El intérprete como calculadora: una vista previa controlada</h2>
+<p>El tutorial oficial, inmediatamente después de explicar cómo invocar el intérprete, presenta a Python “actuando como una simple calculadora”: puedes escribir una expresión y el intérprete escribirá su valor. Se incluye aquí únicamente como evidencia de la naturaleza interactiva del intérprete —no como introducción a expresiones o tipos numéricos, que se desarrollarán con rigor en la guía 02—, mostrando el ejemplo textual oficial:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="dv">4</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="op">&gt;&gt;&gt;</span> <span class="dv">50</span> <span class="op">-</span> <span class="dv">5</span><span class="op">*</span><span class="dv">6</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="dv">20</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="op">&gt;&gt;&gt;</span> (<span class="dv">50</span> <span class="op">-</span> <span class="dv">5</span><span class="op">*</span><span class="dv">6</span>) <span class="op">/</span> <span class="dv">4</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a><span class="fl">5.0</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a><span class="op">&gt;&gt;&gt;</span> <span class="dv">8</span> <span class="op">/</span> <span class="dv">5</span>  <span class="co"># la división siempre devuelve un número de punto flotante</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a><span class="fl">1.6</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Lo único que esta guía retiene de este ejemplo, deliberadamente, es la mecánica de interacción (escribes después de <code>&gt;&gt;&gt;</code>, el intérprete responde en la línea siguiente sin prompt) y el hecho documentado de que la división con <code>/</code> siempre devuelve un valor de tipo flotante. El desarrollo completo de tipos de datos, operadores aritméticos, precedencia, y todo lo demás relacionado a expresiones queda, tal como pediste, para la guía 02 (“Variables, expresiones y statements con Python”).</p>
+<hr>
+</section>
+<section id="pythonstartup-personalizar-el-inicio-del-modo-interactivo" class="level2" data-number="1.25">
+<h2 data-number="1.25" class="anchored" data-anchor-id="pythonstartup-personalizar-el-inicio-del-modo-interactivo"><span class="header-section-number">1.25</span> 24. PYTHONSTARTUP: personalizar el inicio del modo interactivo</h2>
+<p>Cuando usas Python de forma interactiva, suele ser útil tener algunos comandos estándar ejecutándose automáticamente cada vez que se inicia el intérprete. Esto puede lograrse fijando una variable de entorno llamada <code>PYTHONSTARTUP</code> con el nombre de un archivo que contenga esos comandos de inicio — de forma similar a la funcionalidad <code>.profile</code> de los shells de Unix.</p>
+<p>Puntos oficiales relevantes sobre este mecanismo:</p>
+<ul>
+<li>Este archivo <strong>solo se lee en sesiones interactivas</strong>, no cuando Python lee comandos desde un script.</li>
+<li>Se ejecuta en el mismo espacio de nombres donde se ejecutan los comandos interactivos, de modo que los objetos que define o importa pueden usarse sin calificación adicional en la sesión interactiva.</li>
+<li>También es posible cambiar los prompts <code>sys.ps1</code> y <code>sys.ps2</code> desde ese archivo.</li>
+</ul>
+<blockquote class="blockquote">
+<p>Esta funcionalidad se documenta aquí por rigor y completitud frente a la fuente oficial, aunque su configuración práctica (qué poner dentro de ese archivo) requiere conceptos —importación de módulos, asignación de variables— que se desarrollarán en guías posteriores.</p>
+</blockquote>
+<hr>
+</section>
+<section id="glosario-mínimo-para-esta-etapa" class="level2" data-number="1.26">
+<h2 data-number="1.26" class="anchored" data-anchor-id="glosario-mínimo-para-esta-etapa"><span class="header-section-number">1.26</span> 25. Glosario mínimo para esta etapa</h2>
+<p>Para cerrar esta introducción sin adelantar contenido de guías futuras, este glosario recoge únicamente los términos que aparecieron en esta guía, con la definición estrictamente ligada al alcance ya cubierto:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Término</th>
+<th>Definición en el alcance de esta guía</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Intérprete</td>
+<td>Programa que lee y ejecuta código Python, ya sea de forma interactiva o desde un archivo de script</td>
+</tr>
+<tr class="even">
+<td>Modo interactivo</td>
+<td>Modo del intérprete activado cuando lee comandos desde un tty; usa los prompts <code>&gt;&gt;&gt;</code> y <code>...</code></td>
+</tr>
+<tr class="odd">
+<td>Script</td>
+<td>Archivo de texto con extensión <code>.py</code> que el intérprete lee y ejecuta de forma no interactiva</td>
+</tr>
+<tr class="even">
+<td>Prompt primario</td>
+<td>El símbolo <code>&gt;&gt;&gt;</code> que indica que el intérprete espera una nueva instrucción</td>
+</tr>
+<tr class="odd">
+<td>Prompt secundario</td>
+<td>El símbolo <code>...</code> que indica que el intérprete espera la continuación de una instrucción de varias líneas</td>
+</tr>
+<tr class="even">
+<td>Comentario</td>
+<td>Texto que comienza con <code>#</code> y se extiende hasta el final de la línea física; ignorado por el intérprete</td>
+</tr>
+<tr class="odd">
+<td>Shebang</td>
+<td>Línea inicial de un script Unix (<code>#!/usr/bin/env python3</code>) que indica qué intérprete debe ejecutarlo</td>
+</tr>
+<tr class="even">
+<td><code>sys.argv</code></td>
+<td>Lista de cadenas de texto con el nombre del script y los argumentos pasados en la línea de comandos</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="qué-sigue-hoja-de-ruta-de-las-próximas-guías" class="level2" data-number="1.27">
+<h2 data-number="1.27" class="anchored" data-anchor-id="qué-sigue-hoja-de-ruta-de-las-próximas-guías"><span class="header-section-number">1.27</span> 26. Qué sigue: hoja de ruta de las próximas guías</h2>
+<p>Siguiendo exactamente la secuencia que ya estableciste, y que coincide con la estructura del propio tutorial oficial de Python (sección 7 de esta guía), las siguientes guías cubrirán, en este orden:</p>
+<ol type="1">
+<li><strong>Variables, expresiones y statements con Python</strong> — tipos de datos numéricos y de texto, operadores, precedencia, asignación, convenciones de nombres.</li>
+<li><strong>Objetos de Python</strong> — el modelo de objetos del lenguaje.</li>
+<li><strong>Ejecución condicional con Python</strong> — <code>if</code>, <code>elif</code>, <code>else</code>, operadores de comparación y lógicos.</li>
+<li><strong>Iteraciones con Python</strong> — <code>while</code>, <code>for</code>, control de bucles.</li>
+<li><strong>Funciones con Python</strong> — definición, parámetros, retorno de valores, ámbito.</li>
+<li><strong>Dataframes con Python</strong> — introducción a pandas.</li>
+<li><strong>Predicción y métricas de performance con Python</strong>.</li>
+<li><strong>Métodos de Machine Learning para clasificación con Python</strong>.</li>
+<li><strong>Métodos de Machine Learning para regresión con Python</strong>.</li>
+<li><strong>Validación cruzada y composición del modelo con Python</strong>.</li>
+</ol>
+<p>Esta guía no se adelanta a ninguno de esos contenidos; su función es exclusivamente la de establecer, con la documentación oficial como única fuente, qué es Python y cómo se invoca el intérprete, antes de empezar a escribir código con sentido semántico.</p>
+<hr>
+</section>
+<section id="referencias-oficiales" class="level2" data-number="1.28">
+<h2 data-number="1.28" class="anchored" data-anchor-id="referencias-oficiales"><span class="header-section-number">1.28</span> 27. Referencias oficiales</h2>
+<ul>
+<li><strong>Python Tutorial — Índice general</strong>: https://docs.python.org/3/tutorial/index.html</li>
+<li><strong>Python Tutorial — Cap. 1: Whetting Your Appetite</strong>: https://docs.python.org/3/tutorial/appetite.html</li>
+<li><strong>Python Tutorial — Cap. 2: Using the Python Interpreter</strong>: https://docs.python.org/3/tutorial/interpreter.html</li>
+<li><strong>Python Tutorial — Cap. 3: An Informal Introduction to Python</strong> (solo sección de comentarios usada en esta guía): https://docs.python.org/3/tutorial/introduction.html</li>
+<li><strong>Python — Página oficial de descargas</strong>: https://www.python.org/downloads/</li>
+<li><strong>Python — Descargas para Windows</strong>: https://www.python.org/downloads/windows/</li>
+<li><strong>PEP 619 — Python 3.10 Release Schedule</strong>: https://peps.python.org/pep-0619/</li>
+<li><strong>PEP 664 — Python 3.11 Release Schedule</strong>: https://peps.python.org/pep-0664/</li>
+<li><strong>Python — Glosario oficial</strong>: https://docs.python.org/3/glossary.html</li>
+<li><strong>Python — Command line and environment (referencia completa de opciones del intérprete)</strong>: https://docs.python.org/3/using/cmdline.html</li>
+</ul>
+<hr>
+<p><strong>Edison Achalma</strong> Economista — Universidad Nacional de San Cristóbal de Huamanga (UNSCH) Ayacucho, Perú ORCID: <a href="https://orcid.org/0000-0001-6996-3364">0000-0001-6996-3364</a></p>
+</section>
+</section>
+<section id="publicaciones-similares" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Publicaciones Similares</h1>
+<p>Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:</p>
+<ol type="1">
+<li><a href="https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda">Instalacion De Anaconda</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda">Configurar Entorno Virtual Python Anaconda</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python">01 Introducion A La Programacion Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python">02 Variables Expresiones Y Statements Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python">03 Objetos De Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python">04 Ejecucion Condicional Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python">05 Iteraciones Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python">06 Funciones Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python">07 Dataframes Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python">08 Prediccion Y Metrica De Performance Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python">09 Metodos De Machine Learning Para Clasificacion Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python">10 Metodos De Machine Learning Para Regresion Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2022-10-31-11-validacion-cruzada-y-composicion-del-modelo-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2022-10-31-11-validacion-cruzada-y-composicion-del-modelo-con-python">11 Validacion Cruzada Y Composicion Del Modelo Con Python</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python">Visualizacion De Datos Con Python</a></li>
+</ol>
+<p>Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reutilización</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-achalma2026" class="csl-entry quarto-appendix-citeas" role="listitem">
+Achalma, Edison. 2026. <em>Introducción a la programación con
+Python</em>. accepted, June 21. <a href="https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python/">https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python/</a>.
+</div></div></section></div></main> <!-- /main -->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4GMRCPL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!-- ==========================================================================
+  MICROINTERACCIONES — "QUIET LABORATORY" (cargador de módulos)
+  ===========================================================================
+  Inyectado en todas las páginas vía include-after-body (_quarto.yml).
+  El código vive en módulos independientes en assets/js/ (ver su README):
+
+    · navbar.js         → clase .lab-scrolled al hacer scroll
+    · cursor.js         → iluminación que sigue el puntero (--lab-mx/--lab-my)
+    · hero.js           → ajuste del hero de portada al alto visible
+    · scroll-effects.js → aparición escalonada (.lab-reveal/.lab-in)
+
+  Rutas absolutas (/assets/js/...) para funcionar a cualquier profundidad.
+  Sin JS el sitio queda íntegro: nada se oculta por defecto.
+=========================================================================== -->
+<script src="../../assets/js/navbar.js"></script>
+<script src="../../assets/js/cursor.js"></script>
+<script src="../../assets/js/hero.js"></script>
+<script src="../../assets/js/scroll-effects.js"></script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/numerus-scriptum\.netlify\.app\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<script src="https://utteranc.es/client.js" repo="achalmed/website-achalma" issue-term="title" theme="boxy-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Edison Achalma ∙ Made with <a href="https://quarto.org">Quarto</a></p>
+</div>   
+    <div class="nav-footer-center">
+<p><a class="link-dark me-1" href="../../accessibility.html" title="Accessibility commitment" target="_blank" rel="noopener"><i class="fa-solid fa-universal-access" aria-label="universal-access"></i></a> <a class="link-dark me-1" href="https://fosstodon.org/@achalmaedison" title="mastodon" target="_blank" rel="noopener"><i class="fa-brands fa-mastodon" aria-label="mastodon"></i></a> <a class="link-dark me-1" href="https://github.com/achalmed" title="github" target="_blank" rel="noopener"><i class="fa-brands fa-github" aria-label="github"></i></a> <a class="link-dark me-1" href="https://linkedin.com/in/achalmaedison" title="LinkedIn" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin" aria-label="linkedin"></i></a></p>
+</div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="https://achalmaedison.netlify.app/accessibility">
+<p>Accessibility</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://achalmaedison.netlify.app/contact">
+<p>Contact</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://achalmaedison.netlify.app/license">
+<p>License</p>
+</a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="../../index.xml">
+      <i class="bi bi-rss" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Edison Achalma">
+<meta name="keywords" content="keyword1, keyword2">
+<meta name="description" content="Panorama de las fortalezas de R en estadística, visualización y ciencia de datos frente a otros lenguajes.">
+
+<title>Guía completa de entornos virtuales en R con RStudio (renv) – Edison Achalma B.Sc. Econ.</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/img/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c5476e714a85dbfbbcebc64b0d85118e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-cec134992aab4372cb718d1833829c4a.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c5476e714a85dbfbbcebc64b0d85118e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-06b466aced5058fffa44584b53f99f5b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5389a330c79191949d5bbb2aa435eab0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-06b466aced5058fffa44584b53f99f5b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K4GMRCPL');</script>
+<!-- End Google Tag Manager -->
+<!-- Metadatos mejorados para Zotero -->
+<meta name="citation_title" content="Guía completa de entornos virtuales en R con RStudio (renv)">
+<meta name="citation_author" content="Edison Achalma">
+<meta name="citation_author_orcid" content="0000-0001-6996-3364">
+<meta name="citation_publication_date" content="10 de junio de 2020">
+<meta name="citation_language" content="es">
+<meta name="citation_keywords" content="?meta:keywords-string">
+<meta name="citation_abstract" content="Este abstract será actualizado una vez que se complete el contenido final del artículo.">
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "Guía completa de entornos virtuales en R con RStudio (renv)",
+  "author": {
+    "@type": "Person",
+    "name": "Edison Achalma",
+    "@id": "https://orcid.org/0000-0001-6996-3364"
+  },
+  "datePublished": "10 de junio de 2020",
+  "description": "Este abstract será actualizado una vez que se complete el contenido final del artículo.",
+  "keywords": "?meta:keywords-string",
+  "inLanguage": "es"
+}
+</script>
+
+
+<link rel="stylesheet" href="../../assets/css/global.css">
+<link rel="stylesheet" href="../../assets/css/components/bibbase.css">
+<meta property="og:title" content="Edison Achalma B.Sc. Econ.">
+<meta property="og:description" content="Investigador y educador que aplica la ciencia de datos de forma que se dé prioridad a la equidad social.">
+<meta property="og:image" content="https://numerus-scriptum.netlify.app/r/featured.jpg">
+<meta property="og:site_name" content="Edison Achalma B.Sc. Econ.">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:title" content="Guía completa de entornos virtuales en R con RStudio (renv)">
+<meta name="twitter:description" content="Panorama de las fortalezas de R en estadística, visualización y ciencia de datos frente a otros lenguajes.">
+<meta name="twitter:image" content="https://numerus-scriptum.netlify.app/r/featured.jpg">
+<meta name="twitter:creator" content="@achalmaedison">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="citation_title" content="Guía completa de entornos virtuales en R con RStudio (renv)">
+<meta name="citation_abstract" content="Este abstract será actualizado una vez que se complete el contenido final del artículo.">
+<meta name="citation_keywords" content="keyword1,keyword2">
+<meta name="citation_author" content="Edison Achalma">
+<meta name="citation_publication_date" content="2020-06-10">
+<meta name="citation_cover_date" content="2020-06-10">
+<meta name="citation_year" content="2020">
+<meta name="citation_online_date" content="2020-06-10">
+<meta name="citation_fulltext_html_url" content="https://numerus-scriptum.netlify.app/r/2020-06-10-012-configurar-entorno-virtual-r/">
+<meta name="citation_pdf_url" content="https://numerus-scriptum.netlify.app/r/2020-06-10-012-que-ofrece-r/index.pdf">
+<meta name="citation_language" content="es">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Edison Achalma B.Sc. Econ.</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://achalmaedison.netlify.app/about/"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-more" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-ellipsis-h" role="img" aria-label="More">
+</i> 
+ <span class="menu-text">More</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-more">    
+        <li>
+    <a class="dropdown-item" href="https://epsilon-y-beta.netlify.app/">
+ <span class="dropdown-text">Econometria</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://dialectica-y-mercado.netlify.app/">
+ <span class="dropdown-text">Filosofía</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://pecunia-fluxus.netlify.app/">
+ <span class="dropdown-text">Finanzas</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://actus-mercator.netlify.app/">
+ <span class="dropdown-text">Gestión empresarial</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://res-publica.netlify.app/">
+ <span class="dropdown-text">Gestión pública</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://methodica.netlify.app/">
+ <span class="dropdown-text">Metodología de la investigación</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://aequilibria.netlify.app/">
+ <span class="dropdown-text">Macroeconomía</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://axiomata.netlify.app/">
+ <span class="dropdown-text">Matemáticas</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://optimums.netlify.app/">
+ <span class="dropdown-text">Microeconomía</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://numerus-scriptum.netlify.app/">
+ <span class="dropdown-text">Programación y Software</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://chaska-x.netlify.app/">
+ <span class="dropdown-text">Seguridad informática</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/achalmed"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/achalmaedison"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../index.xml"> <i class="bi bi-rss" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns" style="position: relative; width: 100%; margin: 0; padding: 0;">
+
+  <!-- Incluir imagen de fondo si existe featured.jpg, de lo contrario, partículas -->
+    <div id="particles-js"></div>
+  
+  <!-- Contenido principal del bloque de título -->
+  <div class="title-block-content">
+    <div class="quarto-title-block"><div><h1 class="title">Guía completa de entornos virtuales en R con RStudio (renv)</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source" data-quarto-source-url="https://github.com/achalmed/numerus-scriptum/blob/main/r/2020-06-10-012-configurar-entorno-virtual-r/index.qmd"><i class="bi"></i></button></div></div>
+    
+    <div class="quarto-title-meta-author">
+      <div class="quarto-title-meta-heading">Autor/a</div>
+      <div class="quarto-title-meta-heading">Afiliación</div>
+      
+        <div class="quarto-title-meta-contents">
+        <p class="author"><a href="https://achalmaedison.netlify.app">Edison Achalma</a> <a href="mailto:elmer.achalma.09@unsch.edu.pe" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0001-6996-3364" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+      </div>
+      <div class="quarto-title-meta-contents">
+            <p class="affiliation">
+                <a href="https://www.gob.pe/unsch">
+                Universidad Nacional de San Cristóbal de Huamanga
+                </a>
+              </p>
+          </div>
+      </div>
+
+    <div class="quarto-title-meta">
+
+          
+        <div>
+        <div class="quarto-title-meta-heading">Fecha de publicación</div>
+        <div class="quarto-title-meta-contents">
+          <p class="date">10 de junio de 2020</p>
+        </div>
+      </div>
+      
+        <div>
+        <div class="quarto-title-meta-heading">Fecha de última modificación</div>
+        <div class="quarto-title-meta-contents">
+          <p class="date-modified">13 de julio de 2026</p>
+        </div>
+      </div>
+        
+      </div>
+      
+    <div>
+      <div class="abstract">
+        <div class="block-title">Resumen</div>
+        Este abstract será actualizado una vez que se complete el contenido final del artículo.
+      </div>
+    </div>
+
+    <div>
+      <div class="keywords">
+        <div class="block-title">Palabras clave</div>
+        <p>keyword1, keyword2</p>
+      </div>
+    </div>
+
+    <!-- Categorías tras los metadatos: fila silenciosa junto a las acciones,
+         sin competir con el título -->
+            <div class="quarto-categories">
+            <div class="quarto-category">R</div>
+          </div>
+        
+    
+    <!-- Cargar script de Particle.js desde CDN, solo si no hay featured.jpg -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+      particlesJS.load(
+        "particles-js",
+        "https://raw.githubusercontent.com/holtzy/lumo/main/_extensions/lumo/particles.json"
+      );
+    </script>
+      </div>
+</header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">Contenidos</h2>
+   
+  <ul>
+  <li><a href="#guía-completa-de-entornos-virtuales-en-r-con-rstudio" id="toc-guía-completa-de-entornos-virtuales-en-r-con-rstudio" class="nav-link active" data-scroll-target="#guía-completa-de-entornos-virtuales-en-r-con-rstudio"><span class="header-section-number">1</span> Guía completa de entornos virtuales en R con RStudio</a>
+  <ul class="collapse">
+  <li><a href="#tabla-de-contenidos" id="toc-tabla-de-contenidos" class="nav-link" data-scroll-target="#tabla-de-contenidos"><span class="header-section-number">1.1</span> Tabla de contenidos</a></li>
+  <li><a href="#qué-es-un-entorno-virtual-en-r" id="toc-qué-es-un-entorno-virtual-en-r" class="nav-link" data-scroll-target="#qué-es-un-entorno-virtual-en-r"><span class="header-section-number">1.2</span> 1. ¿Qué es un entorno virtual en R?</a></li>
+  <li><a href="#renv-el-estándar-oficial" id="toc-renv-el-estándar-oficial" class="nav-link" data-scroll-target="#renv-el-estándar-oficial"><span class="header-section-number">1.3</span> 2. renv: el estándar oficial</a></li>
+  <li><a href="#conceptos-clave-biblioteca-repositorio-caché-lockfile" id="toc-conceptos-clave-biblioteca-repositorio-caché-lockfile" class="nav-link" data-scroll-target="#conceptos-clave-biblioteca-repositorio-caché-lockfile"><span class="header-section-number">1.4</span> 3. Conceptos clave: biblioteca, repositorio, caché, lockfile</a>
+  <ul class="collapse">
+  <li><a href="#biblioteca-library" id="toc-biblioteca-library" class="nav-link" data-scroll-target="#biblioteca-library"><span class="header-section-number">1.4.1</span> 3.1. Biblioteca (<em>library</em>)</a></li>
+  <li><a href="#repositorio-repository" id="toc-repositorio-repository" class="nav-link" data-scroll-target="#repositorio-repository"><span class="header-section-number">1.4.2</span> 3.2. Repositorio (<em>repository</em>)</a></li>
+  <li><a href="#caché-global-de-renv" id="toc-caché-global-de-renv" class="nav-link" data-scroll-target="#caché-global-de-renv"><span class="header-section-number">1.4.3</span> 3.3. Caché global de renv</a></li>
+  <li><a href="#lockfile-renv.lock" id="toc-lockfile-renv.lock" class="nav-link" data-scroll-target="#lockfile-renv.lock"><span class="header-section-number">1.4.4</span> 3.4. Lockfile (<code>renv.lock</code>)</a></li>
+  </ul></li>
+  <li><a href="#instalación-de-renv" id="toc-instalación-de-renv" class="nav-link" data-scroll-target="#instalación-de-renv"><span class="header-section-number">1.5</span> 4. Instalación de renv</a></li>
+  <li><a href="#flujo-de-trabajo-básico" id="toc-flujo-de-trabajo-básico" class="nav-link" data-scroll-target="#flujo-de-trabajo-básico"><span class="header-section-number">1.6</span> 5. Flujo de trabajo básico</a>
+  <ul class="collapse">
+  <li><a href="#paso-1-inicializar-renv-en-el-proyecto" id="toc-paso-1-inicializar-renv-en-el-proyecto" class="nav-link" data-scroll-target="#paso-1-inicializar-renv-en-el-proyecto"><span class="header-section-number">1.6.1</span> Paso 1 — Inicializar renv en el proyecto</a></li>
+  <li><a href="#paso-2-trabajar-con-normalidad" id="toc-paso-2-trabajar-con-normalidad" class="nav-link" data-scroll-target="#paso-2-trabajar-con-normalidad"><span class="header-section-number">1.6.2</span> Paso 2 — Trabajar con normalidad</a></li>
+  <li><a href="#paso-3-tomar-una-fotografía-del-entorno-snapshot" id="toc-paso-3-tomar-una-fotografía-del-entorno-snapshot" class="nav-link" data-scroll-target="#paso-3-tomar-una-fotografía-del-entorno-snapshot"><span class="header-section-number">1.6.3</span> Paso 3 — Tomar una “fotografía” del entorno (snapshot)</a></li>
+  <li><a href="#paso-4-restaurar-el-entorno-en-otra-máquina-o-más-adelante" id="toc-paso-4-restaurar-el-entorno-en-otra-máquina-o-más-adelante" class="nav-link" data-scroll-target="#paso-4-restaurar-el-entorno-en-otra-máquina-o-más-adelante"><span class="header-section-number">1.6.4</span> Paso 4 — Restaurar el entorno en otra máquina (o más adelante)</a></li>
+  <li><a href="#resumen-visual-del-ciclo" id="toc-resumen-visual-del-ciclo" class="nav-link" data-scroll-target="#resumen-visual-del-ciclo"><span class="header-section-number">1.6.5</span> Resumen visual del ciclo</a></li>
+  </ul></li>
+  <li><a href="#integración-con-rstudio-projects" id="toc-integración-con-rstudio-projects" class="nav-link" data-scroll-target="#integración-con-rstudio-projects"><span class="header-section-number">1.7</span> 6. Integración con RStudio Projects</a></li>
+  <li><a href="#caso-de-uso-1-tesis-o-trabajo-de-investigación-individual" id="toc-caso-de-uso-1-tesis-o-trabajo-de-investigación-individual" class="nav-link" data-scroll-target="#caso-de-uso-1-tesis-o-trabajo-de-investigación-individual"><span class="header-section-number">1.8</span> 7. Caso de uso 1 — Tesis o trabajo de investigación individual</a></li>
+  <li><a href="#caso-de-uso-2-curso-o-asignatura-con-múltiples-prácticas" id="toc-caso-de-uso-2-curso-o-asignatura-con-múltiples-prácticas" class="nav-link" data-scroll-target="#caso-de-uso-2-curso-o-asignatura-con-múltiples-prácticas"><span class="header-section-number">1.9</span> 8. Caso de uso 2 — Curso o asignatura con múltiples prácticas</a></li>
+  <li><a href="#caso-de-uso-3-colaboración-en-equipo-proyecto-compartido-en-git" id="toc-caso-de-uso-3-colaboración-en-equipo-proyecto-compartido-en-git" class="nav-link" data-scroll-target="#caso-de-uso-3-colaboración-en-equipo-proyecto-compartido-en-git"><span class="header-section-number">1.10</span> 9. Caso de uso 3 — Colaboración en equipo / proyecto compartido en Git</a></li>
+  <li><a href="#caso-de-uso-4-múltiples-proyectos-en-la-misma-máquina-aislamiento" id="toc-caso-de-uso-4-múltiples-proyectos-en-la-misma-máquina-aislamiento" class="nav-link" data-scroll-target="#caso-de-uso-4-múltiples-proyectos-en-la-misma-máquina-aislamiento"><span class="header-section-number">1.11</span> 10. Caso de uso 4 — Múltiples proyectos en la misma máquina (aislamiento)</a></li>
+  <li><a href="#caso-de-uso-5-reportes-reproducibles-con-quarto-r-markdown" id="toc-caso-de-uso-5-reportes-reproducibles-con-quarto-r-markdown" class="nav-link" data-scroll-target="#caso-de-uso-5-reportes-reproducibles-con-quarto-r-markdown"><span class="header-section-number">1.12</span> 11. Caso de uso 5 — Reportes reproducibles con Quarto / R Markdown</a></li>
+  <li><a href="#caso-de-uso-6-migrar-un-proyecto-antiguo-sin-renv-a-un-entorno-reproducible" id="toc-caso-de-uso-6-migrar-un-proyecto-antiguo-sin-renv-a-un-entorno-reproducible" class="nav-link" data-scroll-target="#caso-de-uso-6-migrar-un-proyecto-antiguo-sin-renv-a-un-entorno-reproducible"><span class="header-section-number">1.13</span> 12. Caso de uso 6 — Migrar un proyecto antiguo (sin renv) a un entorno reproducible</a></li>
+  <li><a href="#caso-de-uso-7-perfiles-múltiples-dentro-de-un-mismo-proyecto" id="toc-caso-de-uso-7-perfiles-múltiples-dentro-de-un-mismo-proyecto" class="nav-link" data-scroll-target="#caso-de-uso-7-perfiles-múltiples-dentro-de-un-mismo-proyecto"><span class="header-section-number">1.14</span> 13. Caso de uso 7 — Perfiles múltiples dentro de un mismo proyecto</a></li>
+  <li><a href="#caso-de-uso-8-reproducibilidad-a-largo-plazo-archivar-un-proyecto-terminado" id="toc-caso-de-uso-8-reproducibilidad-a-largo-plazo-archivar-un-proyecto-terminado" class="nav-link" data-scroll-target="#caso-de-uso-8-reproducibilidad-a-largo-plazo-archivar-un-proyecto-terminado"><span class="header-section-number">1.15</span> 14. Caso de uso 8 — Reproducibilidad a largo plazo (archivar un proyecto terminado)</a></li>
+  <li><a href="#caso-de-uso-9-despliegue-en-servidor-docker-posit-connect" id="toc-caso-de-uso-9-despliegue-en-servidor-docker-posit-connect" class="nav-link" data-scroll-target="#caso-de-uso-9-despliegue-en-servidor-docker-posit-connect"><span class="header-section-number">1.16</span> 15. Caso de uso 9 — Despliegue en servidor / Docker / Posit Connect</a></li>
+  <li><a href="#caso-de-uso-10-desarrollo-de-un-paquete-de-r-propio" id="toc-caso-de-uso-10-desarrollo-de-un-paquete-de-r-propio" class="nav-link" data-scroll-target="#caso-de-uso-10-desarrollo-de-un-paquete-de-r-propio"><span class="header-section-number">1.17</span> 16. Caso de uso 10 — Desarrollo de un paquete de R propio</a></li>
+  <li><a href="#referencia-rápida-de-funciones" id="toc-referencia-rápida-de-funciones" class="nav-link" data-scroll-target="#referencia-rápida-de-funciones"><span class="header-section-number">1.18</span> 17. Referencia rápida de funciones</a></li>
+  <li><a href="#límites-de-renv-lo-que-no-resuelve" id="toc-límites-de-renv-lo-que-no-resuelve" class="nav-link" data-scroll-target="#límites-de-renv-lo-que-no-resuelve"><span class="header-section-number">1.19</span> 18. Límites de renv: lo que NO resuelve</a></li>
+  <li><a href="#solución-de-problemas-comunes" id="toc-solución-de-problemas-comunes" class="nav-link" data-scroll-target="#solución-de-problemas-comunes"><span class="header-section-number">1.20</span> 19. Solución de problemas comunes</a>
+  <ul class="collapse">
+  <li><a href="#renvrestore-falla-al-intentar-compilar-un-paquete-desde-fuente" id="toc-renvrestore-falla-al-intentar-compilar-un-paquete-desde-fuente" class="nav-link" data-scroll-target="#renvrestore-falla-al-intentar-compilar-un-paquete-desde-fuente"><span class="header-section-number">1.20.1</span> 19.1. <code>renv::restore()</code> falla al intentar compilar un paquete desde fuente</a></li>
+  <li><a href="#un-colaborador-abre-el-proyecto-y-no-ve-activarse-renv-automáticamente" id="toc-un-colaborador-abre-el-proyecto-y-no-ve-activarse-renv-automáticamente" class="nav-link" data-scroll-target="#un-colaborador-abre-el-proyecto-y-no-ve-activarse-renv-automáticamente"><span class="header-section-number">1.20.2</span> 19.2. Un colaborador abre el proyecto y no ve activarse renv automáticamente</a></li>
+  <li><a href="#quiero-saber-si-mi-biblioteca-actual-coincide-con-el-lockfile" id="toc-quiero-saber-si-mi-biblioteca-actual-coincide-con-el-lockfile" class="nav-link" data-scroll-target="#quiero-saber-si-mi-biblioteca-actual-coincide-con-el-lockfile"><span class="header-section-number">1.20.3</span> 19.3. Quiero saber si mi biblioteca actual coincide con el lockfile</a></li>
+  <li><a href="#necesito-volver-a-una-versión-anterior-del-lockfile-no-solo-a-la-última" id="toc-necesito-volver-a-una-versión-anterior-del-lockfile-no-solo-a-la-última" class="nav-link" data-scroll-target="#necesito-volver-a-una-versión-anterior-del-lockfile-no-solo-a-la-última"><span class="header-section-number">1.20.4</span> 19.4. Necesito volver a una versión anterior del lockfile (no solo a la última)</a></li>
+  <li><a href="#el-proyecto-ya-no-necesita-renv" id="toc-el-proyecto-ya-no-necesita-renv" class="nav-link" data-scroll-target="#el-proyecto-ya-no-necesita-renv"><span class="header-section-number">1.20.5</span> 19.5. El proyecto ya no necesita renv</a></li>
+  </ul></li>
+  <li><a href="#referencias-oficiales" id="toc-referencias-oficiales" class="nav-link" data-scroll-target="#referencias-oficiales"><span class="header-section-number">1.21</span> 20. Referencias oficiales</a></li>
+  </ul></li>
+  <li><a href="#publicaciones-similares" id="toc-publicaciones-similares" class="nav-link" data-scroll-target="#publicaciones-similares"><span class="header-section-number">2</span> Publicaciones Similares</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Otros formatos</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF (apaquarto)</a></li><li><a href="index.docx"><i class="bi bi-file-word"></i>MS Word (apaquarto)</a></li></ul></div><div class="quarto-other-links"><h2>Otros Enlaces</h2><ul><li><a href="https://gravatar.com/achalmaedison"><i class="bi bi-link-45deg"></i>Gravatar</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+<style>
+  :root {
+    --primary-color: ;
+  }
+
+  #title-block-header {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .title-block-content {
+    position: relative;
+    padding-top: 60px;
+    /* Reducido de 130px */
+    padding-bottom: 60px;
+    /* Reducido de 130px */
+    max-width: 752px;
+    margin: 0 auto;
+    z-index: 1;
+  }
+
+  #particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+</style>
+
+
+
+
+<section id="guía-completa-de-entornos-virtuales-en-r-con-rstudio" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Guía completa de entornos virtuales en R con RStudio</h1>
+<blockquote class="blockquote">
+<p>Referencia técnica independiente sobre <strong>entornos virtuales en R</strong>, centrada en <code>renv</code>, el paquete oficial recomendado por Posit/RStudio para crear bibliotecas de paquetes aisladas por proyecto. Basada en la documentación oficial: rstudio.github.io/renv, el repositorio GitHub rstudio/renv, y la documentación de RStudio IDE sobre Projects y entornos.</p>
+</blockquote>
+<hr>
+<section id="tabla-de-contenidos" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="tabla-de-contenidos"><span class="header-section-number">1.1</span> Tabla de contenidos</h2>
+<ol type="1">
+<li><a href="#1-qué-es-un-entorno-virtual-en-r">¿Qué es un entorno virtual en R?</a></li>
+<li><a href="#2-renv-el-estándar-oficial">renv: el estándar oficial</a></li>
+<li><a href="#3-conceptos-clave-biblioteca-repositorio-caché-lockfile">Conceptos clave: biblioteca, repositorio, caché, lockfile</a></li>
+<li><a href="#4-instalación-de-renv">Instalación de renv</a></li>
+<li><a href="#5-flujo-de-trabajo-básico">Flujo de trabajo básico</a></li>
+<li><a href="#6-integración-con-rstudio-projects">Integración con RStudio Projects</a></li>
+<li><a href="#7-caso-de-uso-1--tesis-o-trabajo-de-investigación-individual">Caso de uso 1 — Tesis o trabajo de investigación individual</a></li>
+<li><a href="#8-caso-de-uso-2--curso-o-asignatura-con-múltiples-prácticas">Caso de uso 2 — Curso o asignatura con múltiples prácticas</a></li>
+<li><a href="#9-caso-de-uso-3--colaboración-en-equipo--proyecto-compartido-en-git">Caso de uso 3 — Colaboración en equipo / proyecto compartido en Git</a></li>
+<li><a href="#10-caso-de-uso-4--múltiples-proyectos-en-la-misma-máquina-aislamiento">Caso de uso 4 — Múltiples proyectos en la misma máquina (aislamiento)</a></li>
+<li><a href="#11-caso-de-uso-5--reportes-reproducibles-con-quarto--r-markdown">Caso de uso 5 — Reportes reproducibles con Quarto / R Markdown</a></li>
+<li><a href="#12-caso-de-uso-6--migrar-un-proyecto-antiguo-sin-renv-a-un-entorno-reproducible">Caso de uso 6 — Migrar un proyecto antiguo (sin renv) a un entorno reproducible</a></li>
+<li><a href="#13-caso-de-uso-7--perfiles-múltiples-dentro-de-un-mismo-proyecto">Caso de uso 7 — Perfiles múltiples dentro de un mismo proyecto</a></li>
+<li><a href="#14-caso-de-uso-8--reproducibilidad-a-largo-plazo-archivar-un-proyecto-terminado">Caso de uso 8 — Reproducibilidad a largo plazo (archivar un proyecto terminado)</a></li>
+<li><a href="#15-caso-de-uso-9--despliegue-en-servidor--docker--posit-connect">Caso de uso 9 — Despliegue en servidor / Docker / Posit Connect</a></li>
+<li><a href="#16-caso-de-uso-10--desarrollo-de-un-paquete-de-r-propio">Caso de uso 10 — Desarrollo de un paquete de R propio</a></li>
+<li><a href="#17-referencia-rápida-de-funciones">Referencia rápida de funciones</a></li>
+<li><a href="#18-límites-de-renv-lo-que-no-resuelve">Límites de renv: lo que NO resuelve</a></li>
+<li><a href="#19-solución-de-problemas-comunes">Solución de problemas comunes</a></li>
+<li><a href="#20-referencias-oficiales">Referencias oficiales</a></li>
+</ol>
+<hr>
+</section>
+<section id="qué-es-un-entorno-virtual-en-r" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="qué-es-un-entorno-virtual-en-r"><span class="header-section-number">1.2</span> 1. ¿Qué es un entorno virtual en R?</h2>
+<p>En R, todos los paquetes se instalan por defecto en una <strong>biblioteca de sistema</strong> (system library) compartida por todas las sesiones y proyectos. Esto significa que si un proyecto necesita <code>dplyr</code> versión 1.0 y otro necesita la versión 1.1, ambos se pisan entre sí: actualizar un paquete para un proyecto puede romper silenciosamente otro proyecto que dependía de una versión anterior.</p>
+<p>Un <strong>entorno virtual</strong> en R resuelve esto dando a cada proyecto su propia biblioteca de paquetes, completamente independiente de la biblioteca de sistema y de la de cualquier otro proyecto. La idea es análoga a <code>venv</code> en Python o a un <code>node_modules</code> por proyecto en Node.js, pero adaptada a las particularidades de R.</p>
+<p>El paquete oficial de Posit/RStudio para esto es <strong><code>renv</code></strong> (abreviatura de <em>reproducible environment</em>), sucesor de un paquete anterior llamado <code>packrat</code>. <code>renv</code> es, en la práctica, <strong>el estándar actual</strong> para este propósito en el ecosistema R.</p>
+<hr>
+</section>
+<section id="renv-el-estándar-oficial" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="renv-el-estándar-oficial"><span class="header-section-number">1.3</span> 2. renv: el estándar oficial</h2>
+<p>Según la documentación oficial, <code>renv</code> ayuda a que los proyectos de R sean:</p>
+<ul>
+<li><strong>Aislados (isolated)</strong>: instalar o actualizar un paquete en un proyecto no afecta a otros proyectos, porque cada uno tiene su propia biblioteca privada.</li>
+<li><strong>Portables (portable)</strong>: es fácil transportar un proyecto de una máquina a otra, incluso entre distintas plataformas (Linux, Windows, etc.).</li>
+<li><strong>Reproducibles (reproducible)</strong>: <code>renv</code> registra las versiones exactas de los paquetes usados y garantiza que esas mismas versiones se instalen en cualquier lugar donde se restaure el proyecto.</li>
+</ul>
+<p>Estos tres pilares —aislamiento, portabilidad, reproducibilidad— son el motivo por el cual <code>renv</code> es relevante en prácticamente cualquier flujo de trabajo serio en R: desde un script personal hasta un pipeline de producción.</p>
+<hr>
+</section>
+<section id="conceptos-clave-biblioteca-repositorio-caché-lockfile" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="conceptos-clave-biblioteca-repositorio-caché-lockfile"><span class="header-section-number">1.4</span> 3. Conceptos clave: biblioteca, repositorio, caché, lockfile</h2>
+<p>Antes de usar <code>renv</code> conviene tener claros cuatro términos que la documentación oficial distingue cuidadosamente:</p>
+<section id="biblioteca-library" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="biblioteca-library"><span class="header-section-number">1.4.1</span> 3.1. Biblioteca (<em>library</em>)</h3>
+<p>Una <strong>biblioteca</strong> es un directorio que contiene paquetes instalados. Es una fuente común de confusión, porque al escribir <code>library(dplyr)</code> parece que se está “cargando la biblioteca dplyr”, cuando en realidad se está cargando el <em>paquete</em> dplyr desde una biblioteca (carpeta). Por defecto, todos los paquetes van a una única biblioteca de sistema compartida; con <code>renv</code>, cada proyecto obtiene su propia <strong>biblioteca de proyecto</strong> (<code>renv/library</code>).</p>
+<p>Puedes ver tus bibliotecas activas con:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">.libPaths</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="repositorio-repository" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="repositorio-repository"><span class="header-section-number">1.4.2</span> 3.2. Repositorio (<em>repository</em>)</h3>
+<p>Un <strong>repositorio</strong> es una fuente de paquetes (por ejemplo CRAN, Bioconductor, GitHub, o el Posit Public Package Manager). <code>install.packages()</code> descarga un paquete desde un repositorio y lo coloca en una biblioteca.</p>
+</section>
+<section id="caché-global-de-renv" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="caché-global-de-renv"><span class="header-section-number">1.4.3</span> 3.3. Caché global de renv</h3>
+<p>Para no tener que descargar o compilar el mismo paquete una y otra vez para cada proyecto, <code>renv</code> mantiene una <strong>caché global</strong> compartida en el sistema. Cuando instalas un paquete por primera vez, se descarga y compila una sola vez; para cada proyecto adicional que lo necesite, <code>renv</code> simplemente crea un enlace desde la biblioteca del proyecto hacia esa copia en caché, ahorrando tiempo y espacio en disco.</p>
+</section>
+<section id="lockfile-renv.lock" class="level3" data-number="1.4.4">
+<h3 data-number="1.4.4" class="anchored" data-anchor-id="lockfile-renv.lock"><span class="header-section-number">1.4.4</span> 3.4. Lockfile (<code>renv.lock</code>)</h3>
+<p>El <strong>lockfile</strong> es un archivo JSON, siempre llamado <code>renv.lock</code>, que registra toda la información necesaria para recrear el proyecto en el futuro: la versión de R usada, los repositorios de origen, y un registro por cada paquete con su versión exacta, fuente (CRAN, GitHub, etc.) y hash de verificación. Es el “contrato” que permite reproducir el entorno en otra máquina.</p>
+<hr>
+</section>
+</section>
+<section id="instalación-de-renv" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="instalación-de-renv"><span class="header-section-number">1.5</span> 4. Instalación de renv</h2>
+<p><code>renv</code> se instala como cualquier paquete de R, desde la consola (en RStudio o en R puro, sobre cualquier sistema operativo donde ya tengas R y RStudio instalados):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">install.packages</span>(<span class="st">"renv"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Verifica la instalación:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(renv)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">packageVersion</span>(<span class="st">"renv"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>No requiere ninguna instalación adicional a nivel de sistema operativo: a diferencia de <code>venv</code> en Python, <code>renv</code> es un paquete de R puro y funciona igual en Kubuntu, Arch Linux o Windows, siempre que R y (opcionalmente) RStudio ya estén instalados.</p>
+<hr>
+</section>
+<section id="flujo-de-trabajo-básico" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="flujo-de-trabajo-básico"><span class="header-section-number">1.6</span> 5. Flujo de trabajo básico</h2>
+<p>Este es el ciclo de trabajo central documentado oficialmente, y se repite (con variaciones) en todos los casos de uso de las secciones siguientes.</p>
+<section id="paso-1-inicializar-renv-en-el-proyecto" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="paso-1-inicializar-renv-en-el-proyecto"><span class="header-section-number">1.6.1</span> Paso 1 — Inicializar renv en el proyecto</h3>
+<p>Desde la consola de R, <strong>con el directorio de trabajo ubicado en la carpeta del proyecto</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Esto hace lo siguiente automáticamente:</p>
+<ol type="1">
+<li>Crea la biblioteca de proyecto en <code>renv/library</code>.</li>
+<li>Detecta los paquetes que ya estás usando en el proyecto (rastreando los archivos <code>.R</code>/<code>.Rmd</code>/<code>.qmd</code> en busca de llamadas a <code>library()</code>, <code>require()</code>, etc., mediante <code>renv::dependencies()</code>).</li>
+<li>Instala esos paquetes detectados en la biblioteca del proyecto (mediante <code>renv::hydrate()</code>, que copia desde tu biblioteca de usuario existente cuando es posible, en vez de reinstalar todo desde cero).</li>
+<li>Crea el lockfile <code>renv.lock</code> con el estado inicial.</li>
+<li>Crea (o modifica) un <code>.Rprofile</code> local al proyecto, que se ejecuta automáticamente cada vez que abres R en esa carpeta, activando la biblioteca del proyecto sin que tengas que hacer nada manualmente.</li>
+<li>Reinicia la sesión de R (si estás dentro de RStudio).</li>
+</ol>
+</section>
+<section id="paso-2-trabajar-con-normalidad" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="paso-2-trabajar-con-normalidad"><span class="header-section-number">1.6.2</span> Paso 2 — Trabajar con normalidad</h3>
+<p>Sigues usando <code>install.packages()</code>, <code>update.packages()</code>, etc. como siempre. También puedes usar las variantes propias de renv:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"dplyr"</span>)          <span class="co"># instalar un paquete</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"usuario/repo"</span>)   <span class="co"># instalar desde GitHub</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="paso-3-tomar-una-fotografía-del-entorno-snapshot" class="level3" data-number="1.6.3">
+<h3 data-number="1.6.3" class="anchored" data-anchor-id="paso-3-tomar-una-fotografía-del-entorno-snapshot"><span class="header-section-number">1.6.3</span> Paso 3 — Tomar una “fotografía” del entorno (snapshot)</h3>
+<p>Cuando confirmes que tu código funciona con el conjunto de paquetes actual:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Esto actualiza <code>renv.lock</code> con las versiones exactas de los paquetes actualmente instalados en la biblioteca del proyecto.</p>
+</section>
+<section id="paso-4-restaurar-el-entorno-en-otra-máquina-o-más-adelante" class="level3" data-number="1.6.4">
+<h3 data-number="1.6.4" class="anchored" data-anchor-id="paso-4-restaurar-el-entorno-en-otra-máquina-o-más-adelante"><span class="header-section-number">1.6.4</span> Paso 4 — Restaurar el entorno en otra máquina (o más adelante)</h3>
+<p>Si compartes el proyecto, o lo abres en otra computadora, o simplemente quieres volver al estado exacto registrado en el lockfile:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Esto reinstala exactamente las versiones de paquetes anotadas en <code>renv.lock</code>, sin importar qué versiones tengas instaladas en ese momento en tu biblioteca de usuario.</p>
+</section>
+<section id="resumen-visual-del-ciclo" class="level3" data-number="1.6.5">
+<h3 data-number="1.6.5" class="anchored" data-anchor-id="resumen-visual-del-ciclo"><span class="header-section-number">1.6.5</span> Resumen visual del ciclo</h3>
+<pre><code>renv::init()        →  crea infraestructura del proyecto
+       ↓
+trabajas, instalas/actualizas paquetes
+       ↓
+renv::snapshot()    →  registra el estado actual en renv.lock
+       ↓
+(compartes el proyecto / cambias de máquina)
+       ↓
+renv::restore()     →  reinstala exactamente lo que dice renv.lock</code></pre>
+<hr>
+</section>
+</section>
+<section id="integración-con-rstudio-projects" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="integración-con-rstudio-projects"><span class="header-section-number">1.7</span> 6. Integración con RStudio Projects</h2>
+<p>RStudio (el IDE) tiene soporte nativo para <code>renv</code> integrado en el flujo de <strong>RStudio Projects</strong>.</p>
+<p>Al crear un nuevo proyecto en RStudio (<code>File</code> → <code>New Project...</code>), el asistente incluye una casilla <strong>“Use renv with this project”</strong>. Si la marcas, RStudio crea automáticamente toda la infraestructura de <code>renv</code> (equivalente a haber corrido <code>renv::init()</code> manualmente) en el momento mismo de crear el proyecto, antes incluso de escribir una sola línea de código.</p>
+<p>Esto es la forma más cómoda de empezar un proyecto nuevo con entorno virtual desde cero: no hace falta recordar ejecutar ningún comando, el propio flujo de creación de proyecto en RStudio ya lo deja activado.</p>
+<p>Para proyectos ya existentes (creados sin esa casilla marcada), simplemente ejecuta <code>renv::init()</code> manualmente una vez, como se describió en la sección 5.</p>
+<hr>
+</section>
+<section id="caso-de-uso-1-tesis-o-trabajo-de-investigación-individual" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="caso-de-uso-1-tesis-o-trabajo-de-investigación-individual"><span class="header-section-number">1.8</span> 7. Caso de uso 1 — Tesis o trabajo de investigación individual</h2>
+<p><strong>Escenario</strong>: estás escribiendo tu tesis o un artículo y usas R/RStudio para el análisis estadístico, con un conjunto de paquetes (por ejemplo <code>tidyverse</code>, <code>lme4</code>, <code>apaTables</code>) que pueden actualizarse con el tiempo mientras dura el trabajo (meses o años).</p>
+<p><strong>Por qué importa</strong>: si una actualización de un paquete cambia el comportamiento de una función estadística a mitad de tu tesis, tus resultados podrían dejar de ser reproducibles exactamente, incluso en tu propia máquina, varios meses después.</p>
+<p><strong>Flujo recomendado</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Al iniciar el proyecto de tesis</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span>
+<span id="cb9-3"><a href="#cb9-3"></a></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="co"># Trabajas normalmente, instalando lo que necesites</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"lme4"</span>, <span class="st">"apaTables"</span>))</span>
+<span id="cb9-6"><a href="#cb9-6"></a></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="co"># Cada vez que termines una etapa importante (p. ej. antes de</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="co"># enviar un capítulo a tu asesor, o antes de la sustentación)</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Beneficio concreto</strong>: el día de la sustentación o defensa, si un jurado o evaluador quiere reproducir exactamente tus resultados en otra computadora, basta con que reciba la carpeta del proyecto (incluyendo <code>renv.lock</code>) y ejecute <code>renv::restore()</code>. Obtendrá las mismas versiones de paquete que usaste tú, eliminando una fuente común de “en mi máquina sí funciona”.</p>
+<hr>
+</section>
+<section id="caso-de-uso-2-curso-o-asignatura-con-múltiples-prácticas" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="caso-de-uso-2-curso-o-asignatura-con-múltiples-prácticas"><span class="header-section-number">1.9</span> 8. Caso de uso 2 — Curso o asignatura con múltiples prácticas</h2>
+<p><strong>Escenario</strong>: dictas o llevas un curso de econometría, estadística o programación en R con varias prácticas o controles a lo largo del semestre, cada una con requisitos de paquetes ligeramente distintos (una práctica usa <code>forecast</code>, otra usa <code>plm</code>, otra usa <code>caret</code>).</p>
+<p><strong>Problema sin entornos virtuales</strong>: instalar <code>caret</code> para la práctica 5 puede arrastrar actualizaciones de dependencias compartidas que rompan silenciosamente el código de la práctica 2, que ya habías entregado y calificado.</p>
+<p><strong>Flujo recomendado</strong>: crear <strong>un proyecto de RStudio por práctica o por unidad</strong>, cada uno con su propio <code>renv</code>:</p>
+<pre><code>curso-econometria/
+├── practica-01-regresion-lineal/   (renv propio)
+├── practica-02-series-tiempo/      (renv propio)
+├── practica-03-panel-data/         (renv propio)
+└── practica-04-machine-learning/   (renv propio)</code></pre>
+<p>En cada subcarpeta, al crearla como proyecto de RStudio, marcas “Use renv with this project”, o ejecutas <code>renv::init()</code> manualmente. Cada práctica queda completamente aislada: actualizar <code>caret</code> en la práctica 4 no afecta en absoluto a la práctica 1.</p>
+<p><strong>Beneficio adicional para docentes</strong>: puedes distribuir cada práctica a tus estudiantes incluyendo el <code>renv.lock</code> correspondiente, garantizando que todos en el curso usen exactamente las mismas versiones de paquetes que tú usaste para diseñar y probar los ejercicios, evitando errores de “a mí me sale un resultado distinto” por diferencias de versión.</p>
+<hr>
+</section>
+<section id="caso-de-uso-3-colaboración-en-equipo-proyecto-compartido-en-git" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="caso-de-uso-3-colaboración-en-equipo-proyecto-compartido-en-git"><span class="header-section-number">1.10</span> 9. Caso de uso 3 — Colaboración en equipo / proyecto compartido en Git</h2>
+<p><strong>Escenario</strong>: trabajas con coautores o colegas en un repositorio Git compartido (por ejemplo en GitHub, bajo tu cuenta <code>@achalmed</code>), con varios contribuyentes ejecutando el mismo código de análisis en distintas máquinas.</p>
+<p><strong>Flujo recomendado</strong>:</p>
+<ol type="1">
+<li>Quien crea el proyecto ejecuta <code>renv::init()</code> y hace el primer <code>renv::snapshot()</code>.</li>
+<li>Se hace commit a Git de los archivos generados por renv:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">git</span> add renv.lock .Rprofile renv/settings.json renv/activate.R</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Configurar entorno renv del proyecto"</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="fu">git</span> push</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>renv</code> genera automáticamente un <code>.gitignore</code> apropiado dentro de la carpeta <code>renv/</code>, de modo que la biblioteca de paquetes en sí (<code>renv/library</code>, que puede pesar cientos de MB) <strong>no</strong> se sube al repositorio; solo se sube el lockfile y la infraestructura ligera necesaria para reconstruirla.</p>
+<ol start="3" type="1">
+<li><p>Cuando un colaborador clona el repositorio y abre el proyecto en RStudio, <code>renv</code> se autoarranca (<em>bootstrap</em>): detecta que el proyecto usa renv, descarga e instala automáticamente la versión apropiada del propio paquete <code>renv</code>, y le pregunta al colaborador si desea instalar todos los paquetes necesarios ejecutando <code>renv::restore()</code>.</p></li>
+<li><p>Cuando alguien instala o actualiza un paquete nuevo para el proyecto, debe correr <code>renv::snapshot()</code> y avisar al resto del equipo (vía commit/push) que el lockfile cambió, para que los demás corran <code>renv::restore()</code> y se sincronicen.</p></li>
+</ol>
+<p><strong>Regla práctica para el equipo</strong>: “si tocas paquetes, haces snapshot y avisas; si te avisan que el lockfile cambió, haces restore antes de seguir trabajando”.</p>
+<hr>
+</section>
+<section id="caso-de-uso-4-múltiples-proyectos-en-la-misma-máquina-aislamiento" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="caso-de-uso-4-múltiples-proyectos-en-la-misma-máquina-aislamiento"><span class="header-section-number">1.11</span> 10. Caso de uso 4 — Múltiples proyectos en la misma máquina (aislamiento)</h2>
+<p><strong>Escenario</strong>: en tu propia computadora mantienes en paralelo varios proyectos activos: tus sitios Quarto académicos, scripts de tutoría en economía, un proyecto de análisis de datos para una consultoría, y experimentos personales con paquetes nuevos de ciencia de datos.</p>
+<p><strong>Problema sin entornos virtuales</strong>: probar la última versión de un paquete experimental para un proyecto personal puede romper, sin que te des cuenta, un script de tutoría que dependía de un comportamiento anterior de ese mismo paquete.</p>
+<p><strong>Flujo recomendado</strong>: activar <code>renv</code> en <strong>cada proyecto independiente</strong> que mantengas activo simultáneamente. Gracias a la caché global de renv (sección 3.3), esto no implica descargar ni compilar cada paquete una vez por proyecto: si <code>ggplot2</code> ya está en caché por haberlo instalado en un proyecto, los demás proyectos simplemente enlazan a esa misma copia, sin gasto adicional relevante de espacio en disco ni tiempo de instalación, mientras cada proyecto conserva su propio registro independiente de qué versión está usando.</p>
+<p><strong>Resultado</strong>: puedes actualizar libremente los paquetes de tu proyecto experimental sin ningún riesgo de afectar tus otros proyectos en producción o entrega.</p>
+<hr>
+</section>
+<section id="caso-de-uso-5-reportes-reproducibles-con-quarto-r-markdown" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="caso-de-uso-5-reportes-reproducibles-con-quarto-r-markdown"><span class="header-section-number">1.12</span> 11. Caso de uso 5 — Reportes reproducibles con Quarto / R Markdown</h2>
+<p><strong>Escenario</strong>: generas documentos con Quarto o R Markdown (<code>.qmd</code> / <code>.Rmd</code>) que combinan texto y código R, por ejemplo reportes económicos, material didáctico o capítulos de tesis con <code>apaquarto</code>.</p>
+<p><strong>Por qué aplica renv aquí</strong>: <code>renv::dependencies()</code> rastrea automáticamente los bloques de código dentro de archivos <code>.qmd</code> y <code>.Rmd</code>, igual que lo hace con scripts <code>.R</code> normales, por lo que <code>renv::init()</code> y <code>renv::hydrate()</code> detectan correctamente los paquetes usados dentro de tus documentos Quarto/RMarkdown sin configuración adicional.</p>
+<p><strong>Flujo recomendado</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()      <span class="co"># detecta paquetes usados en tus .qmd / .Rmd</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co"># ... renderizas el documento, revisas que todo funcione ...</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()  <span class="co"># fija las versiones que produjeron ese render</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Advertencia importante (limitación documentada oficialmente)</strong>: <code>renv</code> solo gestiona <strong>paquetes de R</strong>. El motor de renderizado <strong>Pandoc</strong>, del cual depende fuertemente <code>rmarkdown</code> para convertir el documento a su formato final (PDF, HTML, Word), <strong>no</strong> está empaquetado dentro del paquete <code>rmarkdown</code> ni es gestionado por <code>renv</code>. Esto significa que restaurar el lockfile garantiza las mismas versiones de paquetes de R, pero <strong>no</strong> garantiza, por sí solo, que obtengas exactamente el mismo render visual si la versión de Pandoc instalada en la máquina de destino es distinta. Si esto te genera problemas de reproducibilidad visual, puedes usar el paquete <code>pandoc</code> (gestor de versiones de Pandoc) como complemento.</p>
+<hr>
+</section>
+<section id="caso-de-uso-6-migrar-un-proyecto-antiguo-sin-renv-a-un-entorno-reproducible" class="level2" data-number="1.13">
+<h2 data-number="1.13" class="anchored" data-anchor-id="caso-de-uso-6-migrar-un-proyecto-antiguo-sin-renv-a-un-entorno-reproducible"><span class="header-section-number">1.13</span> 12. Caso de uso 6 — Migrar un proyecto antiguo (sin renv) a un entorno reproducible</h2>
+<p><strong>Escenario</strong>: tienes un proyecto de R ya avanzado (por ejemplo uno de tus repositorios <code>website-achalma</code> con scripts de análisis, o un script de tutoría antiguo) que nunca usó <code>renv</code>, y quieres empezar a protegerlo hacia adelante sin reescribir nada.</p>
+<p><strong>Flujo recomendado</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Ubícate (setwd o abre el proyecto) en la carpeta del proyecto existente</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Como se describió en la sección 5, <code>init()</code> detecta automáticamente qué paquetes ya está usando el código existente, los copia (cuando es posible) desde tu biblioteca de usuario actual hacia la nueva biblioteca de proyecto (evitando reinstalar todo desde cero), y genera el lockfile con el estado funcional actual del proyecto.</p>
+<p><strong>Resultado</strong>: a partir de ese momento, ese proyecto queda “congelado” en un estado conocido y reproducible, sin haber tenido que identificar manualmente la lista de dependencias ni sus versiones.</p>
+<p><strong>Variante — inicialización en blanco</strong>: si prefieres no instalar nada automáticamente y declarar tú mismo los paquetes desde cero, puedes inicializar con biblioteca vacía:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>renv<span class="sc">::</span><span class="fu">init</span>(<span class="at">bare =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="caso-de-uso-7-perfiles-múltiples-dentro-de-un-mismo-proyecto" class="level2" data-number="1.14">
+<h2 data-number="1.14" class="anchored" data-anchor-id="caso-de-uso-7-perfiles-múltiples-dentro-de-un-mismo-proyecto"><span class="header-section-number">1.14</span> 13. Caso de uso 7 — Perfiles múltiples dentro de un mismo proyecto</h2>
+<p><strong>Escenario</strong>: un mismo proyecto necesita comportarse de forma distinta según el contexto. Ejemplos documentados oficialmente:</p>
+<ul>
+<li>Un perfil de <strong>“desarrollo”</strong> (<code>dev</code>) mientras pruebas y depuras código.</li>
+<li>Un perfil de <strong>“producción”</strong> (<code>prod</code>) para despliegues finales, con un conjunto más controlado de paquetes.</li>
+<li>Un perfil de <strong>“shiny”</strong> específico si el proyecto también contiene una aplicación Shiny con dependencias propias (por ejemplo <code>shiny</code>, <code>tidyverse</code>) que no necesitas cargar en el resto del proyecto.</li>
+</ul>
+<p><strong>Por qué importa</strong>: en vez de mantener varias copias del proyecto, <code>renv</code> permite que un mismo proyecto tenga <strong>múltiples bibliotecas y lockfiles alternativos</strong>, uno por perfil, todos viviendo dentro del mismo árbol de carpetas.</p>
+<p><strong>Flujo recomendado</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Crear y activar el perfil "dev" como perfil por defecto del proyecto</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>renv<span class="sc">::</span><span class="fu">activate</span>(<span class="at">profile =</span> <span class="st">"dev"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Con esto, las rutas de biblioteca y lockfile del proyecto pasan a resolverse dentro de <code>renv/profiles/dev/</code>, en vez de las rutas por defecto.</p>
+<p>Para activar un perfil solo durante una sesión puntual, sin cambiar el valor por defecto del proyecto:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">Sys.setenv</span>(<span class="at">RENV_PROFILE =</span> <span class="st">"dev"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>o, desde la línea de comandos (por ejemplo en tu <code>zsh</code>), antes de lanzar R:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1"></a><span class="bu">export</span> <span class="va">RENV_PROFILE</span><span class="op">=</span>dev</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Para volver al perfil estándar:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>renv<span class="sc">::</span><span class="fu">activate</span>(<span class="at">profile =</span> <span class="st">"default"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Declarar dependencias específicas de un perfil</strong>: se hace en el archivo <code>DESCRIPTION</code> del proyecto, con un campo dedicado por perfil, por ejemplo:</p>
+<pre><code>Config/renv/profiles/shiny/dependencies: shiny, tidyverse</code></pre>
+<hr>
+</section>
+<section id="caso-de-uso-8-reproducibilidad-a-largo-plazo-archivar-un-proyecto-terminado" class="level2" data-number="1.15">
+<h2 data-number="1.15" class="anchored" data-anchor-id="caso-de-uso-8-reproducibilidad-a-largo-plazo-archivar-un-proyecto-terminado"><span class="header-section-number">1.15</span> 14. Caso de uso 8 — Reproducibilidad a largo plazo (archivar un proyecto terminado)</h2>
+<p><strong>Escenario</strong>: terminaste una investigación, tesis o reporte y quieres archivarlo de forma que, dentro de dos o tres años, alguien (incluido tú mismo) pueda volver a ejecutarlo exactamente igual, aunque CRAN ya haya avanzado varias versiones de los paquetes involucrados.</p>
+<p><strong>Flujo recomendado al cerrar el proyecto</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()   <span class="co"># última fotografía del entorno funcional final</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Y conservar junto al código fuente:</p>
+<ul>
+<li>El archivo <code>renv.lock</code>.</li>
+<li>El <code>.Rprofile</code> del proyecto.</li>
+<li>La carpeta <code>renv/</code> (sin la subcarpeta <code>library</code>, que es regenerable).</li>
+</ul>
+<p><strong>Al reabrir el proyecto archivado, meses o años después</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>renv</code> reinstalará las versiones exactas registradas, incluso si en CRAN ya existen versiones más nuevas de esos mismos paquetes, siempre que los binarios/fuentes originales sigan disponibles en algún repositorio accesible.</p>
+<p><strong>Limitación honesta que reconoce la propia documentación</strong>: si un paquete fue instalado originalmente desde un binario que posteriormente deja de estar disponible (por ejemplo, retirado de un repositorio), <code>renv</code> intentará compilarlo desde el código fuente como alternativa, pero esto puede fallar si faltan las dependencias de sistema necesarias para compilar (ver la sección de dependencias de sistema en la guía de instalación de R/RStudio). Por esta razón, <strong>renv no es una garantía absoluta de reproducibilidad eterna</strong>, pero sí resuelve la parte más importante y más frecuente del problema: las versiones de paquetes de R.</p>
+<hr>
+</section>
+<section id="caso-de-uso-9-despliegue-en-servidor-docker-posit-connect" class="level2" data-number="1.16">
+<h2 data-number="1.16" class="anchored" data-anchor-id="caso-de-uso-9-despliegue-en-servidor-docker-posit-connect"><span class="header-section-number">1.16</span> 15. Caso de uso 9 — Despliegue en servidor / Docker / Posit Connect</h2>
+<p><strong>Escenario</strong>: necesitas que tu análisis o aplicación (por ejemplo una app Shiny, o un pipeline de reportes) se ejecute de forma idéntica en un servidor, contenedor Docker, integración continua (CI), o en una plataforma de publicación como Posit Connect.</p>
+<p><strong>Por qué aplica renv aquí</strong>: el mismo lockfile que usas en tu laptop es el artefacto que le indica al entorno remoto exactamente qué instalar. La documentación oficial cubre tres escenarios de despliegue específicos:</p>
+<ul>
+<li><strong>Integración continua (CI)</strong>: en pipelines de CI (por ejemplo GitHub Actions), se puede usar <code>renv::restore()</code> como paso de configuración del entorno antes de correr pruebas, garantizando que el CI use las mismas versiones que tu máquina de desarrollo.</li>
+<li><strong>Docker</strong>: se recomienda copiar el <code>renv.lock</code> (y la infraestructura de renv) dentro de la imagen y ejecutar <code>renv::restore()</code> como parte del <code>Dockerfile</code>, de modo que la imagen final tenga exactamente el entorno de paquetes esperado. La caché de renv puede aprovecharse entre builds de imágenes para acelerar reconstrucciones.</li>
+<li><strong>Posit Connect</strong>: al publicar contenido (apps Shiny, reportes Quarto/RMarkdown) hacia Posit Connect, el servidor usa el <code>renv.lock</code> del proyecto para reconstruir el entorno de paquetes necesario en el servidor remoto.</li>
+</ul>
+<p><strong>Flujo conceptual mínimo para cualquiera de estos casos</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># En tu máquina de desarrollo, antes de desplegar</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># En el entorno remoto / imagen / pipeline</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="co"># (usualmente en un script de arranque o en el Dockerfile)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p>Para los detalles específicos de sintaxis de cada plataforma (ejemplo de <code>Dockerfile</code>, configuración de un workflow de GitHub Actions, opciones de Posit Connect), consulta los artículos oficiales dedicados: <em>Using renv with continuous integration</em>, <em>Using renv with Docker</em> y <em>Using renv with Posit Connect</em>, enlazados en la sección de referencias.</p>
+</blockquote>
+<hr>
+</section>
+<section id="caso-de-uso-10-desarrollo-de-un-paquete-de-r-propio" class="level2" data-number="1.17">
+<h2 data-number="1.17" class="anchored" data-anchor-id="caso-de-uso-10-desarrollo-de-un-paquete-de-r-propio"><span class="header-section-number">1.17</span> 16. Caso de uso 10 — Desarrollo de un paquete de R propio</h2>
+<p><strong>Escenario</strong>: estás desarrollando tu propio paquete de R (por ejemplo, una herramienta interna para tus prompts/scripts educativos, o un paquete que planeas publicar en CRAN).</p>
+<p><strong>Particularidad de este caso</strong>: cuando <code>renv</code> se usa dentro de un proyecto de <strong>desarrollo de paquete</strong> (es decir, un proyecto que contiene su propio archivo <code>DESCRIPTION</code> de paquete, no solo de análisis), el comportamiento es ligeramente distinto al de un proyecto de análisis normal: en vez de usar siempre la biblioteca de proyecto, <code>renv</code> puede usar una biblioteca externa al directorio del proyecto, para evitar mezclar la infraestructura del propio paquete en desarrollo con su entorno de pruebas.</p>
+<p><strong>Casos típicos dentro de este escenario</strong>:</p>
+<ul>
+<li><strong>Probar contra la última versión disponible en CRAN</strong> de tus dependencias (recomendado si planeas publicar el paquete en CRAN, ya que CRAN exige compatibilidad con el ecosistema actual):</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><p><strong>Probar contra versiones de desarrollo</strong> de otras dependencias (por ejemplo si dependes de una rama no publicada aún de otro paquete tuyo o de un colaborador), declarando esas dependencias de desarrollo en el campo <code>Remotes</code> del <code>DESCRIPTION</code> del paquete.</p></li>
+<li><p><strong>Integración continua del propio paquete</strong>: es habitual usar <code>renv</code> dentro del flujo de CI del paquete (por ejemplo en GitHub Actions) para acelerar la instalación de dependencias de prueba aprovechando la caché global, en vez de reinstalar todo desde cero en cada ejecución del pipeline.</p></li>
+</ul>
+<blockquote class="blockquote">
+<p>Importante: si vas a enviar tu paquete a CRAN, <strong>no debe incluirse la infraestructura de renv</strong> dentro del tarball fuente que se sube a CRAN; <code>renv</code> es una herramienta para tu flujo de desarrollo, no parte del paquete distribuido.</p>
+</blockquote>
+<hr>
+</section>
+<section id="referencia-rápida-de-funciones" class="level2" data-number="1.18">
+<h2 data-number="1.18" class="anchored" data-anchor-id="referencia-rápida-de-funciones"><span class="header-section-number">1.18</span> 17. Referencia rápida de funciones</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Función</th>
+<th>Propósito</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>renv::init()</code></td>
+<td>Inicializa renv en el proyecto actual (crea biblioteca, lockfile y <code>.Rprofile</code>)</td>
+</tr>
+<tr class="even">
+<td><code>renv::init(bare = TRUE)</code></td>
+<td>Inicializa con biblioteca vacía, sin instalar nada automáticamente</td>
+</tr>
+<tr class="odd">
+<td><code>renv::snapshot()</code></td>
+<td>Registra en <code>renv.lock</code> el estado actual de la biblioteca del proyecto</td>
+</tr>
+<tr class="even">
+<td><code>renv::restore()</code></td>
+<td>Reinstala en la biblioteca del proyecto las versiones exactas del <code>renv.lock</code></td>
+</tr>
+<tr class="odd">
+<td><code>renv::install("pkg")</code></td>
+<td>Instala un paquete (alternativa a <code>install.packages()</code>, soporta GitHub, Bioconductor, etc.)</td>
+</tr>
+<tr class="even">
+<td><code>renv::update()</code></td>
+<td>Actualiza todas las dependencias del proyecto a sus últimas versiones disponibles</td>
+</tr>
+<tr class="odd">
+<td><code>renv::upgrade()</code></td>
+<td>Actualiza únicamente el propio paquete <code>renv</code></td>
+</tr>
+<tr class="even">
+<td><code>renv::dependencies()</code></td>
+<td>Lista los paquetes que el código del proyecto está usando actualmente</td>
+</tr>
+<tr class="odd">
+<td><code>renv::hydrate()</code></td>
+<td>Instala en la biblioteca de proyecto los paquetes detectados por <code>dependencies()</code></td>
+</tr>
+<tr class="even">
+<td><code>renv::status()</code></td>
+<td>Compara el estado actual de la biblioteca contra lo registrado en el lockfile</td>
+</tr>
+<tr class="odd">
+<td><code>renv::history()</code></td>
+<td>Muestra el historial de versiones anteriores del lockfile (vía Git)</td>
+</tr>
+<tr class="even">
+<td><code>renv::revert()</code></td>
+<td>Revierte el lockfile a una versión anterior del historial</td>
+</tr>
+<tr class="odd">
+<td><code>renv::activate()</code></td>
+<td>Activa renv en la sesión actual (o cambia de perfil con <code>profile=</code>)</td>
+</tr>
+<tr class="even">
+<td><code>renv::deactivate()</code></td>
+<td>Desactiva renv en el proyecto (mantiene los archivos)</td>
+</tr>
+<tr class="odd">
+<td><code>renv::deactivate(clean = TRUE)</code></td>
+<td>Elimina por completo la infraestructura de renv del proyecto</td>
+</tr>
+<tr class="even">
+<td><code>renv::paths$root()</code></td>
+<td>Devuelve la ruta de la caché/raíz global de renv en el sistema</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="límites-de-renv-lo-que-no-resuelve" class="level2" data-number="1.19">
+<h2 data-number="1.19" class="anchored" data-anchor-id="límites-de-renv-lo-que-no-resuelve"><span class="header-section-number">1.19</span> 18. Límites de renv: lo que NO resuelve</h2>
+<p>La propia documentación oficial es explícita sobre esto, y conviene tenerlo presente para no asumir una falsa sensación de seguridad total:</p>
+<ul>
+<li><strong>Versión de R</strong>: <code>renv</code> registra qué versión de R se usó, pero no instala ni cambia versiones de R por ti (no puede, porque corre dentro de la propia R). Para gestionar múltiples versiones de R en una misma máquina, la documentación oficial sugiere herramientas externas como <code>rig</code>.</li>
+<li><strong>Pandoc</strong>: como se explicó en el caso de uso 5, Pandoc no viaja dentro del lockfile de <code>renv</code>, aunque <code>rmarkdown</code>/Quarto dependan fuertemente de él.</li>
+<li><strong>Sistema operativo, librerías de sistema, versión del compilador</strong>: mantener una imagen de sistema “estable” es un problema aparte; la solución recomendada oficialmente para esto es <strong>Docker</strong>, no <code>renv</code> por sí solo.</li>
+<li><strong>Disponibilidad futura de binarios</strong>: si un paquete fue instalado desde un binario que luego deja de publicarse, <code>restore()</code> intentará compilar desde fuente, lo cual puede fallar si faltan dependencias de sistema.</li>
+</ul>
+<p>En palabras de la propia documentación: hacer un proyecto reproducible siempre exige reflexión, no solo el uso mecánico de una herramienta. <code>renv</code> resuelve muy bien <strong>una</strong> parte importante del problema (los paquetes de R), no todo el problema de reproducibilidad de punta a punta.</p>
+<hr>
+</section>
+<section id="solución-de-problemas-comunes" class="level2" data-number="1.20">
+<h2 data-number="1.20" class="anchored" data-anchor-id="solución-de-problemas-comunes"><span class="header-section-number">1.20</span> 19. Solución de problemas comunes</h2>
+<section id="renvrestore-falla-al-intentar-compilar-un-paquete-desde-fuente" class="level3" data-number="1.20.1">
+<h3 data-number="1.20.1" class="anchored" data-anchor-id="renvrestore-falla-al-intentar-compilar-un-paquete-desde-fuente"><span class="header-section-number">1.20.1</span> 19.1. <code>renv::restore()</code> falla al intentar compilar un paquete desde fuente</h3>
+<p>Suele deberse a dependencias de sistema faltantes (ver la guía de instalación de R/RStudio, sección de “Dependencias de sistema para paquetes de R”). Instala la librería de sistema indicada en el mensaje de error y reintenta.</p>
+</section>
+<section id="un-colaborador-abre-el-proyecto-y-no-ve-activarse-renv-automáticamente" class="level3" data-number="1.20.2">
+<h3 data-number="1.20.2" class="anchored" data-anchor-id="un-colaborador-abre-el-proyecto-y-no-ve-activarse-renv-automáticamente"><span class="header-section-number">1.20.2</span> 19.2. Un colaborador abre el proyecto y no ve activarse renv automáticamente</h3>
+<p>Verifica que se haya hecho commit de <code>.Rprofile</code>, <code>renv.lock</code>, <code>renv/settings.json</code> y <code>renv/activate.R</code> al repositorio Git. Si alguno de estos archivos quedó fuera del control de versiones (por ejemplo por un <code>.gitignore</code> mal configurado), el autoarranque de renv no ocurrirá en la máquina del colaborador.</p>
+</section>
+<section id="quiero-saber-si-mi-biblioteca-actual-coincide-con-el-lockfile" class="level3" data-number="1.20.3">
+<h3 data-number="1.20.3" class="anchored" data-anchor-id="quiero-saber-si-mi-biblioteca-actual-coincide-con-el-lockfile"><span class="header-section-number">1.20.3</span> 19.3. Quiero saber si mi biblioteca actual coincide con el lockfile</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>renv<span class="sc">::</span><span class="fu">status</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Esto compara la biblioteca actual del proyecto contra lo registrado en <code>renv.lock</code> y reporta diferencias (paquetes instalados que no están en el lockfile, o viceversa).</p>
+</section>
+<section id="necesito-volver-a-una-versión-anterior-del-lockfile-no-solo-a-la-última" class="level3" data-number="1.20.4">
+<h3 data-number="1.20.4" class="anchored" data-anchor-id="necesito-volver-a-una-versión-anterior-del-lockfile-no-solo-a-la-última"><span class="header-section-number">1.20.4</span> 19.4. Necesito volver a una versión anterior del lockfile (no solo a la última)</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>renv<span class="sc">::</span><span class="fu">history</span>()   <span class="co"># ver versiones anteriores registradas en Git</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>renv<span class="sc">::</span><span class="fu">revert</span>()    <span class="co"># revertir a una versión específica</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="el-proyecto-ya-no-necesita-renv" class="level3" data-number="1.20.5">
+<h3 data-number="1.20.5" class="anchored" data-anchor-id="el-proyecto-ya-no-necesita-renv"><span class="header-section-number">1.20.5</span> 19.5. El proyecto ya no necesita renv</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>renv<span class="sc">::</span><span class="fu">deactivate</span>()              <span class="co"># desactiva pero conserva los archivos</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>renv<span class="sc">::</span><span class="fu">deactivate</span>(<span class="at">clean =</span> <span class="cn">TRUE</span>)  <span class="co"># elimina toda la infraestructura de renv del proyecto</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Para eliminar también la caché global de renv del sistema (afecta a <em>todos</em> tus proyectos con renv, úsalo con cuidado):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>root <span class="ot">&lt;-</span> renv<span class="sc">::</span>paths<span class="sc">$</span><span class="fu">root</span>()</span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="fu">unlink</span>(root, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Y finalmente, si ya no quieres usar renv en ningún proyecto:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>utils<span class="sc">::</span><span class="fu">remove.packages</span>(<span class="st">"renv"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="referencias-oficiales" class="level2" data-number="1.21">
+<h2 data-number="1.21" class="anchored" data-anchor-id="referencias-oficiales"><span class="header-section-number">1.21</span> 20. Referencias oficiales</h2>
+<ul>
+<li><strong>renv — Sitio oficial de documentación</strong>: https://rstudio.github.io/renv/</li>
+<li><strong>renv — Introducción (vignette principal)</strong>: https://rstudio.github.io/renv/articles/renv.html</li>
+<li><strong>renv — Instalación de paquetes y caché</strong>: https://rstudio.github.io/renv/articles/package-install.html</li>
+<li><strong>renv — Fuentes de paquetes (CRAN, GitHub, Bioconductor, etc.)</strong>: https://rstudio.github.io/renv/articles/package-sources.html</li>
+<li><strong>renv — Perfiles de proyecto</strong>: https://rstudio.github.io/renv/articles/profiles.html</li>
+<li><strong>renv — Desarrollo de paquetes con renv</strong>: https://rstudio.github.io/renv/articles/packages.html</li>
+<li><strong>renv — Integración continua (CI)</strong>: https://rstudio.github.io/renv/articles/ci.html</li>
+<li><strong>renv — Uso con Docker</strong>: https://rstudio.github.io/renv/articles/docker.html</li>
+<li><strong>renv — Uso con Posit Connect</strong>: https://rstudio.github.io/renv/articles/rsconnect.html</li>
+<li><strong>renv — Preguntas frecuentes (FAQ)</strong>: https://rstudio.github.io/renv/articles/faq.html</li>
+<li><strong>renv — Referencia de funciones</strong>: https://rstudio.github.io/renv/reference/index.html</li>
+<li><strong>renv — Repositorio oficial en GitHub</strong>: https://github.com/rstudio/renv</li>
+<li><strong>RStudio IDE — Guía de entornos con renv</strong>: https://github.com/rstudio/rstudio/blob/main/docs/user/rstudio/ide/guide/environments/r/renv.qmd</li>
+</ul>
+<hr>
+<p><strong>Edison Achalma</strong> Economista — Universidad Nacional de San Cristóbal de Huamanga (UNSCH) Ayacucho, Perú ORCID: <a href="https://orcid.org/0000-0001-6996-3364">0000-0001-6996-3364</a></p>
+</section>
+</section>
+<section id="publicaciones-similares" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Publicaciones Similares</h1>
+<p>Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:</p>
+<ol type="1">
+<li><a href="https://numerus-scriptum.netlify.app/r/2020-06-10-011-instalacion-de-r/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/r/2020-06-10-011-instalacion-de-r">011 Instalacion De R</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/r/2020-06-10-012-configurar-entorno-virtual-r/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/r/2020-06-10-012-configurar-entorno-virtual-r">012 Configurar Entorno Virtual R</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/r/2020-06-10-013-lo-que-debemos-saber-de-r/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/r/2020-06-10-013-lo-que-debemos-saber-de-r">013 Lo Que Debemos Saber De R</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/r/2021-04-05-02-manipulacion-de-datos/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/r/2021-04-05-02-manipulacion-de-datos">02 Manipulacion De Datos</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/r/2021-04-12-03-visualizacion-de-datos/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/r/2021-04-12-03-visualizacion-de-datos">03 Visualizacion De Datos</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/r/2022-11-07-04-modelo-de-machine-learning-i-analisis-exploratorio/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/r/2022-11-07-04-modelo-de-machine-learning-i-analisis-exploratorio">04 Modelo De Machine Learning I Analisis Exploratorio</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/r/2022-11-14-05-modelo-de-machine-learning-ii-modelo-de-clasificacion/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/r/2022-11-14-05-modelo-de-machine-learning-ii-modelo-de-clasificacion">05 Modelo De Machine Learning Ii Modelo De Clasificacion</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/r/2022-11-21-06-modelo-de-machine-learning-iii-modelo-de-regresion/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/r/2022-11-21-06-modelo-de-machine-learning-iii-modelo-de-regresion">06 Modelo De Machine Learning Iii Modelo De Regresion</a></li>
+<li><a href="https://numerus-scriptum.netlify.app/r/2022-11-28-07-modelo-de-machine-learning-iv-tex-mining/index.pdf"><i class="fa-regular fa-file-pdf" aria-label="file-pdf"></i></a> <a href="https://numerus-scriptum.netlify.app/r/2022-11-28-07-modelo-de-machine-learning-iv-tex-mining">07 Modelo De Machine Learning Iv Tex Mining</a></li>
+</ol>
+<p>Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reutilización</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-achalma2020" class="csl-entry quarto-appendix-citeas" role="listitem">
+Achalma, Edison. 2020. <em>Guía completa de entornos virtuales en R con
+RStudio (renv)</em>. accepted, June 10. <a href="https://numerus-scriptum.netlify.app/r/2020-06-10-012-configurar-entorno-virtual-r/">https://numerus-scriptum.netlify.app/r/2020-06-10-012-configurar-entorno-virtual-r/</a>.
+</div></div></section></div></main> <!-- /main -->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4GMRCPL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!-- ==========================================================================
+  MICROINTERACCIONES — "QUIET LABORATORY" (cargador de módulos)
+  ===========================================================================
+  Inyectado en todas las páginas vía include-after-body (_quarto.yml).
+  El código vive en módulos independientes en assets/js/ (ver su README):
+
+    · navbar.js         → clase .lab-scrolled al hacer scroll
+    · cursor.js         → iluminación que sigue el puntero (--lab-mx/--lab-my)
+    · hero.js           → ajuste del hero de portada al alto visible
+    · scroll-effects.js → aparición escalonada (.lab-reveal/.lab-in)
+
+  Rutas absolutas (/assets/js/...) para funcionar a cualquier profundidad.
+  Sin JS el sitio queda íntegro: nada se oculta por defecto.
+=========================================================================== -->
+<script src="../../assets/js/navbar.js"></script>
+<script src="../../assets/js/cursor.js"></script>
+<script src="../../assets/js/hero.js"></script>
+<script src="../../assets/js/scroll-effects.js"></script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/numerus-scriptum\.netlify\.app\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<script src="https://utteranc.es/client.js" repo="achalmed/website-achalma" issue-term="title" theme="boxy-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Edison Achalma ∙ Made with <a href="https://quarto.org">Quarto</a></p>
+</div>   
+    <div class="nav-footer-center">
+<p><a class="link-dark me-1" href="../../accessibility.html" title="Accessibility commitment" target="_blank" rel="noopener"><i class="fa-solid fa-universal-access" aria-label="universal-access"></i></a> <a class="link-dark me-1" href="https://fosstodon.org/@achalmaedison" title="mastodon" target="_blank" rel="noopener"><i class="fa-brands fa-mastodon" aria-label="mastodon"></i></a> <a class="link-dark me-1" href="https://github.com/achalmed" title="github" target="_blank" rel="noopener"><i class="fa-brands fa-github" aria-label="github"></i></a> <a class="link-dark me-1" href="https://linkedin.com/in/achalmaedison" title="LinkedIn" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin" aria-label="linkedin"></i></a></p>
+</div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="https://achalmaedison.netlify.app/accessibility">
+<p>Accessibility</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://achalmaedison.netlify.app/contact">
+<p>Contact</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://achalmaedison.netlify.app/license">
+<p>License</p>
+</a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="../../index.xml">
+      <i class="bi bi-rss" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -124,6 +124,7 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -227,6 +228,10 @@ Cristóbal de Huamanga, Portal Independencia N°
 
 
 
+\hypersetup{
+  pdftitle={Modelos de regresi\'{o}n en Machine Learning},
+  pdfauthor={Autor}
+}
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -357,10 +362,6 @@ diferencia de clasificación que predice categorías discretas).
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-Librerías importadas exitosamente
-\end{verbatim}
-
 \subsection{Tipos de problemas de
 regresión}\label{tipos-de-problemas-de-regresiuxf3n}
 
@@ -490,24 +491,6 @@ regresión}\label{tipos-de-problemas-de-regresiuxf3n}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-DATOS GENERADOS
-======================================================================
-Número de observaciones: 200
-Número de características: 2
-
-Coeficientes verdaderos:
-  Intercepto: 3.0
-  β₁: 2.0
-  β₂: -1.5
-
-Modelo verdadero: Y = 3.0 + 2.0*X₁ + -1.5*X₂ + ε
-
-Gráfico guardado como 'datos_regresion.png'
-\end{verbatim}
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-3-output-2.pdf}}
-
 \subsection{Dividir datos}\label{dividir-datos}
 
 \begin{Shaded}
@@ -522,13 +505,6 @@ Gráfico guardado como 'datos_regresion.png'
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Prueba: }\SpecialCharTok{\{}\BuiltInTok{len}\NormalTok{(y\_test)}\SpecialCharTok{\}}\SpecialStringTok{ observaciones"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-
-División de datos:
-  Entrenamiento: 140 observaciones
-  Prueba: 60 observaciones
-\end{verbatim}
 
 \section{Mínimos cuadrados ordinarios
 (OLS)}\label{muxednimos-cuadrados-ordinarios-ols}
@@ -921,26 +897,6 @@ superior.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-
-MODELO OLS ESTIMADO
-======================================================================
-Intercepto estimado: 2.8623
-  (Verdadero: 3.0)
-
-Coeficientes estimados:
-  β₁: 2.1145 (Verdadero: 2.0)
-  β₂: -1.3336 (Verdadero: -1.5)
-
-
-PERFORMANCE DEL MODELO
-======================================================================
-R² Train: 0.8619
-R² Test:  0.8480
-MSE Train: 0.9534
-MSE Test:  1.0902
-\end{verbatim}
-
 \subsection{Visualización de
 predicciones}\label{visualizaciuxf3n-de-predicciones}
 
@@ -976,13 +932,6 @@ predicciones}\label{visualizaciuxf3n-de-predicciones}
 \BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Gráfico guardado como \textquotesingle{}ols\_predictions.png\textquotesingle{}"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-
-Gráfico guardado como 'ols_predictions.png'
-\end{verbatim}
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-6-output-2.pdf}}
 
 \subsection{Análisis de residuos}\label{anuxe1lisis-de-residuos}
 
@@ -1030,12 +979,6 @@ Gráfico guardado como 'ols_predictions.png'
 \BuiltInTok{print}\NormalTok{(}\StringTok{"Gráficos de diagnóstico guardados como \textquotesingle{}ols\_diagnostics.png\textquotesingle{}"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-Gráficos de diagnóstico guardados como 'ols_diagnostics.png'
-\end{verbatim}
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-7-output-2.pdf}}
 
 \section{Regresión Ridge}\label{regresiuxf3n-ridge}
 
@@ -1396,21 +1339,6 @@ k-ésimo fold.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-
-REGRESIÓN RIDGE - EFECTO DE α
-======================================================================
-α          β₁           β₂           R² Train     R² Test     
-----------------------------------------------------------------------
-0.001      2.1145       -1.3336      0.8619       0.8480      
-0.010      2.1143       -1.3335      0.8619       0.8480      
-0.100      2.1129       -1.3326      0.8619       0.8480      
-1.000      2.0986       -1.3239      0.8619       0.8476      
-10.000     1.9659       -1.2421      0.8577       0.8407      
-100.000    1.2046       -0.7678      0.7036       0.6801      
-1000.000   0.2473       -0.1592      0.1909       0.1821      
-\end{verbatim}
-
 \subsection{Visualización del efecto de
 regularización}\label{visualizaciuxf3n-del-efecto-de-regularizaciuxf3n}
 
@@ -1456,16 +1384,6 @@ regularización}\label{visualizaciuxf3n-del-efecto-de-regularizaciuxf3n}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"R² Test: }\SpecialCharTok{\{}\NormalTok{df\_ridge}\SpecialCharTok{.}\NormalTok{loc[mejor\_idx, }\StringTok{\textquotesingle{}r2\_test\textquotesingle{}}\NormalTok{]}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-
-Gráfico guardado como 'ridge_regularization.png'
-
-Mejor α: 0.001
-R² Test: 0.8480
-\end{verbatim}
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-9-output-2.pdf}}
 
 \section{Regresión Lasso}\label{regresiuxf3n-lasso}
 
@@ -1690,6 +1608,7 @@ correlacionadas son relevantes.
 \subsubsection{Comparación Ridge vs
 Lasso}\label{comparaciuxf3n-ridge-vs-lasso}
 
+{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4000}}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3000}}
@@ -1716,6 +1635,7 @@ sparse) \\
 \textbf{Estabilidad} & Más estable & Menos estable \\
 \textbf{Uso principal} & Reducir varianza & Selección de variables \\
 \end{longtable}
+}
 
 \subsubsection{Ventajas de la regresión
 Lasso}\label{ventajas-de-la-regresiuxf3n-lasso}
@@ -1904,21 +1824,6 @@ modelo.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-
-REGRESIÓN LASSO - EFECTO DE α
-================================================================================
-α          β₁           β₂           Variables≠0    R² Train     R² Test     
---------------------------------------------------------------------------------
-0.001      2.1135       -1.3325      2              0.8619       0.8479      
-0.010      2.1042       -1.3229      2              0.8619       0.8473      
-0.100      2.0112       -1.2265      2              0.8589       0.8383      
-0.500      1.5982       -0.7981      2              0.7858       0.7416      
-1.000      1.0819       -0.2626      2              0.5573       0.4907      
-2.000      0.0005       -0.0000      1              0.0003       -0.0005     
-5.000      0.0000       -0.0000      0              0.0000       -0.0007     
-\end{verbatim}
-
 \subsection{Comparación Ridge vs
 Lasso}\label{comparaciuxf3n-ridge-vs-lasso-1}
 
@@ -1980,13 +1885,6 @@ Lasso}\label{comparaciuxf3n-ridge-vs-lasso-1}
 \BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Gráfico guardado como \textquotesingle{}ridge\_vs\_lasso.png\textquotesingle{}"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-
-Gráfico guardado como 'ridge_vs_lasso.png'
-\end{verbatim}
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-11-output-2.pdf}}
 
 \section{Elastic Net}\label{elastic-net}
 
@@ -2281,6 +2179,7 @@ solo se optimiza \(\alpha\):
 \subsubsection{Comparación de los tres
 métodos}\label{comparaciuxf3n-de-los-tres-muxe9todos}
 
+{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1194}}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2090}}
@@ -2311,6 +2210,7 @@ n variables \\
 \(\alpha[\rho \sum \|\beta_j\| + \frac{1-\rho}{2}\sum \beta_j^2]\) & Sí
 & Agrupa & OK \\
 \end{longtable}
+}
 
 \subsubsection{Aplicaciones en
 economía}\label{aplicaciones-en-economuxeda-3}
@@ -2412,18 +2312,6 @@ donde los pesos se derivan de estimaciones preliminares.
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{R² Test: }\SpecialCharTok{\{}\NormalTok{r2\_elastic}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-
-ELASTIC NET
-======================================================================
-Intercepto: 2.8637
-Coeficientes:
-  β₁: 1.9592
-  β₂: -1.2174
-
-R² Test: 0.8375
-\end{verbatim}
 
 \section{Regresión polinomial}\label{regresiuxf3n-polinomial}
 
@@ -2929,23 +2817,6 @@ prácticas}\label{recomendaciones-pruxe1cticas-1}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-
-REGRESIÓN POLINOMIAL
-======================================================================
-Grado    R² Train     R² Test      MSE Train    MSE Test    
-----------------------------------------------------------------------
-1        0.6946       0.7957       6.4986       4.5762      
-2        0.8668       0.8265       2.8340       3.8863      
-3        0.8669       0.8276       2.8315       3.8613      
-5        0.8702       0.8254       2.7615       3.9118      
-8        0.8739       0.7964       2.6829       4.5608      
-
-Gráfico guardado como 'polynomial_regression.png'
-\end{verbatim}
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-13-output-2.pdf}}
-
 \section{K-Nearest Neighbors
 Regressor}\label{k-nearest-neighbors-regressor}
 
@@ -3362,6 +3233,7 @@ KNN es útil en contextos económicos donde:
 \subsubsection{Comparación con métodos
 paramétricos}\label{comparaciuxf3n-con-muxe9todos-paramuxe9tricos}
 
+{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1607}}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.0893}}
@@ -3390,6 +3262,7 @@ predicción \\
 \textbf{Datos necesarios} & Más datos generalmente mejor & Puede
 funcionar con menos datos \\
 \end{longtable}
+}
 
 \subsubsection{Extensiones y variantes}\label{extensiones-y-variantes-1}
 
@@ -3516,25 +3389,6 @@ prácticas}\label{recomendaciones-pruxe1cticas-2}
 \BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Gráfico guardado como \textquotesingle{}knn\_regression.png\textquotesingle{}"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-
-K-NEAREST NEIGHBORS REGRESSOR
-======================================================================
-k        R² Train     R² Test      MSE Test    
-----------------------------------------------------------------------
-1        1.0000       0.7339       1.9089      
-3        0.9021       0.7823       1.5612      
-5        0.8574       0.7661       1.6778      
-10       0.8090       0.7409       1.8582      
-20       0.7545       0.7305       1.9327      
-30       0.7124       0.7041       2.1224      
-50       0.6264       0.6180       2.7400      
-
-Gráfico guardado como 'knn_regression.png'
-\end{verbatim}
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-14-output-2.pdf}}
 
 \section{Métricas de evaluación}\label{muxe9tricas-de-evaluaciuxf3n}
 
@@ -4096,6 +3950,7 @@ Usar \textbf{MAE} o \textbf{MedAE}:
 \subsubsection{Tabla comparativa de
 métricas}\label{tabla-comparativa-de-muxe9tricas}
 
+{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1406}}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1562}}
@@ -4131,6 +3986,7 @@ por complejidad \\
 medio \\
 \textbf{MedAE} & \(Y\) & \([0, \infty)\) & Muy baja & Error mediano \\
 \end{longtable}
+}
 
 \subsubsection{Relaciones matemáticas entre
 métricas}\label{relaciones-matemuxe1ticas-entre-muxe9tricas}
@@ -4253,53 +4109,6 @@ métricas}\label{implementaciuxf3n-de-muxe9tricas}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-
-MÉTRICAS DE EVALUACIÓN - CONJUNTO DE PRUEBA
-======================================================================
-
-OLS
---------------------------------------------------
-  MSE:          1.0902
-  RMSE:         1.0441
-  MAE:          0.8652
-  R²:           0.8480
-  R² Ajustado:  0.8427
-
-Ridge
---------------------------------------------------
-  MSE:          1.0902
-  RMSE:         1.0441
-  MAE:          0.8652
-  R²:           0.8480
-  R² Ajustado:  0.8427
-
-Lasso
---------------------------------------------------
-  MSE:          1.0907
-  RMSE:         1.0443
-  MAE:          0.8654
-  R²:           0.8479
-  R² Ajustado:  0.8426
-
-KNN
---------------------------------------------------
-  MSE:          1.5612
-  RMSE:         1.2495
-  MAE:          0.9792
-  R²:           0.7823
-  R² Ajustado:  0.7747
-
-
-TABLA COMPARATIVA
-======================================================================
-modelo      mse     rmse      mae       r2   r2_adj
-   OLS 1.090161 1.044108 0.865203 0.848011 0.842678
- Ridge 1.090163 1.044109 0.865204 0.848011 0.842678
- Lasso 1.090653 1.044343 0.865375 0.847943 0.842607
-   KNN 1.561182 1.249473 0.979177 0.782342 0.774705
-\end{verbatim}
-
 \section{Comparación de modelos}\label{comparaciuxf3n-de-modelos}
 
 \subsection{Tabla y visualización
@@ -4355,14 +4164,6 @@ comparativa}\label{tabla-y-visualizaciuxf3n-comparativa}
 \BuiltInTok{print}\NormalTok{(}\StringTok{"Tabla guardada como \textquotesingle{}metricas\_comparacion.csv\textquotesingle{}"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-
-Comparación guardada como 'model_comparison.png'
-Tabla guardada como 'metricas_comparacion.csv'
-\end{verbatim}
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-16-output-2.pdf}}
 
 \section{Aplicaciones económicas}\label{aplicaciones-econuxf3micas}
 
@@ -4505,84 +4306,6 @@ vivienda}\label{aplicaciuxf3n-1-predicciuxf3n-de-precios-de-vivienda}
     \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  }\SpecialCharTok{\{}\NormalTok{nombre}\SpecialCharTok{:\textless{}15\}}\SpecialStringTok{ S/ }\SpecialCharTok{\{}\NormalTok{pred}\SpecialCharTok{:,.0f\}}\SpecialStringTok{ mil"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-
-
-
-APLICACIÓN: PREDICCIÓN DE PRECIOS DE VIVIENDA
-======================================================================
-
-Dataset de viviendas:
-  Total viviendas: 500
-
-Estadísticas de precio (miles de soles):
-count     500.000000
-mean     1137.639883
-std       394.316529
-min       273.313950
-25%       806.868893
-50%      1130.556820
-75%      1453.350005
-max      2089.835315
-Name: precio_miles, dtype: float64
-
-
-RESULTADOS DE MODELOS
-======================================================================
-
-OLS:
-  R²:   0.9788
-  RMSE: 54.77 miles de soles
-  MAE:  42.88 miles de soles
-
-Ridge:
-  R²:   0.9794
-  RMSE: 54.01 miles de soles
-  MAE:  43.23 miles de soles
-
-Lasso:
-  R²:   0.9795
-  RMSE: 53.81 miles de soles
-  MAE:  42.35 miles de soles
-
-Random Forest:
-  R²:   0.9544
-  RMSE: 80.31 miles de soles
-  MAE:  67.31 miles de soles
-
-
-IMPORTANCIA DE CARACTERÍSTICAS (Random Forest)
-======================================================================
-  area_m2                   0.8669 ██████████████████████████████████████████████████████████████████████████████████████
-  area_jardin_m2            0.0562 █████
-  distancia_centro_km       0.0348 ███
-  num_habitaciones          0.0192 █
-  antiguedad_anos           0.0105 █
-  piso                      0.0054 
-  tiene_cochera             0.0039 
-  num_banos                 0.0030 
-
-
-EJEMPLO DE PREDICCIÓN
-======================================================================
-
-Características de la vivienda:
-  area_m2: 150
-  num_habitaciones: 3
-  num_banos: 2
-  antiguedad_anos: 10
-  distancia_centro_km: 5
-  area_jardin_m2: 50
-  tiene_cochera: 1
-  piso: 3
-
-Predicciones de precio (miles de soles):
-  OLS             S/ 1,088 mil
-  Ridge           S/ 1,089 mil
-  Lasso           S/ 1,085 mil
-  Random Forest   S/ 1,063 mil
-\end{verbatim}
 
 \subsection{Aplicación 2: Predicción de
 ventas}\label{aplicaciuxf3n-2-predicciuxf3n-de-ventas}
@@ -4733,51 +4456,6 @@ ventas}\label{aplicaciuxf3n-2-predicciuxf3n-de-ventas}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-
-
-
-APLICACIÓN: PREDICCIÓN DE VENTAS
-======================================================================
-
-Dataset de ventas:
-  Total productos: 400
-
-Estadísticas de ventas mensuales:
-count    400.000000
-mean     413.779329
-std      133.711254
-min       83.286944
-25%      316.421096
-50%      412.196200
-75%      514.370629
-max      799.735141
-Name: ventas_mensuales, dtype: float64
-
-
-REGRESIÓN POLINOMIAL PARA VENTAS
-======================================================================
-Modelo                    R²         RMSE            MAE            
-----------------------------------------------------------------------
-Lineal                    0.8470     50.32           40.20          
-Polinomial (grado 2)      0.8329     52.58           43.27          
-Ridge Polinomial          0.8417     51.18           42.40          
-Random Forest             0.7766     60.80           49.69          
-
-
-ANÁLISIS DE ELASTICIDAD PRECIO
-======================================================================
-
-Curva de demanda guardada como 'curva_demanda.png'
-
-Elasticidad precio en punto medio:
-  Precio: S/ 106.94
-  Elasticidad: -0.113
-  → Demanda inelástica (poco sensible al precio)
-\end{verbatim}
-
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-18-output-2.pdf}}
-
 \section{Ejercicios prácticos}\label{ejercicios-pruxe1cticos}
 
 \subsection{Ejercicio: Validación
@@ -4836,27 +4514,6 @@ cruzada}\label{ejercicio-validaciuxf3n-cruzada}
 \BuiltInTok{print}\NormalTok{(}\StringTok{"(Balance entre performance y generalización)"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-
-
-
-EJERCICIO: VALIDACIÓN CRUZADA
-======================================================================
-
-Validación cruzada (5-fold):
-Modelo               R² medio     R² std       RMSE medio     
-----------------------------------------------------------------------
-OLS                  0.8546       0.0204       1.0002         
-Ridge (α=1)          0.8547       0.0208       0.9999         
-Ridge (α=10)         0.8524       0.0247       1.0091         
-Lasso (α=0.1)        0.8525       0.0247       1.0087         
-Lasso (α=1)          0.5366       0.0332       1.7877         
-
-
-Mejor modelo según validación cruzada: Ridge (α=1)
-(Balance entre performance y generalización)
-\end{verbatim}
 
 \section{Conclusión}\label{conclusiuxf3n}
 
