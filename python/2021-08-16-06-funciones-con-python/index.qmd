@@ -37,6 +37,7 @@ citation:
 date: 08/16/2021
 draft: false
 image: ../featured.jpg
+curso: python_curso_base
 ---
 
 

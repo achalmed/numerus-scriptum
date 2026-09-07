@@ -39,6 +39,7 @@ date: 08/13/2019
 draft: false
 image: ../featured.jpg
 duedate: 08/13/2019
+curso: programming_concepts_curso_base
 ---
 
 ¡Absolutamente! Aquí tienes una tabla comparativa de los tipos de archivos más comunes que generan los software estadísticos y de programación que mencionaste, junto con sus funciones principales y extensiones comunes. Esta tabla te será de gran utilidad para organizar tus archivos de manera eficiente:

@@ -37,6 +37,7 @@ citation:
 date: 03/02/2021
 draft: true
 image: ../featured.jpg
+curso: r_curso_base
 ---
 
 

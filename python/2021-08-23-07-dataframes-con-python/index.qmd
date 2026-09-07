@@ -37,6 +37,7 @@ citation:
 date: 08/23/2021
 draft: false
 image: ../featured.jpg
+curso: python_curso_base
 ---
 
 En esta séptima guía profundizaremos en el uso de DataFrames de Pandas, la estructura de datos más importante para análisis económico en Python. Los DataFrames nos permiten trabajar con datos tabulares de manera similar a Excel o Stata, pero con mucho más poder y flexibilidad.

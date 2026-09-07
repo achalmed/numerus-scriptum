@@ -43,6 +43,7 @@ citation:
 date: 05/31/2023
 draft: false
 image: ../featured.jpg
+curso: ofimatica_curso_base
 ---
 
 # Combinando Hojas de Excel con VBA

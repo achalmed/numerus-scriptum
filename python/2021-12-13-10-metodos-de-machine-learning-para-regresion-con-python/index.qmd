@@ -37,6 +37,7 @@ citation:
 date: 12/13/2021
 draft: false
 image: ../featured.jpg
+curso: python_curso_base
 ---
 
 En esta décima guía exploraremos los principales algoritmos de machine learning para problemas de regresión. Estos métodos son fundamentales para resolver problemas económicos como predicción de precios, estimación de demanda, forecasting de series de tiempo, valuación de activos, entre otros.

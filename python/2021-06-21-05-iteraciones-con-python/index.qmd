@@ -37,6 +37,7 @@ citation:
 date: 06/21/2021
 draft: false
 image: ../featured.jpg
+curso: python_curso_base
 ---
 
 En esta quinta guía exploraremos las iteraciones, una de las herramientas más poderosas de la programación. Las iteraciones nos permiten procesar grandes cantidades de datos económicos de manera automatizada y eficiente.

@@ -35,6 +35,7 @@ citation:
 date: 05/21/2023
 draft: true
 image: ../featured.jpg
+curso: ofimatica_curso_base
 ---
 
 # Anchor

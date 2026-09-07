@@ -43,6 +43,7 @@ author:
   email: elmer.achalma.09@unsch.edu.pe
 jupyter: python3
 image: ../featured.jpg
+curso: python_curso_base
 ---
 
 # Grafico de lineas

@@ -36,6 +36,7 @@ citation:
 date: 09/06/2021
 draft: true
 image: ../featured.jpg
+curso: eviews_curso_base
 ---
 
 Este artículo está actualmente en proceso de edición, y todas las secciones serán ampliadas y refinadas en futuras revisiones.

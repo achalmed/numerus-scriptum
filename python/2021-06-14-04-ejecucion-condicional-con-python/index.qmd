@@ -37,6 +37,7 @@ citation:
 date: 06/14/2021
 draft: false
 image: ../featured.jpg
+curso: python_curso_base
 ---
 
 En esta cuarta guía exploraremos cómo los programas pueden tomar decisiones basadas en condiciones. La ejecución condicional es fundamental para crear análisis económicos automatizados que respondan a diferentes escenarios y situaciones.

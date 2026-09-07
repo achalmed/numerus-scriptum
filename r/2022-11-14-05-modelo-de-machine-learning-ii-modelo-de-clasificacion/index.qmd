@@ -37,6 +37,7 @@ citation:
 date: 11/14/2022
 draft: true
 image: ../featured.jpg
+curso: r_curso_base
 ---
 
 Este artículo está actualmente en proceso de edición, y todas las secciones serán ampliadas y refinadas en futuras revisiones.

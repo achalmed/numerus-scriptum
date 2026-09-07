@@ -46,6 +46,7 @@ citation:
 date: 06/09/2018
 draft: false
 image: ../featured.jpg
+curso: programming_concepts_curso_base
 ---
 
 # Tipografía para Proyectos Personales, Profesionales y Académicos

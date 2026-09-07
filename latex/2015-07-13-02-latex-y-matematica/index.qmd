@@ -36,6 +36,7 @@ citation:
 date: 07/13/2015
 draft: true
 image: ../featured.jpg
+curso: latex_curso_base
 ---
 
 Este artículo está actualmente en proceso de edición, y todas las secciones serán ampliadas y refinadas en futuras revisiones.

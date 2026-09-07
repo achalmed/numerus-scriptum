@@ -38,6 +38,7 @@ citation:
 date: 06/07/2021
 draft: false
 image: ../featured.jpg
+curso: python_curso_base
 ---
 
 En esta tercera guía exploraremos las estructuras de datos fundamentales de Python: listas, diccionarios y tuplas. Estas estructuras son esenciales para organizar y manipular datos económicos de manera eficiente.

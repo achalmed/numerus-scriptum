@@ -35,6 +35,7 @@ citation:
 date: 09/12/2022
 draft: true
 image: ../featured.jpg
+curso: ofimatica_curso_base
 ---
 
 Este artículo está actualmente en proceso de edición, y todas las secciones serán ampliadas y refinadas en futuras revisiones.

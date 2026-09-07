@@ -36,6 +36,7 @@ citation:
 date: 06/10/2020
 draft: false
 image: ../featured.jpg
+curso: r_curso_base
 ---
 
 # Lo que debemos saber

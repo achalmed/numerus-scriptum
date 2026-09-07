@@ -37,6 +37,7 @@ citation:
 date: 05/31/2021
 draft: false
 image: ../featured.jpg
+curso: python_curso_base
 ---
 
 En esta segunda guía exploraremos en profundidad los elementos fundamentales de Python: variables, expresiones y statements. Estos conceptos son la base para cualquier programa que escribamos y son esenciales para el análisis económico con Python.

@@ -43,6 +43,7 @@ citation:
 date: 06/05/2023
 draft: false
 image: ../featured.jpg
+curso: ofimatica_curso_base
 ---
 
 SEPARAR HOJAS DE EXCEL EN DOCUMENTOS INDIVIDUALES

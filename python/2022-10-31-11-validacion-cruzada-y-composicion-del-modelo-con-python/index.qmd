@@ -37,6 +37,7 @@ citation:
 date: 10/31/2022
 draft: true
 image: ../featured.jpg
+curso: python_curso_base
 ---
 
 En esta undécima y última guía exploraremos técnicas esenciales para evaluar y optimizar modelos de machine learning: validación cruzada, búsqueda de hiperparámetros, y análisis de contribución de datos y variables. Estas técnicas son fundamentales para desarrollar modelos robustos que generalicen bien a datos no vistos.

@@ -37,6 +37,7 @@ citation:
 date: 12/06/2021
 draft: false
 image: ../featured.jpg
+curso: python_curso_base
 ---
 
 En esta novena guía exploraremos los principales algoritmos de machine learning para problemas de clasificación. Estos métodos son fundamentales para resolver problemas económicos como clasificación de riesgo crediticio, predicción de comportamiento de consumidores, segmentación de mercados, entre otros.

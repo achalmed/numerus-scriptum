@@ -37,6 +37,7 @@ citation:
 date: 06/10/2020
 draft: false
 image: ../featured.jpg
+curso: r_curso_base
 ---
 
 # Guía completa de entornos virtuales en R con RStudio

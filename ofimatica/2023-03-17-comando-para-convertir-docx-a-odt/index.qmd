@@ -35,6 +35,7 @@ citation:
 date: 03/17/2023
 draft: true
 image: ../featured.jpg
+curso: ofimatica_curso_base
 ---
 
 Para convertir varios archivos con extensión `.docx` a `.odt` a través de una línea de comando de Linux, puede utilizar la herramienta `soffice` que viene con LibreOffice. Aquí hay un ejemplo de cómo hacerlo de `docx` a `odt`
