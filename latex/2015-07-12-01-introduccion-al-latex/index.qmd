@@ -5,9 +5,7 @@ title: Introducción práctica al LaTeX
 shorttitle: INTRO A LATEX
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - Latex
 tags:
@@ -33,7 +31,7 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/latex/2015-07-12-01-introduccion-al-latex/index.pdf
-date: 07/12/2015
+date: 2015-07-12
 draft: true
 image: ../featured.jpg
 curso: latex_curso_base

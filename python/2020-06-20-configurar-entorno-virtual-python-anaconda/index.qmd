@@ -36,7 +36,7 @@ citation:
 
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf
-date: 06/20/2020
+date: 2020-06-20
 draft: false
 image: ../featured.jpg
 curso: python_curso_base

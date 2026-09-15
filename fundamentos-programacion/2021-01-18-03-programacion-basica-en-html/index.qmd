@@ -5,9 +5,7 @@ title: Programación básica con HTML
 shorttitle: INTRO PROG WEB HTML
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - Fundamentos Programacion
 tags:
@@ -33,7 +31,7 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/fundamentos-programacion/2021-01-18-03-programacion-basica-en-html/index.pdf
-date: 01/18/2021
+date: 2021-01-18
 draft: true
 image: ../featured.jpg
 curso: programming_concepts_curso_base

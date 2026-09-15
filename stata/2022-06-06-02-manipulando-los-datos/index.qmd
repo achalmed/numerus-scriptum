@@ -5,9 +5,7 @@ title: Manipulación avanzada de datos Stata
 shorttitle: MANIPULACIÓN DATOS STATA
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - Stata
 tags:
@@ -33,7 +31,7 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/stata/2022-06-06-02-manipulando-los-datos/index.pdf
-date: 06/06/2022
+date: 2022-06-06
 draft: true
 image: ../featured.jpg
 curso: stata_curso_base

@@ -6,9 +6,7 @@ title: Guía completa de instalación de R y RStudio Desktop
 abstract:
   Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-  - keyword1
-  - keyword2
+keywords: []
 categories:
   - R
 tags:
@@ -36,7 +34,7 @@ citation:
   author:
     - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/r/2020-06-10-11-instalacion-de-r/index.pdf
-date: 06/10/2020
+date: 2020-06-10
 draft: false
 image: ../featured.jpg
 curso: r_curso_base

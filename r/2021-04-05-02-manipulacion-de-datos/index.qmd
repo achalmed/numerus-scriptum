@@ -5,9 +5,7 @@ title: Manipulación de datos con dplyr
 shorttitle: MANIPULACIÓN DATOS R
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - R
 tags:
@@ -34,7 +32,7 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/r/2021-04-05-02-manipulacion-de-datos/index.pdf
-date: 04/05/2021
+date: 2021-04-05
 draft: true
 image: ../featured.jpg
 curso: r_curso_base

@@ -5,9 +5,7 @@ title: Objetos avanzados en programación EViews
 shorttitle: OBJ AVANZADOS EVIEWS
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - Eviews
 tags:
@@ -33,7 +31,7 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/eviews/2022-02-07-05-objetos-avanzados/index.pdf
-date: 02/07/2022
+date: 2022-02-07
 draft: true
 image: ../featured.jpg
 curso: eviews_curso_base

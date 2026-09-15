@@ -1,3 +1,8 @@
+---
+tipo: fragmento
+titulo: índice de publicaciones de fundamentos-programacion; lo genera script_generador_publicacion_similar
+---
+
 1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/fundamentos-programacion/2018-06-09-typografia/index.pdf) [Typografia](https://numerus-scriptum.netlify.app/fundamentos-programacion/2018-06-09-typografia)
 2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/fundamentos-programacion/2019-08-13-organizando-tipos-de-archivos-de-softwares/index.pdf) [Organizando Tipos De Archivos De Softwares](https://numerus-scriptum.netlify.app/fundamentos-programacion/2019-08-13-organizando-tipos-de-archivos-de-softwares)
 3. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/fundamentos-programacion/2021-01-04-01-pensamiento-logico/index.pdf) [01 Pensamiento Logico](https://numerus-scriptum.netlify.app/fundamentos-programacion/2021-01-04-01-pensamiento-logico)

@@ -5,9 +5,7 @@ title: Datos de panel en Stata
 shorttitle: PANELES DATOS STATA
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - Stata
 tags:
@@ -33,7 +31,7 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/stata/2022-07-11-07-paneles-de-datos/index.pdf
-date: 07/11/2022
+date: 2022-07-11
 draft: true
 image: ../featured.jpg
 curso: stata_curso_base

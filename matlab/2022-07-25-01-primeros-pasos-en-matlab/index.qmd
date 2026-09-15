@@ -5,9 +5,7 @@ title: Primeros pasos en MATLAB para principiantes
 shorttitle: INTRO MATLAB
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - Matlab
 tags:
@@ -33,7 +31,7 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/matlab/2022-07-25-01-primeros-pasos-en-matlab/index.pdf
-date: 07/25/2022
+date: 2022-07-25
 draft: true
 image: ../featured.jpg
 ---

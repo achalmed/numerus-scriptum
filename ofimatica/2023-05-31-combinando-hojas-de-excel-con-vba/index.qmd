@@ -40,7 +40,7 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/ofimatica/2023-05-31-combinando-hojas-de-excel-con-vba/index.pdf
-date: 05/31/2023
+date: 2023-05-31
 draft: false
 image: ../featured.jpg
 curso: ofimatica_curso_base

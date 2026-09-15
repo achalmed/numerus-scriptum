@@ -5,9 +5,7 @@ title: Objetos Equation y Table en EViews
 shorttitle: ESTIM ECUACIONES EVIEWS
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - Eviews
 tags:
@@ -33,7 +31,7 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/eviews/2021-09-13-03-metodos-de-estimacion-objeto-equatio-objeto-table/index.pdf
-date: 09/13/2021
+date: 2021-09-13
 draft: true
 image: ../featured.jpg
 curso: eviews_curso_base

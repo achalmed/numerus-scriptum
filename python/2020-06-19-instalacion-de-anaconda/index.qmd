@@ -36,7 +36,7 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/index.pdf
-date: 06/19/2020
+date: 2020-06-19
 draft: false
 image: ../featured.jpg
 curso: python_curso_base

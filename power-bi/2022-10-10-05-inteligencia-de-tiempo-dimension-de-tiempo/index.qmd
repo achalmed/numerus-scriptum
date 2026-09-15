@@ -4,9 +4,7 @@ copyrightext: All rights reserved
 title: Inteligencia de tiempo en Power BI
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - Power Bi
 tags:
@@ -32,7 +30,7 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/power-bi/2022-10-10-05-inteligencia-de-tiempo-dimension-de-tiempo/index.pdf
-date: 10/10/2022
+date: 2022-10-10
 draft: true
 image: ../featured.jpg
 curso: ofimatica_curso_base

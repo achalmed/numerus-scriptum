@@ -40,7 +40,7 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/ofimatica/2023-06-05-separando-hojas-de-excel-en-documentos-individuales/index.pdf
-date: 06/05/2023
+date: 2023-06-05
 draft: false
 image: ../featured.jpg
 curso: ofimatica_curso_base

@@ -4,9 +4,7 @@ copyrightext: All rights reserved
 title: Convertir DOCX a ODT desde línea comandos
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - Ofimatica
 tags:
@@ -32,7 +30,7 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/ofimatica/2023-03-17-comando-para-convertir-docx-a-odt/index.pdf
-date: 03/17/2023
+date: 2023-03-17
 draft: true
 image: ../featured.jpg
 curso: ofimatica_curso_base

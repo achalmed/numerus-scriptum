@@ -5,9 +5,7 @@ title: Text mining y análisis de texto en R
 shorttitle: MINERÍA TEXTOS ML
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - R
 tags:
@@ -34,7 +32,7 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/r/2022-11-28-07-modelo-de-machine-learning-iv-tex-mining/index.pdf
-date: 11/28/2022
+date: 2022-11-28
 draft: true
 image: ../featured.jpg
 curso: r_curso_base

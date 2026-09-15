@@ -5,9 +5,7 @@ title: Modelos de clasificación en R
 shorttitle: CLASIFICACIÓN ML
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - R
 tags:
@@ -34,7 +32,7 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/r/2022-11-14-05-modelo-de-machine-learning-ii-modelo-de-clasificacion/index.pdf
-date: 11/14/2022
+date: 2022-11-14
 draft: true
 image: ../featured.jpg
 curso: r_curso_base

@@ -3,9 +3,7 @@ copyrightnotice: 2021
 copyrightext: All rights reserved
 title: Programación básica en EViews
 shorttitle: INTRO PROG EVIEWS
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - Eviews
 tags:
@@ -31,7 +29,7 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/eviews/2021-08-30-01-introduccion-a-la-programacion-con-eviews/index.pdf
-date: 08/30/2021
+date: 2021-08-30
 draft: true
 image: ../featured.jpg
 curso: eviews_curso_base

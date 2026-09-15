@@ -43,7 +43,7 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/fundamentos-programacion/2018-06-09-typografia/index.pdf
-date: 06/09/2018
+date: 2018-06-09
 draft: false
 image: ../featured.jpg
 curso: programming_concepts_curso_base

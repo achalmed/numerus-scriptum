@@ -1,3 +1,8 @@
+---
+tipo: fragmento
+titulo: índice de publicaciones de power-bi; lo genera script_generador_publicacion_similar
+---
+
 1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/power-bi/2022-09-12-01-introduccion-al-mundo-de-bi-y-la-suite-power/index.pdf) [01 Introduccion Al Mundo De Bi Y La Suite Power](https://numerus-scriptum.netlify.app/power-bi/2022-09-12-01-introduccion-al-mundo-de-bi-y-la-suite-power)
 2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/power-bi/2022-09-19-02-power-query-proceso-etl/index.pdf) [02 Power Query Proceso Etl](https://numerus-scriptum.netlify.app/power-bi/2022-09-19-02-power-query-proceso-etl)
 3. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/power-bi/2022-09-26-03-proceso-etl-2/index.pdf) [03 Proceso Etl 2](https://numerus-scriptum.netlify.app/power-bi/2022-09-26-03-proceso-etl-2)

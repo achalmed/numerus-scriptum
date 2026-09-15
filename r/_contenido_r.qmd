@@ -1,3 +1,8 @@
+---
+tipo: fragmento
+titulo: índice de publicaciones de r; lo genera script_generador_publicacion_similar
+---
+
 1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/r/2020-06-10-011-instalacion-de-r/index.pdf) [011 Instalacion De R](https://numerus-scriptum.netlify.app/r/2020-06-10-011-instalacion-de-r)
 2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/r/2020-06-10-012-configurar-entorno-virtual-r/index.pdf) [012 Configurar Entorno Virtual R](https://numerus-scriptum.netlify.app/r/2020-06-10-012-configurar-entorno-virtual-r)
 3. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/r/2020-06-10-013-lo-que-debemos-saber-de-r/index.pdf) [013 Lo Que Debemos Saber De R](https://numerus-scriptum.netlify.app/r/2020-06-10-013-lo-que-debemos-saber-de-r)

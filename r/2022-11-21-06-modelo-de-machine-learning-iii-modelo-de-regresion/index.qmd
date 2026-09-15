@@ -5,9 +5,7 @@ title: Modelos de regresión predictiva en R
 shorttitle: REGRESIÓN ML
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - R
 tags:
@@ -34,7 +32,7 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/r/2022-11-21-06-modelo-de-machine-learning-iii-modelo-de-regresion/index.pdf
-date: 11/21/2022
+date: 2022-11-21
 draft: true
 image: ../featured.jpg
 curso: r_curso_base

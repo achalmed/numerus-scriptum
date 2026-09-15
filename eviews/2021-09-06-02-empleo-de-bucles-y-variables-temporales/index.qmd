@@ -5,9 +5,7 @@ title: Bucles y variables temporales en EViews
 shorttitle: BUCLES Y VARS EVIEWS
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - Eviews
 tags:
@@ -33,7 +31,7 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/eviews/2021-09-06-02-empleo-de-bucles-y-variables-temporales/index.pdf
-date: 09/06/2021
+date: 2021-09-06
 draft: true
 image: ../featured.jpg
 curso: eviews_curso_base

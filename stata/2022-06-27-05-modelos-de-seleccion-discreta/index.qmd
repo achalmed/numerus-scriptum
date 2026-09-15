@@ -5,9 +5,7 @@ title: Modelos de elección discreta Stata
 shorttitle: SELECCIÓN DISCRETA STATA
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - Stata
 tags:
@@ -33,7 +31,7 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/stata/2022-06-27-05-modelos-de-seleccion-discreta/index.pdf
-date: 06/27/2022
+date: 2022-06-27
 draft: true
 image: ../featured.jpg
 curso: stata_curso_base

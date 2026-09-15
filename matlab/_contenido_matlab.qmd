@@ -1,3 +1,8 @@
+---
+tipo: fragmento
+titulo: índice de publicaciones de matlab; lo genera script_generador_publicacion_similar
+---
+
 1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/matlab/2022-07-25-01-primeros-pasos-en-matlab/index.pdf) [01 Primeros Pasos En Matlab](https://numerus-scriptum.netlify.app/matlab/2022-07-25-01-primeros-pasos-en-matlab)
 2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/matlab/2022-08-01-02-elementos-basicos-en-matlab-i/index.pdf) [02 Elementos Basicos En Matlab I](https://numerus-scriptum.netlify.app/matlab/2022-08-01-02-elementos-basicos-en-matlab-i)
 3. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/matlab/2022-08-08-03-elementos-basicos-en-matlab-ii/index.pdf) [03 Elementos Basicos En Matlab Ii](https://numerus-scriptum.netlify.app/matlab/2022-08-08-03-elementos-basicos-en-matlab-ii)

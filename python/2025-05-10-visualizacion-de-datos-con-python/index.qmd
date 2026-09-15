@@ -35,7 +35,7 @@ citation:
   type: article-journal
   author: Elmer Achalma
   pdf-url: https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf
-date: 05/10/2025
+date: 2025-05-10
 draft: false
 author:
 - name: Elmer Achalma

@@ -5,9 +5,7 @@ title: Introducción al entorno R
 shorttitle: INTRO R PROGRAMACIÓN
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - R
 tags:
@@ -34,7 +32,7 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/r/2021-03-027-01-introduccion-al-programa/index.pdf
-date: 03/02/2021
+date: 2021-03-02
 draft: true
 image: ../featured.jpg
 curso: r_curso_base

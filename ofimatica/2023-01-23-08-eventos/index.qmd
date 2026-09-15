@@ -5,9 +5,7 @@ title: Programación basada en eventos VBA
 shorttitle: EVENTOS VB
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - VBA
 tags:
@@ -34,7 +32,7 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/ofimatica/2023-01-23-08-eventos/index.pdf
-date: 01/23/2023
+date: 2023-01-23
 draft: true
 image: ../featured.jpg
 curso: ofimatica_curso_base

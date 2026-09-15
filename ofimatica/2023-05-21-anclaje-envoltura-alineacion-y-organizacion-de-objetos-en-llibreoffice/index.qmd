@@ -4,9 +4,7 @@ copyrightext: All rights reserved
 title: Organización de objetos en LibreOffice
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - Ofimatica
 tags:
@@ -32,7 +30,7 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/ofimatica/2023-05-21-anclaje-envoltura-alineacion-y-organizacion-de-objetos-en-llibreoffice/index.pdf
-date: 05/21/2023
+date: 2023-05-21
 draft: true
 image: ../featured.jpg
 curso: ofimatica_curso_base

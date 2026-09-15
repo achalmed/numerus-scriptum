@@ -4,9 +4,7 @@ copyrightext: All rights reserved
 title: Visualización efectiva en Power BI
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - Power Bi
 tags:
@@ -32,7 +30,7 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/power-bi/2022-10-24-08-vizualizacion-de-datos/index.pdf
-date: 10/24/2022
+date: 2022-10-24
 draft: true
 image: ../featured.jpg
 curso: ofimatica_curso_base

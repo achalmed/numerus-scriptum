@@ -4,9 +4,7 @@ copyrightext: All rights reserved
 title: Aplicaciones prácticas en MATLAB
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - Matlab
 tags:
@@ -32,7 +30,7 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/matlab/2022-10-03-11-aplicaciones/index.pdf
-date: 10/03/2022
+date: 2022-10-03
 draft: true
 image: ../featured.jpg
 ---
