@@ -42,7 +42,8 @@ cd ../.. && git add _pubs/pub_numerus-scriptum && git commit -m "pubs: numerus-s
 | `r/` | sección temática | 10 |
 | `stata/` | sección temática | 8 |
 | `_quarto.yml`, `index.qmd`, `404.qmd`, `_contenido-inicio.qmd`, `_contenido-final.qmd` | configuración y portada propias del blog | |
-| `assets/`, `_extensions/`, `_filters/`, `_partials/`, `scripts/` | tema propagado desde el hub (salvo `assets/img/`) | |
+| `assets/scss/`, `assets/js/`, `assets/css/global.css`, `assets/css/components/`, `_extensions/`, `_filters/apa-floats-html.lua`, `scripts/build-page-css.sh` | tema propagado desde el hub por `sync-theme-pubs.sh`: no se edita aquí | |
+| `assets/img/`, `assets/fonts/`, `assets/gtm-*.html`, `assets/interactions.html`, `assets/scss/05-pages/`, `assets/css/pages/`, `_filters/_metadata-pdf.lua`, `_partials/` | propios del blog (no los escribe la sincronización) | |
 | `_site/` | sitio generado por `quarto render`; versionado a propósito: su push es el despliegue (`04 index/docs/decisiones.md` §4.1) | |
 
 80 entradas. Cada entrada es `<sección>/AAAA-MM-DD-slug/index.qmd` con frontmatter apaquarto y fecha ISO;
@@ -57,5 +58,5 @@ principio a fin), `04 index/docs/despliegue-netlify.md` (cómo publica cada siti
 ## Límite honesto
 
 - Este README es el único documento propio del blog y se regenera desde el hub: lo escrito aquí a mano se pierde.
-- `_site/` sigue en git: Netlify publica el _site/ empujado, sin build (decisiones §4.1 del hub). 
+- `_site/` sigue en git: Netlify publica el _site/ empujado, sin build (decisiones §4.1 del hub).
 - Licencia: código MPL-2.0 (`LICENSE`), contenido CC-BY-SA-4.0 según `license.qmd` del hub; unificarlas en los 12 sitios es la decisión D9.
