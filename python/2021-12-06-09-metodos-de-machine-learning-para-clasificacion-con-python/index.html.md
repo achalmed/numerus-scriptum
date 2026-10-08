@@ -46,7 +46,7 @@ En esta novena guía exploraremos los principales algoritmos de machine learning
 
 El aprendizaje supervisado es un tipo de machine learning donde el modelo aprende de datos etiquetados (con respuestas conocidas) para predecir etiquetas de nuevos datos.
 
-::: {#2891f151 .cell}
+::: {#d0395205 .cell}
 ``` {.python .cell-code}
 import pandas as pd
 import numpy as np
@@ -82,7 +82,7 @@ print("Librerías importadas exitosamente")
 
 ## Tipos de problemas de clasificación
 
-::: {#6f22da36 .cell}
+::: {#870fa530 .cell}
 ``` {.python .cell-code}
 print("""
 TIPOS DE PROBLEMAS DE CLASIFICACIÓN
@@ -115,7 +115,7 @@ TIPOS DE PROBLEMAS DE CLASIFICACIÓN
 
 ## Dataset de ejemplo: Iris
 
-::: {#68d103b0 .cell}
+::: {#f5744869 .cell}
 ``` {.python .cell-code}
 # Cargar dataset clásico
 iris = load_iris()
@@ -310,7 +310,7 @@ En el espacio de características, esta es una **hipersuperficie lineal** (hiper
 
 ## Implementación
 
-::: {#89436f10 .cell}
+::: {#c4005b95 .cell}
 ``` {.python .cell-code}
 # Preparar datos (clasificación binaria: Virginica vs resto)
 X = iris.data[:, :2]  # Solo usar 2 características para visualización
@@ -343,7 +343,7 @@ print(f"  β₂ (ancho sépalo): {modelo_logit.coef_[0, 1]:.4f}")
 
 ## Predicción e interpretación
 
-::: {#5015254c .cell}
+::: {#e2f0459b .cell}
 ``` {.python .cell-code}
 # Predecir probabilidades
 probs_train = modelo_logit.predict_proba(X_train)[:, 1]
@@ -381,7 +381,7 @@ print(f"Predicción: {'Virginica' if pred == 1 else 'No Virginica'}")
 
 ## Visualización del modelo
 
-::: {#d4062929 .cell}
+::: {#b33c5b61 .cell}
 ``` {.python .cell-code}
 def plot_decision_boundary(modelo, X, y, title, filename):
     """Visualiza la frontera de decisión del modelo"""
@@ -693,7 +693,7 @@ Combina KNN con regresión local.
 
 ## Implementación
 
-::: {#8268eb44 .cell}
+::: {#880c2972 .cell}
 ``` {.python .cell-code}
 # Estandarizar características (importante para KNN)
 scaler = StandardScaler()
@@ -738,7 +738,7 @@ print(f"\n\nMejor k: {int(mejor_k)} (mayor accuracy en test)")
 
 ## Visualización del efecto de k
 
-::: {#bc0a0e1b .cell}
+::: {#0733fbfe .cell}
 ``` {.python .cell-code}
 # Entrenar modelo con mejor k
 modelo_knn_final = KNeighborsClassifier(n_neighbors=int(mejor_k))
@@ -781,7 +781,7 @@ print("\nGráfico guardado como 'knn_k_selection.png'")
 
 ## Visualización de fronteras de decisión
 
-::: {#2181b5f5 .cell}
+::: {#e717f978 .cell}
 ``` {.python .cell-code}
 # Comparar diferentes valores de k
 fig, axes = plt.subplots(2, 3, figsize=(18, 12))
@@ -1123,7 +1123,7 @@ Seleccionar $\alpha$ que minimiza error de validación cruzada.
 
 ## Implementación básica
 
-::: {#aa031384 .cell}
+::: {#232839e5 .cell}
 ``` {.python .cell-code}
 # Entrenar árbol de decisión
 modelo_tree = DecisionTreeClassifier(
@@ -1160,7 +1160,7 @@ for _, row in importancias.iterrows():
 
 ## Visualización del árbol
 
-::: {#88c34ff6 .cell}
+::: {#af5f2c3b .cell}
 ``` {.python .cell-code}
 # Visualizar árbol
 plt.figure(figsize=(20, 10))
@@ -1183,7 +1183,7 @@ print("\nÁrbol visualizado y guardado como 'decision_tree.png'")
 
 ## Efecto de la profundidad
 
-::: {#10f1dc10 .cell}
+::: {#49206a9b .cell}
 ``` {.python .cell-code}
 # Evaluar diferentes profundidades
 profundidades = range(1, 11)
@@ -1519,7 +1519,7 @@ donde:
 
 ## Implementación
 
-::: {#9173122b .cell}
+::: {#ed3d6193 .cell}
 ``` {.python .cell-code}
 # Entrenar Random Forest
 modelo_rf = RandomForestClassifier(
@@ -1559,7 +1559,7 @@ for _, row in importancias_rf.iterrows():
 
 ## Efecto del número de árboles
 
-::: {#8a189658 .cell}
+::: {#73f41786 .cell}
 ``` {.python .cell-code}
 # Evaluar diferentes números de árboles
 n_trees_list = [1, 5, 10, 20, 50, 100, 200]
@@ -1614,7 +1614,7 @@ print("\nGráfico guardado como 'random_forest_ntrees.png'")
 
 ## Dataset con 3 clases
 
-::: {#9b6f8818 .cell}
+::: {#512e7d6c .cell}
 ``` {.python .cell-code}
 # Usar todas las especies de Iris (3 clases)
 X_multiclass = iris.data[:, :2]
@@ -1639,7 +1639,7 @@ X_train_mc, X_test_mc, y_train_mc, y_test_mc = train_test_split(
 
 ## Entrenar modelos multi-clase
 
-::: {#28323644 .cell}
+::: {#cd34259a .cell}
 ``` {.python .cell-code}
 # Entrenar cada modelo
 modelos_mc = {
@@ -1687,7 +1687,7 @@ print(f"Accuracy: {resultados_mc[mejor_modelo_mc]['accuracy']:.4f}")
 
 ## Visualización multi-clase
 
-::: {#fd6e34c5 .cell}
+::: {#be0a3ae7 .cell}
 ``` {.python .cell-code}
 # Visualizar fronteras de decisión para cada modelo
 fig, axes = plt.subplots(2, 2, figsize=(16, 14))
@@ -1732,7 +1732,7 @@ print("\nComparación guardada como 'multiclass_comparison.png'")
 
 ## Curvas ROC para cada modelo
 
-::: {#04290222 .cell}
+::: {#60b7b48d .cell}
 ``` {.python .cell-code}
 # Calcular curvas ROC para clasificación binaria
 def calcular_roc_multimodelo(modelos_dict, X_test, y_test):
@@ -1788,7 +1788,7 @@ calcular_roc_multimodelo(modelos_binarios, X_test, y_test)
 
 ## Tabla comparativa de métricas
 
-::: {#9dd1ef11 .cell}
+::: {#82d5c65c .cell}
 ``` {.python .cell-code}
 # Compilar todas las métricas
 print("\n\nTABLA COMPARATIVA DE MODELOS")
@@ -1844,7 +1844,7 @@ print("\n\nTabla guardada como 'comparacion_modelos.csv'")
 
 ## Aplicación 1: Clasificación de riesgo crediticio
 
-::: {#62284cbb .cell}
+::: {#4559668e .cell}
 ``` {.python .cell-code}
 print("\n\n\nAPLICACIÓN: CLASIFICACIÓN DE RIESGO CREDITICIO")
 print("=" * 70)
@@ -1957,7 +1957,7 @@ for _, row in importancias.iterrows():
 
 ## Aplicación 2: Segmentación de clientes
 
-::: {#9a8dd25b .cell}
+::: {#e75ba70f .cell}
 ``` {.python .cell-code}
 print("\n\n\nAPLICACIÓN: SEGMENTACIÓN DE CLIENTES")
 print("=" * 70)
@@ -2072,7 +2072,7 @@ print("  4. Optimizar estrategias de retención")
 
 ## Ejercicio: Optimización de hiperparámetros
 
-::: {#20c84d79 .cell}
+::: {#0ab87239 .cell}
 ``` {.python .cell-code}
 print("\n\n\nEJERCICIO: OPTIMIZACIÓN DE HIPERPARÁMETROS")
 print("=" * 70)

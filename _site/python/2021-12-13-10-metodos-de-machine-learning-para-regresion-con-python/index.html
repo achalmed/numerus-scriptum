@@ -767,7 +767,7 @@ window.Quarto = {
 <section id="concepto" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="concepto"><span class="header-section-number">1.1</span> Concepto</h2>
 <p>La regresión es un método para predecir valores numéricos continuos (a diferencia de clasificación que predice categorías discretas).</p>
-<div id="442c2e44" class="cell">
+<div id="753b9805" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -829,7 +829,7 @@ window.Quarto = {
 </section>
 <section id="generar-datos-de-ejemplo" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="generar-datos-de-ejemplo"><span class="header-section-number">1.3</span> Generar datos de ejemplo</h2>
-<div id="e8701e8c" class="cell">
+<div id="f2cba714" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">def</span> generar_datos_regresion(n<span class="op">=</span><span class="dv">200</span>, ruido<span class="op">=</span><span class="fl">1.0</span>, seed<span class="op">=</span><span class="dv">42</span>):</span>
 <span id="cb2-2"><a href="#cb2-2"></a>    <span class="co">"""</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="co">    Genera datos sintéticos para regresión</span></span>
@@ -885,7 +885,7 @@ window.Quarto = {
 </section>
 <section id="dividir-datos" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="dividir-datos"><span class="header-section-number">1.4</span> Dividir datos</h2>
-<div id="e547bc01" class="cell">
+<div id="13fe41ff" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Dividir en entrenamiento y prueba</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
 <span id="cb3-3"><a href="#cb3-3"></a>    X, Y, test_size<span class="op">=</span><span class="fl">0.3</span>, random_state<span class="op">=</span><span class="dv">42</span></span>
@@ -1083,7 +1083,7 @@ E[\boldsymbol{\varepsilon}\boldsymbol{\varepsilon}^\top | \mathbf{X}] = \sigma^2
 </section>
 <section id="implementación" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="implementación"><span class="header-section-number">2.2</span> Implementación</h2>
-<div id="f6d47541" class="cell">
+<div id="d31c1778" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Entrenar modelo OLS</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>modelo_ols <span class="op">=</span> LinearRegression()</span>
 <span id="cb4-3"><a href="#cb4-3"></a>modelo_ols.fit(X_train, y_train)</span>
@@ -1117,7 +1117,7 @@ E[\boldsymbol{\varepsilon}\boldsymbol{\varepsilon}^\top | \mathbf{X}] = \sigma^2
 </section>
 <section id="visualización-de-predicciones" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="visualización-de-predicciones"><span class="header-section-number">2.3</span> Visualización de predicciones</h2>
-<div id="f0d4d20d" class="cell">
+<div id="97ae560d" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Gráfico de valores reales vs predichos</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">5</span>))</span>
 <span id="cb5-3"><a href="#cb5-3"></a></span>
@@ -1150,7 +1150,7 @@ E[\boldsymbol{\varepsilon}\boldsymbol{\varepsilon}^\top | \mathbf{X}] = \sigma^2
 </section>
 <section id="análisis-de-residuos" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="análisis-de-residuos"><span class="header-section-number">2.4</span> Análisis de residuos</h2>
-<div id="70f97e9b" class="cell">
+<div id="81740f39" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Calcular residuos</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a>residuos_train <span class="op">=</span> y_train <span class="op">-</span> y_pred_ols_train</span>
 <span id="cb6-3"><a href="#cb6-3"></a>residuos_test <span class="op">=</span> y_test <span class="op">-</span> y_pred_ols_test</span>
@@ -1367,7 +1367,7 @@ E[\hat{\boldsymbol{\beta}}^{\text{Ridge}}] = (\mathbf{X}^\top\mathbf{X} + \alpha
 </section>
 <section id="implementación-1" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="implementación-1"><span class="header-section-number">3.2</span> Implementación</h2>
-<div id="dd440569" class="cell">
+<div id="39b11d0a" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Probar diferentes valores de alpha</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a>alphas <span class="op">=</span> [<span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">1000</span>]</span>
 <span id="cb7-3"><a href="#cb7-3"></a></span>
@@ -1403,7 +1403,7 @@ E[\hat{\boldsymbol{\beta}}^{\text{Ridge}}] = (\mathbf{X}^\top\mathbf{X} + \alpha
 </section>
 <section id="visualización-del-efecto-de-regularización" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="visualización-del-efecto-de-regularización"><span class="header-section-number">3.3</span> Visualización del efecto de regularización</h2>
-<div id="ee58442a" class="cell">
+<div id="e85f3b40" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Gráfico de coeficientes vs alpha</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">5</span>))</span>
 <span id="cb8-3"><a href="#cb8-3"></a></span>
@@ -1692,7 +1692,7 @@ p(\beta_j) = \frac{1}{2b} \exp\left(-\frac{|\beta_j|}{b}\right)
 </section>
 <section id="implementación-2" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="implementación-2"><span class="header-section-number">4.2</span> Implementación</h2>
-<div id="7139b0b0" class="cell">
+<div id="e30080d6" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Probar diferentes valores de alpha</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a>alphas_lasso <span class="op">=</span> [<span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>]</span>
 <span id="cb9-3"><a href="#cb9-3"></a></span>
@@ -1733,7 +1733,7 @@ p(\beta_j) = \frac{1}{2b} \exp\left(-\frac{|\beta_j|}{b}\right)
 </section>
 <section id="comparación-ridge-vs-lasso-1" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="comparación-ridge-vs-lasso-1"><span class="header-section-number">4.3</span> Comparación Ridge vs Lasso</h2>
-<div id="4b693580" class="cell">
+<div id="e4d0d512" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># Visualización comparativa</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">10</span>))</span>
 <span id="cb10-3"><a href="#cb10-3"></a></span>
@@ -2026,7 +2026,7 @@ P(\boldsymbol{\beta}) = \alpha \left[ \rho \sum_{j=1}^{p} w_j|\beta_j| + \frac{1
 </section>
 <section id="implementación-3" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="implementación-3"><span class="header-section-number">5.2</span> Implementación</h2>
-<div id="5388fd45" class="cell">
+<div id="017a4ae3" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Entrenar Elastic Net</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a>modelo_elastic <span class="op">=</span> ElasticNet(alpha<span class="op">=</span><span class="fl">0.1</span>, l1_ratio<span class="op">=</span><span class="fl">0.5</span>, max_iter<span class="op">=</span><span class="dv">10000</span>)</span>
 <span id="cb11-3"><a href="#cb11-3"></a>modelo_elastic.fit(X_train, y_train)</span>
@@ -2295,7 +2295,7 @@ Y = \beta_0 + f_1(X_1) + f_2(X_2) + \cdots + f_p(X_p) + \varepsilon
 </section>
 <section id="implementación-4" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="implementación-4"><span class="header-section-number">6.2</span> Implementación</h2>
-<div id="ff2a7e9d" class="cell">
+<div id="b799b802" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># Generar datos con relación no lineal</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a>np.random.seed(<span class="dv">42</span>)</span>
 <span id="cb12-3"><a href="#cb12-3"></a>X_poly_1d <span class="op">=</span> np.random.uniform(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">100</span>)</span>
@@ -2692,7 +2692,7 @@ d(\mathbf{X}_i, \mathbf{X}_j) = \sqrt{\sum_{m=1}^{p} w_m (X_{im} - X_{jm})^2}
 </section>
 <section id="implementación-5" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="implementación-5"><span class="header-section-number">7.2</span> Implementación</h2>
-<div id="42f02e42" class="cell">
+<div id="a5f74e26" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Estandarizar datos (importante para KNN)</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a>scaler <span class="op">=</span> StandardScaler()</span>
 <span id="cb13-3"><a href="#cb13-3"></a>X_train_scaled <span class="op">=</span> scaler.fit_transform(X_train)</span>
@@ -3152,7 +3152,7 @@ R^2 = 1 - \frac{\text{MSE}}{\text{Var}(Y)}
 </section>
 <section id="implementación-de-métricas" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="implementación-de-métricas"><span class="header-section-number">8.2</span> Implementación de métricas</h2>
-<div id="4fd14a01" class="cell">
+<div id="3a8e0a63" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">def</span> calcular_metricas(y_true, y_pred, modelo_nombre<span class="op">=</span><span class="st">"Modelo"</span>):</span>
 <span id="cb14-2"><a href="#cb14-2"></a>    <span class="co">"""Calcula todas las métricas de regresión"""</span></span>
 <span id="cb14-3"><a href="#cb14-3"></a>    </span>
@@ -3227,7 +3227,7 @@ R^2 = 1 - \frac{\text{MSE}}{\text{Var}(Y)}
 <h1 data-number="9"><span class="header-section-number">9</span> Comparación de modelos</h1>
 <section id="tabla-y-visualización-comparativa" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="tabla-y-visualización-comparativa"><span class="header-section-number">9.1</span> Tabla y visualización comparativa</h2>
-<div id="f3216244" class="cell">
+<div id="fc5e8b4b" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Visualización comparativa</span></span>
 <span id="cb15-2"><a href="#cb15-2"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">10</span>))</span>
 <span id="cb15-3"><a href="#cb15-3"></a></span>
@@ -3281,7 +3281,7 @@ R^2 = 1 - \frac{\text{MSE}}{\text{Var}(Y)}
 <h1 data-number="10"><span class="header-section-number">10</span> Aplicaciones económicas</h1>
 <section id="aplicación-1-predicción-de-precios-de-vivienda" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="aplicación-1-predicción-de-precios-de-vivienda"><span class="header-section-number">10.1</span> Aplicación 1: Predicción de precios de vivienda</h2>
-<div id="a3da1b92" class="cell">
+<div id="c07f348d" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n\n\n</span><span class="st">APLICACIÓN: PREDICCIÓN DE PRECIOS DE VIVIENDA"</span>)</span>
 <span id="cb16-2"><a href="#cb16-2"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">70</span>)</span>
 <span id="cb16-3"><a href="#cb16-3"></a></span>
@@ -3418,7 +3418,7 @@ R^2 = 1 - \frac{\text{MSE}}{\text{Var}(Y)}
 </section>
 <section id="aplicación-2-predicción-de-ventas" class="level2" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="aplicación-2-predicción-de-ventas"><span class="header-section-number">10.2</span> Aplicación 2: Predicción de ventas</h2>
-<div id="d18c48c5" class="cell">
+<div id="760b38d4" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n\n\n</span><span class="st">APLICACIÓN: PREDICCIÓN DE VENTAS"</span>)</span>
 <span id="cb17-2"><a href="#cb17-2"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">70</span>)</span>
 <span id="cb17-3"><a href="#cb17-3"></a></span>
@@ -3567,7 +3567,7 @@ R^2 = 1 - \frac{\text{MSE}}{\text{Var}(Y)}
 <h1 data-number="11"><span class="header-section-number">11</span> Ejercicios prácticos</h1>
 <section id="ejercicio-validación-cruzada" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="ejercicio-validación-cruzada"><span class="header-section-number">11.1</span> Ejercicio: Validación cruzada</h2>
-<div id="4f0414a3" class="cell">
+<div id="e122c247" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n\n\n</span><span class="st">EJERCICIO: VALIDACIÓN CRUZADA"</span>)</span>
 <span id="cb18-2"><a href="#cb18-2"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">70</span>)</span>
 <span id="cb18-3"><a href="#cb18-3"></a></span>

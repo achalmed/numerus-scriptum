@@ -717,7 +717,7 @@ window.Quarto = {
 <section id="concepto-fundamental" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="concepto-fundamental"><span class="header-section-number">1.1</span> Concepto fundamental</h2>
 <p>El aprendizaje supervisado es un tipo de machine learning donde el modelo aprende de datos etiquetados (con respuestas conocidas) para predecir etiquetas de nuevos datos.</p>
-<div id="2891f151" class="cell">
+<div id="d0395205" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -750,7 +750,7 @@ window.Quarto = {
 </section>
 <section id="tipos-de-problemas-de-clasificación" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="tipos-de-problemas-de-clasificación"><span class="header-section-number">1.2</span> Tipos de problemas de clasificación</h2>
-<div id="6f22da36" class="cell">
+<div id="870fa530" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="bu">print</span>(<span class="st">"""</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="st">TIPOS DE PROBLEMAS DE CLASIFICACIÓN</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a></span>
@@ -780,7 +780,7 @@ window.Quarto = {
 </section>
 <section id="dataset-de-ejemplo-iris" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="dataset-de-ejemplo-iris"><span class="header-section-number">1.3</span> Dataset de ejemplo: Iris</h2>
-<div id="68d103b0" class="cell">
+<div id="f5744869" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Cargar dataset clásico</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>iris <span class="op">=</span> load_iris()</span>
 <span id="cb3-3"><a href="#cb3-3"></a></span>
@@ -947,7 +947,7 @@ p(\mathbf{X}) = \frac{1}{1 + e^{-z}} = \frac{e^z}{1 + e^z}
 </section>
 <section id="implementación" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="implementación"><span class="header-section-number">2.2</span> Implementación</h2>
-<div id="89436f10" class="cell">
+<div id="c4005b95" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Preparar datos (clasificación binaria: Virginica vs resto)</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>X <span class="op">=</span> iris.data[:, :<span class="dv">2</span>]  <span class="co"># Solo usar 2 características para visualización</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a>y <span class="op">=</span> (iris.target <span class="op">==</span> <span class="dv">2</span>).astype(<span class="bu">int</span>)  <span class="co"># 1 si es Virginica, 0 si no</span></span>
@@ -977,7 +977,7 @@ p(\mathbf{X}) = \frac{1}{1 + e^{-z}} = \frac{e^z}{1 + e^z}
 </section>
 <section id="predicción-e-interpretación" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="predicción-e-interpretación"><span class="header-section-number">2.3</span> Predicción e interpretación</h2>
-<div id="5015254c" class="cell">
+<div id="e2f0459b" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Predecir probabilidades</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>probs_train <span class="op">=</span> modelo_logit.predict_proba(X_train)[:, <span class="dv">1</span>]</span>
 <span id="cb5-3"><a href="#cb5-3"></a>probs_test <span class="op">=</span> modelo_logit.predict_proba(X_test)[:, <span class="dv">1</span>]</span>
@@ -1012,7 +1012,7 @@ p(\mathbf{X}) = \frac{1}{1 + e^{-z}} = \frac{e^z}{1 + e^z}
 </section>
 <section id="visualización-del-modelo" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="visualización-del-modelo"><span class="header-section-number">2.4</span> Visualización del modelo</h2>
-<div id="d4062929" class="cell">
+<div id="b33c5b61" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">def</span> plot_decision_boundary(modelo, X, y, title, filename):</span>
 <span id="cb6-2"><a href="#cb6-2"></a>    <span class="co">"""Visualiza la frontera de decisión del modelo"""</span></span>
 <span id="cb6-3"><a href="#cb6-3"></a>    </span>
@@ -1311,7 +1311,7 @@ w_i = \exp\left(-\frac{d_i^2}{2\sigma^2}\right)
 </section>
 <section id="implementación-1" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="implementación-1"><span class="header-section-number">3.2</span> Implementación</h2>
-<div id="8268eb44" class="cell">
+<div id="880c2972" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Estandarizar características (importante para KNN)</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a>scaler <span class="op">=</span> StandardScaler()</span>
 <span id="cb7-3"><a href="#cb7-3"></a>X_train_scaled <span class="op">=</span> scaler.fit_transform(X_train)</span>
@@ -1353,7 +1353,7 @@ w_i = \exp\left(-\frac{d_i^2}{2\sigma^2}\right)
 </section>
 <section id="visualización-del-efecto-de-k" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="visualización-del-efecto-de-k"><span class="header-section-number">3.3</span> Visualización del efecto de k</h2>
-<div id="bc0a0e1b" class="cell">
+<div id="0733fbfe" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Entrenar modelo con mejor k</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a>modelo_knn_final <span class="op">=</span> KNeighborsClassifier(n_neighbors<span class="op">=</span><span class="bu">int</span>(mejor_k))</span>
 <span id="cb8-3"><a href="#cb8-3"></a>modelo_knn_final.fit(X_train_scaled, y_train)</span>
@@ -1393,7 +1393,7 @@ w_i = \exp\left(-\frac{d_i^2}{2\sigma^2}\right)
 </section>
 <section id="visualización-de-fronteras-de-decisión" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="visualización-de-fronteras-de-decisión"><span class="header-section-number">3.4</span> Visualización de fronteras de decisión</h2>
-<div id="2181b5f5" class="cell">
+<div id="e717f978" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Comparar diferentes valores de k</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">18</span>, <span class="dv">12</span>))</span>
 <span id="cb9-3"><a href="#cb9-3"></a>axes <span class="op">=</span> axes.ravel()</span>
@@ -1760,7 +1760,7 @@ R_\alpha(T) = R(T) + \alpha |T|
 </section>
 <section id="implementación-básica" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="implementación-básica"><span class="header-section-number">4.2</span> Implementación básica</h2>
-<div id="aa031384" class="cell">
+<div id="232839e5" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># Entrenar árbol de decisión</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a>modelo_tree <span class="op">=</span> DecisionTreeClassifier(</span>
 <span id="cb10-3"><a href="#cb10-3"></a>    max_depth<span class="op">=</span><span class="dv">3</span>,</span>
@@ -1794,7 +1794,7 @@ R_\alpha(T) = R(T) + \alpha |T|
 </section>
 <section id="visualización-del-árbol" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="visualización-del-árbol"><span class="header-section-number">4.3</span> Visualización del árbol</h2>
-<div id="88c34ff6" class="cell">
+<div id="af5f2c3b" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Visualizar árbol</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">10</span>))</span>
 <span id="cb11-3"><a href="#cb11-3"></a>tree.plot_tree(</span>
@@ -1814,7 +1814,7 @@ R_\alpha(T) = R(T) + \alpha |T|
 </section>
 <section id="efecto-de-la-profundidad" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="efecto-de-la-profundidad"><span class="header-section-number">4.4</span> Efecto de la profundidad</h2>
-<div id="10f1dc10" class="cell">
+<div id="49206a9b" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># Evaluar diferentes profundidades</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a>profundidades <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>)</span>
 <span id="cb12-3"><a href="#cb12-3"></a>resultados_depth <span class="op">=</span> []</span>
@@ -2196,7 +2196,7 @@ R_\alpha(T) = R(T) + \alpha |T|
 </section>
 <section id="implementación-2" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="implementación-2"><span class="header-section-number">5.2</span> Implementación</h2>
-<div id="9173122b" class="cell">
+<div id="ed3d6193" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Entrenar Random Forest</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a>modelo_rf <span class="op">=</span> RandomForestClassifier(</span>
 <span id="cb13-3"><a href="#cb13-3"></a>    n_estimators<span class="op">=</span><span class="dv">100</span>,</span>
@@ -2233,7 +2233,7 @@ R_\alpha(T) = R(T) + \alpha |T|
 </section>
 <section id="efecto-del-número-de-árboles" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="efecto-del-número-de-árboles"><span class="header-section-number">5.3</span> Efecto del número de árboles</h2>
-<div id="8a189658" class="cell">
+<div id="73f41786" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Evaluar diferentes números de árboles</span></span>
 <span id="cb14-2"><a href="#cb14-2"></a>n_trees_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">200</span>]</span>
 <span id="cb14-3"><a href="#cb14-3"></a>resultados_trees <span class="op">=</span> []</span>
@@ -2286,7 +2286,7 @@ R_\alpha(T) = R(T) + \alpha |T|
 <h1 data-number="6"><span class="header-section-number">6</span> Clasificación multi-clase</h1>
 <section id="dataset-con-3-clases" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="dataset-con-3-clases"><span class="header-section-number">6.1</span> Dataset con 3 clases</h2>
-<div id="9b6f8818" class="cell">
+<div id="512e7d6c" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Usar todas las especies de Iris (3 clases)</span></span>
 <span id="cb15-2"><a href="#cb15-2"></a>X_multiclass <span class="op">=</span> iris.data[:, :<span class="dv">2</span>]</span>
 <span id="cb15-3"><a href="#cb15-3"></a>y_multiclass <span class="op">=</span> iris.target</span>
@@ -2308,7 +2308,7 @@ R_\alpha(T) = R(T) + \alpha |T|
 </section>
 <section id="entrenar-modelos-multi-clase" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="entrenar-modelos-multi-clase"><span class="header-section-number">6.2</span> Entrenar modelos multi-clase</h2>
-<div id="28323644" class="cell">
+<div id="cd34259a" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># Entrenar cada modelo</span></span>
 <span id="cb16-2"><a href="#cb16-2"></a>modelos_mc <span class="op">=</span> {</span>
 <span id="cb16-3"><a href="#cb16-3"></a>    <span class="st">'Logistic Regression'</span>: LogisticRegression(random_state<span class="op">=</span><span class="dv">42</span>, max_iter<span class="op">=</span><span class="dv">200</span>),</span>
@@ -2353,7 +2353,7 @@ R_\alpha(T) = R(T) + \alpha |T|
 </section>
 <section id="visualización-multi-clase" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="visualización-multi-clase"><span class="header-section-number">6.3</span> Visualización multi-clase</h2>
-<div id="fd6e34c5" class="cell">
+<div id="be0a3ae7" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># Visualizar fronteras de decisión para cada modelo</span></span>
 <span id="cb17-2"><a href="#cb17-2"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">14</span>))</span>
 <span id="cb17-3"><a href="#cb17-3"></a>axes <span class="op">=</span> axes.ravel()</span>
@@ -2396,7 +2396,7 @@ R_\alpha(T) = R(T) + \alpha |T|
 <h1 data-number="7"><span class="header-section-number">7</span> Comparación de modelos</h1>
 <section id="curvas-roc-para-cada-modelo" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="curvas-roc-para-cada-modelo"><span class="header-section-number">7.1</span> Curvas ROC para cada modelo</h2>
-<div id="04290222" class="cell">
+<div id="60b7b48d" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># Calcular curvas ROC para clasificación binaria</span></span>
 <span id="cb18-2"><a href="#cb18-2"></a><span class="kw">def</span> calcular_roc_multimodelo(modelos_dict, X_test, y_test):</span>
 <span id="cb18-3"><a href="#cb18-3"></a>    <span class="co">"""Calcula curvas ROC para múltiples modelos"""</span></span>
@@ -2449,7 +2449,7 @@ R_\alpha(T) = R(T) + \alpha |T|
 </section>
 <section id="tabla-comparativa-de-métricas" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="tabla-comparativa-de-métricas"><span class="header-section-number">7.2</span> Tabla comparativa de métricas</h2>
-<div id="9dd1ef11" class="cell">
+<div id="82d5c65c" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># Compilar todas las métricas</span></span>
 <span id="cb19-2"><a href="#cb19-2"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n\n</span><span class="st">TABLA COMPARATIVA DE MODELOS"</span>)</span>
 <span id="cb19-3"><a href="#cb19-3"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">70</span>)</span>
@@ -2503,7 +2503,7 @@ R_\alpha(T) = R(T) + \alpha |T|
 <h1 data-number="8"><span class="header-section-number">8</span> Aplicaciones económicas</h1>
 <section id="aplicación-1-clasificación-de-riesgo-crediticio" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="aplicación-1-clasificación-de-riesgo-crediticio"><span class="header-section-number">8.1</span> Aplicación 1: Clasificación de riesgo crediticio</h2>
-<div id="62284cbb" class="cell">
+<div id="4559668e" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n\n\n</span><span class="st">APLICACIÓN: CLASIFICACIÓN DE RIESGO CREDITICIO"</span>)</span>
 <span id="cb20-2"><a href="#cb20-2"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">70</span>)</span>
 <span id="cb20-3"><a href="#cb20-3"></a></span>
@@ -2613,7 +2613,7 @@ R_\alpha(T) = R(T) + \alpha |T|
 </section>
 <section id="aplicación-2-segmentación-de-clientes" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="aplicación-2-segmentación-de-clientes"><span class="header-section-number">8.2</span> Aplicación 2: Segmentación de clientes</h2>
-<div id="9a8dd25b" class="cell">
+<div id="e75ba70f" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n\n\n</span><span class="st">APLICACIÓN: SEGMENTACIÓN DE CLIENTES"</span>)</span>
 <span id="cb21-2"><a href="#cb21-2"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">70</span>)</span>
 <span id="cb21-3"><a href="#cb21-3"></a></span>
@@ -2726,7 +2726,7 @@ R_\alpha(T) = R(T) + \alpha |T|
 <h1 data-number="9"><span class="header-section-number">9</span> Ejercicios prácticos</h1>
 <section id="ejercicio-optimización-de-hiperparámetros" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="ejercicio-optimización-de-hiperparámetros"><span class="header-section-number">9.1</span> Ejercicio: Optimización de hiperparámetros</h2>
-<div id="20c84d79" class="cell">
+<div id="0ab87239" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n\n\n</span><span class="st">EJERCICIO: OPTIMIZACIÓN DE HIPERPARÁMETROS"</span>)</span>
 <span id="cb22-2"><a href="#cb22-2"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">70</span>)</span>
 <span id="cb22-3"><a href="#cb22-3"></a></span>
