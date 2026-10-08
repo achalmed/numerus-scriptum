@@ -39,20 +39,14 @@ curso: latex_curso_base
 
 Este artículo está actualmente en proceso de edición, y todas las secciones serán ampliadas y refinadas en futuras revisiones.
 
----
-tipo: fragmento
-titulo: texto de apertura del bloque «Publicaciones similares» (incluido en cada post)
----
+<!-- fragmento de inclusión — texto de apertura del bloque «Publicaciones similares» (incluido en cada post) -->
 
 # Publicaciones Similares
 
 Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:
 
 
----
-tipo: fragmento
-titulo: índice de publicaciones de latex; lo genera script_generador_publicacion_similar
----
+<!-- fragmento de inclusión — índice de publicaciones de latex; lo genera script_generador_publicacion_similar -->
 
 1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/latex/2015-07-12-01-introduccion-al-latex/index.pdf) [01 Introduccion Al Latex](https://numerus-scriptum.netlify.app/latex/2015-07-12-01-introduccion-al-latex)
 2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/latex/2015-07-13-02-latex-y-matematica/index.pdf) [02 Latex Y Matematica](https://numerus-scriptum.netlify.app/latex/2015-07-13-02-latex-y-matematica)
@@ -62,10 +56,7 @@ titulo: índice de publicaciones de latex; lo genera script_generador_publicacio
 6. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/latex/2015-07-17-06-tikz/index.pdf) [06 Tikz](https://numerus-scriptum.netlify.app/latex/2015-07-17-06-tikz)
 
 
----
-tipo: fragmento
-titulo: texto de cierre del bloque «Publicaciones similares» (incluido en cada post)
----
+<!-- fragmento de inclusión — texto de cierre del bloque «Publicaciones similares» (incluido en cada post) -->
 
 Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!
 

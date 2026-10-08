@@ -554,20 +554,14 @@ El instalador de R para Windows no siempre agrega el ejecutable al `PATH` del si
 
 ---
 
----
-tipo: fragmento
-titulo: texto de apertura del bloque «Publicaciones similares» (incluido en cada post)
----
+<!-- fragmento de inclusión — texto de apertura del bloque «Publicaciones similares» (incluido en cada post) -->
 
 # Publicaciones Similares
 
 Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:
 
 
----
-tipo: fragmento
-titulo: índice de publicaciones de r; lo genera script_generador_publicacion_similar
----
+<!-- fragmento de inclusión — índice de publicaciones de r; lo genera script_generador_publicacion_similar -->
 
 1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/r/2020-06-10-011-instalacion-de-r/index.pdf) [011 Instalacion De R](https://numerus-scriptum.netlify.app/r/2020-06-10-011-instalacion-de-r)
 2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/r/2020-06-10-012-configurar-entorno-virtual-r/index.pdf) [012 Configurar Entorno Virtual R](https://numerus-scriptum.netlify.app/r/2020-06-10-012-configurar-entorno-virtual-r)
@@ -580,10 +574,7 @@ titulo: índice de publicaciones de r; lo genera script_generador_publicacion_si
 9. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/r/2022-11-28-07-modelo-de-machine-learning-iv-tex-mining/index.pdf) [07 Modelo De Machine Learning Iv Tex Mining](https://numerus-scriptum.netlify.app/r/2022-11-28-07-modelo-de-machine-learning-iv-tex-mining)
 
 
----
-tipo: fragmento
-titulo: texto de cierre del bloque «Publicaciones similares» (incluido en cada post)
----
+<!-- fragmento de inclusión — texto de cierre del bloque «Publicaciones similares» (incluido en cada post) -->
 
 Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!
 

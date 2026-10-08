@@ -38,20 +38,14 @@ curso: ofimatica_curso_base
 
 Este artículo está actualmente en proceso de edición, y todas las secciones serán ampliadas y refinadas en futuras revisiones.
 
----
-tipo: fragmento
-titulo: texto de apertura del bloque «Publicaciones similares» (incluido en cada post)
----
+<!-- fragmento de inclusión — texto de apertura del bloque «Publicaciones similares» (incluido en cada post) -->
 
 # Publicaciones Similares
 
 Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:
 
 
----
-tipo: fragmento
-titulo: índice de publicaciones de power-bi; lo genera script_generador_publicacion_similar
----
+<!-- fragmento de inclusión — índice de publicaciones de power-bi; lo genera script_generador_publicacion_similar -->
 
 1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/power-bi/2022-09-12-01-introduccion-al-mundo-de-bi-y-la-suite-power/index.pdf) [01 Introduccion Al Mundo De Bi Y La Suite Power](https://numerus-scriptum.netlify.app/power-bi/2022-09-12-01-introduccion-al-mundo-de-bi-y-la-suite-power)
 2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/power-bi/2022-09-19-02-power-query-proceso-etl/index.pdf) [02 Power Query Proceso Etl](https://numerus-scriptum.netlify.app/power-bi/2022-09-19-02-power-query-proceso-etl)
@@ -62,10 +56,7 @@ titulo: índice de publicaciones de power-bi; lo genera script_generador_publica
 7. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/power-bi/2022-10-24-08-vizualizacion-de-datos/index.pdf) [08 Vizualizacion De Datos](https://numerus-scriptum.netlify.app/power-bi/2022-10-24-08-vizualizacion-de-datos)
 
 
----
-tipo: fragmento
-titulo: texto de cierre del bloque «Publicaciones similares» (incluido en cada post)
----
+<!-- fragmento de inclusión — texto de cierre del bloque «Publicaciones similares» (incluido en cada post) -->
 
 Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!
 

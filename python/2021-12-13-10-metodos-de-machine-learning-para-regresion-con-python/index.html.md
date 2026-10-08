@@ -46,7 +46,7 @@ En esta décima guía exploraremos los principales algoritmos de machine learnin
 
 La regresión es un método para predecir valores numéricos continuos (a diferencia de clasificación que predice categorías discretas).
 
-::: {#753b9805 .cell}
+::: {#d3be4c6f .cell}
 ``` {.python .cell-code}
 import pandas as pd
 import numpy as np
@@ -108,7 +108,7 @@ print("Librerías importadas exitosamente")
 
 ## Generar datos de ejemplo
 
-::: {#f2cba714 .cell}
+::: {#e6df762f .cell}
 ``` {.python .cell-code}
 def generar_datos_regresion(n=200, ruido=1.0, seed=42):
     """
@@ -167,7 +167,7 @@ print("\nGráfico guardado como 'datos_regresion.png'")
 
 ## Dividir datos
 
-::: {#13fe41ff .cell}
+::: {#b43502b7 .cell}
 ``` {.python .cell-code}
 # Dividir en entrenamiento y prueba
 X_train, X_test, y_train, y_test = train_test_split(
@@ -414,7 +414,7 @@ En Python, `sklearn.linear_model.LinearRegression` utiliza descomposición SVD p
 
 ## Implementación
 
-::: {#d31c1778 .cell}
+::: {#ec5f5832 .cell}
 ``` {.python .cell-code}
 # Entrenar modelo OLS
 modelo_ols = LinearRegression()
@@ -451,7 +451,7 @@ print(f"MSE Test:  {mse_test:.4f}")
 
 ## Visualización de predicciones
 
-::: {#97ae560d .cell}
+::: {#49f64360 .cell}
 ``` {.python .cell-code}
 # Gráfico de valores reales vs predichos
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
@@ -487,7 +487,7 @@ print("\nGráfico guardado como 'ols_predictions.png'")
 
 ## Análisis de residuos
 
-::: {#81740f39 .cell}
+::: {#99fe00f9 .cell}
 ``` {.python .cell-code}
 # Calcular residuos
 residuos_train = y_train - y_pred_ols_train
@@ -755,7 +755,7 @@ donde $\text{MSE}_k(\alpha)$ es el error cuadrático medio en el k-ésimo fold.
 
 ## Implementación
 
-::: {#39b11d0a .cell}
+::: {#809008b2 .cell}
 ``` {.python .cell-code}
 # Probar diferentes valores de alpha
 alphas = [0.001, 0.01, 0.1, 1, 10, 100, 1000]
@@ -794,7 +794,7 @@ df_ridge = pd.DataFrame(resultados_ridge)
 
 ## Visualización del efecto de regularización
 
-::: {#e85f3b40 .cell}
+::: {#2d125068 .cell}
 ``` {.python .cell-code}
 # Gráfico de coeficientes vs alpha
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
@@ -1118,7 +1118,7 @@ donde típicamente $w_j = 1/|\hat{\beta}_j^{\text{OLS}}|^{\gamma}$ con $\gamma >
 
 ## Implementación
 
-::: {#e30080d6 .cell}
+::: {#67227d4c .cell}
 ``` {.python .cell-code}
 # Probar diferentes valores de alpha
 alphas_lasso = [0.001, 0.01, 0.1, 0.5, 1, 2, 5]
@@ -1162,7 +1162,7 @@ df_lasso = pd.DataFrame(resultados_lasso)
 
 ## Comparación Ridge vs Lasso
 
-::: {#e4d0d512 .cell}
+::: {#83e18b60 .cell}
 ``` {.python .cell-code}
 # Visualización comparativa
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))
@@ -1464,7 +1464,7 @@ donde los pesos se derivan de estimaciones preliminares.
 
 ## Implementación
 
-::: {#017a4ae3 .cell}
+::: {#be4536e2 .cell}
 ``` {.python .cell-code}
 # Entrenar Elastic Net
 modelo_elastic = ElasticNet(alpha=0.1, l1_ratio=0.5, max_iter=10000)
@@ -1828,7 +1828,7 @@ donde $f_j$ son funciones suaves no paramétricas.
 
 ## Implementación
 
-::: {#b799b802 .cell}
+::: {#e21ad238 .cell}
 ``` {.python .cell-code}
 # Generar datos con relación no lineal
 np.random.seed(42)
@@ -2272,7 +2272,7 @@ Los pesos se pueden aprender para mejorar performance.
 
 ## Implementación
 
-::: {#a5f74e26 .cell}
+::: {#638ca1d8 .cell}
 ``` {.python .cell-code}
 # Estandarizar datos (importante para KNN)
 scaler = StandardScaler()
@@ -2725,7 +2725,7 @@ $$
 
 ## Implementación de métricas
 
-::: {#3a8e0a63 .cell}
+::: {#f80106be .cell}
 ``` {.python .cell-code}
 def calcular_metricas(y_true, y_pred, modelo_nombre="Modelo"):
     """Calcula todas las métricas de regresión"""
@@ -2802,7 +2802,7 @@ print(df_metricas.to_string(index=False))
 
 ## Tabla y visualización comparativa
 
-::: {#fc5e8b4b .cell}
+::: {#aaeb0b15 .cell}
 ``` {.python .cell-code}
 # Visualización comparativa
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))
@@ -2858,7 +2858,7 @@ print("Tabla guardada como 'metricas_comparacion.csv'")
 
 ## Aplicación 1: Predicción de precios de vivienda
 
-::: {#c07f348d .cell}
+::: {#223826fd .cell}
 ``` {.python .cell-code}
 print("\n\n\nAPLICACIÓN: PREDICCIÓN DE PRECIOS DE VIVIENDA")
 print("=" * 70)
@@ -2998,7 +2998,7 @@ for nombre, modelo in modelos_vivienda.items():
 
 ## Aplicación 2: Predicción de ventas
 
-::: {#760b38d4 .cell}
+::: {#f79c9cbd .cell}
 ``` {.python .cell-code}
 print("\n\n\nAPLICACIÓN: PREDICCIÓN DE VENTAS")
 print("=" * 70)
@@ -3149,7 +3149,7 @@ else:
 
 ## Ejercicio: Validación cruzada
 
-::: {#e122c247 .cell}
+::: {#291ac2d5 .cell}
 ``` {.python .cell-code}
 print("\n\n\nEJERCICIO: VALIDACIÓN CRUZADA")
 print("=" * 70)
@@ -3255,20 +3255,14 @@ Para profundizar en regresión:
 - Elements of Statistical Learning (ESL)
 - Applied Econometrics with Python
 
----
-
-tipo: fragmento
-titulo: texto de apertura del bloque «Publicaciones similares» (incluido en cada post)
----
+<!-- fragmento de inclusión — texto de apertura del bloque «Publicaciones similares» (incluido en cada post) -->
 
 # Publicaciones Similares
 
 Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:
 
----
-tipo: fragmento
-titulo: índice de publicaciones de python; lo genera script_generador_publicacion_similar
----
+
+<!-- fragmento de inclusión — índice de publicaciones de python; lo genera script_generador_publicacion_similar -->
 
 1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/index.pdf) [Instalacion De Anaconda](https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda)
 2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf) [Configurar Entorno Virtual Python Anaconda](https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda)
@@ -3286,11 +3280,7 @@ titulo: índice de publicaciones de python; lo genera script_generador_publicaci
 14. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf) [Visualizacion De Datos Con Python](https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python)
 
 
----
-
-tipo: fragmento
-titulo: texto de cierre del bloque «Publicaciones similares» (incluido en cada post)
----
+<!-- fragmento de inclusión — texto de cierre del bloque «Publicaciones similares» (incluido en cada post) -->
 
 Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!
 

@@ -39,20 +39,14 @@ curso: stata_curso_base
 
 Este artículo está actualmente en proceso de edición, y todas las secciones serán ampliadas y refinadas en futuras revisiones.
 
----
-tipo: fragmento
-titulo: texto de apertura del bloque «Publicaciones similares» (incluido en cada post)
----
+<!-- fragmento de inclusión — texto de apertura del bloque «Publicaciones similares» (incluido en cada post) -->
 
 # Publicaciones Similares
 
 Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:
 
 
----
-tipo: fragmento
-titulo: índice de publicaciones de stata; lo genera script_generador_publicacion_similar
----
+<!-- fragmento de inclusión — índice de publicaciones de stata; lo genera script_generador_publicacion_similar -->
 
 1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/stata/2022-05-30-01-introduccion-al-programa/index.pdf) [01 Introduccion Al Programa](https://numerus-scriptum.netlify.app/stata/2022-05-30-01-introduccion-al-programa)
 2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/stata/2022-06-06-02-manipulando-los-datos/index.pdf) [02 Manipulando Los Datos](https://numerus-scriptum.netlify.app/stata/2022-06-06-02-manipulando-los-datos)
@@ -64,10 +58,7 @@ titulo: índice de publicaciones de stata; lo genera script_generador_publicacio
 8. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/stata/2022-07-18-08-modelos-de-evaluacion-de-impacto/index.pdf) [08 Modelos De Evaluacion De Impacto](https://numerus-scriptum.netlify.app/stata/2022-07-18-08-modelos-de-evaluacion-de-impacto)
 
 
----
-tipo: fragmento
-titulo: texto de cierre del bloque «Publicaciones similares» (incluido en cada post)
----
+<!-- fragmento de inclusión — texto de cierre del bloque «Publicaciones similares» (incluido en cada post) -->
 
 Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!
 

@@ -166,20 +166,14 @@ Si tienes un archivo de datos en formato .csv y quieres analizarlo en SPSS, pued
 
 Traducción realizada con la versión gratuita del traductor DeepL.com
 
----
-tipo: fragmento
-titulo: texto de apertura del bloque «Publicaciones similares» (incluido en cada post)
----
+<!-- fragmento de inclusión — texto de apertura del bloque «Publicaciones similares» (incluido en cada post) -->
 
 # Publicaciones Similares
 
 Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:
 
 
----
-tipo: fragmento
-titulo: índice de publicaciones de fundamentos-programacion; lo genera script_generador_publicacion_similar
----
+<!-- fragmento de inclusión — índice de publicaciones de fundamentos-programacion; lo genera script_generador_publicacion_similar -->
 
 1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/fundamentos-programacion/2018-06-09-typografia/index.pdf) [Typografia](https://numerus-scriptum.netlify.app/fundamentos-programacion/2018-06-09-typografia)
 2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/fundamentos-programacion/2019-08-13-organizando-tipos-de-archivos-de-softwares/index.pdf) [Organizando Tipos De Archivos De Softwares](https://numerus-scriptum.netlify.app/fundamentos-programacion/2019-08-13-organizando-tipos-de-archivos-de-softwares)
@@ -188,10 +182,7 @@ titulo: índice de publicaciones de fundamentos-programacion; lo genera script_g
 5. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/fundamentos-programacion/2021-01-18-03-programacion-basica-en-html/index.pdf) [03 Programacion Basica En Html](https://numerus-scriptum.netlify.app/fundamentos-programacion/2021-01-18-03-programacion-basica-en-html)
 
 
----
-tipo: fragmento
-titulo: texto de cierre del bloque «Publicaciones similares» (incluido en cada post)
----
+<!-- fragmento de inclusión — texto de cierre del bloque «Publicaciones similares» (incluido en cada post) -->
 
 Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!
 
