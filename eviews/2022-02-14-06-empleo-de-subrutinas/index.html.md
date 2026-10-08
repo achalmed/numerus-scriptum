@@ -5,9 +5,7 @@ title: Subrutinas y modularidad en EViews
 shorttitle: SUBRUTINAS EVIEWS
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - Eviews
 tags:
@@ -33,17 +31,28 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/eviews/2022-02-14-06-empleo-de-subrutinas/index.pdf
-date: 02/14/2022
+date: 2022-02-14
 draft: true
 image: ../featured.jpg
+curso: eviews_curso_base
 ---
 
 Este artículo está actualmente en proceso de edición, y todas las secciones serán ampliadas y refinadas en futuras revisiones.
+
+---
+tipo: fragmento
+titulo: texto de apertura del bloque «Publicaciones similares» (incluido en cada post)
+---
 
 # Publicaciones Similares
 
 Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:
 
+
+---
+tipo: fragmento
+titulo: índice de publicaciones de eviews; lo genera script_generador_publicacion_similar
+---
 
 1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/eviews/2021-08-30-01-introduccion-a-la-programacion-con-eviews/index.pdf) [01 Introduccion A La Programacion Con Eviews](https://numerus-scriptum.netlify.app/eviews/2021-08-30-01-introduccion-a-la-programacion-con-eviews)
 2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/eviews/2021-09-06-02-empleo-de-bucles-y-variables-temporales/index.pdf) [02 Empleo De Bucles Y Variables Temporales](https://numerus-scriptum.netlify.app/eviews/2021-09-06-02-empleo-de-bucles-y-variables-temporales)
@@ -52,6 +61,11 @@ Si te interesó este artículo, te recomendamos que explores otros blogs y recur
 5. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/eviews/2022-02-14-06-empleo-de-subrutinas/index.pdf) [06 Empleo De Subrutinas](https://numerus-scriptum.netlify.app/eviews/2022-02-14-06-empleo-de-subrutinas)
 6. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/eviews/2022-02-21-07-modelacion/index.pdf) [07 Modelacion](https://numerus-scriptum.netlify.app/eviews/2022-02-21-07-modelacion)
 
+
+---
+tipo: fragmento
+titulo: texto de cierre del bloque «Publicaciones similares» (incluido en cada post)
+---
 
 Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!
 

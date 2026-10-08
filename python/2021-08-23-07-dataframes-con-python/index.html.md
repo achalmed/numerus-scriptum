@@ -6,9 +6,7 @@ title: Manipulación de DataFrames con Pandas
 shorttitle: DATAFRAMES EN PYTHON
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - Python
 tags:
@@ -34,9 +32,10 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python/index.pdf
-date: 08/23/2021
+date: 2021-08-23
 draft: false
 image: ../featured.jpg
+curso: python_curso_base
 ---
 
 En esta séptima guía profundizaremos en el uso de DataFrames de Pandas, la estructura de datos más importante para análisis económico en Python. Los DataFrames nos permiten trabajar con datos tabulares de manera similar a Excel o Stata, pero con mucho más poder y flexibilidad.
@@ -50,7 +49,7 @@ Un DataFrame es una estructura de datos bidimensional similar a una tabla de Exc
 - Índices (etiquetas de filas)
 - Tipos de datos por columna
 
-::: {#82902ef0 .cell}
+::: {#be3bb6da .cell}
 ``` {.python .cell-code}
 import pandas as pd
 import numpy as np
@@ -74,7 +73,7 @@ print("""
 
 ## Desde diccionarios
 
-::: {#c3d73000 .cell}
+::: {#86af34c1 .cell}
 ``` {.python .cell-code}
 # Crear DataFrame desde diccionario
 datos = {
@@ -99,7 +98,7 @@ print(df_paises.dtypes)
 
 ## Desde listas de listas
 
-::: {#accd5ac0 .cell}
+::: {#f115d665 .cell}
 ``` {.python .cell-code}
 # Crear DataFrame desde listas
 datos = [
@@ -119,7 +118,7 @@ print(df)
 
 ## Desde Series
 
-::: {#a26d7897 .cell}
+::: {#00fa66be .cell}
 ``` {.python .cell-code}
 # Crear DataFrame desde Series
 paises = pd.Series(['Perú', 'Chile', 'Argentina'], name='pais')
@@ -134,7 +133,7 @@ print(df)
 
 ## Con índice personalizado
 
-::: {#78565011 .cell}
+::: {#da1bb222 .cell}
 ``` {.python .cell-code}
 # DataFrame con índice personalizado
 datos = {
@@ -152,7 +151,7 @@ print(df_productos)
 
 ## DataFrames de ejemplo
 
-::: {#e7610701 .cell}
+::: {#fa514c50 .cell}
 ``` {.python .cell-code}
 # Crear DataFrame de ejemplo económico
 np.random.seed(42)
@@ -177,7 +176,7 @@ print(f"\nForma: {df_transacciones.shape}")
 
 ## Leer archivos CSV
 
-::: {#f5ce9398 .cell}
+::: {#915fc337 .cell}
 ``` {.python .cell-code}
 # Leer CSV
 # df = pd.read_csv('datos.csv')
@@ -200,7 +199,7 @@ print(f"\nForma: {df_transacciones.shape}")
 
 ## Leer archivos Excel
 
-::: {#592ed51e .cell}
+::: {#63af127a .cell}
 ``` {.python .cell-code}
 # Leer Excel
 # df = pd.read_excel('datos.xlsx')
@@ -227,7 +226,7 @@ print(f"\nForma: {df_transacciones.shape}")
 
 ## Exportar datos
 
-::: {#f1dac204 .cell}
+::: {#27519cd9 .cell}
 ``` {.python .cell-code}
 # Crear DataFrame de ejemplo para exportar
 df_ejemplo = pd.DataFrame({
@@ -264,7 +263,7 @@ print("Archivo Excel creado: datos_macro.xlsx")
 
 ## Leer desde otras fuentes
 
-::: {#c708bf98 .cell}
+::: {#90c5cde0 .cell}
 ``` {.python .cell-code}
 # Desde JSON
 # df = pd.read_json('datos.json')
@@ -288,7 +287,7 @@ print("Archivo Excel creado: datos_macro.xlsx")
 
 ## Información básica del DataFrame
 
-::: {#ebeacd87 .cell}
+::: {#c48a24c6 .cell}
 ``` {.python .cell-code}
 # Crear DataFrame de ejemplo
 datos_economicos = {
@@ -331,7 +330,7 @@ print(f"\nÍndice: {df.index.tolist()}")
 
 ## Seleccionar columnas
 
-::: {#a70bd7be .cell}
+::: {#719b9801 .cell}
 ``` {.python .cell-code}
 # Seleccionar una columna (retorna Series)
 pib = df['pib_millones']
@@ -361,7 +360,7 @@ print(regiones)
 
 ## Seleccionar filas con loc e iloc
 
-::: {#eb289c24 .cell}
+::: {#3a0a5b56 .cell}
 ``` {.python .cell-code}
 # loc: selección por etiquetas
 print("Fila 0 con loc:")
@@ -392,7 +391,7 @@ print(df.iloc[1:4, 0:3])
 
 ## Filtrado por condiciones
 
-::: {#bd5fc648 .cell}
+::: {#a0adfb84 .cell}
 ``` {.python .cell-code}
 # Filtro simple
 regiones_grandes = df[df['poblacion'] > 1500000]
@@ -430,7 +429,7 @@ print(no_lima)
 
 ## Query (consultas tipo SQL)
 
-::: {#4a622451 .cell}
+::: {#5d217507 .cell}
 ``` {.python .cell-code}
 # Query simple
 resultado = df.query('pib_millones > 10000')
@@ -460,7 +459,7 @@ print(resultado)
 
 ## Crear nuevas columnas
 
-::: {#fca0d7d4 .cell}
+::: {#f2b148d1 .cell}
 ``` {.python .cell-code}
 # Crear columna calculada
 df['pib_per_capita'] = (df['pib_millones'] / df['poblacion']) * 1000000
@@ -500,7 +499,7 @@ print(df[['region', 'pib_millones', 'tamaño_economia']])
 
 ## Modificar columnas existentes
 
-::: {#708dd7ed .cell}
+::: {#0a5aeef7 .cell}
 ``` {.python .cell-code}
 # Modificar valores
 df['pib_millones'] = df['pib_millones'] * 1.05  # Incremento 5%
@@ -530,7 +529,7 @@ print(df[['region', 'sector_principal']])
 
 ## Eliminar columnas
 
-::: {#a24d9cb4 .cell}
+::: {#00d63f3a .cell}
 ``` {.python .cell-code}
 # Eliminar una columna
 df_sin_columna = df.drop('es_costa', axis=1)
@@ -552,7 +551,7 @@ print(df_reducido.columns.tolist())
 
 ## Métodos de renombrado
 
-::: {#d0ecf4ed .cell}
+::: {#24f9084b .cell}
 ``` {.python .cell-code}
 # Crear DataFrame de ejemplo
 df_original = pd.DataFrame({
@@ -592,7 +591,7 @@ print(df_renamed4)
 
 ## Aplicaciones económicas
 
-::: {#074d6545 .cell}
+::: {#0730310a .cell}
 ``` {.python .cell-code}
 # DataFrame con nombres en inglés
 df_english = pd.DataFrame({
@@ -641,7 +640,7 @@ print(df_limpio)
 
 ## Operaciones aritméticas
 
-::: {#cac168a1 .cell}
+::: {#78c3689b .cell}
 ``` {.python .cell-code}
 # Crear DataFrame de ventas
 ventas = pd.DataFrame({
@@ -677,7 +676,7 @@ print(ventas)
 
 ## Aplicar funciones
 
-::: {#f4e174ac .cell}
+::: {#9c1e9a0c .cell}
 ``` {.python .cell-code}
 # apply(): aplicar función a columnas o filas
 def calcular_igv(monto):
@@ -710,7 +709,7 @@ print(df_numerico)
 
 ## Operaciones de agregación
 
-::: {#85f93dae .cell}
+::: {#73f7f903 .cell}
 ``` {.python .cell-code}
 # Crear datos de ventas por sucursal
 datos_sucursales = {
@@ -750,7 +749,7 @@ El merge es una de las operaciones más importantes en análisis de datos, permi
 
 ## Tipos de merge
 
-::: {#b41d2cdf .cell}
+::: {#55a545f0 .cell}
 ``` {.python .cell-code}
 # Crear DataFrames de ejemplo
 df_ventas = pd.DataFrame({
@@ -795,7 +794,7 @@ print(df_outer)
 
 ## Merge con indicador
 
-::: {#2e13916e .cell}
+::: {#f7f5dd64 .cell}
 ``` {.python .cell-code}
 # Merge con indicador para rastrear coincidencias
 df_merged = pd.merge(
@@ -823,7 +822,7 @@ print(solo_ventas)
 
 ## Merge con diferentes nombres de columna
 
-::: {#be330564 .cell}
+::: {#86faaa85 .cell}
 ``` {.python .cell-code}
 # DataFrames con diferentes nombres de clave
 df1 = pd.DataFrame({
@@ -853,7 +852,7 @@ print(df_merged)
 
 ## Merge múltiple
 
-::: {#22179ec1 .cell}
+::: {#1716ab00 .cell}
 ``` {.python .cell-code}
 # Merge de tres DataFrames
 df_ventas = pd.DataFrame({
@@ -887,7 +886,7 @@ print(df_completo)
 
 ## Append (agregar filas)
 
-::: {#106a6fc5 .cell}
+::: {#c3d5139f .cell}
 ``` {.python .cell-code}
 # Crear DataFrames para concatenar
 df1 = pd.DataFrame({
@@ -913,7 +912,7 @@ print(df_concatenado)
 
 ## Concatenación vertical y horizontal
 
-::: {#b1ce6ca1 .cell}
+::: {#6465590c .cell}
 ``` {.python .cell-code}
 # Concatenación vertical (apilar filas)
 df_2022 = pd.DataFrame({
@@ -959,7 +958,7 @@ print(df_horizontal)
 
 ## GroupBy básico
 
-::: {#d736e71a .cell}
+::: {#1d69eace .cell}
 ``` {.python .cell-code}
 # Crear datos de ventas por región y producto
 datos = {
@@ -991,7 +990,7 @@ print(resumen)
 
 ## GroupBy con múltiples columnas
 
-::: {#970b835a .cell}
+::: {#5b913f43 .cell}
 ``` {.python .cell-code}
 # Agrupar por región y producto
 ventas_region_producto = df.groupby(['region', 'producto'])['ventas'].sum()
@@ -1017,7 +1016,7 @@ print(resumen_completo)
 
 ## Funciones de agregación personalizadas
 
-::: {#c235c909 .cell}
+::: {#bbc66570 .cell}
 ``` {.python .cell-code}
 # Definir función personalizada
 def rango(x):
@@ -1051,7 +1050,7 @@ print(df)
 
 ## Aplicación 1: Análisis de datos COVID-19
 
-::: {#6c93313b .cell}
+::: {#4370bc45 .cell}
 ``` {.python .cell-code}
 # Simular datos de COVID-19 por región
 np.random.seed(42)
@@ -1137,7 +1136,7 @@ print(df_serie.tail(10).round(1))
 
 ## Aplicación 2: Análisis de comercio internacional
 
-::: {#362f2534 .cell}
+::: {#7394e90c .cell}
 ``` {.python .cell-code}
 # Simular datos de exportaciones
 productos = ['Cobre', 'Oro', 'Zinc', 'Plomo', 'Plata', 'Café', 'Espárragos']
@@ -1234,7 +1233,7 @@ print(matriz.round(2))
 
 ## Ejercicio 1: Análisis de indicadores macroeconómicos
 
-::: {#0c6f9320 .cell}
+::: {#6110e0ac .cell}
 ``` {.python .cell-code}
 # Crear dataset de indicadores macroeconómicos
 años = list(range(2010, 2024))
@@ -1310,7 +1309,7 @@ print("\n\nResultados guardados en 'analisis_macroeconomico.csv'")
 
 ## Ejercicio 2: Sistema de gestión de inventarios
 
-::: {#cf99fe84 .cell}
+::: {#e5e19e45 .cell}
 ``` {.python .cell-code}
 # Crear sistema de inventarios
 np.random.seed(42)
@@ -1528,10 +1527,20 @@ Para profundizar en Pandas:
 - Ejercicios con datos del INEI, BCRP y Banco Mundial
 
 
+---
+
+tipo: fragmento
+titulo: texto de apertura del bloque «Publicaciones similares» (incluido en cada post)
+---
+
 # Publicaciones Similares
 
 Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:
 
+---
+tipo: fragmento
+titulo: índice de publicaciones de python; lo genera script_generador_publicacion_similar
+---
 
 1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/index.pdf) [Instalacion De Anaconda](https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda)
 2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf) [Configurar Entorno Virtual Python Anaconda](https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda)
@@ -1548,6 +1557,12 @@ Si te interesó este artículo, te recomendamos que explores otros blogs y recur
 13. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2022-10-31-11-validacion-cruzada-y-composicion-del-modelo-con-python/index.pdf) [11 Validacion Cruzada Y Composicion Del Modelo Con Python](https://numerus-scriptum.netlify.app/python/2022-10-31-11-validacion-cruzada-y-composicion-del-modelo-con-python)
 14. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf) [Visualizacion De Datos Con Python](https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python)
 
+
+---
+
+tipo: fragmento
+titulo: texto de cierre del bloque «Publicaciones similares» (incluido en cada post)
+---
 
 Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!
 

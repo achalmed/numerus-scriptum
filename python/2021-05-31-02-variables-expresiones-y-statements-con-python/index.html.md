@@ -6,9 +6,7 @@ title: Variables y expresiones en Python
 shorttitle: VARIABLES PYTHON
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - Python
 tags:
@@ -34,9 +32,10 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python/index.pdf
-date: 05/31/2021
+date: 2021-05-31
 draft: false
 image: ../featured.jpg
+curso: python_curso_base
 ---
 
 En esta segunda guía exploraremos en profundidad los elementos fundamentales de Python: variables, expresiones y statements. Estos conceptos son la base para cualquier programa que escribamos y son esenciales para el análisis económico con Python.
@@ -51,7 +50,7 @@ Python maneja diferentes tipos de datos que son fundamentales para nuestros aná
 
 Los integers son números enteros, positivos o negativos, sin decimales. Son útiles para contar unidades discretas como número de trabajadores, cantidad de empresas, años, etc.
 
-::: {#b67c87a1 .cell}
+::: {#78f105f2 .cell}
 ``` {.python .cell-code}
 # Ejemplos de integers en contexto económico
 num_trabajadores = 150
@@ -66,7 +65,7 @@ tasa_desempleo_entera = 7  # 7%
 
 Los floats son números con decimales. La mayoría de variables económicas son floats: precios, tasas, proporciones, etc.
 
-::: {#6d921615 .cell}
+::: {#b669829f .cell}
 ``` {.python .cell-code}
 # Ejemplos de floats en economía
 precio_dolar = 3.75
@@ -81,7 +80,7 @@ inflacion_mensual = 0.42  # 0.42%
 
 Los strings son secuencias de caracteres. Se usan para nombres, descripciones, códigos, etc.
 
-::: {#91864dcc .cell}
+::: {#29bb1e60 .cell}
 ``` {.python .cell-code}
 # Ejemplos de strings en economía
 nombre_pais = "Perú"
@@ -96,7 +95,7 @@ moneda = "PEN"
 
 Los booleans solo pueden tener dos valores: True (verdadero) o False (falso). Son fundamentales para lógica condicional.
 
-::: {#cf24ce04 .cell}
+::: {#4c81b589 .cell}
 ``` {.python .cell-code}
 # Ejemplos de booleans en economía
 esta_en_recesion = False
@@ -111,7 +110,7 @@ tiene_superavit_fiscal = True
 
 Python nos permite verificar el tipo de cualquier valor con la función `type()`:
 
-::: {#554281a2 .cell}
+::: {#99c2bdb8 .cell}
 ``` {.python .cell-code}
 # Verificando tipos
 print(type(150))           # <class 'int'>
@@ -126,7 +125,7 @@ print(type(True))          # <class 'bool'>
 
 Frecuentemente necesitamos convertir datos de un tipo a otro. Python proporciona funciones para esto:
 
-::: {#37499359 .cell}
+::: {#fa97813b .cell}
 ``` {.python .cell-code}
 # Conversión de float a integer
 precio_aproximado = int(3.75)  # Resultado: 3
@@ -150,7 +149,7 @@ print(precio_numerico)
 
 Nota importante sobre conversión de float a int:
 
-::: {#0a1ccb4c .cell}
+::: {#7601cd73 .cell}
 ``` {.python .cell-code}
 # La conversión a int trunca, no redondea
 print(int(4.9))   # Resultado: 4
@@ -166,7 +165,7 @@ print(round(4.1))  # Resultado: 4
 
 ## Ejemplo aplicado: Cálculo del IPC
 
-::: {#09bc7d80 .cell}
+::: {#086e3fdd .cell}
 ``` {.python .cell-code}
 # Datos de precios de canasta básica
 precio_canasta_2023 = 850.50
@@ -201,7 +200,7 @@ Python tiene reglas estrictas sobre cómo nombrar variables:
 4. Es sensible a mayúsculas y minúsculas
 5. No puede ser una palabra reservada de Python
 
-::: {#756feb8b .cell}
+::: {#891b2c4c .cell}
 ``` {.python .cell-code}
 # Nombres válidos
 pib_peru = 242632
@@ -222,7 +221,7 @@ PIB = 500000  # Diferente de pib
 
 Python tiene palabras reservadas que no pueden usarse como nombres de variables:
 
-::: {#84391b98 .cell}
+::: {#d1c93d45 .cell}
 ``` {.python .cell-code}
 # Lista de palabras reservadas en Python 3
 # False      await      else       import     pass
@@ -242,7 +241,7 @@ Python sigue convenciones (no obligatorias pero recomendadas):
 
 **Snake case para variables y funciones:**
 
-::: {#bc1cdd0c .cell}
+::: {#1f5e1951 .cell}
 ``` {.python .cell-code}
 # Recomendado: snake_case (palabras separadas por guiones bajos)
 precio_producto = 15.50
@@ -258,7 +257,7 @@ tasaCrecimientoPib = 2.4
 
 **Constantes en mayúsculas:**
 
-::: {#5d52269e .cell}
+::: {#4b2d5282 .cell}
 ``` {.python .cell-code}
 # Constantes (valores que no cambian)
 PI = 3.14159
@@ -271,7 +270,7 @@ año_BASE_IPC = 2020
 
 **Variables privadas con guión bajo:**
 
-::: {#b8970b79 .cell}
+::: {#803ae043 .cell}
 ``` {.python .cell-code}
 # Primero definimos las variables necesarias
 precio_unitario = 25.50  # precio de venta por unidad
@@ -294,7 +293,7 @@ print(f"Valor temporal interno: {_dato_temporal}")
 
 En programación, es preferible usar nombres descriptivos que hagan el código auto-documentado:
 
-::: {#1fe4eccc .cell}
+::: {#4c9ace82 .cell}
 ``` {.python .cell-code}
 # Mal: nombres crípticos
 x = 3.75
@@ -315,7 +314,7 @@ for i in range(10):
 
 ## Ejemplo económico completo
 
-::: {#b6822468 .cell}
+::: {#b01b20d2 .cell}
 ``` {.python .cell-code}
 # Variables macroeconómicas del Perú (valores hipotéticos)
 PIB_NOMINAL = 242632  # Constante en millones USD
@@ -352,7 +351,7 @@ print(f"Economía emergente: {es_economia_emergente}")
 
 Los operadores son símbolos que indican operaciones. Los operandos son los valores sobre los que se opera.
 
-::: {#fb4e06ce .cell}
+::: {#962bf3a6 .cell}
 ``` {.python .cell-code}
 # Suma
 ingreso_enero = 5000
@@ -401,7 +400,7 @@ print("Unidades restantes:", unidades_restantes)  # 25
 
 Estos operadores comparan valores y devuelven True o False:
 
-::: {#ffc3bb63 .cell}
+::: {#82b1f176 .cell}
 ``` {.python .cell-code}
 # Datos económicos
 inflacion_actual = 3.5
@@ -434,7 +433,7 @@ print(inflacion_actual <= meta_inflacion)  # False
 
 Los operadores lógicos combinan expresiones booleanas:
 
-::: {#05c33393 .cell}
+::: {#3ca147fa .cell}
 ``` {.python .cell-code}
 # Datos para análisis
 tasa_desempleo = 7.2
@@ -463,7 +462,7 @@ print("En recesión:", en_recesion)  # False
 
 Además del operador básico de asignación (=), Python tiene operadores compuestos:
 
-::: {#4e0b684e .cell}
+::: {#ec533dbd .cell}
 ``` {.python .cell-code}
 # Asignación básica
 capital = 10000
@@ -494,7 +493,7 @@ print("Tasa al cubo:", tasa)  # 8
 
 ## Ejemplo económico: Cálculo de interés compuesto
 
-::: {#a02d3e36 .cell}
+::: {#ebee1662 .cell}
 ``` {.python .cell-code}
 # Parámetros del préstamo
 capital_inicial = 50000.00
@@ -527,7 +526,7 @@ Una expresión es una combinación de valores, variables y operadores que Python
 
 ## Expresiones simples
 
-::: {#22ac3aca .cell}
+::: {#2a2d286e .cell}
 ``` {.python .cell-code}
 # Primero definimos las variables que vamos a usar
 precio = 25.50
@@ -548,7 +547,7 @@ ahorro_mensual = ingreso_mensual - gasto_mensual  # Evalúa a 700
 
 ## Expresiones complejas
 
-::: {#5eb4f2b4 .cell}
+::: {#436836a0 .cell}
 ``` {.python .cell-code}
 # Cálculo de la propensión marginal al consumo
 consumo_inicial = 50000
@@ -568,7 +567,7 @@ print(f"Multiplicador keynesiano: {multiplicador:.2f}")  # 2.00
 
 ## Expresiones en contexto económico
 
-::: {#896d1136 .cell}
+::: {#fe7db27d .cell}
 ``` {.python .cell-code}
 # Cálculo de elasticidad precio de la demanda
 precio_inicial = 100
@@ -621,7 +620,7 @@ De mayor a menor precedencia:
 
 ## Ejemplos de precedencia
 
-::: {#f0aa81fe .cell}
+::: {#b61f6953 .cell}
 ``` {.python .cell-code}
 # Sin paréntesis
 resultado_1 = 2 + 3 * 4
@@ -644,7 +643,7 @@ print(resultado_4)  # 50 (mismo resultado pero más claro)
 
 ## Aplicación económica: Valor presente neto (VPN)
 
-::: {#54024999 .cell}
+::: {#bf30693d .cell}
 ``` {.python .cell-code}
 # Cálculo del VPN sin usar paréntesis adecuados
 inversion_inicial = 100000
@@ -679,7 +678,7 @@ print(f"Decisión: {decision}")
 
 Aunque Python respeta la precedencia, usar paréntesis hace el código más legible:
 
-::: {#2e8c14e5 .cell}
+::: {#88f15f82 .cell}
 ``` {.python .cell-code}
 # Menos claro
 tasa_crecimiento = consumo_final - consumo_inicial / consumo_inicial * 100
@@ -702,7 +701,7 @@ Los strings son fundamentales para trabajar con datos textuales en economía: no
 
 ## Concatenación de strings
 
-::: {#1e20d010 .cell}
+::: {#7fae2097 .cell}
 ``` {.python .cell-code}
 # Concatenación básica con +
 pais = "Perú"
@@ -722,7 +721,7 @@ print(presentacion)
 
 ## Repetición de strings
 
-::: {#13aaaf59 .cell}
+::: {#6db95457 .cell}
 ``` {.python .cell-code}
 # Repetir caracteres
 linea_separadora = "-" * 50
@@ -742,7 +741,7 @@ Python ofrece varias formas de formatear strings:
 
 **Método antiguo con %**
 
-::: {#1e806932 .cell}
+::: {#292f942e .cell}
 ``` {.python .cell-code}
 # Formato con %
 pais = "Perú"
@@ -763,7 +762,7 @@ print("%s tiene %d años" % (nombre, edad))
 
 **Método format()**
 
-::: {#4e961e44 .cell}
+::: {#23288ac5 .cell}
 ``` {.python .cell-code}
 # Método format básico
 pais = "Perú"
@@ -789,7 +788,7 @@ print("PIB: USD {:,}".format(pib_grande))  # Con comas
 
 **F-strings (Recomendado, Python 3.6+)**
 
-::: {#f0331b32 .cell}
+::: {#c2350c3d .cell}
 ``` {.python .cell-code}
 # F-strings: forma moderna y más legible
 pais = "Perú"
@@ -820,7 +819,7 @@ print(f"Valor total: S/ {precio * cantidad:,.2f}")
 
 ## Métodos de strings
 
-::: {#a0afb53a .cell}
+::: {#f8ac16e5 .cell}
 ``` {.python .cell-code}
 # Texto para análisis
 sector_economico = "agricultura, ganadería y pesca"
@@ -865,7 +864,7 @@ print(f"'{texto_limpio}'")  # 'PIB'
 
 Los strings son secuencias de caracteres que pueden ser indexados:
 
-::: {#e37ba48d .cell}
+::: {#e181cd37 .cell}
 ``` {.python .cell-code}
 # String de ejemplo
 indicador = "PRODUCTO BRUTO INTERNO"
@@ -892,7 +891,7 @@ print(indicador[::-1])  # ONRETNI OTURB OTCUDORP (invertido)
 
 ## Verificación de contenido
 
-::: {#5bf0a229 .cell}
+::: {#6f289046 .cell}
 ``` {.python .cell-code}
 # Datos económicos
 codigo_sector = "CIIU-456"
@@ -926,7 +925,7 @@ print(moneda.isalpha())  # True
 
 ## Ejemplo aplicado: Procesamiento de datos económicos
 
-::: {#7ae2d415 .cell}
+::: {#7ea25365 .cell}
 ``` {.python .cell-code}
 # Datos de sectores económicos (simulando datos crudos)
 datos_brutos = "minería;45.2;agricultura;12.8;manufactura;23.5;servicios;67.9"
@@ -966,7 +965,7 @@ La función `input()` permite interactuar con el usuario, solicitando datos dura
 
 ## Uso básico de input()
 
-::: {#b4161733 .cell}
+::: {#52697612 .cell}
 ``` {.python .cell-code}
 # Solicitar nombre
 nombre = input("Ingrese su nombre: ")
@@ -983,7 +982,7 @@ print(f"Interesante, {pais} es un gran país.")
 
 Importante: `input()` siempre devuelve un string. Para trabajar con números, debemos convertir:
 
-::: {#1c21d2af .cell}
+::: {#6fa8eaaa .cell}
 ``` {.python .cell-code}
 # Solicitar edad (necesita conversión a int)
 edad_texto = input("Ingrese su edad: ")
@@ -1004,7 +1003,7 @@ print(f"Total a pagar: S/ {total:.2f}")
 
 ## Manejo de errores en la entrada
 
-::: {#19fa76a7 .cell}
+::: {#ddce6c19 .cell}
 ``` {.python .cell-code}
 # Si el usuario ingresa texto cuando esperamos número
 try:
@@ -1018,7 +1017,7 @@ except ValueError:
 
 ## Aplicación económica: Calculadora de interés simple
 
-::: {#e91473f7 .cell}
+::: {#019b9117 .cell}
 ``` {.python .cell-code}
 # Calculadora interactiva de interés simple
 print("=" * 50)
@@ -1051,7 +1050,7 @@ print("=" * 50)
 
 ## Ejemplo: Calculadora de elasticidad
 
-::: {#71074a2e .cell}
+::: {#89400845 .cell}
 ``` {.python .cell-code}
 # Calculadora de elasticidad precio de la demanda
 print("CALCULADORA DE ELASTICIDAD PRECIO DE LA DEMANDA")
@@ -1101,7 +1100,7 @@ Los comentarios son líneas de código que Python ignora. Sirven para documentar
 
 ## Comentarios de una línea
 
-::: {#e85be074 .cell}
+::: {#a54a0ec2 .cell}
 ``` {.python .cell-code}
 # Este es un comentario de una línea
 # Python ignora esta línea
@@ -1118,7 +1117,7 @@ pib_per_capita = (pib_total / poblacion) * 1000000  # Convertir a USD
 
 ## Comentarios de múltiples líneas
 
-::: {#b613a2c2 .cell}
+::: {#bca6258d .cell}
 ``` {.python .cell-code}
 """
 Este es un comentario de múltiples líneas.
@@ -1152,7 +1151,7 @@ def calcular_pib_per_capita(pib, poblacion):
 
 ## Buenas prácticas en comentarios
 
-::: {#7ade4d5d .cell}
+::: {#8fa77a02 .cell}
 ``` {.python .cell-code}
 # Mal: comentario obvio
 x = 5  # asignar 5 a x
@@ -1187,7 +1186,7 @@ pib_real = pib_nominal / deflactor
 
 ## Comentarios para debugging
 
-::: {#f2c5d476 .cell}
+::: {#53555e1f .cell}
 ``` {.python .cell-code}
 # Cálculo de elasticidad
 precio_inicial = 100
@@ -1214,7 +1213,7 @@ Los nombres mnemotécnicos son nombres de variables que ayudan a recordar su pro
 
 **Usa nombres descriptivos**
 
-::: {#5d67836b .cell}
+::: {#5c570d36 .cell}
 ``` {.python .cell-code}
 # Mal
 x = 242632
@@ -1231,7 +1230,7 @@ pib_per_capita = pib_total_millones / poblacion_total * 1000000
 
 **Usa convenciones consistentes**
 
-::: {#7ddcf636 .cell}
+::: {#7c09ff7d .cell}
 ``` {.python .cell-code}
 # Consistente para tasas
 tasa_interes_activa = 0.12
@@ -1248,7 +1247,7 @@ precio_promedio = (precio_producto_a + precio_producto_b) / 2
 
 **Usa prefijos y sufijos significativos**
 
-::: {#59ead941 .cell}
+::: {#69389ca0 .cell}
 ``` {.python .cell-code}
 # Prefijos temporales
 pib_2022 = 238000
@@ -1270,7 +1269,7 @@ tasa_interes_efectiva = 0.1268
 
 ## Ejemplos en contexto económico
 
-::: {#de60bc6d .cell}
+::: {#10e7d7bd .cell}
 ``` {.python .cell-code}
 # Variables macroeconómicas
 pib_nominal_millones_usd = 242632
@@ -1300,7 +1299,7 @@ capital_final_soles = capital_inicial_soles * (1 + tasa_interes_anual_decimal) *
 
 ## Abreviaciones aceptables en economía
 
-::: {#76e77974 .cell}
+::: {#f6cf09e3 .cell}
 ``` {.python .cell-code}
 # Abreviaciones comunes y aceptadas
 pib = 242632  # Producto Bruto Interno
@@ -1328,7 +1327,7 @@ def calcular_vpn(flujos, tasa):
 
 ## Evitar ambigüedades
 
-::: {#4974253b .cell}
+::: {#5c60f561 .cell}
 ``` {.python .cell-code}
 # Ambiguo
 tasa = 0.05  # ¿Qué tipo de tasa?
@@ -1355,7 +1354,7 @@ precio_dolar_interbancario_soles = 3.75
 
 Crea un programa que calcule el índice de pobreza dado el ingreso per cápita y la línea de pobreza.
 
-::: {#120e92fd .cell}
+::: {#e4dc2db7 .cell}
 ``` {.python .cell-code}
 # Ingreso per cápita mensual del hogar
 ingreso_per_capita = float(input("Ingrese el ingreso per cápita mensual (S/): "))
@@ -1396,7 +1395,7 @@ if brecha > 0:
 
 ## Ejercicio 2: Cálculo del índice de Gini simplificado
 
-::: {#dcb80ca5 .cell}
+::: {#f1130205 .cell}
 ``` {.python .cell-code}
 # Datos de ingreso de 5 hogares (del más pobre al más rico)
 print("Ingrese los ingresos de 5 hogares (de menor a mayor):")
@@ -1454,7 +1453,7 @@ print(f"Interpretación: {interpretacion}")
 
 ## Ejercicio 3: Análisis de punto de equilibrio
 
-::: {#fed60734 .cell}
+::: {#d6b38249 .cell}
 ``` {.python .cell-code}
 # Análisis de punto de equilibrio para una empresa
 print("ANÁLISIS DE PUNTO DE EQUILIBRIO")
@@ -1516,7 +1515,7 @@ else:
 
 ## Ejercicio 4: Cálculo de la tasa de actividad y desempleo
 
-::: {#3f250e81 .cell}
+::: {#5003e84a .cell}
 ``` {.python .cell-code}
 # Indicadores del mercado laboral
 print("CÁLCULO DE INDICADORES DEL MERCADO LABORAL")
@@ -1577,7 +1576,7 @@ else:
 
 ## Ejercicio 5: Conversor de monedas con múltiples divisas
 
-::: {#74a0a9a1 .cell}
+::: {#91467051 .cell}
 ``` {.python .cell-code}
 # Conversor de monedas
 print("CONVERSOR DE MONEDAS")
@@ -1700,10 +1699,20 @@ Para profundizar en estos conceptos, se recomienda:
 - Exploración de bibliotecas como NumPy y Pandas
 
 
+---
+
+tipo: fragmento
+titulo: texto de apertura del bloque «Publicaciones similares» (incluido en cada post)
+---
+
 # Publicaciones Similares
 
 Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:
 
+---
+tipo: fragmento
+titulo: índice de publicaciones de python; lo genera script_generador_publicacion_similar
+---
 
 1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/index.pdf) [Instalacion De Anaconda](https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda)
 2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf) [Configurar Entorno Virtual Python Anaconda](https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda)
@@ -1720,6 +1729,12 @@ Si te interesó este artículo, te recomendamos que explores otros blogs y recur
 13. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2022-10-31-11-validacion-cruzada-y-composicion-del-modelo-con-python/index.pdf) [11 Validacion Cruzada Y Composicion Del Modelo Con Python](https://numerus-scriptum.netlify.app/python/2022-10-31-11-validacion-cruzada-y-composicion-del-modelo-con-python)
 14. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf) [Visualizacion De Datos Con Python](https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python)
 
+
+---
+
+tipo: fragmento
+titulo: texto de cierre del bloque «Publicaciones similares» (incluido en cada post)
+---
 
 Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!
 

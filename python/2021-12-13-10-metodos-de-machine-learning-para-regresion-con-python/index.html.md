@@ -6,9 +6,7 @@ title: Modelos de regresión en Machine Learning
 shorttitle: ML PARA REGRESIÓN
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - Python
 tags:
@@ -34,9 +32,10 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python/index.pdf
-date: 12/13/2021
+date: 2021-12-13
 draft: false
 image: ../featured.jpg
+curso: python_curso_base
 ---
 
 En esta décima guía exploraremos los principales algoritmos de machine learning para problemas de regresión. Estos métodos son fundamentales para resolver problemas económicos como predicción de precios, estimación de demanda, forecasting de series de tiempo, valuación de activos, entre otros.
@@ -47,7 +46,7 @@ En esta décima guía exploraremos los principales algoritmos de machine learnin
 
 La regresión es un método para predecir valores numéricos continuos (a diferencia de clasificación que predice categorías discretas).
 
-::: {#1a91079b .cell}
+::: {#442c2e44 .cell}
 ``` {.python .cell-code}
 import pandas as pd
 import numpy as np
@@ -109,7 +108,7 @@ print("Librerías importadas exitosamente")
 
 ## Generar datos de ejemplo
 
-::: {#5ca5be4e .cell}
+::: {#e8701e8c .cell}
 ``` {.python .cell-code}
 def generar_datos_regresion(n=200, ruido=1.0, seed=42):
     """
@@ -168,7 +167,7 @@ print("\nGráfico guardado como 'datos_regresion.png'")
 
 ## Dividir datos
 
-::: {#963ff1ed .cell}
+::: {#e547bc01 .cell}
 ``` {.python .cell-code}
 # Dividir en entrenamiento y prueba
 X_train, X_test, y_train, y_test = train_test_split(
@@ -415,7 +414,7 @@ En Python, `sklearn.linear_model.LinearRegression` utiliza descomposición SVD p
 
 ## Implementación
 
-::: {#58f9f9df .cell}
+::: {#f6d47541 .cell}
 ``` {.python .cell-code}
 # Entrenar modelo OLS
 modelo_ols = LinearRegression()
@@ -452,7 +451,7 @@ print(f"MSE Test:  {mse_test:.4f}")
 
 ## Visualización de predicciones
 
-::: {#37180df4 .cell}
+::: {#f0d4d20d .cell}
 ``` {.python .cell-code}
 # Gráfico de valores reales vs predichos
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
@@ -488,7 +487,7 @@ print("\nGráfico guardado como 'ols_predictions.png'")
 
 ## Análisis de residuos
 
-::: {#e9f86659 .cell}
+::: {#70f97e9b .cell}
 ``` {.python .cell-code}
 # Calcular residuos
 residuos_train = y_train - y_pred_ols_train
@@ -756,7 +755,7 @@ donde $\text{MSE}_k(\alpha)$ es el error cuadrático medio en el k-ésimo fold.
 
 ## Implementación
 
-::: {#ce59007f .cell}
+::: {#dd440569 .cell}
 ``` {.python .cell-code}
 # Probar diferentes valores de alpha
 alphas = [0.001, 0.01, 0.1, 1, 10, 100, 1000]
@@ -795,7 +794,7 @@ df_ridge = pd.DataFrame(resultados_ridge)
 
 ## Visualización del efecto de regularización
 
-::: {#7500bc85 .cell}
+::: {#ee58442a .cell}
 ``` {.python .cell-code}
 # Gráfico de coeficientes vs alpha
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
@@ -1119,7 +1118,7 @@ donde típicamente $w_j = 1/|\hat{\beta}_j^{\text{OLS}}|^{\gamma}$ con $\gamma >
 
 ## Implementación
 
-::: {#329c6625 .cell}
+::: {#7139b0b0 .cell}
 ``` {.python .cell-code}
 # Probar diferentes valores de alpha
 alphas_lasso = [0.001, 0.01, 0.1, 0.5, 1, 2, 5]
@@ -1163,7 +1162,7 @@ df_lasso = pd.DataFrame(resultados_lasso)
 
 ## Comparación Ridge vs Lasso
 
-::: {#30c182e3 .cell}
+::: {#4b693580 .cell}
 ``` {.python .cell-code}
 # Visualización comparativa
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))
@@ -1465,7 +1464,7 @@ donde los pesos se derivan de estimaciones preliminares.
 
 ## Implementación
 
-::: {#a2ff6798 .cell}
+::: {#5388fd45 .cell}
 ``` {.python .cell-code}
 # Entrenar Elastic Net
 modelo_elastic = ElasticNet(alpha=0.1, l1_ratio=0.5, max_iter=10000)
@@ -1829,7 +1828,7 @@ donde $f_j$ son funciones suaves no paramétricas.
 
 ## Implementación
 
-::: {#544959e9 .cell}
+::: {#ff2a7e9d .cell}
 ``` {.python .cell-code}
 # Generar datos con relación no lineal
 np.random.seed(42)
@@ -2273,7 +2272,7 @@ Los pesos se pueden aprender para mejorar performance.
 
 ## Implementación
 
-::: {#f6e1b009 .cell}
+::: {#42f02e42 .cell}
 ``` {.python .cell-code}
 # Estandarizar datos (importante para KNN)
 scaler = StandardScaler()
@@ -2726,7 +2725,7 @@ $$
 
 ## Implementación de métricas
 
-::: {#2664c7de .cell}
+::: {#4fd14a01 .cell}
 ``` {.python .cell-code}
 def calcular_metricas(y_true, y_pred, modelo_nombre="Modelo"):
     """Calcula todas las métricas de regresión"""
@@ -2803,7 +2802,7 @@ print(df_metricas.to_string(index=False))
 
 ## Tabla y visualización comparativa
 
-::: {#4f7404a3 .cell}
+::: {#f3216244 .cell}
 ``` {.python .cell-code}
 # Visualización comparativa
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))
@@ -2859,7 +2858,7 @@ print("Tabla guardada como 'metricas_comparacion.csv'")
 
 ## Aplicación 1: Predicción de precios de vivienda
 
-::: {#80b31aba .cell}
+::: {#a3da1b92 .cell}
 ``` {.python .cell-code}
 print("\n\n\nAPLICACIÓN: PREDICCIÓN DE PRECIOS DE VIVIENDA")
 print("=" * 70)
@@ -2999,7 +2998,7 @@ for nombre, modelo in modelos_vivienda.items():
 
 ## Aplicación 2: Predicción de ventas
 
-::: {#2cf2fb13 .cell}
+::: {#d18c48c5 .cell}
 ``` {.python .cell-code}
 print("\n\n\nAPLICACIÓN: PREDICCIÓN DE VENTAS")
 print("=" * 70)
@@ -3150,7 +3149,7 @@ else:
 
 ## Ejercicio: Validación cruzada
 
-::: {#7d140dcc .cell}
+::: {#4f0414a3 .cell}
 ``` {.python .cell-code}
 print("\n\n\nEJERCICIO: VALIDACIÓN CRUZADA")
 print("=" * 70)
@@ -3256,10 +3255,20 @@ Para profundizar en regresión:
 - Elements of Statistical Learning (ESL)
 - Applied Econometrics with Python
 
+---
+
+tipo: fragmento
+titulo: texto de apertura del bloque «Publicaciones similares» (incluido en cada post)
+---
+
 # Publicaciones Similares
 
 Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:
 
+---
+tipo: fragmento
+titulo: índice de publicaciones de python; lo genera script_generador_publicacion_similar
+---
 
 1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/index.pdf) [Instalacion De Anaconda](https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda)
 2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf) [Configurar Entorno Virtual Python Anaconda](https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda)
@@ -3276,6 +3285,12 @@ Si te interesó este artículo, te recomendamos que explores otros blogs y recur
 13. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2022-10-31-11-validacion-cruzada-y-composicion-del-modelo-con-python/index.pdf) [11 Validacion Cruzada Y Composicion Del Modelo Con Python](https://numerus-scriptum.netlify.app/python/2022-10-31-11-validacion-cruzada-y-composicion-del-modelo-con-python)
 14. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf) [Visualizacion De Datos Con Python](https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python)
 
+
+---
+
+tipo: fragmento
+titulo: texto de cierre del bloque «Publicaciones similares» (incluido en cada post)
+---
 
 Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!
 

@@ -5,9 +5,7 @@ title: DAX
 subtitle: columnas y medidas calculadas
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - Power Bi
 tags:
@@ -33,17 +31,28 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/power-bi/2022-10-17-06-lenguaje-de-analisis-de-datos-dax-columnas-campos-calculados/index.pdf
-date: 10/17/2022
+date: 2022-10-17
 draft: true
 image: ../featured.jpg
+curso: ofimatica_curso_base
 ---
 
 Este artículo está actualmente en proceso de edición, y todas las secciones serán ampliadas y refinadas en futuras revisiones.
+
+---
+tipo: fragmento
+titulo: texto de apertura del bloque «Publicaciones similares» (incluido en cada post)
+---
 
 # Publicaciones Similares
 
 Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:
 
+
+---
+tipo: fragmento
+titulo: índice de publicaciones de power-bi; lo genera script_generador_publicacion_similar
+---
 
 1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/power-bi/2022-09-12-01-introduccion-al-mundo-de-bi-y-la-suite-power/index.pdf) [01 Introduccion Al Mundo De Bi Y La Suite Power](https://numerus-scriptum.netlify.app/power-bi/2022-09-12-01-introduccion-al-mundo-de-bi-y-la-suite-power)
 2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/power-bi/2022-09-19-02-power-query-proceso-etl/index.pdf) [02 Power Query Proceso Etl](https://numerus-scriptum.netlify.app/power-bi/2022-09-19-02-power-query-proceso-etl)
@@ -53,6 +62,11 @@ Si te interesó este artículo, te recomendamos que explores otros blogs y recur
 6. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/power-bi/2022-10-17-06-lenguaje-de-analisis-de-datos-dax-columnas-campos-calculados/index.pdf) [06 Lenguaje De Analisis De Datos Dax Columnas Campos Calculados](https://numerus-scriptum.netlify.app/power-bi/2022-10-17-06-lenguaje-de-analisis-de-datos-dax-columnas-campos-calculados)
 7. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/power-bi/2022-10-24-08-vizualizacion-de-datos/index.pdf) [08 Vizualizacion De Datos](https://numerus-scriptum.netlify.app/power-bi/2022-10-24-08-vizualizacion-de-datos)
 
+
+---
+tipo: fragmento
+titulo: texto de cierre del bloque «Publicaciones similares» (incluido en cada post)
+---
 
 Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!
 

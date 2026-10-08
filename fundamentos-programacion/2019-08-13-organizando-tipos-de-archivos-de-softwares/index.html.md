@@ -35,10 +35,11 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/fundamentos-programacion/2019-08-13-organizando-tipos-de-archivos-de-softwares/index.pdf
-date: 08/13/2019
+date: 2019-08-13
 draft: false
 image: ../featured.jpg
 duedate: 08/13/2019
+curso: programming_concepts_curso_base
 ---
 
 ¡Absolutamente! Aquí tienes una tabla comparativa de los tipos de archivos más comunes que generan los software estadísticos y de programación que mencionaste, junto con sus funciones principales y extensiones comunes. Esta tabla te será de gran utilidad para organizar tus archivos de manera eficiente:
@@ -165,10 +166,20 @@ Si tienes un archivo de datos en formato .csv y quieres analizarlo en SPSS, pued
 
 Traducción realizada con la versión gratuita del traductor DeepL.com
 
+---
+tipo: fragmento
+titulo: texto de apertura del bloque «Publicaciones similares» (incluido en cada post)
+---
+
 # Publicaciones Similares
 
 Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:
 
+
+---
+tipo: fragmento
+titulo: índice de publicaciones de fundamentos-programacion; lo genera script_generador_publicacion_similar
+---
 
 1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/fundamentos-programacion/2018-06-09-typografia/index.pdf) [Typografia](https://numerus-scriptum.netlify.app/fundamentos-programacion/2018-06-09-typografia)
 2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/fundamentos-programacion/2019-08-13-organizando-tipos-de-archivos-de-softwares/index.pdf) [Organizando Tipos De Archivos De Softwares](https://numerus-scriptum.netlify.app/fundamentos-programacion/2019-08-13-organizando-tipos-de-archivos-de-softwares)
@@ -176,6 +187,11 @@ Si te interesó este artículo, te recomendamos que explores otros blogs y recur
 4. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/fundamentos-programacion/2021-01-11-02-introduccion-a-los-algoritmos/index.pdf) [02 Introduccion A Los Algoritmos](https://numerus-scriptum.netlify.app/fundamentos-programacion/2021-01-11-02-introduccion-a-los-algoritmos)
 5. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/fundamentos-programacion/2021-01-18-03-programacion-basica-en-html/index.pdf) [03 Programacion Basica En Html](https://numerus-scriptum.netlify.app/fundamentos-programacion/2021-01-18-03-programacion-basica-en-html)
 
+
+---
+tipo: fragmento
+titulo: texto de cierre del bloque «Publicaciones similares» (incluido en cada post)
+---
 
 Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!
 

@@ -6,9 +6,7 @@ title: Bucles e iteraciones en Python
 shorttitle: ITERACIONES PYTHON
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - Python
 tags:
@@ -34,9 +32,10 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python/index.pdf
-date: 06/21/2021
+date: 2021-06-21
 draft: false
 image: ../featured.jpg
+curso: python_curso_base
 ---
 
 En esta quinta guía exploraremos las iteraciones, una de las herramientas más poderosas de la programación. Las iteraciones nos permiten procesar grandes cantidades de datos económicos de manera automatizada y eficiente.
@@ -47,7 +46,7 @@ La actualización de variables es fundamental en iteraciones. Consiste en modifi
 
 ## Operadores de actualización
 
-::: {#e0a6e806 .cell}
+::: {#e7b03453 .cell}
 ``` {.python .cell-code}
 # Inicializar contador
 contador = 0
@@ -82,7 +81,7 @@ print(f"Después de **=2: {contador}")
 
 ## Aplicaciones económicas
 
-::: {#f6b067e6 .cell}
+::: {#4ae673c1 .cell}
 ``` {.python .cell-code}
 # Ejemplo 1: Acumular ventas diarias
 ventas_total = 0
@@ -133,7 +132,7 @@ Los bucles `for` permiten iterar sobre una secuencia de elementos un número det
 
 ## Función range()
 
-::: {#8244af01 .cell}
+::: {#325e35ea .cell}
 ``` {.python .cell-code}
 # range(stop): de 0 hasta stop-1
 print("range(5):")
@@ -160,7 +159,7 @@ for i in range(10, 0, -1):
 
 ## Aplicaciones económicas básicas
 
-::: {#0eaf72fd .cell}
+::: {#85a91ae6 .cell}
 ``` {.python .cell-code}
 # Ejemplo 1: Generar serie de años
 print("Proyección económica 2024-2033:")
@@ -201,7 +200,7 @@ Los bucles `for` pueden iterar directamente sobre listas, tuplas, diccionarios y
 
 ## Iterar sobre listas
 
-::: {#9a353641 .cell}
+::: {#f9b09f6d .cell}
 ``` {.python .cell-code}
 # Lista de sectores económicos
 sectores = ['Agricultura', 'Minería', 'Manufactura', 'Servicios', 'Construcción']
@@ -225,7 +224,7 @@ for i, sector in enumerate(sectores, start=1):
 
 ## Iterar sobre tuplas
 
-::: {#874fec9f .cell}
+::: {#57def9b4 .cell}
 ``` {.python .cell-code}
 # Tupla de indicadores
 indicadores = ('PIB', 'Inflación', 'Desempleo', 'Tipo de cambio')
@@ -239,7 +238,7 @@ for indicador in indicadores:
 
 ## Iterar sobre diccionarios
 
-::: {#84af8248 .cell}
+::: {#0044f2b0 .cell}
 ``` {.python .cell-code}
 # Diccionario de datos económicos
 datos_peru = {
@@ -279,7 +278,7 @@ for indicador, valor in datos_peru.items():
 
 ## Iterar sobre strings
 
-::: {#890bc404 .cell}
+::: {#15800d12 .cell}
 ``` {.python .cell-code}
 # Strings son iterables
 codigo = "CIIU-2023"
@@ -315,7 +314,7 @@ Las list comprehensions son una forma concisa y elegante de crear listas. Son m�
 
 ## Sintaxis básica
 
-::: {#b186343d .cell}
+::: {#cc3c40f6 .cell}
 ``` {.python .cell-code}
 # Forma tradicional con for
 cuadrados_for = []
@@ -348,7 +347,7 @@ print(f"Precios con IGV: {precios_con_igv}")
 
 ## List comprehension con condicionales
 
-::: {#d37f670a .cell}
+::: {#0ad5a93d .cell}
 ``` {.python .cell-code}
 # Sintaxis: [expresion for item in iterable if condicion]
 
@@ -374,7 +373,7 @@ print(f"Múltiplos de 2 o 3: {multiplos_2_o_3}")
 
 ## Aplicaciones económicas
 
-::: {#a54eac97 .cell}
+::: {#a39d5d6c .cell}
 ``` {.python .cell-code}
 # Ejemplo 1: Filtrar datos económicos
 pib_regional = [100000, 50000, 75000, 30000, 45000, 85000, 60000]
@@ -411,7 +410,7 @@ for i, (venta, cat) in enumerate(zip(ventas, clasificacion), 1):
 
 ## Comprehensions anidadas
 
-::: {#7af22cc6 .cell}
+::: {#5ac0882c .cell}
 ``` {.python .cell-code}
 # Crear matriz
 matriz = [[i * j for j in range(5)] for i in range(5)]
@@ -431,7 +430,7 @@ print(f"Lista plana: {lista_plana}")
 
 ## Dictionary comprehension
 
-::: {#7354967f .cell}
+::: {#6f406784 .cell}
 ``` {.python .cell-code}
 # Crear diccionarios con comprehension
 # Sintaxis: {clave: valor for item in iterable}
@@ -469,7 +468,7 @@ Combinar iteraciones con condicionales permite procesar datos de manera selectiv
 
 ## Filtrado durante iteración
 
-::: {#09bbab35 .cell}
+::: {#6a7c0dd9 .cell}
 ``` {.python .cell-code}
 # Datos de transacciones
 transacciones = [
@@ -507,7 +506,7 @@ print(f"Gastos: S/ {sum(gastos_lc):,.2f}")
 
 ## Transformación condicional
 
-::: {#5460c27c .cell}
+::: {#bd3ed103 .cell}
 ``` {.python .cell-code}
 # Clasificar trabajadores por género según nombre
 nombres = ['María', 'Juan', 'Carmen', 'Pedro', 'Rosa', 'Carlos', 'Ana', 'Miguel']
@@ -536,7 +535,7 @@ for trabajador in trabajadores_lc:
 
 ## Múltiples condiciones
 
-::: {#37997132 .cell}
+::: {#6473806d .cell}
 ``` {.python .cell-code}
 # Clasificar números por propiedades
 numeros = list(range(1, 21))
@@ -572,7 +571,7 @@ La función `zip()` permite iterar sobre múltiples secuencias en paralelo.
 
 ## Función zip()
 
-::: {#eb790020 .cell}
+::: {#f0434528 .cell}
 ``` {.python .cell-code}
 # Listas paralelas
 paises = ['Perú', 'Chile', 'Argentina', 'Colombia']
@@ -590,7 +589,7 @@ for pais, pib_val, pob in zip(paises, pib, poblacion):
 
 ## Aplicaciones económicas
 
-::: {#5dea86f0 .cell}
+::: {#c0907292 .cell}
 ``` {.python .cell-code}
 # Ejemplo 1: Análisis de series de tiempo
 meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun']
@@ -626,7 +625,7 @@ for cat, pres, gasto in zip(categorias, presupuestado, gastado):
 
 ## Crear diccionarios con zip()
 
-::: {#1fd7458e .cell}
+::: {#71b71289 .cell}
 ``` {.python .cell-code}
 # Crear diccionario desde dos listas
 productos = ['Laptop', 'Mouse', 'Teclado', 'Monitor']
@@ -647,7 +646,7 @@ Las iteraciones anidadas permiten trabajar con estructuras de datos multidimensi
 
 ## Matrices y tablas
 
-::: {#99000632 .cell}
+::: {#1345063b .cell}
 ``` {.python .cell-code}
 # Crear matriz de ceros
 filas = 3
@@ -676,7 +675,7 @@ for fila in matriz_lc:
 
 ## Aplicaciones económicas
 
-::: {#c87f00c5 .cell}
+::: {#3c507c01 .cell}
 ``` {.python .cell-code}
 # Ejemplo 1: Tabla de multiplicación (escalas de producción)
 print("Tabla de costos de producción:")
@@ -733,7 +732,7 @@ print(f"{total_general:>15,}")
 
 ## Búsqueda en estructuras anidadas
 
-::: {#49bbf2ea .cell}
+::: {#ea7fa2c0 .cell}
 ``` {.python .cell-code}
 # Buscar en matriz
 matriz_datos = [
@@ -766,7 +765,7 @@ Los bucles `while` se ejecutan mientras una condición sea verdadera. Son útile
 
 ## Sintaxis básica
 
-::: {#47cff649 .cell}
+::: {#6b94b356 .cell}
 ``` {.python .cell-code}
 # Contador simple
 contador = 0
@@ -781,7 +780,7 @@ print("Fin del bucle")
 
 ## Aplicaciones económicas
 
-::: {#bba226d3 .cell}
+::: {#2645c97f .cell}
 ``` {.python .cell-code}
 # Ejemplo 1: Simular inversión hasta alcanzar meta
 capital = 10000
@@ -858,7 +857,7 @@ print(f"Interés total pagado: S/ {interes_total:,.2f}")
 
 ## Bucles infinitos y salida
 
-::: {#19b2e7f7 .cell}
+::: {#eaba7a9b .cell}
 ``` {.python .cell-code}
 # Bucle con condición de salida
 print("Simulación de proceso hasta condición:")
@@ -888,7 +887,7 @@ while True:
 
 ## break: terminar bucle
 
-::: {#f0e145c7 .cell}
+::: {#6f9ea780 .cell}
 ``` {.python .cell-code}
 # Buscar primer valor que cumple condición
 precios = [100, 105, 110, 95, 120, 130, 90]
@@ -908,7 +907,7 @@ else:
 
 ## continue: saltar iteración
 
-::: {#a0fc4163 .cell}
+::: {#1a6737a6 .cell}
 ``` {.python .cell-code}
 # Procesar solo valores válidos
 datos = [100, -5, 200, 0, 150, -10, 300, 250]
@@ -930,7 +929,7 @@ print(f"\nSuma total: {suma}")
 
 ## Aplicaciones combinadas
 
-::: {#916f46c3 .cell}
+::: {#d54c8dfd .cell}
 ``` {.python .cell-code}
 # Validación de datos con límite de intentos
 intentos_maximos = 3
@@ -968,7 +967,7 @@ if intentos >= intentos_maximos:
 
 ## Aplicación 1: Simulador de portafolio de inversión
 
-::: {#5227aed1 .cell}
+::: {#8dc712ce .cell}
 ``` {.python .cell-code}
 def simular_portafolio(inversion_inicial, anos, distribucion, rendimientos):
     """
@@ -1064,7 +1063,7 @@ resultado = simular_portafolio(
 
 ## Aplicación 2: Análisis de sensibilidad de precios
 
-::: {#dd7beb57 .cell}
+::: {#8ac5e63d .cell}
 ``` {.python .cell-code}
 def analisis_sensibilidad_demanda(precio_base, elasticidad, cantidad_base, 
                                    variaciones_precio):
@@ -1139,7 +1138,7 @@ resultados = analisis_sensibilidad_demanda(
 
 ## Ejercicio 1: Calculadora de depreciación
 
-::: {#d29f5a57 .cell}
+::: {#d297991c .cell}
 ``` {.python .cell-code}
 def calcular_depreciacion(valor_inicial, vida_util, metodo='lineal'):
     """
@@ -1215,7 +1214,7 @@ calcular_depreciacion(valor_inicial=50000, vida_util=5, metodo='doble_saldo')
 
 ## Ejercicio 2: Simulador de política de inventarios
 
-::: {#56686250 .cell}
+::: {#0eb52372 .cell}
 ``` {.python .cell-code}
 def simular_politica_inventario(demanda_diaria, dias_simulacion, 
                                 punto_reorden, cantidad_pedido,
@@ -1357,10 +1356,20 @@ Para profundizar en iteraciones:
 
 La práctica constante con datos reales consolidará estos conceptos. Se recomienda aplicar iteraciones en el procesamiento de datos del BCRP, INEI y otras fuentes económicas, automatizando análisis que normalmente requerirían horas de trabajo manual.
 
+---
+
+tipo: fragmento
+titulo: texto de apertura del bloque «Publicaciones similares» (incluido en cada post)
+---
+
 # Publicaciones Similares
 
 Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:
 
+---
+tipo: fragmento
+titulo: índice de publicaciones de python; lo genera script_generador_publicacion_similar
+---
 
 1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/index.pdf) [Instalacion De Anaconda](https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda)
 2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf) [Configurar Entorno Virtual Python Anaconda](https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda)
@@ -1377,6 +1386,12 @@ Si te interesó este artículo, te recomendamos que explores otros blogs y recur
 13. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2022-10-31-11-validacion-cruzada-y-composicion-del-modelo-con-python/index.pdf) [11 Validacion Cruzada Y Composicion Del Modelo Con Python](https://numerus-scriptum.netlify.app/python/2022-10-31-11-validacion-cruzada-y-composicion-del-modelo-con-python)
 14. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf) [Visualizacion De Datos Con Python](https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python)
 
+
+---
+
+tipo: fragmento
+titulo: texto de cierre del bloque «Publicaciones similares» (incluido en cada post)
+---
 
 Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!
 

@@ -40,9 +40,10 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/ofimatica/2023-05-31-combinando-hojas-de-excel-con-vba/index.pdf
-date: 05/31/2023
+date: 2023-05-31
 draft: false
 image: ../featured.jpg
+curso: ofimatica_curso_base
 ---
 
 # Combinando Hojas de Excel con VBA
@@ -90,10 +91,20 @@ Recuerda ajustar la ruta `Path` según la ubicación de tus archivos en tu siste
 
 Este script puede ahorrarte mucho tiempo si trabajas con múltiples archivos de Excel, especialmente en tareas repetitivas como la consolidación de datos para análisis econometría o cualquier otra aplicación donde los datos estén dispersos en varios libros.
 
+---
+tipo: fragmento
+titulo: texto de apertura del bloque «Publicaciones similares» (incluido en cada post)
+---
+
 # Publicaciones Similares
 
 Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:
 
+
+---
+tipo: fragmento
+titulo: índice de publicaciones de ofimatica; lo genera script_generador_publicacion_similar
+---
 
 1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/ofimatica/2022-12-05-01-introduccion-al-lenguaje-y-editor-vba/index.pdf) [01 Introduccion Al Lenguaje Y Editor Vba](https://numerus-scriptum.netlify.app/ofimatica/2022-12-05-01-introduccion-al-lenguaje-y-editor-vba)
 2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/ofimatica/2022-12-12-02-grabar-y-modificar/index.pdf) [02 Grabar Y Modificar](https://numerus-scriptum.netlify.app/ofimatica/2022-12-12-02-grabar-y-modificar)
@@ -109,6 +120,11 @@ Si te interesó este artículo, te recomendamos que explores otros blogs y recur
 12. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/ofimatica/2023-05-31-combinando-hojas-de-excel-con-vba/index.pdf) [Combinando Hojas De Excel Con Vba](https://numerus-scriptum.netlify.app/ofimatica/2023-05-31-combinando-hojas-de-excel-con-vba)
 13. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/ofimatica/2023-06-05-separando-hojas-de-excel-en-documentos-individuales/index.pdf) [Separando Hojas De Excel En Documentos Individuales](https://numerus-scriptum.netlify.app/ofimatica/2023-06-05-separando-hojas-de-excel-en-documentos-individuales)
 
+
+---
+tipo: fragmento
+titulo: texto de cierre del bloque «Publicaciones similares» (incluido en cada post)
+---
 
 Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!
 

@@ -35,7 +35,7 @@ citation:
   type: article-journal
   author: Elmer Achalma
   pdf-url: https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf
-date: 05/10/2025
+date: 2025-05-10
 draft: false
 author:
 - name: Elmer Achalma
@@ -43,11 +43,12 @@ author:
   email: elmer.achalma.09@unsch.edu.pe
 jupyter: python3
 image: ../featured.jpg
+curso: python_curso_base
 ---
 
 # Grafico de lineas
 
-::: {#c06d56d0 .cell}
+::: {#31be78c4 .cell}
 ``` {.python .cell-code}
 import numpy as np
 import matplotlib.pyplot as plt
@@ -95,7 +96,7 @@ plt.show()
 :::
 
 
-::: {#02708326 .cell}
+::: {#fe6041d0 .cell}
 ``` {.python .cell-code}
 import matplotlib.pyplot as plt
 import numpy as np
@@ -131,7 +132,7 @@ plt.show()
 # Gráfico de barras
 ## horizontal
 
-::: {#c423ba28 .cell}
+::: {#75f46b4c .cell}
 ``` {.python .cell-code}
 import matplotlib.pyplot as plt
 
@@ -167,7 +168,7 @@ plt.show()
 
 ## vertical
 
-::: {#2819607f .cell}
+::: {#8a9dfae8 .cell}
 ``` {.python .cell-code}
 #plt.figure(figsize=[10,8])
 #Consumo de legumbres en el 2001
@@ -186,7 +187,7 @@ plt.show()
 
 # Histograma
 
-::: {#6e616cba .cell}
+::: {#1657696a .cell}
 ``` {.python .cell-code}
 import matplotlib.pyplot as plt
 
@@ -225,7 +226,7 @@ plt.show()
 
 # Grafico circular
 
-::: {#75951aa4 .cell}
+::: {#00811536 .cell}
 ``` {.python .cell-code}
 import matplotlib.pyplot as plt
 
@@ -267,7 +268,7 @@ plt.show()
 
 # Grafico de Donut
 
-::: {#964cc70e .cell}
+::: {#88df2bd8 .cell}
 ``` {.python .cell-code}
 import matplotlib.pyplot as plt
 
@@ -313,7 +314,7 @@ plt.show()
 
 # Grafico de cajas
 
-::: {#3d469e67 .cell}
+::: {#d748ed52 .cell}
 ``` {.python .cell-code}
 import matplotlib.pyplot as plt
 
@@ -353,7 +354,7 @@ plt.show()
 
 # Grafico de barras combinadas
 
-::: {#d54385f7 .cell}
+::: {#6f5c571c .cell}
 ``` {.python .cell-code}
 import matplotlib.pyplot as plt
 
@@ -401,7 +402,7 @@ plt.show()
 
 # Graficos combinados
 
-::: {#7b63d4b8 .cell}
+::: {#9551ec49 .cell}
 ``` {.python .cell-code}
 import matplotlib.pyplot as plt
 

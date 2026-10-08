@@ -6,9 +6,7 @@ title: Métodos de Machine Learning para Clasificación
 shorttitle: ML PARA CLASIFICACIÓN
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - Python
 tags:
@@ -34,9 +32,10 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python/index.pdf
-date: 12/06/2021
+date: 2021-12-06
 draft: false
 image: ../featured.jpg
+curso: python_curso_base
 ---
 
 En esta novena guía exploraremos los principales algoritmos de machine learning para problemas de clasificación. Estos métodos son fundamentales para resolver problemas económicos como clasificación de riesgo crediticio, predicción de comportamiento de consumidores, segmentación de mercados, entre otros.
@@ -47,7 +46,7 @@ En esta novena guía exploraremos los principales algoritmos de machine learning
 
 El aprendizaje supervisado es un tipo de machine learning donde el modelo aprende de datos etiquetados (con respuestas conocidas) para predecir etiquetas de nuevos datos.
 
-::: {#e50e3262 .cell}
+::: {#2891f151 .cell}
 ``` {.python .cell-code}
 import pandas as pd
 import numpy as np
@@ -83,7 +82,7 @@ print("Librerías importadas exitosamente")
 
 ## Tipos de problemas de clasificación
 
-::: {#1d376fcf .cell}
+::: {#6f22da36 .cell}
 ``` {.python .cell-code}
 print("""
 TIPOS DE PROBLEMAS DE CLASIFICACIÓN
@@ -116,7 +115,7 @@ TIPOS DE PROBLEMAS DE CLASIFICACIÓN
 
 ## Dataset de ejemplo: Iris
 
-::: {#ddacbbbc .cell}
+::: {#68d103b0 .cell}
 ``` {.python .cell-code}
 # Cargar dataset clásico
 iris = load_iris()
@@ -311,7 +310,7 @@ En el espacio de características, esta es una **hipersuperficie lineal** (hiper
 
 ## Implementación
 
-::: {#0d989f83 .cell}
+::: {#89436f10 .cell}
 ``` {.python .cell-code}
 # Preparar datos (clasificación binaria: Virginica vs resto)
 X = iris.data[:, :2]  # Solo usar 2 características para visualización
@@ -344,7 +343,7 @@ print(f"  β₂ (ancho sépalo): {modelo_logit.coef_[0, 1]:.4f}")
 
 ## Predicción e interpretación
 
-::: {#0b207258 .cell}
+::: {#5015254c .cell}
 ``` {.python .cell-code}
 # Predecir probabilidades
 probs_train = modelo_logit.predict_proba(X_train)[:, 1]
@@ -382,7 +381,7 @@ print(f"Predicción: {'Virginica' if pred == 1 else 'No Virginica'}")
 
 ## Visualización del modelo
 
-::: {#98393600 .cell}
+::: {#d4062929 .cell}
 ``` {.python .cell-code}
 def plot_decision_boundary(modelo, X, y, title, filename):
     """Visualiza la frontera de decisión del modelo"""
@@ -694,7 +693,7 @@ Combina KNN con regresión local.
 
 ## Implementación
 
-::: {#78302ccf .cell}
+::: {#8268eb44 .cell}
 ``` {.python .cell-code}
 # Estandarizar características (importante para KNN)
 scaler = StandardScaler()
@@ -739,7 +738,7 @@ print(f"\n\nMejor k: {int(mejor_k)} (mayor accuracy en test)")
 
 ## Visualización del efecto de k
 
-::: {#e7bb4334 .cell}
+::: {#bc0a0e1b .cell}
 ``` {.python .cell-code}
 # Entrenar modelo con mejor k
 modelo_knn_final = KNeighborsClassifier(n_neighbors=int(mejor_k))
@@ -782,7 +781,7 @@ print("\nGráfico guardado como 'knn_k_selection.png'")
 
 ## Visualización de fronteras de decisión
 
-::: {#943776fd .cell}
+::: {#2181b5f5 .cell}
 ``` {.python .cell-code}
 # Comparar diferentes valores de k
 fig, axes = plt.subplots(2, 3, figsize=(18, 12))
@@ -1124,7 +1123,7 @@ Seleccionar $\alpha$ que minimiza error de validación cruzada.
 
 ## Implementación básica
 
-::: {#f289e1bc .cell}
+::: {#aa031384 .cell}
 ``` {.python .cell-code}
 # Entrenar árbol de decisión
 modelo_tree = DecisionTreeClassifier(
@@ -1161,7 +1160,7 @@ for _, row in importancias.iterrows():
 
 ## Visualización del árbol
 
-::: {#105d8123 .cell}
+::: {#88c34ff6 .cell}
 ``` {.python .cell-code}
 # Visualizar árbol
 plt.figure(figsize=(20, 10))
@@ -1184,7 +1183,7 @@ print("\nÁrbol visualizado y guardado como 'decision_tree.png'")
 
 ## Efecto de la profundidad
 
-::: {#c71870f5 .cell}
+::: {#10f1dc10 .cell}
 ``` {.python .cell-code}
 # Evaluar diferentes profundidades
 profundidades = range(1, 11)
@@ -1520,7 +1519,7 @@ donde:
 
 ## Implementación
 
-::: {#27037865 .cell}
+::: {#9173122b .cell}
 ``` {.python .cell-code}
 # Entrenar Random Forest
 modelo_rf = RandomForestClassifier(
@@ -1560,7 +1559,7 @@ for _, row in importancias_rf.iterrows():
 
 ## Efecto del número de árboles
 
-::: {#053c1450 .cell}
+::: {#8a189658 .cell}
 ``` {.python .cell-code}
 # Evaluar diferentes números de árboles
 n_trees_list = [1, 5, 10, 20, 50, 100, 200]
@@ -1615,7 +1614,7 @@ print("\nGráfico guardado como 'random_forest_ntrees.png'")
 
 ## Dataset con 3 clases
 
-::: {#bb4a3edc .cell}
+::: {#9b6f8818 .cell}
 ``` {.python .cell-code}
 # Usar todas las especies de Iris (3 clases)
 X_multiclass = iris.data[:, :2]
@@ -1640,7 +1639,7 @@ X_train_mc, X_test_mc, y_train_mc, y_test_mc = train_test_split(
 
 ## Entrenar modelos multi-clase
 
-::: {#fc281b65 .cell}
+::: {#28323644 .cell}
 ``` {.python .cell-code}
 # Entrenar cada modelo
 modelos_mc = {
@@ -1688,7 +1687,7 @@ print(f"Accuracy: {resultados_mc[mejor_modelo_mc]['accuracy']:.4f}")
 
 ## Visualización multi-clase
 
-::: {#4ba6827e .cell}
+::: {#fd6e34c5 .cell}
 ``` {.python .cell-code}
 # Visualizar fronteras de decisión para cada modelo
 fig, axes = plt.subplots(2, 2, figsize=(16, 14))
@@ -1733,7 +1732,7 @@ print("\nComparación guardada como 'multiclass_comparison.png'")
 
 ## Curvas ROC para cada modelo
 
-::: {#2a1cbb87 .cell}
+::: {#04290222 .cell}
 ``` {.python .cell-code}
 # Calcular curvas ROC para clasificación binaria
 def calcular_roc_multimodelo(modelos_dict, X_test, y_test):
@@ -1789,7 +1788,7 @@ calcular_roc_multimodelo(modelos_binarios, X_test, y_test)
 
 ## Tabla comparativa de métricas
 
-::: {#ec8afb08 .cell}
+::: {#9dd1ef11 .cell}
 ``` {.python .cell-code}
 # Compilar todas las métricas
 print("\n\nTABLA COMPARATIVA DE MODELOS")
@@ -1845,7 +1844,7 @@ print("\n\nTabla guardada como 'comparacion_modelos.csv'")
 
 ## Aplicación 1: Clasificación de riesgo crediticio
 
-::: {#bd380e48 .cell}
+::: {#62284cbb .cell}
 ``` {.python .cell-code}
 print("\n\n\nAPLICACIÓN: CLASIFICACIÓN DE RIESGO CREDITICIO")
 print("=" * 70)
@@ -1958,7 +1957,7 @@ for _, row in importancias.iterrows():
 
 ## Aplicación 2: Segmentación de clientes
 
-::: {#44df0f49 .cell}
+::: {#9a8dd25b .cell}
 ``` {.python .cell-code}
 print("\n\n\nAPLICACIÓN: SEGMENTACIÓN DE CLIENTES")
 print("=" * 70)
@@ -2073,7 +2072,7 @@ print("  4. Optimizar estrategias de retención")
 
 ## Ejercicio: Optimización de hiperparámetros
 
-::: {#6aa074b4 .cell}
+::: {#20c84d79 .cell}
 ``` {.python .cell-code}
 print("\n\n\nEJERCICIO: OPTIMIZACIÓN DE HIPERPARÁMETROS")
 print("=" * 70)
@@ -2190,10 +2189,20 @@ Para profundizar en clasificación:
 - Papers en credit scoring y risk management
 
 
+---
+
+tipo: fragmento
+titulo: texto de apertura del bloque «Publicaciones similares» (incluido en cada post)
+---
+
 # Publicaciones Similares
 
 Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:
 
+---
+tipo: fragmento
+titulo: índice de publicaciones de python; lo genera script_generador_publicacion_similar
+---
 
 1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/index.pdf) [Instalacion De Anaconda](https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda)
 2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf) [Configurar Entorno Virtual Python Anaconda](https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda)
@@ -2210,6 +2219,12 @@ Si te interesó este artículo, te recomendamos que explores otros blogs y recur
 13. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2022-10-31-11-validacion-cruzada-y-composicion-del-modelo-con-python/index.pdf) [11 Validacion Cruzada Y Composicion Del Modelo Con Python](https://numerus-scriptum.netlify.app/python/2022-10-31-11-validacion-cruzada-y-composicion-del-modelo-con-python)
 14. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf) [Visualizacion De Datos Con Python](https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python)
 
+
+---
+
+tipo: fragmento
+titulo: texto de cierre del bloque «Publicaciones similares» (incluido en cada post)
+---
 
 Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!
 

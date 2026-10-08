@@ -43,9 +43,10 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/fundamentos-programacion/2018-06-09-typografia/index.pdf
-date: 06/09/2018
+date: 2018-06-09
 draft: false
 image: ../featured.jpg
+curso: programming_concepts_curso_base
 ---
 
 # Tipografía para Proyectos Personales, Profesionales y Académicos
@@ -124,10 +125,20 @@ Para programar, lo ideal es elegir una fuente en **OTF** con **ligaduras**, lo q
 La tipografía no es solo una cuestión estética, sino una herramienta clave para mejorar la comunicación visual y la productividad, ya sea en diseño gráfico, redacción académica o programación. Elegir la fuente adecuada marcará la diferencia en la legibilidad y profesionalismo de cualquier proyecto.
 
 
+---
+tipo: fragmento
+titulo: texto de apertura del bloque «Publicaciones similares» (incluido en cada post)
+---
+
 # Publicaciones Similares
 
 Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:
 
+
+---
+tipo: fragmento
+titulo: índice de publicaciones de fundamentos-programacion; lo genera script_generador_publicacion_similar
+---
 
 1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/fundamentos-programacion/2018-06-09-typografia/index.pdf) [Typografia](https://numerus-scriptum.netlify.app/fundamentos-programacion/2018-06-09-typografia)
 2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/fundamentos-programacion/2019-08-13-organizando-tipos-de-archivos-de-softwares/index.pdf) [Organizando Tipos De Archivos De Softwares](https://numerus-scriptum.netlify.app/fundamentos-programacion/2019-08-13-organizando-tipos-de-archivos-de-softwares)
@@ -135,6 +146,11 @@ Si te interesó este artículo, te recomendamos que explores otros blogs y recur
 4. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/fundamentos-programacion/2021-01-11-02-introduccion-a-los-algoritmos/index.pdf) [02 Introduccion A Los Algoritmos](https://numerus-scriptum.netlify.app/fundamentos-programacion/2021-01-11-02-introduccion-a-los-algoritmos)
 5. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/fundamentos-programacion/2021-01-18-03-programacion-basica-en-html/index.pdf) [03 Programacion Basica En Html](https://numerus-scriptum.netlify.app/fundamentos-programacion/2021-01-18-03-programacion-basica-en-html)
 
+
+---
+tipo: fragmento
+titulo: texto de cierre del bloque «Publicaciones similares» (incluido en cada post)
+---
 
 Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!
 

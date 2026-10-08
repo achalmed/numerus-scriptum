@@ -6,9 +6,7 @@ title: Validación cruzada y pipelines Python
 shorttitle: VALIDACIÓN Y MODELO
 abstract: Este abstract será actualizado una vez que se complete el contenido final
   del artículo.
-keywords:
-- keyword1
-- keyword2
+keywords: []
 categories:
 - Python
 tags:
@@ -34,9 +32,10 @@ citation:
   author:
   - Edison Achalma
   pdf-url: https://numerus-scriptum.netlify.app/python/2022-10-31-11-validacion-cruzada-y-composicion-del-modelo-con-python/index.pdf
-date: 10/31/2022
+date: 2022-10-31
 draft: true
 image: ../featured.jpg
+curso: python_curso_base
 ---
 
 En esta undécima y última guía exploraremos técnicas esenciales para evaluar y optimizar modelos de machine learning: validación cruzada, búsqueda de hiperparámetros, y análisis de contribución de datos y variables. Estas técnicas son fundamentales para desarrollar modelos robustos que generalicen bien a datos no vistos.
@@ -100,7 +99,7 @@ Aumentar la complejidad del modelo:
 
 4. **Inestabilidad**: Pequeños cambios en datos → grandes cambios en modelo
 
-::: {#022fbed8 .cell}
+::: {#0d86bee4 .cell}
 ``` {.python .cell-code}
 import pandas as pd
 import numpy as np
@@ -136,7 +135,7 @@ print("Librerías importadas exitosamente")
 
 ## Ilustración del overfitting
 
-::: {#b757bf29 .cell}
+::: {#c87d952d .cell}
 ``` {.python .cell-code}
 # Cargar datos
 iris = load_iris()
@@ -193,7 +192,7 @@ df_resultados = pd.DataFrame(resultados)
 
 ## Visualización del trade-off
 
-::: {#f7c2f1f5 .cell}
+::: {#b00e4751 .cell}
 ``` {.python .cell-code}
 # Evaluar KNN con diferentes k
 k_values = range(1, 51)
@@ -321,7 +320,7 @@ Repetir K-Fold con diferentes particiones aleatorias y promediar.
 
 ## Implementación básica
 
-::: {#151de8f1 .cell}
+::: {#acf973f2 .cell}
 ``` {.python .cell-code}
 print("\n\nVALIDACIÓN CRUZADA")
 print("=" * 70)
@@ -350,7 +349,7 @@ print(f"Intervalo 95% confianza: [{scores.mean() - 1.96*scores.std():.4f}, "
 
 ## Stratified Cross-Validation
 
-::: {#755660c8 .cell}
+::: {#63be8843 .cell}
 ``` {.python .cell-code}
 # Verificar distribución de clases
 print(f"\n\nDistribución de clases:")
@@ -379,7 +378,7 @@ print(f"\nDiferencia con K-Fold estándar: "
 
 ## Cross-validation con múltiples métricas
 
-::: {#fd3ee1df .cell}
+::: {#b613bd7b .cell}
 ``` {.python .cell-code}
 # Evaluar múltiples métricas simultáneamente
 scoring = {
@@ -414,7 +413,7 @@ for metric in ['accuracy', 'precision', 'recall', 'f1', 'roc_auc']:
 
 ## Visualización de resultados CV
 
-::: {#f166e5c1 .cell}
+::: {#dffb7b8b .cell}
 ``` {.python .cell-code}
 # Crear DataFrame para visualización
 metrics_data = []
@@ -527,7 +526,7 @@ $$
 
 ## Implementación de Grid Search
 
-::: {#54deb27e .cell}
+::: {#f3f2fdf0 .cell}
 ``` {.python .cell-code}
 print("\n\nGRID SEARCH - OPTIMIZACIÓN DE HIPERPARÁMETROS")
 print("=" * 70)
@@ -559,7 +558,7 @@ print(f"Con CV de 5-fold: {n_combinations * 5} modelos a entrenar")
 :::
 
 
-::: {#e91e2482 .cell}
+::: {#15f2f432 .cell}
 ``` {.python .cell-code}
 # Ejecutar Grid Search
 grid_search = GridSearchCV(
@@ -600,7 +599,7 @@ print(f"  ROC-AUC: {roc_auc_score(y, y_proba):.4f}")
 
 ## Análisis de resultados Grid Search
 
-::: {#8697f156 .cell}
+::: {#3e6bb9b5 .cell}
 ``` {.python .cell-code}
 # Convertir resultados a DataFrame
 results = pd.DataFrame(grid_search.cv_results_)
@@ -625,7 +624,7 @@ for idx, row in top_10.iterrows():
 
 ## Visualización de Grid Search
 
-::: {#b201502d .cell}
+::: {#399f5ae5 .cell}
 ``` {.python .cell-code}
 # Analizar efecto de hiperparámetros clave
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))
@@ -696,7 +695,7 @@ print("\nGráfico guardado como 'grid_search_analysis.png'")
 
 ## Random Search implementation
 
-::: {#1169da67 .cell}
+::: {#3d22a411 .cell}
 ``` {.python .cell-code}
 from sklearn.model_selection import RandomizedSearchCV
 from scipy.stats import randint, uniform
@@ -787,7 +786,7 @@ $$
 
 ## Implementación
 
-::: {#49345a21 .cell}
+::: {#f2fb0365 .cell}
 ``` {.python .cell-code}
 print("\n\nCURVAS DE APRENDIZAJE")
 print("=" * 70)
@@ -873,7 +872,7 @@ for nombre, modelo in modelos.items():
 
 ## Comparación de modelos
 
-::: {#c5e86ad3 .cell}
+::: {#8a631e8f .cell}
 ``` {.python .cell-code}
 # Comparar todas las curvas en un gráfico
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))
@@ -913,7 +912,7 @@ print("\nComparación guardada como 'learning_curves_comparison.png'")
 
 ## Análisis de sensibilidad al tamaño de muestra
 
-::: {#deb3dbf5 .cell}
+::: {#ff6b869e .cell}
 ``` {.python .cell-code}
 print("\n\nCONTRIBUCIÓN DE LA DATA AL MODELO")
 print("=" * 70)
@@ -952,7 +951,7 @@ df_sizes = pd.DataFrame(resultados_sizes)
 
 ## Visualización
 
-::: {#917d35c0 .cell}
+::: {#8ba3aa00 .cell}
 ``` {.python .cell-code}
 # Graficar relación tamaño-performance
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
@@ -1003,7 +1002,7 @@ else:
 
 ## Importancia de características
 
-::: {#6837a523 .cell}
+::: {#25314ae3 .cell}
 ``` {.python .cell-code}
 print("\n\nCONTRIBUCIÓN DE LAS VARIABLES AL MODELO")
 print("=" * 70)
@@ -1032,7 +1031,7 @@ for i, idx in enumerate(indices):
 
 ## Análisis de permutación
 
-::: {#30c0d014 .cell}
+::: {#bbcb1da3 .cell}
 ``` {.python .cell-code}
 from sklearn.inspection import permutation_importance
 
@@ -1060,7 +1059,7 @@ for i in indices:
 
 ## Visualización de importancia
 
-::: {#7ccfaae9 .cell}
+::: {#59ce3b98 .cell}
 ``` {.python .cell-code}
 # Graficar importancias
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
@@ -1092,7 +1091,7 @@ print("\nGráfico guardado como 'feature_importance.png'")
 
 ## Selección de características
 
-::: {#44213a75 .cell}
+::: {#af1e48bc .cell}
 ``` {.python .cell-code}
 from sklearn.feature_selection import RFECV
 
@@ -1140,7 +1139,7 @@ print("\nGráfico guardado como 'rfecv_results.png'")
 
 ## Análisis incremental de variables
 
-::: {#b2275596 .cell}
+::: {#bcbc3141 .cell}
 ``` {.python .cell-code}
 # Evaluar contribución incremental de cada variable
 print("\n\nANÁLISIS INCREMENTAL DE VARIABLES")
@@ -1195,7 +1194,7 @@ print("\nGráfico guardado como 'incremental_features.png'")
 
 ## Aplicación 1: Predicción de incumplimiento crediticio
 
-::: {#9b0384ee .cell}
+::: {#6c68af82 .cell}
 ``` {.python .cell-code}
 print("\n\n\nAPLICACIÓN: OPTIMIZACIÓN DE MODELO DE CRÉDITO")
 print("=" * 70)
@@ -1246,7 +1245,7 @@ y_credito = datos_credito['incumplimiento']
 
 ## Pipeline completo de optimización
 
-::: {#2529bdef .cell}
+::: {#a0a79f18 .cell}
 ``` {.python .cell-code}
 # 1. Comparar múltiples modelos con CV
 modelos_credito = {
@@ -1370,7 +1369,7 @@ else:
 
 ## Checklist de validación de modelos
 
-::: {#38e7b916 .cell}
+::: {#71064691 .cell}
 ``` {.python .cell-code}
 print("\n\n\nCHECKLIST DE VALIDACIÓN DE MODELOS")
 print("=" * 70)
@@ -1442,7 +1441,7 @@ print(checklist)
 
 ## Función de pipeline completo
 
-::: {#7033cddb .cell}
+::: {#15ab6560 .cell}
 ``` {.python .cell-code}
 def pipeline_validacion_completo(X, y, modelos, param_grids, feature_names=None):
     """
@@ -1646,10 +1645,20 @@ Para profundizar en validación y optimización:
 - Hyperparameter tuning guide: scikit-learn.org/stable/modules/grid_search.html
 
 
+---
+
+tipo: fragmento
+titulo: texto de apertura del bloque «Publicaciones similares» (incluido en cada post)
+---
+
 # Publicaciones Similares
 
 Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:
 
+---
+tipo: fragmento
+titulo: índice de publicaciones de python; lo genera script_generador_publicacion_similar
+---
 
 1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/index.pdf) [Instalacion De Anaconda](https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda)
 2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf) [Configurar Entorno Virtual Python Anaconda](https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda)
@@ -1666,6 +1675,12 @@ Si te interesó este artículo, te recomendamos que explores otros blogs y recur
 13. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2022-10-31-11-validacion-cruzada-y-composicion-del-modelo-con-python/index.pdf) [11 Validacion Cruzada Y Composicion Del Modelo Con Python](https://numerus-scriptum.netlify.app/python/2022-10-31-11-validacion-cruzada-y-composicion-del-modelo-con-python)
 14. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf) [Visualizacion De Datos Con Python](https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python)
 
+
+---
+
+tipo: fragmento
+titulo: texto de cierre del bloque «Publicaciones similares» (incluido en cada post)
+---
 
 Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!
 
