@@ -48,12 +48,6 @@ Si te interesó este artículo, te recomendamos que explores otros blogs y recur
 
 <!-- fragmento de inclusión — índice de publicaciones de eviews; lo genera script_generador_publicacion_similar -->
 
-1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/eviews/2021-08-30-01-introduccion-a-la-programacion-con-eviews/index.pdf) [01 Introduccion A La Programacion Con Eviews](https://numerus-scriptum.netlify.app/eviews/2021-08-30-01-introduccion-a-la-programacion-con-eviews)
-2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/eviews/2021-09-06-02-empleo-de-bucles-y-variables-temporales/index.pdf) [02 Empleo De Bucles Y Variables Temporales](https://numerus-scriptum.netlify.app/eviews/2021-09-06-02-empleo-de-bucles-y-variables-temporales)
-3. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/eviews/2021-09-13-03-metodos-de-estimacion-objeto-equatio-objeto-table/index.pdf) [03 Metodos De Estimacion Objeto Equatio Objeto Table](https://numerus-scriptum.netlify.app/eviews/2021-09-13-03-metodos-de-estimacion-objeto-equatio-objeto-table)
-4. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/eviews/2022-02-07-05-objetos-avanzados/index.pdf) [05 Objetos Avanzados](https://numerus-scriptum.netlify.app/eviews/2022-02-07-05-objetos-avanzados)
-5. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/eviews/2022-02-14-06-empleo-de-subrutinas/index.pdf) [06 Empleo De Subrutinas](https://numerus-scriptum.netlify.app/eviews/2022-02-14-06-empleo-de-subrutinas)
-6. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/eviews/2022-02-21-07-modelacion/index.pdf) [07 Modelacion](https://numerus-scriptum.netlify.app/eviews/2022-02-21-07-modelacion)
 
 
 <!-- fragmento de inclusión — texto de cierre del bloque «Publicaciones similares» (incluido en cada post) -->
