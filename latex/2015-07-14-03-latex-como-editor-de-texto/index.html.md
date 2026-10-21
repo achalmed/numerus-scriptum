@@ -34,7 +34,8 @@ citation:
 date: 2015-07-14
 draft: true
 image: ../featured.jpg
-curso: latex_curso_base
+curso: latex
+tema: "1.2"
 ---
 
 Este artículo está actualmente en proceso de edición, y todas las secciones serán ampliadas y refinadas en futuras revisiones.

@@ -35,7 +35,8 @@ citation:
 date: 2022-12-12
 draft: true
 image: ../featured.jpg
-curso: ofimatica_curso_base
+curso: excel
+tema: "4.1"
 ---
 
 Este artículo está actualmente en proceso de edición, y todas las secciones serán ampliadas y refinadas en futuras revisiones.

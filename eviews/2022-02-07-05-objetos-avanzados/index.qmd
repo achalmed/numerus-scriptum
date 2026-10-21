@@ -34,7 +34,8 @@ citation:
 date: 2022-02-07
 draft: true
 image: ../featured.jpg
-curso: eviews_curso_base
+curso: eviews
+tema: "2.2"
 ---
 
 Este artículo está actualmente en proceso de edición, y todas las secciones serán ampliadas y refinadas en futuras revisiones.

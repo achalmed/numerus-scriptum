@@ -34,7 +34,8 @@ citation:
 date: 2022-06-06
 draft: true
 image: ../featured.jpg
-curso: stata_curso_base
+curso: stata
+tema: "1.2"
 ---
 
 Este artículo está actualmente en proceso de edición, y todas las secciones serán ampliadas y refinadas en futuras revisiones.

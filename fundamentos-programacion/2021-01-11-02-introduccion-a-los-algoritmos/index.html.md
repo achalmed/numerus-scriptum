@@ -34,7 +34,8 @@ citation:
 date: 2021-01-11
 draft: true
 image: ../featured.jpg
-curso: programming_concepts_curso_base
+curso: conceptos-de-programacion
+tema: "1.2"
 ---
 
 Este artículo está actualmente en proceso de edición, y todas las secciones serán ampliadas y refinadas en futuras revisiones.
