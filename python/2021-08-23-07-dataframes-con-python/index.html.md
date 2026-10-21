@@ -36,6 +36,8 @@ date: 2021-08-23
 draft: false
 image: ../featured.jpg
 curso: python_curso_base
+execute:
+  enabled: true                   # lección de Python con salidas reales; freeze: true (de la sección) la ejecuta una vez (autor, 2026-10-20)
 ---
 
 En esta séptima guía profundizaremos en el uso de DataFrames de Pandas, la estructura de datos más importante para análisis económico en Python. Los DataFrames nos permiten trabajar con datos tabulares de manera similar a Excel o Stata, pero con mucho más poder y flexibilidad.
@@ -49,7 +51,7 @@ Un DataFrame es una estructura de datos bidimensional similar a una tabla de Exc
 - Índices (etiquetas de filas)
 - Tipos de datos por columna
 
-::: {#4ed10d9c .cell}
+::: {#e5aa3160 .cell execution_count=1}
 ``` {.python .cell-code}
 import pandas as pd
 import numpy as np
@@ -66,6 +68,21 @@ print("""
     └─────────┴──────────┴──────────┴──────────┘
 """)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Estructura de un DataFrame:
+
+    ┌─────────┬──────────┬──────────┬──────────┐
+    │ Index   │ Column 1 │ Column 2 │ Column 3 │
+    ├─────────┼──────────┼──────────┼──────────┤
+    │ 0       │ valor    │ valor    │ valor    │
+    │ 1       │ valor    │ valor    │ valor    │
+    │ 2       │ valor    │ valor    │ valor    │
+    └─────────┴──────────┴──────────┴──────────┘
+
+```
+:::
 :::
 
 
@@ -73,7 +90,7 @@ print("""
 
 ## Desde diccionarios
 
-::: {#b17dd89d .cell}
+::: {#ca43da09 .cell execution_count=2}
 ``` {.python .cell-code}
 # Crear DataFrame desde diccionario
 datos = {
@@ -93,12 +110,34 @@ print(f"Columnas: {df_paises.columns.tolist()}")
 print(f"\nTipos de datos:")
 print(df_paises.dtypes)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+DataFrame de países:
+        pais      pib  poblacion       continente
+0       Perú   242632   33715471  América del Sur
+1      Chile   301000   19493184  América del Sur
+2  Argentina   487000   45810000  América del Sur
+3   Colombia   314000   51516562  América del Sur
+4     Brasil  1920000  214326223  América del Sur
+
+Forma: (5, 4)
+Columnas: ['pais', 'pib', 'poblacion', 'continente']
+
+Tipos de datos:
+pais          object
+pib            int64
+poblacion      int64
+continente    object
+dtype: object
+```
+:::
 :::
 
 
 ## Desde listas de listas
 
-::: {#689d9318 .cell}
+::: {#1759e97b .cell execution_count=3}
 ``` {.python .cell-code}
 # Crear DataFrame desde listas
 datos = [
@@ -113,12 +152,23 @@ df = pd.DataFrame(datos, columns=columnas)
 print("\nDataFrame desde listas:")
 print(df)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+DataFrame desde listas:
+        pais     pib  poblacion
+0       Perú  242632   33715471
+1      Chile  301000   19493184
+2  Argentina  487000   45810000
+```
+:::
 :::
 
 
 ## Desde Series
 
-::: {#6da08768 .cell}
+::: {#e8a6f03d .cell execution_count=4}
 ``` {.python .cell-code}
 # Crear DataFrame desde Series
 paises = pd.Series(['Perú', 'Chile', 'Argentina'], name='pais')
@@ -128,12 +178,23 @@ df = pd.DataFrame({'pais': paises, 'pib': pib})
 print("\nDataFrame desde Series:")
 print(df)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+DataFrame desde Series:
+        pais     pib
+0       Perú  242632
+1      Chile  301000
+2  Argentina  487000
+```
+:::
 :::
 
 
 ## Con índice personalizado
 
-::: {#0fd3f496 .cell}
+::: {#6f25c35b .cell execution_count=5}
 ``` {.python .cell-code}
 # DataFrame con índice personalizado
 datos = {
@@ -146,12 +207,24 @@ df_productos = pd.DataFrame(datos, index=['PROD001', 'PROD002', 'PROD003', 'PROD
 print("\nDataFrame con índice personalizado:")
 print(df_productos)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+DataFrame con índice personalizado:
+        producto  precio  stock
+PROD001   Laptop    2500     15
+PROD002    Mouse      25    100
+PROD003  Teclado      80     50
+PROD004  Monitor     800     25
+```
+:::
 :::
 
 
 ## DataFrames de ejemplo
 
-::: {#41f60cc6 .cell}
+::: {#10f3cf75 .cell execution_count=6}
 ``` {.python .cell-code}
 # Crear DataFrame de ejemplo económico
 np.random.seed(42)
@@ -169,6 +242,26 @@ print("\nDataFrame de transacciones:")
 print(df_transacciones.head(10))
 print(f"\nForma: {df_transacciones.shape}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+DataFrame de transacciones:
+       fecha       monto     tipo  categoria  cliente_id
+0 2023-01-01  437.086107  ingreso     Ventas          11
+1 2023-01-02  955.642876    gasto     Ventas          17
+2 2023-01-03  758.794548  ingreso     Costos           8
+3 2023-01-04  638.792636  ingreso  Servicios           4
+4 2023-01-05  240.416776    gasto  Servicios           6
+5 2023-01-06  240.395068  ingreso     Ventas           8
+6 2023-01-07  152.275251    gasto     Gastos           3
+7 2023-01-08  879.558531    gasto  Servicios          16
+8 2023-01-09  641.003511    gasto     Gastos           3
+9 2023-01-10  737.265320  ingreso  Servicios          18
+
+Forma: (100, 5)
+```
+:::
 :::
 
 
@@ -176,7 +269,7 @@ print(f"\nForma: {df_transacciones.shape}")
 
 ## Leer archivos CSV
 
-::: {#d539a038 .cell}
+::: {#9d511235 .cell execution_count=7}
 ``` {.python .cell-code}
 # Leer CSV
 # df = pd.read_csv('datos.csv')
@@ -199,7 +292,7 @@ print(f"\nForma: {df_transacciones.shape}")
 
 ## Leer archivos Excel
 
-::: {#f7ca831e .cell}
+::: {#51f9dad5 .cell execution_count=8}
 ``` {.python .cell-code}
 # Leer Excel
 # df = pd.read_excel('datos.xlsx')
@@ -226,7 +319,7 @@ print(f"\nForma: {df_transacciones.shape}")
 
 ## Exportar datos
 
-::: {#0d2e1077 .cell}
+::: {#135719b7 .cell execution_count=9}
 ``` {.python .cell-code}
 # Crear DataFrame de ejemplo para exportar
 df_ejemplo = pd.DataFrame({
@@ -258,12 +351,19 @@ print("Archivo Excel creado: datos_macro.xlsx")
 #     df_inflacion.to_excel(writer, sheet_name='Inflación', index=False)
 #     df_empleo.to_excel(writer, sheet_name='Empleo', index=False)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Archivo CSV creado: datos_macro.csv
+Archivo Excel creado: datos_macro.xlsx
+```
+:::
 :::
 
 
 ## Leer desde otras fuentes
 
-::: {#f4b96c57 .cell}
+::: {#055f34e4 .cell execution_count=10}
 ``` {.python .cell-code}
 # Desde JSON
 # df = pd.read_json('datos.json')
@@ -287,7 +387,7 @@ print("Archivo Excel creado: datos_macro.xlsx")
 
 ## Información básica del DataFrame
 
-::: {#b1b044fb .cell}
+::: {#68dd3d97 .cell execution_count=11}
 ``` {.python .cell-code}
 # Crear DataFrame de ejemplo
 datos_economicos = {
@@ -325,12 +425,59 @@ print(f"Forma: {df.shape}")
 # Índice
 print(f"\nÍndice: {df.index.tolist()}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Primeras 3 filas:
+     region  pib_millones  poblacion  pobreza sector_principal
+0      Lima        100000    9500000     14.2        Servicios
+1  Arequipa         15000    1300000      8.5          Minería
+2     Cusco          8000    1200000     12.3          Turismo
+
+Últimas 3 filas:
+        region  pib_millones  poblacion  pobreza sector_principal
+3  La Libertad         12000    1900000     18.5      Agricultura
+4        Piura         10000    2000000     20.1            Pesca
+5   Lambayeque          7000    1300000     15.8         Comercio
+
+Información del DataFrame:
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 6 entries, 0 to 5
+Data columns (total 5 columns):
+ #   Column            Non-Null Count  Dtype  
+---  ------            --------------  -----  
+ 0   region            6 non-null      object 
+ 1   pib_millones      6 non-null      int64  
+ 2   poblacion         6 non-null      int64  
+ 3   pobreza           6 non-null      float64
+ 4   sector_principal  6 non-null      object 
+dtypes: float64(1), int64(2), object(2)
+memory usage: 372.0+ bytes
+None
+
+Estadísticas descriptivas:
+        pib_millones     poblacion    pobreza
+count       6.000000  6.000000e+00   6.000000
+mean    25333.333333  2.866667e+06  14.900000
+std     36691.506737  3.267211e+06   4.219479
+min      7000.000000  1.200000e+06   8.500000
+25%      8500.000000  1.300000e+06  12.775000
+50%     11000.000000  1.600000e+06  15.000000
+75%     14250.000000  1.975000e+06  17.825000
+max    100000.000000  9.500000e+06  20.100000
+
+Columnas: ['region', 'pib_millones', 'poblacion', 'pobreza', 'sector_principal']
+Forma: (6, 5)
+
+Índice: [0, 1, 2, 3, 4, 5]
+```
+:::
 :::
 
 
 ## Seleccionar columnas
 
-::: {#4114f39d .cell}
+::: {#499ca0bb .cell execution_count=12}
 ``` {.python .cell-code}
 # Seleccionar una columna (retorna Series)
 pib = df['pib_millones']
@@ -355,12 +502,54 @@ regiones = df.region
 print("\nRegiones con notación de punto:")
 print(regiones)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+PIB (Series):
+<class 'pandas.core.series.Series'>
+0    100000
+1     15000
+2      8000
+3     12000
+4     10000
+5      7000
+Name: pib_millones, dtype: int64
+
+PIB (DataFrame):
+<class 'pandas.core.frame.DataFrame'>
+   pib_millones
+0        100000
+1         15000
+2          8000
+3         12000
+4         10000
+5          7000
+
+Columnas seleccionadas:
+        region  pib_millones  poblacion
+0         Lima        100000    9500000
+1     Arequipa         15000    1300000
+2        Cusco          8000    1200000
+3  La Libertad         12000    1900000
+4        Piura         10000    2000000
+5   Lambayeque          7000    1300000
+
+Regiones con notación de punto:
+0           Lima
+1       Arequipa
+2          Cusco
+3    La Libertad
+4          Piura
+5     Lambayeque
+Name: region, dtype: object
+```
+:::
 :::
 
 
 ## Seleccionar filas con loc e iloc
 
-::: {#004e31bb .cell}
+::: {#cd509e92 .cell execution_count=13}
 ``` {.python .cell-code}
 # loc: selección por etiquetas
 print("Fila 0 con loc:")
@@ -386,12 +575,51 @@ print(df.iloc[0, 1])
 print("\nFilas 1-3, columnas 0-2:")
 print(df.iloc[1:4, 0:3])
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Fila 0 con loc:
+region                   Lima
+pib_millones           100000
+poblacion             9500000
+pobreza                  14.2
+sector_principal    Servicios
+Name: 0, dtype: object
+
+Filas 0 a 2:
+     region  pib_millones  poblacion  pobreza sector_principal
+0      Lima        100000    9500000     14.2        Servicios
+1  Arequipa         15000    1300000      8.5          Minería
+2     Cusco          8000    1200000     12.3          Turismo
+
+Filas 0-2, columnas específicas:
+     region  pib_millones
+0      Lima        100000
+1  Arequipa         15000
+2     Cusco          8000
+
+Primeras 3 filas con iloc:
+     region  pib_millones  poblacion  pobreza sector_principal
+0      Lima        100000    9500000     14.2        Servicios
+1  Arequipa         15000    1300000      8.5          Minería
+2     Cusco          8000    1200000     12.3          Turismo
+
+Celda [0, 1]:
+100000
+
+Filas 1-3, columnas 0-2:
+        region  pib_millones  poblacion
+1     Arequipa         15000    1300000
+2        Cusco          8000    1200000
+3  La Libertad         12000    1900000
+```
+:::
 :::
 
 
 ## Filtrado por condiciones
 
-::: {#7c378519 .cell}
+::: {#0cccdaff .cell execution_count=14}
 ``` {.python .cell-code}
 # Filtro simple
 regiones_grandes = df[df['poblacion'] > 1500000]
@@ -424,12 +652,54 @@ no_lima = df[~(df['region'] == 'Lima')]
 print("\nRegiones excepto Lima:")
 print(no_lima)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Regiones con población > 1.5M:
+        region  pib_millones  poblacion  pobreza sector_principal
+0         Lima        100000    9500000     14.2        Servicios
+3  La Libertad         12000    1900000     18.5      Agricultura
+4        Piura         10000    2000000     20.1            Pesca
+
+Economías grandes:
+        region  pib_millones  poblacion  pobreza sector_principal
+0         Lima        100000    9500000     14.2        Servicios
+3  La Libertad         12000    1900000     18.5      Agricultura
+
+Extremos de pobreza:
+        region  pib_millones  poblacion  pobreza sector_principal
+1     Arequipa         15000    1300000      8.5          Minería
+3  La Libertad         12000    1900000     18.5      Agricultura
+4        Piura         10000    2000000     20.1            Pesca
+
+Sectores de interés:
+     region  pib_millones  poblacion  pobreza sector_principal
+1  Arequipa         15000    1300000      8.5          Minería
+2     Cusco          8000    1200000     12.3          Turismo
+
+Regiones que contienen 'a':
+        region  pib_millones  poblacion  pobreza sector_principal
+0         Lima        100000    9500000     14.2        Servicios
+1     Arequipa         15000    1300000      8.5          Minería
+3  La Libertad         12000    1900000     18.5      Agricultura
+4        Piura         10000    2000000     20.1            Pesca
+5   Lambayeque          7000    1300000     15.8         Comercio
+
+Regiones excepto Lima:
+        region  pib_millones  poblacion  pobreza sector_principal
+1     Arequipa         15000    1300000      8.5          Minería
+2        Cusco          8000    1200000     12.3          Turismo
+3  La Libertad         12000    1900000     18.5      Agricultura
+4        Piura         10000    2000000     20.1            Pesca
+5   Lambayeque          7000    1300000     15.8         Comercio
+```
+:::
 :::
 
 
 ## Query (consultas tipo SQL)
 
-::: {#394c8c34 .cell}
+::: {#1b07af05 .cell execution_count=15}
 ``` {.python .cell-code}
 # Query simple
 resultado = df.query('pib_millones > 10000')
@@ -452,6 +722,31 @@ resultado = df.query('sector_principal == "Minería"')
 print("\nQuery con string:")
 print(resultado)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Query: PIB > 10000
+        region  pib_millones  poblacion  pobreza sector_principal
+0         Lima        100000    9500000     14.2        Servicios
+1     Arequipa         15000    1300000      8.5          Minería
+3  La Libertad         12000    1900000     18.5      Agricultura
+
+Query con AND:
+     region  pib_millones  poblacion  pobreza sector_principal
+0      Lima        100000    9500000     14.2        Servicios
+1  Arequipa         15000    1300000      8.5          Minería
+
+Query con variable externa:
+        region  pib_millones  poblacion  pobreza sector_principal
+0         Lima        100000    9500000     14.2        Servicios
+1     Arequipa         15000    1300000      8.5          Minería
+3  La Libertad         12000    1900000     18.5      Agricultura
+
+Query con string:
+     region  pib_millones  poblacion  pobreza sector_principal
+1  Arequipa         15000    1300000      8.5          Minería
+```
+:::
 :::
 
 
@@ -459,7 +754,7 @@ print(resultado)
 
 ## Crear nuevas columnas
 
-::: {#c09b3d33 .cell}
+::: {#4bd1f4e7 .cell execution_count=16}
 ``` {.python .cell-code}
 # Crear columna calculada
 df['pib_per_capita'] = (df['pib_millones'] / df['poblacion']) * 1000000
@@ -494,12 +789,60 @@ df['tamaño_economia'] = np.select(condiciones, categorias, default='Pequeña')
 print("\nCon tamaño de economía:")
 print(df[['region', 'pib_millones', 'tamaño_economia']])
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+DataFrame con PIB per cápita:
+        region  pib_millones  poblacion  pobreza sector_principal  \
+0         Lima        100000    9500000     14.2        Servicios   
+1     Arequipa         15000    1300000      8.5          Minería   
+2        Cusco          8000    1200000     12.3          Turismo   
+3  La Libertad         12000    1900000     18.5      Agricultura   
+4        Piura         10000    2000000     20.1            Pesca   
+5   Lambayeque          7000    1300000     15.8         Comercio   
+
+   pib_per_capita  
+0    10526.315789  
+1    11538.461538  
+2     6666.666667  
+3     6315.789474  
+4     5000.000000  
+5     5384.615385  
+
+Con categoría de pobreza:
+        region  pobreza pobreza_categoria
+0         Lima     14.2             Media
+1     Arequipa      8.5              Baja
+2        Cusco     12.3             Media
+3  La Libertad     18.5              Alta
+4        Piura     20.1              Alta
+5   Lambayeque     15.8              Alta
+
+Con indicador de costa:
+        region es_costa
+0         Lima       Sí
+1     Arequipa       No
+2        Cusco       No
+3  La Libertad       Sí
+4        Piura       Sí
+5   Lambayeque       Sí
+
+Con tamaño de economía:
+        region  pib_millones tamaño_economia
+0         Lima        100000      Muy grande
+1     Arequipa         15000          Grande
+2        Cusco          8000         Mediana
+3  La Libertad         12000          Grande
+4        Piura         10000         Mediana
+5   Lambayeque          7000         Mediana
+```
+:::
 :::
 
 
 ## Modificar columnas existentes
 
-::: {#510ab7af .cell}
+::: {#839de8db .cell execution_count=17}
 ``` {.python .cell-code}
 # Modificar valores
 df['pib_millones'] = df['pib_millones'] * 1.05  # Incremento 5%
@@ -524,12 +867,52 @@ df['sector_principal'] = df['sector_principal'].replace({
 print("\nSectores renombrados:")
 print(df[['region', 'sector_principal']])
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+PIB incrementado 5%:
+        region  pib_millones
+0         Lima      105000.0
+1     Arequipa       15750.0
+2        Cusco        8400.0
+3  La Libertad       12600.0
+4        Piura       10500.0
+5   Lambayeque        7350.0
+
+Pobreza de Lima modificada:
+        region  pobreza
+0         Lima     13.5
+1     Arequipa      8.5
+2        Cusco     12.3
+3  La Libertad     18.5
+4        Piura     20.1
+5   Lambayeque     15.8
+
+Regiones en mayúsculas:
+0           LIMA
+1       AREQUIPA
+2          CUSCO
+3    LA LIBERTAD
+4          PIURA
+5     LAMBAYEQUE
+Name: region, dtype: object
+
+Sectores renombrados:
+        region  sector_principal
+0         LIMA  Sector Terciario
+1     AREQUIPA   Sector Primario
+2        CUSCO           Turismo
+3  LA LIBERTAD       Agricultura
+4        PIURA             Pesca
+5   LAMBAYEQUE          Comercio
+```
+:::
 :::
 
 
 ## Eliminar columnas
 
-::: {#99ffee6c .cell}
+::: {#b06a14f9 .cell execution_count=18}
 ``` {.python .cell-code}
 # Eliminar una columna
 df_sin_columna = df.drop('es_costa', axis=1)
@@ -544,6 +927,16 @@ print(df_reducido.columns.tolist())
 # Eliminar in-place (modifica el original)
 # df.drop('columna', axis=1, inplace=True)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Sin columna 'es_costa':
+['region', 'pib_millones', 'poblacion', 'pobreza', 'sector_principal', 'pib_per_capita', 'pobreza_categoria', 'tamaño_economia']
+
+Columnas restantes:
+['region', 'pib_millones', 'poblacion', 'pobreza', 'sector_principal', 'pib_per_capita', 'es_costa']
+```
+:::
 :::
 
 
@@ -551,7 +944,7 @@ print(df_reducido.columns.tolist())
 
 ## Métodos de renombrado
 
-::: {#28dac3cf .cell}
+::: {#a1465ffb .cell execution_count=19}
 ``` {.python .cell-code}
 # Crear DataFrame de ejemplo
 df_original = pd.DataFrame({
@@ -586,12 +979,40 @@ df_renamed4.columns = df_renamed4.columns.str.replace('col', 'variable_')
 print("\nReemplazo de prefijo:")
 print(df_renamed4)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Renombrado con rename:
+   columna_uno  columna_dos  col3
+0            1            4     7
+1            2            5     8
+2            3            6     9
+
+Renombrado con lista:
+   primera  segunda  tercera
+0        1        4        7
+1        2        5        8
+2        3        6        9
+
+Columnas en mayúsculas:
+   COL1  COL2  COL3
+0     1     4     7
+1     2     5     8
+2     3     6     9
+
+Reemplazo de prefijo:
+   variable_1  variable_2  variable_3
+0           1           4           7
+1           2           5           8
+2           3           6           9
+```
+:::
 :::
 
 
 ## Aplicaciones económicas
 
-::: {#2b19bb5e .cell}
+::: {#ff1245a3 .cell execution_count=20}
 ``` {.python .cell-code}
 # DataFrame con nombres en inglés
 df_english = pd.DataFrame({
@@ -633,6 +1054,21 @@ df_limpio.columns = (df_limpio.columns
 print("\nColumnas limpias:")
 print(df_limpio)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Columnas traducidas:
+        pais     pib  poblacion  tasa_pobreza
+0       Peru  242632   33715471          20.5
+1      Chile  301000   19493184          10.8
+2  Argentina  487000   45810000          37.5
+
+Columnas limpias:
+  región  pib_millones  tasa_de_pobreza_porcentaje
+0   Lima        100000                        14.2
+1  Cusco          8000                        12.3
+```
+:::
 :::
 
 
@@ -640,7 +1076,7 @@ print(df_limpio)
 
 ## Operaciones aritméticas
 
-::: {#f8c6a2eb .cell}
+::: {#125de1b3 .cell execution_count=21}
 ``` {.python .cell-code}
 # Crear DataFrame de ventas
 ventas = pd.DataFrame({
@@ -671,12 +1107,44 @@ ventas['min_mes'] = ventas[['ene', 'feb', 'mar']].min(axis=1)
 print("\nEstadísticas por fila:")
 print(ventas)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Ventas originales:
+  producto   ene   feb   mar
+0        A  1000  1100  1200
+1        B  1500  1400  1600
+2        C   800   850   900
+3        D  1200  1300  1250
+
+Con total:
+  producto   ene   feb   mar  total
+0        A  1000  1100  1200   3300
+1        B  1500  1400  1600   4500
+2        C   800   850   900   2550
+3        D  1200  1300  1250   3750
+
+Con promedio:
+  producto   ene   feb   mar  total  promedio
+0        A  1000  1100  1200   3300    1100.0
+1        B  1500  1400  1600   4500    1500.0
+2        C   800   850   900   2550     850.0
+3        D  1200  1300  1250   3750    1250.0
+
+Estadísticas por fila:
+  producto   ene   feb   mar  total  promedio  total_sum  max_mes  min_mes
+0        A  1000  1100  1200   3300    1100.0       3300     1200     1000
+1        B  1500  1400  1600   4500    1500.0       4500     1600     1400
+2        C   800   850   900   2550     850.0       2550      900      800
+3        D  1200  1300  1250   3750    1250.0       3750     1300     1200
+```
+:::
 :::
 
 
 ## Aplicar funciones
 
-::: {#385ffa82 .cell}
+::: {#b13faa52 .cell execution_count=22}
 ``` {.python .cell-code}
 # apply(): aplicar función a columnas o filas
 def calcular_igv(monto):
@@ -704,12 +1172,45 @@ df_numerico = ventas[['ene', 'feb', 'mar']].applymap(lambda x: x * 1.18)
 print("\nTodo con IGV:")
 print(df_numerico)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+Con IGV de enero:
+  producto   ene  igv_ene
+0        A  1000    180.0
+1        B  1500    270.0
+2        C   800    144.0
+3        D  1200    216.0
+
+Enero con IGV:
+  producto   ene  ene_con_igv
+0        A  1000       1180.0
+1        B  1500       1770.0
+2        C   800        944.0
+3        D  1200       1416.0
+
+Con variación porcentual:
+  producto   ene   mar  variacion_porcentual
+0        A  1000  1200             20.000000
+1        B  1500  1600              6.666667
+2        C   800   900             12.500000
+3        D  1200  1250              4.166667
+
+Todo con IGV:
+      ene     feb     mar
+0  1180.0  1298.0  1416.0
+1  1770.0  1652.0  1888.0
+2   944.0  1003.0  1062.0
+3  1416.0  1534.0  1475.0
+```
+:::
 :::
 
 
 ## Operaciones de agregación
 
-::: {#b72a2537 .cell}
+::: {#d6f1482f .cell execution_count=23}
 ``` {.python .cell-code}
 # Crear datos de ventas por sucursal
 datos_sucursales = {
@@ -740,6 +1241,40 @@ print(df_sucursales['producto'].value_counts())
 print("\nVentas por sucursal:")
 print(df_sucursales.groupby('sucursal')['ventas'].sum())
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Ventas por sucursal:
+   sucursal producto  ventas  unidades
+0      Lima        A   10000       100
+1      Lima        B   15000       150
+2      Lima        C    8000        80
+3  Arequipa        A   12000       120
+4  Arequipa        B    9000        90
+5     Cusco        A    7000        70
+
+Ventas totales: S/ 61,000
+Promedio ventas: S/ 10,166.67
+Mediana ventas: S/ 9,500.00
+Desviación estándar: S/ 2,926.89
+Mínimo: S/ 7,000
+Máximo: S/ 15,000
+
+Productos más vendidos:
+producto
+A    3
+B    2
+C    1
+Name: count, dtype: int64
+
+Ventas por sucursal:
+sucursal
+Arequipa    21000
+Cusco        7000
+Lima        33000
+Name: ventas, dtype: int64
+```
+:::
 :::
 
 
@@ -749,7 +1284,7 @@ El merge es una de las operaciones más importantes en análisis de datos, permi
 
 ## Tipos de merge
 
-::: {#02c48c92 .cell}
+::: {#05241283 .cell execution_count=24}
 ``` {.python .cell-code}
 # Crear DataFrames de ejemplo
 df_ventas = pd.DataFrame({
@@ -789,12 +1324,58 @@ df_outer = pd.merge(df_ventas, df_productos, on='producto_id', how='outer')
 print("\nOuter join:")
 print(df_outer)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+DataFrame de ventas:
+  producto_id  ventas  unidades
+0        P001   10000       100
+1        P002   15000       150
+2        P003    8000        80
+3        P004   12000       120
+
+DataFrame de productos:
+  producto_id   nombre  precio
+0        P001   Laptop    2500
+1        P002    Mouse      25
+2        P003  Teclado      80
+3        P005  Monitor     800
+
+Inner join:
+  producto_id  ventas  unidades   nombre  precio
+0        P001   10000       100   Laptop    2500
+1        P002   15000       150    Mouse      25
+2        P003    8000        80  Teclado      80
+
+Left join:
+  producto_id  ventas  unidades   nombre  precio
+0        P001   10000       100   Laptop  2500.0
+1        P002   15000       150    Mouse    25.0
+2        P003    8000        80  Teclado    80.0
+3        P004   12000       120      NaN     NaN
+
+Right join:
+  producto_id   ventas  unidades   nombre  precio
+0        P001  10000.0     100.0   Laptop    2500
+1        P002  15000.0     150.0    Mouse      25
+2        P003   8000.0      80.0  Teclado      80
+3        P005      NaN       NaN  Monitor     800
+
+Outer join:
+  producto_id   ventas  unidades   nombre  precio
+0        P001  10000.0     100.0   Laptop  2500.0
+1        P002  15000.0     150.0    Mouse    25.0
+2        P003   8000.0      80.0  Teclado    80.0
+3        P004  12000.0     120.0      NaN     NaN
+4        P005      NaN       NaN  Monitor   800.0
+```
+:::
 :::
 
 
 ## Merge con indicador
 
-::: {#8f00b829 .cell}
+::: {#05d1c76d .cell execution_count=25}
 ``` {.python .cell-code}
 # Merge con indicador para rastrear coincidencias
 df_merged = pd.merge(
@@ -817,12 +1398,35 @@ solo_ventas = df_merged[df_merged['_merge'] == 'left_only']
 print("\nProductos solo en ventas:")
 print(solo_ventas)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Merge con indicador:
+  producto_id   ventas  unidades   nombre  precio      _merge
+0        P001  10000.0     100.0   Laptop  2500.0        both
+1        P002  15000.0     150.0    Mouse    25.0        both
+2        P003   8000.0      80.0  Teclado    80.0        both
+3        P004  12000.0     120.0      NaN     NaN   left_only
+4        P005      NaN       NaN  Monitor   800.0  right_only
+
+Análisis de merge:
+_merge
+both          3
+left_only     1
+right_only    1
+Name: count, dtype: int64
+
+Productos solo en ventas:
+  producto_id   ventas  unidades nombre  precio     _merge
+3        P004  12000.0     120.0    NaN     NaN  left_only
+```
+:::
 :::
 
 
 ## Merge con diferentes nombres de columna
 
-::: {#89e63acb .cell}
+::: {#1fadd633 .cell execution_count=26}
 ``` {.python .cell-code}
 # DataFrames con diferentes nombres de clave
 df1 = pd.DataFrame({
@@ -847,12 +1451,22 @@ df_merged = pd.merge(
 print("Merge con diferentes nombres:")
 print(df_merged)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Merge con diferentes nombres:
+   cliente_id  ventas   id nombre
+0           1    1000  1.0   Juan
+1           2    1500  2.0  María
+2           3     800  NaN    NaN
+```
+:::
 :::
 
 
 ## Merge múltiple
 
-::: {#90f7be7b .cell}
+::: {#9a10d752 .cell execution_count=27}
 ``` {.python .cell-code}
 # Merge de tres DataFrames
 df_ventas = pd.DataFrame({
@@ -879,6 +1493,16 @@ df_completo = pd.merge(df_temp, df_categorias, on='categoria_id')
 print("Merge de tres DataFrames:")
 print(df_completo)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Merge de tres DataFrames:
+   venta_id producto_id  monto categoria_id     categoria
+0         1        P001   2500         C001  Computadoras
+1         2        P002     50         C002    Accesorios
+2         3        P001   2500         C001  Computadoras
+```
+:::
 :::
 
 
@@ -886,7 +1510,7 @@ print(df_completo)
 
 ## Append (agregar filas)
 
-::: {#21783d3c .cell}
+::: {#52c0b784 .cell execution_count=28}
 ``` {.python .cell-code}
 # Crear DataFrames para concatenar
 df1 = pd.DataFrame({
@@ -907,12 +1531,23 @@ df_concatenado = pd.concat([df1, df2], ignore_index=True)
 print("DataFrames concatenados:")
 print(df_concatenado)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+DataFrames concatenados:
+       mes  ventas
+0    Enero   10000
+1  Febrero   11000
+2    Marzo   12000
+3    Abril   11500
+```
+:::
 :::
 
 
 ## Concatenación vertical y horizontal
 
-::: {#fa6078cc .cell}
+::: {#c421fb78 .cell execution_count=29}
 ``` {.python .cell-code}
 # Concatenación vertical (apilar filas)
 df_2022 = pd.DataFrame({
@@ -951,6 +1586,38 @@ df_horizontal = pd.concat([df_ingresos, df_gastos], axis=1)
 print("\nConcatenación horizontal:")
 print(df_horizontal)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Concatenación vertical:
+  trimestre    pib
+0        Q1  50000
+1        Q2  51000
+2        Q3  52000
+3        Q4  53000
+4        Q1  54000
+5        Q2  55000
+6        Q3  56000
+7        Q4  57000
+
+Con identificador de año:
+  trimestre    pib   año
+0        Q1  50000  2022
+1        Q2  51000  2022
+2        Q3  52000  2022
+3        Q4  53000  2022
+4        Q1  54000  2023
+5        Q2  55000  2023
+6        Q3  56000  2023
+7        Q4  57000  2023
+
+Concatenación horizontal:
+   mes  ingresos  gastos  utilidad
+0  Ene     10000    7000      3000
+1  Feb     11000    7500      3500
+2  Mar     12000    8000      4000
+```
+:::
 :::
 
 
@@ -958,7 +1625,7 @@ print(df_horizontal)
 
 ## GroupBy básico
 
-::: {#44c088a1 .cell}
+::: {#1eb156bd .cell execution_count=30}
 ``` {.python .cell-code}
 # Crear datos de ventas por región y producto
 datos = {
@@ -985,12 +1652,41 @@ resumen = df.groupby('region').agg({
 print("\nResumen por región:")
 print(resumen)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Datos originales:
+     region producto  ventas  unidades
+0      Lima        A   10000       100
+1      Lima        B   15000       150
+2      Lima        A   11000       110
+3  Arequipa        A    8000        80
+4  Arequipa        B    9000        90
+5     Cusco        A    7000        70
+6     Cusco        B    6500        65
+
+Ventas por región:
+region
+Arequipa    17000
+Cusco       13500
+Lima        36000
+Name: ventas, dtype: int64
+
+Resumen por región:
+         ventas                unidades       
+            sum     mean count      sum   mean
+region                                        
+Arequipa  17000   8500.0     2      170   85.0
+Cusco     13500   6750.0     2      135   67.5
+Lima      36000  12000.0     3      360  120.0
+```
+:::
 :::
 
 
 ## GroupBy con múltiples columnas
 
-::: {#e60f4e6c .cell}
+::: {#93061b63 .cell execution_count=31}
 ``` {.python .cell-code}
 # Agrupar por región y producto
 ventas_region_producto = df.groupby(['region', 'producto'])['ventas'].sum()
@@ -1011,12 +1707,44 @@ resumen_completo = df.groupby(['region', 'producto']).agg({
 print("\nResumen completo:")
 print(resumen_completo)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Ventas por región y producto:
+region    producto
+Arequipa  A            8000
+          B            9000
+Cusco     A            7000
+          B            6500
+Lima      A           21000
+          B           15000
+Name: ventas, dtype: int64
+
+Tabla pivoteable:
+producto      A      B
+region                
+Arequipa   8000   9000
+Cusco      7000   6500
+Lima      21000  15000
+
+Resumen completo:
+                  ventas          unidades
+                     sum     mean      sum
+region   producto                         
+Arequipa A          8000   8000.0       80
+         B          9000   9000.0       90
+Cusco    A          7000   7000.0       70
+         B          6500   6500.0       65
+Lima     A         21000  10500.0      210
+         B         15000  15000.0      150
+```
+:::
 :::
 
 
 ## Funciones de agregación personalizadas
 
-::: {#919bf8bf .cell}
+::: {#4f4b6c99 .cell execution_count=32}
 ``` {.python .cell-code}
 # Definir función personalizada
 def rango(x):
@@ -1043,6 +1771,36 @@ df['ventas_vs_promedio'] = df['ventas'] - df['ventas_region_promedio']
 print("\nCon comparación vs promedio regional:")
 print(df)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Resumen con función personalizada:
+          count    sum     mean          std    min    max  rango
+region                                                           
+Arequipa      2  17000   8500.0   707.106781   8000   9000   1000
+Cusco         2  13500   6750.0   353.553391   6500   7000    500
+Lima          3  36000  12000.0  2645.751311  10000  15000   5000
+
+Con comparación vs promedio regional:
+     region producto  ventas  unidades  ventas_region_promedio  \
+0      Lima        A   10000       100                 12000.0   
+1      Lima        B   15000       150                 12000.0   
+2      Lima        A   11000       110                 12000.0   
+3  Arequipa        A    8000        80                  8500.0   
+4  Arequipa        B    9000        90                  8500.0   
+5     Cusco        A    7000        70                  6750.0   
+6     Cusco        B    6500        65                  6750.0   
+
+   ventas_vs_promedio  
+0             -2000.0  
+1              3000.0  
+2             -1000.0  
+3              -500.0  
+4               500.0  
+5               250.0  
+6              -250.0  
+```
+:::
 :::
 
 
@@ -1050,7 +1808,7 @@ print(df)
 
 ## Aplicación 1: Análisis de datos COVID-19
 
-::: {#41c5aaa3 .cell}
+::: {#1b5faec4 .cell execution_count=33}
 ``` {.python .cell-code}
 # Simular datos de COVID-19 por región
 np.random.seed(42)
@@ -1131,12 +1889,60 @@ print("\n\nSERIE DE TIEMPO (últimos 10 días)")
 print("=" * 70)
 print(df_serie.tail(10).round(1))
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+ANÁLISIS COVID-19 POR REGIÓN
+======================================================================
+             casos_positivos  fallecidos  pruebas_realizadas  \
+region                                                         
+Arequipa                5198         251                8025   
+Cusco                   4377         167                8095   
+La Libertad             4103         169               12590   
+Lima                    5604         143                9849   
+Piura                   3767         188               10552   
+
+             tasa_positividad  casos_por_100k  tasa_letalidad  
+region                                                         
+Arequipa                76.36          399.85            4.83  
+Cusco                  116.39          364.75            3.82  
+La Libertad             40.97          215.95            4.12  
+Lima                    98.20           58.99            2.55  
+Piura                   75.28          188.35            4.99  
+
+
+ANÁLISIS POR GRUPO DE EDAD
+======================================================================
+            casos_positivos  fallecidos  tasa_letalidad
+grupo_edad                                             
+45-64                  4839         208            4.30
+65+                    6330         254            4.01
+20-44                  7402         285            3.85
+0-19                   4478         171            3.82
+
+
+SERIE DE TIEMPO (últimos 10 días)
+======================================================================
+            casos_positivos  fallecidos  casos_ma7
+fecha                                             
+2020-05-24              450           2      245.9
+2020-05-26              203          30      237.3
+2020-05-27              426          15      271.7
+2020-05-28              190          17      288.6
+2020-05-29              416          20      306.1
+2020-05-30              144           4      303.0
+2020-05-31              679          19      358.3
+2020-06-01              642          21      385.7
+2020-06-03              196           4      384.7
+2020-06-08              505          20      396.0
+```
+:::
 :::
 
 
 ## Aplicación 2: Análisis de comercio internacional
 
-::: {#375788bc .cell}
+::: {#159b30ab .cell execution_count=34}
 ``` {.python .cell-code}
 # Simular datos de exportaciones
 productos = ['Cobre', 'Oro', 'Zinc', 'Plomo', 'Plata', 'Café', 'Espárragos']
@@ -1226,6 +2032,85 @@ matriz = df_exportaciones.pivot_table(
 
 print(matriz.round(2))
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+ANÁLISIS DE EXPORTACIONES
+======================================================================
+
+Top 10 exportaciones individuales:
+ año  mes   producto  pais_destino  valor_fob_usd
+2022    5      Plomo           USA   9.955257e+06
+2023    7 Espárragos         China   9.934036e+06
+2020   12       Café        Brasil   9.922120e+06
+2020    2      Plomo        Canadá   9.916725e+06
+2021    4      Cobre        Canadá   9.883925e+06
+2020    4 Espárragos        Brasil   9.868261e+06
+2023    4 Espárragos        Canadá   9.814240e+06
+2022   12      Plomo        Brasil   9.788450e+06
+2019    7 Espárragos        Brasil   9.769580e+06
+2023    5      Cobre Corea del Sur   9.762309e+06
+
+
+EXPORTACIONES POR PRODUCTO
+======================================================================
+            valor_fob_usd_sum  valor_fob_usd_mean  valor_fob_usd_count  \
+producto                                                                 
+Cobre            3.884783e+08          4980491.61                   78   
+Espárragos       3.699379e+08          4932504.79                   75   
+Café             3.666037e+08          5163432.90                   71   
+Zinc             3.558708e+08          4809065.36                   74   
+Plomo            3.343797e+08          5572994.53                   60   
+Oro              3.316140e+08          4605749.81                   72   
+Plata            3.174952e+08          4535645.48                   70   
+
+            peso_kg_sum  precio_kg_mean  
+producto                                 
+Cobre        4415310.17          190.40  
+Espárragos   3851545.49          224.55  
+Café         3791869.02          328.37  
+Zinc         3152074.23          213.16  
+Plomo        2965285.40          300.92  
+Oro          3146402.23          277.06  
+Plata        3811206.16          187.43  
+
+
+EXPORTACIONES POR PAÍS DESTINO
+======================================================================
+               valor_total_usd producto_principal
+pais_destino                                     
+USA               4.477071e+08                Oro
+Canadá            4.214130e+08               Zinc
+Corea del Sur     4.208985e+08              Plomo
+Brasil            4.052131e+08              Cobre
+Japón             3.852828e+08              Cobre
+China             3.838651e+08               Zinc
+
+
+EVOLUCIÓN ANUAL DE EXPORTACIONES
+======================================================================
+      exportaciones_usd  variacion_pct
+año                                   
+2019       5.416679e+08            NaN
+2020       4.880700e+08          -9.89
+2021       4.630620e+08          -5.12
+2022       5.181818e+08          11.90
+2023       4.533979e+08         -12.50
+
+
+MATRIZ: PRODUCTO X DESTINO (Millones USD)
+======================================================================
+pais_destino  Brasil  Canadá  China  Corea del Sur  Japón    USA
+producto                                                        
+Café           86.57   49.45  69.19          50.29  39.77  71.33
+Cobre          66.51   72.20  46.98          57.29  70.67  74.83
+Espárragos     69.00   62.05  40.97          66.20  63.74  67.99
+Oro            55.50   46.88  50.55          54.74  45.73  78.23
+Plata          38.38   53.34  57.31          65.20  31.18  72.10
+Plomo          51.73   45.89  46.61          82.74  57.60  49.82
+Zinc           37.53   91.61  72.26          44.45  76.60  33.42
+```
+:::
 :::
 
 
@@ -1233,7 +2118,7 @@ print(matriz.round(2))
 
 ## Ejercicio 1: Análisis de indicadores macroeconómicos
 
-::: {#d5cecf1e .cell}
+::: {#c1f8fd11 .cell execution_count=35}
 ``` {.python .cell-code}
 # Crear dataset de indicadores macroeconómicos
 años = list(range(2010, 2024))
@@ -1304,12 +2189,68 @@ print(promedios_decada)
 df_macro.to_csv('analisis_macroeconomico.csv', index=False)
 print("\n\nResultados guardados en 'analisis_macroeconomico.csv'")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+ANÁLISIS DE INDICADORES MACROECONÓMICOS
+======================================================================
+
+Estadísticas descriptivas:
+       crecimiento_pib  inflacion  desempleo
+count            13.00      14.00      14.00
+mean              2.46       3.41       8.06
+std               4.09       1.80       2.06
+min              -6.38       1.80       6.20
+25%               2.27       2.50       6.82
+50%               3.37       2.85       7.35
+75%               4.44       3.42       7.80
+max               9.09       8.30      13.00
+
+
+Años con mayor crecimiento:
+     año  crecimiento_pib  pib_millones
+11  2021         9.090909        240000
+1   2011         5.263158        200000
+5   2015         4.761905        220000
+
+Años con menor crecimiento:
+     año  crecimiento_pib  pib_millones
+10  2020        -6.382979        220000
+7   2017        -3.111111        218000
+4   2014        -2.325581        210000
+
+
+Correlación entre variables:
+                   crecimiento_pib  inflacion  desempleo  balanza_comercial
+crecimiento_pib              1.000      0.180     -0.017              0.274
+inflacion                    0.180      1.000     -0.354              0.173
+desempleo                   -0.017     -0.354      1.000              0.558
+balanza_comercial            0.274      0.173      0.558              1.000
+
+
+Períodos de contracción económica:
+     año  crecimiento_pib  desempleo  inflacion
+4   2014        -2.325581        6.2        3.2
+7   2017        -3.111111        7.2        2.8
+10  2020        -6.382979        9.8        2.5
+
+
+Promedios por década:
+        crecimiento_pib  inflacion  desempleo
+decada                                       
+2010               2.43       2.69       8.05
+2020               2.52       5.20       8.07
+
+
+Resultados guardados en 'analisis_macroeconomico.csv'
+```
+:::
 :::
 
 
 ## Ejercicio 2: Sistema de gestión de inventarios
 
-::: {#d0a615dc .cell}
+::: {#18cb42ab .cell execution_count=36}
 ``` {.python .cell-code}
 # Crear sistema de inventarios
 np.random.seed(42)
@@ -1470,6 +2411,85 @@ print("\n\nReportes guardados:")
 print("  - transacciones_inventario.csv")
 print("  - alerta_stock_bajo.csv")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+SISTEMA DE GESTIÓN DE INVENTARIOS
+======================================================================
+
+1. VENTAS POR CATEGORÍA
+----------------------------------------------------------------------
+             valor_total  unidades_vendidas  num_transacciones
+categoria                                                     
+Hogar          612605.58               1709                172
+Alimentos      533735.35               2287                227
+Electrónica    351288.52                855                 81
+Ropa            45313.94                197                 20
+
+
+2. TOP 10 PRODUCTOS MÁS VENDIDOS
+----------------------------------------------------------------------
+                         unidades_vendidas  ingresos_totales
+producto_id nombre                                          
+PROD011     Producto 11                289         177044.29
+PROD002     Producto 2                 233         176332.07
+PROD019     Producto 19                295         137434.60
+PROD015     Producto 15                398         130540.02
+PROD008     Producto 8                 341         129331.07
+PROD003     Producto 3                 195         104009.10
+PROD009     Producto 9                 222          81141.00
+PROD013     Producto 13                298          81118.58
+PROD016     Producto 16                150          72969.00
+PROD017     Producto 17                357          68087.04
+
+
+3. ALERTA: PRODUCTOS BAJO STOCK MÍNIMO
+----------------------------------------------------------------------
+   producto_id       nombre    categoria  stock_actual  stock_minimo  faltante
+15     PROD016  Producto 16  Electrónica            23            42        19
+5      PROD006   Producto 6        Hogar            13            18         5
+8      PROD009   Producto 9    Alimentos            14            17         3
+
+
+4. ANÁLISIS DE RENTABILIDAD POR PRODUCTO
+----------------------------------------------------------------------
+             cantidad  utilidad  margen_pct
+producto_id                                
+PROD011           289  87509.20       49.43
+PROD002           233  63266.49       35.88
+PROD019           295  48852.00       35.55
+PROD008           341  38239.74       29.57
+PROD015           398  37618.96       28.82
+PROD013           298  35479.88       43.74
+PROD009           222  31934.70       39.36
+PROD017           357  29588.16       43.46
+PROD003           195  22518.60       21.65
+PROD005           274  19958.16       42.37
+
+
+5. EVOLUCIÓN MENSUAL DE VENTAS
+----------------------------------------------------------------------
+         ventas_soles  unidades  variacion_pct
+año_mes                                       
+2023-01      90593.11       312            NaN
+2023-02     121257.05       414          33.85
+2023-03      90345.39       240         -25.49
+2023-04     157379.32       510          74.20
+2023-05     117624.03       482         -25.26
+2023-06     161507.28       484          37.31
+2023-07     129139.11       422         -20.04
+2023-08     192384.53       577          48.97
+2023-09     125496.86       401         -34.77
+2023-10     134829.29       405           7.44
+2023-11     104762.37       389         -22.30
+2023-12     117625.05       412          12.28
+
+
+Reportes guardados:
+  - transacciones_inventario.csv
+  - alerta_stock_bajo.csv
+```
+:::
 :::
 
 

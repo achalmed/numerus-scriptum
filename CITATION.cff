@@ -1,4 +1,4 @@
-# CITATION.cff — GENERADO por `web/scripts/pubs.py citation --aplicar` desde `web/_pubs/pubs.yml` (2026-10-10); no editar aquí
+# CITATION.cff — GENERADO por `web/scripts/pubs.py citation --aplicar` desde `web/_pubs/pubs.yml` (2026-10-20); no editar aquí
 cff-version: 1.2.0
 title: "Programación y software — blog de Edison Achalma (numerus-scriptum)"
 message: "Si citas una entrada de este blog, usa los metadatos de este archivo y la URL de la entrada."
@@ -13,4 +13,4 @@ identifiers:
 repository-code: 'https://github.com/achalmed/numerus-scriptum'
 url: 'https://numerus-scriptum.netlify.app/'
 abstract: "R, Python, Stata, LaTeX, Quarto, Linux y herramientas para ciencia de datos; una sección por herramienta. Blog satélite del hub https://achalmaedison.netlify.app/ (website-achalma)."
-license: MPL-2.0
+license: CC-BY-SA-4.0   # se cita el contenido; el código va en LICENSE (MPL-2.0)

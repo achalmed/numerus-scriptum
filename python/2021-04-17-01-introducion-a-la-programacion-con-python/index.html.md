@@ -35,7 +35,8 @@ citation:
 date: 2021-04-17
 draft: false
 image: ../featured.jpg
-curso: python_curso_base
+curso: python
+tema: "1.1"
 ---
 
 ---
@@ -83,6 +84,32 @@ date: "2026-06-21"
 27. [Referencias oficiales](#27-referencias-oficiales)
 
 ---
+
+## Antes de empezar
+
+<!-- Fundido desde la nota de docencia (python/02-contenido) el 2026-10-20, decisión del autor. -->
+
+### Motivación
+
+Python es uno de los lenguajes más utilizados del mundo porque equilibra potencia con legibilidad. Puedes escribir desde un script de una línea hasta sistemas complejos de inteligencia artificial con la misma sintaxis clara. Aprender Python no es solo aprender un lenguaje: es abrir la puerta a automatización, análisis de datos, desarrollo web y mucho más.
+
+### Intuición
+
+Imagina que le das instrucciones a un asistente muy inteligente pero literal: no interpreta, ejecuta exactamente lo que le dices. Python es ese asistente. Escribes órdenes en un archivo de texto con extensión `.py` y se las pasas al "intérprete" (el programa que entiende Python). El intérprete las lee línea por línea y las ejecuta.
+
+Es como una receta de cocina: escribes los pasos en orden, y el intérprete los sigue al pie de la letra. Si un paso está mal escrito, la receta se detiene y te avisa.
+
+### Modelo mental
+
+Python es un **lenguaje interpretado** (no compilado). Esto significa que:
+
+1. **No necesitas compilar**: escribes código y lo ejecutas directamente.
+2. **Ejecución línea por línea**: Python lee tu archivo de arriba a abajo.
+3. **Tipado dinámico**: no declaras qué tipo de dato es cada variable; Python lo deduce.
+4. **Indentación como sintaxis**: los espacios o tabulaciones no son solo estilo, **definen bloques de código**.
+
+Lo más importante ahora: **todo en Python es un objeto** (incluyendo números, texto y funciones), y las **variables son etiquetas** que apuntas a esos objetos.
+
 
 ## 1. ¿Qué es Python? Definición oficial
 
@@ -192,6 +219,67 @@ En Kubuntu y Arch Linux, una versión de Python suele venir preinstalada como pa
 Más allá de la firma digital descrita en la sección anterior, la práctica general (consistente con lo ya documentado en tu guía de instalación de Miniconda/Anaconda) es verificar que el archivo descargado no haya sido alterado ni corrompido, comparando su hash con el valor publicado oficialmente junto al instalador en la página de descargas correspondiente, antes de ejecutarlo.
 
 ---
+
+## Tu primer programa
+
+#### 1. El archivo `.py`
+
+Los archivos de Python usan la extensión `.py`. Cualquier editor de texto sirve para escribirlos (VS Code, PyCharm, Notepad++, incluso el Bloc de notas).
+
+#### 2. `print()` — tu primera función
+
+`print()` es la función más básica: muestra texto en la consola. Su sintaxis es:
+
+```python
+print("lo que quieras mostrar")
+```
+
+Las comillas pueden ser simples (`'`) o dobles (`"`) — no importa, mientras abras y cierres con el mismo tipo.
+
+#### 3. El intérprete interactivo
+
+Puedes ejecutar Python de dos maneras:
+
+| Modo                                            | Qué hace                | Cuándo usarlo                     |
+| ----------------------------------------------- | ----------------------- | --------------------------------- |
+| **Script** (`python archivo.py`)                | Ejecuta todo el archivo | Código largo, programas completos |
+| **Interactivo** (escribir `python` en terminal) | Ejecuta línea por línea | Probar ideas, experimentar rápido |
+
+En el modo interactivo ves `>>>` (el prompt). Escribes código, presionas Enter, y Python ejecuta esa línea inmediatamente.
+
+#### 4. `exit()` — salir del intérprete
+
+Cuando estés en el modo interactivo, escribe `exit()` para volver a la terminal normal.
+
+### Ejemplos
+
+**Mínimo —** El clásico "Hola mundo", que todo programador escribe primero:
+
+```python
+print("Hello, World!")
+```
+
+**Progresivo —** Podemos mostrar múltiples cosas:
+
+```python
+print("Mi primer programa")
+print(42)
+print("El resultado es", 10 + 5)
+# Salida:
+# Mi primer programa
+# 42
+# El resultado es 15
+```
+
+**Real —** Un script que saluda al usuario (lo veremos con variables más adelante, pero es un caso real de uso):
+
+```python
+# greet.py
+print("Bienvenido a Python")
+print("Este es tu primer script")
+```
+
+Y lo ejecutas: `python greet.py`
 
 ## 11. Invocar el intérprete: conceptos generales
 
@@ -470,6 +558,43 @@ Esta guía no se adelanta a ninguno de esos contenidos; su función es exclusiva
 Economista — Universidad Nacional de San Cristóbal de Huamanga (UNSCH)
 Ayacucho, Perú
 ORCID: [0000-0001-6996-3364](https://orcid.org/0000-0001-6996-3364)
+
+## Para cerrar
+
+### Errores comunes
+
+- **Olvidar las comillas:** `print(Hola)` → `NameError` (Python cree que `Hola` es una variable que no existe).
+- **Comillas desbalanceadas:** `print("Hola')` → `SyntaxError` (mezclaste comillas).
+- **Olvidar paréntesis:** `print "Hola"` → `SyntaxError` (en Python 3, `print` es una función y necesita `()`).
+- **Indentación incorrecta:** aunque por ahora solo escribimos una línea, en el futuro, los espacios importan. No uses mezcla de espacios y tabulaciones.
+
+### Buenas prácticas
+
+- Usa **f-strings** en lugar de concatenar con `+` (los veremos pronto) — son más legibles.
+- Pon **una línea en blanco** entre bloques de código para que sea más legible.
+- Escribe nombres de archivos en **minúsculas y sin espacios**: `mi_script.py`, no `Mi Script.py`.
+- Comenta tu código con `#` para explicar partes complejas.
+
+### Ejercicio
+
+**Básico** — Escritura y ejecución
+
+1. Crea un archivo llamado `mi_primer_programa.py`
+2. Escribe código que muestre:
+   - Tu nombre
+   - Tu edad (un número)
+   - La frase: "Estoy aprendiendo Python"
+3. Guarda el archivo y ejecútalo desde la terminal con `python mi_primer_programa.py`
+4. Luego, abre el intérprete interactivo (`python`) y escribe `print("Python es genial")` directamente para ver cómo se ejecuta en el momento.
+
+### Síntesis
+
+- **Python es interpretado**: escribes `.py` y lo ejecutas directamente.
+- **`print()`** muestra texto en la consola; es tu herramienta principal para ver resultados.
+- **Dos modos**: script (archivo completo) e interactivo (línea por línea con `>>>`).
+- **Extensión obligatoria**: `.py` en todos tus archivos Python.
+- **Ejecución**: `python nombre_del_archivo.py` desde la terminal.
+
 
 <!-- fragmento de inclusión — texto de apertura del bloque «Publicaciones similares» (incluido en cada post) -->
 

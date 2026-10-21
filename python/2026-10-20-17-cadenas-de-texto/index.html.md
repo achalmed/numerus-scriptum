@@ -1,0 +1,362 @@
+---
+documentmode: doc
+copyrightnotice: 2026
+copyrightext: All rights reserved
+title: Cadenas de texto
+shorttitle: CADENAS DE TEXTO
+abstract: Este abstract será actualizado una vez que se complete el contenido final del artículo.
+keywords: []
+categories:
+- Python
+tags:
+- python
+author-note:
+  status-changes:
+    affiliation-change: null
+    deceased: null
+  disclosures:
+    study-registration: null
+    data-sharing: null
+    related-report: null
+    conflict-of-interest: El autor no tiene conflictos de interés que revelar.
+    financial-support: null
+    gratitude: null
+    authorship-agreements: null
+description: Las cadenas de texto (strings) son uno de los tipos de datos más utilizados en programación.
+eval: true
+citation:
+  type: article-journal
+  author:
+  - Edison Achalma
+  pdf-url: https://numerus-scriptum.netlify.app/python/2026-10-20-17-cadenas-de-texto/index.pdf
+date: 2026-10-20
+draft: false
+image: ../featured.jpg
+curso: python
+tema: "2.10"
+---
+
+## 🎯 Motivación
+
+Las cadenas de texto (strings) son uno de los tipos de datos más utilizados en programación. Desde mostrar mensajes al usuario hasta procesar datos de archivos o bases de datos, el manejo de texto es fundamental. Python ofrece una forma potente y flexible de trabajar con strings, con una sintaxis clara y numerosos métodos para manipularlos.
+
+## 💡 Intuición
+
+Imagina un string como una **fila de caracteres** donde cada posición tiene un número (índice). Es como un tren donde cada vagón es una letra, y puedes acceder a cualquier vagón por su número. Python trata los strings como secuencias inmutables: una vez creados, no puedes cambiar los caracteres individuales, pero puedes crear nuevos strings a partir de ellos.
+
+## 🧠 Modelo mental
+
+- **Strings son secuencias**: cada carácter tiene una posición (índice), empezando desde 0.
+- **Inmutables**: no puedes cambiar un carácter directamente; creas uno nuevo.
+- **Indexación**: accedes con `[i]` (i desde 0). Índices negativos empiezan desde el final.
+- **Multilínea**: con triple comilla (`"""` o `'''`) preserva saltos de línea.
+- **Inmutabilidad**: los métodos devuelven nuevos strings, no modifican el original.
+
+## 📐 Desarrollo
+
+### 1. Creación de Strings
+
+```python
+# Comillas simples o dobles
+nombre = "Ana"
+apellido = 'García'
+
+# Strings con comillas internas
+texto1 = "It's a beautiful day"
+texto2 = 'Ella dijo "Hola"'
+
+# Strings multilínea (con triple comilla)
+poema = """Roses are red,
+Violets are blue,
+Python is awesome,
+And so are you!"""
+print(poema)
+```
+
+### 2. Acceso a caracteres (indexación)
+
+```python
+texto = "Python"
+print(texto[0])  # 'P'
+print(texto[1])  # 'y'
+print(texto[2])  # 't'
+
+# Índices negativos (desde el final)
+print(texto[-1])  # 'n'
+print(texto[-2])  # 'o'
+
+# ❌ Error: índice fuera de rango
+# print(texto[10])  # IndexError
+```
+
+### 3. Longitud de un string
+
+```python
+texto = "Hola Mundo"
+print(len(texto))  # 10 (incluye el espacio)
+```
+
+### 4. Slicing (rebanado)
+
+Extrae partes de un string:
+
+```python
+texto = "Python Programming"
+
+# texto[inicio:fin]  (fin no incluido)
+print(texto[0:6])   # "Python"
+print(texto[7:18])  # "Programming"
+
+# Desde el inicio
+print(texto[:6])    # "Python"
+
+# Hasta el final
+print(texto[7:])    # "Programming"
+
+# Con índices negativos
+print(texto[-11:])  # "Programming"
+print(texto[-11:-1]) # "Programmin"
+```
+
+### 5. Iteración sobre strings
+
+```python
+palabra = "Python"
+for letra in palabra:
+    print(letra)
+# Salida: P, y, t, h, o, n
+
+# Con índice y carácter
+for i, letra in enumerate(palabra):
+    print(f"Posición {i}: {letra}")
+```
+
+### 6. Verificar contenido con `in`
+
+```python
+frase = "El gato está en el tejado"
+
+# Verificar si contiene una subcadena
+print("gato" in frase)      # True
+print("perro" in frase)     # False
+print("tejado" not in frase) # False
+
+# Uso en condicional
+if "gato" in frase:
+    print("¡Hay un gato!")
+```
+
+### 7. Operaciones básicas con strings
+
+```python
+# Concatenación
+nombre = "Ana"
+apellido = "García"
+nombre_completo = nombre + " " + apellido
+print(nombre_completo)  # "Ana García"
+
+# Repetición
+eco = "Hola! " * 3
+print(eco)  # "Hola! Hola! Hola! "
+
+# Comparación (lexicográfica)
+print("abc" < "abd")   # True (c < d)
+print("Ana" == "ana")  # False (diferentes mayúsculas)
+print("Ana".lower() == "ana".lower())  # True
+```
+
+## 🔬 Ejemplos
+
+**Mínimo —** Creación y acceso:
+
+```python
+mensaje = "Hola Mundo"
+print(mensaje[0])     # H
+print(mensaje[5])     # M
+print(len(mensaje))   # 10
+```
+
+**Progresivo —** Manipulación básica:
+
+```python
+nombre = "Carlos"
+print(nombre.upper())  # CARLOS
+print(nombre.lower())  # carlos
+print(nombre[0])       # C
+print(nombre[-1])      # s
+print(len(nombre))     # 6
+```
+
+**Real —** Sistema de validación de usuario:
+
+```python
+# Datos de usuario
+nombre_usuario = "  Ana_Perez  "
+email = "ANA@GMAIL.COM"
+
+# Limpieza de datos
+nombre_limpio = nombre_usuario.strip()  # "Ana_Perez"
+email_limpio = email.lower()            # "ana@gmail.com"
+
+# Validación
+if "@" in email_limpio:
+    print(f"Email válido: {email_limpio}")
+else:
+    print("Email inválido")
+
+# Extracción de nombre de usuario
+if "_" in nombre_limpio:
+    partes = nombre_limpio.split("_")
+    print(f"Nombre: {partes[0]}")  # "Ana"
+    print(f"Apellido: {partes[1]}")  # "Perez"
+```
+
+## ⚠️ Errores comunes
+
+| Error                             | Síntoma                                                    | Solución                                 |
+| --------------------------------- | ---------------------------------------------------------- | ---------------------------------------- |
+| **Índice fuera de rango**         | `IndexError: string index out of range`                    | Verifica que el índice sea < len(string) |
+| **Confundir `=` con `==`**        | Asignación en lugar de comparación                         | Usa `==` para comparar                   |
+| **Modificar string directamente** | `TypeError: 'str' object does not support item assignment` | Crea un nuevo string o usa listas        |
+| **Olvidar convertir tipos**       | `TypeError: can only concatenate str to str`               | Convierte con `str()` o usa f-strings    |
+| **Espacios invisibles**           | Comparaciones fallan                                       | Usa `.strip()` para limpiar              |
+
+## ✅ Buenas prácticas
+
+1. **Usa f-strings para formateo**:
+   
+   ```python
+   nombre = "Ana"
+   edad = 25
+   mensaje = f"Hola, {nombre}. Tienes {edad} años"
+   ```
+
+2. **Limpia strings** antes de comparar:
+   
+   ```python
+   usuario = "  ana  "
+   if usuario.strip().lower() == "ana":
+       print("Usuario válido")
+   ```
+
+3. **Usa métodos de string** en lugar de bucles manuales:
+   
+   ```python
+   # ❌ Menos eficiente
+   resultado = ""
+   for char in "abc":
+       resultado += char.upper()
+   
+   # ✅ Mejor
+   resultado = "abc".upper()
+   ```
+
+4. **Prefiere `in` para búsquedas**:
+   
+   ```python
+   # ✅ Claro y eficiente
+   if "error" in mensaje:
+       print("Hay un error")
+   ```
+
+5. **Usa slicing** para extraer partes:
+   
+   ```python
+   email = "usuario@email.com"
+   nombre = email[:email.index("@")]
+   dominio = email[email.index("@") + 1:]
+   ```
+
+## 📝 Ejercicio
+
+**Intermedio** — Procesamiento de texto
+
+Escribe un programa que:
+
+1. Tenga un string `texto` con "El rápido zorro marrón salta sobre el perro perezoso"
+2. Extraiga y muestre:
+   - El primer carácter
+   - Los últimos 5 caracteres
+   - La palabra "zorro" (usando slicing)
+   - La longitud total
+   - El texto en mayúsculas
+   - El texto en minúsculas
+3. Verifique si contiene "perro" y "gato"
+4. Reemplace "perro" por "gato" en el texto
+5. Divida el texto en palabras y muestre cuántas hay
+
+---
+
+**Solución (no mires hasta haberlo intentado):**
+
+```python
+texto = "El rápido zorro marrón salta sobre el perro perezoso"
+
+# 1. Caracteres
+print(f"Primer carácter: {texto[0]}")
+print(f"Últimos 5: {texto[-5:]}")
+print(f"Palabra 'zorro': {texto[10:15]}")  # Asumiendo posición fija
+
+# 2. Longitud y caso
+print(f"Longitud: {len(texto)}")
+print(f"Mayúsculas: {texto.upper()}")
+print(f"Minúsculas: {texto.lower()}")
+
+# 3. Búsquedas
+print(f"¿Contiene 'perro'? {'perro' in texto}")
+print(f"¿Contiene 'gato'? {'gato' in texto}")
+
+# 4. Reemplazo
+texto_modificado = texto.replace("perro", "gato")
+print(f"Texto modificado: {texto_modificado}")
+
+# 5. División en palabras
+palabras = texto.split()
+print(f"Número de palabras: {len(palabras)}")
+print(f"Primeras 3 palabras: {palabras[:3]}")
+```
+
+## 🗂️ Síntesis
+
+- **Strings**: secuencias de caracteres, inmutables, indexación desde 0.
+- **Comillas**: simples (`'`), dobles (`"`), triples (`"""` o `'''`).
+- **Indexación**: `[i]` (positivo) y `[-i]` (negativo desde el final).
+- **Slicing**: `[inicio:fin:paso]` para extraer subcadenas.
+- **`len()`**: obtiene la longitud del string.
+- **Métodos comunes**: `.upper()`, `.lower()`, `.strip()`, `.split()`, `.replace()`, `.join()`.
+- **`in`**: verifica si una subcadena está presente.
+- **F-strings**: la forma recomendada de formatear strings con variables.
+
+## 🔗 Qué sigue
+
+- **Relacionado:** métodos de string, f-strings, expresiones regulares
+- **Siguiente tema:** Métodos de strings — profundiza en las herramientas para manipular texto.
+
+<!-- fragmento de inclusión — texto de apertura del bloque «Publicaciones similares» (incluido en cada post) -->
+
+# Publicaciones Similares
+
+Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:
+
+
+<!-- fragmento de inclusión — índice de publicaciones de python; lo genera script_generador_publicacion_similar -->
+
+1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/index.pdf) [Instalacion De Anaconda](https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda)
+2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf) [Configurar Entorno Virtual Python Anaconda](https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda)
+3. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python/index.pdf) [01 Introducion A La Programacion Con Python](https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python)
+4. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python/index.pdf) [02 Variables Expresiones Y Statements Con Python](https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python)
+5. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python/index.pdf) [03 Objetos De Python](https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python)
+6. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python/index.pdf) [04 Ejecucion Condicional Con Python](https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python)
+7. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python/index.pdf) [05 Iteraciones Con Python](https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python)
+8. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python/index.pdf) [06 Funciones Con Python](https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python)
+9. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python/index.pdf) [07 Dataframes Con Python](https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python)
+10. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python/index.pdf) [08 Prediccion Y Metrica De Performance Con Python](https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python)
+11. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python/index.pdf) [09 Metodos De Machine Learning Para Clasificacion Con Python](https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python)
+12. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python/index.pdf) [10 Metodos De Machine Learning Para Regresion Con Python](https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python)
+13. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf) [Visualizacion De Datos Con Python](https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python)
+
+
+<!-- fragmento de inclusión — texto de cierre del bloque «Publicaciones similares» (incluido en cada post) -->
+
+Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!
+

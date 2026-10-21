@@ -35,10 +35,40 @@ citation:
 date: 2021-05-31
 draft: false
 image: ../featured.jpg
-curso: python_curso_base
+curso: python
+tema: "2.1"
+execute:
+  enabled: true                   # lección de Python con salidas reales; freeze: true (de la sección) la ejecuta una vez (autor, 2026-10-20)
 ---
 
 En esta segunda guía exploraremos en profundidad los elementos fundamentales de Python: variables, expresiones y statements. Estos conceptos son la base para cualquier programa que escribamos y son esenciales para el análisis económico con Python.
+
+# Antes de empezar
+
+<!-- Fundido desde la nota de docencia (python/02-contenido) el 2026-10-20, decisión del autor. -->
+
+## Motivación
+
+Las variables son el corazón de cualquier programa. Sin variables, solo podrías escribir datos fijos, como una calculadora que solo suma 2+2. Las variables te permiten **almacenar información**, **reutilizarla** y **cambiarla dinámicamente**. Son como cajas etiquetadas donde guardas datos para usarlos cuando los necesites.
+
+## Intuición
+
+Imagina que tienes una caja con una etiqueta que dice "edad" y dentro guardas el número 25. En Python, eso sería `edad = 25`. Cada vez que necesites ese valor, solo usas la palabra `edad`. Y si la persona cumple años, puedes cambiar el contenido de la caja a 26: `edad = 26`. La caja (la variable) es la misma, pero su contenido (el valor) puede cambiar.
+
+## Modelo mental
+
+En Python, las variables son **etiquetas** que apuntan a **objetos** en memoria:
+
+1. **No se declaran**: se crean al asignarles un valor.
+2. **Son dinámicas**: pueden cambiar de tipo en cualquier momento.
+3. **Sensibles a mayúsculas**: `miVariable` y `mivariable` son diferentes.
+4. **Todo es un objeto**: incluso los números son objetos en Python.
+
+```python
+x = 5           # x apunta al objeto entero 5
+x = "Hola"      # x ahora apunta al objeto texto "Hola" (cambió de tipo)
+```
+
 
 # Valores y tipos de datos
 
@@ -105,6 +135,36 @@ print(type(3.75))          # <class 'float'>
 print(type("Perú"))        # <class 'str'>
 print(type(True))          # <class 'bool'>
 ```
+
+## Asignación múltiple y tipado dinámico
+
+### Asignación de múltiples variables
+
+```python
+# Múltiples variables en una línea
+a, b, c = 1, 2, 3
+print(a, b, c)  # Salida: 1 2 3
+
+# Mismo valor para varias variables
+x = y = z = 0
+print(x, y, z)  # Salida: 0 0 0
+```
+
+### Cambio de tipo (tipado dinámico)
+
+Una variable puede cambiar de tipo durante la ejecución:
+
+```python
+dato = 10        # int
+print(type(dato))  # <class 'int'>
+
+dato = "texto"   # str
+print(type(dato))  # <class 'str'>
+
+dato = 3.14      # float
+print(type(dato))  # <class 'float'>
+```
+
 
 ## Conversión entre tipos
 
@@ -1565,6 +1625,93 @@ Para profundizar en estos conceptos, se recomienda:
 - Documentación oficial de Python: docs.python.org
 - Práctica constante con ejercicios económicos
 - Exploración de bibliotecas como NumPy y Pandas
+
+
+# Para cerrar
+
+## Errores comunes
+
+| Error                         | Síntoma                              | Cómo detectarlo                           |
+| ----------------------------- | ------------------------------------ | ----------------------------------------- |
+| **Usar variable sin asignar** | `NameError: name 'x' is not defined` | Asigna un valor antes de usar la variable |
+| **Confundir `=` con `==`**    | Asignación en lugar de comparación   | `=` es asignación, `==` es comparación    |
+| **Nombres con espacios**      | `SyntaxError: invalid syntax`        | Usa guión bajo `_` en lugar de espacios   |
+| **Mayúsculas/minúsculas**     | La variable no se encuentra          | Revisa que escribas el nombre exacto      |
+| **Usar palabra reservada**    | `SyntaxError: invalid syntax`        | Evita `if`, `while`, `class`, etc.        |
+
+## Buenas prácticas
+
+- **Nombres descriptivos**:
+  
+  ```python
+  # ❌ Poco claro
+  a = 15
+  b = "Juan"
+  
+  # ✅ Claro
+  edad = 15
+  nombre = "Juan"
+  ```
+
+- **Snake case**: usa minúsculas y guiones bajos para separar palabras.
+  
+  ```python
+  nombre_usuario = "Ana"
+  precio_total = 100.50
+  ```
+
+- **Constantes en mayúsculas** (por convención):
+  
+  ```python
+  PI = 3.14159
+  MAX_INTENTOS = 3
+  ```
+
+- **No uses nombres de una sola letra** excepto en bucles cortos (`i`, `j`, `k`).
+
+## Ejercicio
+
+**Básico** — Variables y operaciones
+
+Escribe un programa que:
+
+1. Cree variables para: nombre, edad, altura (en metros) y ciudad
+2. Calcule la edad que tendrá en 10 años
+3. Convierta la altura a centímetros (multiplicar por 100)
+4. Imprima un mensaje como: "Hola [nombre], tienes [edad] años y vives en [ciudad]. Mides [altura_cm] cm"
+
+**Requisitos:** usa nombres de variables descriptivos y en `snake_case`.
+
+---
+
+**Solución (no mires hasta haberlo intentado):**
+
+```python
+# Datos personales
+nombre = "Laura"
+edad = 28
+altura = 1.65  # metros
+ciudad = "Madrid"
+
+# Cálculos
+edad_futura = edad + 10
+altura_cm = altura * 100
+
+# Mensaje
+print("Hola", nombre, ", tienes", edad, "años y vives en", ciudad)
+print("Mides", altura_cm, "cm")
+print("En 10 años tendrás", edad_futura, "años")
+```
+
+## Síntesis
+
+- **Variables = contenedores de datos**: se crean al asignarles un valor.
+- **Sin declaración previa**: `x = 5` crea la variable automáticamente.
+- **Tipado dinámico**: una variable puede cambiar de tipo en cualquier momento.
+- **Nombres sensibles a mayúsculas**: `nombre` ≠ `Nombre`.
+- **Convención**: `snake_case` para nombres de variables.
+- **`type()`**: para saber el tipo de una variable.
+- **Casting**: `str()`, `int()`, `float()` para convertir tipos.
 
 
 {{< include ../../_contenido-inicio.qmd >}}

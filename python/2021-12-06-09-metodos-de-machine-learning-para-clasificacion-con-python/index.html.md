@@ -36,6 +36,8 @@ date: 2021-12-06
 draft: false
 image: ../featured.jpg
 curso: python_curso_base
+execute:
+  enabled: true                   # lección de Python con salidas reales; freeze: true (de la sección) la ejecuta una vez (autor, 2026-10-20)
 ---
 
 En esta novena guía exploraremos los principales algoritmos de machine learning para problemas de clasificación. Estos métodos son fundamentales para resolver problemas económicos como clasificación de riesgo crediticio, predicción de comportamiento de consumidores, segmentación de mercados, entre otros.
@@ -46,7 +48,7 @@ En esta novena guía exploraremos los principales algoritmos de machine learning
 
 El aprendizaje supervisado es un tipo de machine learning donde el modelo aprende de datos etiquetados (con respuestas conocidas) para predecir etiquetas de nuevos datos.
 
-::: {#87979c0a .cell}
+::: {#dc0c1554 .cell execution_count=1}
 ``` {.python .cell-code}
 import pandas as pd
 import numpy as np
@@ -77,12 +79,18 @@ np.random.seed(42)
 
 print("Librerías importadas exitosamente")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Librerías importadas exitosamente
+```
+:::
 :::
 
 
 ## Tipos de problemas de clasificación
 
-::: {#f0ad49cf .cell}
+::: {#227e368a .cell execution_count=2}
 ``` {.python .cell-code}
 print("""
 TIPOS DE PROBLEMAS DE CLASIFICACIÓN
@@ -110,12 +118,42 @@ TIPOS DE PROBLEMAS DE CLASIFICACIÓN
      * Atributos de producto (múltiples categorías)
 """)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+TIPOS DE PROBLEMAS DE CLASIFICACIÓN
+
+1. CLASIFICACIÓN BINARIA
+   - Dos clases posibles
+   - Ejemplos económicos:
+     * Aprobado/Rechazado (crédito)
+     * Paga/No paga (incumplimiento)
+     * Éxito/Fracaso (empresa)
+     * Compra/No compra (marketing)
+
+2. CLASIFICACIÓN MULTI-CLASE
+   - Más de dos clases
+   - Ejemplos económicos:
+     * Clasificación de riesgo (AAA, AA, A, BBB, etc.)
+     * Segmentación de clientes (bajo, medio, alto valor)
+     * Categorías de productos
+     * Niveles socioeconómicos (A, B, C, D, E)
+
+3. CLASIFICACIÓN MULTI-ETIQUETA
+   - Múltiples etiquetas simultáneas
+   - Ejemplos económicos:
+     * Características de consumidor (múltiples intereses)
+     * Atributos de producto (múltiples categorías)
+
+```
+:::
 :::
 
 
 ## Dataset de ejemplo: Iris
 
-::: {#17463a5b .cell}
+::: {#d301c438 .cell execution_count=3}
 ``` {.python .cell-code}
 # Cargar dataset clásico
 iris = load_iris()
@@ -158,6 +196,40 @@ plt.grid(True, alpha=0.3)
 plt.savefig('iris_scatter.png', dpi=300, bbox_inches='tight')
 print("\nGráfico guardado como 'iris_scatter.png'")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Dataset Iris:
+   sepal length (cm)  sepal width (cm)  petal length (cm)  petal width (cm)  \
+0                5.1               3.5                1.4               0.2   
+1                4.9               3.0                1.4               0.2   
+2                4.7               3.2                1.3               0.2   
+3                4.6               3.1                1.5               0.2   
+4                5.0               3.6                1.4               0.2   
+
+   especie especie_nombre  
+0        0         Setosa  
+1        0         Setosa  
+2        0         Setosa  
+3        0         Setosa  
+4        0         Setosa  
+
+Forma: (150, 6)
+
+Distribución de especies:
+especie_nombre
+Setosa        50
+Versicolor    50
+Virginica     50
+Name: count, dtype: int64
+
+Gráfico guardado como 'iris_scatter.png'
+```
+:::
+
+::: {.cell-output .cell-output-display}
+![](index_files/figure-html/cell-4-output-2.png){width=804 height=516}
+:::
 :::
 
 
@@ -310,7 +382,7 @@ En el espacio de características, esta es una **hipersuperficie lineal** (hiper
 
 ## Implementación
 
-::: {#707c1b37 .cell}
+::: {#59bc1acf .cell execution_count=4}
 ``` {.python .cell-code}
 # Preparar datos (clasificación binaria: Virginica vs resto)
 X = iris.data[:, :2]  # Solo usar 2 características para visualización
@@ -338,12 +410,31 @@ print(f"Coeficientes:")
 print(f"  β₁ (largo sépalo): {modelo_logit.coef_[0, 0]:.4f}")
 print(f"  β₂ (ancho sépalo): {modelo_logit.coef_[0, 1]:.4f}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Conjunto de entrenamiento: 105 muestras
+Conjunto de prueba: 45 muestras
+
+Distribución en entrenamiento:
+  Clase 0 (No Virginica): 68
+  Clase 1 (Virginica): 37
+
+
+MODELO ENTRENADO
+======================================================================
+Intercepto (β₀): -12.3391
+Coeficientes:
+  β₁ (largo sépalo): 2.0623
+  β₂ (ancho sépalo): -0.2043
+```
+:::
 :::
 
 
 ## Predicción e interpretación
 
-::: {#e16cdf41 .cell}
+::: {#f6c2150d .cell execution_count=5}
 ``` {.python .cell-code}
 # Predecir probabilidades
 probs_train = modelo_logit.predict_proba(X_train)[:, 1]
@@ -376,12 +467,40 @@ print(f"Características: Largo={ejemplo[0, 0]} cm, Ancho={ejemplo[0, 1]} cm")
 print(f"Probabilidad de ser Virginica: {prob:.4f} ({prob*100:.1f}%)")
 print(f"Predicción: {'Virginica' if pred == 1 else 'No Virginica'}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+Accuracy en test: 0.8667 (86.7%)
+
+Matriz de confusión:
+[[28  4]
+ [ 2 11]]
+
+Reporte de clasificación:
+              precision    recall  f1-score   support
+
+No Virginica       0.93      0.88      0.90        32
+   Virginica       0.73      0.85      0.79        13
+
+    accuracy                           0.87        45
+   macro avg       0.83      0.86      0.84        45
+weighted avg       0.88      0.87      0.87        45
+
+
+
+EJEMPLO DE PREDICCIÓN
+Características: Largo=6.5 cm, Ancho=3.0 cm
+Probabilidad de ser Virginica: 0.6113 (61.1%)
+Predicción: Virginica
+```
+:::
 :::
 
 
 ## Visualización del modelo
 
-::: {#cf730552 .cell}
+::: {#bc6b070e .cell execution_count=6}
 ``` {.python .cell-code}
 def plot_decision_boundary(modelo, X, y, title, filename):
     """Visualiza la frontera de decisión del modelo"""
@@ -429,6 +548,16 @@ plot_decision_boundary(
     'logistic_regression_boundary.png'
 )
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Gráfico guardado como 'logistic_regression_boundary.png'
+```
+:::
+
+::: {.cell-output .cell-output-display}
+![](index_files/figure-html/cell-7-output-2.png){width=1062 height=757}
+:::
 :::
 
 
@@ -693,7 +822,7 @@ Combina KNN con regresión local.
 
 ## Implementación
 
-::: {#df090f63 .cell}
+::: {#7533168b .cell execution_count=7}
 ``` {.python .cell-code}
 # Estandarizar características (importante para KNN)
 scaler = StandardScaler()
@@ -733,12 +862,30 @@ df_knn = pd.DataFrame(resultados_knn)
 mejor_k = df_knn.loc[df_knn['acc_test'].idxmax(), 'k']
 print(f"\n\nMejor k: {int(mejor_k)} (mayor accuracy en test)")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+EVALUACIÓN DE KNN CON DIFERENTES VALORES DE K
+======================================================================
+K     Accuracy Train  Accuracy Test   Diferencia  
+----------------------------------------------------------------------
+1     0.9619          0.7111          0.2508      
+3     0.8571          0.8000          0.0571      
+5     0.8667          0.8000          0.0667      
+10    0.8190          0.7556          0.0635      
+15    0.8381          0.7111          0.1270      
+20    0.8095          0.7556          0.0540      
+
+
+Mejor k: 3 (mayor accuracy en test)
+```
+:::
 :::
 
 
 ## Visualización del efecto de k
 
-::: {#aecc1d57 .cell}
+::: {#feeee0c7 .cell execution_count=8}
 ``` {.python .cell-code}
 # Entrenar modelo con mejor k
 modelo_knn_final = KNeighborsClassifier(n_neighbors=int(mejor_k))
@@ -776,12 +923,23 @@ plt.tight_layout()
 plt.savefig('knn_k_selection.png', dpi=300, bbox_inches='tight')
 print("\nGráfico guardado como 'knn_k_selection.png'")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+Gráfico guardado como 'knn_k_selection.png'
+```
+:::
+
+::: {.cell-output .cell-output-display}
+![](index_files/figure-html/cell-9-output-2.png){width=1431 height=470}
+:::
 :::
 
 
 ## Visualización de fronteras de decisión
 
-::: {#77f5ed52 .cell}
+::: {#ced80691 .cell execution_count=9}
 ``` {.python .cell-code}
 # Comparar diferentes valores de k
 fig, axes = plt.subplots(2, 3, figsize=(18, 12))
@@ -818,6 +976,16 @@ plt.tight_layout()
 plt.savefig('knn_comparison.png', dpi=300, bbox_inches='tight')
 print("Comparación guardada como 'knn_comparison.png'")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Comparación guardada como 'knn_comparison.png'
+```
+:::
+
+::: {.cell-output .cell-output-display}
+![](index_files/figure-html/cell-10-output-2.png){width=1718 height=1141}
+:::
 :::
 
 
@@ -1123,7 +1291,7 @@ Seleccionar $\alpha$ que minimiza error de validación cruzada.
 
 ## Implementación básica
 
-::: {#5786597d .cell}
+::: {#5f9ae45c .cell execution_count=10}
 ``` {.python .cell-code}
 # Entrenar árbol de decisión
 modelo_tree = DecisionTreeClassifier(
@@ -1155,12 +1323,26 @@ print(f"\nImportancia de características:")
 for _, row in importancias.iterrows():
     print(f"  {row['caracteristica']}: {row['importancia']:.4f}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+ÁRBOL DE DECISIÓN
+======================================================================
+Profundidad del árbol: 3
+Número de hojas: 7
+Accuracy en test: 0.8222 (82.2%)
+
+Importancia de características:
+  Largo sépalo: 0.9006
+  Ancho sépalo: 0.0994
+```
+:::
 :::
 
 
 ## Visualización del árbol
 
-::: {#df2e15d3 .cell}
+::: {#72541b69 .cell execution_count=11}
 ``` {.python .cell-code}
 # Visualizar árbol
 plt.figure(figsize=(20, 10))
@@ -1178,12 +1360,23 @@ plt.tight_layout()
 plt.savefig('decision_tree.png', dpi=300, bbox_inches='tight')
 print("\nÁrbol visualizado y guardado como 'decision_tree.png'")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+Árbol visualizado y guardado como 'decision_tree.png'
+```
+:::
+
+::: {.cell-output .cell-output-display}
+![](index_files/figure-html/cell-12-output-2.png){width=1910 height=951}
+:::
 :::
 
 
 ## Efecto de la profundidad
 
-::: {#e1a92af4 .cell}
+::: {#8855dffd .cell execution_count=12}
 ``` {.python .cell-code}
 # Evaluar diferentes profundidades
 profundidades = range(1, 11)
@@ -1239,6 +1432,33 @@ plt.tight_layout()
 plt.savefig('tree_depth_analysis.png', dpi=300, bbox_inches='tight')
 print("\nAnálisis guardado como 'tree_depth_analysis.png'")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+
+EFECTO DE LA PROFUNDIDAD DEL ÁRBOL
+======================================================================
+Profundidad  Accuracy Train  Accuracy Test   Hojas     
+----------------------------------------------------------------------
+1            0.8190          0.8222          2         
+2            0.8381          0.7778          4         
+3            0.8476          0.7556          7         
+4            0.8476          0.7556          11        
+5            0.8667          0.7556          15        
+6            0.8762          0.7556          19        
+7            0.9333          0.7333          24        
+8            0.9429          0.7333          28        
+9            0.9429          0.7333          32        
+10           0.9619          0.6889          35        
+
+Análisis guardado como 'tree_depth_analysis.png'
+```
+:::
+
+::: {.cell-output .cell-output-display}
+![](index_files/figure-html/cell-13-output-2.png){width=1431 height=470}
+:::
 :::
 
 
@@ -1519,7 +1739,7 @@ donde:
 
 ## Implementación
 
-::: {#5afa1aab .cell}
+::: {#4bdea8ec .cell execution_count=13}
 ``` {.python .cell-code}
 # Entrenar Random Forest
 modelo_rf = RandomForestClassifier(
@@ -1554,12 +1774,25 @@ print(f"\nImportancia de características:")
 for _, row in importancias_rf.iterrows():
     print(f"  {row['caracteristica']}: {row['importancia']:.4f} (±{row['std']:.4f})")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+RANDOM FOREST
+======================================================================
+Número de árboles: 100
+Accuracy en test: 0.8222 (82.2%)
+
+Importancia de características:
+  Largo sépalo: 0.7925 (±0.1558)
+  Ancho sépalo: 0.2075 (±0.1558)
+```
+:::
 :::
 
 
 ## Efecto del número de árboles
 
-::: {#eccfa71e .cell}
+::: {#35ac0f5b .cell execution_count=14}
 ``` {.python .cell-code}
 # Evaluar diferentes números de árboles
 n_trees_list = [1, 5, 10, 20, 50, 100, 200]
@@ -1607,6 +1840,30 @@ plt.tight_layout()
 plt.savefig('random_forest_ntrees.png', dpi=300, bbox_inches='tight')
 print("\nGráfico guardado como 'random_forest_ntrees.png'")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+
+EFECTO DEL NÚMERO DE ÁRBOLES
+======================================================================
+N Árboles    Accuracy Train  Accuracy Test  
+----------------------------------------------------------------------
+1            0.8381          0.7111         
+5            0.8857          0.8000         
+10           0.8762          0.7556         
+20           0.8952          0.8000         
+50           0.8857          0.8000         
+100          0.8857          0.8000         
+200          0.8667          0.7778         
+
+Gráfico guardado como 'random_forest_ntrees.png'
+```
+:::
+
+::: {.cell-output .cell-output-display}
+![](index_files/figure-html/cell-15-output-2.png){width=951 height=563}
+:::
 :::
 
 
@@ -1614,7 +1871,7 @@ print("\nGráfico guardado como 'random_forest_ntrees.png'")
 
 ## Dataset con 3 clases
 
-::: {#df21f6ee .cell}
+::: {#5090ded6 .cell execution_count=15}
 ``` {.python .cell-code}
 # Usar todas las especies de Iris (3 clases)
 X_multiclass = iris.data[:, :2]
@@ -1634,12 +1891,26 @@ X_train_mc, X_test_mc, y_train_mc, y_test_mc = train_test_split(
     X_multiclass, y_multiclass, test_size=0.3, random_state=42
 )
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+CLASIFICACIÓN MULTI-CLASE
+======================================================================
+Número de clases: 3
+Clases: ['setosa' 'versicolor' 'virginica']
+
+Distribución:
+  setosa: 50 muestras
+  versicolor: 50 muestras
+  virginica: 50 muestras
+```
+:::
 :::
 
 
 ## Entrenar modelos multi-clase
 
-::: {#27c739cc .cell}
+::: {#b07133ad .cell execution_count=16}
 ``` {.python .cell-code}
 # Entrenar cada modelo
 modelos_mc = {
@@ -1682,12 +1953,53 @@ mejor_modelo_mc = max(resultados_mc, key=lambda x: resultados_mc[x]['accuracy'])
 print(f"\n\nMejor modelo: {mejor_modelo_mc}")
 print(f"Accuracy: {resultados_mc[mejor_modelo_mc]['accuracy']:.4f}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+
+RESULTADOS CLASIFICACIÓN MULTI-CLASE
+======================================================================
+
+Logistic Regression:
+  Accuracy: 0.8222 (82.2%)
+  Matriz de confusión:
+  [[19  0  0]
+ [ 0  7  6]
+ [ 0  2 11]]
+
+KNN:
+  Accuracy: 0.7778 (77.8%)
+  Matriz de confusión:
+  [[19  0  0]
+ [ 0  8  5]
+ [ 0  5  8]]
+
+Decision Tree:
+  Accuracy: 0.7556 (75.6%)
+  Matriz de confusión:
+  [[18  1  0]
+ [ 0  8  5]
+ [ 0  5  8]]
+
+Random Forest:
+  Accuracy: 0.7556 (75.6%)
+  Matriz de confusión:
+  [[19  0  0]
+ [ 0  7  6]
+ [ 0  5  8]]
+
+
+Mejor modelo: Logistic Regression
+Accuracy: 0.8222
+```
+:::
 :::
 
 
 ## Visualización multi-clase
 
-::: {#3af5cb51 .cell}
+::: {#8df6dcfa .cell execution_count=17}
 ``` {.python .cell-code}
 # Visualizar fronteras de decisión para cada modelo
 fig, axes = plt.subplots(2, 2, figsize=(16, 14))
@@ -1725,6 +2037,17 @@ plt.tight_layout()
 plt.savefig('multiclass_comparison.png', dpi=300, bbox_inches='tight')
 print("\nComparación guardada como 'multiclass_comparison.png'")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+Comparación guardada como 'multiclass_comparison.png'
+```
+:::
+
+::: {.cell-output .cell-output-display}
+![](index_files/figure-html/cell-18-output-2.png){width=1526 height=1333}
+:::
 :::
 
 
@@ -1732,7 +2055,7 @@ print("\nComparación guardada como 'multiclass_comparison.png'")
 
 ## Curvas ROC para cada modelo
 
-::: {#8cc3b464 .cell}
+::: {#269c7a85 .cell execution_count=18}
 ``` {.python .cell-code}
 # Calcular curvas ROC para clasificación binaria
 def calcular_roc_multimodelo(modelos_dict, X_test, y_test):
@@ -1783,12 +2106,22 @@ for modelo in modelos_binarios.values():
 # Calcular y graficar ROC
 calcular_roc_multimodelo(modelos_binarios, X_test, y_test)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Curvas ROC guardadas como 'roc_comparison.png'
+```
+:::
+
+::: {.cell-output .cell-output-display}
+![](index_files/figure-html/cell-19-output-2.png){width=950 height=757}
+:::
 :::
 
 
 ## Tabla comparativa de métricas
 
-::: {#5ce22c7e .cell}
+::: {#6295e2cf .cell execution_count=19}
 ``` {.python .cell-code}
 # Compilar todas las métricas
 print("\n\nTABLA COMPARATIVA DE MODELOS")
@@ -1837,6 +2170,23 @@ print(df_comparacion.to_string(index=False))
 df_comparacion.to_csv('comparacion_modelos.csv', index=False)
 print("\n\nTabla guardada como 'comparacion_modelos.csv'")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+
+TABLA COMPARATIVA DE MODELOS
+======================================================================
+             Modelo  Accuracy  Precision  Recall  F1-Score    AUC
+Logistic Regression    0.8667     0.7333  0.8462    0.7857 0.9147
+          KNN (k=5)    0.7778     0.6154  0.6154    0.6154 0.8582
+      Decision Tree    0.7556     0.6250  0.3846    0.4762 0.7536
+      Random Forest    0.7333     0.5385  0.5385    0.5385 0.8209
+
+
+Tabla guardada como 'comparacion_modelos.csv'
+```
+:::
 :::
 
 
@@ -1844,7 +2194,7 @@ print("\n\nTabla guardada como 'comparacion_modelos.csv'")
 
 ## Aplicación 1: Clasificación de riesgo crediticio
 
-::: {#62ebf669 .cell}
+::: {#a0accab3 .cell execution_count=20}
 ``` {.python .cell-code}
 print("\n\n\nAPLICACIÓN: CLASIFICACIÓN DE RIESGO CREDITICIO")
 print("=" * 70)
@@ -1952,12 +2302,108 @@ importancias = pd.DataFrame({
 for _, row in importancias.iterrows():
     print(f"  {row['caracteristica']:<25} {row['importancia']:.4f} {'█' * int(row['importancia'] * 100)}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+
+
+APLICACIÓN: CLASIFICACIÓN DE RIESGO CREDITICIO
+======================================================================
+
+Dataset de crédito:
+  Total clientes: 2,000
+
+Distribución de riesgo:
+riesgo
+Medio    1406
+Bajo      399
+Alto      195
+Name: count, dtype: int64
+
+
+ENTRENAMIENTO DE MODELOS
+======================================================================
+
+Random Forest:
+  Accuracy: 0.8217 (82.2%)
+
+  Reporte de clasificación:
+              precision    recall  f1-score   support
+
+        Bajo      0.828     0.600     0.696       120
+       Medio      0.819     0.957     0.883       422
+        Alto      0.850     0.293     0.436        58
+
+    accuracy                          0.822       600
+   macro avg      0.832     0.617     0.672       600
+weighted avg      0.824     0.822     0.802       600
+
+
+Decision Tree:
+  Accuracy: 0.7967 (79.7%)
+
+  Reporte de clasificación:
+              precision    recall  f1-score   support
+
+        Bajo      0.694     0.717     0.705       120
+       Medio      0.841     0.879     0.860       422
+        Alto      0.600     0.362     0.452        58
+
+    accuracy                          0.797       600
+   macro avg      0.712     0.653     0.672       600
+weighted avg      0.788     0.797     0.789       600
+
+
+KNN:
+  Accuracy: 0.8150 (81.5%)
+
+  Reporte de clasificación:
+              precision    recall  f1-score   support
+
+        Bajo      0.779     0.617     0.688       120
+       Medio      0.818     0.948     0.878       422
+        Alto      0.938     0.259     0.405        58
+
+    accuracy                          0.815       600
+   macro avg      0.845     0.608     0.657       600
+weighted avg      0.822     0.815     0.794       600
+
+
+Logistic Regression:
+  Accuracy: 0.8600 (86.0%)
+
+  Reporte de clasificación:
+              precision    recall  f1-score   support
+
+        Bajo      0.823     0.775     0.798       120
+       Medio      0.876     0.934     0.904       422
+        Alto      0.784     0.500     0.611        58
+
+    accuracy                          0.860       600
+   macro avg      0.827     0.736     0.771       600
+weighted avg      0.856     0.860     0.854       600
+
+
+
+IMPORTANCIA DE CARACTERÍSTICAS (Random Forest)
+======================================================================
+  ratio_deuda_ingreso       0.3181 ███████████████████████████████
+  score_crediticio          0.1543 ███████████████
+  num_creditos_previos      0.1495 ██████████████
+  antiguedad_laboral        0.1171 ███████████
+  monto_solicitado          0.0876 ████████
+  ingreso_anual             0.0861 ████████
+  edad                      0.0739 ███████
+  tiene_hipoteca            0.0134 █
+```
+:::
 :::
 
 
 ## Aplicación 2: Segmentación de clientes
 
-::: {#313ec3e0 .cell}
+::: {#79cc1f0c .cell execution_count=21}
 ``` {.python .cell-code}
 print("\n\n\nAPLICACIÓN: SEGMENTACIÓN DE CLIENTES")
 print("=" * 70)
@@ -2065,6 +2511,58 @@ print("  2. Personalizar ofertas según segmento")
 print("  3. Identificar clientes con potencial de upgrade")
 print("  4. Optimizar estrategias de retención")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+
+
+APLICACIÓN: SEGMENTACIÓN DE CLIENTES
+======================================================================
+
+Distribución de segmentos:
+segmento
+Bronce     129
+Plata      548
+Oro        635
+Platino    188
+Name: count, dtype: int64
+
+
+MODELO DE SEGMENTACIÓN
+======================================================================
+Accuracy: 0.8489 (84.9%)
+
+Matriz de confusión:
+                    Predicho
+             Bronce  Plata   Oro  Platino
+Real Bronce      20     19     0       0
+     Plata        1    147    16       0
+     Oro          0     10   180       1
+     Platino      0      0    21      35
+
+
+CARACTERÍSTICAS MÁS IMPORTANTES PARA SEGMENTACIÓN
+======================================================================
+  gasto_mensual             0.3186 ███████████████████████████████
+  ticket_promedio           0.2043 ████████████████████
+  num_compras_mes           0.1317 █████████████
+  frecuencia_compra         0.1266 ████████████
+  ratio_gasto_ingreso       0.1147 ███████████
+  ingreso_mensual           0.0321 ███
+  antiguedad_meses          0.0271 ██
+  visitas_web               0.0229 ██
+  edad                      0.0220 ██
+
+
+APLICACIÓN PRÁCTICA:
+Este modelo permite:
+  1. Clasificar automáticamente nuevos clientes
+  2. Personalizar ofertas según segmento
+  3. Identificar clientes con potencial de upgrade
+  4. Optimizar estrategias de retención
+```
+:::
 :::
 
 
@@ -2072,7 +2570,7 @@ print("  4. Optimizar estrategias de retención")
 
 ## Ejercicio: Optimización de hiperparámetros
 
-::: {#491988e0 .cell}
+::: {#486d6c90 .cell execution_count=22}
 ``` {.python .cell-code}
 print("\n\n\nEJERCICIO: OPTIMIZACIÓN DE HIPERPARÁMETROS")
 print("=" * 70)
@@ -2142,6 +2640,43 @@ df_grid = pd.DataFrame(resultados_grid).sort_values('cv_score', ascending=False)
 print(f"\n\nTop 10 combinaciones:")
 print(df_grid.head(10).to_string(index=False))
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+
+
+EJERCICIO: OPTIMIZACIÓN DE HIPERPARÁMETROS
+======================================================================
+
+Buscando mejores hiperparámetros...
+Total combinaciones: 36
+
+
+MEJORES HIPERPARÁMETROS
+======================================================================
+  n_estimators: 100
+  max_depth: 5
+  min_samples_split: 10
+  CV Score: 0.8190
+
+Accuracy en test: 0.8000 (80.0%)
+
+
+Top 10 combinaciones:
+ n_estimators max_depth  min_samples_split  cv_score
+          100         5                 10  0.819048
+          200         5                 10  0.809524
+           50         5                 20  0.800000
+           50        15                 10  0.800000
+          100        15                 10  0.800000
+          200        15                 10  0.800000
+          100      None                 10  0.800000
+           50        10                 10  0.800000
+           50      None                 20  0.800000
+           50      None                 10  0.800000
+```
+:::
 :::
 
 

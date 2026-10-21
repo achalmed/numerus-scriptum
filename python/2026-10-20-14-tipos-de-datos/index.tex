@@ -1,0 +1,847 @@
+\documentclass[
+  doc,
+  floatsintext,
+  longtable,
+  a4paper,
+  nolmodern,
+  notxfonts,
+  notimes,
+  12pt,
+  colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{apa7}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\geometry{inner=1in, outer=1in}
+\fancyhfoffset[LE,RO]{0cm}
+
+
+\usepackage[bidi=default]{babel}
+\babelprovide[main,import]{spanish}
+
+
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+
+\RequirePackage{longtable}
+\RequirePackage{threeparttablex}
+
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-.5em}%
+	{\normalfont\normalsize\bfseries\typesectitle}}
+
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{0.5em}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-\z@\relax}%
+	{\normalfont\normalsize\bfseries\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
+
+
+
+\usepackage{longtable, booktabs, multirow, multicol, colortbl, hhline, caption, array, float, xpatch}
+\usepackage{subcaption}
+
+
+\renewcommand\thesubfigure{\Alph{subfigure}}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,theorems, breakable, skins}
+\usepackage{fontawesome5}
+
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{ACACAC}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582EC}
+\definecolor{quarto-callout-important-color-frame}{HTML}{D9534F}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{F0AD4E}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02B875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{FD7E14}
+
+%\newlength\Oldarrayrulewidth
+%\newlength\Oldtabcolsep
+
+
+\usepackage{hyperref}
+
+
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+
+
+\usepackage{newtx}
+
+\defaultfontfeatures{Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+
+
+
+
+
+\title{Tipos de datos}
+
+
+\shorttitle{TIPOS DE DATOS}
+
+
+\usepackage{etoolbox}
+
+
+
+\ccoppy{\textcopyright~2026}
+
+
+
+\author{Edison Achalma}
+
+
+
+\affiliation{
+{Escuela Profesional de Economía, Universidad Nacional de San Cristóbal
+de Huamanga}}
+
+
+
+
+\leftheader{Achalma}
+
+\date{2026-10-20}
+
+
+\abstract{Este abstract será actualizado una vez que se complete el
+contenido final del artículo. }
+
+
+
+\authornote{\par{\addORCIDlink{Edison Achalma}{0000-0001-6996-3364}} 
+\par{ }
+\par{   El autor no tiene conflictos de interés que revelar.    Los
+roles de autor se clasificaron utilizando la taxonomía de roles de
+colaborador (CRediT; https://credit.niso.org/) de la siguiente
+manera:  Edison Achalma:   conceptualización, metodología, análisis
+formal, investigación, recursos, curación de
+datos, redacción, visualización, supervisión, administración del
+proyecto}
+\par{La correspondencia relativa a este artículo debe dirigirse a Edison
+Achalma, Escuela Profesional de Economía, Universidad Nacional de San
+Cristóbal de Huamanga, Portal Independencia N°
+57, Ayacucho, AYA 5001, Perú, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
+}
+
+\makeatletter
+\let\endoldlt\endlongtable
+\def\endlongtable{
+\hline
+\endoldlt
+}
+\makeatother
+
+\urlstyle{same}
+
+
+
+\hypersetup{
+  pdftitle={Tipos de datos},
+  pdfauthor={Autor}
+}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Tabla de contenidos}
+\else
+  \newcommand\contentsname{Tabla de contenidos}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{Lista de Figuras}
+\else
+  \newcommand\listfigurename{Lista de Figuras}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{Lista de Tablas}
+\else
+  \newcommand\listtablename{Lista de Tablas}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figura}
+\else
+  \newcommand\figurename{Figura}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Tabla}
+\else
+  \newcommand\tablename{Tabla}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listados}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\makeatother
+
+% From https://tex.stackexchange.com/a/645996/211326
+%%% apa7 doesn't want to add appendix section titles in the toc
+%%% let's make it do it
+\makeatletter
+\xpatchcmd{\appendix}
+  {\par}
+  {\addcontentsline{toc}{section}{\@currentlabelname}\par}
+  {}{}
+\makeatother
+
+%% Disable longtable counter
+%% https://tex.stackexchange.com/a/248395/211326
+
+\usepackage{etoolbox}
+
+\makeatletter
+\patchcmd{\LT@caption}
+  {\bgroup}
+  {\bgroup\global\LTpatch@captiontrue}
+  {}{}
+\patchcmd{\longtable}
+  {\par}
+  {\par\global\LTpatch@captionfalse}
+  {}{}
+\apptocmd{\endlongtable}
+  {\ifLTpatch@caption\else\addtocounter{table}{-1}\fi}
+  {}{}
+\newif\ifLTpatch@caption
+\makeatother
+
+\begin{document}
+
+\maketitle
+
+
+\hypertarget{toc}{}
+\tableofcontents
+\newpage
+\section[Introduction]{Tipos de datos}
+
+\setcounter{secnumdepth}{3}
+
+\setlength\LTleft{0pt}
+
+
+
+
+\subsection{🎯 Motivación}\label{motivaciuxf3n}
+
+Los tipos de datos son la base de la programación. Determinan qué tipo
+de información puede almacenar una variable, qué operaciones puedes
+realizar con ella y cómo se comporta en diferentes situaciones. Entender
+los tipos de datos te permite escribir código más eficiente, evitar
+errores inesperados y aprovechar al máximo las capacidades de Python.
+
+\subsection{💡 Intuición}\label{intuiciuxf3n}
+
+Imagina que tienes diferentes tipos de contenedores:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Números} son como una calculadora: puedes sumarlos, restarlos,
+  multiplicarlos.
+\item
+  \textbf{Texto (strings)} son como palabras: puedes unirlas,
+  dividirlas, buscar letras.
+\item
+  \textbf{Listas} son como una bandeja con compartimentos: puedes
+  guardar varios elementos ordenados.
+\item
+  \textbf{Booleanos} son como un interruptor: solo pueden estar
+  encendidos (True) o apagados (False).
+\end{itemize}
+
+Cada contenedor tiene sus propias reglas y operaciones, y Python
+necesita saber con qué tipo está trabajando para actuar correctamente.
+
+\subsection{🧠 Modelo mental}\label{modelo-mental}
+
+En Python:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Tipado dinámico}: no declaras el tipo; Python lo deduce al
+  asignar.
+\item
+  \textbf{Todo es un objeto}: incluso los números y el texto son objetos
+  con métodos.
+\item
+  \textbf{Los tipos determinan el comportamiento}: lo que puedes hacer
+  con una variable depende de su tipo.
+\item
+  \textbf{\texttt{type()}}: tu herramienta para verificar el tipo de
+  cualquier variable.
+\end{enumerate}
+
+\subsection{📐 Desarrollo}\label{desarrollo}
+
+\subsubsection{1. Tipos de datos
+principales}\label{tipos-de-datos-principales}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1250}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3036}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2679}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3036}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Categoría
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Tipos
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Ejemplo
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Cuándo usar
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Texto} & \texttt{str} & \texttt{"Hola"} & Cualquier cadena de
+caracteres \\
+\textbf{Números} & \texttt{int}, \texttt{float}, \texttt{complex} &
+\texttt{5}, \texttt{3.14}, \texttt{1j} & Operaciones matemáticas \\
+\textbf{Booleanos} & \texttt{bool} & \texttt{True}, \texttt{False} &
+Condiciones lógicas \\
+\textbf{Secuencias} & \texttt{list}, \texttt{tuple}, \texttt{range} &
+\texttt{{[}1,2,3{]}}, \texttt{(1,2)}, \texttt{range(5)} & Colecciones de
+elementos ordenados \\
+\textbf{Mapeo} & \texttt{dict} & \texttt{\{"clave":\ "valor"\}} & Pares
+clave-valor \\
+\textbf{Conjuntos} & \texttt{set}, \texttt{frozenset} &
+\texttt{\{1,2,3\}} & Colecciones sin duplicados \\
+\textbf{Binarios} & \texttt{bytes}, \texttt{bytearray},
+\texttt{memoryview} & \texttt{b"Hello"} & Datos binarios \\
+\textbf{Nulo} & \texttt{NoneType} & \texttt{None} & Valor ``vacío'' o
+``sin valor'' \\
+\end{longtable}
+}
+
+\subsubsection{\texorpdfstring{2. Verificar el tipo con
+\texttt{type()}}{2. Verificar el tipo con type()}}\label{verificar-el-tipo-con-type}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OperatorTok{=} \DecValTok{5}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(x))  }\CommentTok{\# \textless{}class \textquotesingle{}int\textquotesingle{}\textgreater{}}
+
+\NormalTok{y }\OperatorTok{=} \StringTok{"Hola"}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(y))  }\CommentTok{\# \textless{}class \textquotesingle{}str\textquotesingle{}\textgreater{}}
+
+\NormalTok{z }\OperatorTok{=} \FloatTok{3.14}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(z))  }\CommentTok{\# \textless{}class \textquotesingle{}float\textquotesingle{}\textgreater{}}
+
+\NormalTok{w }\OperatorTok{=} \VariableTok{True}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(w))  }\CommentTok{\# \textless{}class \textquotesingle{}bool\textquotesingle{}\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{3. Asignación automática de
+tipo}\label{asignaciuxf3n-automuxe1tica-de-tipo}
+
+Python asigna el tipo cuando asignas un valor:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Asignación automática}
+\NormalTok{nombre }\OperatorTok{=} \StringTok{"Ana"}        \CommentTok{\# str}
+\NormalTok{edad }\OperatorTok{=} \DecValTok{25}             \CommentTok{\# int}
+\NormalTok{precio }\OperatorTok{=} \FloatTok{99.99}        \CommentTok{\# float}
+\NormalTok{es\_valido }\OperatorTok{=} \VariableTok{True}      \CommentTok{\# bool}
+\NormalTok{lista }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{]     }\CommentTok{\# list}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{4. Casting (conversión
+explícita)}\label{casting-conversiuxf3n-expluxedcita}
+
+Puedes convertir entre tipos usando funciones constructoras:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Convertir a string}
+\BuiltInTok{str}\NormalTok{(}\DecValTok{25}\NormalTok{)        }\CommentTok{\# "25"}
+\BuiltInTok{str}\NormalTok{(}\FloatTok{3.14}\NormalTok{)      }\CommentTok{\# "3.14"}
+
+\CommentTok{\# Convertir a entero}
+\BuiltInTok{int}\NormalTok{(}\StringTok{"25"}\NormalTok{)      }\CommentTok{\# 25}
+\BuiltInTok{int}\NormalTok{(}\FloatTok{3.14}\NormalTok{)      }\CommentTok{\# 3 (trunca decimales)}
+
+\CommentTok{\# Convertir a float}
+\BuiltInTok{float}\NormalTok{(}\StringTok{"3.14"}\NormalTok{)  }\CommentTok{\# 3.14}
+\BuiltInTok{float}\NormalTok{(}\DecValTok{5}\NormalTok{)       }\CommentTok{\# 5.0}
+
+\CommentTok{\# Convertir a booleano}
+\BuiltInTok{bool}\NormalTok{(}\DecValTok{0}\NormalTok{)        }\CommentTok{\# False (cero es False)}
+\BuiltInTok{bool}\NormalTok{(}\DecValTok{1}\NormalTok{)        }\CommentTok{\# True}
+\BuiltInTok{bool}\NormalTok{(}\StringTok{""}\NormalTok{)       }\CommentTok{\# False (string vacío es False)}
+\BuiltInTok{bool}\NormalTok{(}\StringTok{"Hola"}\NormalTok{)   }\CommentTok{\# True}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{5. Verificar el tipo en
+código}\label{verificar-el-tipo-en-cuxf3digo}
+
+A veces necesitas saber el tipo para tomar decisiones:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dato }\OperatorTok{=} \DecValTok{25}
+
+\ControlFlowTok{if} \BuiltInTok{type}\NormalTok{(dato) }\OperatorTok{==} \BuiltInTok{int}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Es un entero"}\NormalTok{)}
+\ControlFlowTok{elif} \BuiltInTok{type}\NormalTok{(dato) }\OperatorTok{==} \BuiltInTok{str}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Es texto"}\NormalTok{)}
+
+\CommentTok{\# Alternativa más idiomática}
+\ControlFlowTok{if} \BuiltInTok{isinstance}\NormalTok{(dato, }\BuiltInTok{int}\NormalTok{):}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Es un entero"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{🔬 Ejemplos}\label{ejemplos}
+
+\textbf{Mínimo ---} Tipos básicos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{texto }\OperatorTok{=} \StringTok{"Python"}          \CommentTok{\# str}
+\NormalTok{entero }\OperatorTok{=} \DecValTok{42}              \CommentTok{\# int}
+\NormalTok{decimal }\OperatorTok{=} \FloatTok{3.14}           \CommentTok{\# float}
+\NormalTok{booleano }\OperatorTok{=} \VariableTok{True}          \CommentTok{\# bool}
+\NormalTok{none }\OperatorTok{=} \VariableTok{None}              \CommentTok{\# NoneType}
+
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(texto))    }\CommentTok{\# \textless{}class \textquotesingle{}str\textquotesingle{}\textgreater{}}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(entero))   }\CommentTok{\# \textless{}class \textquotesingle{}int\textquotesingle{}\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Progresivo ---} Conversión entre tipos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Conversión de tipos}
+\NormalTok{edad }\OperatorTok{=} \StringTok{"25"}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(edad))      }\CommentTok{\# str}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(}\BuiltInTok{int}\NormalTok{(edad))) }\CommentTok{\# int}
+
+\CommentTok{\# Problemas comunes}
+\CommentTok{\# print("Edad: " + 25)  \# ❌ Error}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Edad: "} \OperatorTok{+} \BuiltInTok{str}\NormalTok{(}\DecValTok{25}\NormalTok{))  }\CommentTok{\# ✅ Convierte a string}
+
+\CommentTok{\# Operaciones con números}
+\NormalTok{x }\OperatorTok{=} \DecValTok{5}
+\NormalTok{y }\OperatorTok{=} \DecValTok{2}
+\BuiltInTok{print}\NormalTok{(x }\OperatorTok{/}\NormalTok{ y)   }\CommentTok{\# 2.5 (float)}
+\BuiltInTok{print}\NormalTok{(x }\OperatorTok{//}\NormalTok{ y)  }\CommentTok{\# 2 (int, división entera)}
+\BuiltInTok{print}\NormalTok{(x }\OperatorTok{\%}\NormalTok{ y)   }\CommentTok{\# 1 (resto)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Real ---} Sistema de usuario con validación:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Simulación de entrada de usuario}
+\NormalTok{nombre }\OperatorTok{=} \StringTok{"Carlos"}        \CommentTok{\# str}
+\NormalTok{edad }\OperatorTok{=} \DecValTok{28}               \CommentTok{\# int}
+\NormalTok{altura }\OperatorTok{=} \FloatTok{1.75}           \CommentTok{\# float}
+\NormalTok{es\_estudiante }\OperatorTok{=} \VariableTok{True}    \CommentTok{\# bool}
+
+\CommentTok{\# Validaciones}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Tipo de nombre: }\SpecialCharTok{\{}\BuiltInTok{type}\NormalTok{(nombre)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Tipo de edad: }\SpecialCharTok{\{}\BuiltInTok{type}\NormalTok{(edad)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Tipo de altura: }\SpecialCharTok{\{}\BuiltInTok{type}\NormalTok{(altura)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Tipo de estudiante: }\SpecialCharTok{\{}\BuiltInTok{type}\NormalTok{(es\_estudiante)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Conversiones necesarias}
+\NormalTok{edad\_texto }\OperatorTok{=} \BuiltInTok{str}\NormalTok{(edad)}
+\NormalTok{altura\_texto }\OperatorTok{=} \BuiltInTok{str}\NormalTok{(altura)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Edad: }\SpecialCharTok{\{}\NormalTok{edad\_texto}\SpecialCharTok{\}}\SpecialStringTok{ años"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Altura: }\SpecialCharTok{\{}\NormalTok{altura\_texto}\SpecialCharTok{\}}\SpecialStringTok{ metros"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{⚠️ Errores comunes}\label{errores-comunes}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3305}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3136}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3559}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Síntoma
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Solución
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Sumar string + número} & \texttt{TypeError} & Convierte:
+\texttt{str(edad)} o usa coma en print \\
+\textbf{Dividir por cero} & \texttt{ZeroDivisionError} & Verifica que el
+divisor no sea 0 \\
+\textbf{Índice fuera de rango} & \texttt{IndexError} & Verifica la
+longitud de la lista \\
+\textbf{Comparar tipos incompatibles} & \texttt{TypeError} & Convierte
+al mismo tipo antes de comparar \\
+\textbf{Usar \texttt{==} en lugar de \texttt{is} con None} & Comparación
+válida pero no idiomática & Usa \texttt{is\ None} para verificar None \\
+\end{longtable}
+}
+
+\subsection{✅ Buenas prácticas}\label{buenas-pruxe1cticas}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Usa \texttt{isinstance()} en lugar de \texttt{type()} para
+  verificar tipos}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ✅ Más flexible}
+\ControlFlowTok{if} \BuiltInTok{isinstance}\NormalTok{(valor, }\BuiltInTok{int}\NormalTok{):}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Es entero"}\NormalTok{)}
+
+\CommentTok{\# ❌ Menos flexible (no maneja herencia)}
+\ControlFlowTok{if} \BuiltInTok{type}\NormalTok{(valor) }\OperatorTok{==} \BuiltInTok{int}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Es entero"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Convierte tipos explícitamente cuando sea necesario}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{edad }\OperatorTok{=} \BuiltInTok{input}\NormalTok{(}\StringTok{"Edad: "}\NormalTok{)  }\CommentTok{\# input siempre devuelve str}
+\NormalTok{edad\_int }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(edad)    }\CommentTok{\# Convierte a int}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Sé consciente de los tipos en operaciones mixtas}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# La división siempre da float}
+\BuiltInTok{print}\NormalTok{(}\DecValTok{5} \OperatorTok{/} \DecValTok{2}\NormalTok{)   }\CommentTok{\# 2.5 (float)}
+\BuiltInTok{print}\NormalTok{(}\DecValTok{5} \OperatorTok{//} \DecValTok{2}\NormalTok{)  }\CommentTok{\# 2 (int)}
+
+\CommentTok{\# Suma de int + float da float}
+\BuiltInTok{print}\NormalTok{(}\DecValTok{5} \OperatorTok{+} \FloatTok{2.0}\NormalTok{) }\CommentTok{\# 7.0 (float)}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Usa nombres de variables que indiquen el tipo}
+  (implícitamente):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Convención}
+\NormalTok{nombres\_lista }\OperatorTok{=}\NormalTok{ [}\StringTok{"Ana"}\NormalTok{, }\StringTok{"Carlos"}\NormalTok{]}
+\NormalTok{contador\_int }\OperatorTok{=} \DecValTok{5}
+\NormalTok{es\_valido\_bool }\OperatorTok{=} \VariableTok{True}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Documenta los tipos en funciones} (type hints):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ saludar(nombre: }\BuiltInTok{str}\NormalTok{) }\OperatorTok{{-}\textgreater{}} \BuiltInTok{str}\NormalTok{:}
+    \ControlFlowTok{return} \SpecialStringTok{f"Hola, }\SpecialCharTok{\{}\NormalTok{nombre}\SpecialCharTok{\}}\SpecialStringTok{"}
+\end{Highlighting}
+\end{Shaded}
+\end{enumerate}
+
+\subsection{📝 Ejercicio}\label{ejercicio}
+
+\textbf{Básico} --- Exploración de tipos
+
+Escribe un programa que:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Cree variables de los siguientes tipos: \texttt{str}, \texttt{int},
+  \texttt{float}, \texttt{bool}, \texttt{list}, \texttt{dict},
+  \texttt{NoneType}
+\item
+  Muestre el tipo de cada variable con \texttt{type()}
+\item
+  Convierta las siguientes variables:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    El \texttt{str} a \texttt{int}
+  \item
+    El \texttt{int} a \texttt{float}
+  \item
+    El \texttt{float} a \texttt{str}
+  \item
+    El \texttt{bool} a \texttt{int}
+  \end{itemize}
+\item
+  Muestre los resultados de cada conversión y sus tipos
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Solución (no mires hasta haberlo intentado):}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 1. Variables de diferentes tipos}
+\NormalTok{texto }\OperatorTok{=} \StringTok{"42"}
+\NormalTok{numero\_entero }\OperatorTok{=} \DecValTok{25}
+\NormalTok{numero\_decimal }\OperatorTok{=} \FloatTok{3.14}
+\NormalTok{logico }\OperatorTok{=} \VariableTok{True}
+\NormalTok{lista\_ejemplo }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{]}
+\NormalTok{diccionario\_ejemplo }\OperatorTok{=}\NormalTok{ \{}\StringTok{"nombre"}\NormalTok{: }\StringTok{"Ana"}\NormalTok{\}}
+\NormalTok{nulo }\OperatorTok{=} \VariableTok{None}
+
+\CommentTok{\# 2. Mostrar tipos originales}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Tipos originales:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"texto: }\SpecialCharTok{\{}\BuiltInTok{type}\NormalTok{(texto)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"numero\_entero: }\SpecialCharTok{\{}\BuiltInTok{type}\NormalTok{(numero\_entero)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"numero\_decimal: }\SpecialCharTok{\{}\BuiltInTok{type}\NormalTok{(numero\_decimal)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"logico: }\SpecialCharTok{\{}\BuiltInTok{type}\NormalTok{(logico)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"lista: }\SpecialCharTok{\{}\BuiltInTok{type}\NormalTok{(lista\_ejemplo)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"diccionario: }\SpecialCharTok{\{}\BuiltInTok{type}\NormalTok{(diccionario\_ejemplo)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"nulo: }\SpecialCharTok{\{}\BuiltInTok{type}\NormalTok{(nulo)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"} \OperatorTok{+} \StringTok{"{-}"} \OperatorTok{*} \DecValTok{40}\NormalTok{)}
+
+\CommentTok{\# 3. Conversiones}
+\NormalTok{texto\_a\_int }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(texto)}
+\NormalTok{entero\_a\_float }\OperatorTok{=} \BuiltInTok{float}\NormalTok{(numero\_entero)}
+\NormalTok{decimal\_a\_str }\OperatorTok{=} \BuiltInTok{str}\NormalTok{(numero\_decimal)}
+\NormalTok{bool\_a\_int }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(logico)}
+
+\CommentTok{\# 4. Mostrar resultados}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Resultados de conversiones:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{texto}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{} → }\SpecialCharTok{\{}\NormalTok{texto\_a\_int}\SpecialCharTok{\}}\SpecialStringTok{ (tipo: }\SpecialCharTok{\{}\BuiltInTok{type}\NormalTok{(texto\_a\_int)}\SpecialCharTok{\}}\SpecialStringTok{)"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{numero\_entero}\SpecialCharTok{\}}\SpecialStringTok{ → }\SpecialCharTok{\{}\NormalTok{entero\_a\_float}\SpecialCharTok{\}}\SpecialStringTok{ (tipo: }\SpecialCharTok{\{}\BuiltInTok{type}\NormalTok{(entero\_a\_float)}\SpecialCharTok{\}}\SpecialStringTok{)"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{numero\_decimal}\SpecialCharTok{\}}\SpecialStringTok{ → \textquotesingle{}}\SpecialCharTok{\{}\NormalTok{decimal\_a\_str}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{} (tipo: }\SpecialCharTok{\{}\BuiltInTok{type}\NormalTok{(decimal\_a\_str)}\SpecialCharTok{\}}\SpecialStringTok{)"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{logico}\SpecialCharTok{\}}\SpecialStringTok{ → }\SpecialCharTok{\{}\NormalTok{bool\_a\_int}\SpecialCharTok{\}}\SpecialStringTok{ (tipo: }\SpecialCharTok{\{}\BuiltInTok{type}\NormalTok{(bool\_a\_int)}\SpecialCharTok{\}}\SpecialStringTok{)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{🗂️ Síntesis}\label{suxedntesis}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Tipos principales}: \texttt{str}, \texttt{int},
+  \texttt{float}, \texttt{bool}, \texttt{list}, \texttt{tuple},
+  \texttt{dict}, \texttt{set}, \texttt{NoneType}
+\item
+  \textbf{\texttt{type()}}: verifica el tipo de una variable
+\item
+  \textbf{Tipado dinámico}: Python infiere el tipo automáticamente
+\item
+  \textbf{Casting}: conversión explícita con funciones constructoras
+\item
+  \textbf{Operaciones}: dependen del tipo de dato
+\item
+  \textbf{\texttt{isinstance()}}: mejor que \texttt{type()} para
+  verificar tipos en herencia
+\item
+  \textbf{Type hints}: documentación opcional de tipos (Python 3.5+)
+\end{itemize}
+
+\subsection{🔗 Qué sigue}\label{quuxe9-sigue}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Relacionado:} variables (asignación y alcance), strings y
+  métodos de string
+\item
+  \textbf{Siguiente tema:} Strings --- aprenderás a trabajar con texto
+  en Python, incluyendo métodos, formateo y manipulación avanzada.
+\end{itemize}
+
+\section{Publicaciones Similares}\label{publicaciones-similares}
+
+Si te interesó este artículo, te recomendamos que explores otros blogs y
+recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo
+algunas sugerencias:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda}{Instalacion
+  De Anaconda}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda}{Configurar
+  Entorno Virtual Python Anaconda}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python}{01
+  Introducion A La Programacion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python}{02
+  Variables Expresiones Y Statements Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python}{03
+  Objetos De Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python}{04
+  Ejecucion Condicional Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python}{05
+  Iteraciones Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python}{06
+  Funciones Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python}{07
+  Dataframes Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python}{08
+  Prediccion Y Metrica De Performance Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python}{09
+  Metodos De Machine Learning Para Clasificacion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python}{10
+  Metodos De Machine Learning Para Regresion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python}{Visualizacion
+  De Datos Con Python}
+\end{enumerate}
+
+Esperamos que encuentres estas publicaciones igualmente interesantes y
+útiles. ¡Disfruta de la lectura!
+
+
+
+
+
+
+\end{document}

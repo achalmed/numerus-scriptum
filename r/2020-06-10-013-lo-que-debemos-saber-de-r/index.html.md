@@ -34,7 +34,8 @@ citation:
 date: 2020-06-10
 draft: false
 image: ../featured.jpg
-curso: r_curso_base
+curso: r
+tema: "1.3"
 ---
 
 # Lo que debemos saber

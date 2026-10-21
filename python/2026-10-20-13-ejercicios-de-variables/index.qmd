@@ -1,0 +1,477 @@
+---
+documentmode: doc
+copyrightnotice: 2026
+copyrightext: All rights reserved
+title: Ejercicios de variables
+shorttitle: EJERCICIOS DE VARIABLES
+abstract: Este abstract será actualizado una vez que se complete el contenido final del artículo.
+keywords: []
+categories:
+- Python
+tags:
+- python
+author-note:
+  status-changes:
+    affiliation-change: null
+    deceased: null
+  disclosures:
+    study-registration: null
+    data-sharing: null
+    related-report: null
+    conflict-of-interest: El autor no tiene conflictos de interés que revelar.
+    financial-support: null
+    gratitude: null
+    authorship-agreements: null
+description: ¡Excelente! Has completado la teoría sobre variables en Python.
+eval: true
+citation:
+  type: article-journal
+  author:
+  - Edison Achalma
+  pdf-url: https://numerus-scriptum.netlify.app/python/2026-10-20-13-ejercicios-de-variables/index.pdf
+date: 2026-10-20
+draft: false
+image: ../featured.jpg
+curso: python
+tema: "2.6"
+---
+
+¡Excelente! Has completado la teoría sobre variables en Python. Ahora es momento de poner a prueba tus conocimientos con estos ejercicios prácticos. Te recomiendo resolverlos en orden, ya que aumentan gradualmente en dificultad.
+
+---
+
+## 📌 Categoría 1: Variables Básicas
+
+### Ejercicio 1
+
+**Completa el código para crear una variable llamada `ciudad` con el valor "Madrid":**
+
+```python
+# Escribe tu código aquí
+```
+
+<details>
+<summary>💡 Ver solución</summary>
+
+```python
+ciudad = "Madrid"
+```
+
+</details>
+
+---
+
+### Ejercicio 2
+
+**¿Cuál es la salida del siguiente código?**
+
+```python
+x = 10
+y = 20
+x = y
+print(x)
+```
+
+<details>
+<summary>💡 Ver solución</summary>
+
+**Salida:** `20`
+
+**Explicación:** `x = y` asigna el valor de `y` (que es 20) a `x`, sobrescribiendo el valor anterior de 10.
+
+</details>
+
+---
+
+### Ejercicio 3
+
+**Corrige el error en el siguiente código:**
+
+```python
+2nombre = "Ana"
+print(2nombre)
+```
+
+<details>
+<summary>💡 Ver solución</summary>
+
+```python
+nombre2 = "Ana"  # Las variables no pueden empezar con número
+print(nombre2)
+```
+
+</details>
+
+---
+
+## 📌 Categoría 2: Nombres de Variables
+
+### Ejercicio 4
+
+**¿Cuáles de estos nombres de variables son válidos en Python?** (Selecciona todos los correctos)
+
+- A) `mi-variable`
+- B) `_variable`
+- C) `1variable`
+- D) `variable_1`
+- E) `mi variable`
+
+<details>
+<summary>💡 Ver solución</summary>
+
+**Respuestas correctas: B y D**
+
+- `_variable` ✅ (empieza con guión bajo, válido)
+- `variable_1` ✅ (contiene letras, números y guión bajo)
+- `mi-variable` ❌ (contiene guión `-`)
+- `1variable` ❌ (empieza con número)
+- `mi variable` ❌ (contiene espacio)
+  
+  </details>
+
+---
+
+### Ejercicio 5
+
+**Convierte estos nombres a la convención snake_case (recomendada en Python):**
+
+```python
+# ❌ Malos nombres
+nombreCompleto = "Ana"
+miVar = 25
+precioTotalProducto = 99.99
+```
+
+<details>
+<summary>💡 Ver solución</summary>
+
+```python
+# ✅ Snake case (recomendado)
+nombre_completo = "Ana"
+mi_var = 25
+precio_total_producto = 99.99
+```
+
+</details>
+
+---
+
+## 📌 Categoría 3: Múltiples Valores
+
+### Ejercicio 6
+
+**Completa el código para asignar los valores correctos a las variables:**
+
+```python
+# Asigna "Perro", "Gato", "Pájaro" a las variables a, b, c en una línea
+# Escribe tu código aquí
+
+print(a)  # Debe imprimir: Perro
+print(b)  # Debe imprimir: Gato
+print(c)  # Debe imprimir: Pájaro
+```
+
+<details>
+<summary>💡 Ver solución</summary>
+
+```python
+a, b, c = "Perro", "Gato", "Pájaro"
+```
+
+</details>
+
+---
+
+### Ejercicio 7
+
+**¿Qué imprime el siguiente código?**
+
+```python
+colores = ["rojo", "verde", "azul"]
+x, y, z = colores
+print(y)
+```
+
+<details>
+<summary>💡 Ver solución</summary>
+
+**Salida:** `verde`
+
+**Explicación:** El desempaquetado asigna `x = "rojo"`, `y = "verde"`, `z = "azul"`.
+
+</details>
+
+---
+
+### Ejercicio 8
+
+**Completa el código para intercambiar los valores de `x` e `y` en una línea:**
+
+```python
+x = 5
+y = 10
+
+# Escribe tu código aquí (1 línea)
+
+print(x)  # Debe imprimir: 10
+print(y)  # Debe imprimir: 5
+```
+
+<details>
+<summary>💡 Ver solución</summary>
+
+```python
+x, y = y, x  # Intercambio en una línea
+```
+
+</details>
+
+---
+
+## 📌 Categoría 4: Salida de Variables
+
+### Ejercicio 9
+
+**¿Cuál es la forma correcta de imprimir el texto "Ana tiene 25 años"?**
+
+```python
+nombre = "Ana"
+edad = 25
+```
+
+**Opciones:**
+
+- A) `print(nombre + " tiene " + edad + " años")`
+- B) `print(nombre, "tiene", edad, "años")`
+- C) Ambas son correctas
+
+<details>
+<summary>💡 Ver solución</summary>
+
+**Respuesta correcta: B**
+
+**Explicación:**
+
+- A) ❌ Error: no puedes sumar texto (`nombre`) con número (`edad`) usando `+`
+- B) ✅ Correcto: las comas separan diferentes tipos sin problemas
+  
+  </details>
+
+---
+
+### Ejercicio 10
+
+**¿Qué imprime el siguiente código?**
+
+```python
+x = 10
+y = "20"
+print(x + int(y))
+```
+
+<details>
+<summary>💡 Ver solución</summary>
+
+**Salida:** `30`
+
+**Explicación:** `int(y)` convierte el texto "20" al número 20, y luego suma 10 + 20 = 30.
+
+</details>
+
+---
+
+### Ejercicio 11
+
+**Completa el código para imprimir los datos separados por " | ":**
+
+```python
+nombre = "Ana"
+edad = 25
+ciudad = "Madrid"
+
+# Escribe tu código aquí (usando sep)
+# Debe imprimir: Ana | 25 | Madrid
+```
+
+<details>
+<summary>💡 Ver solución</summary>
+
+```python
+print(nombre, edad, ciudad, sep=" | ")
+```
+
+</details>
+
+---
+
+## 📌 Categoría 5: Variables Globales
+
+### Ejercicio 12
+
+**¿Qué imprime el siguiente código?**
+
+```python
+x = "global"
+
+def funcion():
+    x = "local"
+    print(x)
+
+funcion()
+print(x)
+```
+
+<details>
+<summary>💡 Ver solución</summary>
+
+**Salida:**
+
+```
+local
+global
+```
+
+**Explicación:** Dentro de `funcion()`, `x = "local"` crea una variable local que solo existe dentro de la función. La variable global `x = "global"` permanece sin cambios.
+
+</details>
+
+---
+
+### Ejercicio 13
+
+**Completa el código para modificar la variable global `contador` desde la función:**
+
+```python
+contador = 0
+
+def incrementar():
+    # Escribe tu código aquí
+    contador += 1
+
+incrementar()
+print(contador)  # Debe imprimir: 1
+```
+
+<details>
+<summary>💡 Ver solución</summary>
+
+```python
+contador = 0
+
+def incrementar():
+    global contador  # Declara que vas a modificar la global
+    contador += 1
+
+incrementar()
+print(contador)  # 1
+```
+
+</details>
+
+---
+
+### Ejercicio 14
+
+**¿Qué imprime el siguiente código?**
+
+```python
+mensaje = "Hola"
+
+def cambiar_mensaje():
+    global mensaje
+    mensaje = "Adiós"
+    print(mensaje)
+
+cambiar_mensaje()
+print(mensaje)
+```
+
+<details>
+<summary>💡 Ver solución</summary>
+
+**Salida:**
+
+```
+Adiós
+Adiós
+```
+
+**Explicación:** El `global` dentro de la función permite modificar la variable global `mensaje`. Después de la función, la global sigue siendo "Adiós".
+
+</details>
+
+---
+
+## 🏆 Ejercicio Final
+
+### Ejercicio 15 (Integrador)
+
+**Escribe un programa completo que:**
+
+1. Cree una variable global `total_ventas = 0`
+2. Cree una función `registrar_venta(monto)` que:
+   - Use la variable global para sumar el monto
+   - Muestre "Venta registrada: [monto] €"
+3. Cree una función `mostrar_total()` que muestre "Total de ventas: [total] €"
+4. Registre tres ventas de diferentes montos
+5. Muestre el total final
+
+**Usa nombres de variables descriptivos en snake_case.**
+
+---
+
+<details>
+<summary>💡 Ver solución</summary>
+
+```python
+# Variable global
+total_ventas = 0
+
+def registrar_venta(monto):
+    """Registra una venta y actualiza el total."""
+    global total_ventas
+    total_ventas += monto
+    print(f"Venta registrada: {monto} €")
+
+def mostrar_total():
+    """Muestra el total de ventas acumulado."""
+    print(f"Total de ventas: {total_ventas} €")
+
+# Registrar ventas
+registrar_venta(150.50)
+registrar_venta(75.25)
+registrar_venta(200.00)
+
+# Mostrar resultado final
+mostrar_total()
+```
+
+**Salida esperada:**
+
+```
+Venta registrada: 150.5 €
+Venta registrada: 75.25 €
+Venta registrada: 200.0 €
+Total de ventas: 425.75 €
+```
+
+</details>
+
+---
+
+## 📊 Resumen de Tu Progreso
+
+| Categoría            | Ejercicios | Completados |
+| -------------------- | ---------- | ----------- |
+| Variables Básicas    | 1-3        | [ ] [ ] [ ] |
+| Nombres de Variables | 4-5        | [ ] [ ]     |
+| Múltiples Valores    | 6-8        | [ ] [ ] [ ] |
+| Salida de Variables  | 9-11       | [ ] [ ] [ ] |
+| Variables Globales   | 12-14      | [ ] [ ] [ ] |
+| Desafío Final        | 15         | [ ]         |
+
+{{< include ../../_contenido-inicio.qmd >}}
+
+{{< include ../_contenido_python.qmd >}}
+
+{{< include ../../_contenido-final.qmd >}}

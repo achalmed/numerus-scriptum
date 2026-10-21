@@ -35,7 +35,8 @@ citation:
 date: 2022-11-07
 draft: true
 image: ../featured.jpg
-curso: r_curso_base
+curso: r
+tema: "4.1"
 ---
 
 Este artículo está actualmente en proceso de edición, y todas las secciones serán ampliadas y refinadas en futuras revisiones.

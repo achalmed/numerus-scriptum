@@ -1,0 +1,715 @@
+\documentclass[
+  doc,
+  floatsintext,
+  longtable,
+  a4paper,
+  nolmodern,
+  notxfonts,
+  notimes,
+  12pt,
+  colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{apa7}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\geometry{inner=1in, outer=1in}
+\fancyhfoffset[LE,RO]{0cm}
+
+
+\usepackage[bidi=default]{babel}
+\babelprovide[main,import]{spanish}
+
+
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+
+\RequirePackage{longtable}
+\RequirePackage{threeparttablex}
+
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-.5em}%
+	{\normalfont\normalsize\bfseries\typesectitle}}
+
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{0.5em}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-\z@\relax}%
+	{\normalfont\normalsize\bfseries\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
+
+
+
+\usepackage{longtable, booktabs, multirow, multicol, colortbl, hhline, caption, array, float, xpatch}
+\usepackage{subcaption}
+
+
+\renewcommand\thesubfigure{\Alph{subfigure}}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,theorems, breakable, skins}
+\usepackage{fontawesome5}
+
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{ACACAC}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582EC}
+\definecolor{quarto-callout-important-color-frame}{HTML}{D9534F}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{F0AD4E}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02B875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{FD7E14}
+
+%\newlength\Oldarrayrulewidth
+%\newlength\Oldtabcolsep
+
+
+\usepackage{hyperref}
+
+
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+
+
+\usepackage{newtx}
+
+\defaultfontfeatures{Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+
+
+
+
+
+\title{Sintaxis de Python}
+
+
+\shorttitle{SINTAXIS DE PYTHON}
+
+
+\usepackage{etoolbox}
+
+
+
+\ccoppy{\textcopyright~2026}
+
+
+
+\author{Edison Achalma}
+
+
+
+\affiliation{
+{Escuela Profesional de Economía, Universidad Nacional de San Cristóbal
+de Huamanga}}
+
+
+
+
+\leftheader{Achalma}
+
+\date{2026-10-20}
+
+
+\abstract{Este abstract será actualizado una vez que se complete el
+contenido final del artículo. }
+
+
+
+\authornote{\par{\addORCIDlink{Edison Achalma}{0000-0001-6996-3364}} 
+\par{ }
+\par{   El autor no tiene conflictos de interés que revelar.    Los
+roles de autor se clasificaron utilizando la taxonomía de roles de
+colaborador (CRediT; https://credit.niso.org/) de la siguiente
+manera:  Edison Achalma:   conceptualización, metodología, análisis
+formal, investigación, recursos, curación de
+datos, redacción, visualización, supervisión, administración del
+proyecto}
+\par{La correspondencia relativa a este artículo debe dirigirse a Edison
+Achalma, Escuela Profesional de Economía, Universidad Nacional de San
+Cristóbal de Huamanga, Portal Independencia N°
+57, Ayacucho, AYA 5001, Perú, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
+}
+
+\makeatletter
+\let\endoldlt\endlongtable
+\def\endlongtable{
+\hline
+\endoldlt
+}
+\makeatother
+
+\urlstyle{same}
+
+
+
+\hypersetup{
+  pdftitle={Sintaxis de Python},
+  pdfauthor={Autor}
+}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Tabla de contenidos}
+\else
+  \newcommand\contentsname{Tabla de contenidos}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{Lista de Figuras}
+\else
+  \newcommand\listfigurename{Lista de Figuras}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{Lista de Tablas}
+\else
+  \newcommand\listtablename{Lista de Tablas}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figura}
+\else
+  \newcommand\figurename{Figura}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Tabla}
+\else
+  \newcommand\tablename{Tabla}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listados}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\makeatother
+
+% From https://tex.stackexchange.com/a/645996/211326
+%%% apa7 doesn't want to add appendix section titles in the toc
+%%% let's make it do it
+\makeatletter
+\xpatchcmd{\appendix}
+  {\par}
+  {\addcontentsline{toc}{section}{\@currentlabelname}\par}
+  {}{}
+\makeatother
+
+%% Disable longtable counter
+%% https://tex.stackexchange.com/a/248395/211326
+
+\usepackage{etoolbox}
+
+\makeatletter
+\patchcmd{\LT@caption}
+  {\bgroup}
+  {\bgroup\global\LTpatch@captiontrue}
+  {}{}
+\patchcmd{\longtable}
+  {\par}
+  {\par\global\LTpatch@captionfalse}
+  {}{}
+\apptocmd{\endlongtable}
+  {\ifLTpatch@caption\else\addtocounter{table}{-1}\fi}
+  {}{}
+\newif\ifLTpatch@caption
+\makeatother
+
+\begin{document}
+
+\maketitle
+
+
+\hypertarget{toc}{}
+\tableofcontents
+\newpage
+\section[Introduction]{Sintaxis de Python}
+
+\setcounter{secnumdepth}{3}
+
+\setlength\LTleft{0pt}
+
+
+
+
+\subsection{🎯 Motivación}\label{motivaciuxf3n}
+
+La sintaxis es el conjunto de reglas que definen cómo se escribe código
+válido en Python. A diferencia de otros lenguajes donde la sintaxis es
+más permisiva, Python fue diseñado para ser \textbf{legible y
+consistente}. Entender la sintaxis desde el principio te ahorrará
+errores frustrantes y hará que tu código sea más claro para otros (y
+para ti mismo cuando lo releas).
+
+\subsection{💡 Intuición}\label{intuiciuxf3n}
+
+Piensa en la sintaxis de Python como las reglas gramaticales de un
+idioma. En español, ``El perro come'' es válido; ``Perro el come'' suena
+mal. En Python, la indentación es como la puntuación: no es opcional, es
+parte de la gramática. Si olvidas los espacios, Python no entiende dónde
+termina un bloque y empieza otro, igual que si escribieras una oración
+sin puntos.
+
+\subsection{🧠 Modelo mental}\label{modelo-mental}
+
+La sintaxis de Python se basa en tres pilares fundamentales:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Indentación como estructura}: en lugar de llaves
+  (\texttt{\{\}}) o palabras clave (\texttt{begin/end}), Python usa
+  espacios para agrupar código. Esto obliga a escribir código limpio y
+  legible.
+\item
+  \textbf{Instrucciones línea por línea}: cada línea suele ser una
+  instrucción completa. No necesitas punto y coma (\texttt{;}) al final.
+\item
+  \textbf{Comentarios documentan, no ejecutan}: todo lo que escribas
+  después de \texttt{\#} es ignorado por Python. Son para ti y para
+  otros humanos.
+\end{enumerate}
+
+\subsection{📐 Desarrollo}\label{desarrollo}
+
+\subsubsection{1. Indentación: la regla de
+oro}\label{indentaciuxf3n-la-regla-de-oro}
+
+En Python, la indentación \textbf{define bloques de código}. Esto aplica
+a:
+
+\begin{itemize}
+\tightlist
+\item
+  Condicionales (\texttt{if}, \texttt{elif}, \texttt{else})
+\item
+  Bucles (\texttt{for}, \texttt{while})
+\item
+  Funciones (\texttt{def})
+\item
+  Clases (\texttt{class})
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if} \DecValTok{5} \OperatorTok{\textgreater{}} \DecValTok{2}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Cinco es mayor que dos"}\NormalTok{)  }\CommentTok{\# Esta línea está indentada}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Esto también pertenece al if"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Esto ya está fuera del if"}\NormalTok{)   }\CommentTok{\# Sin indentación = fuera del bloque}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Reglas de indentación:}
+
+\begin{itemize}
+\tightlist
+\item
+  Debe haber \textbf{al menos un espacio} o un tabulador.
+\item
+  El \textbf{número de espacios debe ser consistente} dentro del mismo
+  bloque.
+\item
+  La convención más común es \textbf{4 espacios} (recomendado por PEP
+  8).
+\end{itemize}
+
+\subsubsection{2. Variables: creación sin
+declaración}\label{variables-creaciuxf3n-sin-declaraciuxf3n}
+
+En Python, \textbf{no declaras} variables. Se crean cuando les asignas
+un valor:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nombre }\OperatorTok{=} \StringTok{"Ana"}      \CommentTok{\# Variable de texto (str)}
+\NormalTok{edad }\OperatorTok{=} \DecValTok{25}           \CommentTok{\# Variable numérica (int)}
+\NormalTok{precio }\OperatorTok{=} \FloatTok{99.99}      \CommentTok{\# Variable decimal (float)}
+\NormalTok{es\_valido }\OperatorTok{=} \VariableTok{True}    \CommentTok{\# Variable booleana (bool)}
+\end{Highlighting}
+\end{Shaded}
+
+Python infiere el tipo automáticamente. Las variables pueden cambiar de
+tipo durante la ejecución (tipado dinámico).
+
+\subsubsection{3. Comentarios: documenta tu
+código}\label{comentarios-documenta-tu-cuxf3digo}
+
+Los comentarios son líneas que Python ignora completamente. Sirven para
+explicar qué hace tu código:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Esto es un comentario de una línea}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Hola"}\NormalTok{)  }\CommentTok{\# También puedes poner comentarios al final de una línea}
+
+\CommentTok{\# Los comentarios son útiles para:}
+\CommentTok{\# {-} Explicar lógica compleja}
+\CommentTok{\# {-} Desactivar temporalmente código}
+\CommentTok{\# {-} Dejar notas para ti mismo o para otros}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{4. Convenciones de sintaxis (PEP
+8)}\label{convenciones-de-sintaxis-pep-8}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Sensibilidad a mayúsculas}: \texttt{miVariable} y
+  \texttt{mivariable} son diferentes.
+\item
+  \textbf{Nombres en minúsculas con guiones bajos}:
+  \texttt{nombre\_usuario} (no \texttt{nombreUsuario}).
+\item
+  \textbf{Constantes en mayúsculas}: \texttt{MAXIMO\ =\ 100}.
+\item
+  \textbf{Una línea en blanco} entre funciones y clases para
+  legibilidad.
+\end{itemize}
+
+\subsection{🔬 Ejemplos}\label{ejemplos}
+
+\textbf{Mínimo ---} Un programa que combina sintaxis válida:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Calcular descuento simple}
+\NormalTok{precio }\OperatorTok{=} \DecValTok{100}
+\NormalTok{descuento }\OperatorTok{=} \DecValTok{20}
+\NormalTok{precio\_final }\OperatorTok{=}\NormalTok{ precio }\OperatorTok{{-}}\NormalTok{ descuento}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Precio final:"}\NormalTok{, precio\_final)}
+\CommentTok{\# Salida: Precio final: 80}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Progresivo ---} Indentación y bloques correctos vs incorrectos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ✅ CORRECTO {-} mismo número de espacios (4)}
+\ControlFlowTok{if} \DecValTok{10} \OperatorTok{\textgreater{}} \DecValTok{5}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Diez es mayor"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Este mensaje también está dentro del if"}\NormalTok{)}
+
+\CommentTok{\# ❌ INCORRECTO {-} indentación inconsistente}
+\ControlFlowTok{if} \DecValTok{10} \OperatorTok{\textgreater{}} \DecValTok{5}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Diez es mayor"}\NormalTok{)}
+  \BuiltInTok{print}\NormalTok{(}\StringTok{"Este mensaje tiene 2 espacios"}\NormalTok{)  }\CommentTok{\# Error: indentación inconsistente}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Real ---} Un script que usa sintaxis básica con comentarios:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# config.py {-} Configuración simple de usuario}
+\NormalTok{nombre }\OperatorTok{=} \BuiltInTok{input}\NormalTok{(}\StringTok{"¿Cómo te llamas? "}\NormalTok{)  }\CommentTok{\# Captura entrada del usuario}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Hola, }\SpecialCharTok{\{}\NormalTok{nombre}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)            }\CommentTok{\# f{-}string: formatea cadenas}
+
+\CommentTok{\# Ejecución condicional}
+\ControlFlowTok{if}\NormalTok{ nombre }\OperatorTok{==} \StringTok{"admin"}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Modo administrador activado"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Tienes acceso completo"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Modo usuario"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Acceso limitado"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{⚠️ Errores comunes}\label{errores-comunes}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2184}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4080}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3736}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Síntoma
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Cómo detectarlo
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Indentación faltante} &
+\texttt{IndentationError:\ expected\ an\ indented\ block} & Busca la
+línea marcada; debe tener espacios antes del código \\
+\textbf{Indentación inconsistente} &
+\texttt{IndentationError:\ unindent\ does\ not\ match\ any\ outer\ indentation\ level}
+& Usa espacios o tabs, pero NO mezcles ambos \\
+\textbf{Confundir \texttt{=} con \texttt{==}} & La variable se reasigna
+en lugar de comparar & Revisa condicionales: \texttt{=} es asignación,
+\texttt{==} es comparación \\
+\textbf{Olvidar cerrar paréntesis/comillas} &
+\texttt{SyntaxError:\ unexpected\ EOF\ while\ parsing} & Cuenta
+paréntesis y comillas; deben abrirse y cerrarse \\
+\textbf{Espacios en nombres de variables} &
+\texttt{SyntaxError:\ invalid\ syntax} & Las variables no pueden tener
+espacios: \texttt{mi\ nombre} → \texttt{mi\_nombre} \\
+\end{longtable}
+}
+
+\subsection{✅ Buenas prácticas}\label{buenas-pruxe1cticas}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Usa 4 espacios para indentar} (configura tu editor para que
+  TAB inserte 4 espacios).
+\item
+  \textbf{Comenta el ``por qué''}, no el ``qué'': el código ya dice qué
+  hace.
+\item
+  \textbf{Nombra variables de forma descriptiva}:
+  \texttt{precio\_con\_descuento} en lugar de \texttt{pcd}.
+\item
+  \textbf{No uses palabras reservadas} como variables (\texttt{print},
+  \texttt{if}, \texttt{while}, \texttt{class}).
+\item
+  \textbf{Agrupa lógica relacionada} con líneas en blanco para separar
+  secciones.
+\end{itemize}
+
+\subsection{📝 Ejercicio}\label{ejercicio}
+
+\textbf{Básico} --- Corrección de errores
+
+El siguiente código tiene \textbf{4 errores de sintaxis}. Encuéntralos y
+corrígelos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# calculadora simple}
+\NormalTok{numero1 }\OperatorTok{=} \DecValTok{10}
+\NormalTok{numero2 }\OperatorTok{=} \DecValTok{5}
+\NormalTok{suma }\OperatorTok{=}\NormalTok{ numero1 }\OperatorTok{+}\NormalTok{ numero2}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"La suma es"}\NormalTok{, suma)}
+\ControlFlowTok{if}\NormalTok{ suma }\OperatorTok{\textgreater{}} \DecValTok{10}\NormalTok{:}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"La suma es mayor que 10"}\NormalTok{)}
+\NormalTok{    resta }\OperatorTok{=}\NormalTok{ numero1 }\OperatorTok{{-}}\NormalTok{ numero2}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"La resta es"}\NormalTok{, resta)}
+   \BuiltInTok{print}\NormalTok{(}\StringTok{"Fin del programa"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Pista:} busca problemas de indentación y nombres mal escritos.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Solución (no mires hasta haberlo intentado):}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# calculadora simple}
+\NormalTok{numero1 }\OperatorTok{=} \DecValTok{10}
+\NormalTok{numero2 }\OperatorTok{=} \DecValTok{5}
+\NormalTok{suma }\OperatorTok{=}\NormalTok{ numero1 }\OperatorTok{+}\NormalTok{ numero2}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"La suma es"}\NormalTok{, suma)}
+\ControlFlowTok{if}\NormalTok{ suma }\OperatorTok{\textgreater{}} \DecValTok{10}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"La suma es mayor que 10"}\NormalTok{)  }\CommentTok{\# Faltaba indentación}
+\NormalTok{    resta }\OperatorTok{=}\NormalTok{ numero1 }\OperatorTok{{-}}\NormalTok{ numero2}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"La resta es"}\NormalTok{, resta)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Fin del programa"}\NormalTok{)  }\CommentTok{\# La indentación extra no es necesaria}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{🗂️ Síntesis}\label{suxedntesis}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Indentación = bloques de código}: esencial, no opcional (4
+  espacios por convención).
+\item
+  \textbf{Variables se crean al asignar}: no necesitan declaración
+  previa.
+\item
+  \textbf{Comentarios con \texttt{\#}}: documentan, no ejecutan.
+\item
+  \textbf{Sintaxis sensible a mayúsculas}: \texttt{Variable} ≠
+  \texttt{variable}.
+\item
+  \textbf{Usa PEP 8}: guía de estilo para código limpio y consistente.
+\end{itemize}
+
+\subsection{🔗 Qué sigue}\label{quuxe9-sigue}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Relacionado:} variables y tipos de datos (manejo de texto,
+  números, booleanos)
+\item
+  \textbf{Siguiente tema:} Variables y tipos de datos --- aprenderás a
+  almacenar y manipular información con distintos tipos de datos en
+  Python.
+\end{itemize}
+
+\section{Publicaciones Similares}\label{publicaciones-similares}
+
+Si te interesó este artículo, te recomendamos que explores otros blogs y
+recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo
+algunas sugerencias:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda}{Instalacion
+  De Anaconda}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda}{Configurar
+  Entorno Virtual Python Anaconda}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python}{01
+  Introducion A La Programacion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python}{02
+  Variables Expresiones Y Statements Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python}{03
+  Objetos De Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python}{04
+  Ejecucion Condicional Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python}{05
+  Iteraciones Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python}{06
+  Funciones Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python}{07
+  Dataframes Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python}{08
+  Prediccion Y Metrica De Performance Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python}{09
+  Metodos De Machine Learning Para Clasificacion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python}{10
+  Metodos De Machine Learning Para Regresion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python}{Visualizacion
+  De Datos Con Python}
+\end{enumerate}
+
+Esperamos que encuentres estas publicaciones igualmente interesantes y
+útiles. ¡Disfruta de la lectura!
+
+
+
+
+
+
+\end{document}

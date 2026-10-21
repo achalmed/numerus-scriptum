@@ -44,11 +44,13 @@ author:
 jupyter: python3
 image: ../featured.jpg
 curso: python_curso_base
+execute:
+  enabled: true                   # lección de Python con salidas reales; freeze: true (de la sección) la ejecuta una vez (autor, 2026-10-20)
 ---
 
 # Grafico de lineas
 
-::: {#12f1d3bd .cell}
+::: {#a01d1a09 .cell execution_count=1}
 ``` {.python .cell-code}
 import numpy as np
 import matplotlib.pyplot as plt
@@ -93,10 +95,14 @@ plt.tight_layout()
 # Mostrar el gráfico
 plt.show()
 ```
+
+::: {.cell-output .cell-output-display}
+![](index_files/figure-html/cell-2-output-1.png){width=661 height=468}
+:::
 :::
 
 
-::: {#9cd36ebf .cell}
+::: {#721ac6bc .cell execution_count=2}
 ``` {.python .cell-code}
 import matplotlib.pyplot as plt
 import numpy as np
@@ -108,10 +114,14 @@ fig, ax = plt.subplots()
 ax.plot(x, y)
 plt.show()
 ```
+
+::: {.cell-output .cell-output-display}
+![](index_files/figure-html/cell-3-output-1.png){width=590 height=411}
+:::
 :::
 
 
-::: {#fig-polar .cell}
+::: {#cell-fig-polar .cell execution_count=3}
 ``` {.python .cell-code}
 import numpy as np
 import matplotlib.pyplot as plt
@@ -126,13 +136,17 @@ ax.set_rticks([0.5, 1, 1.5, 2])
 ax.grid(True)
 plt.show()
 ```
+
+::: {.cell-output .cell-output-display}
+![A line plot on a polar axis](index_files/figure-html/fig-polar-output-1.png){#fig-polar width=450 height=439}
+:::
 :::
 
 
 # Gráfico de barras
 ## horizontal
 
-::: {#ce81ba66 .cell}
+::: {#9a4bd152 .cell execution_count=4}
 ``` {.python .cell-code}
 import matplotlib.pyplot as plt
 
@@ -163,12 +177,16 @@ plt.tight_layout()
 # Mostrar el gráfico
 plt.show()
 ```
+
+::: {.cell-output .cell-output-display}
+![](index_files/figure-html/cell-5-output-1.png){width=661 height=468}
+:::
 :::
 
 
 ## vertical
 
-::: {#1da00650 .cell}
+::: {#7aea788d .cell execution_count=5}
 ``` {.python .cell-code}
 #plt.figure(figsize=[10,8])
 #Consumo de legumbres en el 2001
@@ -182,12 +200,16 @@ plt.xlabel("Consumo (kg/hab)")
 plt.title("Consumo de Legumbres en el 2001")
 plt.show()
 ```
+
+::: {.cell-output .cell-output-display}
+![](index_files/figure-html/cell-6-output-1.png){width=632 height=449}
+:::
 :::
 
 
 # Histograma
 
-::: {#66874cc0 .cell}
+::: {#7440caec .cell execution_count=6}
 ``` {.python .cell-code}
 import matplotlib.pyplot as plt
 
@@ -221,12 +243,16 @@ plt.tight_layout()
 # Mostrar el gráfico
 plt.show()
 ```
+
+::: {.cell-output .cell-output-display}
+![](index_files/figure-html/cell-7-output-1.png){width=661 height=468}
+:::
 :::
 
 
 # Grafico circular
 
-::: {#a0a831da .cell}
+::: {#551f6c37 .cell execution_count=7}
 ``` {.python .cell-code}
 import matplotlib.pyplot as plt
 
@@ -263,12 +289,16 @@ plt.tight_layout()
 # Mostrar el gráfico
 plt.show()
 ```
+
+::: {.cell-output .cell-output-display}
+![](index_files/figure-html/cell-8-output-1.png){width=458 height=470}
+:::
 :::
 
 
 # Grafico de Donut
 
-::: {#84eac8aa .cell}
+::: {#e0fe22ca .cell execution_count=8}
 ``` {.python .cell-code}
 import matplotlib.pyplot as plt
 
@@ -309,12 +339,16 @@ plt.tight_layout()
 # Mostrar el gráfico
 plt.show()
 ```
+
+::: {.cell-output .cell-output-display}
+![](index_files/figure-html/cell-9-output-1.png){width=458 height=470}
+:::
 :::
 
 
 # Grafico de cajas
 
-::: {#0f7b1564 .cell}
+::: {#4895992b .cell execution_count=9}
 ``` {.python .cell-code}
 import matplotlib.pyplot as plt
 
@@ -349,12 +383,16 @@ plt.tight_layout()
 # Mostrar el gráfico
 plt.show()
 ```
+
+::: {.cell-output .cell-output-display}
+![](index_files/figure-html/cell-10-output-1.png){width=663 height=469}
+:::
 :::
 
 
 # Grafico de barras combinadas
 
-::: {#256c9ad5 .cell}
+::: {#7cbcbcaa .cell execution_count=10}
 ``` {.python .cell-code}
 import matplotlib.pyplot as plt
 
@@ -397,12 +435,16 @@ plt.tight_layout()
 # Mostrar el gráfico
 plt.show()
 ```
+
+::: {.cell-output .cell-output-display}
+![](index_files/figure-html/cell-11-output-1.png){width=663 height=470}
+:::
 :::
 
 
 # Graficos combinados
 
-::: {#8f104cd5 .cell}
+::: {#2a5a4216 .cell execution_count=11}
 ``` {.python .cell-code}
 import matplotlib.pyplot as plt
 
@@ -441,6 +483,10 @@ plt.tight_layout()
 # Mostrar el gráfico
 plt.show()
 ```
+
+::: {.cell-output .cell-output-display}
+![](index_files/figure-html/cell-12-output-1.png){width=663 height=470}
+:::
 :::
 
 

@@ -354,6 +354,12 @@ toma de decisiones en programación.
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+True
+False
+<class 'bool'>
+\end{verbatim}
+
 \subsection{Función bool()}\label{funciuxf3n-bool}
 
 La función \texttt{bool()} convierte valores a booleanos:
@@ -379,6 +385,22 @@ La función \texttt{bool()} convierte valores a booleanos:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+False
+False
+False
+False
+False
+False
+False
+True
+True
+True
+True
+True
+True
+\end{verbatim}
+
 \subsection{Aplicación económica}\label{aplicaciuxf3n-econuxf3mica}
 
 \begin{Shaded}
@@ -403,6 +425,13 @@ La función \texttt{bool()} convierte valores a booleanos:
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"¿Se visitaron regiones? }\SpecialCharTok{\{}\BuiltInTok{bool}\NormalTok{(regiones\_visitadas)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)    }\CommentTok{\# True}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+¿Hay datos de PIB? True
+¿Hay datos de inflación? True
+¿Se analizaron sectores? False
+¿Se visitaron regiones? True
+\end{verbatim}
 
 \section{Operadores de comparación}\label{operadores-de-comparaciuxf3n}
 
@@ -445,6 +474,21 @@ booleano:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+False
+True
+True
+True
+True
+True
+True
+True
+True
+True
+True
+True
+\end{verbatim}
+
 \subsection{Comparación de strings}\label{comparaciuxf3n-de-strings}
 
 \begin{Shaded}
@@ -467,6 +511,14 @@ booleano:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+False
+True
+True
+False
+True
+\end{verbatim}
+
 \subsection{Comparación de listas}\label{comparaciuxf3n-de-listas}
 
 \begin{Shaded}
@@ -486,6 +538,13 @@ booleano:
 \BuiltInTok{print}\NormalTok{(lista\_a }\OperatorTok{==}\NormalTok{ lista\_b)  }\CommentTok{\# False}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+True
+False
+True
+False
+\end{verbatim}
 
 \subsection{Ejemplo aplicado: Clasificación de
 economías}\label{ejemplo-aplicado-clasificaciuxf3n-de-economuxedas}
@@ -508,6 +567,15 @@ economías}\label{ejemplo-aplicado-clasificaciuxf3n-de-economuxedas}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"¿Perú y Argentina tienen el mismo PIB per cápita? }\SpecialCharTok{\{}\NormalTok{pib\_pc\_peru }\OperatorTok{==}\NormalTok{ pib\_pc\_argentina}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+¿Perú es país desarrollado? False
+¿Chile es país desarrollado? True
+¿Argentina es país desarrollado? False
+
+¿Chile tiene mayor PIB per cápita que Perú? True
+¿Perú y Argentina tienen el mismo PIB per cápita? False
+\end{verbatim}
 
 \section{Operadores lógicos}\label{operadores-luxf3gicos}
 
@@ -553,6 +621,15 @@ verdaderas:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+True
+False
+False
+False
+¿Economía estable? True
+¿Aprobar crédito? True
+\end{verbatim}
+
 \subsection{Operador OR}\label{operador-or}
 
 El operador \texttt{or} retorna True si al menos una condición es
@@ -591,6 +668,15 @@ verdadera:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+True
+True
+True
+False
+¿Hay alerta económica? True
+¿Elegible para programa? True
+\end{verbatim}
+
 \subsection{Operador NOT}\label{operador-not}
 
 El operador \texttt{not} invierte el valor booleano:
@@ -618,6 +704,15 @@ El operador \texttt{not} invierte el valor booleano:
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"¿Necesita ajuste de política? }\SpecialCharTok{\{}\NormalTok{no\_cumple\_meta}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# True}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+False
+True
+¿No está en recesión? True
+¿Está desempleado? False
+¿Deuda manejable? True
+¿Necesita ajuste de política? True
+\end{verbatim}
 
 \subsection{Combinación de
 operadores}\label{combinaciuxf3n-de-operadores}
@@ -657,6 +752,11 @@ operadores}\label{combinaciuxf3n-de-operadores}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+¿Realizar inversión? True
+¿Situación crítica? False
+\end{verbatim}
+
 \section{Ejecución condicional
 simple}\label{ejecuciuxf3n-condicional-simple}
 
@@ -678,6 +778,12 @@ verdadera:
 \BuiltInTok{print}\NormalTok{(}\StringTok{"Este código siempre se ejecuta"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+La condición es verdadera
+Este código se ejecuta
+Este código siempre se ejecuta
+\end{verbatim}
 
 \subsection{Ejemplos económicos}\label{ejemplos-econuxf3micos}
 
@@ -711,6 +817,17 @@ verdadera:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+ALERTA: Inflación mensual supera el 0.5%
+Inflación registrada: 0.6%
+Se recomienda revisar política monetaria
+Meta de crecimiento alcanzada
+Crecimiento: 3.2%
+Meta: 3.0%
+ALERTA: Stock bajo el mínimo
+Se requiere reponer 2 unidades
+\end{verbatim}
+
 \subsection{Importancia de la
 indentación}\label{importancia-de-la-indentaciuxf3n}
 
@@ -735,6 +852,12 @@ indentación}\label{importancia-de-la-indentaciuxf3n}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+x es mayor que 5
+Este también es parte del if
+Este no es parte del if
+\end{verbatim}
+
 \section{Ejecución alternativa}\label{ejecuciuxf3n-alternativa}
 
 La estructura \texttt{if-else} ejecuta un bloque si la condición es
@@ -753,6 +876,10 @@ verdadera, y otro si es falsa:
     \BuiltInTok{print}\NormalTok{(}\StringTok{"Condición falsa"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Condición verdadera
+\end{verbatim}
 
 \subsection{Ejemplos económicos}\label{ejemplos-econuxf3micos-1}
 
@@ -801,6 +928,16 @@ verdadera, y otro si es falsa:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Inflación por encima de la meta
+Exceso: 0.5%
+Se requiere ajuste en política monetaria
+Superávit fiscal: S/ 50,000
+Situación fiscal favorable
+Crédito aprobado
+Tasa de interés: 8.5%
+\end{verbatim}
+
 \subsection{Operador ternario}\label{operador-ternario}
 
 Python permite escribir if-else en una línea:
@@ -828,6 +965,12 @@ Python permite escribir if-else en una línea:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Clasificación: Desarrollado
+Saldo: +S/ 5,000
+Precio final: S/ 900.00
+\end{verbatim}
+
 \section{Condicionales encadenados}\label{condicionales-encadenados}
 
 La estructura \texttt{if-elif-else} permite evaluar múltiples
@@ -850,6 +993,10 @@ condiciones en secuencia:
     \BuiltInTok{print}\NormalTok{(}\StringTok{"10 o mayor"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+10 o mayor
+\end{verbatim}
 
 \subsection{Ejemplos económicos}\label{ejemplos-econuxf3micos-2}
 
@@ -926,6 +1073,18 @@ condiciones en secuencia:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Inflación: 4.5%
+Clasificación: Alta
+Comentario: Requiere medidas correctivas
+Puntaje crediticio: 680
+Nivel de riesgo: Medio
+Tasa de interés: 12.0%
+Ingreso per cápita: USD 4,500
+Categoría: Ingreso medio-alto
+Grupo: Economías en transición
+\end{verbatim}
+
 \subsection{Orden de evaluación}\label{orden-de-evaluaciuxf3n}
 
 \begin{Shaded}
@@ -960,6 +1119,12 @@ condiciones en secuencia:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Nota: 85
+Calificación: Muy bueno
+Calificación incorrecta: Regular
+\end{verbatim}
+
 \section{Condicionales anidados}\label{condicionales-anidados}
 
 Los condicionales pueden contener otros condicionales dentro:
@@ -981,6 +1146,11 @@ Los condicionales pueden contener otros condicionales dentro:
     \BuiltInTok{print}\NormalTok{(}\StringTok{"x es cero o negativo"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+x es positivo
+x es mayor que 5
+\end{verbatim}
 
 \subsection{Ejemplos económicos}\label{ejemplos-econuxf3micos-3}
 
@@ -1083,6 +1253,29 @@ Los condicionales pueden contener otros condicionales dentro:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+ANÁLISIS DE ELEGIBILIDAD - CRÉDITO HIPOTECARIO
+============================================================
+✓ Ingreso mensual adecuado: S/ 8,000
+✓ Ahorro inicial suficiente: S/ 150,000
+  (Requerido: S/ 100,000.0)
+✓ Historial crediticio bueno
+  Tasa de interés: 8.5%
+
+============================================================
+CRÉDITO APROBADO
+Monto del crédito: S/ 350,000
+Tasa de interés: 8.5%
+
+============================================================
+CLASIFICACIÓN DE EMPRESA
+============================================================
+Sector: Manufactura
+Ventas anuales: S/ 8,500,000
+Número de trabajadores: 85
+Clasificación: Pequeña empresa
+\end{verbatim}
+
 \subsection{Alternativa a anidamiento
 excesivo}\label{alternativa-a-anidamiento-excesivo}
 
@@ -1125,6 +1318,12 @@ usar \texttt{elif}:
     \BuiltInTok{print}\NormalTok{(}\StringTok{"Crédito denegado"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Crédito aprobado
+Crédito aprobado
+Crédito aprobado
+\end{verbatim}
 
 \section{Evaluación de pertenencia e
 identidad}\label{evaluaciuxf3n-de-pertenencia-e-identidad}
@@ -1169,6 +1368,14 @@ Verifica si un elemento está en una secuencia:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Minería es un sector primario
+El texto menciona el PIB
+PIB disponible: 242632
+No hay datos de reservas internacionales
+En edad de trabajar
+\end{verbatim}
+
 \subsection{Operador is}\label{operador-is}
 
 Verifica identidad de objetos (mismo objeto en memoria):
@@ -1206,6 +1413,16 @@ Verifica identidad de objetos (mismo objeto en memoria):
     \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Datos: }\SpecialCharTok{\{}\NormalTok{datos}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+True
+True
+False
+True
+Valor no definido
+Estado activo
+No hay datos disponibles
+\end{verbatim}
 
 \subsection{Función isinstance()}\label{funciuxf3n-isinstance}
 
@@ -1258,6 +1475,17 @@ Verifica el tipo de un objeto:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+True
+True
+True
+True
+True
+Es un número
+Interés: S/ 2,400.00
+Error: capital debe ser numérico
+\end{verbatim}
+
 \section{Guardianes: try y except}\label{guardianes-try-y-except}
 
 El manejo de excepciones permite capturar y manejar errores sin que el
@@ -1280,6 +1508,11 @@ programa se detenga:
 \BuiltInTok{print}\NormalTok{(}\StringTok{"El programa continúa"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Error: no se pudo convertir a número
+El programa continúa
+\end{verbatim}
 
 \subsection{Capturar excepciones
 específicas}\label{capturar-excepciones-especuxedficas}
@@ -1311,6 +1544,13 @@ específicas}\label{capturar-excepciones-especuxedficas}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Error: división por cero
+Error: índice fuera de rango
+Error: clave no existe
+Error: valor no numérico
+\end{verbatim}
+
 \subsection{Múltiples except}\label{muxfaltiples-except}
 
 \begin{Shaded}
@@ -1330,6 +1570,12 @@ específicas}\label{capturar-excepciones-especuxedficas}
 \BuiltInTok{print}\NormalTok{(dividir(}\DecValTok{10}\NormalTok{, }\StringTok{"2"}\NormalTok{))    }\CommentTok{\# Error: los valores deben ser numéricos}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+5.0
+Error: no se puede dividir por cero
+Error: los valores deben ser numéricos
+\end{verbatim}
 
 \subsection{Cláusula else y finally}\label{cluxe1usula-else-y-finally}
 
@@ -1424,6 +1670,18 @@ específicas}\label{capturar-excepciones-especuxedficas}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+10.0
+10.0
+Error: los valores deben ser numéricos
+Error: el valor inicial debe ser positivo
+242632
+Indicador 'inflacion' no disponible
+7196.458860088296
+Error: población no puede ser cero
+Error: valores deben ser numéricos
+\end{verbatim}
+
 \subsection{Obtener información del
 error}\label{obtener-informaciuxf3n-del-error}
 
@@ -1457,6 +1715,19 @@ error}\label{obtener-informaciuxf3n-del-error}
 \NormalTok{procesar\_datos(datos\_prueba)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Error capturado: division by zero
+Tipo de error: ZeroDivisionError
+Índice 0: 10.00
+Índice 1: 20.00
+Índice 3: 50.00
+Índice 5: 25.00
+
+Errores encontrados:
+  - Índice 2: ZeroDivisionError - division by zero
+  - Índice 4: TypeError - unsupported operand type(s) for /: 'int' and 'str'
+\end{verbatim}
 
 \section{Evaluación de
 cortocircuito}\label{evaluaciuxf3n-de-cortocircuito}
@@ -1497,6 +1768,12 @@ cuando el resultado es determinado:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Ejecutando función A
+Resultado: False
+Lista vacía o primer elemento no positivo
+\end{verbatim}
+
 \subsection{Cortocircuito con OR}\label{cortocircuito-con-or}
 
 \begin{Shaded}
@@ -1527,6 +1804,13 @@ cuando el resultado es determinado:
 \BuiltInTok{print}\NormalTok{(pais\_mostrar)  }\CommentTok{\# "Perú"}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Ejecutando función C
+Resultado: True
+Sin nombre
+Perú
+\end{verbatim}
 
 \subsection{Uso práctico en
 economía}\label{uso-pruxe1ctico-en-economuxeda}
@@ -1604,6 +1888,14 @@ economía}\label{uso-pruxe1ctico-en-economuxeda}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"PIB encontrado: }\SpecialCharTok{\{}\NormalTok{pib}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Error: no hay datos
+Error: faltan gastos
+Utilidad: S/ 20,000, Margen: 20.00%
+Minería: 30000
+PIB encontrado: 242632
+\end{verbatim}
 
 \section{Aplicaciones económicas}\label{aplicaciones-econuxf3micas-1}
 
@@ -1766,6 +2058,61 @@ país}\label{aplicaciuxf3n-1-sistema-de-clasificaciuxf3n-de-riesgo-pauxeds}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+SISTEMA DE CLASIFICACIÓN DE RIESGO PAÍS
+============================================================
+
+País: Perú
+
+Indicadores:
+  Crecimiento PIB: +2.7%
+  Inflación: 3.5%
+  Déficit fiscal: 2.8% del PIB
+  Deuda pública: 35.0% del PIB
+  Reservas: 8.5 meses de importación
+
+Evaluación:
+  ○ Crecimiento moderado (2 puntos)
+  ○ Inflación moderada (2 puntos)
+  ○ Déficit moderado (1 punto)
+  ✓ Deuda baja (2 puntos)
+  ✓ Reservas sólidas (2 puntos)
+
+============================================================
+Puntaje total: 9/12
+Clasificación: AA
+Descripción: Riesgo bajo
+Spread estimado: 150 puntos básicos
+============================================================
+
+
+SISTEMA DE CLASIFICACIÓN DE RIESGO PAÍS
+============================================================
+
+País: Venezuela
+
+Indicadores:
+  Crecimiento PIB: -5.0%
+  Inflación: 1500.0%
+  Déficit fiscal: 15.0% del PIB
+  Deuda pública: 150.0% del PIB
+  Reservas: 0.5 meses de importación
+
+Evaluación:
+  ✗ Recesión (0 puntos)
+  ✗ Inflación muy alta (0 puntos)
+  ✗ Déficit elevado (0 puntos)
+  ✗ Deuda alta (0 puntos)
+  ✗ Reservas bajas (0 puntos)
+
+============================================================
+Puntaje total: 0/12
+Clasificación: B
+Descripción: Riesgo muy alto
+Spread estimado: 1000 puntos básicos
+============================================================
+\end{verbatim}
+
 \subsection{Aplicación 2: Calculadora de impuestos
 progresivos}\label{aplicaciuxf3n-2-calculadora-de-impuestos-progresivos}
 
@@ -1914,6 +2261,81 @@ progresivos}\label{aplicaciuxf3n-2-calculadora-de-impuestos-progresivos}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Caso 1: Ingreso medio
+CÁLCULO DE IMPUESTO A LA RENTA
+============================================================
+
+Ingreso bruto anual: S/ 80,000.00
+UIT vigente: S/ 5,150.00
+
+Desglose por tramos:
+------------------------------------------------------------
+
+Tramo 1 (0-5 UIT)
+  Base imponible: S/ 25,750.00
+  Tasa: 8%
+  Impuesto: S/ 2,060.00
+
+Tramo 2 (5-20 UIT)
+  Base imponible: S/ 54,250.00
+  Tasa: 14%
+  Impuesto: S/ 7,595.00
+
+============================================================
+Impuesto total: S/ 9,655.00
+Tasa efectiva: 12.07%
+Ingreso neto: S/ 70,345.00
+============================================================
+
+================================================================================
+
+Caso 2: Ingreso alto
+CÁLCULO DE IMPUESTO A LA RENTA
+============================================================
+
+Ingreso bruto anual: S/ 300,000.00
+UIT vigente: S/ 5,150.00
+
+Desglose por tramos:
+------------------------------------------------------------
+
+Tramo 1 (0-5 UIT)
+  Base imponible: S/ 25,750.00
+  Tasa: 8%
+  Impuesto: S/ 2,060.00
+
+Tramo 2 (5-20 UIT)
+  Base imponible: S/ 77,250.00
+  Tasa: 14%
+  Impuesto: S/ 10,815.00
+
+Tramo 3 (20-35 UIT)
+  Base imponible: S/ 77,250.00
+  Tasa: 17%
+  Impuesto: S/ 13,132.50
+
+Tramo 4 (35-45 UIT)
+  Base imponible: S/ 51,500.00
+  Tasa: 20%
+  Impuesto: S/ 10,300.00
+
+Tramo 5 (>45 UIT)
+  Base imponible: S/ 68,250.00
+  Tasa: 30%
+  Impuesto: S/ 20,475.00
+
+============================================================
+Impuesto total: S/ 56,782.50
+Tasa efectiva: 18.93%
+Ingreso neto: S/ 243,217.50
+============================================================
+\end{verbatim}
+
+\begin{verbatim}
+56782.5
+\end{verbatim}
+
 \section{Ejercicios prácticos}\label{ejercicios-pruxe1cticos}
 
 \subsection{Ejercicio 1: Sistema de evaluación de proyectos de
@@ -2017,6 +2439,70 @@ inversión}\label{ejercicio-1-sistema-de-evaluaciuxf3n-de-proyectos-de-inversiux
 \NormalTok{vpn\_b }\OperatorTok{=}\NormalTok{ evaluar\_proyecto(proyecto\_b)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+EVALUACIÓN DE PROYECTO DE INVERSIÓN
+============================================================
+
+Proyecto: Ampliación de planta
+Inversión inicial: S/ 500,000.00
+Tasa de descuento: 12.0%
+
+Flujos de caja:
+  Año 1: S/ 150,000.00 (VP: S/ 133,928.57)
+  Año 2: S/ 180,000.00 (VP: S/ 143,494.90)
+  Año 3: S/ 200,000.00 (VP: S/ 142,356.05)
+  Año 4: S/ 220,000.00 (VP: S/ 139,813.98)
+  Año 5: S/ 200,000.00 (VP: S/ 113,485.37)
+
+Análisis de recuperación:
+  Año 1: Saldo acumulado S/ -350,000.00
+  Año 2: Saldo acumulado S/ -170,000.00
+  Año 3: Saldo acumulado S/ 30,000.00
+  Año 4: Saldo acumulado S/ 250,000.00
+  Año 5: Saldo acumulado S/ 450,000.00
+
+============================================================
+RESULTADOS:
+VPN: S/ 173,078.87
+Recomendación: ACEPTAR el proyecto
+El proyecto genera valor
+
+Período de recuperación: 3 años
+============================================================
+
+================================================================================
+
+EVALUACIÓN DE PROYECTO DE INVERSIÓN
+============================================================
+
+Proyecto: Nueva línea de productos
+Inversión inicial: S/ 800,000.00
+Tasa de descuento: 12.0%
+
+Flujos de caja:
+  Año 1: S/ 100,000.00 (VP: S/ 89,285.71)
+  Año 2: S/ 150,000.00 (VP: S/ 119,579.08)
+  Año 3: S/ 200,000.00 (VP: S/ 142,356.05)
+  Año 4: S/ 250,000.00 (VP: S/ 158,879.52)
+  Año 5: S/ 300,000.00 (VP: S/ 170,228.06)
+
+Análisis de recuperación:
+  Año 1: Saldo acumulado S/ -700,000.00
+  Año 2: Saldo acumulado S/ -550,000.00
+  Año 3: Saldo acumulado S/ -350,000.00
+  Año 4: Saldo acumulado S/ -100,000.00
+  Año 5: Saldo acumulado S/ 200,000.00
+
+============================================================
+RESULTADOS:
+VPN: S/ -119,671.58
+Recomendación: RECHAZAR el proyecto
+El proyecto destruye valor
+
+Período de recuperación: 5 años
+============================================================
+\end{verbatim}
 
 \subsection{Ejercicio 2: Simulador de política
 monetaria}\label{ejercicio-2-simulador-de-poluxedtica-monetaria}
@@ -2194,6 +2680,68 @@ monetaria}\label{ejercicio-2-simulador-de-poluxedtica-monetaria}
 \NormalTok{resultado\_2 }\OperatorTok{=}\NormalTok{ simular\_politica\_monetaria(escenario\_2)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+ESCENARIO 1: Presiones inflacionarias
+SIMULADOR DE POLÍTICA MONETARIA
+============================================================
+
+Indicadores macroeconómicos:
+  Inflación actual: 5.20%
+  Inflación esperada: 5.50%
+  Meta de inflación: 3.00%
+  Brecha del producto: +1.50%
+  Tasa de interés actual: 5.50%
+
+============================================================
+ANÁLISIS:
+⚠️  Inflación significativamente por encima de la meta
+○ Economía por encima de su potencial
+
+============================================================
+RECOMENDACIÓN DE POLÍTICA:
+↑ SUBIR FUERTE la tasa de interés a 6.00%
+  Ajuste: +0.50 puntos porcentuales
+  Justificación: Controlar presiones inflacionarias
+
+Efectos esperados:
+  • Encarecimiento del crédito
+  • Reducción del consumo e inversión
+  • Desaceleración de la inflación
+  • Apreciación de la moneda local
+============================================================
+
+================================================================================
+
+ESCENARIO 2: Recesión económica
+SIMULADOR DE POLÍTICA MONETARIA
+============================================================
+
+Indicadores macroeconómicos:
+  Inflación actual: 2.00%
+  Inflación esperada: 1.80%
+  Meta de inflación: 3.00%
+  Brecha del producto: -3.50%
+  Tasa de interés actual: 4.00%
+
+============================================================
+ANÁLISIS:
+✓ Inflación dentro del rango meta
+⚠️  Economía en recesión
+
+============================================================
+RECOMENDACIÓN DE POLÍTICA:
+↓ BAJAR FUERTE la tasa de interés a 3.50%
+  Ajuste: -0.50 puntos porcentuales
+  Justificación: Estimular la actividad económica
+
+Efectos esperados:
+  • Abaratamiento del crédito
+  • Estímulo al consumo e inversión
+  • Impulso a la actividad económica
+  • Depreciación de la moneda local
+============================================================
+\end{verbatim}
 
 \section{Conclusión}\label{conclusiuxf3n}
 

@@ -88,6 +88,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/bootstrap/bootstrap-06b466aced5058fffa44584b53f99f5b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -465,7 +468,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div>
         <div class="quarto-title-meta-heading">Fecha de última modificación</div>
         <div class="quarto-title-meta-contents">
-          <p class="date-modified">15 de septiembre de 2026</p>
+          <p class="date-modified">20 de octubre de 2026</p>
         </div>
       </div>
         
@@ -575,7 +578,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <section id="grafico-de-lineas" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Grafico de lineas</h1>
-<div id="12f1d3bd" class="cell">
+<div id="a01d1a09" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3"></a></span>
@@ -618,8 +621,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span id="cb1-40"><a href="#cb1-40"></a></span>
 <span id="cb1-41"><a href="#cb1-41"></a><span class="co"># Mostrar el gráfico</span></span>
 <span id="cb1-42"><a href="#cb1-42"></a>plt.show()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="index_files/figure-html/cell-2-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="index_files/figure-html/cell-2-output-1.png" width="661" height="468" class="figure-img"></a></p>
+</figure>
 </div>
-<div id="9cd36ebf" class="cell">
+</div>
+</div>
+<div id="721ac6bc" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-3"><a href="#cb2-3"></a></span>
@@ -629,10 +639,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span id="cb2-7"><a href="#cb2-7"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
 <span id="cb2-8"><a href="#cb2-8"></a>ax.plot(x, y)</span>
 <span id="cb2-9"><a href="#cb2-9"></a>plt.show()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="index_files/figure-html/cell-3-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="index_files/figure-html/cell-3-output-1.png" width="590" height="411" class="figure-img"></a></p>
+</figure>
 </div>
-<div id="fig-polar" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-polar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</div>
+</div>
+<div id="cell-fig-polar" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-3"><a href="#cb3-3"></a></span>
@@ -645,18 +660,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span id="cb3-10"><a href="#cb3-10"></a>ax.set_rticks([<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>])</span>
 <span id="cb3-11"><a href="#cb3-11"></a>ax.grid(<span class="va">True</span>)</span>
 <span id="cb3-12"><a href="#cb3-12"></a>plt.show()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="fig-polar" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-polar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-polar-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figura&nbsp;1: A line plot on a polar axis"><img src="index_files/figure-html/fig-polar-output-1.png" width="450" height="439" class="figure-img"></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-polar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-polar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: A line plot on a polar axis
 </figcaption>
 </figure>
+</div>
+</div>
 </div>
 </section>
 <section id="gráfico-de-barras" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Gráfico de barras</h1>
 <section id="horizontal" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="horizontal"><span class="header-section-number">2.1</span> horizontal</h2>
-<div id="ce81ba66" class="cell">
+<div id="9a4bd152" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-2"><a href="#cb4-2"></a></span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="co"># Configurar el tamaño de la figura para una mejor visualización</span></span>
@@ -685,11 +707,18 @@ Figura&nbsp;1
 <span id="cb4-26"><a href="#cb4-26"></a></span>
 <span id="cb4-27"><a href="#cb4-27"></a><span class="co"># Mostrar el gráfico</span></span>
 <span id="cb4-28"><a href="#cb4-28"></a>plt.show()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="index_files/figure-html/cell-5-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="index_files/figure-html/cell-5-output-1.png" width="661" height="468" class="figure-img"></a></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="vertical" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="vertical"><span class="header-section-number">2.2</span> vertical</h2>
-<div id="1da00650" class="cell">
+<div id="7aea788d" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#plt.figure(figsize=[10,8])</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="co">#Consumo de legumbres en el 2001</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a>legumbres<span class="op">=</span>[<span class="st">"Poroto"</span>,<span class="st">"Lenteja"</span>,<span class="st">"Garbanzo"</span>,<span class="st">"Arveja"</span>]</span>
@@ -701,12 +730,19 @@ Figura&nbsp;1
 <span id="cb5-9"><a href="#cb5-9"></a>plt.xlabel(<span class="st">"Consumo (kg/hab)"</span>)</span>
 <span id="cb5-10"><a href="#cb5-10"></a>plt.title(<span class="st">"Consumo de Legumbres en el 2001"</span>)</span>
 <span id="cb5-11"><a href="#cb5-11"></a>plt.show()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="index_files/figure-html/cell-6-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="index_files/figure-html/cell-6-output-1.png" width="632" height="449" class="figure-img"></a></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 </section>
 <section id="histograma" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Histograma</h1>
-<div id="66874cc0" class="cell">
+<div id="7440caec" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb6-2"><a href="#cb6-2"></a></span>
 <span id="cb6-3"><a href="#cb6-3"></a><span class="co"># Configurar el tamaño de la figura para una mejor visualización</span></span>
@@ -738,11 +774,18 @@ Figura&nbsp;1
 <span id="cb6-29"><a href="#cb6-29"></a></span>
 <span id="cb6-30"><a href="#cb6-30"></a><span class="co"># Mostrar el gráfico</span></span>
 <span id="cb6-31"><a href="#cb6-31"></a>plt.show()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="index_files/figure-html/cell-7-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="index_files/figure-html/cell-7-output-1.png" width="661" height="468" class="figure-img"></a></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="grafico-circular" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Grafico circular</h1>
-<div id="a0a831da" class="cell">
+<div id="551f6c37" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb7-2"><a href="#cb7-2"></a></span>
 <span id="cb7-3"><a href="#cb7-3"></a><span class="co"># Configurar el tamaño de la figura para una mejor visualización</span></span>
@@ -777,11 +820,18 @@ Figura&nbsp;1
 <span id="cb7-32"><a href="#cb7-32"></a></span>
 <span id="cb7-33"><a href="#cb7-33"></a><span class="co"># Mostrar el gráfico</span></span>
 <span id="cb7-34"><a href="#cb7-34"></a>plt.show()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="index_files/figure-html/cell-8-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="index_files/figure-html/cell-8-output-1.png" width="458" height="470" class="figure-img"></a></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="grafico-de-donut" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Grafico de Donut</h1>
-<div id="84eac8aa" class="cell">
+<div id="e0fe22ca" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb8-2"><a href="#cb8-2"></a></span>
 <span id="cb8-3"><a href="#cb8-3"></a><span class="co"># Configurar el tamaño de la figura para una mejor visualización</span></span>
@@ -820,11 +870,18 @@ Figura&nbsp;1
 <span id="cb8-36"><a href="#cb8-36"></a></span>
 <span id="cb8-37"><a href="#cb8-37"></a><span class="co"># Mostrar el gráfico</span></span>
 <span id="cb8-38"><a href="#cb8-38"></a>plt.show()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="index_files/figure-html/cell-9-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="index_files/figure-html/cell-9-output-1.png" width="458" height="470" class="figure-img"></a></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="grafico-de-cajas" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Grafico de cajas</h1>
-<div id="0f7b1564" class="cell">
+<div id="4895992b" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb9-2"><a href="#cb9-2"></a></span>
 <span id="cb9-3"><a href="#cb9-3"></a><span class="co"># Configurar el tamaño de la figura para una mejor visualización</span></span>
@@ -857,11 +914,18 @@ Figura&nbsp;1
 <span id="cb9-30"><a href="#cb9-30"></a></span>
 <span id="cb9-31"><a href="#cb9-31"></a><span class="co"># Mostrar el gráfico</span></span>
 <span id="cb9-32"><a href="#cb9-32"></a>plt.show()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="index_files/figure-html/cell-10-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="index_files/figure-html/cell-10-output-1.png" width="663" height="469" class="figure-img"></a></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="grafico-de-barras-combinadas" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> Grafico de barras combinadas</h1>
-<div id="256c9ad5" class="cell">
+<div id="7cbcbcaa" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb10-2"><a href="#cb10-2"></a></span>
 <span id="cb10-3"><a href="#cb10-3"></a><span class="co"># Configurar el tamaño de la figura para una mejor visualización</span></span>
@@ -902,11 +966,18 @@ Figura&nbsp;1
 <span id="cb10-38"><a href="#cb10-38"></a></span>
 <span id="cb10-39"><a href="#cb10-39"></a><span class="co"># Mostrar el gráfico</span></span>
 <span id="cb10-40"><a href="#cb10-40"></a>plt.show()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="index_files/figure-html/cell-11-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="index_files/figure-html/cell-11-output-1.png" width="663" height="470" class="figure-img"></a></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="graficos-combinados" class="level1" data-number="8">
 <h1 data-number="8"><span class="header-section-number">8</span> Graficos combinados</h1>
-<div id="8f104cd5" class="cell">
+<div id="2a5a4216" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb11-2"><a href="#cb11-2"></a></span>
 <span id="cb11-3"><a href="#cb11-3"></a><span class="co"># Configurar el tamaño de la figura para una mejor visualización</span></span>
@@ -943,6 +1014,13 @@ Figura&nbsp;1
 <span id="cb11-34"><a href="#cb11-34"></a></span>
 <span id="cb11-35"><a href="#cb11-35"></a><span class="co"># Mostrar el gráfico</span></span>
 <span id="cb11-36"><a href="#cb11-36"></a>plt.show()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="index_files/figure-html/cell-12-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="index_files/figure-html/cell-12-output-1.png" width="663" height="470" class="figure-img"></a></p>
+</figure>
+</div>
+</div>
 </div>
 
 
@@ -1480,6 +1558,38 @@ accepted, May 10. <a href="https://numerus-scriptum.netlify.app/python/2025-05-1
     </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

@@ -36,6 +36,8 @@ date: 2021-06-14
 draft: false
 image: ../featured.jpg
 curso: python_curso_base
+execute:
+  enabled: true                   # lección de Python con salidas reales; freeze: true (de la sección) la ejecuta una vez (autor, 2026-10-20)
 ---
 
 En esta cuarta guía exploraremos cómo los programas pueden tomar decisiones basadas en condiciones. La ejecución condicional es fundamental para crear análisis económicos automatizados que respondan a diferentes escenarios y situaciones.
@@ -46,7 +48,7 @@ Las expresiones booleanas son expresiones que evalúan a uno de dos valores posi
 
 ## Valores booleanos
 
-::: {#6394334f .cell}
+::: {#3500b6b1 .cell execution_count=1}
 ``` {.python .cell-code}
 # Valores booleanos básicos
 valor_verdadero = True
@@ -61,6 +63,14 @@ economia_en_crecimiento = True
 hay_recesion = False
 meta_inflacion_cumplida = True
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+True
+False
+<class 'bool'>
+```
+:::
 :::
 
 
@@ -68,7 +78,7 @@ meta_inflacion_cumplida = True
 
 La función `bool()` convierte valores a booleanos:
 
-::: {#65fcaa8f .cell}
+::: {#2276a799 .cell execution_count=2}
 ``` {.python .cell-code}
 # Valores que evalúan a False
 print(bool(0))        # False
@@ -87,12 +97,30 @@ print(bool("texto"))  # True
 print(bool([1, 2]))   # True
 print(bool({'a': 1})) # True
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+False
+False
+False
+False
+False
+False
+False
+True
+True
+True
+True
+True
+True
+```
+:::
 :::
 
 
 ## Aplicación económica
 
-::: {#e64b85cc .cell}
+::: {#4164fe7f .cell execution_count=3}
 ``` {.python .cell-code}
 # Evaluar datos económicos
 pib = 242632
@@ -113,6 +141,15 @@ regiones_visitadas = ['Lima', 'Arequipa']
 print(f"¿Se analizaron sectores? {bool(sectores_analizados)}")  # False
 print(f"¿Se visitaron regiones? {bool(regiones_visitadas)}")    # True
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+¿Hay datos de PIB? True
+¿Hay datos de inflación? True
+¿Se analizaron sectores? False
+¿Se visitaron regiones? True
+```
+:::
 :::
 
 
@@ -122,7 +159,7 @@ Los operadores de comparación comparan dos valores y retornan un booleano:
 
 ## Operadores básicos
 
-::: {#e7b2a033 .cell}
+::: {#8b6c50d8 .cell execution_count=4}
 ``` {.python .cell-code}
 # Datos económicos para comparar
 pib_2022 = 240000
@@ -154,12 +191,29 @@ print(pib_2023 >= 242632)    # True
 print(meta_inflacion <= inflacion_actual)  # True
 print(meta_inflacion <= 3.0)  # True
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+False
+True
+True
+True
+True
+True
+True
+True
+True
+True
+True
+True
+```
+:::
 :::
 
 
 ## Comparación de strings
 
-::: {#2feee2ba .cell}
+::: {#1ba53822 .cell execution_count=5}
 ``` {.python .cell-code}
 # Los strings se comparan lexicográficamente
 pais_1 = "Argentina"
@@ -177,12 +231,22 @@ sector_2 = "minería"
 print(sector_1 == sector_2)  # False
 print(sector_1.lower() == sector_2.lower())  # True
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+False
+True
+True
+False
+True
+```
+:::
 :::
 
 
 ## Comparación de listas
 
-::: {#3d487559 .cell}
+::: {#9e53ad4f .cell execution_count=6}
 ``` {.python .cell-code}
 # Listas se comparan elemento por elemento
 precios_2022 = [100, 105, 110]
@@ -198,12 +262,21 @@ lista_a = [1, 2, 3]
 lista_b = [3, 2, 1]
 print(lista_a == lista_b)  # False
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+True
+False
+True
+False
+```
+:::
 :::
 
 
 ## Ejemplo aplicado: Clasificación de economías
 
-::: {#9977ed2f .cell}
+::: {#156e05f5 .cell execution_count=7}
 ``` {.python .cell-code}
 # Clasificar países por PIB per cápita
 pib_pc_peru = 7196
@@ -220,6 +293,17 @@ print(f"¿Argentina es país desarrollado? {pib_pc_argentina > umbral_pais_desar
 print(f"\n¿Chile tiene mayor PIB per cápita que Perú? {pib_pc_chile > pib_pc_peru}")
 print(f"¿Perú y Argentina tienen el mismo PIB per cápita? {pib_pc_peru == pib_pc_argentina}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+¿Perú es país desarrollado? False
+¿Chile es país desarrollado? True
+¿Argentina es país desarrollado? False
+
+¿Chile tiene mayor PIB per cápita que Perú? True
+¿Perú y Argentina tienen el mismo PIB per cápita? False
+```
+:::
 :::
 
 
@@ -231,7 +315,7 @@ Los operadores lógicos combinan múltiples expresiones booleanas:
 
 El operador `and` retorna True solo si ambas condiciones son verdaderas:
 
-::: {#f8f23daf .cell}
+::: {#06748342 .cell execution_count=8}
 ``` {.python .cell-code}
 # Tabla de verdad de AND
 print(True and True)    # True
@@ -264,6 +348,17 @@ buen_historial = historial_crediticio == "bueno"
 aprobar_credito = ingreso_suficiente and estabilidad_laboral and buen_historial
 print(f"¿Aprobar crédito? {aprobar_credito}")  # True
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+True
+False
+False
+False
+¿Economía estable? True
+¿Aprobar crédito? True
+```
+:::
 :::
 
 
@@ -271,7 +366,7 @@ print(f"¿Aprobar crédito? {aprobar_credito}")  # True
 
 El operador `or` retorna True si al menos una condición es verdadera:
 
-::: {#8781ff30 .cell}
+::: {#87ca83db .cell execution_count=9}
 ``` {.python .cell-code}
 # Tabla de verdad de OR
 print(True or True)     # True
@@ -302,6 +397,17 @@ familia_numerosa = numero_dependientes >= 3
 elegible = ingreso_bajo or familia_numerosa or zona_rural
 print(f"¿Elegible para programa? {elegible}")  # True
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+True
+True
+True
+False
+¿Hay alerta económica? True
+¿Elegible para programa? True
+```
+:::
 :::
 
 
@@ -309,7 +415,7 @@ print(f"¿Elegible para programa? {elegible}")  # True
 
 El operador `not` invierte el valor booleano:
 
-::: {#f5af396e .cell}
+::: {#d0b3ecf9 .cell execution_count=10}
 ``` {.python .cell-code}
 # Tabla de verdad de NOT
 print(not True)   # False
@@ -331,12 +437,23 @@ supera_crecimiento_esperado = True
 no_cumple_meta = not cumple_meta_inflacion
 print(f"¿Necesita ajuste de política? {no_cumple_meta}")  # True
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+False
+True
+¿No está en recesión? True
+¿Está desempleado? False
+¿Deuda manejable? True
+¿Necesita ajuste de política? True
+```
+:::
 :::
 
 
 ## Combinación de operadores
 
-::: {#6648fc35 .cell}
+::: {#6e0681f5 .cell execution_count=11}
 ``` {.python .cell-code}
 # Los operadores se pueden combinar
 # Precedencia: not > and > or
@@ -369,6 +486,13 @@ situacion_critica = (inflacion > 5.0 and desempleo > 10.0) or \
 
 print(f"¿Situación crítica? {situacion_critica}")  # False
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+¿Realizar inversión? True
+¿Situación crítica? False
+```
+:::
 :::
 
 
@@ -378,7 +502,7 @@ La estructura `if` ejecuta código solo si una condición es verdadera:
 
 ## Sintaxis básica
 
-::: {#ecf4300c .cell}
+::: {#ad31828a .cell execution_count=12}
 ``` {.python .cell-code}
 # Estructura básica
 condicion = True
@@ -390,12 +514,20 @@ if condicion:
 # Sin indentación, no es parte del if
 print("Este código siempre se ejecuta")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+La condición es verdadera
+Este código se ejecuta
+Este código siempre se ejecuta
+```
+:::
 :::
 
 
 ## Ejemplos económicos
 
-::: {#38fd3bba .cell}
+::: {#d20b0f6b .cell execution_count=13}
 ``` {.python .cell-code}
 # Ejemplo 1: Alerta de inflación
 inflacion_mensual = 0.6
@@ -423,12 +555,25 @@ if stock_actual < stock_minimo:
     faltante = stock_minimo - stock_actual
     print(f"Se requiere reponer {faltante} unidades")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+ALERTA: Inflación mensual supera el 0.5%
+Inflación registrada: 0.6%
+Se recomienda revisar política monetaria
+Meta de crecimiento alcanzada
+Crecimiento: 3.2%
+Meta: 3.0%
+ALERTA: Stock bajo el mínimo
+Se requiere reponer 2 unidades
+```
+:::
 :::
 
 
 ## Importancia de la indentación
 
-::: {#0989bd4c .cell}
+::: {#559fc691 .cell execution_count=14}
 ``` {.python .cell-code}
 # Python usa indentación para delimitar bloques
 x = 10
@@ -447,6 +592,14 @@ print("Este no es parte del if")
 #     print("4 espacios")
 #       print("6 espacios - Error!")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+x es mayor que 5
+Este también es parte del if
+Este no es parte del if
+```
+:::
 :::
 
 
@@ -456,7 +609,7 @@ La estructura `if-else` ejecuta un bloque si la condición es verdadera, y otro 
 
 ## Sintaxis if-else
 
-::: {#305bba63 .cell}
+::: {#82a2d0da .cell execution_count=15}
 ``` {.python .cell-code}
 # Estructura básica
 condicion = True
@@ -466,12 +619,18 @@ if condicion:
 else:
     print("Condición falsa")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Condición verdadera
+```
+:::
 :::
 
 
 ## Ejemplos económicos
 
-::: {#d6ce31da .cell}
+::: {#72ad1fa7 .cell execution_count=16}
 ``` {.python .cell-code}
 # Ejemplo 1: Clasificar inflación
 inflacion = 3.5
@@ -514,6 +673,18 @@ else:
     print(f"Puntaje actual: {puntaje_crediticio}")
     print(f"Puntaje requerido: {umbral}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Inflación por encima de la meta
+Exceso: 0.5%
+Se requiere ajuste en política monetaria
+Superávit fiscal: S/ 50,000
+Situación fiscal favorable
+Crédito aprobado
+Tasa de interés: 8.5%
+```
+:::
 :::
 
 
@@ -521,7 +692,7 @@ else:
 
 Python permite escribir if-else en una línea:
 
-::: {#1f9ba5bb .cell}
+::: {#9ad26b2a .cell execution_count=17}
 ``` {.python .cell-code}
 # Sintaxis: valor_si_true if condicion else valor_si_false
 
@@ -542,6 +713,14 @@ descuento = 0.10 if cantidad >= 10 else 0
 precio_final = precio * (1 - descuento)
 print(f"Precio final: S/ {precio_final:.2f}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Clasificación: Desarrollado
+Saldo: +S/ 5,000
+Precio final: S/ 900.00
+```
+:::
 :::
 
 
@@ -551,7 +730,7 @@ La estructura `if-elif-else` permite evaluar múltiples condiciones en secuencia
 
 ## Sintaxis if-elif-else
 
-::: {#beba2c3f .cell}
+::: {#d101357a .cell execution_count=18}
 ``` {.python .cell-code}
 # Estructura básica
 x = 10
@@ -565,12 +744,18 @@ elif x < 10:
 else:
     print("10 o mayor")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+10 o mayor
+```
+:::
 :::
 
 
 ## Ejemplos económicos
 
-::: {#ae2201f3 .cell}
+::: {#2f671139 .cell execution_count=19}
 ``` {.python .cell-code}
 # Ejemplo 1: Clasificación de inflación
 inflacion = 4.5
@@ -641,12 +826,26 @@ print(f"Ingreso per cápita: USD {ingreso_per_capita:,}")
 print(f"Categoría: {categoria}")
 print(f"Grupo: {grupo}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Inflación: 4.5%
+Clasificación: Alta
+Comentario: Requiere medidas correctivas
+Puntaje crediticio: 680
+Nivel de riesgo: Medio
+Tasa de interés: 12.0%
+Ingreso per cápita: USD 4,500
+Categoría: Ingreso medio-alto
+Grupo: Economías en transición
+```
+:::
 :::
 
 
 ## Orden de evaluación
 
-::: {#8c3d24da .cell}
+::: {#f6fb92ef .cell execution_count=20}
 ``` {.python .cell-code}
 # El orden importa: se evalúa de arriba hacia abajo
 # Solo se ejecuta el primer bloque que cumple la condición
@@ -676,6 +875,14 @@ elif nota >= 90:  # Nunca se alcanza
 
 print(f"Calificación incorrecta: {calificacion_incorrecta}")  # Regular
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Nota: 85
+Calificación: Muy bueno
+Calificación incorrecta: Regular
+```
+:::
 :::
 
 
@@ -685,7 +892,7 @@ Los condicionales pueden contener otros condicionales dentro:
 
 ## Estructura básica
 
-::: {#0ae29faf .cell}
+::: {#ae4eec4d .cell execution_count=21}
 ``` {.python .cell-code}
 # Condicional anidado simple
 x = 10
@@ -699,12 +906,19 @@ if x > 0:
 else:
     print("x es cero o negativo")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+x es positivo
+x es mayor que 5
+```
+:::
 :::
 
 
 ## Ejemplos económicos
 
-::: {#48b68b94 .cell}
+::: {#39489941 .cell execution_count=22}
 ``` {.python .cell-code}
 # Ejemplo 1: Análisis de elegibilidad para crédito hipotecario
 ingreso_mensual = 8000
@@ -801,6 +1015,31 @@ print(f"Ventas anuales: S/ {ventas_anuales:,}")
 print(f"Número de trabajadores: {num_trabajadores}")
 print(f"Clasificación: {clasificacion}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+ANÁLISIS DE ELEGIBILIDAD - CRÉDITO HIPOTECARIO
+============================================================
+✓ Ingreso mensual adecuado: S/ 8,000
+✓ Ahorro inicial suficiente: S/ 150,000
+  (Requerido: S/ 100,000.0)
+✓ Historial crediticio bueno
+  Tasa de interés: 8.5%
+
+============================================================
+CRÉDITO APROBADO
+Monto del crédito: S/ 350,000
+Tasa de interés: 8.5%
+
+============================================================
+CLASIFICACIÓN DE EMPRESA
+============================================================
+Sector: Manufactura
+Ventas anuales: S/ 8,500,000
+Número de trabajadores: 85
+Clasificación: Pequeña empresa
+```
+:::
 :::
 
 
@@ -808,7 +1047,7 @@ print(f"Clasificación: {clasificacion}")
 
 Los condicionales muy anidados pueden dificultar la lectura. Es mejor usar `elif`:
 
-::: {#9cac9186 .cell}
+::: {#8dbdbd5f .cell execution_count=23}
 ``` {.python .cell-code}
 # Evitar anidamiento excesivo
 ingreso = 5000
@@ -843,6 +1082,14 @@ if ingreso > 3000 and credito == "bueno" and empleo == "estable":
 else:
     print("Crédito denegado")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Crédito aprobado
+Crédito aprobado
+Crédito aprobado
+```
+:::
 :::
 
 
@@ -852,7 +1099,7 @@ else:
 
 Verifica si un elemento está en una secuencia:
 
-::: {#e74a27a2 .cell}
+::: {#95589fb8 .cell execution_count=24}
 ``` {.python .cell-code}
 # Verificar en listas
 sectores_primarios = ['Agricultura', 'Pesca', 'Minería', 'Petróleo']
@@ -886,6 +1133,16 @@ edad = 25
 if edad in range(18, 65):
     print("En edad de trabajar")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Minería es un sector primario
+El texto menciona el PIB
+PIB disponible: 242632
+No hay datos de reservas internacionales
+En edad de trabajar
+```
+:::
 :::
 
 
@@ -893,7 +1150,7 @@ if edad in range(18, 65):
 
 Verifica identidad de objetos (mismo objeto en memoria):
 
-::: {#ed60e165 .cell}
+::: {#7cd371ac .cell execution_count=25}
 ``` {.python .cell-code}
 # Comparar identidad vs igualdad
 a = [1, 2, 3]
@@ -925,6 +1182,18 @@ if datos is None:
 else:
     print(f"Datos: {datos}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+True
+True
+False
+True
+Valor no definido
+Estado activo
+No hay datos disponibles
+```
+:::
 :::
 
 
@@ -932,7 +1201,7 @@ else:
 
 Verifica el tipo de un objeto:
 
-::: {#58b8d539 .cell}
+::: {#dc53ec54 .cell execution_count=26}
 ``` {.python .cell-code}
 # Verificar tipos
 pib = 242632
@@ -977,6 +1246,19 @@ print(f"Interés: S/ {resultado1:,.2f}")
 resultado2 = calcular_interes("10000", 0.08, 3)
 print(resultado2)  # Error: capital debe ser numérico
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+True
+True
+True
+True
+True
+Es un número
+Interés: S/ 2,400.00
+Error: capital debe ser numérico
+```
+:::
 :::
 
 
@@ -986,7 +1268,7 @@ El manejo de excepciones permite capturar y manejar errores sin que el programa 
 
 ## Estructura básica
 
-::: {#66948fc4 .cell}
+::: {#5d62ff7b .cell execution_count=27}
 ``` {.python .cell-code}
 # Sin manejo de errores (genera error)
 # numero = int("abc")  # ValueError
@@ -1000,12 +1282,19 @@ except:
 
 print("El programa continúa")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Error: no se pudo convertir a número
+El programa continúa
+```
+:::
 :::
 
 
 ## Capturar excepciones específicas
 
-::: {#497193d3 .cell}
+::: {#a6c43867 .cell execution_count=28}
 ``` {.python .cell-code}
 # Capturar tipos específicos de errores
 try:
@@ -1030,12 +1319,21 @@ try:
 except ValueError:
     print("Error: valor no numérico")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Error: división por cero
+Error: índice fuera de rango
+Error: clave no existe
+Error: valor no numérico
+```
+:::
 :::
 
 
 ## Múltiples except
 
-::: {#53b4c0b2 .cell}
+::: {#645e8822 .cell execution_count=29}
 ``` {.python .cell-code}
 # Manejar diferentes errores
 def dividir(a, b):
@@ -1051,12 +1349,20 @@ print(dividir(10, 2))      # 5.0
 print(dividir(10, 0))      # Error: no se puede dividir por cero
 print(dividir(10, "2"))    # Error: los valores deben ser numéricos
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+5.0
+Error: no se puede dividir por cero
+Error: los valores deben ser numéricos
+```
+:::
 :::
 
 
 ## Cláusula else y finally
 
-::: {#a5a44a93 .cell}
+::: {#64f73414 .cell execution_count=30}
 ``` {.python .cell-code}
 # else: se ejecuta si no hay error
 # finally: siempre se ejecuta
@@ -1077,7 +1383,7 @@ finally:
 
 ## Aplicaciones económicas
 
-::: {#1c654a66 .cell}
+::: {#09187dca .cell execution_count=31}
 ``` {.python .cell-code}
 # Ejemplo 1: Validar entrada de datos
 def calcular_tasa_crecimiento(valor_inicial, valor_final):
@@ -1146,12 +1452,26 @@ print(calcular_pib_per_capita(242632, 33715471))    # 7196.21
 print(calcular_pib_per_capita(242632, 0))           # Error: población...
 print(calcular_pib_per_capita("242632", 33715471))  # Error: valores...
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+10.0
+10.0
+Error: los valores deben ser numéricos
+Error: el valor inicial debe ser positivo
+242632
+Indicador 'inflacion' no disponible
+7196.458860088296
+Error: población no puede ser cero
+Error: valores deben ser numéricos
+```
+:::
 :::
 
 
 ## Obtener información del error
 
-::: {#14352543 .cell}
+::: {#23f27dad .cell execution_count=32}
 ``` {.python .cell-code}
 # Capturar el mensaje de error
 try:
@@ -1180,6 +1500,21 @@ def procesar_datos(datos):
 datos_prueba = [10, 5, 0, 2, "a", 4]
 procesar_datos(datos_prueba)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Error capturado: division by zero
+Tipo de error: ZeroDivisionError
+Índice 0: 10.00
+Índice 1: 20.00
+Índice 3: 50.00
+Índice 5: 25.00
+
+Errores encontrados:
+  - Índice 2: ZeroDivisionError - division by zero
+  - Índice 4: TypeError - unsupported operand type(s) for /: 'int' and 'str'
+```
+:::
 :::
 
 
@@ -1189,7 +1524,7 @@ Python evalúa expresiones booleanas de izquierda a derecha y se detiene cuando 
 
 ## Cortocircuito con AND
 
-::: {#4f4a83ab .cell}
+::: {#35115724 .cell execution_count=33}
 ``` {.python .cell-code}
 # and: se detiene en el primer False
 def funcion_a():
@@ -1218,12 +1553,20 @@ if len(datos) > 0 and datos[0] > 0:
 else:
     print("Lista vacía o primer elemento no positivo")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Ejecutando función A
+Resultado: False
+Lista vacía o primer elemento no positivo
+```
+:::
 :::
 
 
 ## Cortocircuito con OR
 
-::: {#84e2ae4f .cell}
+::: {#59b57a31 .cell execution_count=34}
 ``` {.python .cell-code}
 # or: se detiene en el primer True
 def funcion_c():
@@ -1250,12 +1593,21 @@ pais = "Perú"
 pais_mostrar = pais or "No especificado"
 print(pais_mostrar)  # "Perú"
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Ejecutando función C
+Resultado: True
+Sin nombre
+Perú
+```
+:::
 :::
 
 
 ## Uso práctico en economía
 
-::: {#9bdacc57 .cell}
+::: {#45f4bb6c .cell execution_count=35}
 ``` {.python .cell-code}
 # Ejemplo 1: Validación eficiente
 def analizar_empresa(datos):
@@ -1327,6 +1679,16 @@ indicadores = {
 pib = buscar_indicador(indicadores, ['pib', 'producto_bruto_interno', 'gdp'])
 print(f"PIB encontrado: {pib}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Error: no hay datos
+Error: faltan gastos
+Utilidad: S/ 20,000, Margen: 20.00%
+Minería: 30000
+PIB encontrado: 242632
+```
+:::
 :::
 
 
@@ -1334,7 +1696,7 @@ print(f"PIB encontrado: {pib}")
 
 ## Aplicación 1: Sistema de clasificación de riesgo país
 
-::: {#223f9d32 .cell}
+::: {#2cc1272a .cell execution_count=36}
 ``` {.python .cell-code}
 def clasificar_riesgo_pais(datos):
     """
@@ -1488,12 +1850,69 @@ venezuela_datos = {
 print("\n")
 clasificacion_vzla = clasificar_riesgo_pais(venezuela_datos)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+SISTEMA DE CLASIFICACIÓN DE RIESGO PAÍS
+============================================================
+
+País: Perú
+
+Indicadores:
+  Crecimiento PIB: +2.7%
+  Inflación: 3.5%
+  Déficit fiscal: 2.8% del PIB
+  Deuda pública: 35.0% del PIB
+  Reservas: 8.5 meses de importación
+
+Evaluación:
+  ○ Crecimiento moderado (2 puntos)
+  ○ Inflación moderada (2 puntos)
+  ○ Déficit moderado (1 punto)
+  ✓ Deuda baja (2 puntos)
+  ✓ Reservas sólidas (2 puntos)
+
+============================================================
+Puntaje total: 9/12
+Clasificación: AA
+Descripción: Riesgo bajo
+Spread estimado: 150 puntos básicos
+============================================================
+
+
+SISTEMA DE CLASIFICACIÓN DE RIESGO PAÍS
+============================================================
+
+País: Venezuela
+
+Indicadores:
+  Crecimiento PIB: -5.0%
+  Inflación: 1500.0%
+  Déficit fiscal: 15.0% del PIB
+  Deuda pública: 150.0% del PIB
+  Reservas: 0.5 meses de importación
+
+Evaluación:
+  ✗ Recesión (0 puntos)
+  ✗ Inflación muy alta (0 puntos)
+  ✗ Déficit elevado (0 puntos)
+  ✗ Deuda alta (0 puntos)
+  ✗ Reservas bajas (0 puntos)
+
+============================================================
+Puntaje total: 0/12
+Clasificación: B
+Descripción: Riesgo muy alto
+Spread estimado: 1000 puntos básicos
+============================================================
+```
+:::
 :::
 
 
 ## Aplicación 2: Calculadora de impuestos progresivos
 
-::: {#fd432cbe .cell}
+::: {#53d927a9 .cell execution_count=37}
 ``` {.python .cell-code}
 def calcular_impuesto_renta(ingreso_anual):
     """
@@ -1636,6 +2055,85 @@ print("\n" + "="*80 + "\n")
 print("Caso 2: Ingreso alto")
 calcular_impuesto_renta(300000)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Caso 1: Ingreso medio
+CÁLCULO DE IMPUESTO A LA RENTA
+============================================================
+
+Ingreso bruto anual: S/ 80,000.00
+UIT vigente: S/ 5,150.00
+
+Desglose por tramos:
+------------------------------------------------------------
+
+Tramo 1 (0-5 UIT)
+  Base imponible: S/ 25,750.00
+  Tasa: 8%
+  Impuesto: S/ 2,060.00
+
+Tramo 2 (5-20 UIT)
+  Base imponible: S/ 54,250.00
+  Tasa: 14%
+  Impuesto: S/ 7,595.00
+
+============================================================
+Impuesto total: S/ 9,655.00
+Tasa efectiva: 12.07%
+Ingreso neto: S/ 70,345.00
+============================================================
+
+================================================================================
+
+Caso 2: Ingreso alto
+CÁLCULO DE IMPUESTO A LA RENTA
+============================================================
+
+Ingreso bruto anual: S/ 300,000.00
+UIT vigente: S/ 5,150.00
+
+Desglose por tramos:
+------------------------------------------------------------
+
+Tramo 1 (0-5 UIT)
+  Base imponible: S/ 25,750.00
+  Tasa: 8%
+  Impuesto: S/ 2,060.00
+
+Tramo 2 (5-20 UIT)
+  Base imponible: S/ 77,250.00
+  Tasa: 14%
+  Impuesto: S/ 10,815.00
+
+Tramo 3 (20-35 UIT)
+  Base imponible: S/ 77,250.00
+  Tasa: 17%
+  Impuesto: S/ 13,132.50
+
+Tramo 4 (35-45 UIT)
+  Base imponible: S/ 51,500.00
+  Tasa: 20%
+  Impuesto: S/ 10,300.00
+
+Tramo 5 (>45 UIT)
+  Base imponible: S/ 68,250.00
+  Tasa: 30%
+  Impuesto: S/ 20,475.00
+
+============================================================
+Impuesto total: S/ 56,782.50
+Tasa efectiva: 18.93%
+Ingreso neto: S/ 243,217.50
+============================================================
+```
+:::
+
+::: {.cell-output .cell-output-display execution_count=36}
+```
+56782.5
+```
+:::
 :::
 
 
@@ -1643,7 +2141,7 @@ calcular_impuesto_renta(300000)
 
 ## Ejercicio 1: Sistema de evaluación de proyectos de inversión
 
-::: {#9d335c04 .cell}
+::: {#87c86320 .cell execution_count=38}
 ``` {.python .cell-code}
 def evaluar_proyecto(datos_proyecto):
     """
@@ -1740,12 +2238,78 @@ proyecto_b = {
 
 vpn_b = evaluar_proyecto(proyecto_b)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+EVALUACIÓN DE PROYECTO DE INVERSIÓN
+============================================================
+
+Proyecto: Ampliación de planta
+Inversión inicial: S/ 500,000.00
+Tasa de descuento: 12.0%
+
+Flujos de caja:
+  Año 1: S/ 150,000.00 (VP: S/ 133,928.57)
+  Año 2: S/ 180,000.00 (VP: S/ 143,494.90)
+  Año 3: S/ 200,000.00 (VP: S/ 142,356.05)
+  Año 4: S/ 220,000.00 (VP: S/ 139,813.98)
+  Año 5: S/ 200,000.00 (VP: S/ 113,485.37)
+
+Análisis de recuperación:
+  Año 1: Saldo acumulado S/ -350,000.00
+  Año 2: Saldo acumulado S/ -170,000.00
+  Año 3: Saldo acumulado S/ 30,000.00
+  Año 4: Saldo acumulado S/ 250,000.00
+  Año 5: Saldo acumulado S/ 450,000.00
+
+============================================================
+RESULTADOS:
+VPN: S/ 173,078.87
+Recomendación: ACEPTAR el proyecto
+El proyecto genera valor
+
+Período de recuperación: 3 años
+============================================================
+
+================================================================================
+
+EVALUACIÓN DE PROYECTO DE INVERSIÓN
+============================================================
+
+Proyecto: Nueva línea de productos
+Inversión inicial: S/ 800,000.00
+Tasa de descuento: 12.0%
+
+Flujos de caja:
+  Año 1: S/ 100,000.00 (VP: S/ 89,285.71)
+  Año 2: S/ 150,000.00 (VP: S/ 119,579.08)
+  Año 3: S/ 200,000.00 (VP: S/ 142,356.05)
+  Año 4: S/ 250,000.00 (VP: S/ 158,879.52)
+  Año 5: S/ 300,000.00 (VP: S/ 170,228.06)
+
+Análisis de recuperación:
+  Año 1: Saldo acumulado S/ -700,000.00
+  Año 2: Saldo acumulado S/ -550,000.00
+  Año 3: Saldo acumulado S/ -350,000.00
+  Año 4: Saldo acumulado S/ -100,000.00
+  Año 5: Saldo acumulado S/ 200,000.00
+
+============================================================
+RESULTADOS:
+VPN: S/ -119,671.58
+Recomendación: RECHAZAR el proyecto
+El proyecto destruye valor
+
+Período de recuperación: 5 años
+============================================================
+```
+:::
 :::
 
 
 ## Ejercicio 2: Simulador de política monetaria
 
-::: {#7377a440 .cell}
+::: {#cf288d58 .cell execution_count=39}
 ``` {.python .cell-code}
 def simular_politica_monetaria(estado_economia):
     """
@@ -1917,6 +2481,70 @@ escenario_2 = {
 }
 resultado_2 = simular_politica_monetaria(escenario_2)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+ESCENARIO 1: Presiones inflacionarias
+SIMULADOR DE POLÍTICA MONETARIA
+============================================================
+
+Indicadores macroeconómicos:
+  Inflación actual: 5.20%
+  Inflación esperada: 5.50%
+  Meta de inflación: 3.00%
+  Brecha del producto: +1.50%
+  Tasa de interés actual: 5.50%
+
+============================================================
+ANÁLISIS:
+⚠️  Inflación significativamente por encima de la meta
+○ Economía por encima de su potencial
+
+============================================================
+RECOMENDACIÓN DE POLÍTICA:
+↑ SUBIR FUERTE la tasa de interés a 6.00%
+  Ajuste: +0.50 puntos porcentuales
+  Justificación: Controlar presiones inflacionarias
+
+Efectos esperados:
+  • Encarecimiento del crédito
+  • Reducción del consumo e inversión
+  • Desaceleración de la inflación
+  • Apreciación de la moneda local
+============================================================
+
+================================================================================
+
+ESCENARIO 2: Recesión económica
+SIMULADOR DE POLÍTICA MONETARIA
+============================================================
+
+Indicadores macroeconómicos:
+  Inflación actual: 2.00%
+  Inflación esperada: 1.80%
+  Meta de inflación: 3.00%
+  Brecha del producto: -3.50%
+  Tasa de interés actual: 4.00%
+
+============================================================
+ANÁLISIS:
+✓ Inflación dentro del rango meta
+⚠️  Economía en recesión
+
+============================================================
+RECOMENDACIÓN DE POLÍTICA:
+↓ BAJAR FUERTE la tasa de interés a 3.50%
+  Ajuste: -0.50 puntos porcentuales
+  Justificación: Estimular la actividad económica
+
+Efectos esperados:
+  • Abaratamiento del crédito
+  • Estímulo al consumo e inversión
+  • Impulso a la actividad económica
+  • Depreciación de la moneda local
+============================================================
+```
+:::
 :::
 
 

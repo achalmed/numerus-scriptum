@@ -37,7 +37,8 @@ citation:
 date: 2020-06-10
 draft: false
 image: ../featured.jpg
-curso: r_curso_base
+curso: r
+tema: "1.2"
 ---
 
 Referencia técnica independiente sobre la instalación de **R** (lenguaje y entorno estadístico) y **RStudio Desktop** (IDE de Posit, PBC) en tres sistemas: Kubuntu/Ubuntu (Debian-based), Arch Linux, y Windows. Basada en la documentación oficial de CRAN (cran.r-project.org), ArchWiki (wiki.archlinux.org) y Posit Docs (docs.posit.co / posit.co).

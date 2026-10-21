@@ -1,0 +1,4 @@
+producto_id,nombre,categoria,stock_actual,stock_minimo,faltante
+PROD016,Producto 16,Electrónica,23,42,19
+PROD006,Producto 6,Hogar,13,18,5
+PROD009,Producto 9,Alimentos,14,17,3

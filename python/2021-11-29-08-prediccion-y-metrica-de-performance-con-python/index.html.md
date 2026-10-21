@@ -36,6 +36,8 @@ date: 2021-11-29
 draft: false
 image: ../featured.jpg
 curso: python_curso_base
+execute:
+  enabled: true                   # lección de Python con salidas reales; freeze: true (de la sección) la ejecuta una vez (autor, 2026-10-20)
 ---
 
 En esta octava guía exploraremos el problema de predicción y las métricas fundamentales para evaluar modelos de clasificación. Estos conceptos son esenciales para evaluar modelos de machine learning aplicados a problemas económicos como predicción de incumplimiento crediticio, clasificación de empresas, predicción de pobreza, entre otros.
@@ -52,7 +54,7 @@ En economía y ciencias sociales frecuentemente necesitamos predecir eventos fut
 - ¿Un estudiante completará o abandonará sus estudios?
 - ¿Un producto se venderá o no se venderá?
 
-::: {#99dae495 .cell}
+::: {#d59c0bac .cell execution_count=1}
 ``` {.python .cell-code}
 import pandas as pd
 import numpy as np
@@ -71,7 +73,7 @@ plt.rcParams['figure.figsize'] = (10, 6)
 
 ## Flujo de decisión con predicción
 
-::: {#e69541fe .cell}
+::: {#c91ac109 .cell execution_count=2}
 ``` {.python .cell-code}
 print("""
 FLUJO DE TOMA DE DECISIONES CON PREDICCIÓN
@@ -97,6 +99,34 @@ FLUJO DE TOMA DE DECISIONES CON PREDICCIÓN
    └─ Ej: Aprobar/rechazar crédito, intervenir/no intervenir
 """)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+FLUJO DE TOMA DE DECISIONES CON PREDICCIÓN
+
+1. RECOLECCIÓN DE DATOS
+   ├─ Variables explicativas (características)
+   └─ Variable objetivo (lo que queremos predecir)
+
+2. ENTRENAMIENTO DEL MODELO
+   ├─ Aprender patrones de los datos históricos
+   └─ Establecer relación entre X (predictores) y Y (objetivo)
+
+3. PREDICCIÓN
+   ├─ Aplicar modelo a nuevos casos
+   └─ Obtener probabilidades o clasificaciones
+
+4. EVALUACIÓN
+   ├─ Medir qué tan buenas son las predicciones
+   └─ Usar métricas apropiadas
+
+5. DECISIÓN
+   ├─ Usar predicción para tomar acción
+   └─ Ej: Aprobar/rechazar crédito, intervenir/no intervenir
+
+```
+:::
 :::
 
 
@@ -104,7 +134,7 @@ FLUJO DE TOMA DE DECISIONES CON PREDICCIÓN
 
 ## Problema de admisión académica
 
-::: {#5b237dc8 .cell}
+::: {#a838e8ff .cell execution_count=3}
 ``` {.python .cell-code}
 # Crear dataset de ejemplo: admisión a programa de posgrado
 np.random.seed(42)
@@ -135,12 +165,37 @@ print(f"\nDistribución de admisiones:")
 print(datos_admision['admitido'].value_counts())
 print(f"\nTasa de admisión: {datos_admision['admitido'].mean()*100:.1f}%")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Dataset de admisiones:
+   puntaje_examen       gpa  experiencia_laboral  publicaciones  admitido
+0             602  3.355129                    6              3         1
+1             770  2.033176                    5              4         1
+2             606  3.024186                    1              4         1
+3             571  2.452992                    4              4         1
+4             688  3.290346                    2              4         1
+5             520  2.348733                    1              4         0
+6             602  3.381875                    2              2         0
+7             621  2.773471                    6              3         1
+8             714  3.873460                    0              4         1
+9             587  2.275042                    1              3         0
+
+Distribución de admisiones:
+admitido
+1    140
+0     60
+Name: count, dtype: int64
+
+Tasa de admisión: 70.0%
+```
+:::
 :::
 
 
 ## Entrenar modelo de clasificación
 
-::: {#1b952397 .cell}
+::: {#c49e43e1 .cell execution_count=4}
 ``` {.python .cell-code}
 # Separar variables predictoras y objetivo
 X = datos_admision[['puntaje_examen', 'gpa', 'experiencia_laboral', 'publicaciones']]
@@ -163,6 +218,20 @@ print(f"Coeficientes del modelo:")
 for variable, coef in zip(X.columns, modelo.coef_[0]):
     print(f"  {variable}: {coef:.4f}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Tamaño conjunto entrenamiento: 140
+Tamaño conjunto prueba: 60
+
+Modelo entrenado exitosamente
+Coeficientes del modelo:
+  puntaje_examen: 0.0089
+  gpa: 0.7248
+  experiencia_laboral: 0.5510
+  publicaciones: 0.8955
+```
+:::
 :::
 
 
@@ -170,7 +239,7 @@ for variable, coef in zip(X.columns, modelo.coef_[0]):
 
 ## Concepto de probabilidades
 
-::: {#3badb5fe .cell}
+::: {#fc1f6a71 .cell execution_count=5}
 ``` {.python .cell-code}
 # Obtener probabilidades de predicción
 probabilidades = modelo.predict_proba(X_test)
@@ -193,12 +262,43 @@ resultados = pd.DataFrame({
 print("\n\nEstadísticas de probabilidades:")
 print(resultados['prob_admitido'].describe())
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Probabilidades de predicción (primeras 10 observaciones):
+
+Índice | P(No admitido) | P(Admitido) | Predicción
+-------------------------------------------------------
+     0 |         0.2196 |      0.7804 | Admitido
+     1 |         0.1008 |      0.8992 | Admitido
+     2 |         0.4035 |      0.5965 | Admitido
+     3 |         0.2008 |      0.7992 | Admitido
+     4 |         0.0295 |      0.9705 | Admitido
+     5 |         0.7350 |      0.2650 | No admitido
+     6 |         0.0866 |      0.9134 | Admitido
+     7 |         0.5659 |      0.4341 | No admitido
+     8 |         0.0246 |      0.9754 | Admitido
+     9 |         0.1647 |      0.8353 | Admitido
+
+
+Estadísticas de probabilidades:
+count    60.000000
+mean      0.685291
+std       0.275099
+min       0.078084
+25%       0.498738
+50%       0.780514
+75%       0.928637
+max       0.998200
+Name: prob_admitido, dtype: float64
+```
+:::
 :::
 
 
 ## Efecto del umbral
 
-::: {#ea81c585 .cell}
+::: {#cd35be9b .cell execution_count=6}
 ``` {.python .cell-code}
 # Experimentar con diferentes umbrales
 umbrales = [0.3, 0.5, 0.7, 0.9]
@@ -218,12 +318,35 @@ for umbral in umbrales:
     print(f"  Predicciones positivas: {n_positivos} ({tasa_positivos:.1f}%)")
     print(f"  Predicciones negativas: {len(predicciones) - n_positivos}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+EFECTO DEL UMBRAL EN LA CLASIFICACIÓN
+======================================================================
+
+Umbral: 0.3
+  Predicciones positivas: 53 (88.3%)
+  Predicciones negativas: 7
+
+Umbral: 0.5
+  Predicciones positivas: 45 (75.0%)
+  Predicciones negativas: 15
+
+Umbral: 0.7
+  Predicciones positivas: 34 (56.7%)
+  Predicciones negativas: 26
+
+Umbral: 0.9
+  Predicciones positivas: 18 (30.0%)
+  Predicciones negativas: 42
+```
+:::
 :::
 
 
 ## Visualizar distribución de probabilidades
 
-::: {#9adc6818 .cell}
+::: {#5e41c2a1 .cell execution_count=7}
 ``` {.python .cell-code}
 # Crear gráfico de distribución de probabilidades
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
@@ -257,6 +380,17 @@ plt.tight_layout()
 plt.savefig('distribucion_probabilidades.png', dpi=300, bbox_inches='tight')
 print("\nGráfico guardado como 'distribucion_probabilidades.png'")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+Gráfico guardado como 'distribucion_probabilidades.png'
+```
+:::
+
+::: {.cell-output .cell-output-display}
+![](index_files/figure-html/cell-8-output-2.png){width=1334 height=470}
+:::
 :::
 
 
@@ -266,7 +400,7 @@ print("\nGráfico guardado como 'distribucion_probabilidades.png'")
 
 La matriz de confusión es una tabla que describe el desempeño de un modelo de clasificación.
 
-::: {#8b362453 .cell}
+::: {#17d57185 .cell execution_count=8}
 ``` {.python .cell-code}
 print("""
 MATRIZ DE CONFUSIÓN - ESTRUCTURA
@@ -286,12 +420,34 @@ Donde:
 - TP (True Positive): Positivos correctamente identificados
 """)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+MATRIZ DE CONFUSIÓN - ESTRUCTURA
+
+                    Predicción
+                 Negativo  Positivo
+               ┌──────────┬──────────┐
+Real  Negativo │    TN    │    FP    │
+               ├──────────┼──────────┤
+      Positivo │    FN    │    TP    │
+               └──────────┴──────────┘
+
+Donde:
+- TN (True Negative): Negativos correctamente identificados
+- FP (False Positive): Negativos incorrectamente clasificados como positivos
+- FN (False Negative): Positivos incorrectamente clasificados como negativos
+- TP (True Positive): Positivos correctamente identificados
+
+```
+:::
 :::
 
 
 ## Calcular matriz de confusión
 
-::: {#1bf23851 .cell}
+::: {#99d0770c .cell execution_count=9}
 ``` {.python .cell-code}
 # Predicciones con umbral 0.5
 y_pred = modelo.predict(X_test)
@@ -315,12 +471,31 @@ print(f"  Falsos Positivos (FP): {FP}")
 print(f"  Falsos Negativos (FN): {FN}")
 print(f"  Verdaderos Positivos (TP): {TP}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+MATRIZ DE CONFUSIÓN
+==================================================
+
+                 Predicción
+              No admitido  Admitido
+Real No admitido      14         11
+     Admitido          1         34
+
+
+Componentes de la matriz:
+  Verdaderos Negativos (TN): 14
+  Falsos Positivos (FP): 11
+  Falsos Negativos (FN): 1
+  Verdaderos Positivos (TP): 34
+```
+:::
 :::
 
 
 ## Función personalizada para matriz de confusión
 
-::: {#0601e3dc .cell}
+::: {#7dae5c3d .cell execution_count=10}
 ``` {.python .cell-code}
 def calcular_matriz_confusion(y_real, y_pred):
     """
@@ -349,12 +524,22 @@ print("Matriz de confusión (función personalizada):")
 print(matriz)
 print(f"\nVerificación: TP={TP}, TN={TN}, FP={FP}, FN={FN}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Matriz de confusión (función personalizada):
+[[14 11]
+ [ 1 34]]
+
+Verificación: TP=34, TN=14, FP=11, FN=1
+```
+:::
 :::
 
 
 ## Visualizar matriz de confusión
 
-::: {#2c661b41 .cell}
+::: {#33e491d1 .cell execution_count=11}
 ``` {.python .cell-code}
 def graficar_matriz_confusion(cm, nombres_clases=['No', 'Sí']):
     """
@@ -391,6 +576,16 @@ fig = graficar_matriz_confusion(cm, nombres_clases=['No admitido', 'Admitido'])
 plt.savefig('matriz_confusion.png', dpi=300, bbox_inches='tight')
 print("Matriz de confusión guardada como 'matriz_confusion.png'")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Matriz de confusión guardada como 'matriz_confusion.png'
+```
+:::
+
+::: {.cell-output .cell-output-display}
+![](index_files/figure-html/cell-12-output-2.png){width=684 height=566}
+:::
 :::
 
 
@@ -398,7 +593,7 @@ print("Matriz de confusión guardada como 'matriz_confusion.png'")
 
 ## Resumen de métricas principales
 
-::: {#97671e18 .cell}
+::: {#3abc17a9 .cell execution_count=12}
 ``` {.python .cell-code}
 print("""
 MÉTRICAS DE CLASIFICACIÓN
@@ -430,6 +625,40 @@ MÉTRICAS DE CLASIFICACIÓN
    - Fórmula: TN / (TN + FP)
 """)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+MÉTRICAS DE CLASIFICACIÓN
+
+1. ACCURACY (Exactitud)
+   - Proporción total de predicciones correctas
+   - Fórmula: (TP + TN) / (TP + TN + FP + FN)
+   - Cuándo usar: Clases balanceadas
+
+2. PRECISION (Precisión)
+   - De las predicciones positivas, cuántas son correctas
+   - Fórmula: TP / (TP + FP)
+   - Cuándo usar: Costo alto de falsos positivos
+   - Ejemplo: Diagnóstico médico (evitar alarmas falsas)
+
+3. RECALL (Sensibilidad/Exhaustividad)
+   - De los casos positivos reales, cuántos detectamos
+   - Fórmula: TP / (TP + FN)
+   - Cuándo usar: Costo alto de falsos negativos
+   - Ejemplo: Detección de fraude (no perder casos reales)
+
+4. F1-SCORE
+   - Media armónica de precision y recall
+   - Fórmula: 2 * (Precision * Recall) / (Precision + Recall)
+   - Cuándo usar: Balance entre precision y recall
+
+5. SPECIFICITY (Especificidad)
+   - De los casos negativos reales, cuántos detectamos
+   - Fórmula: TN / (TN + FP)
+
+```
+:::
 :::
 
 
@@ -437,7 +666,7 @@ MÉTRICAS DE CLASIFICACIÓN
 
 ## Cálculo e interpretación
 
-::: {#0d39d60b .cell}
+::: {#9f24f0a6 .cell execution_count=13}
 ``` {.python .cell-code}
 def calcular_accuracy(y_real, y_pred):
     """Calcula accuracy"""
@@ -455,12 +684,22 @@ print(f"Accuracy (sklearn): {accuracy_sklearn:.4f} ({accuracy_sklearn*100:.2f}%)
 print(f"\nInterpretación:")
 print(f"El modelo clasifica correctamente el {accuracy*100:.1f}% de los casos")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Accuracy (función propia): 0.8000 (80.00%)
+Accuracy (sklearn): 0.8000 (80.00%)
+
+Interpretación:
+El modelo clasifica correctamente el 80.0% de los casos
+```
+:::
 :::
 
 
 ## Limitaciones del accuracy
 
-::: {#af5bc749 .cell}
+::: {#954930df .cell execution_count=14}
 ``` {.python .cell-code}
 # Ejemplo con dataset desbalanceado
 print("\nEJEMPLO: LIMITACIÓN DEL ACCURACY CON CLASES DESBALANCEADAS")
@@ -485,6 +724,26 @@ print(f"\nMatriz de confusión:")
 print(cm_desbalanceado)
 print("\nObservación: TP = 0 (no detecta ningún positivo)")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+EJEMPLO: LIMITACIÓN DEL ACCURACY CON CLASES DESBALANCEADAS
+======================================================================
+
+Modelo que predice siempre 'No':
+Accuracy: 0.9500 (95.0%)
+
+¡Accuracy alto pero modelo inútil!
+No detecta ningún caso positivo.
+
+Matriz de confusión:
+[[950   0]
+ [ 50   0]]
+
+Observación: TP = 0 (no detecta ningún positivo)
+```
+:::
 :::
 
 
@@ -492,7 +751,7 @@ print("\nObservación: TP = 0 (no detecta ningún positivo)")
 
 ## Cálculo e interpretación
 
-::: {#cb35baaf .cell}
+::: {#e09ac77e .cell execution_count=15}
 ``` {.python .cell-code}
 def calcular_precision(y_real, y_pred):
     """Calcula precision"""
@@ -514,12 +773,25 @@ print(f"el {precision*100:.1f}% realmente son admitidos.")
 print(f"\nFalsos positivos: {FP} estudiantes")
 print("(Predichos como admitidos pero en realidad no lo fueron)")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Precision: 0.7556 (75.56%)
+
+Interpretación:
+De los estudiantes que el modelo predice como 'admitidos',
+el 75.6% realmente son admitidos.
+
+Falsos positivos: 11 estudiantes
+(Predichos como admitidos pero en realidad no lo fueron)
+```
+:::
 :::
 
 
 ## Ejemplo económico: Aprobación de créditos
 
-::: {#4745c979 .cell}
+::: {#aa17dc47 .cell execution_count=16}
 ``` {.python .cell-code}
 print("\n\nEJEMPLO ECONÓMICO: APROBACIÓN DE CRÉDITOS")
 print("=" * 70)
@@ -548,6 +820,28 @@ print(f"  Falsos positivos: {FP}")
 print(f"  Pérdida estimada: S/ {perdida_por_fp:,}")
 print(f"\nConlusión: Alta precision reduce pérdidas por morosidad")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+
+EJEMPLO ECONÓMICO: APROBACIÓN DE CRÉDITOS
+======================================================================
+
+Resultados de 1000 solicitudes:
+  Créditos aprobados por modelo: 847
+  De estos, pagarán: 680 (80.3%)
+  De estos, NO pagarán: 167 (Pérdida por falsos positivos)
+
+
+Análisis financiero:
+  Monto promedio por crédito: S/ 10,000
+  Falsos positivos: 167
+  Pérdida estimada: S/ 1,670,000
+
+Conlusión: Alta precision reduce pérdidas por morosidad
+```
+:::
 :::
 
 
@@ -555,7 +849,7 @@ print(f"\nConlusión: Alta precision reduce pérdidas por morosidad")
 
 ## Cálculo e interpretación
 
-::: {#ae60d6f4 .cell}
+::: {#09c21323 .cell execution_count=17}
 ``` {.python .cell-code}
 def calcular_recall(y_real, y_pred):
     """Calcula recall (sensibilidad)"""
@@ -577,12 +871,25 @@ print(f"el modelo detectó correctamente al {recall*100:.1f}%.")
 print(f"\nFalsos negativos: {FN} estudiantes")
 print("(No fueron identificados como admitidos cuando sí lo fueron)")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Recall: 0.9714 (97.14%)
+
+Interpretación:
+De los estudiantes que realmente fueron admitidos,
+el modelo detectó correctamente al 97.1%.
+
+Falsos negativos: 118 estudiantes
+(No fueron identificados como admitidos cuando sí lo fueron)
+```
+:::
 :::
 
 
 ## Ejemplo económico: Detección de fraude
 
-::: {#31a98d35 .cell}
+::: {#49d1e8f1 .cell execution_count=18}
 ``` {.python .cell-code}
 print("\n\nEJEMPLO ECONÓMICO: DETECCIÓN DE FRAUDE")
 print("=" * 70)
@@ -620,6 +927,33 @@ print(f"  Costo de investigar falsas alarmas: S/ {costo_fp:,}")
 print(f"\n\nConclusión: En detección de fraude, es MÁS IMPORTANTE el Recall")
 print("(No queremos perder fraudes reales, aunque tengamos falsas alarmas)")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+
+EJEMPLO ECONÓMICO: DETECCIÓN DE FRAUDE
+======================================================================
+
+Resultados de 10,000 transacciones:
+  Fraudes reales: 198
+  Fraudes detectados: 4 (2.0% de los reales)
+  Fraudes no detectados: 194 ¡CRÍTICO!
+
+
+Análisis financiero:
+  Monto promedio por fraude: S/ 5,000
+  Fraudes no detectados (FN): 194
+  Pérdida por fraudes no detectados: S/ 970,000
+
+  Alertas falsas (FP): 301
+  Costo de investigar falsas alarmas: S/ 30,100
+
+
+Conclusión: En detección de fraude, es MÁS IMPORTANTE el Recall
+(No queremos perder fraudes reales, aunque tengamos falsas alarmas)
+```
+:::
 :::
 
 
@@ -627,7 +961,7 @@ print("(No queremos perder fraudes reales, aunque tengamos falsas alarmas)")
 
 ## Cálculo e interpretación
 
-::: {#904c1a80 .cell}
+::: {#40ac9b82 .cell execution_count=19}
 ``` {.python .cell-code}
 def calcular_f1(y_real, y_pred):
     """Calcula F1-score"""
@@ -652,12 +986,26 @@ print(f"\n\nInterpretación del F1-Score:")
 print("El F1-Score es la media armónica de Precision y Recall.")
 print(f"Un F1 de {f1:.2f} indica un {'buen' if f1 > 0.7 else 'regular' if f1 > 0.5 else 'bajo'} balance entre ambas métricas.")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Métricas del modelo:
+  Precision: 0.7556
+  Recall: 0.9714
+  F1-Score: 0.8500
+
+
+Interpretación del F1-Score:
+El F1-Score es la media armónica de Precision y Recall.
+Un F1 de 0.85 indica un buen balance entre ambas métricas.
+```
+:::
 :::
 
 
 ## Trade-off entre Precision y Recall
 
-::: {#ce81b7c9 .cell}
+::: {#e590b98c .cell execution_count=20}
 ``` {.python .cell-code}
 # Demostrar trade-off
 umbrales = [0.1, 0.3, 0.5, 0.7, 0.9]
@@ -680,6 +1028,26 @@ print("\nObservación:")
 print("- Umbral bajo → Mayor Recall (detecta más positivos) pero menor Precision")
 print("- Umbral alto → Mayor Precision (menos falsas alarmas) pero menor Recall")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+
+TRADE-OFF: PRECISION VS RECALL
+======================================================================
+Umbral     Precision    Recall       F1-Score    
+----------------------------------------------------------------------
+0.1        0.5932       1.0000       0.7447      
+0.3        0.6415       0.9714       0.7727      
+0.5        0.7556       0.9714       0.8500      
+0.7        0.9118       0.8857       0.8986      
+0.9        1.0000       0.5143       0.6792      
+
+Observación:
+- Umbral bajo → Mayor Recall (detecta más positivos) pero menor Precision
+- Umbral alto → Mayor Precision (menos falsas alarmas) pero menor Recall
+```
+:::
 :::
 
 
@@ -687,7 +1055,7 @@ print("- Umbral alto → Mayor Precision (menos falsas alarmas) pero menor Recal
 
 ## Generar curva Precision-Recall
 
-::: {#08ca7004 .cell}
+::: {#c3d4f2ce .cell execution_count=21}
 ``` {.python .cell-code}
 def calcular_curva_precision_recall(y_real, probabilidades):
     """
@@ -725,7 +1093,7 @@ precision_sklearn, recall_sklearn, _ = precision_recall_curve(
 
 ## Visualizar curva Precision-Recall
 
-::: {#60af9450 .cell}
+::: {#68d5700e .cell execution_count=22}
 ``` {.python .cell-code}
 # Crear gráfico
 fig, ax = plt.subplots(figsize=(10, 8))
@@ -759,6 +1127,16 @@ plt.tight_layout()
 plt.savefig('curva_precision_recall.png', dpi=300, bbox_inches='tight')
 print("Curva Precision-Recall guardada como 'curva_precision_recall.png'")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Curva Precision-Recall guardada como 'curva_precision_recall.png'
+```
+:::
+
+::: {.cell-output .cell-output-display}
+![](index_files/figure-html/cell-23-output-2.png){width=950 height=757}
+:::
 :::
 
 
@@ -766,7 +1144,7 @@ print("Curva Precision-Recall guardada como 'curva_precision_recall.png'")
 
 ## Concepto de ROC
 
-::: {#2f87733b .cell}
+::: {#9c8033bf .cell execution_count=23}
 ``` {.python .cell-code}
 print("""
 CURVA ROC (Receiver Operating Characteristic)
@@ -785,12 +1163,33 @@ Interpretación:
   * AUC < 0.5: Peor que aleatorio
 """)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+CURVA ROC (Receiver Operating Characteristic)
+
+La curva ROC grafica:
+- Eje X: False Positive Rate (FPR) = FP / (FP + TN)
+- Eje Y: True Positive Rate (TPR) = TP / (TP + FN)  [mismo que Recall]
+
+Interpretación:
+- Diagonal (línea punteada): Clasificador aleatorio (AUC = 0.5)
+- Curva sobre diagonal: Mejor que aleatorio
+- Más cerca de esquina superior izquierda: Mejor modelo
+- AUC (Area Under Curve): Métrica resumen
+  * AUC = 1.0: Clasificador perfecto
+  * AUC = 0.5: Clasificador aleatorio
+  * AUC < 0.5: Peor que aleatorio
+
+```
+:::
 :::
 
 
 ## Calcular TPR y FPR
 
-::: {#61b7d86c .cell}
+::: {#161e069a .cell execution_count=24}
 ``` {.python .cell-code}
 def calcular_tpr(y_real, y_pred):
     """Calcula True Positive Rate (TPR) = Recall"""
@@ -839,12 +1238,18 @@ roc_auc = auc(fpr_sklearn, tpr_sklearn)
 
 print(f"AUC (Area Under Curve): {roc_auc:.4f}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+AUC (Area Under Curve): 0.9440
+```
+:::
 :::
 
 
 ## Visualizar curva ROC
 
-::: {#ad158c72 .cell}
+::: {#0c4e5481 .cell execution_count=25}
 ``` {.python .cell-code}
 # Crear gráfico
 fig, ax = plt.subplots(figsize=(10, 8))
@@ -877,12 +1282,22 @@ plt.tight_layout()
 plt.savefig('curva_roc.png', dpi=300, bbox_inches='tight')
 print("Curva ROC guardada como 'curva_roc.png'")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Curva ROC guardada como 'curva_roc.png'
+```
+:::
+
+::: {.cell-output .cell-output-display}
+![](index_files/figure-html/cell-26-output-2.png){width=950 height=757}
+:::
 :::
 
 
 ## Interpretación del AUC
 
-::: {#c25bd89e .cell}
+::: {#b76faf2b .cell execution_count=26}
 ``` {.python .cell-code}
 def interpretar_auc(auc_score):
     """Interpreta el valor de AUC"""
@@ -907,6 +1322,21 @@ print(f"Si tomamos un caso positivo y uno negativo al azar,")
 print(f"el modelo asignará una probabilidad mayor al caso positivo")
 print(f"el {roc_auc*100:.1f}% de las veces.")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+
+INTERPRETACIÓN DEL MODELO
+======================================================================
+AUC: 0.9440 - Excelente
+
+Significado:
+Si tomamos un caso positivo y uno negativo al azar,
+el modelo asignará una probabilidad mayor al caso positivo
+el 94.4% de las veces.
+```
+:::
 :::
 
 
@@ -914,7 +1344,7 @@ print(f"el {roc_auc*100:.1f}% de las veces.")
 
 ## Aplicación 1: Predicción de incumplimiento crediticio
 
-::: {#ff43d0f6 .cell}
+::: {#2da42476 .cell execution_count=27}
 ``` {.python .cell-code}
 print("\n\nAPLICACIÓN: PREDICCIÓN DE INCUMPLIMIENTO CREDITICIO")
 print("=" * 70)
@@ -1018,12 +1448,61 @@ if precision_c < 0.5:
     print("⚠ PRECISION BAJA: Muchas falsas alarmas.")
     print("  Considerar aumentar umbral o mejorar features.")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+
+APLICACIÓN: PREDICCIÓN DE INCUMPLIMIENTO CREDITICIO
+======================================================================
+
+Dataset de créditos:
+  Total clientes: 1000
+  Incumplimientos: 500 (50.0%)
+
+
+RESULTADOS DEL MODELO
+======================================================================
+
+Matriz de Confusión:
+                    Predicción
+              Pagará  Incumplirá
+Real  Pagará     124        19
+   Incumplirá     22       135
+
+
+Métricas:
+  Accuracy:  0.8633 (86.3%)
+  Precision: 0.8766 (87.7%)
+  Recall:    0.8599 (86.0%)
+  F1-Score:  0.8682
+  AUC:       0.9521
+
+
+ANÁLISIS DE COSTOS
+======================================================================
+  Monto promedio por crédito: S/ 52,452.51
+
+  Falsos Negativos (FN): 22
+    → Incumplimientos no detectados
+    → Pérdida estimada: S/ 807,768.67
+
+  Falsos Positivos (FP): 19
+    → Clientes buenos rechazados o revisados
+    → Costo de revisión: S/ 9,500.00
+
+  Costo total: S/ 817,268.67
+
+
+RECOMENDACIÓN:
+```
+:::
 :::
 
 
 ## Aplicación 2: Clasificación de empresas por riesgo de quiebra
 
-::: {#bb00afd7 .cell}
+::: {#fc2e0c70 .cell execution_count=28}
 ``` {.python .cell-code}
 print("\n\n\nAPLICACIÓN: CLASIFICACIÓN DE RIESGO DE QUIEBRA EMPRESARIAL")
 print("=" * 70)
@@ -1118,6 +1597,46 @@ print("  2. Decisiones de inversión o préstamos corporativos")
 print("  3. Priorización de auditorías o intervenciones")
 print("  4. Análisis de cartera de inversiones")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+
+
+APLICACIÓN: CLASIFICACIÓN DE RIESGO DE QUIEBRA EMPRESARIAL
+======================================================================
+
+Dataset de empresas:
+  Total empresas: 500
+  Quiebras: 197 (39.4%)
+
+
+MÉTRICAS DEL MODELO
+======================================================================
+  Accuracy:  0.9333
+  Precision: 0.9048
+  Recall:    0.9344
+  F1-Score:  0.9194
+  AUC:       0.9854
+
+
+IMPORTANCIA DE VARIABLES (Coeficientes)
+======================================================================
+  ratio_liquidez             -3.2044  ↓ Menor riesgo
+  ratio_endeudamiento         2.6668  ↑ Mayor riesgo
+  margen_utilidad            -2.3090  ↓ Menor riesgo
+  años_operacion             -0.0526  ↓ Menor riesgo
+  flujo_caja                 -0.0000  ↓ Menor riesgo
+
+
+APLICACIÓN PRÁCTICA:
+Este modelo puede usarse para:
+  1. Sistema de alerta temprana de quiebra
+  2. Decisiones de inversión o préstamos corporativos
+  3. Priorización de auditorías o intervenciones
+  4. Análisis de cartera de inversiones
+```
+:::
 :::
 
 
@@ -1125,7 +1644,7 @@ print("  4. Análisis de cartera de inversiones")
 
 ## Ejercicio 1: Optimizar umbral según costo
 
-::: {#438f5ac8 .cell}
+::: {#0499f295 .cell execution_count=29}
 ``` {.python .cell-code}
 print("\n\n\nEJERCICIO: OPTIMIZACIÓN DE UMBRAL SEGÚN COSTOS")
 print("=" * 70)
@@ -1241,6 +1760,41 @@ plt.tight_layout()
 plt.savefig('optimizacion_umbral.png', dpi=300, bbox_inches='tight')
 print("\nGráfico guardado como 'optimizacion_umbral.png'")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+
+
+EJERCICIO: OPTIMIZACIÓN DE UMBRAL SEGÚN COSTOS
+======================================================================
+
+Costos considerados:
+  Costo por Falso Positivo: S/ 500.00
+  Costo por Falso Negativo: S/ 36,716.76
+
+
+UMBRAL ÓPTIMO ENCONTRADO:
+======================================================================
+  Umbral óptimo: 0.165
+  Costo total: S/ 105,433.52
+  Precision: 0.7078
+  Recall: 0.9873
+  Falsos Positivos: 64
+  Falsos Negativos: 2
+
+
+COMPARACIÓN CON UMBRAL 0.5:
+  Costo con umbral 0.5: S/ 817,268.67
+  Ahorro con umbral óptimo: S/ 711,835.15
+
+Gráfico guardado como 'optimizacion_umbral.png'
+```
+:::
+
+::: {.cell-output .cell-output-display}
+![](index_files/figure-html/cell-30-output-2.png){width=1430 height=470}
+:::
 :::
 
 

@@ -1,0 +1,387 @@
+---
+documentmode: doc
+copyrightnotice: 2026
+copyrightext: All rights reserved
+title: Conversión de tipos (casting)
+shorttitle: CONVERSIÓN DE TIPOS (CASTING)
+abstract: Este abstract será actualizado una vez que se complete el contenido final del artículo.
+keywords: []
+categories:
+- Python
+tags:
+- python
+author-note:
+  status-changes:
+    affiliation-change: null
+    deceased: null
+  disclosures:
+    study-registration: null
+    data-sharing: null
+    related-report: null
+    conflict-of-interest: El autor no tiene conflictos de interés que revelar.
+    financial-support: null
+    gratitude: null
+    authorship-agreements: null
+description: En programación, a menudo necesitas convertir datos de un tipo a otro.
+eval: true
+citation:
+  type: article-journal
+  author:
+  - Edison Achalma
+  pdf-url: https://numerus-scriptum.netlify.app/python/2026-10-20-16-conversion-de-tipos-casting/index.pdf
+date: 2026-10-20
+draft: false
+image: ../featured.jpg
+curso: python
+tema: "2.9"
+---
+
+## 🎯 Motivación
+
+En programación, a menudo necesitas convertir datos de un tipo a otro. Por ejemplo, cuando recibes entrada del usuario (siempre es texto), pero necesitas hacer cálculos matemáticos. O cuando quieres mostrar un número como parte de un mensaje de texto. El casting te permite controlar explícitamente qué tipo de dato estás usando, evitando errores y asegurando que tu código funcione correctamente.
+
+## 💡 Intuición
+
+Imagina que tienes diferentes moldes para galletas: uno para círculos (int), uno para estrellas (float), y otro para letras (str). Tienes masa (datos) y puedes usar un molde para darle la forma que necesitas. El casting es como elegir el molde adecuado: `int()` convierte en entero, `float()` en decimal, `str()` en texto. Pero ten cuidado: no todos los moldes funcionan con todos los tipos de masa.
+
+## 🧠 Modelo mental
+
+Python usa **funciones constructoras** para crear objetos de tipos específicos:
+
+1. **`int()`**: convierte a entero (elimina decimales, requiere texto numérico).
+2. **`float()`**: convierte a decimal (puede convertir enteros y texto numérico).
+3. **`str()`**: convierte a texto (funciona con casi cualquier cosa).
+4. **`bool()`**: convierte a booleano (reglas específicas de verdadero/falso).
+
+El casting es explícito: tú decides cuándo y cómo convertir.
+
+## 📐 Desarrollo
+
+### 1. `int()` - Convertir a Entero
+
+Convierte números (enteros, decimales) y cadenas de texto numéricas a enteros:
+
+```python
+# Desde enteros
+x = int(1)      # 1
+y = int(-5)     # -5
+
+# Desde floats (trunca, no redondea)
+z = int(2.8)    # 2 (pierde el .8)
+w = int(-3.9)   # -3 (trunca hacia cero)
+
+# Desde strings (solo si representan números enteros)
+a = int("10")   # 10
+b = int("-5")   # -5
+
+# ❌ Error: no se puede convertir texto no numérico
+# c = int("Hola")  # ValueError
+```
+
+### 2. `float()` - Convertir a Decimal
+
+Convierte enteros, otros decimales y cadenas numéricas a floats:
+
+```python
+# Desde enteros
+x = float(1)     # 1.0
+y = float(-5)    # -5.0
+
+# Desde floats (no cambia)
+z = float(2.8)   # 2.8
+
+# Desde strings numéricos
+a = float("3")   # 3.0
+b = float("3.14") # 3.14
+c = float("-5.5") # -5.5
+d = float("1e3") # 1000.0 (notación científica)
+
+# ❌ Error: texto no numérico
+# e = float("Hola")  # ValueError
+```
+
+### 3. `str()` - Convertir a Texto
+
+Convierte prácticamente cualquier cosa a texto:
+
+```python
+# Desde enteros
+x = str(5)       # "5"
+y = str(-3)      # "-3"
+
+# Desde floats
+z = str(3.14)    # "3.14"
+w = str(2.0)     # "2.0"
+
+# Desde booleanos
+a = str(True)    # "True"
+b = str(False)   # "False"
+
+# Desde None
+c = str(None)    # "None"
+
+# Desde estructuras de datos
+d = str([1, 2, 3])  # "[1, 2, 3]"
+e = str({"a": 1})   # "{'a': 1}"
+```
+
+### 4. `bool()` - Convertir a Booleano
+
+Convierte valores a `True` o `False` según reglas específicas:
+
+```python
+# Falsy (valores que son False)
+print(bool(0))      # False
+print(bool(0.0))    # False
+print(bool(""))     # False
+print(bool([]))     # False
+print(bool({}))     # False
+print(bool(None))   # False
+
+# Truthy (valores que son True)
+print(bool(1))      # True
+print(bool(-5))     # True
+print(bool("Hola")) # True
+print(bool(" "))    # True (texto con espacio)
+print(bool([1, 2])) # True
+print(bool({"a": 1})) # True
+```
+
+### 5. Conversión entre Tipos Numéricos
+
+```python
+# Entero → Flotante
+x = 5
+y = float(x)  # 5.0
+
+# Flotante → Entero (trunca)
+a = 3.99
+b = int(a)    # 3 (pierde decimales)
+
+# String numérico → Entero
+edad = "25"
+edad_int = int(edad)  # 25
+
+# String numérico → Flotante
+precio = "19.99"
+precio_float = float(precio)  # 19.99
+
+# Entero → String (para mostrar)
+total = 100
+mensaje = "El total es: " + str(total)  # "El total es: 100"
+```
+
+### 6. Casos de uso común
+
+```python
+# 1. Entrada de usuario (siempre es string)
+edad_input = "25"  # Simula input()
+edad = int(edad_input)  # Convierte a entero para operaciones
+print(edad + 5)  # 30
+
+# 2. Mostrar números en mensajes
+total = 42.50
+print("El total es: " + str(total))  # "El total es: 42.5"
+
+# 3. Operaciones mixtas
+x = "10"
+y = "5"
+print(int(x) + int(y))  # 15 (convertir antes de sumar)
+
+# 4. Validación de datos
+def es_numero(texto):
+    try:
+        int(texto)
+        return True
+    except ValueError:
+        return False
+```
+
+## 🔬 Ejemplos
+
+**Mínimo —** Conversiones básicas:
+
+```python
+# Conversiones numéricas
+print(int(3.14))   # 3
+print(float(5))    # 5.0
+print(str(42))     # "42"
+```
+
+**Progresivo —** Conversiones en operaciones:
+
+```python
+# Sin casting (error)
+# print("Edad: " + 25)  # TypeError
+
+# Con casting (correcto)
+edad = 25
+print("Edad: " + str(edad))  # "Edad: 25"
+
+# Mejor aún: f-strings
+print(f"Edad: {edad}")  # "Edad: 25"
+```
+
+**Real —** Sistema de registro de usuario:
+
+```python
+# Simulación de entrada (todo es texto)
+nombre = "Carlos"
+edad_texto = "28"
+altura_texto = "1.75"
+
+# Casting para operaciones
+edad = int(edad_texto)
+altura = float(altura_texto)
+
+# Cálculos
+edad_futura = edad + 10
+imc = 70 / (altura ** 2)  # Peso fijo de 70kg
+
+# Casting para mostrar
+print("=== Registro de Usuario ===")
+print("Nombre: " + nombre)
+print("Edad: " + str(edad) + " años")
+print("Altura: " + str(altura) + " m")
+print("Edad en 10 años: " + str(edad_futura))
+print(f"IMC estimado: {imc:.2f}")  # F-strings sin casting necesario
+```
+
+## ⚠️ Errores comunes
+
+| Error                         | Síntoma                                         | Solución                                        |
+| ----------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| **Texto no numérico a int**   | `ValueError: invalid literal`                   | Verifica que el texto sea un número válido      |
+| **Texto no numérico a float** | `ValueError: could not convert string to float` | Solo strings numéricos ("3.14", "5")            |
+| **Conversión de complex**     | `TypeError: can't convert complex to int`       | No se puede convertir complex directamente      |
+| **Casting innecesario**       | Código menos legible                            | Usa f-strings en lugar de `str()` para mostrar  |
+| **Olvidar convertir input**   | Suma concatenada en lugar de suma matemática    | Convierte `input()` a int/float antes de operar |
+
+## ✅ Buenas prácticas
+
+1. **Siempre convierte entrada de usuario**:
+   
+   ```python
+   edad = int(input("Edad: "))  # input siempre retorna str
+   ```
+
+2. **Usa f-strings para mostrar datos** (evita casting manual):
+   
+   ```python
+   # ❌ Menos elegante
+   print("Edad: " + str(edad) + " años")
+   
+   # ✅ Más elegante y legible
+   print(f"Edad: {edad} años")
+   ```
+
+3. **Valida antes de convertir**:
+   
+   ```python
+   valor = input("Número: ")
+   if valor.isdigit():  # Solo dígitos
+       numero = int(valor)
+   else:
+       print("No es un número válido")
+   ```
+
+4. **Usa `try/except` para manejar errores de conversión**:
+   
+   ```python
+   try:
+       edad = int(input("Edad: "))
+   except ValueError:
+       print("Error: debes ingresar un número")
+   ```
+
+5. **Convierte lo más tarde posible**: mantén los datos en su tipo original hasta que necesites otro.
+
+## 📝 Ejercicio
+
+**Básico** — Conversiones de tipos
+
+Escribe un programa que:
+
+1. Cree las siguientes variables:
+   - `numero_texto` = "10"
+   - `numero_decimal` = 3.14
+   - `texto_numerico` = "5.5"
+   - `valor_booleano` = True
+2. Realice las siguientes conversiones:
+   - Convierta `numero_texto` a entero
+   - Convierta `numero_decimal` a entero (observa qué pasa)
+   - Convierta `texto_numerico` a float
+   - Convierta `valor_booleano` a entero
+3. Muestre los resultados y sus tipos
+
+---
+
+**Solución (no mires hasta haberlo intentado):**
+
+```python
+# Datos originales
+numero_texto = "10"
+numero_decimal = 3.14
+texto_numerico = "5.5"
+valor_booleano = True
+
+# Conversiones
+entero_desde_texto = int(numero_texto)
+entero_desde_decimal = int(numero_decimal)  # Trunca a 3
+float_desde_texto = float(texto_numerico)
+entero_desde_booleano = int(valor_booleano)
+
+# Resultados
+print("=== Conversiones ===")
+print(f"'{numero_texto}' → {entero_desde_texto} ({type(entero_desde_texto)})")
+print(f"{numero_decimal} → {entero_desde_decimal} ({type(entero_desde_decimal)})")
+print(f"'{texto_numerico}' → {float_desde_texto} ({type(float_desde_texto)})")
+print(f"{valor_booleano} → {entero_desde_booleano} ({type(entero_desde_booleano)})")
+
+# Nota: los booleanos son subclase de int en Python
+print(f"\n¿True es int? {isinstance(True, int)}")  # True
+```
+
+## 🗂️ Síntesis
+
+- **`int()`**: convierte a entero (trunca decimales, requiere números válidos).
+- **`float()`**: convierte a decimal (funciona con enteros y texto numérico).
+- **`str()`**: convierte a texto (funciona con casi todo).
+- **`bool()`**: convierte a booleano (reglas de truthy/falsy).
+- **F-strings**: alternativa moderna a `str()` para mostrar datos.
+- **Validación**: siempre verifica antes de convertir entrada de usuario.
+- **Errors comunes**: ValueError al convertir texto no numérico.
+
+## 🔗 Qué sigue
+
+- **Relacionado:** tipos de datos, formateo de strings, validación de entrada
+- **Siguiente tema:** Strings — aprenderás a trabajar con texto y todas sus operaciones y métodos.
+
+<!-- fragmento de inclusión — texto de apertura del bloque «Publicaciones similares» (incluido en cada post) -->
+
+# Publicaciones Similares
+
+Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:
+
+
+<!-- fragmento de inclusión — índice de publicaciones de python; lo genera script_generador_publicacion_similar -->
+
+1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/index.pdf) [Instalacion De Anaconda](https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda)
+2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf) [Configurar Entorno Virtual Python Anaconda](https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda)
+3. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python/index.pdf) [01 Introducion A La Programacion Con Python](https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python)
+4. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python/index.pdf) [02 Variables Expresiones Y Statements Con Python](https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python)
+5. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python/index.pdf) [03 Objetos De Python](https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python)
+6. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python/index.pdf) [04 Ejecucion Condicional Con Python](https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python)
+7. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python/index.pdf) [05 Iteraciones Con Python](https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python)
+8. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python/index.pdf) [06 Funciones Con Python](https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python)
+9. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python/index.pdf) [07 Dataframes Con Python](https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python)
+10. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python/index.pdf) [08 Prediccion Y Metrica De Performance Con Python](https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python)
+11. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python/index.pdf) [09 Metodos De Machine Learning Para Clasificacion Con Python](https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python)
+12. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python/index.pdf) [10 Metodos De Machine Learning Para Regresion Con Python](https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python)
+13. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf) [Visualizacion De Datos Con Python](https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python)
+
+
+<!-- fragmento de inclusión — texto de cierre del bloque «Publicaciones similares» (incluido en cada post) -->
+
+Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!
+

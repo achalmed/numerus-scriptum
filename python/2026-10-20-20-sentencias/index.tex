@@ -1,0 +1,702 @@
+\documentclass[
+  doc,
+  floatsintext,
+  longtable,
+  a4paper,
+  nolmodern,
+  notxfonts,
+  notimes,
+  12pt,
+  colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{apa7}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\geometry{inner=1in, outer=1in}
+\fancyhfoffset[LE,RO]{0cm}
+
+
+\usepackage[bidi=default]{babel}
+\babelprovide[main,import]{spanish}
+
+
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+
+\RequirePackage{longtable}
+\RequirePackage{threeparttablex}
+
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-.5em}%
+	{\normalfont\normalsize\bfseries\typesectitle}}
+
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{0.5em}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-\z@\relax}%
+	{\normalfont\normalsize\bfseries\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
+
+
+
+\usepackage{longtable, booktabs, multirow, multicol, colortbl, hhline, caption, array, float, xpatch}
+\usepackage{subcaption}
+
+
+\renewcommand\thesubfigure{\Alph{subfigure}}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,theorems, breakable, skins}
+\usepackage{fontawesome5}
+
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{ACACAC}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582EC}
+\definecolor{quarto-callout-important-color-frame}{HTML}{D9534F}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{F0AD4E}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02B875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{FD7E14}
+
+%\newlength\Oldarrayrulewidth
+%\newlength\Oldtabcolsep
+
+
+\usepackage{hyperref}
+
+
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+
+
+\usepackage{newtx}
+
+\defaultfontfeatures{Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+
+
+
+
+
+\title{Sentencias}
+
+
+\shorttitle{SENTENCIAS}
+
+
+\usepackage{etoolbox}
+
+
+
+\ccoppy{\textcopyright~2026}
+
+
+
+\author{Edison Achalma}
+
+
+
+\affiliation{
+{Escuela Profesional de Economía, Universidad Nacional de San Cristóbal
+de Huamanga}}
+
+
+
+
+\leftheader{Achalma}
+
+\date{2026-10-20}
+
+
+\abstract{Este abstract será actualizado una vez que se complete el
+contenido final del artículo. }
+
+
+
+\authornote{\par{\addORCIDlink{Edison Achalma}{0000-0001-6996-3364}} 
+\par{ }
+\par{   El autor no tiene conflictos de interés que revelar.    Los
+roles de autor se clasificaron utilizando la taxonomía de roles de
+colaborador (CRediT; https://credit.niso.org/) de la siguiente
+manera:  Edison Achalma:   conceptualización, metodología, análisis
+formal, investigación, recursos, curación de
+datos, redacción, visualización, supervisión, administración del
+proyecto}
+\par{La correspondencia relativa a este artículo debe dirigirse a Edison
+Achalma, Escuela Profesional de Economía, Universidad Nacional de San
+Cristóbal de Huamanga, Portal Independencia N°
+57, Ayacucho, AYA 5001, Perú, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
+}
+
+\makeatletter
+\let\endoldlt\endlongtable
+\def\endlongtable{
+\hline
+\endoldlt
+}
+\makeatother
+
+\urlstyle{same}
+
+
+
+\hypersetup{
+  pdftitle={Sentencias},
+  pdfauthor={Autor}
+}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Tabla de contenidos}
+\else
+  \newcommand\contentsname{Tabla de contenidos}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{Lista de Figuras}
+\else
+  \newcommand\listfigurename{Lista de Figuras}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{Lista de Tablas}
+\else
+  \newcommand\listtablename{Lista de Tablas}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figura}
+\else
+  \newcommand\figurename{Figura}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Tabla}
+\else
+  \newcommand\tablename{Tabla}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listados}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\makeatother
+
+% From https://tex.stackexchange.com/a/645996/211326
+%%% apa7 doesn't want to add appendix section titles in the toc
+%%% let's make it do it
+\makeatletter
+\xpatchcmd{\appendix}
+  {\par}
+  {\addcontentsline{toc}{section}{\@currentlabelname}\par}
+  {}{}
+\makeatother
+
+%% Disable longtable counter
+%% https://tex.stackexchange.com/a/248395/211326
+
+\usepackage{etoolbox}
+
+\makeatletter
+\patchcmd{\LT@caption}
+  {\bgroup}
+  {\bgroup\global\LTpatch@captiontrue}
+  {}{}
+\patchcmd{\longtable}
+  {\par}
+  {\par\global\LTpatch@captionfalse}
+  {}{}
+\apptocmd{\endlongtable}
+  {\ifLTpatch@caption\else\addtocounter{table}{-1}\fi}
+  {}{}
+\newif\ifLTpatch@caption
+\makeatother
+
+\begin{document}
+
+\maketitle
+
+
+\hypertarget{toc}{}
+\tableofcontents
+\newpage
+\section[Introduction]{Sentencias}
+
+\setcounter{secnumdepth}{3}
+
+\setlength\LTleft{0pt}
+
+
+
+
+\subsection{🎯 Motivación}\label{motivaciuxf3n}
+
+Una sentencia es la unidad básica de ejecución en Python: es una
+instrucción que le dice al intérprete qué hacer. Entender cómo funcionan
+las sentencias es fundamental porque todo programa, desde el más simple
+hasta el más complejo, está compuesto por ellas. La forma en que Python
+organiza y ejecuta estas sentencias define el flujo de tu programa.
+
+\subsection{💡 Intuición}\label{intuiciuxf3n}
+
+Imagina que estás siguiendo una receta de cocina paso a paso. Cada paso
+es una sentencia: ``Pela las papas'', ``Corta en cubos'', ``Calienta el
+aceite''. Python ejecuta exactamente en ese orden: primero pela, luego
+corta, luego calienta. Así funciona un programa: el intérprete lee tus
+sentencias de arriba hacia abajo y las ejecuta en secuencia.
+
+\subsection{🧠 Modelo mental}\label{modelo-mental}
+
+En Python, el flujo de ejecución es \textbf{secuencial por defecto}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Una sentencia por línea} normalmente: cada línea contiene una
+  instrucción completa.
+\item
+  \textbf{Ejecución ordenada}: se ejecutan en el mismo orden en que
+  están escritas (de arriba a abajo).
+\item
+  \textbf{Sin punto y coma necesario}: a diferencia de Java o C, Python
+  no requiere \texttt{;} para terminar una sentencia; el final de línea
+  es suficiente.
+\item
+  \textbf{Sentencias compuestas}: estructuras como \texttt{if},
+  \texttt{for}, \texttt{while} y \texttt{def} ocupan varias líneas y
+  definen bloques de código mediante indentación.
+\end{enumerate}
+
+\subsection{📐 Desarrollo}\label{desarrollo}
+
+\subsubsection{1. Sentencia básica}\label{sentencia-buxe1sica}
+
+Una sentencia simple es una línea de código que realiza una acción:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Hola mundo"}\NormalTok{)  }\CommentTok{\# Sentencia que imprime texto}
+\NormalTok{x }\OperatorTok{=} \DecValTok{5}                \CommentTok{\# Sentencia que asigna un valor}
+\NormalTok{y }\OperatorTok{=}\NormalTok{ x }\OperatorTok{+} \DecValTok{3}            \CommentTok{\# Sentencia que calcula y asigna}
+\end{Highlighting}
+\end{Shaded}
+
+Cada una de estas líneas es una sentencia completa. Python las ejecuta
+en orden: primero imprime, luego asigna 5 a \texttt{x}, luego calcula y
+asigna 8 a \texttt{y}.
+
+\subsubsection{\texorpdfstring{2. Múltiples sentencias en una línea (con
+\texttt{;})}{2. Múltiples sentencias en una línea (con ;)}}\label{muxfaltiples-sentencias-en-una-luxednea-con}
+
+\textbf{Poco recomendado}, pero posible:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Hola"}\NormalTok{)}\OperatorTok{;} \BuiltInTok{print}\NormalTok{(}\StringTok{"Mundo"}\NormalTok{)}\OperatorTok{;}\NormalTok{ x }\OperatorTok{=} \DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
+
+Aunque técnicamente válido, esto \textbf{reduce la legibilidad}. El
+estilo Python (PEP 8) recomienda:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Hola"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Mundo"}\NormalTok{)}
+\NormalTok{x }\OperatorTok{=} \DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{3. Sentencias largas y continuación de
+línea}\label{sentencias-largas-y-continuaciuxf3n-de-luxednea}
+
+Si una sentencia es demasiado larga, puedes usar
+\texttt{\textbackslash{}} para continuar en la siguiente línea:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{total }\OperatorTok{=} \DecValTok{100} \OperatorTok{+} \DecValTok{200} \OperatorTok{+} \DecValTok{300} \OperatorTok{+} \OperatorTok{\textbackslash{}}
+        \DecValTok{400} \OperatorTok{+} \DecValTok{500} \OperatorTok{+} \DecValTok{600}
+\end{Highlighting}
+\end{Shaded}
+
+O mejor, usar paréntesis implícitos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{total }\OperatorTok{=}\NormalTok{ (}\DecValTok{100} \OperatorTok{+} \DecValTok{200} \OperatorTok{+} \DecValTok{300} \OperatorTok{+}
+         \DecValTok{400} \OperatorTok{+} \DecValTok{500} \OperatorTok{+} \DecValTok{600}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{4. Sentencias compuestas
+(bloques)}\label{sentencias-compuestas-bloques}
+
+Algunas sentencias ocupan varias líneas y definen bloques:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sentencia compuesta: if{-}else}
+\ControlFlowTok{if}\NormalTok{ edad }\OperatorTok{\textgreater{}=} \DecValTok{18}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Eres mayor de edad"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Puedes votar"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Eres menor de edad"}\NormalTok{)}
+
+\CommentTok{\# Sentencia compuesta: función}
+\KeywordTok{def}\NormalTok{ saludar():}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Hola"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"¿Cómo estás?"}\NormalTok{)}
+
+\CommentTok{\# Sentencia compuesta: bucle}
+\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{3}\NormalTok{):}
+    \BuiltInTok{print}\NormalTok{(i)}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Siguiente"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Cada bloque indentado contiene sentencias que se ejecutan juntas.
+
+\subsubsection{5. Sentencias vacías
+(pass)}\label{sentencias-vacuxedas-pass}
+
+El \texttt{pass} es una sentencia que no hace nada. Se usa como marcador
+de posición:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# En desarrollo: aún no implementado}
+\KeywordTok{def}\NormalTok{ funcion\_futura():}
+    \ControlFlowTok{pass}  \CommentTok{\# Hacer nada por ahora}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{🔬 Ejemplos}\label{ejemplos}
+
+\textbf{Mínimo ---} Tres sentencias en su propio orden:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Primero"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Segundo"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Tercero"}\NormalTok{)}
+\CommentTok{\# Salida:}
+\CommentTok{\# Primero}
+\CommentTok{\# Segundo}
+\CommentTok{\# Tercero}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Progresivo ---} Sentencias con cálculos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{base }\OperatorTok{=} \DecValTok{10}          \CommentTok{\# Sentencia 1}
+\NormalTok{altura }\OperatorTok{=} \DecValTok{5}         \CommentTok{\# Sentencia 2}
+\NormalTok{area }\OperatorTok{=}\NormalTok{ base }\OperatorTok{*}\NormalTok{ altura }\OperatorTok{/} \DecValTok{2}  \CommentTok{\# Sentencia 3}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Área:"}\NormalTok{, area)      }\CommentTok{\# Sentencia 4}
+\CommentTok{\# Salida: Área: 25.0}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Real ---} Programa con múltiples tipos de sentencias:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sistema de calificaciones simple}
+\NormalTok{nombre }\OperatorTok{=} \StringTok{"Ana"}              \CommentTok{\# Asignación}
+\NormalTok{nota }\OperatorTok{=} \DecValTok{85}                   \CommentTok{\# Asignación}
+
+\ControlFlowTok{if}\NormalTok{ nota }\OperatorTok{\textgreater{}=} \DecValTok{60}\NormalTok{:              }\CommentTok{\# Sentencia compuesta}
+\NormalTok{    estado }\OperatorTok{=} \StringTok{"Aprobado"}     \CommentTok{\# Asignación dentro del bloque}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"¡Felicidades!"}\NormalTok{)  }\CommentTok{\# Sentencia dentro del bloque}
+\ControlFlowTok{else}\NormalTok{:}
+\NormalTok{    estado }\OperatorTok{=} \StringTok{"Reprobado"}    \CommentTok{\# Asignación en el otro bloque}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Estudia más"}\NormalTok{)    }\CommentTok{\# Sentencia en el otro bloque}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{nombre}\SpecialCharTok{\}}\SpecialStringTok{ está }\SpecialCharTok{\{}\NormalTok{estado}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# Sentencia final}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{⚠️ Errores comunes}\label{errores-comunes}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2681}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3986}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Síntoma
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Cómo detectarlo
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Dos sentencias en la misma línea} &
+\texttt{SyntaxError:\ invalid\ syntax} & Asegúrate de que cada sentencia
+esté en su propia línea \\
+\textbf{Olvidar la indentación} en bloques &
+\texttt{IndentationError:\ expected\ an\ indented\ block} & Revisa que
+los bloques estén correctamente indentados \\
+\textbf{Indentación inconsistente} &
+\texttt{IndentationError:\ unindent\ does\ not\ match...} & Usa 4
+espacios consistentes en todo el bloque \\
+\textbf{Punto y coma innecesario} & No da error, pero es anticonvención
+& No uses \texttt{;} a menos que sea estrictamente necesario \\
+\end{longtable}
+}
+
+\subsection{✅ Buenas prácticas}\label{buenas-pruxe1cticas}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Una sentencia por línea}: mejora la legibilidad y facilita la
+  depuración.
+\item
+  \textbf{Evita el punto y coma}: no es necesario en Python y va contra
+  las convenciones.
+\item
+  \textbf{Usa paréntesis para líneas largas}: en lugar de
+  \texttt{\textbackslash{}}, usa paréntesis para continuar líneas.
+\item
+  \textbf{Agrupa sentencias relacionadas}: usa líneas en blanco para
+  separar secciones lógicas.
+\item
+  \textbf{Sigue PEP 8}: la guía de estilo recomienda un máximo de 79
+  caracteres por línea.
+\end{itemize}
+
+\subsection{📝 Ejercicio}\label{ejercicio}
+
+\textbf{Básico} --- Reorganiza este código para que sea válido en
+Python:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Inicio del programa"}\NormalTok{) }\BuiltInTok{print}\NormalTok{(}\StringTok{"Segunda instrucción"}\NormalTok{) x}\OperatorTok{=}\DecValTok{5}\NormalTok{ y}\OperatorTok{=}\DecValTok{10} \BuiltInTok{print}\NormalTok{(x }\OperatorTok{+}\NormalTok{ y) }\BuiltInTok{print}\NormalTok{(}\StringTok{"Fin"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Requisito:} cada sentencia debe estar en su propia línea, y la
+legibilidad debe mejorar.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Solución (no mires hasta haberlo intentado):}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Inicio del programa"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Segunda instrucción"}\NormalTok{)}
+\NormalTok{x }\OperatorTok{=} \DecValTok{5}
+\NormalTok{y }\OperatorTok{=} \DecValTok{10}
+\BuiltInTok{print}\NormalTok{(x }\OperatorTok{+}\NormalTok{ y)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Fin"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{🗂️ Síntesis}\label{suxedntesis}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Sentencia = instrucción}: cada línea de código que realiza una
+  acción.
+\item
+  \textbf{Orden secuencial}: se ejecutan de arriba a abajo.
+\item
+  \textbf{Sin punto y coma}: el salto de línea termina cada sentencia.
+\item
+  \textbf{Sentencias compuestas}: estructuras como \texttt{if} y
+  \texttt{for} abarcan múltiples líneas indentadas.
+\item
+  \textbf{Buena práctica}: una sentencia por línea para máxima
+  legibilidad.
+\end{itemize}
+
+\subsection{🔗 Qué sigue}\label{quuxe9-sigue}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Relacionado:} variables y tipos de datos (cómo almacenar datos
+  que las sentencias procesan)
+\item
+  \textbf{Siguiente tema:} Variables y tipos de datos --- aprenderás a
+  declarar y manejar diferentes tipos de información en Python.
+\end{itemize}
+
+\section{Publicaciones Similares}\label{publicaciones-similares}
+
+Si te interesó este artículo, te recomendamos que explores otros blogs y
+recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo
+algunas sugerencias:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda}{Instalacion
+  De Anaconda}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda}{Configurar
+  Entorno Virtual Python Anaconda}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python}{01
+  Introducion A La Programacion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python}{02
+  Variables Expresiones Y Statements Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python}{03
+  Objetos De Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python}{04
+  Ejecucion Condicional Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python}{05
+  Iteraciones Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python}{06
+  Funciones Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python}{07
+  Dataframes Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python}{08
+  Prediccion Y Metrica De Performance Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python}{09
+  Metodos De Machine Learning Para Clasificacion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python}{10
+  Metodos De Machine Learning Para Regresion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python}{Visualizacion
+  De Datos Con Python}
+\end{enumerate}
+
+Esperamos que encuentres estas publicaciones igualmente interesantes y
+útiles. ¡Disfruta de la lectura!
+
+
+
+
+
+
+\end{document}

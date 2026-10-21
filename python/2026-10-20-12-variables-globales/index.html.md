@@ -1,0 +1,341 @@
+---
+documentmode: doc
+copyrightnotice: 2026
+copyrightext: All rights reserved
+title: Variables globales
+shorttitle: VARIABLES GLOBALES
+abstract: Este abstract será actualizado una vez que se complete el contenido final del artículo.
+keywords: []
+categories:
+- Python
+tags:
+- python
+author-note:
+  status-changes:
+    affiliation-change: null
+    deceased: null
+  disclosures:
+    study-registration: null
+    data-sharing: null
+    related-report: null
+    conflict-of-interest: El autor no tiene conflictos de interés que revelar.
+    financial-support: null
+    gratitude: null
+    authorship-agreements: null
+description: Cuando trabajas con funciones, necesitas entender cómo Python maneja las variables en diferentes contextos.
+eval: true
+citation:
+  type: article-journal
+  author:
+  - Edison Achalma
+  pdf-url: https://numerus-scriptum.netlify.app/python/2026-10-20-12-variables-globales/index.pdf
+date: 2026-10-20
+draft: false
+image: ../featured.jpg
+curso: python
+tema: "2.5"
+---
+
+## 🎯 Motivación
+
+Cuando trabajas con funciones, necesitas entender cómo Python maneja las variables en diferentes contextos. Las variables globales son accesibles desde cualquier parte de tu programa, pero modificarlas dentro de funciones requiere cuidado. Dominar el alcance (scope) de las variables es esencial para escribir código predecible y evitar errores difíciles de depurar.
+
+## 💡 Intuición
+
+Imagina que tienes una pizarra en la entrada de tu casa (variable global) donde toda la familia puede escribir mensajes. Todos pueden leer lo que está en la pizarra. Pero si alguien escribe un mensaje en su propia libreta personal (variable local) con el mismo título, no afecta lo que está en la pizarra. Python funciona igual: una variable dentro de una función es como una libreta privada, separada de la pizarra global.
+
+## 🧠 Modelo mental
+
+Python sigue las reglas **LEGB** para la resolución de variables:
+
+1. **L**ocal → dentro de la función actual
+2. **E**nclosing → funciones externas (anidadas)
+3. **G**lobal → variables definidas fuera de funciones
+4. **B**uilt-in → funciones y variables incorporadas de Python
+
+Cuando usas una variable dentro de una función, Python busca en ese orden: primero local, luego global si no encuentra local.
+
+## 📐 Desarrollo
+
+### 1. Variables globales (acceso)
+
+Las variables creadas fuera de funciones son globales y accesibles dentro de funciones:
+
+```python
+x = "awesome"  # Variable global
+
+def myfunc():
+    print("Python is " + x)  # Accede a la variable global
+
+myfunc()  # Salida: Python is awesome
+```
+
+### 2. Variable local con mismo nombre
+
+Si defines una variable con el mismo nombre dentro de una función, **es una variable local independiente**:
+
+```python
+x = "awesome"  # Global
+
+def myfunc():
+    x = "fantastic"  # Local (independiente)
+    print("Python is " + x)  # Usa la local
+
+myfunc()  # Salida: Python is fantastic
+print("Python is " + x)  # Salida: Python is awesome (global)
+```
+
+### 3. La palabra clave `global`
+
+Para **modificar** una variable global dentro de una función, usa `global`:
+
+```python
+x = "awesome"  # Global
+
+def myfunc():
+    global x  # Declara que vas a usar/modificar la global
+    x = "fantastic"  # Modifica la global
+
+myfunc()
+print("Python is " + x)  # Salida: Python is fantastic
+```
+
+### 4. Crear variable global dentro de función
+
+Puedes crear una nueva variable global desde dentro de una función:
+
+```python
+def myfunc():
+    global x
+    x = "nueva variable"  # Crea una variable global
+
+myfunc()
+print(x)  # Salida: nueva variable
+```
+
+### 5. Modificar variables globales vs locales
+
+```python
+contador = 0  # Global
+
+def incrementar():
+    global contador  # Necesario para modificar
+    contador += 1
+
+def mostrar():
+    print(contador)  # Solo lectura, no necesita global
+
+incrementar()
+incrementar()
+mostrar()  # Salida: 2
+```
+
+## 🔬 Ejemplos
+
+**Mínimo —** Acceso a global:
+
+```python
+nombre = "Ana"  # Global
+
+def saludar():
+    print("Hola", nombre)  # Accede a la global
+
+saludar()  # Hola Ana
+```
+
+**Progresivo —** Local vs Global:
+
+```python
+mensaje = "Global"
+
+def funcion1():
+    mensaje = "Local"
+    print("Dentro:", mensaje)  # Local
+
+def funcion2():
+    print("Fuera:", mensaje)  # Global
+
+funcion1()  # Dentro: Local
+funcion2()  # Fuera: Global
+print("Principal:", mensaje)  # Principal: Global
+```
+
+**Real —** Contador de visitas:
+
+```python
+visitas = 0  # Global
+
+def visitar_pagina():
+    global visitas
+    visitas += 1
+    print(f"Visitante #{visitas}")
+
+def mostrar_estadisticas():
+    print(f"Total de visitas: {visitas}")
+
+# Simulación de visitas
+visitar_pagina()  # Visitante #1
+visitar_pagina()  # Visitante #2
+visitar_pagina()  # Visitante #3
+mostrar_estadisticas()  # Total de visitas: 3
+```
+
+## ⚠️ Errores comunes
+
+| Error                             | Síntoma                                 | Solución                                  |
+| --------------------------------- | --------------------------------------- | ----------------------------------------- |
+| **Modificar global sin `global`** | Se crea una local en lugar de modificar | Añade `global variable`                   |
+| **Usar variable sin inicializar** | `UnboundLocalError`                     | Inicializa la variable antes de usarla    |
+| **Confundir scope**               | La variable no tiene el valor esperado  | Usa `global` para modificar, no para leer |
+| **Crear muchas globales**         | Código difícil de seguir                | Usa parámetros en lugar de globales       |
+
+## ✅ Buenas prácticas
+
+1. **Evita usar variables globales a menos que sea necesario**: pasa valores como argumentos a las funciones.
+
+2. **Usa globales solo para configuraciones o contadores**:
+   
+   ```python
+   # ✅ Aceptable
+   CONFIG = {"debug": True, "timeout": 30}
+   
+   # ✅ Buen uso de global
+   visitas = 0
+   def incrementar_visitas():
+       global visitas
+       visitas += 1
+   ```
+
+3. **Nombra las globales con mayúsculas** (por convención):
+   
+   ```python
+   MAX_INTENTOS = 3  # Constante global
+   BASE_URL = "https://api.ejemplo.com"  # Configuración
+   ```
+
+4. **Si necesitas modificar una variable, considera pasar por parámetros**:
+   
+   ```python
+   # ❌ Uso global innecesario
+   saldo = 100
+   def sumar(monto):
+       global saldo
+       saldo += monto
+   
+   # ✅ Mejor usar parámetros
+   def sumar(saldo, monto):
+       return saldo + monto
+   ```
+
+5. **Documenta las variables globales** para que sea claro qué hacen.
+
+## 📝 Ejercicio
+
+**Básico** — Análisis de alcance
+
+Analiza el siguiente código y determina qué imprime cada `print()`:
+
+```python
+mensaje = "Hola mundo"
+
+def funcion_a():
+    mensaje = "Hola desde A"
+    print(mensaje)  # 1
+
+def funcion_b():
+    global mensaje
+    mensaje = "Modificado globalmente"
+    print(mensaje)  # 2
+
+def funcion_c():
+    print(mensaje)  # 3
+
+funcion_a()
+print(mensaje)  # 4
+funcion_b()
+print(mensaje)  # 5
+funcion_c()
+```
+
+---
+
+**Solución (no mires hasta haberlo intentado):**
+
+```python
+mensaje = "Hola mundo"
+
+def funcion_a():
+    mensaje = "Hola desde A"  # Variable local
+    print(mensaje)  # 1. Imprime: Hola desde A
+
+def funcion_b():
+    global mensaje  # Acceso a la global
+    mensaje = "Modificado globalmente"  # Cambia la global
+    print(mensaje)  # 2. Imprime: Modificado globalmente
+
+def funcion_c():
+    print(mensaje)  # 3. Imprime la global (que es: Modificado globalmente)
+
+funcion_a()
+# 4. Imprime: Hola mundo (la global no cambió)
+
+funcion_b()
+# 5. Imprime: Modificado globalmente (la global cambió)
+
+funcion_c()
+# 6. Imprime: Modificado globalmente (la global sigue igual)
+```
+
+**Salida esperada:**
+
+```
+Hola desde A
+Hola mundo
+Modificado globalmente
+Modificado globalmente
+Modificado globalmente
+```
+
+## 🗂️ Síntesis
+
+- **Global**: variable definida fuera de funciones, accesible en todo el programa.
+- **Local**: variable definida dentro de una función, solo accesible allí.
+- **Leer global** no requiere `global`; solo usas el nombre.
+- **Modificar global** requiere `global variable`.
+- **Crear global** dentro de función: usa `global` para crearla.
+- **`global`** declara que la variable pertenece al scope global.
+- **Buena práctica**: minimiza el uso de variables globales.
+
+## 🔗 Qué sigue
+
+- **Relacionado:** funciones (alcance de variables, parámetros y argumentos)
+- **Siguiente tema:** Funciones — aprenderás a crear y usar funciones, y a manejar correctamente el alcance de variables en diferentes contextos.
+
+<!-- fragmento de inclusión — texto de apertura del bloque «Publicaciones similares» (incluido en cada post) -->
+
+# Publicaciones Similares
+
+Si te interesó este artículo, te recomendamos que explores otros blogs y recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo algunas sugerencias:
+
+
+<!-- fragmento de inclusión — índice de publicaciones de python; lo genera script_generador_publicacion_similar -->
+
+1. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/index.pdf) [Instalacion De Anaconda](https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda)
+2. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf) [Configurar Entorno Virtual Python Anaconda](https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda)
+3. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python/index.pdf) [01 Introducion A La Programacion Con Python](https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python)
+4. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python/index.pdf) [02 Variables Expresiones Y Statements Con Python](https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python)
+5. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python/index.pdf) [03 Objetos De Python](https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python)
+6. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python/index.pdf) [04 Ejecucion Condicional Con Python](https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python)
+7. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python/index.pdf) [05 Iteraciones Con Python](https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python)
+8. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python/index.pdf) [06 Funciones Con Python](https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python)
+9. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python/index.pdf) [07 Dataframes Con Python](https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python)
+10. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python/index.pdf) [08 Prediccion Y Metrica De Performance Con Python](https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python)
+11. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python/index.pdf) [09 Metodos De Machine Learning Para Clasificacion Con Python](https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python)
+12. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python/index.pdf) [10 Metodos De Machine Learning Para Regresion Con Python](https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python)
+13. [{{< fa regular file-pdf >}}](https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf) [Visualizacion De Datos Con Python](https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python)
+
+
+<!-- fragmento de inclusión — texto de cierre del bloque «Publicaciones similares» (incluido en cada post) -->
+
+Esperamos que encuentres estas publicaciones igualmente interesantes y útiles. ¡Disfruta de la lectura!
+

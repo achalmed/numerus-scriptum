@@ -1,0 +1,777 @@
+\documentclass[
+  doc,
+  floatsintext,
+  longtable,
+  a4paper,
+  nolmodern,
+  notxfonts,
+  notimes,
+  12pt,
+  colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{apa7}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\geometry{inner=1in, outer=1in}
+\fancyhfoffset[LE,RO]{0cm}
+
+
+\usepackage[bidi=default]{babel}
+\babelprovide[main,import]{spanish}
+
+
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+
+\RequirePackage{longtable}
+\RequirePackage{threeparttablex}
+
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-.5em}%
+	{\normalfont\normalsize\bfseries\typesectitle}}
+
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{0.5em}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-\z@\relax}%
+	{\normalfont\normalsize\bfseries\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
+
+
+
+\usepackage{longtable, booktabs, multirow, multicol, colortbl, hhline, caption, array, float, xpatch}
+\usepackage{subcaption}
+
+
+\renewcommand\thesubfigure{\Alph{subfigure}}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,theorems, breakable, skins}
+\usepackage{fontawesome5}
+
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{ACACAC}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582EC}
+\definecolor{quarto-callout-important-color-frame}{HTML}{D9534F}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{F0AD4E}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02B875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{FD7E14}
+
+%\newlength\Oldarrayrulewidth
+%\newlength\Oldtabcolsep
+
+
+\usepackage{hyperref}
+
+
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+
+
+\usepackage{newtx}
+
+\defaultfontfeatures{Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+
+
+
+
+
+\title{Variables globales}
+
+
+\shorttitle{VARIABLES GLOBALES}
+
+
+\usepackage{etoolbox}
+
+
+
+\ccoppy{\textcopyright~2026}
+
+
+
+\author{Edison Achalma}
+
+
+
+\affiliation{
+{Escuela Profesional de Economía, Universidad Nacional de San Cristóbal
+de Huamanga}}
+
+
+
+
+\leftheader{Achalma}
+
+\date{2026-10-20}
+
+
+\abstract{Este abstract será actualizado una vez que se complete el
+contenido final del artículo. }
+
+
+
+\authornote{\par{\addORCIDlink{Edison Achalma}{0000-0001-6996-3364}} 
+\par{ }
+\par{   El autor no tiene conflictos de interés que revelar.    Los
+roles de autor se clasificaron utilizando la taxonomía de roles de
+colaborador (CRediT; https://credit.niso.org/) de la siguiente
+manera:  Edison Achalma:   conceptualización, metodología, análisis
+formal, investigación, recursos, curación de
+datos, redacción, visualización, supervisión, administración del
+proyecto}
+\par{La correspondencia relativa a este artículo debe dirigirse a Edison
+Achalma, Escuela Profesional de Economía, Universidad Nacional de San
+Cristóbal de Huamanga, Portal Independencia N°
+57, Ayacucho, AYA 5001, Perú, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
+}
+
+\makeatletter
+\let\endoldlt\endlongtable
+\def\endlongtable{
+\hline
+\endoldlt
+}
+\makeatother
+
+\urlstyle{same}
+
+
+
+\hypersetup{
+  pdftitle={Variables globales},
+  pdfauthor={Autor}
+}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Tabla de contenidos}
+\else
+  \newcommand\contentsname{Tabla de contenidos}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{Lista de Figuras}
+\else
+  \newcommand\listfigurename{Lista de Figuras}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{Lista de Tablas}
+\else
+  \newcommand\listtablename{Lista de Tablas}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figura}
+\else
+  \newcommand\figurename{Figura}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Tabla}
+\else
+  \newcommand\tablename{Tabla}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listados}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\makeatother
+
+% From https://tex.stackexchange.com/a/645996/211326
+%%% apa7 doesn't want to add appendix section titles in the toc
+%%% let's make it do it
+\makeatletter
+\xpatchcmd{\appendix}
+  {\par}
+  {\addcontentsline{toc}{section}{\@currentlabelname}\par}
+  {}{}
+\makeatother
+
+%% Disable longtable counter
+%% https://tex.stackexchange.com/a/248395/211326
+
+\usepackage{etoolbox}
+
+\makeatletter
+\patchcmd{\LT@caption}
+  {\bgroup}
+  {\bgroup\global\LTpatch@captiontrue}
+  {}{}
+\patchcmd{\longtable}
+  {\par}
+  {\par\global\LTpatch@captionfalse}
+  {}{}
+\apptocmd{\endlongtable}
+  {\ifLTpatch@caption\else\addtocounter{table}{-1}\fi}
+  {}{}
+\newif\ifLTpatch@caption
+\makeatother
+
+\begin{document}
+
+\maketitle
+
+
+\hypertarget{toc}{}
+\tableofcontents
+\newpage
+\section[Introduction]{Variables globales}
+
+\setcounter{secnumdepth}{3}
+
+\setlength\LTleft{0pt}
+
+
+
+
+\subsection{🎯 Motivación}\label{motivaciuxf3n}
+
+Cuando trabajas con funciones, necesitas entender cómo Python maneja las
+variables en diferentes contextos. Las variables globales son accesibles
+desde cualquier parte de tu programa, pero modificarlas dentro de
+funciones requiere cuidado. Dominar el alcance (scope) de las variables
+es esencial para escribir código predecible y evitar errores difíciles
+de depurar.
+
+\subsection{💡 Intuición}\label{intuiciuxf3n}
+
+Imagina que tienes una pizarra en la entrada de tu casa (variable
+global) donde toda la familia puede escribir mensajes. Todos pueden leer
+lo que está en la pizarra. Pero si alguien escribe un mensaje en su
+propia libreta personal (variable local) con el mismo título, no afecta
+lo que está en la pizarra. Python funciona igual: una variable dentro de
+una función es como una libreta privada, separada de la pizarra global.
+
+\subsection{🧠 Modelo mental}\label{modelo-mental}
+
+Python sigue las reglas \textbf{LEGB} para la resolución de variables:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{L}ocal → dentro de la función actual
+\item
+  \textbf{E}nclosing → funciones externas (anidadas)
+\item
+  \textbf{G}lobal → variables definidas fuera de funciones
+\item
+  \textbf{B}uilt-in → funciones y variables incorporadas de Python
+\end{enumerate}
+
+Cuando usas una variable dentro de una función, Python busca en ese
+orden: primero local, luego global si no encuentra local.
+
+\subsection{📐 Desarrollo}\label{desarrollo}
+
+\subsubsection{1. Variables globales
+(acceso)}\label{variables-globales-acceso}
+
+Las variables creadas fuera de funciones son globales y accesibles
+dentro de funciones:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OperatorTok{=} \StringTok{"awesome"}  \CommentTok{\# Variable global}
+
+\KeywordTok{def}\NormalTok{ myfunc():}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Python is "} \OperatorTok{+}\NormalTok{ x)  }\CommentTok{\# Accede a la variable global}
+
+\NormalTok{myfunc()  }\CommentTok{\# Salida: Python is awesome}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{2. Variable local con mismo
+nombre}\label{variable-local-con-mismo-nombre}
+
+Si defines una variable con el mismo nombre dentro de una función,
+\textbf{es una variable local independiente}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OperatorTok{=} \StringTok{"awesome"}  \CommentTok{\# Global}
+
+\KeywordTok{def}\NormalTok{ myfunc():}
+\NormalTok{    x }\OperatorTok{=} \StringTok{"fantastic"}  \CommentTok{\# Local (independiente)}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Python is "} \OperatorTok{+}\NormalTok{ x)  }\CommentTok{\# Usa la local}
+
+\NormalTok{myfunc()  }\CommentTok{\# Salida: Python is fantastic}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Python is "} \OperatorTok{+}\NormalTok{ x)  }\CommentTok{\# Salida: Python is awesome (global)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{\texorpdfstring{3. La palabra clave
+\texttt{global}}{3. La palabra clave global}}\label{la-palabra-clave-global}
+
+Para \textbf{modificar} una variable global dentro de una función, usa
+\texttt{global}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OperatorTok{=} \StringTok{"awesome"}  \CommentTok{\# Global}
+
+\KeywordTok{def}\NormalTok{ myfunc():}
+    \KeywordTok{global}\NormalTok{ x  }\CommentTok{\# Declara que vas a usar/modificar la global}
+\NormalTok{    x }\OperatorTok{=} \StringTok{"fantastic"}  \CommentTok{\# Modifica la global}
+
+\NormalTok{myfunc()}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Python is "} \OperatorTok{+}\NormalTok{ x)  }\CommentTok{\# Salida: Python is fantastic}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{4. Crear variable global dentro de
+función}\label{crear-variable-global-dentro-de-funciuxf3n}
+
+Puedes crear una nueva variable global desde dentro de una función:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ myfunc():}
+    \KeywordTok{global}\NormalTok{ x}
+\NormalTok{    x }\OperatorTok{=} \StringTok{"nueva variable"}  \CommentTok{\# Crea una variable global}
+
+\NormalTok{myfunc()}
+\BuiltInTok{print}\NormalTok{(x)  }\CommentTok{\# Salida: nueva variable}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{5. Modificar variables globales vs
+locales}\label{modificar-variables-globales-vs-locales}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{contador }\OperatorTok{=} \DecValTok{0}  \CommentTok{\# Global}
+
+\KeywordTok{def}\NormalTok{ incrementar():}
+    \KeywordTok{global}\NormalTok{ contador  }\CommentTok{\# Necesario para modificar}
+\NormalTok{    contador }\OperatorTok{+=} \DecValTok{1}
+
+\KeywordTok{def}\NormalTok{ mostrar():}
+    \BuiltInTok{print}\NormalTok{(contador)  }\CommentTok{\# Solo lectura, no necesita global}
+
+\NormalTok{incrementar()}
+\NormalTok{incrementar()}
+\NormalTok{mostrar()  }\CommentTok{\# Salida: 2}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{🔬 Ejemplos}\label{ejemplos}
+
+\textbf{Mínimo ---} Acceso a global:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nombre }\OperatorTok{=} \StringTok{"Ana"}  \CommentTok{\# Global}
+
+\KeywordTok{def}\NormalTok{ saludar():}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Hola"}\NormalTok{, nombre)  }\CommentTok{\# Accede a la global}
+
+\NormalTok{saludar()  }\CommentTok{\# Hola Ana}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Progresivo ---} Local vs Global:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mensaje }\OperatorTok{=} \StringTok{"Global"}
+
+\KeywordTok{def}\NormalTok{ funcion1():}
+\NormalTok{    mensaje }\OperatorTok{=} \StringTok{"Local"}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Dentro:"}\NormalTok{, mensaje)  }\CommentTok{\# Local}
+
+\KeywordTok{def}\NormalTok{ funcion2():}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Fuera:"}\NormalTok{, mensaje)  }\CommentTok{\# Global}
+
+\NormalTok{funcion1()  }\CommentTok{\# Dentro: Local}
+\NormalTok{funcion2()  }\CommentTok{\# Fuera: Global}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Principal:"}\NormalTok{, mensaje)  }\CommentTok{\# Principal: Global}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Real ---} Contador de visitas:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{visitas }\OperatorTok{=} \DecValTok{0}  \CommentTok{\# Global}
+
+\KeywordTok{def}\NormalTok{ visitar\_pagina():}
+    \KeywordTok{global}\NormalTok{ visitas}
+\NormalTok{    visitas }\OperatorTok{+=} \DecValTok{1}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Visitante \#}\SpecialCharTok{\{}\NormalTok{visitas}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\KeywordTok{def}\NormalTok{ mostrar\_estadisticas():}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Total de visitas: }\SpecialCharTok{\{}\NormalTok{visitas}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Simulación de visitas}
+\NormalTok{visitar\_pagina()  }\CommentTok{\# Visitante \#1}
+\NormalTok{visitar\_pagina()  }\CommentTok{\# Visitante \#2}
+\NormalTok{visitar\_pagina()  }\CommentTok{\# Visitante \#3}
+\NormalTok{mostrar\_estadisticas()  }\CommentTok{\# Total de visitas: 3}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{⚠️ Errores comunes}\label{errores-comunes}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2920}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3451}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3628}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Síntoma
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Solución
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Modificar global sin \texttt{global}} & Se crea una local en
+lugar de modificar & Añade \texttt{global\ variable} \\
+\textbf{Usar variable sin inicializar} & \texttt{UnboundLocalError} &
+Inicializa la variable antes de usarla \\
+\textbf{Confundir scope} & La variable no tiene el valor esperado & Usa
+\texttt{global} para modificar, no para leer \\
+\textbf{Crear muchas globales} & Código difícil de seguir & Usa
+parámetros en lugar de globales \\
+\end{longtable}
+}
+
+\subsection{✅ Buenas prácticas}\label{buenas-pruxe1cticas}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Evita usar variables globales a menos que sea necesario}: pasa
+  valores como argumentos a las funciones.
+\item
+  \textbf{Usa globales solo para configuraciones o contadores}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ✅ Aceptable}
+\NormalTok{CONFIG }\OperatorTok{=}\NormalTok{ \{}\StringTok{"debug"}\NormalTok{: }\VariableTok{True}\NormalTok{, }\StringTok{"timeout"}\NormalTok{: }\DecValTok{30}\NormalTok{\}}
+
+\CommentTok{\# ✅ Buen uso de global}
+\NormalTok{visitas }\OperatorTok{=} \DecValTok{0}
+\KeywordTok{def}\NormalTok{ incrementar\_visitas():}
+    \KeywordTok{global}\NormalTok{ visitas}
+\NormalTok{    visitas }\OperatorTok{+=} \DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Nombra las globales con mayúsculas} (por convención):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MAX\_INTENTOS }\OperatorTok{=} \DecValTok{3}  \CommentTok{\# Constante global}
+\NormalTok{BASE\_URL }\OperatorTok{=} \StringTok{"https://api.ejemplo.com"}  \CommentTok{\# Configuración}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Si necesitas modificar una variable, considera pasar por
+  parámetros}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ❌ Uso global innecesario}
+\NormalTok{saldo }\OperatorTok{=} \DecValTok{100}
+\KeywordTok{def}\NormalTok{ sumar(monto):}
+    \KeywordTok{global}\NormalTok{ saldo}
+\NormalTok{    saldo }\OperatorTok{+=}\NormalTok{ monto}
+
+\CommentTok{\# ✅ Mejor usar parámetros}
+\KeywordTok{def}\NormalTok{ sumar(saldo, monto):}
+    \ControlFlowTok{return}\NormalTok{ saldo }\OperatorTok{+}\NormalTok{ monto}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Documenta las variables globales} para que sea claro qué
+  hacen.
+\end{enumerate}
+
+\subsection{📝 Ejercicio}\label{ejercicio}
+
+\textbf{Básico} --- Análisis de alcance
+
+Analiza el siguiente código y determina qué imprime cada
+\texttt{print()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mensaje }\OperatorTok{=} \StringTok{"Hola mundo"}
+
+\KeywordTok{def}\NormalTok{ funcion\_a():}
+\NormalTok{    mensaje }\OperatorTok{=} \StringTok{"Hola desde A"}
+    \BuiltInTok{print}\NormalTok{(mensaje)  }\CommentTok{\# 1}
+
+\KeywordTok{def}\NormalTok{ funcion\_b():}
+    \KeywordTok{global}\NormalTok{ mensaje}
+\NormalTok{    mensaje }\OperatorTok{=} \StringTok{"Modificado globalmente"}
+    \BuiltInTok{print}\NormalTok{(mensaje)  }\CommentTok{\# 2}
+
+\KeywordTok{def}\NormalTok{ funcion\_c():}
+    \BuiltInTok{print}\NormalTok{(mensaje)  }\CommentTok{\# 3}
+
+\NormalTok{funcion\_a()}
+\BuiltInTok{print}\NormalTok{(mensaje)  }\CommentTok{\# 4}
+\NormalTok{funcion\_b()}
+\BuiltInTok{print}\NormalTok{(mensaje)  }\CommentTok{\# 5}
+\NormalTok{funcion\_c()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Solución (no mires hasta haberlo intentado):}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mensaje }\OperatorTok{=} \StringTok{"Hola mundo"}
+
+\KeywordTok{def}\NormalTok{ funcion\_a():}
+\NormalTok{    mensaje }\OperatorTok{=} \StringTok{"Hola desde A"}  \CommentTok{\# Variable local}
+    \BuiltInTok{print}\NormalTok{(mensaje)  }\CommentTok{\# 1. Imprime: Hola desde A}
+
+\KeywordTok{def}\NormalTok{ funcion\_b():}
+    \KeywordTok{global}\NormalTok{ mensaje  }\CommentTok{\# Acceso a la global}
+\NormalTok{    mensaje }\OperatorTok{=} \StringTok{"Modificado globalmente"}  \CommentTok{\# Cambia la global}
+    \BuiltInTok{print}\NormalTok{(mensaje)  }\CommentTok{\# 2. Imprime: Modificado globalmente}
+
+\KeywordTok{def}\NormalTok{ funcion\_c():}
+    \BuiltInTok{print}\NormalTok{(mensaje)  }\CommentTok{\# 3. Imprime la global (que es: Modificado globalmente)}
+
+\NormalTok{funcion\_a()}
+\CommentTok{\# 4. Imprime: Hola mundo (la global no cambió)}
+
+\NormalTok{funcion\_b()}
+\CommentTok{\# 5. Imprime: Modificado globalmente (la global cambió)}
+
+\NormalTok{funcion\_c()}
+\CommentTok{\# 6. Imprime: Modificado globalmente (la global sigue igual)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Salida esperada:}
+
+\begin{verbatim}
+Hola desde A
+Hola mundo
+Modificado globalmente
+Modificado globalmente
+Modificado globalmente
+\end{verbatim}
+
+\subsection{🗂️ Síntesis}\label{suxedntesis}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Global}: variable definida fuera de funciones, accesible en
+  todo el programa.
+\item
+  \textbf{Local}: variable definida dentro de una función, solo
+  accesible allí.
+\item
+  \textbf{Leer global} no requiere \texttt{global}; solo usas el nombre.
+\item
+  \textbf{Modificar global} requiere \texttt{global\ variable}.
+\item
+  \textbf{Crear global} dentro de función: usa \texttt{global} para
+  crearla.
+\item
+  \textbf{\texttt{global}} declara que la variable pertenece al scope
+  global.
+\item
+  \textbf{Buena práctica}: minimiza el uso de variables globales.
+\end{itemize}
+
+\subsection{🔗 Qué sigue}\label{quuxe9-sigue}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Relacionado:} funciones (alcance de variables, parámetros y
+  argumentos)
+\item
+  \textbf{Siguiente tema:} Funciones --- aprenderás a crear y usar
+  funciones, y a manejar correctamente el alcance de variables en
+  diferentes contextos.
+\end{itemize}
+
+\section{Publicaciones Similares}\label{publicaciones-similares}
+
+Si te interesó este artículo, te recomendamos que explores otros blogs y
+recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo
+algunas sugerencias:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda}{Instalacion
+  De Anaconda}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda}{Configurar
+  Entorno Virtual Python Anaconda}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python}{01
+  Introducion A La Programacion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python}{02
+  Variables Expresiones Y Statements Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python}{03
+  Objetos De Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python}{04
+  Ejecucion Condicional Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python}{05
+  Iteraciones Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python}{06
+  Funciones Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python}{07
+  Dataframes Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python}{08
+  Prediccion Y Metrica De Performance Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python}{09
+  Metodos De Machine Learning Para Clasificacion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python}{10
+  Metodos De Machine Learning Para Regresion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python}{Visualizacion
+  De Datos Con Python}
+\end{enumerate}
+
+Esperamos que encuentres estas publicaciones igualmente interesantes y
+útiles. ¡Disfruta de la lectura!
+
+
+
+
+
+
+\end{document}

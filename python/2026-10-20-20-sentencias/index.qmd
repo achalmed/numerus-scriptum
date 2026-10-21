@@ -1,0 +1,235 @@
+---
+documentmode: doc
+copyrightnotice: 2026
+copyrightext: All rights reserved
+title: Sentencias
+shorttitle: SENTENCIAS
+abstract: Este abstract será actualizado una vez que se complete el contenido final del artículo.
+keywords: []
+categories:
+- Python
+tags:
+- python
+author-note:
+  status-changes:
+    affiliation-change: null
+    deceased: null
+  disclosures:
+    study-registration: null
+    data-sharing: null
+    related-report: null
+    conflict-of-interest: El autor no tiene conflictos de interés que revelar.
+    financial-support: null
+    gratitude: null
+    authorship-agreements: null
+description: 'Una sentencia es la unidad básica de ejecución en Python: es una instrucción que le dice al intérprete qué hacer.'
+eval: true
+citation:
+  type: article-journal
+  author:
+  - Edison Achalma
+  pdf-url: https://numerus-scriptum.netlify.app/python/2026-10-20-20-sentencias/index.pdf
+date: 2026-10-20
+draft: false
+image: ../featured.jpg
+curso: python
+tema: "2.13"
+---
+
+## 🎯 Motivación
+
+Una sentencia es la unidad básica de ejecución en Python: es una instrucción que le dice al intérprete qué hacer. Entender cómo funcionan las sentencias es fundamental porque todo programa, desde el más simple hasta el más complejo, está compuesto por ellas. La forma en que Python organiza y ejecuta estas sentencias define el flujo de tu programa.
+
+## 💡 Intuición
+
+Imagina que estás siguiendo una receta de cocina paso a paso. Cada paso es una sentencia: "Pela las papas", "Corta en cubos", "Calienta el aceite". Python ejecuta exactamente en ese orden: primero pela, luego corta, luego calienta. Así funciona un programa: el intérprete lee tus sentencias de arriba hacia abajo y las ejecuta en secuencia.
+
+## 🧠 Modelo mental
+
+En Python, el flujo de ejecución es **secuencial por defecto**:
+
+1. **Una sentencia por línea** normalmente: cada línea contiene una instrucción completa.
+2. **Ejecución ordenada**: se ejecutan en el mismo orden en que están escritas (de arriba a abajo).
+3. **Sin punto y coma necesario**: a diferencia de Java o C, Python no requiere `;` para terminar una sentencia; el final de línea es suficiente.
+4. **Sentencias compuestas**: estructuras como `if`, `for`, `while` y `def` ocupan varias líneas y definen bloques de código mediante indentación.
+
+## 📐 Desarrollo
+
+### 1. Sentencia básica
+
+Una sentencia simple es una línea de código que realiza una acción:
+
+```python
+print("Hola mundo")  # Sentencia que imprime texto
+x = 5                # Sentencia que asigna un valor
+y = x + 3            # Sentencia que calcula y asigna
+```
+
+Cada una de estas líneas es una sentencia completa. Python las ejecuta en orden: primero imprime, luego asigna 5 a `x`, luego calcula y asigna 8 a `y`.
+
+### 2. Múltiples sentencias en una línea (con `;`)
+
+**Poco recomendado**, pero posible:
+
+```python
+print("Hola"); print("Mundo"); x = 5
+```
+
+Aunque técnicamente válido, esto **reduce la legibilidad**. El estilo Python (PEP 8) recomienda:
+
+```python
+print("Hola")
+print("Mundo")
+x = 5
+```
+
+### 3. Sentencias largas y continuación de línea
+
+Si una sentencia es demasiado larga, puedes usar `\` para continuar en la siguiente línea:
+
+```python
+total = 100 + 200 + 300 + \
+        400 + 500 + 600
+```
+
+O mejor, usar paréntesis implícitos:
+
+```python
+total = (100 + 200 + 300 +
+         400 + 500 + 600)
+```
+
+### 4. Sentencias compuestas (bloques)
+
+Algunas sentencias ocupan varias líneas y definen bloques:
+
+```python
+# Sentencia compuesta: if-else
+if edad >= 18:
+    print("Eres mayor de edad")
+    print("Puedes votar")
+else:
+    print("Eres menor de edad")
+
+# Sentencia compuesta: función
+def saludar():
+    print("Hola")
+    print("¿Cómo estás?")
+
+# Sentencia compuesta: bucle
+for i in range(3):
+    print(i)
+    print("Siguiente")
+```
+
+Cada bloque indentado contiene sentencias que se ejecutan juntas.
+
+### 5. Sentencias vacías (pass)
+
+El `pass` es una sentencia que no hace nada. Se usa como marcador de posición:
+
+```python
+# En desarrollo: aún no implementado
+def funcion_futura():
+    pass  # Hacer nada por ahora
+```
+
+## 🔬 Ejemplos
+
+**Mínimo —** Tres sentencias en su propio orden:
+
+```python
+print("Primero")
+print("Segundo")
+print("Tercero")
+# Salida:
+# Primero
+# Segundo
+# Tercero
+```
+
+**Progresivo —** Sentencias con cálculos:
+
+```python
+base = 10          # Sentencia 1
+altura = 5         # Sentencia 2
+area = base * altura / 2  # Sentencia 3
+print("Área:", area)      # Sentencia 4
+# Salida: Área: 25.0
+```
+
+**Real —** Programa con múltiples tipos de sentencias:
+
+```python
+# Sistema de calificaciones simple
+nombre = "Ana"              # Asignación
+nota = 85                   # Asignación
+
+if nota >= 60:              # Sentencia compuesta
+    estado = "Aprobado"     # Asignación dentro del bloque
+    print("¡Felicidades!")  # Sentencia dentro del bloque
+else:
+    estado = "Reprobado"    # Asignación en el otro bloque
+    print("Estudia más")    # Sentencia en el otro bloque
+
+print(f"{nombre} está {estado}")  # Sentencia final
+```
+
+## ⚠️ Errores comunes
+
+| Error                                 | Síntoma                                        | Cómo detectarlo                                         |
+| ------------------------------------- | ---------------------------------------------- | ------------------------------------------------------- |
+| **Dos sentencias en la misma línea**  | `SyntaxError: invalid syntax`                  | Asegúrate de que cada sentencia esté en su propia línea |
+| **Olvidar la indentación** en bloques | `IndentationError: expected an indented block` | Revisa que los bloques estén correctamente indentados   |
+| **Indentación inconsistente**         | `IndentationError: unindent does not match...` | Usa 4 espacios consistentes en todo el bloque           |
+| **Punto y coma innecesario**          | No da error, pero es anticonvención            | No uses `;` a menos que sea estrictamente necesario     |
+
+## ✅ Buenas prácticas
+
+- **Una sentencia por línea**: mejora la legibilidad y facilita la depuración.
+- **Evita el punto y coma**: no es necesario en Python y va contra las convenciones.
+- **Usa paréntesis para líneas largas**: en lugar de `\`, usa paréntesis para continuar líneas.
+- **Agrupa sentencias relacionadas**: usa líneas en blanco para separar secciones lógicas.
+- **Sigue PEP 8**: la guía de estilo recomienda un máximo de 79 caracteres por línea.
+
+## 📝 Ejercicio
+
+**Básico** — Reorganiza este código para que sea válido en Python:
+
+```python
+print("Inicio del programa") print("Segunda instrucción") x=5 y=10 print(x + y) print("Fin")
+```
+
+**Requisito:** cada sentencia debe estar en su propia línea, y la legibilidad debe mejorar.
+
+---
+
+**Solución (no mires hasta haberlo intentado):**
+
+```python
+print("Inicio del programa")
+print("Segunda instrucción")
+x = 5
+y = 10
+print(x + y)
+print("Fin")
+```
+
+## 🗂️ Síntesis
+
+- **Sentencia = instrucción**: cada línea de código que realiza una acción.
+- **Orden secuencial**: se ejecutan de arriba a abajo.
+- **Sin punto y coma**: el salto de línea termina cada sentencia.
+- **Sentencias compuestas**: estructuras como `if` y `for` abarcan múltiples líneas indentadas.
+- **Buena práctica**: una sentencia por línea para máxima legibilidad.
+
+## 🔗 Qué sigue
+
+- **Relacionado:** variables y tipos de datos (cómo almacenar datos que las sentencias procesan)
+- **Siguiente tema:** Variables y tipos de datos — aprenderás a declarar y manejar diferentes tipos de información en Python.
+
+{{< include ../../_contenido-inicio.qmd >}}
+
+{{< include ../_contenido_python.qmd >}}
+
+{{< include ../../_contenido-final.qmd >}}

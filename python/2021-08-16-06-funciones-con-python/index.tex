@@ -377,6 +377,12 @@ específica. Las funciones ayudan a:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Inicio del programa
+Interés: S/ 500.00
+Fin del programa
+\end{verbatim}
+
 \subsection{Argumentos vs Parámetros}\label{argumentos-vs-paruxe1metros}
 
 \begin{Shaded}
@@ -392,6 +398,10 @@ específica. Las funciones ayudan a:
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"PIB per cápita: USD }\SpecialCharTok{\{}\NormalTok{resultado}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+PIB per cápita: USD 7,196.46
+\end{verbatim}
 
 \section{Definición de funciones}\label{definiciuxf3n-de-funciones}
 
@@ -459,6 +469,16 @@ específica. Las funciones ayudan a:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Bienvenido al análisis económico
+IGV: S/ 18.00
+Utilidad: S/ 25,000.00
+Total: S/ 260,000.00
+Promedio: S/ 52,000.00
+Máximo: S/ 60,000.00
+Mínimo: S/ 45,000.00
+\end{verbatim}
+
 \subsection{Función sin return}\label{funciuxf3n-sin-return}
 
 \begin{Shaded}
@@ -474,6 +494,13 @@ específica. Las funciones ayudan a:
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Resultado: }\SpecialCharTok{\{}\NormalTok{resultado}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# None}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+========================================
+Ventas Totales: S/ 150,000.00
+========================================
+Resultado: None
+\end{verbatim}
 
 \section{Tipos de argumentos}\label{tipos-de-argumentos}
 
@@ -491,6 +518,10 @@ específica. Las funciones ayudan a:
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Tasa de crecimiento: }\SpecialCharTok{\{}\NormalTok{tasa}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Tasa de crecimiento: 8.45%
+\end{verbatim}
 
 \subsection{Argumentos con nombre (keyword
 arguments)}\label{argumentos-con-nombre-keyword-arguments}
@@ -514,6 +545,11 @@ arguments)}\label{argumentos-con-nombre-keyword-arguments}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Tasa de crecimiento: }\SpecialCharTok{\{}\NormalTok{tasa}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Tasa de crecimiento: 8.45%
+Tasa de crecimiento: 8.45%
+\end{verbatim}
 
 \subsection{Argumentos con valores por
 defecto}\label{argumentos-con-valores-por-defecto}
@@ -545,6 +581,12 @@ defecto}\label{argumentos-con-valores-por-defecto}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Monto 1: S/ 10,500.00
+Monto 2: S/ 10,800.00
+Monto 3: S/ 13,310.00
+\end{verbatim}
+
 \subsection{Argumentos variables
 (*args)}\label{argumentos-variables-args}
 
@@ -570,6 +612,12 @@ defecto}\label{argumentos-con-valores-por-defecto}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Promedio 3: }\SpecialCharTok{\{}\NormalTok{prom3}\SpecialCharTok{:.2f\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Promedio 1: 20.00
+Promedio 2: 35.00
+Promedio 3: 100.00
+\end{verbatim}
 
 \subsection{Argumentos variables con nombre
 (**kwargs)}\label{argumentos-variables-con-nombre-kwargs}
@@ -604,6 +652,24 @@ defecto}\label{argumentos-con-valores-por-defecto}
 \NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+REPORTE ECONÓMICO
+========================================
+Pib: 242632
+Inflacion: 3.5
+Desempleo: 7.2
+========================================
+
+REPORTE ECONÓMICO
+========================================
+Pib: 242632
+Inflacion: 3.5
+Desempleo: 7.2
+Tipo Cambio: 3.75
+Reservas: 74500
+========================================
+\end{verbatim}
 
 \section{Documentación de
 funciones}\label{documentaciuxf3n-de-funciones}
@@ -650,6 +716,32 @@ funciones}\label{documentaciuxf3n-de-funciones}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+Calcula el Valor Presente Neto (VPN) de un proyecto.
+
+Parámetros:
+-----------
+flujos : list
+    Lista de flujos de caja. El primer elemento debe ser la inversión inicial (negativa).
+tasa_descuento : float
+    Tasa de descuento anual (ej: 0.12 para 12%).
+
+Retorna:
+--------
+float
+    El VPN del proyecto.
+
+Ejemplo:
+--------
+>>> flujos = [-100000, 30000, 40000, 50000]
+>>> vpn = calcular_vpn(flujos, 0.10)
+>>> print(f"VPN: {vpn:.2f}")
+
+
+VPN del proyecto: S/ -5,737.52
+\end{verbatim}
+
 \subsection{Anotaciones de tipo (Type
 hints)}\label{anotaciones-de-tipo-type-hints}
 
@@ -676,6 +768,10 @@ hints)}\label{anotaciones-de-tipo-type-hints}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Elasticidad: }\SpecialCharTok{\{}\NormalTok{elast}\SpecialCharTok{:.2f\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Elasticidad: -0.50
+\end{verbatim}
 
 \section{Scope de variables}\label{scope-de-variables}
 
@@ -712,6 +808,13 @@ globales}\label{variables-locales-vs-globales}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Precio con IGV: S/ 118.00
+Función llamada 1 veces
+Función llamada 2 veces
+Función llamada 3 veces
+\end{verbatim}
+
 \subsection{Buenas prácticas}\label{buenas-pruxe1cticas}
 
 \begin{Shaded}
@@ -741,6 +844,11 @@ globales}\label{variables-locales-vs-globales}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Estadísticas 1: {'promedio': 50000.0, 'maximo': 55000, 'minimo': 45000, 'llamadas': 1}
+Estadísticas 2: {'promedio': 62500.0, 'maximo': 65000, 'minimo': 60000, 'llamadas': 2}
+\end{verbatim}
+
 \section{Funciones lambda}\label{funciones-lambda}
 
 Las funciones lambda son funciones anónimas pequeñas y de una sola
@@ -766,6 +874,12 @@ línea.
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Multiplicación: }\SpecialCharTok{\{}\NormalTok{multiplicacion(}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Cuadrado de 5: 25
+Suma: 30
+Multiplicación: 24
+\end{verbatim}
 
 \subsection{Aplicaciones económicas}\label{aplicaciones-econuxf3micas}
 
@@ -796,6 +910,15 @@ línea.
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Empresa 3: }\SpecialCharTok{\{}\NormalTok{clasificar\_empresa(}\DecValTok{50000000}\NormalTok{)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+IGV: S/ 180.00
+Precio con IGV: S/ 1180.00
+Variación: +15.00%
+Empresa 1: Pequeña
+Empresa 2: Mediana
+Empresa 3: Grande
+\end{verbatim}
 
 \subsection{Lambdas en estructuras de
 datos}\label{lambdas-en-estructuras-de-datos}
@@ -829,6 +952,14 @@ datos}\label{lambdas-en-estructuras-de-datos}
     \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Precio: S/ }\SpecialCharTok{\{}\NormalTok{precio}\SpecialCharTok{:.2f\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Suma: 15
+División: 5.0
+Precio: S/ 118.00
+Precio: S/ 112.10
+Precio: S/ 112.10
+\end{verbatim}
 
 \section{Funciones map y filter}\label{funciones-map-y-filter}
 
@@ -871,6 +1002,18 @@ iterable.
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Precios con IGV: [118.0, 236.0, 177.0, 354.0, 295.0]
+Precios con IGV: [118.0, 236.0, 177.0, 354.0, 295.0]
+
+Variaciones de precios:
+Producto 1: +5.00%
+Producto 2: +4.76%
+Producto 3: +4.55%
+Producto 4: +3.70%
+Producto 5: +5.36%
+\end{verbatim}
+
 \subsection{Función filter()}\label{funciuxf3n-filter}
 
 La función \texttt{filter()} filtra elementos que cumplen una condición.
@@ -909,6 +1052,15 @@ La función \texttt{filter()} filtra elementos que cumplen una condición.
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Ventas altas: [52000, 55000, 60000, 58000]
+
+Grandes empresas:
+  Empresa C: S/ 50,000,000
+
+Datos válidos: [100, 200, 150, 300]
+\end{verbatim}
+
 \subsection{Combinación de map y
 filter}\label{combinaciuxf3n-de-map-y-filter}
 
@@ -938,6 +1090,12 @@ filter}\label{combinaciuxf3n-de-map-y-filter}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Resultado compacto: }\SpecialCharTok{\{}\NormalTok{resultado\_compacto}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Ventas brutas: [45000, -1000, 52000, 48000, 0, 55000, -500, 60000]
+Ventas netas (válidas con descuento): [42750.0, 49400.0, 45600.0, 52250.0, 57000.0]
+Resultado compacto: [42750.0, 49400.0, 45600.0, 52250.0, 57000.0]
+\end{verbatim}
 
 \section{Módulo NumPy}\label{muxf3dulo-numpy}
 
@@ -991,6 +1149,39 @@ importación}\label{instalaciuxf3n-e-importaciuxf3n}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Array: [1 2 3 4 5]
+Tipo: <class 'numpy.ndarray'>
+
+Matriz:
+[[1 2 3]
+ [4 5 6]
+ [7 8 9]]
+
+Ceros:
+[[0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]]
+
+Unos:
+[[1. 1. 1.]
+ [1. 1. 1.]]
+
+Identidad:
+[[1. 0. 0. 0.]
+ [0. 1. 0. 0.]
+ [0. 0. 1. 0.]
+ [0. 0. 0. 1.]]
+
+Aleatorios:
+[[0.85527655 0.00701474 0.04020534]
+ [0.23155817 0.25489162 0.18235791]
+ [0.67604556 0.77577792 0.72982946]]
+
+Rango: [0 2 4 6 8]
+Linspace: [0.   0.25 0.5  0.75 1.  ]
+\end{verbatim}
+
 \subsection{Operaciones con arrays}\label{operaciones-con-arrays}
 
 \begin{Shaded}
@@ -1018,6 +1209,22 @@ importación}\label{instalaciuxf3n-e-importaciuxf3n}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Suma: [11 22 33 44 55]
+Resta: [ -9 -18 -27 -36 -45]
+Multiplicación: [ 10  40  90 160 250]
+División: [10. 10. 10. 10. 10.]
+Potencia: [ 1  4  9 16 25]
+
+Array * 2: [ 2  4  6  8 10]
+Array + 10: [11 12 13 14 15]
+
+Precios: [100 150 200 175 225]
+Raíz cuadrada: [10.         12.24744871 14.14213562 13.22875656 15.        ]
+Logaritmo: [4.60517019 5.01063529 5.29831737 5.16478597 5.4161004 ]
+Exponencial: [1.10517092 1.22140276 1.34985881]
+\end{verbatim}
+
 \subsection{Estadísticas con NumPy}\label{estaduxedsticas-con-numpy}
 
 \begin{Shaded}
@@ -1042,6 +1249,22 @@ importación}\label{instalaciuxf3n-e-importaciuxf3n}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Percentil 75: S/ }\SpecialCharTok{\{}\NormalTok{np}\SpecialCharTok{.}\NormalTok{percentile(ventas, }\DecValTok{75}\NormalTok{)}\SpecialCharTok{:,.2f\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+ANÁLISIS ESTADÍSTICO DE VENTAS
+========================================
+Media: S/ 59,750.00
+Mediana: S/ 59,500.00
+Desviación estándar: S/ 8,564.70
+Varianza: 73,354,166.67
+Mínimo: S/ 45,000.00
+Máximo: S/ 75,000.00
+Suma total: S/ 717,000.00
+
+Percentil 25: S/ 54,250.00
+Percentil 50: S/ 59,500.00
+Percentil 75: S/ 65,750.00
+\end{verbatim}
 
 \subsection{Operaciones con matrices}\label{operaciones-con-matrices}
 
@@ -1075,6 +1298,23 @@ importación}\label{instalaciuxf3n-e-importaciuxf3n}
 \BuiltInTok{print}\NormalTok{(ventas\_matriz.T)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Ventas por producto y región:
+[[10000 15000 12000]
+ [ 8000 12000  9000]
+ [15000 18000 14000]]
+
+Total por producto: [37000 29000 47000]
+Total por región: [33000 45000 35000]
+
+Promedio por producto: [12333.33333333  9666.66666667 15666.66666667]
+
+Matriz transpuesta:
+[[10000  8000 15000]
+ [15000 12000 18000]
+ [12000  9000 14000]]
+\end{verbatim}
 
 \subsection{Generación de números
 aleatorios}\label{generaciuxf3n-de-nuxfameros-aleatorios}
@@ -1122,6 +1362,22 @@ aleatorios}\label{generaciuxf3n-de-nuxfameros-aleatorios}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Retorno anual: }\SpecialCharTok{\{}\NormalTok{((precios[}\OperatorTok{{-}}\DecValTok{1}\NormalTok{]}\OperatorTok{/}\NormalTok{precio\_inicial }\OperatorTok{{-}} \DecValTok{1}\NormalTok{) }\OperatorTok{*} \DecValTok{100}\NormalTok{)}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Uniforme [0,1]: [0.37454012 0.95071431 0.73199394 0.59865848 0.15601864]
+Uniforme [10,20]: [11.5599452  10.58083612 18.66176146 16.01115012 17.08072578]
+
+Distribución normal (muestra de 1000):
+  Media: 100.29
+  Std: 14.67
+
+Enteros aleatorios [1,100]: [62  7 75 84 80  4  6 58 22 26]
+
+Simulación de precios de acción:
+  Precio inicial: S/ 100.00
+  Precio final: S/ 185.73
+  Retorno anual: 85.73%
+\end{verbatim}
 
 \section{Módulo Pandas}\label{muxf3dulo-pandas}
 
@@ -1171,6 +1427,44 @@ importación}\label{instalaciuxf3n-e-importaciuxf3n-1}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Series de ventas:
+0    45000
+1    52000
+2    48000
+3    55000
+4    60000
+dtype: int64
+
+Ventas por mes:
+Enero      45000
+Febrero    52000
+Marzo      48000
+Abril      55000
+Mayo       60000
+dtype: int64
+
+Ventas de Marzo: S/ 48,000.00
+Ventas de Enero a Marzo:
+Enero      45000
+Febrero    52000
+Marzo      48000
+dtype: int64
+
+Estadísticas:
+  Media: S/ 52,000.00
+  Máximo: S/ 60,000.00
+  Suma: S/ 260,000.00
+
+Ventas con descuento 5%:
+Enero      42750.0
+Febrero    49400.0
+Marzo      45600.0
+Abril      52250.0
+Mayo       57000.0
+dtype: float64
+\end{verbatim}
+
 \subsection{DataFrames}\label{dataframes}
 
 \begin{Shaded}
@@ -1198,6 +1492,30 @@ importación}\label{instalaciuxf3n-e-importaciuxf3n-1}
 \BuiltInTok{print}\NormalTok{(df.head(}\DecValTok{2}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+DataFrame de productos:
+  Producto  Cantidad  Precio     Categoria
+0   Laptop        15    2500  Computadoras
+1    Mouse       100      25    Accesorios
+2  Teclado        50      80    Accesorios
+3  Monitor        25     800  Computadoras
+
+Forma: (4, 4)
+Columnas: ['Producto', 'Cantidad', 'Precio', 'Categoria']
+
+Tipos de datos:
+Producto     object
+Cantidad      int64
+Precio        int64
+Categoria    object
+dtype: object
+
+Primeras 2 filas:
+  Producto  Cantidad  Precio     Categoria
+0   Laptop        15    2500  Computadoras
+1    Mouse       100      25    Accesorios
+\end{verbatim}
 
 \subsection{Operaciones con
 DataFrames}\label{operaciones-con-dataframes}
@@ -1232,6 +1550,45 @@ DataFrames}\label{operaciones-con-dataframes}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+DataFrame con columna Total:
+  Producto  Cantidad  Precio     Categoria  Total
+0   Laptop        15    2500  Computadoras  37500
+1    Mouse       100      25    Accesorios   2500
+2  Teclado        50      80    Accesorios   4000
+3  Monitor        25     800  Computadoras  20000
+
+Solo Producto y Total:
+  Producto  Total
+0   Laptop  37500
+1    Mouse   2500
+2  Teclado   4000
+3  Monitor  20000
+
+Productos caros (>S/ 100):
+  Producto  Cantidad  Precio     Categoria  Total
+0   Laptop        15    2500  Computadoras  37500
+3  Monitor        25     800  Computadoras  20000
+
+Por categoría:
+              Cantidad  Total
+Categoria                    
+Accesorios         150   6500
+Computadoras        40  57500
+
+Estadísticas:
+         Cantidad       Precio         Total
+count    4.000000     4.000000      4.000000
+mean    47.500000   851.250000  16000.000000
+std     37.969286  1154.486719  16375.795146
+min     15.000000    25.000000   2500.000000
+25%     22.500000    66.250000   3625.000000
+50%     37.500000   440.000000  12000.000000
+75%     62.500000  1225.000000  24375.000000
+max    100.000000  2500.000000  37500.000000
+\end{verbatim}
+
 \subsection{Lectura y escritura de
 datos}\label{lectura-y-escritura-de-datos}
 
@@ -1261,6 +1618,26 @@ datos}\label{lectura-y-escritura-de-datos}
 \CommentTok{\# datos\_economicos.to\_excel(\textquotesingle{}datos\_macro.xlsx\textquotesingle{}, index=False)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Datos macroeconómicos:
+    Año     PIB  Inflacion  Desempleo
+0  2019  230000        2.1        6.7
+1  2020  225000        1.8       13.0
+2  2021  245000        3.5       11.9
+3  2022  250000        8.3        7.8
+4  2023  258000        6.5        7.2
+
+Datos guardados en 'datos_macro.csv'
+
+Datos leídos desde CSV:
+    Año     PIB  Inflacion  Desempleo
+0  2019  230000        2.1        6.7
+1  2020  225000        1.8       13.0
+2  2021  245000        3.5       11.9
+3  2022  250000        8.3        7.8
+4  2023  258000        6.5        7.2
+\end{verbatim}
 
 \subsection{Aplicaciones económicas con
 Pandas}\label{aplicaciones-econuxf3micas-con-pandas}
@@ -1294,6 +1671,57 @@ Pandas}\label{aplicaciones-econuxf3micas-con-pandas}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Crecimiento total: }\SpecialCharTok{\{}\NormalTok{((ventas\_mensuales.iloc[}\OperatorTok{{-}}\DecValTok{1}\NormalTok{]}\OperatorTok{/}\NormalTok{ventas\_mensuales.iloc[}\DecValTok{0}\NormalTok{] }\OperatorTok{{-}} \DecValTok{1}\NormalTok{) }\OperatorTok{*} \DecValTok{100}\NormalTok{)}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Ventas mensuales:
+2023-01-31    45000
+2023-02-28    52000
+2023-03-31    48000
+2023-04-30    55000
+2023-05-31    60000
+2023-06-30    58000
+2023-07-31    62000
+2023-08-31    59000
+2023-09-30    65000
+2023-10-31    70000
+2023-11-30    68000
+2023-12-31    75000
+Freq: ME, dtype: int64
+
+Variación porcentual:
+2023-01-31          NaN
+2023-02-28    15.555556
+2023-03-31    -7.692308
+2023-04-30    14.583333
+2023-05-31     9.090909
+2023-06-30    -3.333333
+2023-07-31     6.896552
+2023-08-31    -4.838710
+2023-09-30    10.169492
+2023-10-31     7.692308
+2023-11-30    -2.857143
+2023-12-31    10.294118
+Freq: ME, dtype: float64
+
+Promedio móvil (3 meses):
+2023-01-31             NaN
+2023-02-28             NaN
+2023-03-31    48333.333333
+2023-04-30    51666.666667
+2023-05-31    54333.333333
+2023-06-30    57666.666667
+2023-07-31    60000.000000
+2023-08-31    59666.666667
+2023-09-30    62000.000000
+2023-10-31    64666.666667
+2023-11-30    67666.666667
+2023-12-31    71000.000000
+Freq: ME, dtype: float64
+
+Resumen:
+  Media: S/ 59,750.00
+  Crecimiento total: 66.67%
+\end{verbatim}
 
 \section{Aplicaciones económicas}\label{aplicaciones-econuxf3micas-1}
 
@@ -1377,6 +1805,29 @@ completa}\label{aplicaciuxf3n-1-calculadora-financiera-completa}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Valor presente: S/ 7,513.15
+Valor futuro: S/ 14,693.28
+
+Tabla de amortización:
+ Periodo  Saldo_Inicial       Cuota    Interes  Amortizacion  Saldo_Final
+       1   50000.000000 4583.999645 750.000000   3833.999645 46166.000355
+       2   46166.000355 4583.999645 692.490005   3891.509640 42274.490715
+       3   42274.490715 4583.999645 634.117361   3949.882285 38324.608430
+       4   38324.608430 4583.999645 574.869126   4009.130519 34315.477911
+       5   34315.477911 4583.999645 514.732169   4069.267477 30246.210435
+       6   30246.210435 4583.999645 453.693157   4130.306489 26115.903946
+       7   26115.903946 4583.999645 391.738559   4192.261086 21923.642860
+       8   21923.642860 4583.999645 328.854643   4255.145002 17668.497857
+       9   17668.497857 4583.999645 265.027468   4318.972177 13349.525680
+      10   13349.525680 4583.999645 200.242885   4383.756760  8965.768920
+      11    8965.768920 4583.999645 134.486534   4449.513112  4516.255808
+      12    4516.255808 4583.999645  67.743837   4516.255808     0.000000
+
+Total pagado: S/ 55,008.00
+Total intereses: S/ 5,008.00
+\end{verbatim}
+
 \subsection{Aplicación 2: Análisis de portafolio con NumPy y
 Pandas}\label{aplicaciuxf3n-2-anuxe1lisis-de-portafolio-con-numpy-y-pandas}
 
@@ -1451,6 +1902,23 @@ Pandas}\label{aplicaciuxf3n-2-anuxe1lisis-de-portafolio-con-numpy-y-pandas}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+ANÁLISIS DE PORTAFOLIO
+============================================================
+
+Composición del portafolio:
+     Activo  Peso  Rendimiento_Esperado
+Acciones PE   0.4                  0.12
+      Bonos   0.3                  0.06
+  Inmuebles   0.2                  0.08
+   Efectivo   0.1                  0.02
+
+Métricas del portafolio:
+  Rendimiento esperado: 8.40%
+  Riesgo (desv. estándar): 12.21%
+  Ratio de Sharpe: 0.44
+\end{verbatim}
+
 \section{Ejercicios prácticos}\label{ejercicios-pruxe1cticos}
 
 \subsection{Ejercicio 1: Sistema de predicción
@@ -1514,6 +1982,21 @@ económica}\label{ejercicio-1-sistema-de-predicciuxf3n-econuxf3mica}
     \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Error: }\SpecialCharTok{\{}\NormalTok{error}\SpecialCharTok{:,.0f\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{error\_porcentual}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%)"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+PREDICCIÓN DE PIB TRIMESTRAL
+============================================================
+Datos históricos: [50000, 51000, 51500, 52000, 53000, 54000, 54500, 55000]
+
+Predicción (promedio_movil): 54,500
+  Error: 1,000 (1.80%)
+
+Predicción (tendencia_lineal): 55,893
+  Error: 393 (0.71%)
+
+Predicción (exponencial): 51,625
+  Error: 3,875 (6.98%)
+\end{verbatim}
 
 \subsection{Ejercicio 2: Optimizador de
 producción}\label{ejercicio-2-optimizador-de-producciuxf3n}
@@ -1580,6 +2063,22 @@ producción}\label{ejercicio-2-optimizador-de-producciuxf3n}
 \NormalTok{plan }\OperatorTok{=}\NormalTok{ optimizar\_produccion(productos\_df, }\DecValTok{1000}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+OPTIMIZACIÓN DE PRODUCCIÓN
+======================================================================
+
+Recursos disponibles: 1,000 unidades
+
+Plan de producción óptimo:
+  Producto  Unidades  Recursos  Beneficio
+Producto C        66       990       5280
+
+Resumen:
+  Recursos utilizados: 990
+  Recursos disponibles: 10
+  Beneficio total: S/ 5,280.00
+\end{verbatim}
 
 \section{Conlusión}\label{conlusiuxf3n}
 

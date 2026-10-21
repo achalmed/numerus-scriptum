@@ -4,7 +4,7 @@ estado: activo
 ---
 # numerus-scriptum/ — Programación y software: blog satélite del hub `web` (repo numerus-scriptum, numerus-scriptum.netlify.app)
 
-<!-- GENERADO por `web/scripts/pubs.py readme --aplicar` desde `web/_pubs/pubs.yml` (2026-10-10); no editar aquí: se regenera desde el hub -->
+<!-- GENERADO por `web/scripts/pubs.py readme --aplicar` desde `web/_pubs/pubs.yml` (2026-10-20); no editar aquí: se regenera desde el hub -->
 
 ## Qué es
 
@@ -39,17 +39,18 @@ cd ../.. && git add _pubs/numerus-scriptum && git commit -m "pubs: numerus-scrip
 | `matlab/` | sección temática | 11 |
 | `ofimatica/` | sección temática | 13 |
 | `power-bi/` | sección temática | 7 |
-| `python/` | sección temática | 14 |
-| `r/` | sección temática | 10 |
+| `python/` | sección temática | 30 |
+| `r/` | sección temática | 11 |
 | `stata/` | sección temática | 8 |
 | `_quarto.yml`, `index.qmd`, `404.qmd`, `_contenido-inicio.qmd`, `_contenido-final.qmd` | configuración y portada propias del blog | |
 | `assets/scss/`, `assets/js/`, `assets/css/global.css`, `assets/css/components/`, `_extensions/`, `_filters/apa-floats-html.lua`, `scripts/build-page-css.sh` | tema propagado desde el hub por `sync-theme-pubs.sh`: no se edita aquí | |
 | `assets/img/`, `assets/fonts/`, `assets/gtm-*.html`, `assets/interactions.html`, `assets/scss/05-pages/`, `assets/css/pages/`, `_filters/_metadata-pdf.lua`, `_partials/` | propios del blog (no los escribe la sincronización) | |
 | `_site/` | sitio generado por `quarto render`; versionado a propósito: su push es el despliegue (`web/docs/decisiones.md` §4.1) | |
 | `THEME_VERSION` | sello del tema: commit del hub y sha256 del conjunto; lo escribe `sync-theme-pubs.sh --aplicar` (GENERADO) | |
+| `_freeze/` | caché de ejecución de Quarto (`freeze: true`); se versiona cuando existe (normativa 5.16 y 7.6) | |
 | `netlify.toml` | configuración de Netlify: publica `_site/` sin comando de build | |
 
-80 entradas. Cada entrada es `<sección>/AAAA-MM-DD-slug/index.qmd` con frontmatter apaquarto y fecha ISO;
+97 entradas. Cada entrada es `<sección>/AAAA-MM-DD-slug/index.qmd` con frontmatter apaquarto y fecha ISO;
 sus metadatos se editan en masa desde `scripts-quarto` (`metadata_manager`).
 
 ## Documentación
@@ -62,4 +63,4 @@ principio a fin), `web/docs/despliegue-netlify.md` (cómo publica cada sitio) y 
 
 - Este README es el único documento propio del blog y se regenera desde el hub: lo escrito aquí a mano se pierde.
 - `_site/` sigue en git: Netlify publica el _site/ empujado, sin build (decisiones §4.1 del hub); `netlify.toml` lo declara (`publish = "_site"`, sin comando de build), y el hook pre-push de la puerta R6 no viaja con el repo: lo instala `web/scripts/puerta-r6.sh --instalar`.
-- Licencia: código MPL-2.0 (`LICENSE`), contenido CC-BY-SA-4.0 según `license.qmd` del hub; unificarlas en los 12 sitios es la decisión D9.
+- Licencia: el contenido es CC-BY-SA-4.0 (`license.qmd` del hub) y el código MPL-2.0 (`LICENSE`), igual en los 12 sitios (D9, `web/docs/decisiones.md` §3.6).
