@@ -36,6 +36,8 @@ date: 2021-08-16
 draft: false
 image: ../featured.jpg
 curso: python_curso_base
+execute:
+  enabled: true                   # lección de Python con salidas reales; freeze: true (de la sección) la ejecuta una vez (autor, 2026-10-20)
 ---
 
 
@@ -55,7 +57,7 @@ Una función es un bloque de código reutilizable que realiza una tarea específ
 
 ## Flujo de ejecución
 
-::: {#3935f156 .cell}
+::: {#4b97b0eb .cell execution_count=1}
 ``` {.python .cell-code}
 # El flujo de ejecución con funciones
 
@@ -76,12 +78,20 @@ print(f"Interés: S/ {resultado:,.2f}")
 
 print("Fin del programa")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Inicio del programa
+Interés: S/ 500.00
+Fin del programa
+```
+:::
 :::
 
 
 ## Argumentos vs Parámetros
 
-::: {#db8d254e .cell}
+::: {#a95cacd2 .cell execution_count=2}
 ``` {.python .cell-code}
 # Parámetros: variables en la definición de la función
 def calcular_pib_per_capita(pib, poblacion):  # pib y poblacion son parámetros
@@ -93,6 +103,12 @@ def calcular_pib_per_capita(pib, poblacion):  # pib y poblacion son parámetros
 resultado = calcular_pib_per_capita(242632, 33715471)  # 242632 y 33715471 son argumentos
 print(f"PIB per cápita: USD {resultado:,.2f}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+PIB per cápita: USD 7,196.46
+```
+:::
 :::
 
 
@@ -100,7 +116,7 @@ print(f"PIB per cápita: USD {resultado:,.2f}")
 
 ## Sintaxis básica
 
-::: {#4086a558 .cell}
+::: {#b881ee70 .cell execution_count=3}
 ``` {.python .cell-code}
 def nombre_funcion(parametros):
     """
@@ -116,7 +132,7 @@ def nombre_funcion(parametros):
 
 ## Ejemplos básicos
 
-::: {#2bc74881 .cell}
+::: {#cc2d5d74 .cell execution_count=4}
 ``` {.python .cell-code}
 # Función sin parámetros
 def saludar():
@@ -161,12 +177,24 @@ print(f"Promedio: S/ {prom:,.2f}")
 print(f"Máximo: S/ {max_v:,.2f}")
 print(f"Mínimo: S/ {min_v:,.2f}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Bienvenido al análisis económico
+IGV: S/ 18.00
+Utilidad: S/ 25,000.00
+Total: S/ 260,000.00
+Promedio: S/ 52,000.00
+Máximo: S/ 60,000.00
+Mínimo: S/ 45,000.00
+```
+:::
 :::
 
 
 ## Función sin return
 
-::: {#5cc8df0e .cell}
+::: {#4a71351e .cell execution_count=5}
 ``` {.python .cell-code}
 # Una función sin return retorna None implícitamente
 def imprimir_reporte(titulo, valor):
@@ -178,6 +206,15 @@ def imprimir_reporte(titulo, valor):
 resultado = imprimir_reporte("Ventas Totales", 150000)
 print(f"Resultado: {resultado}")  # None
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+========================================
+Ventas Totales: S/ 150,000.00
+========================================
+Resultado: None
+```
+:::
 :::
 
 
@@ -185,7 +222,7 @@ print(f"Resultado: {resultado}")  # None
 
 ## Argumentos posicionales
 
-::: {#6819a802 .cell}
+::: {#0f35efbc .cell execution_count=6}
 ``` {.python .cell-code}
 def calcular_tasa_crecimiento(valor_inicial, valor_final, periodos):
     """Calcula la tasa de crecimiento anualizada"""
@@ -196,12 +233,18 @@ def calcular_tasa_crecimiento(valor_inicial, valor_final, periodos):
 tasa = calcular_tasa_crecimiento(100000, 150000, 5)
 print(f"Tasa de crecimiento: {tasa:.2f}%")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Tasa de crecimiento: 8.45%
+```
+:::
 :::
 
 
 ## Argumentos con nombre (keyword arguments)
 
-::: {#a43cfcaf .cell}
+::: {#d47b714e .cell execution_count=7}
 ``` {.python .cell-code}
 # Se pueden pasar argumentos usando el nombre del parámetro
 tasa = calcular_tasa_crecimiento(
@@ -219,12 +262,19 @@ tasa = calcular_tasa_crecimiento(
 )
 print(f"Tasa de crecimiento: {tasa:.2f}%")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Tasa de crecimiento: 8.45%
+Tasa de crecimiento: 8.45%
+```
+:::
 :::
 
 
 ## Argumentos con valores por defecto
 
-::: {#e04c029a .cell}
+::: {#d2437e6f .cell execution_count=8}
 ``` {.python .cell-code}
 def calcular_interes_compuesto(capital, tasa=0.05, periodos=1):
     """
@@ -249,12 +299,20 @@ print(f"Monto 2: S/ {monto2:,.2f}")
 monto3 = calcular_interes_compuesto(10000, 0.10, 3)
 print(f"Monto 3: S/ {monto3:,.2f}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Monto 1: S/ 10,500.00
+Monto 2: S/ 10,800.00
+Monto 3: S/ 13,310.00
+```
+:::
 :::
 
 
 ## Argumentos variables (*args)
 
-::: {#83d9049c .cell}
+::: {#3e17f2f6 .cell execution_count=9}
 ``` {.python .cell-code}
 def calcular_promedio(*valores):
     """Calcula el promedio de un número variable de argumentos"""
@@ -275,12 +333,20 @@ print(f"Promedio 2: {prom2:.2f}")
 prom3 = calcular_promedio(100)
 print(f"Promedio 3: {prom3:.2f}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Promedio 1: 20.00
+Promedio 2: 35.00
+Promedio 3: 100.00
+```
+:::
 :::
 
 
 ## Argumentos variables con nombre (**kwargs)
 
-::: {#b9af24e4 .cell}
+::: {#b2834278 .cell execution_count=10}
 ``` {.python .cell-code}
 def crear_reporte_economico(**indicadores):
     """Crea un reporte con indicadores económicos variables"""
@@ -309,6 +375,26 @@ crear_reporte_economico(
     reservas=74500
 )
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+REPORTE ECONÓMICO
+========================================
+Pib: 242632
+Inflacion: 3.5
+Desempleo: 7.2
+========================================
+
+REPORTE ECONÓMICO
+========================================
+Pib: 242632
+Inflacion: 3.5
+Desempleo: 7.2
+Tipo Cambio: 3.75
+Reservas: 74500
+========================================
+```
+:::
 :::
 
 
@@ -316,7 +402,7 @@ crear_reporte_economico(
 
 ## Docstrings
 
-::: {#fb044b07 .cell}
+::: {#2b1a50fd .cell execution_count=11}
 ``` {.python .cell-code}
 def calcular_vpn(flujos, tasa_descuento):
     """
@@ -354,12 +440,40 @@ proyecto = [-100000, 30000, 40000, 50000]
 vpn = calcular_vpn(proyecto, 0.12)
 print(f"\nVPN del proyecto: S/ {vpn:,.2f}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+Calcula el Valor Presente Neto (VPN) de un proyecto.
+
+Parámetros:
+-----------
+flujos : list
+    Lista de flujos de caja. El primer elemento debe ser la inversión inicial (negativa).
+tasa_descuento : float
+    Tasa de descuento anual (ej: 0.12 para 12%).
+
+Retorna:
+--------
+float
+    El VPN del proyecto.
+
+Ejemplo:
+--------
+>>> flujos = [-100000, 30000, 40000, 50000]
+>>> vpn = calcular_vpn(flujos, 0.10)
+>>> print(f"VPN: {vpn:.2f}")
+
+
+VPN del proyecto: S/ -5,737.52
+```
+:::
 :::
 
 
 ## Anotaciones de tipo (Type hints)
 
-::: {#ec7a8205 .cell}
+::: {#2e10002b .cell execution_count=12}
 ``` {.python .cell-code}
 def calcular_elasticidad(precio_inicial: float, 
                         precio_final: float,
@@ -381,6 +495,12 @@ def calcular_elasticidad(precio_inicial: float,
 elast = calcular_elasticidad(100.0, 110.0, 1000.0, 950.0)
 print(f"Elasticidad: {elast:.2f}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Elasticidad: -0.50
+```
+:::
 :::
 
 
@@ -388,7 +508,7 @@ print(f"Elasticidad: {elast:.2f}")
 
 ## Variables locales vs globales
 
-::: {#a108a2b0 .cell}
+::: {#05b64fd6 .cell execution_count=13}
 ``` {.python .cell-code}
 # Variable global
 tasa_igv = 0.18
@@ -416,12 +536,21 @@ funcion_con_contador()
 funcion_con_contador()
 funcion_con_contador()
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Precio con IGV: S/ 118.00
+Función llamada 1 veces
+Función llamada 2 veces
+Función llamada 3 veces
+```
+:::
 :::
 
 
 ## Buenas prácticas
 
-::: {#ad0af59a .cell}
+::: {#d15ecdeb .cell execution_count=14}
 ``` {.python .cell-code}
 # Mejor práctica: retornar valores en lugar de modificar globales
 def calcular_estadisticas(datos, contador=0):
@@ -446,6 +575,13 @@ print(f"Estadísticas 1: {stats1}")
 stats2, contador = calcular_estadisticas([60000, 65000], contador)
 print(f"Estadísticas 2: {stats2}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Estadísticas 1: {'promedio': 50000.0, 'maximo': 55000, 'minimo': 45000, 'llamadas': 1}
+Estadísticas 2: {'promedio': 62500.0, 'maximo': 65000, 'minimo': 60000, 'llamadas': 2}
+```
+:::
 :::
 
 
@@ -455,7 +591,7 @@ Las funciones lambda son funciones anónimas pequeñas y de una sola línea.
 
 ## Sintaxis básica
 
-::: {#f91ad6c1 .cell}
+::: {#00701814 .cell execution_count=15}
 ``` {.python .cell-code}
 # Función lambda simple
 cuadrado = lambda x: x ** 2
@@ -472,12 +608,20 @@ print(f"Suma: {suma(10, 20)}")
 multiplicacion = lambda a, b, c: a * b * c
 print(f"Multiplicación: {multiplicacion(2, 3, 4)}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Cuadrado de 5: 25
+Suma: 30
+Multiplicación: 24
+```
+:::
 :::
 
 
 ## Aplicaciones económicas
 
-::: {#fb55d151 .cell}
+::: {#7fa68857 .cell execution_count=16}
 ``` {.python .cell-code}
 # Calcular IGV
 calcular_igv = lambda precio: precio * 0.18
@@ -503,12 +647,23 @@ print(f"Empresa 1: {clasificar_empresa(500000)}")
 print(f"Empresa 2: {clasificar_empresa(5000000)}")
 print(f"Empresa 3: {clasificar_empresa(50000000)}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+IGV: S/ 180.00
+Precio con IGV: S/ 1180.00
+Variación: +15.00%
+Empresa 1: Pequeña
+Empresa 2: Mediana
+Empresa 3: Grande
+```
+:::
 :::
 
 
 ## Lambdas en estructuras de datos
 
-::: {#cf2e838e .cell}
+::: {#15331fdb .cell execution_count=17}
 ``` {.python .cell-code}
 # Diccionario de funciones
 operaciones = {
@@ -536,6 +691,16 @@ for transformacion in transformaciones:
     precio = transformacion(precio)
     print(f"Precio: S/ {precio:.2f}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Suma: 15
+División: 5.0
+Precio: S/ 118.00
+Precio: S/ 112.10
+Precio: S/ 112.10
+```
+:::
 :::
 
 
@@ -545,7 +710,7 @@ for transformacion in transformaciones:
 
 La función `map()` aplica una función a cada elemento de un iterable.
 
-::: {#8f8b12eb .cell}
+::: {#6b01e6ee .cell execution_count=18}
 ``` {.python .cell-code}
 # Sintaxis: map(funcion, iterable)
 
@@ -577,6 +742,20 @@ print("\nVariaciones de precios:")
 for i, var in enumerate(variaciones, 1):
     print(f"Producto {i}: {var:+.2f}%")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Precios con IGV: [118.0, 236.0, 177.0, 354.0, 295.0]
+Precios con IGV: [118.0, 236.0, 177.0, 354.0, 295.0]
+
+Variaciones de precios:
+Producto 1: +5.00%
+Producto 2: +4.76%
+Producto 3: +4.55%
+Producto 4: +3.70%
+Producto 5: +5.36%
+```
+:::
 :::
 
 
@@ -584,7 +763,7 @@ for i, var in enumerate(variaciones, 1):
 
 La función `filter()` filtra elementos que cumplen una condición.
 
-::: {#78296375 .cell}
+::: {#e3ac28fc .cell execution_count=19}
 ``` {.python .cell-code}
 # Sintaxis: filter(funcion, iterable)
 
@@ -616,12 +795,23 @@ datos = [100, -5, 200, 0, 150, -10, 300]
 datos_validos = list(filter(lambda x: x > 0, datos))
 print(f"\nDatos válidos: {datos_validos}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Ventas altas: [52000, 55000, 60000, 58000]
+
+Grandes empresas:
+  Empresa C: S/ 50,000,000
+
+Datos válidos: [100, 200, 150, 300]
+```
+:::
 :::
 
 
 ## Combinación de map y filter
 
-::: {#b1eacc8b .cell}
+::: {#048a5d2c .cell execution_count=20}
 ``` {.python .cell-code}
 # Proceso de datos: filtrar y transformar
 ventas_brutas = [45000, -1000, 52000, 48000, 0, 55000, -500, 60000]
@@ -646,6 +836,14 @@ resultado_compacto = list(map(
 
 print(f"Resultado compacto: {resultado_compacto}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Ventas brutas: [45000, -1000, 52000, 48000, 0, 55000, -500, 60000]
+Ventas netas (válidas con descuento): [42750.0, 49400.0, 45600.0, 52250.0, 57000.0]
+Resultado compacto: [42750.0, 49400.0, 45600.0, 52250.0, 57000.0]
+```
+:::
 :::
 
 
@@ -655,7 +853,7 @@ NumPy (Numerical Python) es la biblioteca fundamental para computación científ
 
 ## Instalación e importación
 
-::: {#ab995f16 .cell}
+::: {#296f2c5a .cell execution_count=21}
 ``` {.python .cell-code}
 # Instalación: pip install numpy
 import numpy as np
@@ -665,7 +863,7 @@ import numpy as np
 
 ## Creación de arrays
 
-::: {#b49854cb .cell}
+::: {#456b4462 .cell execution_count=22}
 ``` {.python .cell-code}
 # Array desde lista
 lista = [1, 2, 3, 4, 5]
@@ -698,12 +896,47 @@ print(f"\nRango: {rango}")
 linspace = np.linspace(0, 1, 5)  # 5 valores igualmente espaciados
 print(f"Linspace: {linspace}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Array: [1 2 3 4 5]
+Tipo: <class 'numpy.ndarray'>
+
+Matriz:
+[[1 2 3]
+ [4 5 6]
+ [7 8 9]]
+
+Ceros:
+[[0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]]
+
+Unos:
+[[1. 1. 1.]
+ [1. 1. 1.]]
+
+Identidad:
+[[1. 0. 0. 0.]
+ [0. 1. 0. 0.]
+ [0. 0. 1. 0.]
+ [0. 0. 0. 1.]]
+
+Aleatorios:
+[[0.1901714  0.55590953 0.81326333]
+ [0.57820515 0.57176472 0.76273795]
+ [0.61198138 0.78506904 0.73148355]]
+
+Rango: [0 2 4 6 8]
+Linspace: [0.   0.25 0.5  0.75 1.  ]
+```
+:::
 :::
 
 
 ## Operaciones con arrays
 
-::: {#31901f86 .cell}
+::: {#301a1c45 .cell execution_count=23}
 ``` {.python .cell-code}
 # Operaciones elemento por elemento
 a = np.array([1, 2, 3, 4, 5])
@@ -726,12 +959,30 @@ print(f"Raíz cuadrada: {np.sqrt(precios)}")
 print(f"Logaritmo: {np.log(precios)}")
 print(f"Exponencial: {np.exp([0.1, 0.2, 0.3])}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Suma: [11 22 33 44 55]
+Resta: [ -9 -18 -27 -36 -45]
+Multiplicación: [ 10  40  90 160 250]
+División: [10. 10. 10. 10. 10.]
+Potencia: [ 1  4  9 16 25]
+
+Array * 2: [ 2  4  6  8 10]
+Array + 10: [11 12 13 14 15]
+
+Precios: [100 150 200 175 225]
+Raíz cuadrada: [10.         12.24744871 14.14213562 13.22875656 15.        ]
+Logaritmo: [4.60517019 5.01063529 5.29831737 5.16478597 5.4161004 ]
+Exponencial: [1.10517092 1.22140276 1.34985881]
+```
+:::
 :::
 
 
 ## Estadísticas con NumPy
 
-::: {#0777c58d .cell}
+::: {#c77525b5 .cell execution_count=24}
 ``` {.python .cell-code}
 # Datos de ventas mensuales
 ventas = np.array([45000, 52000, 48000, 55000, 60000, 58000, 
@@ -752,12 +1003,30 @@ print(f"\nPercentil 25: S/ {np.percentile(ventas, 25):,.2f}")
 print(f"Percentil 50: S/ {np.percentile(ventas, 50):,.2f}")
 print(f"Percentil 75: S/ {np.percentile(ventas, 75):,.2f}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+ANÁLISIS ESTADÍSTICO DE VENTAS
+========================================
+Media: S/ 59,750.00
+Mediana: S/ 59,500.00
+Desviación estándar: S/ 8,564.70
+Varianza: 73,354,166.67
+Mínimo: S/ 45,000.00
+Máximo: S/ 75,000.00
+Suma total: S/ 717,000.00
+
+Percentil 25: S/ 54,250.00
+Percentil 50: S/ 59,500.00
+Percentil 75: S/ 65,750.00
+```
+:::
 :::
 
 
 ## Operaciones con matrices
 
-::: {#8d4a5e80 .cell}
+::: {#17378f3c .cell execution_count=25}
 ``` {.python .cell-code}
 # Datos de ventas por producto y región
 # Filas: Productos, Columnas: Regiones
@@ -786,12 +1055,31 @@ print(f"\nPromedio por producto: {promedio_por_producto}")
 print(f"\nMatriz transpuesta:")
 print(ventas_matriz.T)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Ventas por producto y región:
+[[10000 15000 12000]
+ [ 8000 12000  9000]
+ [15000 18000 14000]]
+
+Total por producto: [37000 29000 47000]
+Total por región: [33000 45000 35000]
+
+Promedio por producto: [12333.33333333  9666.66666667 15666.66666667]
+
+Matriz transpuesta:
+[[10000  8000 15000]
+ [15000 12000 18000]
+ [12000  9000 14000]]
+```
+:::
 :::
 
 
 ## Generación de números aleatorios
 
-::: {#e525733a .cell}
+::: {#ec8f8e0d .cell execution_count=26}
 ``` {.python .cell-code}
 # Semilla para reproducibilidad
 np.random.seed(42)
@@ -833,6 +1121,24 @@ print(f"  Precio inicial: S/ {precio_inicial:.2f}")
 print(f"  Precio final: S/ {precios[-1]:.2f}")
 print(f"  Retorno anual: {((precios[-1]/precio_inicial - 1) * 100):.2f}%")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Uniforme [0,1]: [0.37454012 0.95071431 0.73199394 0.59865848 0.15601864]
+Uniforme [10,20]: [11.5599452  10.58083612 18.66176146 16.01115012 17.08072578]
+
+Distribución normal (muestra de 1000):
+  Media: 100.29
+  Std: 14.67
+
+Enteros aleatorios [1,100]: [62  7 75 84 80  4  6 58 22 26]
+
+Simulación de precios de acción:
+  Precio inicial: S/ 100.00
+  Precio final: S/ 185.73
+  Retorno anual: 85.73%
+```
+:::
 :::
 
 
@@ -842,7 +1148,7 @@ Pandas es la biblioteca principal para análisis y manipulación de datos en Pyt
 
 ## Instalación e importación
 
-::: {#01b64748 .cell}
+::: {#8d98603f .cell execution_count=27}
 ``` {.python .cell-code}
 # Instalación: pip install pandas
 import pandas as pd
@@ -853,7 +1159,7 @@ import numpy as np
 
 ## Series de Pandas
 
-::: {#edc5219c .cell}
+::: {#2a26464c .cell execution_count=28}
 ``` {.python .cell-code}
 # Crear Series desde lista
 ventas = pd.Series([45000, 52000, 48000, 55000, 60000])
@@ -881,12 +1187,52 @@ ventas_con_descuento = ventas * 0.95
 print(f"\nVentas con descuento 5%:")
 print(ventas_con_descuento)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Series de ventas:
+0    45000
+1    52000
+2    48000
+3    55000
+4    60000
+dtype: int64
+
+Ventas por mes:
+Enero      45000
+Febrero    52000
+Marzo      48000
+Abril      55000
+Mayo       60000
+dtype: int64
+
+Ventas de Marzo: S/ 48,000.00
+Ventas de Enero a Marzo:
+Enero      45000
+Febrero    52000
+Marzo      48000
+dtype: int64
+
+Estadísticas:
+  Media: S/ 52,000.00
+  Máximo: S/ 60,000.00
+  Suma: S/ 260,000.00
+
+Ventas con descuento 5%:
+Enero      42750.0
+Febrero    49400.0
+Marzo      45600.0
+Abril      52250.0
+Mayo       57000.0
+dtype: float64
+```
+:::
 :::
 
 
 ## DataFrames
 
-::: {#5b8c738f .cell}
+::: {#919982ca .cell execution_count=29}
 ``` {.python .cell-code}
 # Crear DataFrame desde diccionario
 datos = {
@@ -910,12 +1256,38 @@ print(df.dtypes)
 print(f"\nPrimeras 2 filas:")
 print(df.head(2))
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+DataFrame de productos:
+  Producto  Cantidad  Precio     Categoria
+0   Laptop        15    2500  Computadoras
+1    Mouse       100      25    Accesorios
+2  Teclado        50      80    Accesorios
+3  Monitor        25     800  Computadoras
+
+Forma: (4, 4)
+Columnas: ['Producto', 'Cantidad', 'Precio', 'Categoria']
+
+Tipos de datos:
+Producto     object
+Cantidad      int64
+Precio        int64
+Categoria    object
+dtype: object
+
+Primeras 2 filas:
+  Producto  Cantidad  Precio     Categoria
+0   Laptop        15    2500  Computadoras
+1    Mouse       100      25    Accesorios
+```
+:::
 :::
 
 
 ## Operaciones con DataFrames
 
-::: {#0b1be34a .cell}
+::: {#f34fe50e .cell execution_count=30}
 ``` {.python .cell-code}
 # Crear columna calculada
 df['Total'] = df['Cantidad'] * df['Precio']
@@ -943,12 +1315,53 @@ print(por_categoria)
 print(f"\nEstadísticas:")
 print(df.describe())
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+DataFrame con columna Total:
+  Producto  Cantidad  Precio     Categoria  Total
+0   Laptop        15    2500  Computadoras  37500
+1    Mouse       100      25    Accesorios   2500
+2  Teclado        50      80    Accesorios   4000
+3  Monitor        25     800  Computadoras  20000
+
+Solo Producto y Total:
+  Producto  Total
+0   Laptop  37500
+1    Mouse   2500
+2  Teclado   4000
+3  Monitor  20000
+
+Productos caros (>S/ 100):
+  Producto  Cantidad  Precio     Categoria  Total
+0   Laptop        15    2500  Computadoras  37500
+3  Monitor        25     800  Computadoras  20000
+
+Por categoría:
+              Cantidad  Total
+Categoria                    
+Accesorios         150   6500
+Computadoras        40  57500
+
+Estadísticas:
+         Cantidad       Precio         Total
+count    4.000000     4.000000      4.000000
+mean    47.500000   851.250000  16000.000000
+std     37.969286  1154.486719  16375.795146
+min     15.000000    25.000000   2500.000000
+25%     22.500000    66.250000   3625.000000
+50%     37.500000   440.000000  12000.000000
+75%     62.500000  1225.000000  24375.000000
+max    100.000000  2500.000000  37500.000000
+```
+:::
 :::
 
 
 ## Lectura y escritura de datos
 
-::: {#96da4952 .cell}
+::: {#1ac2f880 .cell execution_count=31}
 ``` {.python .cell-code}
 # Crear DataFrame de ejemplo
 datos_economicos = pd.DataFrame({
@@ -973,12 +1386,34 @@ print(df_leido)
 # Guardar como Excel (requiere openpyxl)
 # datos_economicos.to_excel('datos_macro.xlsx', index=False)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Datos macroeconómicos:
+    Año     PIB  Inflacion  Desempleo
+0  2019  230000        2.1        6.7
+1  2020  225000        1.8       13.0
+2  2021  245000        3.5       11.9
+3  2022  250000        8.3        7.8
+4  2023  258000        6.5        7.2
+
+Datos guardados en 'datos_macro.csv'
+
+Datos leídos desde CSV:
+    Año     PIB  Inflacion  Desempleo
+0  2019  230000        2.1        6.7
+1  2020  225000        1.8       13.0
+2  2021  245000        3.5       11.9
+3  2022  250000        8.3        7.8
+4  2023  258000        6.5        7.2
+```
+:::
 :::
 
 
 ## Aplicaciones económicas con Pandas
 
-::: {#7ac978e2 .cell}
+::: {#8266dc50 .cell execution_count=32}
 ``` {.python .cell-code}
 # Análisis de series de tiempo
 fechas = pd.date_range('2023-01-01', periods=12, freq='M')
@@ -1006,6 +1441,59 @@ print(f"\nResumen:")
 print(f"  Media: S/ {ventas_mensuales.mean():,.2f}")
 print(f"  Crecimiento total: {((ventas_mensuales.iloc[-1]/ventas_mensuales.iloc[0] - 1) * 100):.2f}%")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Ventas mensuales:
+2023-01-31    45000
+2023-02-28    52000
+2023-03-31    48000
+2023-04-30    55000
+2023-05-31    60000
+2023-06-30    58000
+2023-07-31    62000
+2023-08-31    59000
+2023-09-30    65000
+2023-10-31    70000
+2023-11-30    68000
+2023-12-31    75000
+Freq: ME, dtype: int64
+
+Variación porcentual:
+2023-01-31          NaN
+2023-02-28    15.555556
+2023-03-31    -7.692308
+2023-04-30    14.583333
+2023-05-31     9.090909
+2023-06-30    -3.333333
+2023-07-31     6.896552
+2023-08-31    -4.838710
+2023-09-30    10.169492
+2023-10-31     7.692308
+2023-11-30    -2.857143
+2023-12-31    10.294118
+Freq: ME, dtype: float64
+
+Promedio móvil (3 meses):
+2023-01-31             NaN
+2023-02-28             NaN
+2023-03-31    48333.333333
+2023-04-30    51666.666667
+2023-05-31    54333.333333
+2023-06-30    57666.666667
+2023-07-31    60000.000000
+2023-08-31    59666.666667
+2023-09-30    62000.000000
+2023-10-31    64666.666667
+2023-11-30    67666.666667
+2023-12-31    71000.000000
+Freq: ME, dtype: float64
+
+Resumen:
+  Media: S/ 59,750.00
+  Crecimiento total: 66.67%
+```
+:::
 :::
 
 
@@ -1013,7 +1501,7 @@ print(f"  Crecimiento total: {((ventas_mensuales.iloc[-1]/ventas_mensuales.iloc[
 
 ## Aplicación 1: Calculadora financiera completa
 
-::: {#62fb94ba .cell}
+::: {#0d584df2 .cell execution_count=33}
 ``` {.python .cell-code}
 class CalculadoraFinanciera:
     """
@@ -1088,12 +1576,37 @@ print(tabla.to_string(index=False))
 print(f"\nTotal pagado: S/ {(tabla['Cuota'].sum()):,.2f}")
 print(f"Total intereses: S/ {tabla['Interes'].sum():,.2f}")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+Valor presente: S/ 7,513.15
+Valor futuro: S/ 14,693.28
+
+Tabla de amortización:
+ Periodo  Saldo_Inicial       Cuota    Interes  Amortizacion  Saldo_Final
+       1   50000.000000 4583.999645 750.000000   3833.999645 46166.000355
+       2   46166.000355 4583.999645 692.490005   3891.509640 42274.490715
+       3   42274.490715 4583.999645 634.117361   3949.882285 38324.608430
+       4   38324.608430 4583.999645 574.869126   4009.130519 34315.477911
+       5   34315.477911 4583.999645 514.732169   4069.267477 30246.210435
+       6   30246.210435 4583.999645 453.693157   4130.306489 26115.903946
+       7   26115.903946 4583.999645 391.738559   4192.261086 21923.642860
+       8   21923.642860 4583.999645 328.854643   4255.145002 17668.497857
+       9   17668.497857 4583.999645 265.027468   4318.972177 13349.525680
+      10   13349.525680 4583.999645 200.242885   4383.756760  8965.768920
+      11    8965.768920 4583.999645 134.486534   4449.513112  4516.255808
+      12    4516.255808 4583.999645  67.743837   4516.255808     0.000000
+
+Total pagado: S/ 55,008.00
+Total intereses: S/ 5,008.00
+```
+:::
 :::
 
 
 ## Aplicación 2: Análisis de portafolio con NumPy y Pandas
 
-::: {#a7abb023 .cell}
+::: {#09fe0576 .cell execution_count=34}
 ``` {.python .cell-code}
 def analizar_portafolio(activos, pesos, rendimientos_esperados, matriz_covarianza):
     """
@@ -1162,6 +1675,25 @@ cov_matriz = [
 
 resultados = analizar_portafolio(activos, pesos, rendimientos_esperados, cov_matriz)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+ANÁLISIS DE PORTAFOLIO
+============================================================
+
+Composición del portafolio:
+     Activo  Peso  Rendimiento_Esperado
+Acciones PE   0.4                  0.12
+      Bonos   0.3                  0.06
+  Inmuebles   0.2                  0.08
+   Efectivo   0.1                  0.02
+
+Métricas del portafolio:
+  Rendimiento esperado: 8.40%
+  Riesgo (desv. estándar): 12.21%
+  Ratio de Sharpe: 0.44
+```
+:::
 :::
 
 
@@ -1169,7 +1701,7 @@ resultados = analizar_portafolio(activos, pesos, rendimientos_esperados, cov_mat
 
 ## Ejercicio 1: Sistema de predicción económica
 
-::: {#e6f8dbc8 .cell}
+::: {#86dbec45 .cell execution_count=35}
 ``` {.python .cell-code}
 def predecir_serie_tiempo(datos_historicos, metodo='promedio_movil', ventana=3):
     """
@@ -1226,12 +1758,29 @@ for metodo in metodos:
     error_porcentual = (error / valor_real) * 100
     print(f"  Error: {error:,.0f} ({error_porcentual:.2f}%)")
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+PREDICCIÓN DE PIB TRIMESTRAL
+============================================================
+Datos históricos: [50000, 51000, 51500, 52000, 53000, 54000, 54500, 55000]
+
+Predicción (promedio_movil): 54,500
+  Error: 1,000 (1.80%)
+
+Predicción (tendencia_lineal): 55,893
+  Error: 393 (0.71%)
+
+Predicción (exponencial): 51,625
+  Error: 3,875 (6.98%)
+```
+:::
 :::
 
 
 ## Ejercicio 2: Optimizador de producción
 
-::: {#c2d50926 .cell}
+::: {#8426e0ab .cell execution_count=36}
 ``` {.python .cell-code}
 def optimizar_produccion(productos, recursos_disponibles):
     """
@@ -1292,6 +1841,24 @@ productos_df = pd.DataFrame({
 
 plan = optimizar_produccion(productos_df, 1000)
 ```
+
+::: {.cell-output .cell-output-stdout}
+```
+OPTIMIZACIÓN DE PRODUCCIÓN
+======================================================================
+
+Recursos disponibles: 1,000 unidades
+
+Plan de producción óptimo:
+  Producto  Unidades  Recursos  Beneficio
+Producto C        66       990       5280
+
+Resumen:
+  Recursos utilizados: 990
+  Recursos disponibles: 10
+  Beneficio total: S/ 5,280.00
+```
+:::
 :::
 
 

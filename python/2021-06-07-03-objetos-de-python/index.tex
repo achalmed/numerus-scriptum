@@ -370,6 +370,14 @@ en análisis económico donde necesitamos trabajar con series de datos.
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+[10.5, 12.3, 15.8, 9.9, 11.2]
+['Agricultura', 'Minería', 'Manufactura', 'Servicios']
+[2019, 2020, 2021, 2022, 2023]
+[0.05, 0.06, 0.055, 0.065, 0.07]
+[]
+\end{verbatim}
+
 \subsection{Listas heterogéneas}\label{listas-heteroguxe9neas}
 
 Las listas pueden contener elementos de diferentes tipos:
@@ -391,6 +399,10 @@ Las listas pueden contener elementos de diferentes tipos:
 \NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+['TechCorp', 2015, 1500000.5, True, ['Lima', 'Arequipa']]
+\end{verbatim}
 
 \subsection{Indexación de listas}\label{indexaciuxf3n-de-listas}
 
@@ -420,6 +432,14 @@ está en la posición 0):
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Penúltimo mes: }\SpecialCharTok{\{}\NormalTok{penultimo\_mes}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{)  }\CommentTok{\# 0.3\%}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Inflación de enero: 0.5%
+Inflación de febrero: 0.3%
+Inflación de diciembre: 0.4%
+Último mes: 0.4%
+Penúltimo mes: 0.3%
+\end{verbatim}
 
 \subsection{Slicing de listas}\label{slicing-de-listas}
 
@@ -467,6 +487,17 @@ El slicing permite extraer sublistas:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Q1 Año 1: 50000
+Año 1: [50000, 52000, 51500, 53000]
+Año 2: [54000, 55500, 56000, 57200]
+Primeros 3 trimestres: [50000, 52000, 51500]
+Desde Q4: [53000, 54000, 55500, 56000, 57200]
+Todos: [50000, 52000, 51500, 53000, 54000, 55500, 56000, 57200]
+Trimestres impares (Q1, Q3): [50000, 51500, 54000, 56000]
+Invertido: [57200, 56000, 55500, 54000, 53000, 51500, 52000, 50000]
+\end{verbatim}
+
 \subsection{Modificación de
 elementos}\label{modificaciuxf3n-de-elementos}
 
@@ -491,6 +522,13 @@ Las listas son mutables, podemos cambiar sus elementos:
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Final: }\SpecialCharTok{\{}\NormalTok{crecimiento}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Original: [2.5, 3.0, 3.2, 2.8, 3.5]
+Modificado: [2.5, 3.0, 3.3, 2.8, 3.5]
+Actualizado: [2.5, 3.0, 3.3, 2.9, 3.6]
+Final: [2.5, 3.0, 3.3, 2.9, 3.7]
+\end{verbatim}
 
 \subsection{Listas anidadas}\label{listas-anidadas}
 
@@ -526,6 +564,13 @@ o datos multidimensionales:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+PIB Lima año 2: 105000
+PIB Cusco año 3: 33000
+PIB Arequipa todos los años: [50000, 52000, 54500]
+PIB Arequipa actualizado: [50000, 52000, 55000]
+\end{verbatim}
+
 \section{Asignación por referencia vs por
 valor}\label{asignaciuxf3n-por-referencia-vs-por-valor}
 
@@ -559,6 +604,13 @@ nueva. Ambas variables apuntan al mismo objeto en memoria:
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"¿Son el mismo objeto? }\SpecialCharTok{\{}\NormalTok{precios\_2023 }\KeywordTok{is}\NormalTok{ precios\_2024}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# True}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Precios 2023: [100, 105, 110, 108, 112]
+Precios 2023: [120, 105, 110, 108, 112]
+Precios 2024: [120, 105, 110, 108, 112]
+¿Son el mismo objeto? True
+\end{verbatim}
 
 Diagrama conceptual:
 
@@ -602,6 +654,13 @@ Para crear una copia independiente de una lista:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Inflación base: [2.5, 3.0, 2.8, 3.2]
+Inflación base:   [2.5, 3.0, 2.8, 3.2]
+Inflación copia1: [2.7, 3.0, 2.8, 3.2]
+¿Son el mismo objeto? False
+\end{verbatim}
+
 \subsection{Problema con listas
 anidadas}\label{problema-con-listas-anidadas}
 
@@ -633,6 +692,11 @@ La copia superficial no copia las listas internas:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Original: [['Lima', 105000], ['Arequipa', 50000], ['Cusco', 30000]]
+Copia: [['Lima', 105000], ['Arequipa', 50000], ['Cusco', 30000]]
+\end{verbatim}
+
 \subsection{Copia profunda (deep copy)}\label{copia-profunda-deep-copy}
 
 Para copiar listas que contienen otras listas:
@@ -662,6 +726,11 @@ Para copiar listas que contienen otras listas:
 \CommentTok{\# [[\textquotesingle{}Lima\textquotesingle{}, 105000], [\textquotesingle{}Arequipa\textquotesingle{}, 50000], [\textquotesingle{}Cusco\textquotesingle{}, 30000]]}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Original: [['Lima', 100000], ['Arequipa', 50000], ['Cusco', 30000]]
+Copia profunda: [['Lima', 105000], ['Arequipa', 50000], ['Cusco', 30000]]
+\end{verbatim}
 
 \subsection{Ejemplo aplicado: Escenarios
 económicos}\label{ejemplo-aplicado-escenarios-econuxf3micos}
@@ -701,6 +770,17 @@ económicos}\label{ejemplo-aplicado-escenarios-econuxf3micos}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Escenario Base:
+{'pib': 242632, 'inflacion': 3.5, 'desempleo': 7.2, 'sectores': ['Minería', 'Agricultura', 'Manufactura']}
+
+Escenario Optimista:
+{'pib': 250000, 'inflacion': 3.0, 'desempleo': 7.2, 'sectores': ['Minería', 'Agricultura', 'Manufactura', 'Tecnología']}
+
+Escenario Pesimista:
+{'pib': 235000, 'inflacion': 4.5, 'desempleo': 7.2, 'sectores': ['Minería', 'Agricultura']}
+\end{verbatim}
+
 \section{Operaciones con listas}\label{operaciones-con-listas}
 
 \subsection{Concatenación y
@@ -731,6 +811,12 @@ repetición}\label{concatenaciuxf3n-y-repeticiuxf3n}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Año completo: [50000, 52000, 51500, 53000, 54500, 55000]
+Patrón repetido: [100, 110, 100, 110, 100, 110]
+Tasas iniciales: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05]
+\end{verbatim}
+
 \subsection{Pertenencia a listas}\label{pertenencia-a-listas}
 
 \begin{Shaded}
@@ -754,6 +840,14 @@ repetición}\label{concatenaciuxf3n-y-repeticiuxf3n}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+True
+False
+False
+True
+Agricultura es un sector primario
+\end{verbatim}
+
 \subsection{Comparación de listas}\label{comparaciuxf3n-de-listas}
 
 \begin{Shaded}
@@ -774,6 +868,13 @@ repetición}\label{concatenaciuxf3n-y-repeticiuxf3n}
 \BuiltInTok{print}\NormalTok{(pib\_2022 }\OperatorTok{\textless{}}\NormalTok{ pib\_2023)  }\CommentTok{\# True (compara primer elemento diferente)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+False
+True
+False
+True
+\end{verbatim}
 
 \subsection{Eliminar elementos}\label{eliminar-elementos}
 
@@ -807,6 +908,17 @@ repetición}\label{concatenaciuxf3n-y-repeticiuxf3n}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Original: ['Agricultura', 'Minería', 'Manufactura', 'Construcción', 'Servicios']
+Después de del: ['Agricultura', 'Minería', 'Construcción', 'Servicios']
+Después de remove: ['Agricultura', 'Minería', 'Servicios']
+Sector eliminado: Minería
+Lista actual: ['Agricultura', 'Servicios']
+Último eliminado: Servicios
+Lista final: ['Agricultura']
+Lista vacía: []
+\end{verbatim}
+
 \section{Métodos de listas}\label{muxe9todos-de-listas}
 
 \subsection{Funciones básicas}\label{funciones-buxe1sicas}
@@ -838,6 +950,14 @@ repetición}\label{concatenaciuxf3n-y-repeticiuxf3n}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Número de meses: 12
+Venta mínima: 45 mil
+Venta máxima: 75 mil
+Ventas totales: 717 mil
+Venta promedio: 59.75 mil
+\end{verbatim}
+
 \subsection{Método append()}\label{muxe9todo-append}
 
 Agrega un elemento al final de la lista:
@@ -859,6 +979,12 @@ Agrega un elemento al final de la lista:
 \CommentTok{\# [0.5, 0.3, 0.4, 0.6, 0.5, [0.7, 0.8]]}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Inflación inicial: [0.5, 0.3, 0.4]
+Inflación actualizada: [0.5, 0.3, 0.4, 0.6, 0.5]
+Con lista anidada: [0.5, 0.3, 0.4, 0.6, 0.5, [0.7, 0.8]]
+\end{verbatim}
 
 \subsection{Método extend()}\label{muxe9todo-extend}
 
@@ -888,6 +1014,13 @@ Extiende la lista agregando elementos de un iterable:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+PIB Q1-Q2: [50000, 52000]
+PIB año completo: [50000, 52000, 51500, 53000]
+Con extend: [1, 2, 3, 4, 5]
+Con append: [1, 2, 3, [4, 5]]
+\end{verbatim}
+
 \subsection{Método insert()}\label{muxe9todo-insert}
 
 Inserta un elemento en una posición específica:
@@ -909,6 +1042,12 @@ Inserta un elemento en una posición específica:
 \CommentTok{\# [2.0, 2.5, 3.0, 3.2, 3.5, 4.0]}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Original: [2.5, 3.0, 3.5, 4.0]
+Después de insert: [2.5, 3.0, 3.2, 3.5, 4.0]
+Con valor inicial: [2.0, 2.5, 3.0, 3.2, 3.5, 4.0]
+\end{verbatim}
 
 \subsection{Método remove()}\label{muxe9todo-remove}
 
@@ -933,6 +1072,12 @@ Elimina la primera ocurrencia de un valor:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Original: ['Minería', 'Agricultura', 'Minería', 'Manufactura']
+Después de remove: ['Agricultura', 'Minería', 'Manufactura']
+Error: 'Tecnología' no está en la lista
+\end{verbatim}
+
 \subsection{Método pop()}\label{muxe9todo-pop}
 
 Elimina y retorna un elemento:
@@ -954,6 +1099,14 @@ Elimina y retorna un elemento:
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Proyectos pendientes: }\SpecialCharTok{\{}\NormalTok{proyectos}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Proyectos: ['Proyecto A', 'Proyecto B', 'Proyecto C', 'Proyecto D']
+Proyecto completado: Proyecto D
+Proyectos restantes: ['Proyecto A', 'Proyecto B', 'Proyecto C']
+Proyecto en ejecución: Proyecto A
+Proyectos pendientes: ['Proyecto B', 'Proyecto C']
+\end{verbatim}
 
 \subsection{Método index()}\label{muxe9todo-index}
 
@@ -978,6 +1131,12 @@ Retorna el índice de la primera ocurrencia de un valor:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Índice de Minería: 1
+Índice de Servicios: 3
+Índice de 2 desde posición 2: 3
+\end{verbatim}
+
 \subsection{Método count()}\label{muxe9todo-count}
 
 Cuenta las ocurrencias de un valor:
@@ -997,6 +1156,12 @@ Cuenta las ocurrencias de un valor:
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Calificación A: }\SpecialCharTok{\{}\NormalTok{num\_a}\SpecialCharTok{\}}\SpecialStringTok{ veces"}\NormalTok{)      }\CommentTok{\# 2}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Calificación AAA: 3 veces
+Calificación AA: 2 veces
+Calificación A: 2 veces
+\end{verbatim}
 
 \subsection{Método sort()}\label{muxe9todo-sort}
 
@@ -1026,6 +1191,13 @@ Ordena la lista in-place (modifica la lista original):
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Tasas desordenadas: [0.065, 0.045, 0.075, 0.055, 0.05]
+Tasas ordenadas (asc): [0.045, 0.05, 0.055, 0.065, 0.075]
+Tasas ordenadas (desc): [0.075, 0.065, 0.055, 0.05, 0.045]
+Países ordenados: ['Argentina', 'Brasil', 'Chile', 'Colombia', 'Perú']
+\end{verbatim}
+
 \subsection{Función sorted()}\label{funciuxf3n-sorted}
 
 Retorna una nueva lista ordenada (no modifica la original):
@@ -1046,6 +1218,13 @@ Retorna una nueva lista ordenada (no modifica la original):
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"PIB descendente: }\SpecialCharTok{\{}\NormalTok{pib\_descendente}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+PIB original: [100000, 50000, 75000, 30000, 45000]
+PIB ordenado: [30000, 45000, 50000, 75000, 100000]
+PIB original (sin cambios): [100000, 50000, 75000, 30000, 45000]
+PIB descendente: [100000, 75000, 50000, 45000, 30000]
+\end{verbatim}
 
 \subsection{Método reverse()}\label{muxe9todo-reverse}
 
@@ -1068,6 +1247,12 @@ Invierte el orden de los elementos:
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Invertidos con slicing: }\SpecialCharTok{\{}\NormalTok{anos\_invertidos}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Años cronológicos: [2019, 2020, 2021, 2022, 2023]
+Años invertidos: [2023, 2022, 2021, 2020, 2019]
+Invertidos con slicing: [2023, 2022, 2021, 2020, 2019]
+\end{verbatim}
 
 \section{Diccionarios}\label{diccionarios}
 
@@ -1107,6 +1292,12 @@ en economía.
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+<class 'dict'>
+{'nombre': 'Perú', 'pib': 242632, 'poblacion': 33715471, 'moneda': 'Sol', 'codigo_iso': 'PER'}
+{'pib': 242632, 'crecimiento': 2.7, 'moneda': 'PEN', 'emergente': True, 'sectores': ['Minería', 'Agricultura'], 'comercio': {'exp': 63200, 'imp': 53800}}
+\end{verbatim}
+
 \subsection{Acceso a elementos}\label{acceso-a-elementos}
 
 \begin{Shaded}
@@ -1142,6 +1333,14 @@ en economía.
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+PIB: 242632
+Inflación: 3.5%
+Desempleo: 7.2%
+Reservas: 0
+Error: 'deuda' no existe en el diccionario
+\end{verbatim}
+
 \subsection{Modificación de
 diccionarios}\label{modificaciuxf3n-de-diccionarios}
 
@@ -1171,6 +1370,13 @@ diccionarios}\label{modificaciuxf3n-de-diccionarios}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Original: {'pib': 240000, 'inflacion': 3.2, 'desempleo': 7.5}
+Actualizado: {'pib': 242632, 'inflacion': 3.5, 'desempleo': 7.5}
+Expandido: {'pib': 242632, 'inflacion': 3.5, 'desempleo': 7.5, 'tipo_cambio': 3.75, 'reservas': 74500}
+Después de eliminar: {'pib': 242632, 'inflacion': 3.5, 'tipo_cambio': 3.75, 'reservas': 74500}
+\end{verbatim}
+
 \subsection{Verificación de claves}\label{verificaciuxf3n-de-claves}
 
 \begin{Shaded}
@@ -1198,6 +1404,14 @@ diccionarios}\label{modificaciuxf3n-de-diccionarios}
     \BuiltInTok{print}\NormalTok{(}\StringTok{"No hay datos de contribución al PIB"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+True
+False
+True
+True
+Contribución al PIB: 10.5%
+\end{verbatim}
 
 \section{Operaciones con
 diccionarios}\label{operaciones-con-diccionarios}
@@ -1242,6 +1456,19 @@ items()}\label{muxe9todos-keys-values-items}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Sectores: ['Minería', 'Agricultura', 'Pesca', 'Manufactura']
+Valores: [30000, 7500, 2800, 12500]
+Total exportaciones: USD 52,800 millones
+Items: [('Minería', 30000), ('Agricultura', 7500), ('Pesca', 2800), ('Manufactura', 12500)]
+
+Detalle de exportaciones:
+  Minería: USD 30,000 M (56.8%)
+  Agricultura: USD 7,500 M (14.2%)
+  Pesca: USD 2,800 M (5.3%)
+  Manufactura: USD 12,500 M (23.7%)
+\end{verbatim}
+
 \subsection{Método update()}\label{muxe9todo-update}
 
 \begin{Shaded}
@@ -1268,6 +1495,11 @@ items()}\label{muxe9todos-keys-values-items}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Datos 2022: {'pib': 240000, 'inflacion': 3.0, 'desempleo': 7.8}
+Datos actualizados: {'pib': 242632, 'inflacion': 3.0, 'desempleo': 7.8, 'tipo_cambio': 3.75, 'reservas': 74500}
+\end{verbatim}
+
 \subsection{Método pop()}\label{muxe9todo-pop-1}
 
 \begin{Shaded}
@@ -1291,6 +1523,13 @@ items()}\label{muxe9todos-keys-values-items}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Valor Q5: }\SpecialCharTok{\{}\NormalTok{valor\_q5}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# 0 (no existe)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Original: {'Q1': 50000, 'Q2': 52000, 'Q3': 51500, 'Q4': 53000}
+Valor Q1 eliminado: 50000
+Indicadores restantes: {'Q2': 52000, 'Q3': 51500, 'Q4': 53000}
+Valor Q5: 0
+\end{verbatim}
 
 \subsection{Método copy()}\label{muxe9todo-copy}
 
@@ -1323,6 +1562,14 @@ items()}\label{muxe9todos-keys-values-items}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Base: {'pib': 242632, 'inflacion': 3.5, 'sectores': ['Minería', 'Agricultura', 'Manufactura']}
+Copia: {'pib': 250000, 'inflacion': 3.5, 'sectores': ['Minería', 'Agricultura', 'Manufactura']}
+
+Base después de deepcopy: {'pib': 242632, 'inflacion': 3.5, 'sectores': ['Minería', 'Agricultura', 'Manufactura']}
+Copia profunda: {'pib': 242632, 'inflacion': 3.5, 'sectores': ['Minería', 'Agricultura', 'Manufactura', 'Servicios']}
+\end{verbatim}
+
 \subsection{Método clear()}\label{muxe9todo-clear}
 
 \begin{Shaded}
@@ -1335,6 +1582,11 @@ items()}\label{muxe9todos-keys-values-items}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Después de clear: }\SpecialCharTok{\{}\NormalTok{temp}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# \{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Original: {'a': 1, 'b': 2, 'c': 3}
+Después de clear: {}
+\end{verbatim}
 
 \subsection{Diccionarios anidados}\label{diccionarios-anidados}
 
@@ -1376,6 +1628,14 @@ items()}\label{muxe9todos-keys-values-items}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+PIB de Perú: USD 242,632 millones
+Capital de Chile: Santiago
+PIB per cápita Peru: USD 7,196.46
+PIB per cápita Chile: USD 15,441.29
+PIB per cápita Colombia: USD 6,095.13
+\end{verbatim}
+
 \section{Tuplas}\label{tuplas}
 
 Las tuplas son colecciones ordenadas e inmutables. Son más eficientes en
@@ -1413,6 +1673,17 @@ memoria que las listas y se usan cuando los datos no deben cambiar.
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+(10.5, 15.3)
+<class 'tuple'>
+(5, 10)
+<class 'tuple'>
+<class 'tuple'>
+<class 'int'>
+()
+(0.05, 0.06, 0.055, 0.065)
+\end{verbatim}
+
 \subsection{Características de
 tuplas}\label{caracteruxedsticas-de-tuplas}
 
@@ -1443,6 +1714,13 @@ tuplas}\label{caracteruxedsticas-de-tuplas}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+País: Peru, PIB: 242632
+Indicadores: (3.5, 7.2)
+Error: Las tuplas no se pueden modificar
+(1, 2, [3, 4, 5])
+\end{verbatim}
+
 \subsection{Ventajas de tuplas}\label{ventajas-de-tuplas}
 
 \begin{Shaded}
@@ -1472,6 +1750,13 @@ tuplas}\label{caracteruxedsticas-de-tuplas}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Coordenadas de Lima: }\SpecialCharTok{\{}\NormalTok{lima\_coords}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Memoria lista: 8856 bytes
+Memoria tupla: 8040 bytes
+Tupla usa 816 bytes menos
+Coordenadas de Lima: (12.0464, 77.0428)
+\end{verbatim}
 
 \subsection{Desempaquetado de tuplas}\label{desempaquetado-de-tuplas}
 
@@ -1504,6 +1789,18 @@ tuplas}\label{caracteruxedsticas-de-tuplas}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Tipo: Compra
+Cantidad: 1000
+Precio: 3.75
+Moneda: USD
+Antes: a=10, b=20
+Después: a=20, b=10
+Primero: 1
+Medio: [2, 3, 4]
+Último: 5
+\end{verbatim}
+
 \subsection{Métodos de tuplas}\label{muxe9todos-de-tuplas}
 
 \begin{Shaded}
@@ -1529,6 +1826,15 @@ tuplas}\label{caracteruxedsticas-de-tuplas}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Suma: }\SpecialCharTok{\{}\BuiltInTok{sum}\NormalTok{(precios)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)     }\CommentTok{\# 508}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Número de AAA: 3
+Índice de BBB: 3
+Longitud: 8
+Máximo: 110
+Mínimo: 95
+Suma: 508
+\end{verbatim}
 
 \section{Asignación múltiple con
 diccionarios}\label{asignaciuxf3n-muxfaltiple-con-diccionarios}
@@ -1556,6 +1862,14 @@ El desempaquetado funciona con diccionarios también:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Claves: nombre, pib, moneda
+Valores: Peru, 242632, PEN
+nombre: Peru
+pib: 242632
+moneda: PEN
+\end{verbatim}
+
 \subsection{Retorno múltiple de
 funciones}\label{retorno-muxfaltiple-de-funciones}
 
@@ -1579,6 +1893,12 @@ funciones}\label{retorno-muxfaltiple-de-funciones}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Venta promedio: }\SpecialCharTok{\{}\NormalTok{prom\_venta}\SpecialCharTok{:.2f\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Venta mínima: 45
+Venta máxima: 62
+Venta promedio: 54.29
+\end{verbatim}
 
 \section{Aplicaciones económicas}\label{aplicaciones-econuxf3micas}
 
@@ -1634,6 +1954,45 @@ inversiones}\label{ejemplo-1-anuxe1lisis-de-cartera-de-inversiones}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Rentabilidad total: }\SpecialCharTok{\{}\NormalTok{rentabilidad\_total}\SpecialCharTok{:+.2f\}}\SpecialStringTok{\%"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+ANÁLISIS DE CARTERA DE INVERSIONES
+============================================================
+
+BBVA:
+  Cantidad: 100 acciones
+  Precio compra: S/ 25.50
+  Precio actual: S/ 27.80
+  Inversión: S/ 2,550.00
+  Valor actual: S/ 2,780.00
+  Ganancia/Pérdida: S/ 230.00
+  Rentabilidad: +9.02%
+
+BCP:
+  Cantidad: 150 acciones
+  Precio compra: S/ 180.00
+  Precio actual: S/ 195.50
+  Inversión: S/ 27,000.00
+  Valor actual: S/ 29,325.00
+  Ganancia/Pérdida: S/ 2,325.00
+  Rentabilidad: +8.61%
+
+Credicorp:
+  Cantidad: 50 acciones
+  Precio compra: S/ 150.00
+  Precio actual: S/ 148.00
+  Inversión: S/ 7,500.00
+  Valor actual: S/ 7,400.00
+  Ganancia/Pérdida: S/ -100.00
+  Rentabilidad: -1.33%
+
+============================================================
+RESUMEN TOTAL:
+  Inversión total: S/ 37,050.00
+  Valor actual total: S/ 39,505.00
+  Ganancia/Pérdida total: S/ 2,455.00
+  Rentabilidad total: +6.63%
+\end{verbatim}
 
 \subsection{Ejemplo 2: Análisis de comercio
 exterior}\label{ejemplo-2-anuxe1lisis-de-comercio-exterior}
@@ -1694,6 +2053,45 @@ exterior}\label{ejemplo-2-anuxe1lisis-de-comercio-exterior}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Balanza comercial total: USD }\SpecialCharTok{\{}\NormalTok{balanza\_total}\SpecialCharTok{:+,\}}\SpecialStringTok{ M"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+ANÁLISIS DE COMERCIO EXTERIOR
+============================================================
+
+China:
+  Exportaciones: USD 15,000 M
+  Importaciones: USD 12,000 M
+  Balanza comercial: USD +3,000 M
+  Comercio total: USD 27,000 M
+  Estado: Superávit
+
+USA:
+  Exportaciones: USD 8,500 M
+  Importaciones: USD 10,500 M
+  Balanza comercial: USD -2,000 M
+  Comercio total: USD 19,000 M
+  Estado: Déficit
+
+Brasil:
+  Exportaciones: USD 2,500 M
+  Importaciones: USD 3,000 M
+  Balanza comercial: USD -500 M
+  Comercio total: USD 5,500 M
+  Estado: Déficit
+
+Chile:
+  Exportaciones: USD 1,800 M
+  Importaciones: USD 2,200 M
+  Balanza comercial: USD -400 M
+  Comercio total: USD 4,000 M
+  Estado: Déficit
+
+============================================================
+TOTALES:
+  Exportaciones totales: USD 27,800 M
+  Importaciones totales: USD 27,700 M
+  Balanza comercial total: USD +100 M
+\end{verbatim}
 
 \subsection{Ejemplo 3: Sistema de calificación de
 riesgo}\label{ejemplo-3-sistema-de-calificaciuxf3n-de-riesgo}
@@ -1777,6 +2175,46 @@ riesgo}\label{ejemplo-3-sistema-de-calificaciuxf3n-de-riesgo}
     \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{i}\SpecialCharTok{\}}\SpecialStringTok{. }\SpecialCharTok{\{}\NormalTok{empresa}\SpecialCharTok{\}}\SpecialStringTok{: }\SpecialCharTok{\{}\NormalTok{calif}\SpecialCharTok{\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{puntos}\SpecialCharTok{\}}\SpecialStringTok{ puntos)"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+SISTEMA DE CALIFICACIÓN DE RIESGO
+======================================================================
+
+TechCorp:
+  Liquidez: 1.80
+  Endeudamiento: 45.00%
+  Rentabilidad: 15.00%
+  Puntos: 7/9
+  Calificación: AA
+
+IndusPeru:
+  Liquidez: 1.20
+  Endeudamiento: 65.00%
+  Rentabilidad: 8.00%
+  Puntos: 3/9
+  Calificación: BBB
+
+AgroSur:
+  Liquidez: 2.50
+  Endeudamiento: 30.00%
+  Rentabilidad: 12.00%
+  Puntos: 8/9
+  Calificación: AAA
+
+MineroX:
+  Liquidez: 1.50
+  Endeudamiento: 55.00%
+  Rentabilidad: 18.00%
+  Puntos: 6/9
+  Calificación: AA
+
+======================================================================
+RANKING DE EMPRESAS:
+1. AgroSur: AAA (8 puntos)
+2. TechCorp: AA (7 puntos)
+3. MineroX: AA (6 puntos)
+4. IndusPeru: BBB (3 puntos)
+\end{verbatim}
 
 \section{Ejercicios prácticos}\label{ejercicios-pruxe1cticos}
 
@@ -1863,6 +2301,83 @@ familiar}\label{ejercicio-1-administrador-de-presupuesto-familiar}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+ANÁLISIS DE PRESUPUESTO FAMILIAR
+======================================================================
+
+Presupuesto total: S/ 3,300.00
+Gastos totales: S/ 3,380.00
+Diferencia: S/ -80.00
+
+DETALLE POR CATEGORÍA:
+----------------------------------------------------------------------
+
+Alimentos:
+  Presupuestado: S/ 1,200.00
+  Gastado: S/ 1,250.00
+  Diferencia: S/ -50.00
+  Ejecución: 104.2%
+  Estado: ⚠️ EXCEDIDO
+
+Transporte:
+  Presupuestado: S/ 300.00
+  Gastado: S/ 280.00
+  Diferencia: S/ +20.00
+  Ejecución: 93.3%
+  Estado: ✓ Dentro del presupuesto
+
+Vivienda:
+  Presupuestado: S/ 800.00
+  Gastado: S/ 800.00
+  Diferencia: S/ +0.00
+  Ejecución: 100.0%
+  Estado: ✓ Dentro del presupuesto
+
+Servicios:
+  Presupuestado: S/ 250.00
+  Gastado: S/ 270.00
+  Diferencia: S/ -20.00
+  Ejecución: 108.0%
+  Estado: ⚠️ EXCEDIDO
+
+Educación:
+  Presupuestado: S/ 400.00
+  Gastado: S/ 400.00
+  Diferencia: S/ +0.00
+  Ejecución: 100.0%
+  Estado: ✓ Dentro del presupuesto
+
+Salud:
+  Presupuestado: S/ 200.00
+  Gastado: S/ 180.00
+  Diferencia: S/ +20.00
+  Ejecución: 90.0%
+  Estado: ✓ Dentro del presupuesto
+
+Entretenimiento:
+  Presupuestado: S/ 150.00
+  Gastado: S/ 200.00
+  Diferencia: S/ -50.00
+  Ejecución: 133.3%
+  Estado: ⚠️ EXCEDIDO
+
+======================================================================
+RESUMEN:
+
+Categorías excedidas:
+  - Alimentos: S/ 50.00 de exceso
+  - Servicios: S/ 20.00 de exceso
+  - Entretenimiento: S/ 50.00 de exceso
+
+Categorías con ahorro:
+  - Transporte: S/ 20.00 de ahorro
+  - Vivienda: S/ 0.00 de ahorro
+  - Educación: S/ 0.00 de ahorro
+  - Salud: S/ 20.00 de ahorro
+
+⚠️ Déficit total: S/ 80.00
+\end{verbatim}
+
 \subsection{Ejercicio 2: Análisis de series de tiempo
 económicas}\label{ejercicio-2-anuxe1lisis-de-series-de-tiempo-econuxf3micas}
 
@@ -1925,6 +2440,56 @@ económicas}\label{ejercicio-2-anuxe1lisis-de-series-de-tiempo-econuxf3micas}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Peor trimestre: Q}\SpecialCharTok{\{}\NormalTok{peor\_trimestre[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{peor\_trimestre[}\DecValTok{0}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{ {-} S/ }\SpecialCharTok{\{}\NormalTok{peor\_trimestre[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{:,\}}\SpecialStringTok{ M"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+ANÁLISIS DE SERIES DE TIEMPO - PIB TRIMESTRAL
+======================================================================
+
+Año 2021:
+  PIB anual: S/ 198,500 millones
+  Q1: S/ 48,000 M (24.2%)
+  Q2: S/ 49,500 M (24.9%)
+  Q3: S/ 50,000 M (25.2%)
+  Q4: S/ 51,000 M (25.7%)
+
+  Crecimiento intertrimestral:
+    Q1 a Q2: +3.12%
+    Q2 a Q3: +1.01%
+    Q3 a Q4: +2.00%
+
+Año 2022:
+  PIB anual: S/ 211,000 millones
+  Q1: S/ 51,500 M (24.4%)
+  Q2: S/ 52,500 M (24.9%)
+  Q3: S/ 53,000 M (25.1%)
+  Q4: S/ 54,000 M (25.6%)
+
+  Crecimiento intertrimestral:
+    Q1 a Q2: +1.94%
+    Q2 a Q3: +0.95%
+    Q3 a Q4: +1.89%
+
+Año 2023:
+  PIB anual: S/ 223,000 millones
+  Q1: S/ 54,500 M (24.4%)
+  Q2: S/ 55,500 M (24.9%)
+  Q3: S/ 56,000 M (25.1%)
+  Q4: S/ 57,000 M (25.6%)
+
+  Crecimiento intertrimestral:
+    Q1 a Q2: +1.83%
+    Q2 a Q3: +0.90%
+    Q3 a Q4: +1.79%
+
+======================================================================
+CRECIMIENTO INTERANUAL:
+2021 a 2022: +6.30%
+2022 a 2023: +5.69%
+
+======================================================================
+Mejor trimestre: Q4 2023 - S/ 57,000 M
+Peor trimestre: Q1 2021 - S/ 48,000 M
+\end{verbatim}
 
 \subsection{Ejercicio 3: Sistema de
 inventario}\label{ejercicio-3-sistema-de-inventario}
@@ -1994,6 +2559,69 @@ inventario}\label{ejercicio-3-sistema-de-inventario}
     \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{i}\SpecialCharTok{\}}\SpecialStringTok{. }\SpecialCharTok{\{}\NormalTok{nombre}\SpecialCharTok{\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{codigo}\SpecialCharTok{\}}\SpecialStringTok{): S/ }\SpecialCharTok{\{}\NormalTok{valor}\SpecialCharTok{:,.2f\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{porcentaje}\SpecialCharTok{:.1f\}}\SpecialStringTok{\%)"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+SISTEMA DE GESTIÓN DE INVENTARIO
+======================================================================
+
+Código: PROD001
+  Producto: Laptop
+  Cantidad: 25 unidades
+  Precio unitario: S/ 2500.00
+  Valor en inventario: S/ 62,500.00
+  Stock mínimo: 10 unidades
+  Estado: ✓ Stock OK
+
+Código: PROD002
+  Producto: Mouse
+  Cantidad: 100 unidades
+  Precio unitario: S/ 25.00
+  Valor en inventario: S/ 2,500.00
+  Stock mínimo: 50 unidades
+  Estado: ✓ Stock OK
+
+Código: PROD003
+  Producto: Teclado
+  Cantidad: 8 unidades
+  Precio unitario: S/ 80.00
+  Valor en inventario: S/ 640.00
+  Stock mínimo: 15 unidades
+  Estado: ⚠️ BAJO STOCK
+
+Código: PROD004
+  Producto: Monitor
+  Cantidad: 30 unidades
+  Precio unitario: S/ 800.00
+  Valor en inventario: S/ 24,000.00
+  Stock mínimo: 20 unidades
+  Estado: ✓ Stock OK
+
+Código: PROD005
+  Producto: Impresora
+  Cantidad: 5 unidades
+  Precio unitario: S/ 450.00
+  Valor en inventario: S/ 2,250.00
+  Stock mínimo: 8 unidades
+  Estado: ⚠️ BAJO STOCK
+
+======================================================================
+RESUMEN DE INVENTARIO:
+Valor total del inventario: S/ 91,890.00
+Productos en stock adecuado: 3
+Productos bajo stock mínimo: 2
+
+⚠️ ALERTA - Productos que requieren reposición:
+  - Teclado: 8 unidades (faltante: 7 unidades)
+  - Impresora: 5 unidades (faltante: 3 unidades)
+
+======================================================================
+PRODUCTOS POR VALOR:
+1. Laptop (PROD001): S/ 62,500.00 (68.0%)
+2. Monitor (PROD004): S/ 24,000.00 (26.1%)
+3. Mouse (PROD002): S/ 2,500.00 (2.7%)
+4. Impresora (PROD005): S/ 2,250.00 (2.4%)
+5. Teclado (PROD003): S/ 640.00 (0.7%)
+\end{verbatim}
 
 \section{Conclusión}\label{conclusiuxf3n}
 

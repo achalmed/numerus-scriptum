@@ -36,6 +36,8 @@ date: 2021-11-29
 draft: false
 image: ../featured.jpg
 curso: python_curso_base
+execute:
+  enabled: true                   # lección de Python con salidas reales; freeze: true (de la sección) la ejecuta una vez (autor, 2026-10-20)
 ---
 
 En esta octava guía exploraremos el problema de predicción y las métricas fundamentales para evaluar modelos de clasificación. Estos conceptos son esenciales para evaluar modelos de machine learning aplicados a problemas económicos como predicción de incumplimiento crediticio, clasificación de empresas, predicción de pobreza, entre otros.

@@ -36,6 +36,8 @@ date: 2021-06-14
 draft: false
 image: ../featured.jpg
 curso: python_curso_base
+execute:
+  enabled: true                   # lección de Python con salidas reales; freeze: true (de la sección) la ejecuta una vez (autor, 2026-10-20)
 ---
 
 En esta cuarta guía exploraremos cómo los programas pueden tomar decisiones basadas en condiciones. La ejecución condicional es fundamental para crear análisis económicos automatizados que respondan a diferentes escenarios y situaciones.
@@ -970,6 +972,7 @@ print(dividir(10, "2"))    # Error: los valores deben ser numéricos
 ## Cláusula else y finally
 
 ```{python}
+#| eval: false   # pide datos por teclado (input): se muestra sin ejecutar
 # else: se ejecuta si no hay error
 # finally: siempre se ejecuta
 

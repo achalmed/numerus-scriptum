@@ -399,6 +399,31 @@ predicción}\label{flujo-de-decisiuxf3n-con-predicciuxf3n}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+FLUJO DE TOMA DE DECISIONES CON PREDICCIÓN
+
+1. RECOLECCIÓN DE DATOS
+   ├─ Variables explicativas (características)
+   └─ Variable objetivo (lo que queremos predecir)
+
+2. ENTRENAMIENTO DEL MODELO
+   ├─ Aprender patrones de los datos históricos
+   └─ Establecer relación entre X (predictores) y Y (objetivo)
+
+3. PREDICCIÓN
+   ├─ Aplicar modelo a nuevos casos
+   └─ Obtener probabilidades o clasificaciones
+
+4. EVALUACIÓN
+   ├─ Medir qué tan buenas son las predicciones
+   └─ Usar métricas apropiadas
+
+5. DECISIÓN
+   ├─ Usar predicción para tomar acción
+   └─ Ej: Aprobar/rechazar crédito, intervenir/no intervenir
+\end{verbatim}
+
 \section{Clasificación binaria}\label{clasificaciuxf3n-binaria}
 
 \subsection{Problema de admisión
@@ -437,6 +462,29 @@ académica}\label{problema-de-admisiuxf3n-acaduxe9mica}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Dataset de admisiones:
+   puntaje_examen       gpa  experiencia_laboral  publicaciones  admitido
+0             602  3.355129                    6              3         1
+1             770  2.033176                    5              4         1
+2             606  3.024186                    1              4         1
+3             571  2.452992                    4              4         1
+4             688  3.290346                    2              4         1
+5             520  2.348733                    1              4         0
+6             602  3.381875                    2              2         0
+7             621  2.773471                    6              3         1
+8             714  3.873460                    0              4         1
+9             587  2.275042                    1              3         0
+
+Distribución de admisiones:
+admitido
+1    140
+0     60
+Name: count, dtype: int64
+
+Tasa de admisión: 70.0%
+\end{verbatim}
+
 \subsection{Entrenar modelo de
 clasificación}\label{entrenar-modelo-de-clasificaciuxf3n}
 
@@ -464,6 +512,18 @@ clasificación}\label{entrenar-modelo-de-clasificaciuxf3n}
     \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  }\SpecialCharTok{\{}\NormalTok{variable}\SpecialCharTok{\}}\SpecialStringTok{: }\SpecialCharTok{\{}\NormalTok{coef}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Tamaño conjunto entrenamiento: 140
+Tamaño conjunto prueba: 60
+
+Modelo entrenado exitosamente
+Coeficientes del modelo:
+  puntaje_examen: 0.0089
+  gpa: 0.7248
+  experiencia_laboral: 0.5510
+  publicaciones: 0.8955
+\end{verbatim}
 
 \section{Thresholding
 (Umbralización)}\label{thresholding-umbralizaciuxf3n}
@@ -496,6 +556,35 @@ probabilidades}\label{concepto-de-probabilidades}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Probabilidades de predicción (primeras 10 observaciones):
+
+Índice | P(No admitido) | P(Admitido) | Predicción
+-------------------------------------------------------
+     0 |         0.2196 |      0.7804 | Admitido
+     1 |         0.1008 |      0.8992 | Admitido
+     2 |         0.4035 |      0.5965 | Admitido
+     3 |         0.2008 |      0.7992 | Admitido
+     4 |         0.0295 |      0.9705 | Admitido
+     5 |         0.7350 |      0.2650 | No admitido
+     6 |         0.0866 |      0.9134 | Admitido
+     7 |         0.5659 |      0.4341 | No admitido
+     8 |         0.0246 |      0.9754 | Admitido
+     9 |         0.1647 |      0.8353 | Admitido
+
+
+Estadísticas de probabilidades:
+count    60.000000
+mean      0.685291
+std       0.275099
+min       0.078084
+25%       0.498738
+50%       0.780514
+75%       0.928637
+max       0.998200
+Name: prob_admitido, dtype: float64
+\end{verbatim}
+
 \subsection{Efecto del umbral}\label{efecto-del-umbral}
 
 \begin{Shaded}
@@ -519,6 +608,27 @@ probabilidades}\label{concepto-de-probabilidades}
     \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Predicciones negativas: }\SpecialCharTok{\{}\BuiltInTok{len}\NormalTok{(predicciones) }\OperatorTok{{-}}\NormalTok{ n\_positivos}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+EFECTO DEL UMBRAL EN LA CLASIFICACIÓN
+======================================================================
+
+Umbral: 0.3
+  Predicciones positivas: 53 (88.3%)
+  Predicciones negativas: 7
+
+Umbral: 0.5
+  Predicciones positivas: 45 (75.0%)
+  Predicciones negativas: 15
+
+Umbral: 0.7
+  Predicciones positivas: 34 (56.7%)
+  Predicciones negativas: 26
+
+Umbral: 0.9
+  Predicciones positivas: 18 (30.0%)
+  Predicciones negativas: 42
+\end{verbatim}
 
 \subsection{Visualizar distribución de
 probabilidades}\label{visualizar-distribuciuxf3n-de-probabilidades}
@@ -559,6 +669,13 @@ probabilidades}\label{visualizar-distribuciuxf3n-de-probabilidades}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+Gráfico guardado como 'distribucion_probabilidades.png'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-8-output-2.pdf}}
+
 \section{Matriz de confusión}\label{matriz-de-confusiuxf3n}
 
 \subsection{Concepto y estructura}\label{concepto-y-estructura}
@@ -588,6 +705,25 @@ modelo de clasificación.
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+MATRIZ DE CONFUSIÓN - ESTRUCTURA
+
+                    Predicción
+                 Negativo  Positivo
+               ┌──────────┬──────────┐
+Real  Negativo │    TN    │    FP    │
+               ├──────────┼──────────┤
+      Positivo │    FN    │    TP    │
+               └──────────┴──────────┘
+
+Donde:
+- TN (True Negative): Negativos correctamente identificados
+- FP (False Positive): Negativos incorrectamente clasificados como positivos
+- FN (False Negative): Positivos incorrectamente clasificados como negativos
+- TP (True Positive): Positivos correctamente identificados
+\end{verbatim}
+
 \subsection{Calcular matriz de
 confusión}\label{calcular-matriz-de-confusiuxf3n}
 
@@ -616,6 +752,23 @@ confusión}\label{calcular-matriz-de-confusiuxf3n}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Verdaderos Positivos (TP): }\SpecialCharTok{\{}\NormalTok{TP}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+MATRIZ DE CONFUSIÓN
+==================================================
+
+                 Predicción
+              No admitido  Admitido
+Real No admitido      14         11
+     Admitido          1         34
+
+
+Componentes de la matriz:
+  Verdaderos Negativos (TN): 14
+  Falsos Positivos (FP): 11
+  Falsos Negativos (FN): 1
+  Verdaderos Positivos (TP): 34
+\end{verbatim}
 
 \subsection{Función personalizada para matriz de
 confusión}\label{funciuxf3n-personalizada-para-matriz-de-confusiuxf3n}
@@ -650,6 +803,14 @@ confusión}\label{funciuxf3n-personalizada-para-matriz-de-confusiuxf3n}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Verificación: TP=}\SpecialCharTok{\{}\NormalTok{TP}\SpecialCharTok{\}}\SpecialStringTok{, TN=}\SpecialCharTok{\{}\NormalTok{TN}\SpecialCharTok{\}}\SpecialStringTok{, FP=}\SpecialCharTok{\{}\NormalTok{FP}\SpecialCharTok{\}}\SpecialStringTok{, FN=}\SpecialCharTok{\{}\NormalTok{FN}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Matriz de confusión (función personalizada):
+[[14 11]
+ [ 1 34]]
+
+Verificación: TP=34, TN=14, FP=11, FN=1
+\end{verbatim}
 
 \subsection{Visualizar matriz de
 confusión}\label{visualizar-matriz-de-confusiuxf3n}
@@ -693,6 +854,12 @@ confusión}\label{visualizar-matriz-de-confusiuxf3n}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Matriz de confusión guardada como 'matriz_confusion.png'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-12-output-2.pdf}}
+
 \section{Métricas de
 clasificación}\label{muxe9tricas-de-clasificaciuxf3n}
 
@@ -733,6 +900,37 @@ principales}\label{resumen-de-muxe9tricas-principales}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+MÉTRICAS DE CLASIFICACIÓN
+
+1. ACCURACY (Exactitud)
+   - Proporción total de predicciones correctas
+   - Fórmula: (TP + TN) / (TP + TN + FP + FN)
+   - Cuándo usar: Clases balanceadas
+
+2. PRECISION (Precisión)
+   - De las predicciones positivas, cuántas son correctas
+   - Fórmula: TP / (TP + FP)
+   - Cuándo usar: Costo alto de falsos positivos
+   - Ejemplo: Diagnóstico médico (evitar alarmas falsas)
+
+3. RECALL (Sensibilidad/Exhaustividad)
+   - De los casos positivos reales, cuántos detectamos
+   - Fórmula: TP / (TP + FN)
+   - Cuándo usar: Costo alto de falsos negativos
+   - Ejemplo: Detección de fraude (no perder casos reales)
+
+4. F1-SCORE
+   - Media armónica de precision y recall
+   - Fórmula: 2 * (Precision * Recall) / (Precision + Recall)
+   - Cuándo usar: Balance entre precision y recall
+
+5. SPECIFICITY (Especificidad)
+   - De los casos negativos reales, cuántos detectamos
+   - Fórmula: TN / (TN + FP)
+\end{verbatim}
+
 \section{Accuracy (Exactitud)}\label{accuracy-exactitud}
 
 \subsection{Cálculo e
@@ -757,6 +955,14 @@ interpretación}\label{cuxe1lculo-e-interpretaciuxf3n}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"El modelo clasifica correctamente el }\SpecialCharTok{\{}\NormalTok{accuracy}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.1f\}}\SpecialStringTok{\% de los casos"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Accuracy (función propia): 0.8000 (80.00%)
+Accuracy (sklearn): 0.8000 (80.00%)
+
+Interpretación:
+El modelo clasifica correctamente el 80.0% de los casos
+\end{verbatim}
 
 \subsection{Limitaciones del accuracy}\label{limitaciones-del-accuracy}
 
@@ -787,6 +993,24 @@ interpretación}\label{cuxe1lculo-e-interpretaciuxf3n}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+EJEMPLO: LIMITACIÓN DEL ACCURACY CON CLASES DESBALANCEADAS
+======================================================================
+
+Modelo que predice siempre 'No':
+Accuracy: 0.9500 (95.0%)
+
+¡Accuracy alto pero modelo inútil!
+No detecta ningún caso positivo.
+
+Matriz de confusión:
+[[950   0]
+ [ 50   0]]
+
+Observación: TP = 0 (no detecta ningún positivo)
+\end{verbatim}
+
 \section{Precision (Precisión)}\label{precision-precisiuxf3n}
 
 \subsection{Cálculo e
@@ -815,6 +1039,17 @@ interpretación}\label{cuxe1lculo-e-interpretaciuxf3n-1}
 \BuiltInTok{print}\NormalTok{(}\StringTok{"(Predichos como admitidos pero en realidad no lo fueron)"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Precision: 0.7556 (75.56%)
+
+Interpretación:
+De los estudiantes que el modelo predice como 'admitidos',
+el 75.6% realmente son admitidos.
+
+Falsos positivos: 11 estudiantes
+(Predichos como admitidos pero en realidad no lo fueron)
+\end{verbatim}
 
 \subsection{Ejemplo económico: Aprobación de
 créditos}\label{ejemplo-econuxf3mico-aprobaciuxf3n-de-cruxe9ditos}
@@ -850,6 +1085,26 @@ créditos}\label{ejemplo-econuxf3mico-aprobaciuxf3n-de-cruxe9ditos}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+
+EJEMPLO ECONÓMICO: APROBACIÓN DE CRÉDITOS
+======================================================================
+
+Resultados de 1000 solicitudes:
+  Créditos aprobados por modelo: 847
+  De estos, pagarán: 680 (80.3%)
+  De estos, NO pagarán: 167 (Pérdida por falsos positivos)
+
+
+Análisis financiero:
+  Monto promedio por crédito: S/ 10,000
+  Falsos positivos: 167
+  Pérdida estimada: S/ 1,670,000
+
+Conlusión: Alta precision reduce pérdidas por morosidad
+\end{verbatim}
+
 \section{Recall (Sensibilidad)}\label{recall-sensibilidad}
 
 \subsection{Cálculo e
@@ -878,6 +1133,17 @@ interpretación}\label{cuxe1lculo-e-interpretaciuxf3n-2}
 \BuiltInTok{print}\NormalTok{(}\StringTok{"(No fueron identificados como admitidos cuando sí lo fueron)"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Recall: 0.9714 (97.14%)
+
+Interpretación:
+De los estudiantes que realmente fueron admitidos,
+el modelo detectó correctamente al 97.1%.
+
+Falsos negativos: 118 estudiantes
+(No fueron identificados como admitidos cuando sí lo fueron)
+\end{verbatim}
 
 \subsection{Ejemplo económico: Detección de
 fraude}\label{ejemplo-econuxf3mico-detecciuxf3n-de-fraude}
@@ -922,6 +1188,31 @@ fraude}\label{ejemplo-econuxf3mico-detecciuxf3n-de-fraude}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+
+EJEMPLO ECONÓMICO: DETECCIÓN DE FRAUDE
+======================================================================
+
+Resultados de 10,000 transacciones:
+  Fraudes reales: 198
+  Fraudes detectados: 4 (2.0% de los reales)
+  Fraudes no detectados: 194 ¡CRÍTICO!
+
+
+Análisis financiero:
+  Monto promedio por fraude: S/ 5,000
+  Fraudes no detectados (FN): 194
+  Pérdida por fraudes no detectados: S/ 970,000
+
+  Alertas falsas (FP): 301
+  Costo de investigar falsas alarmas: S/ 30,100
+
+
+Conclusión: En detección de fraude, es MÁS IMPORTANTE el Recall
+(No queremos perder fraudes reales, aunque tengamos falsas alarmas)
+\end{verbatim}
+
 \section{F1-Score}\label{f1-score}
 
 \subsection{Cálculo e
@@ -954,6 +1245,18 @@ interpretación}\label{cuxe1lculo-e-interpretaciuxf3n-3}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Métricas del modelo:
+  Precision: 0.7556
+  Recall: 0.9714
+  F1-Score: 0.8500
+
+
+Interpretación del F1-Score:
+El F1-Score es la media armónica de Precision y Recall.
+Un F1 de 0.85 indica un buen balance entre ambas métricas.
+\end{verbatim}
+
 \subsection{Trade-off entre Precision y
 Recall}\label{trade-off-entre-precision-y-recall}
 
@@ -981,6 +1284,24 @@ Recall}\label{trade-off-entre-precision-y-recall}
 \BuiltInTok{print}\NormalTok{(}\StringTok{"{-} Umbral alto → Mayor Precision (menos falsas alarmas) pero menor Recall"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+
+
+TRADE-OFF: PRECISION VS RECALL
+======================================================================
+Umbral     Precision    Recall       F1-Score    
+----------------------------------------------------------------------
+0.1        0.5932       1.0000       0.7447      
+0.3        0.6415       0.9714       0.7727      
+0.5        0.7556       0.9714       0.8500      
+0.7        0.9118       0.8857       0.8986      
+0.9        1.0000       0.5143       0.6792      
+
+Observación:
+- Umbral bajo → Mayor Recall (detecta más positivos) pero menor Precision
+- Umbral alto → Mayor Precision (menos falsas alarmas) pero menor Recall
+\end{verbatim}
 
 \section{Curva Precision-Recall}\label{curva-precision-recall}
 
@@ -1061,6 +1382,12 @@ Precision-Recall}\label{visualizar-curva-precision-recall}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Curva Precision-Recall guardada como 'curva_precision_recall.png'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-23-output-2.pdf}}
+
 \section{Curva ROC y AUC}\label{curva-roc-y-auc}
 
 \subsection{Concepto de ROC}\label{concepto-de-roc}
@@ -1085,6 +1412,24 @@ Precision-Recall}\label{visualizar-curva-precision-recall}
 \StringTok{"""}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+
+CURVA ROC (Receiver Operating Characteristic)
+
+La curva ROC grafica:
+- Eje X: False Positive Rate (FPR) = FP / (FP + TN)
+- Eje Y: True Positive Rate (TPR) = TP / (TP + FN)  [mismo que Recall]
+
+Interpretación:
+- Diagonal (línea punteada): Clasificador aleatorio (AUC = 0.5)
+- Curva sobre diagonal: Mejor que aleatorio
+- Más cerca de esquina superior izquierda: Mejor modelo
+- AUC (Area Under Curve): Métrica resumen
+  * AUC = 1.0: Clasificador perfecto
+  * AUC = 0.5: Clasificador aleatorio
+  * AUC < 0.5: Peor que aleatorio
+\end{verbatim}
 
 \subsection{Calcular TPR y FPR}\label{calcular-tpr-y-fpr}
 
@@ -1139,6 +1484,10 @@ Precision-Recall}\label{visualizar-curva-precision-recall}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+AUC (Area Under Curve): 0.9440
+\end{verbatim}
+
 \subsection{Visualizar curva ROC}\label{visualizar-curva-roc}
 
 \begin{Shaded}
@@ -1176,6 +1525,12 @@ Precision-Recall}\label{visualizar-curva-precision-recall}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+Curva ROC guardada como 'curva_roc.png'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-26-output-2.pdf}}
+
 \subsection{Interpretación del AUC}\label{interpretaciuxf3n-del-auc}
 
 \begin{Shaded}
@@ -1204,6 +1559,19 @@ Precision-Recall}\label{visualizar-curva-precision-recall}
 \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"el }\SpecialCharTok{\{}\NormalTok{roc\_auc}\OperatorTok{*}\DecValTok{100}\SpecialCharTok{:.1f\}}\SpecialStringTok{\% de las veces."}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+
+
+INTERPRETACIÓN DEL MODELO
+======================================================================
+AUC: 0.9440 - Excelente
+
+Significado:
+Si tomamos un caso positivo y uno negativo al azar,
+el modelo asignará una probabilidad mayor al caso positivo
+el 94.4% de las veces.
+\end{verbatim}
 
 \section{Aplicaciones económicas}\label{aplicaciones-econuxf3micas}
 
@@ -1316,6 +1684,53 @@ crediticio}\label{aplicaciuxf3n-1-predicciuxf3n-de-incumplimiento-crediticio}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+
+APLICACIÓN: PREDICCIÓN DE INCUMPLIMIENTO CREDITICIO
+======================================================================
+
+Dataset de créditos:
+  Total clientes: 1000
+  Incumplimientos: 500 (50.0%)
+
+
+RESULTADOS DEL MODELO
+======================================================================
+
+Matriz de Confusión:
+                    Predicción
+              Pagará  Incumplirá
+Real  Pagará     124        19
+   Incumplirá     22       135
+
+
+Métricas:
+  Accuracy:  0.8633 (86.3%)
+  Precision: 0.8766 (87.7%)
+  Recall:    0.8599 (86.0%)
+  F1-Score:  0.8682
+  AUC:       0.9521
+
+
+ANÁLISIS DE COSTOS
+======================================================================
+  Monto promedio por crédito: S/ 52,452.51
+
+  Falsos Negativos (FN): 22
+    → Incumplimientos no detectados
+    → Pérdida estimada: S/ 807,768.67
+
+  Falsos Positivos (FP): 19
+    → Clientes buenos rechazados o revisados
+    → Costo de revisión: S/ 9,500.00
+
+  Costo total: S/ 817,268.67
+
+
+RECOMENDACIÓN:
+\end{verbatim}
+
 \subsection{Aplicación 2: Clasificación de empresas por riesgo de
 quiebra}\label{aplicaciuxf3n-2-clasificaciuxf3n-de-empresas-por-riesgo-de-quiebra}
 
@@ -1415,6 +1830,44 @@ quiebra}\label{aplicaciuxf3n-2-clasificaciuxf3n-de-empresas-por-riesgo-de-quiebr
 \BuiltInTok{print}\NormalTok{(}\StringTok{"  4. Análisis de cartera de inversiones"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+
+
+
+APLICACIÓN: CLASIFICACIÓN DE RIESGO DE QUIEBRA EMPRESARIAL
+======================================================================
+
+Dataset de empresas:
+  Total empresas: 500
+  Quiebras: 197 (39.4%)
+
+
+MÉTRICAS DEL MODELO
+======================================================================
+  Accuracy:  0.9333
+  Precision: 0.9048
+  Recall:    0.9344
+  F1-Score:  0.9194
+  AUC:       0.9854
+
+
+IMPORTANCIA DE VARIABLES (Coeficientes)
+======================================================================
+  ratio_liquidez             -3.2044  ↓ Menor riesgo
+  ratio_endeudamiento         2.6668  ↑ Mayor riesgo
+  margen_utilidad            -2.3090  ↓ Menor riesgo
+  años_operacion             -0.0526  ↓ Menor riesgo
+  flujo_caja                 -0.0000  ↓ Menor riesgo
+
+
+APLICACIÓN PRÁCTICA:
+Este modelo puede usarse para:
+  1. Sistema de alerta temprana de quiebra
+  2. Decisiones de inversión o préstamos corporativos
+  3. Priorización de auditorías o intervenciones
+  4. Análisis de cartera de inversiones
+\end{verbatim}
 
 \section{Ejercicios prácticos}\label{ejercicios-pruxe1cticos}
 
@@ -1538,6 +1991,37 @@ costo}\label{ejercicio-1-optimizar-umbral-seguxfan-costo}
 \BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Gráfico guardado como \textquotesingle{}optimizacion\_umbral.png\textquotesingle{}"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+
+
+
+EJERCICIO: OPTIMIZACIÓN DE UMBRAL SEGÚN COSTOS
+======================================================================
+
+Costos considerados:
+  Costo por Falso Positivo: S/ 500.00
+  Costo por Falso Negativo: S/ 36,716.76
+
+
+UMBRAL ÓPTIMO ENCONTRADO:
+======================================================================
+  Umbral óptimo: 0.165
+  Costo total: S/ 105,433.52
+  Precision: 0.7078
+  Recall: 0.9873
+  Falsos Positivos: 64
+  Falsos Negativos: 2
+
+
+COMPARACIÓN CON UMBRAL 0.5:
+  Costo con umbral 0.5: S/ 817,268.67
+  Ahorro con umbral óptimo: S/ 711,835.15
+
+Gráfico guardado como 'optimizacion_umbral.png'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/cell-30-output-2.pdf}}
 
 \section{Conclusión}\label{conclusiuxf3n}
 
