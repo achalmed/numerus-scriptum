@@ -47,6 +47,7 @@ cd ../.. && git add _pubs/numerus-scriptum && git commit -m "pubs: numerus-scrip
 | `assets/img/`, `assets/fonts/`, `assets/gtm-*.html`, `assets/interactions.html`, `assets/scss/05-pages/`, `assets/css/pages/`, `_filters/_metadata-pdf.lua`, `_partials/` | propios del blog (no los escribe la sincronización) | |
 | `_site/` | sitio generado por `quarto render`; versionado a propósito: su push es el despliegue (`web/docs/decisiones.md` §4.1) | |
 | `THEME_VERSION` | sello del tema: commit del hub y sha256 del conjunto; lo escribe `sync-theme-pubs.sh --aplicar` (GENERADO) | |
+| `_freeze/` | caché de ejecución de Quarto (`freeze: true`); se versiona cuando existe (normativa 5.16 y 7.6) | |
 | `netlify.toml` | configuración de Netlify: publica `_site/` sin comando de build | |
 
 97 entradas. Cada entrada es `<sección>/AAAA-MM-DD-slug/index.qmd` con frontmatter apaquarto y fecha ISO;
