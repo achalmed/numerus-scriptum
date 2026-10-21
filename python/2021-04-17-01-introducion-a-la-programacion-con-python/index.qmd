@@ -35,7 +35,8 @@ citation:
 date: 2021-04-17
 draft: false
 image: ../featured.jpg
-curso: python_curso_base
+curso: python
+tema: "1.1"
 ---
 
 ---

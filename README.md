@@ -39,8 +39,8 @@ cd ../.. && git add _pubs/numerus-scriptum && git commit -m "pubs: numerus-scrip
 | `matlab/` | sección temática | 11 |
 | `ofimatica/` | sección temática | 13 |
 | `power-bi/` | sección temática | 7 |
-| `python/` | sección temática | 14 |
-| `r/` | sección temática | 10 |
+| `python/` | sección temática | 30 |
+| `r/` | sección temática | 11 |
 | `stata/` | sección temática | 8 |
 | `_quarto.yml`, `index.qmd`, `404.qmd`, `_contenido-inicio.qmd`, `_contenido-final.qmd` | configuración y portada propias del blog | |
 | `assets/scss/`, `assets/js/`, `assets/css/global.css`, `assets/css/components/`, `_extensions/`, `_filters/apa-floats-html.lua`, `scripts/build-page-css.sh` | tema propagado desde el hub por `sync-theme-pubs.sh`: no se edita aquí | |
@@ -49,7 +49,7 @@ cd ../.. && git add _pubs/numerus-scriptum && git commit -m "pubs: numerus-scrip
 | `THEME_VERSION` | sello del tema: commit del hub y sha256 del conjunto; lo escribe `sync-theme-pubs.sh --aplicar` (GENERADO) | |
 | `netlify.toml` | configuración de Netlify: publica `_site/` sin comando de build | |
 
-80 entradas. Cada entrada es `<sección>/AAAA-MM-DD-slug/index.qmd` con frontmatter apaquarto y fecha ISO;
+97 entradas. Cada entrada es `<sección>/AAAA-MM-DD-slug/index.qmd` con frontmatter apaquarto y fecha ISO;
 sus metadatos se editan en masa desde `scripts-quarto` (`metadata_manager`).
 
 ## Documentación

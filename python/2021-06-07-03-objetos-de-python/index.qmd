@@ -38,7 +38,8 @@ citation:
 date: 2021-06-07
 draft: false
 image: ../featured.jpg
-curso: python_curso_base
+curso: python
+tema: "3.1"
 execute:
   enabled: true                   # lección de Python con salidas reales; freeze: true (de la sección) la ejecuta una vez (autor, 2026-10-20)
 ---

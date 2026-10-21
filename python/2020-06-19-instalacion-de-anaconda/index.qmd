@@ -39,7 +39,8 @@ citation:
 date: 2020-06-19
 draft: false
 image: ../featured.jpg
-curso: python_curso_base
+curso: python
+tema: "1.2"
 ---
 
 # Guía completa de instalación de Miniconda y Anaconda
