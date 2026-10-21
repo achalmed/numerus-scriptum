@@ -539,3 +539,7 @@ estructura.txt
 
 # Dank Mono: fuente comercial sin uso; fuera de git (ola 6), copia en $RESPALDOS_DIR/residuos/2026-10-08-dankmono
 assets/fonts/DankMono-*
+# 2026-10-20: `_freeze/` se versiona a propósito: las lecciones de python/ se ejecutan una sola vez (freeze, decisión
+# del autor) y su resultado debe viajar con el repo para reconstruir el sitio sin volver a ejecutar el código
+# (web/docs/decisiones.md §5, «_freeze/ de numerus»). La negación lo declara ante el validador (D08).
+!/_freeze/
