@@ -4,11 +4,11 @@ estado: activo
 ---
 # numerus-scriptum/ — Programación y software: blog satélite del hub `web` (repo numerus-scriptum, numerus-scriptum.netlify.app)
 
-<!-- GENERADO por `web/scripts/pubs.py readme --aplicar` desde `web/_pubs/pubs.yml` (2026-10-20); no editar aquí: se regenera desde el hub -->
+<!-- GENERADO por `web/scripts/pubs.py readme --aplicar` desde `web/_pubs/pubs.yml` (2026-10-21); no editar aquí: se regenera desde el hub -->
 
 ## Qué es
 
-R, Python, Stata, LaTeX, Quarto, Linux y herramientas para ciencia de datos; una sección por herramienta. Es uno de los 11 blogs satélite de la familia Quarto de Edison Achalma: un sitio Quarto
+R, Python, Stata, LaTeX, Quarto, Linux y herramientas para ciencia de datos; una sección por herramienta. Es uno de los blogs satélite de la familia Quarto de Edison Achalma: un sitio Quarto
 con repositorio y sitio Netlify propios, incluido como submódulo git en el hub `web` (repo
 `website-achalma`) bajo `web/_pubs/numerus-scriptum/`. El mismo blog tiene tres nombres: carpeta `numerus-scriptum`, repo
 GitHub `achalmed/numerus-scriptum` y dominio `numerus-scriptum.netlify.app`; el registro de los tres es `web/_pubs/pubs.yml`.
