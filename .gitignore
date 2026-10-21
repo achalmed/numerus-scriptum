@@ -543,3 +543,6 @@ assets/fonts/DankMono-*
 # del autor) y su resultado debe viajar con el repo para reconstruir el sitio sin volver a ejecutar el código
 # (web/docs/decisiones.md §5, «_freeze/ de numerus»). La negación lo declara ante el validador (D08).
 !/_freeze/
+# 2026-10-20: la vitrina (_vitrina/, salida de web/_aula) publica las figuras de cada post en index_files/:
+# se re-incluyen frente a `*_files/`, igual que las de _site/.
+!/_vitrina/**/*_files/
