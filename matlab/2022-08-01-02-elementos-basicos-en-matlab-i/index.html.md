@@ -33,6 +33,8 @@ citation:
 date: 2022-08-01
 draft: true
 image: ../featured.jpg
+curso: matlab
+tema: "1.2"
 ---
 
 Este artículo está actualmente en proceso de edición, y todas las secciones serán ampliadas y refinadas en futuras revisiones.

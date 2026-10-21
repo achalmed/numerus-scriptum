@@ -33,7 +33,8 @@ citation:
 date: 2022-10-24
 draft: true
 image: ../featured.jpg
-curso: ofimatica_curso_base
+curso: power-bi
+tema: "4.1"
 ---
 
 Este artículo está actualmente en proceso de edición, y todas las secciones serán ampliadas y refinadas en futuras revisiones.

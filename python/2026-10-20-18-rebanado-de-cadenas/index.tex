@@ -1,0 +1,805 @@
+\documentclass[
+  doc,
+  floatsintext,
+  longtable,
+  a4paper,
+  nolmodern,
+  notxfonts,
+  notimes,
+  12pt,
+  colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{apa7}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\geometry{inner=1in, outer=1in}
+\fancyhfoffset[LE,RO]{0cm}
+
+
+\usepackage[bidi=default]{babel}
+\babelprovide[main,import]{spanish}
+
+
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+
+\RequirePackage{longtable}
+\RequirePackage{threeparttablex}
+
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-.5em}%
+	{\normalfont\normalsize\bfseries\typesectitle}}
+
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{0.5em}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-\z@\relax}%
+	{\normalfont\normalsize\bfseries\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
+
+
+
+\usepackage{longtable, booktabs, multirow, multicol, colortbl, hhline, caption, array, float, xpatch}
+\usepackage{subcaption}
+
+
+\renewcommand\thesubfigure{\Alph{subfigure}}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,theorems, breakable, skins}
+\usepackage{fontawesome5}
+
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{ACACAC}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582EC}
+\definecolor{quarto-callout-important-color-frame}{HTML}{D9534F}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{F0AD4E}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02B875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{FD7E14}
+
+%\newlength\Oldarrayrulewidth
+%\newlength\Oldtabcolsep
+
+
+\usepackage{hyperref}
+
+
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+
+
+\usepackage{newtx}
+
+\defaultfontfeatures{Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+
+
+
+
+
+\title{Rebanado de cadenas}
+
+
+\shorttitle{REBANADO DE CADENAS}
+
+
+\usepackage{etoolbox}
+
+
+
+\ccoppy{\textcopyright~2026}
+
+
+
+\author{Edison Achalma}
+
+
+
+\affiliation{
+{Escuela Profesional de Economía, Universidad Nacional de San Cristóbal
+de Huamanga}}
+
+
+
+
+\leftheader{Achalma}
+
+\date{2026-10-20}
+
+
+\abstract{Este abstract será actualizado una vez que se complete el
+contenido final del artículo. }
+
+
+
+\authornote{\par{\addORCIDlink{Edison Achalma}{0000-0001-6996-3364}} 
+\par{ }
+\par{   El autor no tiene conflictos de interés que revelar.    Los
+roles de autor se clasificaron utilizando la taxonomía de roles de
+colaborador (CRediT; https://credit.niso.org/) de la siguiente
+manera:  Edison Achalma:   conceptualización, metodología, análisis
+formal, investigación, recursos, curación de
+datos, redacción, visualización, supervisión, administración del
+proyecto}
+\par{La correspondencia relativa a este artículo debe dirigirse a Edison
+Achalma, Escuela Profesional de Economía, Universidad Nacional de San
+Cristóbal de Huamanga, Portal Independencia N°
+57, Ayacucho, AYA 5001, Perú, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
+}
+
+\makeatletter
+\let\endoldlt\endlongtable
+\def\endlongtable{
+\hline
+\endoldlt
+}
+\makeatother
+
+\urlstyle{same}
+
+
+
+\hypersetup{
+  pdftitle={Rebanado de cadenas},
+  pdfauthor={Autor}
+}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Tabla de contenidos}
+\else
+  \newcommand\contentsname{Tabla de contenidos}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{Lista de Figuras}
+\else
+  \newcommand\listfigurename{Lista de Figuras}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{Lista de Tablas}
+\else
+  \newcommand\listtablename{Lista de Tablas}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figura}
+\else
+  \newcommand\figurename{Figura}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Tabla}
+\else
+  \newcommand\tablename{Tabla}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listados}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\makeatother
+
+% From https://tex.stackexchange.com/a/645996/211326
+%%% apa7 doesn't want to add appendix section titles in the toc
+%%% let's make it do it
+\makeatletter
+\xpatchcmd{\appendix}
+  {\par}
+  {\addcontentsline{toc}{section}{\@currentlabelname}\par}
+  {}{}
+\makeatother
+
+%% Disable longtable counter
+%% https://tex.stackexchange.com/a/248395/211326
+
+\usepackage{etoolbox}
+
+\makeatletter
+\patchcmd{\LT@caption}
+  {\bgroup}
+  {\bgroup\global\LTpatch@captiontrue}
+  {}{}
+\patchcmd{\longtable}
+  {\par}
+  {\par\global\LTpatch@captionfalse}
+  {}{}
+\apptocmd{\endlongtable}
+  {\ifLTpatch@caption\else\addtocounter{table}{-1}\fi}
+  {}{}
+\newif\ifLTpatch@caption
+\makeatother
+
+\begin{document}
+
+\maketitle
+
+
+\hypertarget{toc}{}
+\tableofcontents
+\newpage
+\section[Introduction]{Rebanado de cadenas}
+
+\setcounter{secnumdepth}{3}
+
+\setlength\LTleft{0pt}
+
+
+
+
+\subsection{🎯 Motivación}\label{motivaciuxf3n}
+
+A menudo necesitas trabajar con partes de un texto: extraer el nombre de
+usuario de un email, obtener la extensión de un archivo, o simplemente
+tomar una porción de un mensaje. El slicing (rebanado) te permite hacer
+esto de manera elegante y eficiente, sin necesidad de bucles o lógica
+compleja.
+
+\subsection{💡 Intuición}\label{intuiciuxf3n}
+
+Imagina que tienes una fila de personas (string) y quieres seleccionar a
+las personas de las posiciones 2 a 5. El slicing es como decir: ``dame
+desde la posición 2 hasta la posición 5''. En Python, \texttt{{[}2:5{]}}
+significa: empieza en el índice 2 y \textbf{detente antes} del índice 5.
+Es como un cuchillo que corta exactamente donde le indicas.
+
+\subsection{🧠 Modelo mental}\label{modelo-mental}
+
+La sintaxis de slicing es \texttt{{[}inicio:fin:paso{]}}:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\texttt{inicio}} (opcional): dónde empezar (incluido). Por
+  defecto es el principio.
+\item
+  \textbf{\texttt{fin}} (opcional): dónde parar (no incluido). Por
+  defecto es el final.
+\item
+  \textbf{\texttt{paso}} (opcional): cada cuántos caracteres tomar. Por
+  defecto es 1.
+\end{itemize}
+
+La regla clave: \textbf{el índice final es exclusivo}, es decir, no se
+incluye en el resultado.
+
+\subsection{📐 Desarrollo}\label{desarrollo}
+
+\subsubsection{1. Sintaxis básica}\label{sintaxis-buxe1sica}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{texto }\OperatorTok{=} \StringTok{"Hello, World!"}
+
+\CommentTok{\# [inicio:fin] {-} fin no incluido}
+\BuiltInTok{print}\NormalTok{(texto[}\DecValTok{2}\NormalTok{:}\DecValTok{5}\NormalTok{])   }\CommentTok{\# "llo" (índices 2, 3, 4)}
+\BuiltInTok{print}\NormalTok{(texto[}\DecValTok{7}\NormalTok{:}\DecValTok{12}\NormalTok{])  }\CommentTok{\# "World" (índices 7{-}11)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{2. Slice desde el inicio}\label{slice-desde-el-inicio}
+
+Omite el inicio para empezar desde el primer carácter:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{texto }\OperatorTok{=} \StringTok{"Hello, World!"}
+\BuiltInTok{print}\NormalTok{(texto[:}\DecValTok{5}\NormalTok{])   }\CommentTok{\# "Hello" (índices 0{-}4)}
+\BuiltInTok{print}\NormalTok{(texto[:}\DecValTok{7}\NormalTok{])   }\CommentTok{\# "Hello, " (índices 0{-}6)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{3. Slice hasta el final}\label{slice-hasta-el-final}
+
+Omite el fin para ir hasta el último carácter:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{texto }\OperatorTok{=} \StringTok{"Hello, World!"}
+\BuiltInTok{print}\NormalTok{(texto[}\DecValTok{7}\NormalTok{:])   }\CommentTok{\# "World!" (índices 7{-}12)}
+\BuiltInTok{print}\NormalTok{(texto[}\DecValTok{2}\NormalTok{:])   }\CommentTok{\# "llo, World!" (índices 2{-}12)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{4. Slice completo}\label{slice-completo}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{texto }\OperatorTok{=} \StringTok{"Hello, World!"}
+\BuiltInTok{print}\NormalTok{(texto[:])    }\CommentTok{\# "Hello, World!" (copia completa)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{5. Índices negativos}\label{uxedndices-negativos}
+
+Empieza desde el final (último carácter es -1):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{texto }\OperatorTok{=} \StringTok{"Hello, World!"}
+
+\CommentTok{\# Últimos 5 caracteres}
+\BuiltInTok{print}\NormalTok{(texto[}\OperatorTok{{-}}\DecValTok{5}\NormalTok{:])   }\CommentTok{\# "orld!"}
+\BuiltInTok{print}\NormalTok{(texto[}\OperatorTok{{-}}\DecValTok{6}\NormalTok{:}\OperatorTok{{-}}\DecValTok{1}\NormalTok{]) }\CommentTok{\# "World" (desde {-}6 hasta antes de {-}1)}
+\BuiltInTok{print}\NormalTok{(texto[}\OperatorTok{{-}}\DecValTok{5}\NormalTok{:}\OperatorTok{{-}}\DecValTok{2}\NormalTok{]) }\CommentTok{\# "orl" (desde {-}5 hasta antes de {-}2)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{\texorpdfstring{6. Slice con paso
+(\texttt{{[}inicio:fin:paso{]}})}{6. Slice con paso ({[}inicio:fin:paso{]})}}\label{slice-con-paso-iniciofinpaso}
+
+Controlas el salto entre caracteres:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{texto }\OperatorTok{=} \StringTok{"Python"}
+
+\CommentTok{\# Cada 2 caracteres}
+\BuiltInTok{print}\NormalTok{(texto[::}\DecValTok{2}\NormalTok{])   }\CommentTok{\# "Pto" (índices 0, 2, 4)}
+\BuiltInTok{print}\NormalTok{(texto[}\DecValTok{1}\NormalTok{::}\DecValTok{2}\NormalTok{])  }\CommentTok{\# "yhn" (índices 1, 3, 5)}
+
+\CommentTok{\# Invertir string (paso {-}1)}
+\BuiltInTok{print}\NormalTok{(texto[::}\OperatorTok{{-}}\DecValTok{1}\NormalTok{])  }\CommentTok{\# "nohtyP"}
+
+\CommentTok{\# Desde el final con paso {-}2}
+\BuiltInTok{print}\NormalTok{(texto[::}\OperatorTok{{-}}\DecValTok{2}\NormalTok{])  }\CommentTok{\# "nhy"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{7. Tabla de ejemplos de
+slicing}\label{tabla-de-ejemplos-de-slicing}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1231}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3846}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4923}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Slicing
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Resultado (para ``Python'')
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Explicación
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{{[}0:3{]}} & \texttt{"Pyt"} & Posiciones 0, 1, 2 \\
+\texttt{{[}2:5{]}} & \texttt{"tho"} & Posiciones 2, 3, 4 \\
+\texttt{{[}:4{]}} & \texttt{"Pyth"} & Desde el inicio hasta posición
+3 \\
+\texttt{{[}3:{]}} & \texttt{"hon"} & Desde posición 3 hasta el final \\
+\texttt{{[}-3:{]}} & \texttt{"hon"} & Últimos 3 caracteres \\
+\texttt{{[}:-2{]}} & \texttt{"Pyth"} & Hasta antes de los últimos 2 \\
+\texttt{{[}::2{]}} & \texttt{"Pto"} & Caracteres en posiciones pares \\
+\texttt{{[}::-1{]}} & \texttt{"nohtyP"} & String invertido \\
+\end{longtable}
+}
+
+\subsection{🔬 Ejemplos}\label{ejemplos}
+
+\textbf{Mínimo ---} Slicing básico:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fruta }\OperatorTok{=} \StringTok{"Manzana"}
+\BuiltInTok{print}\NormalTok{(fruta[}\DecValTok{0}\NormalTok{:}\DecValTok{3}\NormalTok{])  }\CommentTok{\# "Man"}
+\BuiltInTok{print}\NormalTok{(fruta[}\DecValTok{3}\NormalTok{:}\DecValTok{6}\NormalTok{])  }\CommentTok{\# "ana"}
+\BuiltInTok{print}\NormalTok{(fruta[}\DecValTok{2}\NormalTok{:}\DecValTok{5}\NormalTok{])  }\CommentTok{\# "nza"}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Progresivo ---} Extracción de datos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{email }\OperatorTok{=} \StringTok{"usuario@gmail.com"}
+
+\CommentTok{\# Extraer nombre de usuario (hasta el @)}
+\NormalTok{nombre\_usuario }\OperatorTok{=}\NormalTok{ email[:email.index(}\StringTok{"@"}\NormalTok{)]}
+\BuiltInTok{print}\NormalTok{(nombre\_usuario)  }\CommentTok{\# "usuario"}
+
+\CommentTok{\# Extraer dominio (después del @)}
+\NormalTok{dominio }\OperatorTok{=}\NormalTok{ email[email.index(}\StringTok{"@"}\NormalTok{) }\OperatorTok{+} \DecValTok{1}\NormalTok{:]}
+\BuiltInTok{print}\NormalTok{(dominio)  }\CommentTok{\# "gmail.com"}
+
+\CommentTok{\# Extraer extensión (últimos 3 caracteres)}
+\NormalTok{extension }\OperatorTok{=}\NormalTok{ email[}\OperatorTok{{-}}\DecValTok{3}\NormalTok{:]}
+\BuiltInTok{print}\NormalTok{(extension)  }\CommentTok{\# "com"}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Real ---} Procesamiento de nombres de archivo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{archivo }\OperatorTok{=} \StringTok{"documento\_2024.pdf"}
+
+\CommentTok{\# Obtener extensión}
+\NormalTok{extension }\OperatorTok{=}\NormalTok{ archivo.split(}\StringTok{"."}\NormalTok{)[}\OperatorTok{{-}}\DecValTok{1}\NormalTok{]  }\CommentTok{\# "pdf"}
+\CommentTok{\# Con slicing:}
+\NormalTok{punto }\OperatorTok{=}\NormalTok{ archivo.index(}\StringTok{"."}\NormalTok{)}
+\NormalTok{extension\_slice }\OperatorTok{=}\NormalTok{ archivo[punto }\OperatorTok{+} \DecValTok{1}\NormalTok{:]  }\CommentTok{\# "pdf"}
+
+\CommentTok{\# Obtener nombre sin extensión}
+\NormalTok{nombre\_base }\OperatorTok{=}\NormalTok{ archivo[:archivo.index(}\StringTok{"."}\NormalTok{)]  }\CommentTok{\# "documento\_2024"}
+
+\CommentTok{\# Año (últimos 4 dígitos antes del punto)}
+\NormalTok{año }\OperatorTok{=}\NormalTok{ archivo[}\OperatorTok{{-}}\DecValTok{8}\NormalTok{:}\OperatorTok{{-}}\DecValTok{4}\NormalTok{]  }\CommentTok{\# "2024"}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Archivo: }\SpecialCharTok{\{}\NormalTok{nombre\_base}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Extensión: }\SpecialCharTok{\{}\NormalTok{extension\_slice}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Año: }\SpecialCharTok{\{}\NormalTok{a}\SpecialCharTok{ñ}\NormalTok{o}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{⚠️ Errores comunes}\label{errores-comunes}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2752}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3578}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3670}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Síntoma
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Solución
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Índice fuera de rango} &
+\texttt{IndexError:\ string\ index\ out\ of\ range} & Verifica que el
+índice sea \textless{} len(string) \\
+\textbf{Confundir \texttt{{[}inicio:fin{]}}} & No incluir el último
+carácter & Recuerda: \texttt{fin} no se incluye \\
+\textbf{Olvidar \texttt{:}} & Intenta acceder a un solo carácter & Usa
+\texttt{{[}inicio:fin{]}} no \texttt{{[}inicio,\ fin{]}} \\
+\textbf{Índices negativos confusos} & Resultados inesperados & Recuerda:
+-1 es el último carácter \\
+\end{longtable}
+}
+
+\subsection{✅ Buenas prácticas}\label{buenas-pruxe1cticas}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Usa índices negativos para ``desde el final''}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ✅ Obtener últimos 4 caracteres}
+\NormalTok{ultimos\_4 }\OperatorTok{=}\NormalTok{ texto[}\OperatorTok{{-}}\DecValTok{4}\NormalTok{:]}
+
+\CommentTok{\# ❌ Menos claro}
+\NormalTok{ultimos\_4 }\OperatorTok{=}\NormalTok{ texto[}\BuiltInTok{len}\NormalTok{(texto)}\OperatorTok{{-}}\DecValTok{4}\NormalTok{:]}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Combina slicing con \texttt{len()}} para cortar dinámicamente:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{texto }\OperatorTok{=} \StringTok{"Hola mundo"}
+\CommentTok{\# Primeros 3}
+\NormalTok{texto[:}\DecValTok{3}\NormalTok{]}
+\CommentTok{\# Últimos 3}
+\NormalTok{texto[}\OperatorTok{{-}}\DecValTok{3}\NormalTok{:]}
+\CommentTok{\# Mitad}
+\NormalTok{mitad }\OperatorTok{=} \BuiltInTok{len}\NormalTok{(texto) }\OperatorTok{//} \DecValTok{2}
+\NormalTok{texto[:mitad]  }\CommentTok{\# Primera mitad}
+\NormalTok{texto[mitad:]  }\CommentTok{\# Segunda mitad}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Usa \texttt{{[}::-1{]}} para invertir strings}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{palabra }\OperatorTok{=} \StringTok{"Python"}
+\BuiltInTok{print}\NormalTok{(palabra[::}\OperatorTok{{-}}\DecValTok{1}\NormalTok{])  }\CommentTok{\# "nohtyP"}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Verifica que los índices sean válidos} antes de hacer slicing
+  si no estás seguro:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{texto }\OperatorTok{=} \StringTok{"abc"}
+\CommentTok{\# Slice con índices fuera de rango es seguro (no da error)}
+\BuiltInTok{print}\NormalTok{(texto[}\DecValTok{0}\NormalTok{:}\DecValTok{10}\NormalTok{])  }\CommentTok{\# "abc" (no da error)}
+\CommentTok{\# Pero acceso directo sí da error}
+\CommentTok{\# print(texto[5])  \# ❌ IndexError}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Usa slicing para copiar strings}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{original }\OperatorTok{=} \StringTok{"Hola"}
+\NormalTok{copia }\OperatorTok{=}\NormalTok{ original[:]  }\CommentTok{\# Crea una copia}
+\end{Highlighting}
+\end{Shaded}
+\end{enumerate}
+
+\subsection{📝 Ejercicio}\label{ejercicio}
+
+\textbf{Intermedio} --- Manipulación de nombres de archivo
+
+Escribe un programa que:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Tenga un string \texttt{ruta\_archivo} =
+  ``C:/Users/Ana/Documents/proyecto\_final\_v2.py''
+\item
+  Extraiga y muestre:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    El nombre del archivo (última parte después de /)
+  \item
+    La extensión del archivo
+  \item
+    El nombre base (sin extensión)
+  \item
+    La carpeta donde está el archivo (todo antes del último /)
+  \item
+    Una versión con solo las iniciales de cada carpeta:
+    C:/U/A/D/proyecto\_final\_v2.py
+  \end{itemize}
+\end{enumerate}
+
+\textbf{Pista:} usa \texttt{rfind()} para encontrar la última ocurrencia
+de un carácter, y luego slicing.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Solución (no mires hasta haberlo intentado):}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ruta\_archivo }\OperatorTok{=} \StringTok{"C:/Users/Ana/Documents/proyecto\_final\_v2.py"}
+
+\CommentTok{\# 1. Nombre del archivo (último segmento)}
+\NormalTok{ultimo\_slash }\OperatorTok{=}\NormalTok{ ruta\_archivo.rfind(}\StringTok{"/"}\NormalTok{)}
+\NormalTok{nombre\_archivo }\OperatorTok{=}\NormalTok{ ruta\_archivo[ultimo\_slash }\OperatorTok{+} \DecValTok{1}\NormalTok{:]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Archivo: }\SpecialCharTok{\{}\NormalTok{nombre\_archivo}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# "proyecto\_final\_v2.py"}
+
+\CommentTok{\# 2. Extensión}
+\NormalTok{punto }\OperatorTok{=}\NormalTok{ nombre\_archivo.rfind(}\StringTok{"."}\NormalTok{)}
+\NormalTok{extension }\OperatorTok{=}\NormalTok{ nombre\_archivo[punto }\OperatorTok{+} \DecValTok{1}\NormalTok{:]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Extensión: }\SpecialCharTok{\{}\NormalTok{extension}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# "py"}
+
+\CommentTok{\# 3. Nombre base (sin extensión)}
+\NormalTok{nombre\_base }\OperatorTok{=}\NormalTok{ nombre\_archivo[:punto]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Nombre base: }\SpecialCharTok{\{}\NormalTok{nombre\_base}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# "proyecto\_final\_v2"}
+
+\CommentTok{\# 4. Carpeta (todo antes del último /)}
+\NormalTok{carpeta }\OperatorTok{=}\NormalTok{ ruta\_archivo[:ultimo\_slash]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Carpeta: }\SpecialCharTok{\{}\NormalTok{carpeta}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# "C:/Users/Ana/Documents"}
+
+\CommentTok{\# 5. Iniciales de carpetas}
+\NormalTok{partes }\OperatorTok{=}\NormalTok{ ruta\_archivo.split(}\StringTok{"/"}\NormalTok{)}
+\NormalTok{iniciales }\OperatorTok{=} \StringTok{"/"}\NormalTok{.join([p[:}\DecValTok{1}\NormalTok{] }\ControlFlowTok{if}\NormalTok{ p }\ControlFlowTok{else} \StringTok{""} \ControlFlowTok{for}\NormalTok{ p }\KeywordTok{in}\NormalTok{ partes[:}\OperatorTok{{-}}\DecValTok{1}\NormalTok{]]) }\OperatorTok{+} \StringTok{"/"} \OperatorTok{+}\NormalTok{ partes[}\OperatorTok{{-}}\DecValTok{1}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Con iniciales: }\SpecialCharTok{\{}\NormalTok{iniciales}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# "C:/U/A/D/proyecto\_final\_v2.py"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{🗂️ Síntesis}\label{suxedntesis}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Sintaxis}: \texttt{{[}inicio:fin:paso{]}} donde \texttt{fin}
+  no se incluye.
+\item
+  \textbf{Inicio por defecto}: \texttt{{[}:fin{]}} empieza desde el
+  principio.
+\item
+  \textbf{Fin por defecto}: \texttt{{[}inicio:{]}} va hasta el final.
+\item
+  \textbf{Índices negativos}: cuentan desde el final (-1 es el último).
+\item
+  \textbf{Paso}: controla el salto entre caracteres. \texttt{{[}::-1{]}}
+  invierte.
+\item
+  \textbf{Slicing seguro}: índices fuera de rango no dan error (a
+  diferencia de acceso directo).
+\item
+  \textbf{Strings inmutables}: el slicing devuelve un nuevo string, no
+  modifica el original.
+\end{itemize}
+
+\subsection{🔗 Qué sigue}\label{quuxe9-sigue}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Relacionado:} métodos de string, indexación, f-strings
+\item
+  \textbf{Siguiente tema:} Métodos de strings --- aprende todas las
+  herramientas para manipular texto.
+\end{itemize}
+
+\section{Publicaciones Similares}\label{publicaciones-similares}
+
+Si te interesó este artículo, te recomendamos que explores otros blogs y
+recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo
+algunas sugerencias:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda}{Instalacion
+  De Anaconda}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda}{Configurar
+  Entorno Virtual Python Anaconda}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python}{01
+  Introducion A La Programacion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python}{02
+  Variables Expresiones Y Statements Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python}{03
+  Objetos De Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python}{04
+  Ejecucion Condicional Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python}{05
+  Iteraciones Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python}{06
+  Funciones Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python}{07
+  Dataframes Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python}{08
+  Prediccion Y Metrica De Performance Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python}{09
+  Metodos De Machine Learning Para Clasificacion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python}{10
+  Metodos De Machine Learning Para Regresion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python}{Visualizacion
+  De Datos Con Python}
+\end{enumerate}
+
+Esperamos que encuentres estas publicaciones igualmente interesantes y
+útiles. ¡Disfruta de la lectura!
+
+
+
+
+
+
+\end{document}

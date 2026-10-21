@@ -1,0 +1,824 @@
+\documentclass[
+  doc,
+  floatsintext,
+  longtable,
+  a4paper,
+  nolmodern,
+  notxfonts,
+  notimes,
+  12pt,
+  colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{apa7}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\geometry{inner=1in, outer=1in}
+\fancyhfoffset[LE,RO]{0cm}
+
+
+\usepackage[bidi=default]{babel}
+\babelprovide[main,import]{spanish}
+
+
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+
+\RequirePackage{longtable}
+\RequirePackage{threeparttablex}
+
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-.5em}%
+	{\normalfont\normalsize\bfseries\typesectitle}}
+
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{0.5em}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-\z@\relax}%
+	{\normalfont\normalsize\bfseries\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
+
+
+
+\usepackage{longtable, booktabs, multirow, multicol, colortbl, hhline, caption, array, float, xpatch}
+\usepackage{subcaption}
+
+
+\renewcommand\thesubfigure{\Alph{subfigure}}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,theorems, breakable, skins}
+\usepackage{fontawesome5}
+
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{ACACAC}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582EC}
+\definecolor{quarto-callout-important-color-frame}{HTML}{D9534F}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{F0AD4E}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02B875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{FD7E14}
+
+%\newlength\Oldarrayrulewidth
+%\newlength\Oldtabcolsep
+
+
+\usepackage{hyperref}
+
+
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+
+
+\usepackage{newtx}
+
+\defaultfontfeatures{Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+
+
+
+
+
+\title{Salida de variables}
+
+
+\shorttitle{SALIDA DE VARIABLES}
+
+
+\usepackage{etoolbox}
+
+
+
+\ccoppy{\textcopyright~2026}
+
+
+
+\author{Edison Achalma}
+
+
+
+\affiliation{
+{Escuela Profesional de Economía, Universidad Nacional de San Cristóbal
+de Huamanga}}
+
+
+
+
+\leftheader{Achalma}
+
+\date{2026-10-20}
+
+
+\abstract{Este abstract será actualizado una vez que se complete el
+contenido final del artículo. }
+
+
+
+\authornote{\par{\addORCIDlink{Edison Achalma}{0000-0001-6996-3364}} 
+\par{ }
+\par{   El autor no tiene conflictos de interés que revelar.    Los
+roles de autor se clasificaron utilizando la taxonomía de roles de
+colaborador (CRediT; https://credit.niso.org/) de la siguiente
+manera:  Edison Achalma:   conceptualización, metodología, análisis
+formal, investigación, recursos, curación de
+datos, redacción, visualización, supervisión, administración del
+proyecto}
+\par{La correspondencia relativa a este artículo debe dirigirse a Edison
+Achalma, Escuela Profesional de Economía, Universidad Nacional de San
+Cristóbal de Huamanga, Portal Independencia N°
+57, Ayacucho, AYA 5001, Perú, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
+}
+
+\makeatletter
+\let\endoldlt\endlongtable
+\def\endlongtable{
+\hline
+\endoldlt
+}
+\makeatother
+
+\urlstyle{same}
+
+
+
+\hypersetup{
+  pdftitle={Salida de variables},
+  pdfauthor={Autor}
+}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Tabla de contenidos}
+\else
+  \newcommand\contentsname{Tabla de contenidos}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{Lista de Figuras}
+\else
+  \newcommand\listfigurename{Lista de Figuras}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{Lista de Tablas}
+\else
+  \newcommand\listtablename{Lista de Tablas}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figura}
+\else
+  \newcommand\figurename{Figura}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Tabla}
+\else
+  \newcommand\tablename{Tabla}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listados}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\makeatother
+
+% From https://tex.stackexchange.com/a/645996/211326
+%%% apa7 doesn't want to add appendix section titles in the toc
+%%% let's make it do it
+\makeatletter
+\xpatchcmd{\appendix}
+  {\par}
+  {\addcontentsline{toc}{section}{\@currentlabelname}\par}
+  {}{}
+\makeatother
+
+%% Disable longtable counter
+%% https://tex.stackexchange.com/a/248395/211326
+
+\usepackage{etoolbox}
+
+\makeatletter
+\patchcmd{\LT@caption}
+  {\bgroup}
+  {\bgroup\global\LTpatch@captiontrue}
+  {}{}
+\patchcmd{\longtable}
+  {\par}
+  {\par\global\LTpatch@captionfalse}
+  {}{}
+\apptocmd{\endlongtable}
+  {\ifLTpatch@caption\else\addtocounter{table}{-1}\fi}
+  {}{}
+\newif\ifLTpatch@caption
+\makeatother
+
+\begin{document}
+
+\maketitle
+
+
+\hypertarget{toc}{}
+\tableofcontents
+\newpage
+\section[Introduction]{Salida de variables}
+
+\setcounter{secnumdepth}{3}
+
+\setlength\LTleft{0pt}
+
+
+
+
+\subsection{🎯 Motivación}\label{motivaciuxf3n}
+
+Una vez que tienes datos almacenados en variables, necesitas poder
+mostrarlos. Python te ofrece varias formas de combinar y mostrar
+variables con \texttt{print()}. Elegir el método correcto hace tu código
+más legible y evita errores comunes como mezclar tipos de datos
+incorrectamente.
+
+\subsection{💡 Intuición}\label{intuiciuxf3n}
+
+Imagina que tienes piezas de un rompecabezas (variables) y quieres
+mostrarlas juntas. Puedes:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Colocarlas una al lado de la otra} (usando comas):
+  \texttt{print(x,\ y)} → cada pieza se muestra con un espacio entre
+  ellas.
+\item
+  \textbf{Pegarlas} (usando \texttt{+}): \texttt{print(x\ +\ y)} → las
+  piezas se unen formando una sola pieza (solo funciona con texto).
+\item
+  \textbf{No puedes pegar una pieza de madera con una de plástico}
+  (string + número) → da error.
+\end{itemize}
+
+\subsection{🧠 Modelo mental}\label{modelo-mental}
+
+El \texttt{print()} maneja variables de diferentes maneras:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Múltiples argumentos (con comas)}: muestra cada valor separado
+  por un espacio (por defecto).
+\item
+  \textbf{Concatenación con \texttt{+}}: une valores en un solo valor
+  (solo funciona con el mismo tipo).
+\item
+  \textbf{Diferencias clave}: \texttt{+} une, la coma separa.
+\item
+  \textbf{Restricción}: no puedes usar \texttt{+} entre texto y número.
+\end{enumerate}
+
+\subsection{📐 Desarrollo}\label{desarrollo}
+
+\subsubsection{1. Imprimir una variable}\label{imprimir-una-variable}
+
+La forma más simple:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nombre }\OperatorTok{=} \StringTok{"Ana"}
+\BuiltInTok{print}\NormalTok{(nombre)  }\CommentTok{\# Ana}
+
+\NormalTok{edad }\OperatorTok{=} \DecValTok{25}
+\BuiltInTok{print}\NormalTok{(edad)    }\CommentTok{\# 25}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{2. Múltiples variables con
+comas}\label{muxfaltiples-variables-con-comas}
+
+Separa variables con comas para mostrarlas juntas:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nombre }\OperatorTok{=} \StringTok{"Ana"}
+\NormalTok{apellido }\OperatorTok{=} \StringTok{"García"}
+\NormalTok{edad }\OperatorTok{=} \DecValTok{25}
+
+\BuiltInTok{print}\NormalTok{(nombre, apellido, edad)}
+\CommentTok{\# Salida: Ana García 25}
+\end{Highlighting}
+\end{Shaded}
+
+Python añade un espacio entre cada valor automáticamente.
+
+\subsubsection{\texorpdfstring{3. Concatenación con \texttt{+} (solo
+texto)}{3. Concatenación con + (solo texto)}}\label{concatenaciuxf3n-con-solo-texto}
+
+Une texto con \texttt{+} para formar un solo valor:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nombre }\OperatorTok{=} \StringTok{"Ana"}
+\NormalTok{apellido }\OperatorTok{=} \StringTok{"García"}
+
+\BuiltInTok{print}\NormalTok{(nombre }\OperatorTok{+} \StringTok{" "} \OperatorTok{+}\NormalTok{ apellido)}
+\CommentTok{\# Salida: Ana García}
+\end{Highlighting}
+\end{Shaded}
+
+⚠️ \textbf{Importante:} \texttt{+} solo funciona si todos los elementos
+son texto (strings).
+
+\subsubsection{\texorpdfstring{4. \texttt{+} con números (operación
+matemática)}{4. + con números (operación matemática)}}\label{con-nuxfameros-operaciuxf3n-matemuxe1tica}
+
+Cuando usas \texttt{+} con números, Python suma:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OperatorTok{=} \DecValTok{5}
+\NormalTok{y }\OperatorTok{=} \DecValTok{10}
+\BuiltInTok{print}\NormalTok{(x }\OperatorTok{+}\NormalTok{ y)  }\CommentTok{\# 15 (suma matemática)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{\texorpdfstring{5. Error común: mezclar texto y números
+con
+\texttt{+}}{5. Error común: mezclar texto y números con +}}\label{error-comuxfan-mezclar-texto-y-nuxfameros-con}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OperatorTok{=} \DecValTok{5}
+\NormalTok{y }\OperatorTok{=} \StringTok{"John"}
+\BuiltInTok{print}\NormalTok{(x }\OperatorTok{+}\NormalTok{ y)  }\CommentTok{\# ❌ TypeError: unsupported operand type(s) for +: \textquotesingle{}int\textquotesingle{} and \textquotesingle{}str\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{6. Solución: usar comas para mezclar
+tipos}\label{soluciuxf3n-usar-comas-para-mezclar-tipos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OperatorTok{=} \DecValTok{5}
+\NormalTok{y }\OperatorTok{=} \StringTok{"John"}
+\BuiltInTok{print}\NormalTok{(x, y)  }\CommentTok{\# ✅ 5 John (funciona con diferentes tipos)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{\texorpdfstring{7. Personalizar el separador con
+\texttt{sep}}{7. Personalizar el separador con sep}}\label{personalizar-el-separador-con-sep}
+
+Puedes cambiar el espacio entre elementos usando \texttt{sep}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OperatorTok{=} \StringTok{"Ana"}
+\NormalTok{y }\OperatorTok{=} \StringTok{"García"}
+\NormalTok{z }\OperatorTok{=} \DecValTok{25}
+
+\BuiltInTok{print}\NormalTok{(x, y, z, sep}\OperatorTok{=}\StringTok{" {-} "}\NormalTok{)}
+\CommentTok{\# Salida: Ana {-} García {-} 25}
+
+\BuiltInTok{print}\NormalTok{(x, y, z, sep}\OperatorTok{=}\StringTok{""}\NormalTok{)}
+\CommentTok{\# Salida: AnaGarcía25}
+
+\BuiltInTok{print}\NormalTok{(x, y, z, sep}\OperatorTok{=}\StringTok{", "}\NormalTok{)}
+\CommentTok{\# Salida: Ana, García, 25}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{8. Comparativa de
+métodos}\label{comparativa-de-muxe9todos}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1910}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2472}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1348}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.4270}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Método
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Ejemplo
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Resultado
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Cuándo usar
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Coma} & \texttt{print(x,\ y)} & \texttt{Hola\ Mundo} & Siempre
+que tengas diferentes tipos \\
+\textbf{\texttt{+} (texto)} & \texttt{print(x\ +\ y)} &
+\texttt{HolaMundo} & Cuando quieras unir texto sin espacios \\
+\textbf{\texttt{+} (números)} & \texttt{print(x\ +\ y)} & \texttt{15} &
+Para sumar números \\
+\textbf{\texttt{sep}} & \texttt{print(x,\ y,\ sep="-")} &
+\texttt{Hola-Mundo} & Cuando quieras controlar el separador \\
+\end{longtable}
+}
+
+\subsection{🔬 Ejemplos}\label{ejemplos}
+
+\textbf{Mínimo ---} Variables simples:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nombre }\OperatorTok{=} \StringTok{"Carlos"}
+\BuiltInTok{print}\NormalTok{(nombre)  }\CommentTok{\# Carlos}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Progresivo ---} Múltiples variables:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Con comas (recomendado para diferentes tipos)}
+\NormalTok{nombre }\OperatorTok{=} \StringTok{"Ana"}
+\NormalTok{edad }\OperatorTok{=} \DecValTok{25}
+\NormalTok{ciudad }\OperatorTok{=} \StringTok{"Madrid"}
+\BuiltInTok{print}\NormalTok{(nombre, edad, ciudad)  }\CommentTok{\# Ana 25 Madrid}
+
+\CommentTok{\# Con + (solo texto)}
+\NormalTok{saludo }\OperatorTok{=} \StringTok{"Hola"}
+\NormalTok{nombre }\OperatorTok{=} \StringTok{"Ana"}
+\BuiltInTok{print}\NormalTok{(saludo }\OperatorTok{+} \StringTok{" "} \OperatorTok{+}\NormalTok{ nombre)  }\CommentTok{\# Hola Ana}
+
+\CommentTok{\# Con sep}
+\BuiltInTok{print}\NormalTok{(nombre, edad, ciudad, sep}\OperatorTok{=}\StringTok{" | "}\NormalTok{)  }\CommentTok{\# Ana | 25 | Madrid}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Real ---} Informe de ventas:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Datos de venta}
+\NormalTok{producto }\OperatorTok{=} \StringTok{"Laptop"}
+\NormalTok{precio }\OperatorTok{=} \FloatTok{850.50}
+\NormalTok{cantidad }\OperatorTok{=} \DecValTok{3}
+\NormalTok{total }\OperatorTok{=}\NormalTok{ precio }\OperatorTok{*}\NormalTok{ cantidad}
+
+\CommentTok{\# Método recomendado (comas)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Producto:"}\NormalTok{, producto)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Precio unitario:"}\NormalTok{, precio, }\StringTok{"€"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Cantidad:"}\NormalTok{, cantidad)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Total:"}\NormalTok{, total, }\StringTok{"€"}\NormalTok{)}
+
+\CommentTok{\# También puedes usar f{-}strings (lo veremos después)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Total: }\SpecialCharTok{\{}\NormalTok{total}\SpecialCharTok{\}}\SpecialStringTok{€"}\NormalTok{)  }\CommentTok{\# Más elegante}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{⚠️ Errores comunes}\label{errores-comunes}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3115}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3279}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3607}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Síntoma
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Solución
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Texto + número} &
+\texttt{TypeError:\ unsupported\ operand\ type(s)} & Usa comas en lugar
+de \texttt{+} \\
+\textbf{Olvidar espacio en \texttt{+}} & \texttt{"Hola""Mundo"} →
+\texttt{HolaMundo} & Añade espacio explícito:
+\texttt{"Hola\ "\ +\ "Mundo"} \\
+\textbf{Confundir \texttt{+} para texto y números} & \texttt{"10"\ +\ 5}
+→ error & Convierte: \texttt{int("10")\ +\ 5} o usa comas \\
+\textbf{Olvidar convertir números} & \texttt{"Total:\ "\ +\ 100} → error
+& Usa comas o convierte a texto: \texttt{str(100)} \\
+\end{longtable}
+}
+
+\subsection{✅ Buenas prácticas}\label{buenas-pruxe1cticas}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Usa comas cuando tengas diferentes tipos}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ✅ Recomendado}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Edad:"}\NormalTok{, edad, }\StringTok{"años"}\NormalTok{)}
+
+\CommentTok{\# ❌ Propenso a error}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Edad: "} \OperatorTok{+} \BuiltInTok{str}\NormalTok{(edad) }\OperatorTok{+} \StringTok{" años"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Usa f-strings para formato avanzado} (más elegante):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nombre }\OperatorTok{=} \StringTok{"Ana"}
+\NormalTok{edad }\OperatorTok{=} \DecValTok{25}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{nombre}\SpecialCharTok{\}}\SpecialStringTok{ tiene }\SpecialCharTok{\{}\NormalTok{edad}\SpecialCharTok{\}}\SpecialStringTok{ años"}\NormalTok{)  }\CommentTok{\# Ana tiene 25 años}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Para unir texto, prefiere comas o f-strings} en lugar de
+  \texttt{+}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ✅ Más legible}
+\BuiltInTok{print}\NormalTok{(nombre, apellido)}
+
+\CommentTok{\# ✅ Más control}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{nombre}\SpecialCharTok{\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{apellido}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# ❌ Menos legible}
+\BuiltInTok{print}\NormalTok{(nombre }\OperatorTok{+} \StringTok{" "} \OperatorTok{+}\NormalTok{ apellido)}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Usa \texttt{sep} para separadores consistentes}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(nombre, edad, ciudad, sep}\OperatorTok{=}\StringTok{", "}\NormalTok{)}
+\CommentTok{\# Ana, 25, Madrid}
+\end{Highlighting}
+\end{Shaded}
+\end{enumerate}
+
+\subsection{📝 Ejercicio}\label{ejercicio}
+
+\textbf{Básico} --- Mostrar variables
+
+Escribe un programa que:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Cree variables para: \texttt{nombre} (texto), \texttt{edad} (número),
+  \texttt{altura} (decimal), \texttt{ciudad} (texto)
+\item
+  Muestre los datos con comas (usando diferentes tipos)
+\item
+  Muestre un mensaje completo usando \texttt{+} (solo la parte de texto)
+\item
+  Muestre la edad que tendrá en 10 años (operación matemática)
+\item
+  Use \texttt{sep} para mostrar los datos separados por '' \textbar{} ''
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Solución (no mires hasta haberlo intentado):}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Datos}
+\NormalTok{nombre }\OperatorTok{=} \StringTok{"Carlos"}
+\NormalTok{edad }\OperatorTok{=} \DecValTok{28}
+\NormalTok{altura }\OperatorTok{=} \FloatTok{1.75}
+\NormalTok{ciudad }\OperatorTok{=} \StringTok{"Barcelona"}
+
+\CommentTok{\# 1. Con comas (diferentes tipos)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Datos personales:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Nombre:"}\NormalTok{, nombre)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Edad:"}\NormalTok{, edad, }\StringTok{"años"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Altura:"}\NormalTok{, altura, }\StringTok{"metros"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Ciudad:"}\NormalTok{, ciudad)}
+
+\CommentTok{\# 2. Con + (solo texto)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Bienvenido "} \OperatorTok{+}\NormalTok{ nombre }\OperatorTok{+} \StringTok{" de "} \OperatorTok{+}\NormalTok{ ciudad)}
+
+\CommentTok{\# 3. Operación con números}
+\NormalTok{edad\_futura }\OperatorTok{=}\NormalTok{ edad }\OperatorTok{+} \DecValTok{10}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Edad en 10 años:"}\NormalTok{, edad\_futura)}
+
+\CommentTok{\# 4. Usando sep}
+\BuiltInTok{print}\NormalTok{(nombre, edad, altura, ciudad, sep}\OperatorTok{=}\StringTok{" | "}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Salida esperada:}
+
+\begin{verbatim}
+Datos personales:
+Nombre: Carlos
+Edad: 28 años
+Altura: 1.75 metros
+Ciudad: Barcelona
+Bienvenido Carlos de Barcelona
+Edad en 10 años: 38
+Carlos | 28 | 1.75 | Barcelona
+\end{verbatim}
+
+\subsection{🗂️ Síntesis}\label{suxedntesis}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Comas} (\texttt{print(x,\ y)}) → separa con espacio, funciona
+  con cualquier tipo.
+\item
+  \textbf{\texttt{+} (texto)} → une strings, solo funciona con strings.
+\item
+  \textbf{\texttt{+} (números)} → suma matemática.
+\item
+  \textbf{Error común}: \texttt{texto\ +\ número} → TypeError.
+\item
+  \textbf{Solución}: usa comas o convierte con \texttt{str()}.
+\item
+  \textbf{\texttt{sep}}: personaliza el separador entre elementos.
+\item
+  \textbf{f-strings}: la forma más elegante (lo veremos más adelante).
+\end{itemize}
+
+\subsection{🔗 Qué sigue}\label{quuxe9-sigue}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Relacionado:} f-strings (formato avanzado), strings y métodos
+  de string
+\item
+  \textbf{Siguiente tema:} Tipos de datos --- aprenderás sobre strings,
+  números, booleanos y más.
+\end{itemize}
+
+\section{Publicaciones Similares}\label{publicaciones-similares}
+
+Si te interesó este artículo, te recomendamos que explores otros blogs y
+recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo
+algunas sugerencias:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda}{Instalacion
+  De Anaconda}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda}{Configurar
+  Entorno Virtual Python Anaconda}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python}{01
+  Introducion A La Programacion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python}{02
+  Variables Expresiones Y Statements Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python}{03
+  Objetos De Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python}{04
+  Ejecucion Condicional Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python}{05
+  Iteraciones Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python}{06
+  Funciones Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python}{07
+  Dataframes Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python}{08
+  Prediccion Y Metrica De Performance Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python}{09
+  Metodos De Machine Learning Para Clasificacion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python}{10
+  Metodos De Machine Learning Para Regresion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python}{Visualizacion
+  De Datos Con Python}
+\end{enumerate}
+
+Esperamos que encuentres estas publicaciones igualmente interesantes y
+útiles. ¡Disfruta de la lectura!
+
+
+
+
+
+
+\end{document}

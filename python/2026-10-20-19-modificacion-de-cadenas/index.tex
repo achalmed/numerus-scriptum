@@ -1,0 +1,818 @@
+\documentclass[
+  doc,
+  floatsintext,
+  longtable,
+  a4paper,
+  nolmodern,
+  notxfonts,
+  notimes,
+  12pt,
+  colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{apa7}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\geometry{inner=1in, outer=1in}
+\fancyhfoffset[LE,RO]{0cm}
+
+
+\usepackage[bidi=default]{babel}
+\babelprovide[main,import]{spanish}
+
+
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+
+\RequirePackage{longtable}
+\RequirePackage{threeparttablex}
+
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-.5em}%
+	{\normalfont\normalsize\bfseries\typesectitle}}
+
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{0.5em}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-\z@\relax}%
+	{\normalfont\normalsize\bfseries\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
+
+
+
+\usepackage{longtable, booktabs, multirow, multicol, colortbl, hhline, caption, array, float, xpatch}
+\usepackage{subcaption}
+
+
+\renewcommand\thesubfigure{\Alph{subfigure}}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,theorems, breakable, skins}
+\usepackage{fontawesome5}
+
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{ACACAC}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582EC}
+\definecolor{quarto-callout-important-color-frame}{HTML}{D9534F}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{F0AD4E}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02B875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{FD7E14}
+
+%\newlength\Oldarrayrulewidth
+%\newlength\Oldtabcolsep
+
+
+\usepackage{hyperref}
+
+
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+
+
+\usepackage{newtx}
+
+\defaultfontfeatures{Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+
+
+
+
+
+\title{Modificación de cadenas}
+
+
+\shorttitle{MODIFICACIÓN DE CADENAS}
+
+
+\usepackage{etoolbox}
+
+
+
+\ccoppy{\textcopyright~2026}
+
+
+
+\author{Edison Achalma}
+
+
+
+\affiliation{
+{Escuela Profesional de Economía, Universidad Nacional de San Cristóbal
+de Huamanga}}
+
+
+
+
+\leftheader{Achalma}
+
+\date{2026-10-20}
+
+
+\abstract{Este abstract será actualizado una vez que se complete el
+contenido final del artículo. }
+
+
+
+\authornote{\par{\addORCIDlink{Edison Achalma}{0000-0001-6996-3364}} 
+\par{ }
+\par{   El autor no tiene conflictos de interés que revelar.    Los
+roles de autor se clasificaron utilizando la taxonomía de roles de
+colaborador (CRediT; https://credit.niso.org/) de la siguiente
+manera:  Edison Achalma:   conceptualización, metodología, análisis
+formal, investigación, recursos, curación de
+datos, redacción, visualización, supervisión, administración del
+proyecto}
+\par{La correspondencia relativa a este artículo debe dirigirse a Edison
+Achalma, Escuela Profesional de Economía, Universidad Nacional de San
+Cristóbal de Huamanga, Portal Independencia N°
+57, Ayacucho, AYA 5001, Perú, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
+}
+
+\makeatletter
+\let\endoldlt\endlongtable
+\def\endlongtable{
+\hline
+\endoldlt
+}
+\makeatother
+
+\urlstyle{same}
+
+
+
+\hypersetup{
+  pdftitle={Modificaci\'{o}n de cadenas},
+  pdfauthor={Autor}
+}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Tabla de contenidos}
+\else
+  \newcommand\contentsname{Tabla de contenidos}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{Lista de Figuras}
+\else
+  \newcommand\listfigurename{Lista de Figuras}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{Lista de Tablas}
+\else
+  \newcommand\listtablename{Lista de Tablas}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figura}
+\else
+  \newcommand\figurename{Figura}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Tabla}
+\else
+  \newcommand\tablename{Tabla}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listados}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\makeatother
+
+% From https://tex.stackexchange.com/a/645996/211326
+%%% apa7 doesn't want to add appendix section titles in the toc
+%%% let's make it do it
+\makeatletter
+\xpatchcmd{\appendix}
+  {\par}
+  {\addcontentsline{toc}{section}{\@currentlabelname}\par}
+  {}{}
+\makeatother
+
+%% Disable longtable counter
+%% https://tex.stackexchange.com/a/248395/211326
+
+\usepackage{etoolbox}
+
+\makeatletter
+\patchcmd{\LT@caption}
+  {\bgroup}
+  {\bgroup\global\LTpatch@captiontrue}
+  {}{}
+\patchcmd{\longtable}
+  {\par}
+  {\par\global\LTpatch@captionfalse}
+  {}{}
+\apptocmd{\endlongtable}
+  {\ifLTpatch@caption\else\addtocounter{table}{-1}\fi}
+  {}{}
+\newif\ifLTpatch@caption
+\makeatother
+
+\begin{document}
+
+\maketitle
+
+
+\hypertarget{toc}{}
+\tableofcontents
+\newpage
+\section[Introduction]{Modificación de cadenas}
+
+\setcounter{secnumdepth}{3}
+
+\setlength\LTleft{0pt}
+
+
+
+
+\subsection{🎯 Motivación}\label{motivaciuxf3n}
+
+Los strings son uno de los tipos de datos más manipulados en
+programación. A menudo necesitas limpiar texto (eliminar espacios),
+cambiar formato (mayúsculas/minúsculas), reemplazar contenido o dividir
+texto en partes. Python ofrece métodos integrados que hacen estas
+operaciones simples y eficientes sin necesidad de escribir código
+complejo.
+
+\subsection{💡 Intuición}\label{intuiciuxf3n}
+
+Imagina que tienes un texto en un procesador de palabras y quieres
+aplicar diferentes transformaciones: poner todo en mayúsculas, eliminar
+espacios extra, o buscar y reemplazar palabras. Los métodos de string en
+Python son como los botones de formato en tu editor de texto: hacen
+exactamente eso, pero desde tu código.
+
+\subsection{🧠 Modelo mental}\label{modelo-mental}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Strings son inmutables}: estos métodos \textbf{no modifican}
+  el string original, devuelven uno \textbf{nuevo}.
+\item
+  \textbf{Métodos encadenables}: puedes aplicar múltiples métodos en
+  secuencia.
+\item
+  \textbf{La mayoría devuelven un nuevo string} o una lista (en el caso
+  de \texttt{split()}).
+\item
+  \textbf{Sintaxis}: \texttt{string.metodo()} donde \texttt{string} es
+  tu variable o literal.
+\end{itemize}
+
+\subsection{📐 Desarrollo}\label{desarrollo}
+
+\subsubsection{1. Cambiar
+mayúsculas/minúsculas}\label{cambiar-mayuxfasculasminuxfasculas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{texto }\OperatorTok{=} \StringTok{"Hola Mundo"}
+
+\CommentTok{\# A mayúsculas}
+\BuiltInTok{print}\NormalTok{(texto.upper())   }\CommentTok{\# "HOLA MUNDO"}
+
+\CommentTok{\# A minúsculas}
+\BuiltInTok{print}\NormalTok{(texto.lower())   }\CommentTok{\# "hola mundo"}
+
+\CommentTok{\# Capitalizar (primera letra mayúscula)}
+\BuiltInTok{print}\NormalTok{(texto.capitalize())  }\CommentTok{\# "Hola mundo"}
+
+\CommentTok{\# Título (cada palabra con mayúscula inicial)}
+\BuiltInTok{print}\NormalTok{(texto.title())   }\CommentTok{\# "Hola Mundo"}
+
+\CommentTok{\# Swap case (invierte mayúsculas/minúsculas)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Hola Mundo"}\NormalTok{.swapcase())  }\CommentTok{\# "hOLA mUNDO"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{2. Eliminar espacios
+(whitespace)}\label{eliminar-espacios-whitespace}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{texto }\OperatorTok{=} \StringTok{"  Hola Mundo  "}
+
+\CommentTok{\# Eliminar espacios al inicio y final}
+\BuiltInTok{print}\NormalTok{(texto.strip())      }\CommentTok{\# "Hola Mundo"}
+
+\CommentTok{\# Solo al inicio (left)}
+\BuiltInTok{print}\NormalTok{(texto.lstrip())     }\CommentTok{\# "Hola Mundo  "}
+
+\CommentTok{\# Solo al final (right)}
+\BuiltInTok{print}\NormalTok{(texto.rstrip())     }\CommentTok{\# "  Hola Mundo"}
+
+\CommentTok{\# También funciona con caracteres específicos}
+\NormalTok{texto2 }\OperatorTok{=} \StringTok{"***Hola***"}
+\BuiltInTok{print}\NormalTok{(texto2.strip(}\StringTok{"*"}\NormalTok{))  }\CommentTok{\# "Hola"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{3. Reemplazar texto}\label{reemplazar-texto}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{texto }\OperatorTok{=} \StringTok{"Hola Mundo"}
+
+\CommentTok{\# Reemplazar una subcadena}
+\BuiltInTok{print}\NormalTok{(texto.replace(}\StringTok{"Mundo"}\NormalTok{, }\StringTok{"Python"}\NormalTok{))  }\CommentTok{\# "Hola Python"}
+
+\CommentTok{\# Reemplazar un carácter}
+\BuiltInTok{print}\NormalTok{(texto.replace(}\StringTok{"o"}\NormalTok{, }\StringTok{"0"}\NormalTok{))  }\CommentTok{\# "H0la Mund0"}
+
+\CommentTok{\# Reemplazar múltiples veces (con límite)}
+\NormalTok{texto2 }\OperatorTok{=} \StringTok{"uno dos tres cuatro"}
+\BuiltInTok{print}\NormalTok{(texto2.replace(}\StringTok{" "}\NormalTok{, }\StringTok{"{-}"}\NormalTok{, }\DecValTok{2}\NormalTok{))  }\CommentTok{\# "uno{-}dos{-}tres cuatro"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{4. Dividir texto (split)}\label{dividir-texto-split}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{texto }\OperatorTok{=} \StringTok{"Hola Mundo Python"}
+
+\CommentTok{\# Dividir por espacios (por defecto)}
+\BuiltInTok{print}\NormalTok{(texto.split())       }\CommentTok{\# [\textquotesingle{}Hola\textquotesingle{}, \textquotesingle{}Mundo\textquotesingle{}, \textquotesingle{}Python\textquotesingle{}]}
+
+\CommentTok{\# Dividir por un separador específico}
+\NormalTok{csv }\OperatorTok{=} \StringTok{"manzana,pera,banana"}
+\BuiltInTok{print}\NormalTok{(csv.split(}\StringTok{","}\NormalTok{))      }\CommentTok{\# [\textquotesingle{}manzana\textquotesingle{}, \textquotesingle{}pera\textquotesingle{}, \textquotesingle{}banana\textquotesingle{}]}
+
+\CommentTok{\# Dividir con límite}
+\BuiltInTok{print}\NormalTok{(csv.split(}\StringTok{","}\NormalTok{, }\DecValTok{1}\NormalTok{))   }\CommentTok{\# [\textquotesingle{}manzana\textquotesingle{}, \textquotesingle{}pera,banana\textquotesingle{}]}
+
+\CommentTok{\# Dividir por saltos de línea}
+\NormalTok{multilinea }\OperatorTok{=} \StringTok{"Línea 1}\CharTok{\textbackslash{}n}\StringTok{Línea 2}\CharTok{\textbackslash{}n}\StringTok{Línea 3"}
+\BuiltInTok{print}\NormalTok{(multilinea.split(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{))  }\CommentTok{\# [\textquotesingle{}Línea 1\textquotesingle{}, \textquotesingle{}Línea 2\textquotesingle{}, \textquotesingle{}Línea 3\textquotesingle{}]}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{5. Unir texto (join) - el inverso de
+split}\label{unir-texto-join---el-inverso-de-split}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Unir una lista en un string}
+\NormalTok{palabras }\OperatorTok{=}\NormalTok{ [}\StringTok{"Hola"}\NormalTok{, }\StringTok{"Mundo"}\NormalTok{, }\StringTok{"Python"}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\StringTok{" "}\NormalTok{.join(palabras))     }\CommentTok{\# "Hola Mundo Python"}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"{-}"}\NormalTok{.join(palabras))     }\CommentTok{\# "Hola{-}Mundo{-}Python"}
+\BuiltInTok{print}\NormalTok{(}\StringTok{" | "}\NormalTok{.join(palabras))   }\CommentTok{\# "Hola | Mundo | Python"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{🔬 Ejemplos}\label{ejemplos}
+
+\textbf{Mínimo ---} Métodos básicos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{texto }\OperatorTok{=} \StringTok{"  python es genial  "}
+\BuiltInTok{print}\NormalTok{(texto.strip().upper())   }\CommentTok{\# "PYTHON ES GENIAL"}
+\BuiltInTok{print}\NormalTok{(texto.title())           }\CommentTok{\# "  Python Es Genial  "}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Progresivo ---} Limpieza de datos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Datos sucios de entrada}
+\NormalTok{nombre }\OperatorTok{=} \StringTok{"  ana  "}
+\NormalTok{email }\OperatorTok{=} \StringTok{"ANA@GMAIL.COM"}
+\NormalTok{archivo }\OperatorTok{=} \StringTok{"imagen.JPG"}
+\NormalTok{comentario }\OperatorTok{=} \StringTok{"  ¡Excelente!   "}
+
+\CommentTok{\# Limpieza}
+\NormalTok{nombre\_limpio }\OperatorTok{=}\NormalTok{ nombre.strip().title()  }\CommentTok{\# "Ana"}
+\NormalTok{email\_limpio }\OperatorTok{=}\NormalTok{ email.lower()            }\CommentTok{\# "ana@gmail.com"}
+\NormalTok{archivo\_limpio }\OperatorTok{=}\NormalTok{ archivo.lower()        }\CommentTok{\# "imagen.jpg"}
+\NormalTok{comentario\_limpio }\OperatorTok{=}\NormalTok{ comentario.strip()  }\CommentTok{\# "¡Excelente!"}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Nombre: }\SpecialCharTok{\{}\NormalTok{nombre\_limpio}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Email: }\SpecialCharTok{\{}\NormalTok{email\_limpio}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Archivo: }\SpecialCharTok{\{}\NormalTok{archivo\_limpio}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Comentario: }\SpecialCharTok{\{}\NormalTok{comentario\_limpio}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Real ---} Procesamiento de CSV y validación:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Datos de una línea CSV}
+\NormalTok{linea }\OperatorTok{=} \StringTok{"  Ana García, 28, ana@email.com, activo  "}
+
+\CommentTok{\# Limpiar y dividir}
+\NormalTok{datos }\OperatorTok{=}\NormalTok{ linea.strip().split(}\StringTok{","}\NormalTok{)}
+\NormalTok{nombre }\OperatorTok{=}\NormalTok{ datos[}\DecValTok{0}\NormalTok{].strip().title()}
+\NormalTok{edad }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(datos[}\DecValTok{1}\NormalTok{].strip())}
+\NormalTok{email }\OperatorTok{=}\NormalTok{ datos[}\DecValTok{2}\NormalTok{].strip().lower()}
+\NormalTok{estado }\OperatorTok{=}\NormalTok{ datos[}\DecValTok{3}\NormalTok{].strip().lower()}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Nombre: }\SpecialCharTok{\{}\NormalTok{nombre}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Edad: }\SpecialCharTok{\{}\NormalTok{edad}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Email: }\SpecialCharTok{\{}\NormalTok{email}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Estado: }\SpecialCharTok{\{}\NormalTok{estado}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Validación}
+\ControlFlowTok{if} \KeywordTok{not}\NormalTok{ email.endswith(}\StringTok{"@email.com"}\NormalTok{):}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Email no válido"}\NormalTok{)}
+
+\ControlFlowTok{if}\NormalTok{ estado }\OperatorTok{==} \StringTok{"activo"}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Usuario activo"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{⚠️ Errores comunes}\label{errores-comunes}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3406}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2754}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3841}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Síntoma
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Solución
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Esperar que el método modifique el original} & El string
+original no cambia & Asigna el resultado:
+\texttt{texto\ =\ texto.upper()} \\
+\textbf{Encadenar métodos en orden incorrecto} &
+\texttt{strip().upper()} vs \texttt{upper().strip()} & El orden importa:
+primero limpias, luego transformas \\
+\textbf{Confundir \texttt{split()} con \texttt{join()}} & Uso incorrecto
+de separadores & \texttt{split()} → string a lista; \texttt{join()} →
+lista a string \\
+\textbf{Llamar método en literal} & \texttt{"texto".upper()} es válido &
+Los métodos funcionan en literales también \\
+\end{longtable}
+}
+
+\subsection{✅ Buenas prácticas}\label{buenas-pruxe1cticas}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Encadena métodos para limpieza}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ✅ Limpio y eficiente}
+\NormalTok{texto\_limpio }\OperatorTok{=}\NormalTok{ texto.strip().lower().replace(}\StringTok{" "}\NormalTok{, }\StringTok{"\_"}\NormalTok{)}
+
+\CommentTok{\# ❌ Más verbose}
+\NormalTok{texto }\OperatorTok{=}\NormalTok{ texto.strip()}
+\NormalTok{texto }\OperatorTok{=}\NormalTok{ texto.lower()}
+\NormalTok{texto }\OperatorTok{=}\NormalTok{ texto.replace(}\StringTok{" "}\NormalTok{, }\StringTok{"\_"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Usa \texttt{.strip()} para limpiar entrada de usuario}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nombre }\OperatorTok{=} \BuiltInTok{input}\NormalTok{(}\StringTok{"Nombre: "}\NormalTok{).strip().title()}
+\NormalTok{email }\OperatorTok{=} \BuiltInTok{input}\NormalTok{(}\StringTok{"Email: "}\NormalTok{).strip().lower()}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Verifica contenido antes de operar}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ nombre:  }\CommentTok{\# No está vacío}
+\NormalTok{    nombre }\OperatorTok{=}\NormalTok{ nombre.strip()}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Usa \texttt{split()} con límite para casos específicos}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Primera parte antes del primer espacio}
+\NormalTok{primero, resto }\OperatorTok{=} \StringTok{"Hola mundo Python"}\NormalTok{.split(}\StringTok{" "}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(primero)  }\CommentTok{\# "Hola"}
+\BuiltInTok{print}\NormalTok{(resto)    }\CommentTok{\# "mundo Python"}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Prefiere \texttt{join()} en lugar de \texttt{+} para unir
+  muchos strings}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ✅ Eficiente}
+\NormalTok{resultado }\OperatorTok{=} \StringTok{""}\NormalTok{.join(lista\_de\_strings)}
+
+\CommentTok{\# ❌ Ineficiente (crea muchos objetos)}
+\NormalTok{resultado }\OperatorTok{=} \StringTok{""}
+\ControlFlowTok{for}\NormalTok{ s }\KeywordTok{in}\NormalTok{ lista\_de\_strings:}
+\NormalTok{    resultado }\OperatorTok{+=}\NormalTok{ s}
+\end{Highlighting}
+\end{Shaded}
+\end{enumerate}
+
+\subsection{📝 Ejercicio}\label{ejercicio}
+
+\textbf{Intermedio} --- Procesamiento de texto de archivo
+
+Escribe un programa que procese el siguiente texto:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{texto }\OperatorTok{=} \StringTok{"""}
+\StringTok{  nombre: Ana García  }
+\StringTok{  email: ANA@GMAIL.COM  }
+\StringTok{  ciudad:  Madrid   }
+\StringTok{  profesión:  Ingeniera de Software  }
+\StringTok{  años\_exp:  8  }
+\StringTok{"""}
+\end{Highlighting}
+\end{Shaded}
+
+Requisitos:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Limpiar cada línea (eliminar espacios)
+\item
+  Separar cada línea en clave: valor usando \texttt{:}
+\item
+  Limpiar las claves (strip, lower)
+\item
+  Limpiar los valores (strip, formatear según el caso)
+\item
+  Mostrar los datos formateados
+\end{enumerate}
+
+\textbf{Pista:} usa \texttt{split("\textbackslash{}n")} para dividir el
+texto en líneas.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Solución (no mires hasta haberlo intentado):}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{texto }\OperatorTok{=} \StringTok{"""}
+\StringTok{  nombre: Ana García  }
+\StringTok{  email: ANA@GMAIL.COM  }
+\StringTok{  ciudad:  Madrid   }
+\StringTok{  profesión:  Ingeniera de Software  }
+\StringTok{  años\_exp:  8  }
+\StringTok{"""}
+
+\CommentTok{\# Dividir en líneas y limpiar}
+\NormalTok{lineas }\OperatorTok{=}\NormalTok{ texto.strip().split(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{datos }\OperatorTok{=}\NormalTok{ \{\}}
+
+\ControlFlowTok{for}\NormalTok{ linea }\KeywordTok{in}\NormalTok{ lineas:}
+    \ControlFlowTok{if} \StringTok{":"} \KeywordTok{in}\NormalTok{ linea:}
+        \CommentTok{\# Dividir por el primer ":"}
+\NormalTok{        clave, valor }\OperatorTok{=}\NormalTok{ linea.split(}\StringTok{":"}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+
+        \CommentTok{\# Limpiar}
+\NormalTok{        clave }\OperatorTok{=}\NormalTok{ clave.strip().lower()}
+\NormalTok{        valor }\OperatorTok{=}\NormalTok{ valor.strip()}
+
+        \CommentTok{\# Formatear según el tipo de dato}
+        \ControlFlowTok{if}\NormalTok{ clave }\OperatorTok{==} \StringTok{"email"}\NormalTok{:}
+\NormalTok{            valor }\OperatorTok{=}\NormalTok{ valor.lower()}
+        \ControlFlowTok{elif}\NormalTok{ clave }\OperatorTok{==} \StringTok{"nombre"}\NormalTok{:}
+\NormalTok{            valor }\OperatorTok{=}\NormalTok{ valor.title()}
+        \ControlFlowTok{elif}\NormalTok{ clave }\OperatorTok{==} \StringTok{"ciudad"}\NormalTok{:}
+\NormalTok{            valor }\OperatorTok{=}\NormalTok{ valor.strip().title()}
+        \ControlFlowTok{elif}\NormalTok{ clave }\OperatorTok{==} \StringTok{"años\_exp"}\NormalTok{:}
+\NormalTok{            valor }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(valor)  }\CommentTok{\# Convertir a entero}
+
+\NormalTok{        datos[clave] }\OperatorTok{=}\NormalTok{ valor}
+
+\CommentTok{\# Mostrar resultados}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"=== Datos Procesados ==="}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ clave, valor }\KeywordTok{in}\NormalTok{ datos.items():}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{clave}\SpecialCharTok{\}}\SpecialStringTok{: }\SpecialCharTok{\{}\NormalTok{valor}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Tipo de años\_exp: }\SpecialCharTok{\{}\BuiltInTok{type}\NormalTok{(datos[}\StringTok{\textquotesingle{}años\_exp\textquotesingle{}}\NormalTok{])}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{🗂️ Síntesis}\label{suxedntesis}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\texttt{.upper()} / \texttt{.lower()}}: cambio de
+  mayúsculas/minúsculas.
+\item
+  \textbf{\texttt{.strip()} / \texttt{.lstrip()} / \texttt{.rstrip()}}:
+  eliminar espacios al inicio/final.
+\item
+  \textbf{\texttt{.replace()}}: reemplaza texto por otro.
+\item
+  \textbf{\texttt{.split()}}: divide un string en lista según separador.
+\item
+  \textbf{\texttt{.join()}}: une una lista en string (inverso de split).
+\item
+  \textbf{Inmutabilidad}: todos los métodos devuelven strings nuevos.
+\item
+  \textbf{Encadenamiento}: puedes aplicar múltiples métodos
+  secuencialmente.
+\item
+  \textbf{\texttt{title()} / \texttt{capitalize()}}: formatos especiales
+  de capitalización.
+\end{itemize}
+
+\subsection{🔗 Qué sigue}\label{quuxe9-sigue}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Relacionado:} métodos de string avanzados, f-strings,
+  expresiones regulares
+\item
+  \textbf{Siguiente tema:} Concatenación y formateo de strings ---
+  aprende las mejores formas de combinar texto y variables.
+\end{itemize}
+
+\section{Publicaciones Similares}\label{publicaciones-similares}
+
+Si te interesó este artículo, te recomendamos que explores otros blogs y
+recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo
+algunas sugerencias:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda}{Instalacion
+  De Anaconda}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda}{Configurar
+  Entorno Virtual Python Anaconda}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python}{01
+  Introducion A La Programacion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python}{02
+  Variables Expresiones Y Statements Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python}{03
+  Objetos De Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python}{04
+  Ejecucion Condicional Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python}{05
+  Iteraciones Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python}{06
+  Funciones Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python}{07
+  Dataframes Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python}{08
+  Prediccion Y Metrica De Performance Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python}{09
+  Metodos De Machine Learning Para Clasificacion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python}{10
+  Metodos De Machine Learning Para Regresion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python}{Visualizacion
+  De Datos Con Python}
+\end{enumerate}
+
+Esperamos que encuentres estas publicaciones igualmente interesantes y
+útiles. ¡Disfruta de la lectura!
+
+
+
+
+
+
+\end{document}

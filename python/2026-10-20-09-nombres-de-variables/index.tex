@@ -1,0 +1,798 @@
+\documentclass[
+  doc,
+  floatsintext,
+  longtable,
+  a4paper,
+  nolmodern,
+  notxfonts,
+  notimes,
+  12pt,
+  colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{apa7}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\geometry{inner=1in, outer=1in}
+\fancyhfoffset[LE,RO]{0cm}
+
+
+\usepackage[bidi=default]{babel}
+\babelprovide[main,import]{spanish}
+
+
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+
+\RequirePackage{longtable}
+\RequirePackage{threeparttablex}
+
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-.5em}%
+	{\normalfont\normalsize\bfseries\typesectitle}}
+
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{0.5em}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-\z@\relax}%
+	{\normalfont\normalsize\bfseries\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
+
+
+
+\usepackage{longtable, booktabs, multirow, multicol, colortbl, hhline, caption, array, float, xpatch}
+\usepackage{subcaption}
+
+
+\renewcommand\thesubfigure{\Alph{subfigure}}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,theorems, breakable, skins}
+\usepackage{fontawesome5}
+
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{ACACAC}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582EC}
+\definecolor{quarto-callout-important-color-frame}{HTML}{D9534F}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{F0AD4E}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02B875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{FD7E14}
+
+%\newlength\Oldarrayrulewidth
+%\newlength\Oldtabcolsep
+
+
+\usepackage{hyperref}
+
+
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+
+
+\usepackage{newtx}
+
+\defaultfontfeatures{Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+
+
+
+
+
+\title{Nombres de variables}
+
+
+\shorttitle{NOMBRES DE VARIABLES}
+
+
+\usepackage{etoolbox}
+
+
+
+\ccoppy{\textcopyright~2026}
+
+
+
+\author{Edison Achalma}
+
+
+
+\affiliation{
+{Escuela Profesional de Economía, Universidad Nacional de San Cristóbal
+de Huamanga}}
+
+
+
+
+\leftheader{Achalma}
+
+\date{2026-10-20}
+
+
+\abstract{Este abstract será actualizado una vez que se complete el
+contenido final del artículo. }
+
+
+
+\authornote{\par{\addORCIDlink{Edison Achalma}{0000-0001-6996-3364}} 
+\par{ }
+\par{   El autor no tiene conflictos de interés que revelar.    Los
+roles de autor se clasificaron utilizando la taxonomía de roles de
+colaborador (CRediT; https://credit.niso.org/) de la siguiente
+manera:  Edison Achalma:   conceptualización, metodología, análisis
+formal, investigación, recursos, curación de
+datos, redacción, visualización, supervisión, administración del
+proyecto}
+\par{La correspondencia relativa a este artículo debe dirigirse a Edison
+Achalma, Escuela Profesional de Economía, Universidad Nacional de San
+Cristóbal de Huamanga, Portal Independencia N°
+57, Ayacucho, AYA 5001, Perú, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
+}
+
+\makeatletter
+\let\endoldlt\endlongtable
+\def\endlongtable{
+\hline
+\endoldlt
+}
+\makeatother
+
+\urlstyle{same}
+
+
+
+\hypersetup{
+  pdftitle={Nombres de variables},
+  pdfauthor={Autor}
+}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Tabla de contenidos}
+\else
+  \newcommand\contentsname{Tabla de contenidos}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{Lista de Figuras}
+\else
+  \newcommand\listfigurename{Lista de Figuras}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{Lista de Tablas}
+\else
+  \newcommand\listtablename{Lista de Tablas}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figura}
+\else
+  \newcommand\figurename{Figura}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Tabla}
+\else
+  \newcommand\tablename{Tabla}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listados}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\makeatother
+
+% From https://tex.stackexchange.com/a/645996/211326
+%%% apa7 doesn't want to add appendix section titles in the toc
+%%% let's make it do it
+\makeatletter
+\xpatchcmd{\appendix}
+  {\par}
+  {\addcontentsline{toc}{section}{\@currentlabelname}\par}
+  {}{}
+\makeatother
+
+%% Disable longtable counter
+%% https://tex.stackexchange.com/a/248395/211326
+
+\usepackage{etoolbox}
+
+\makeatletter
+\patchcmd{\LT@caption}
+  {\bgroup}
+  {\bgroup\global\LTpatch@captiontrue}
+  {}{}
+\patchcmd{\longtable}
+  {\par}
+  {\par\global\LTpatch@captionfalse}
+  {}{}
+\apptocmd{\endlongtable}
+  {\ifLTpatch@caption\else\addtocounter{table}{-1}\fi}
+  {}{}
+\newif\ifLTpatch@caption
+\makeatother
+
+\begin{document}
+
+\maketitle
+
+
+\hypertarget{toc}{}
+\tableofcontents
+\newpage
+\section[Introduction]{Nombres de variables}
+
+\setcounter{secnumdepth}{3}
+
+\setlength\LTleft{0pt}
+
+
+
+
+\subsection{🎯 Motivación}\label{motivaciuxf3n}
+
+Los nombres de variables son la forma en que te comunicas con otros
+programadores y contigo mismo. Un buen nombre hace que tu código sea
+\textbf{autoexplicativo}, reduciendo la necesidad de comentarios y
+facilitando el mantenimiento. Elegir nombres claros no es solo estilo:
+es una habilidad fundamental que distingue a un programador novato de
+uno profesional.
+
+\subsection{💡 Intuición}\label{intuiciuxf3n}
+
+Piensa en los nombres de variables como las etiquetas de los cajones en
+una oficina. Si cada cajón tiene una etiqueta clara (``Facturas'',
+``Contratos'', ``Informes''), cualquiera puede encontrar lo que busca.
+Si usas etiquetas como ``Cosa1'', ``Cosa2'' o ``Eso'', nadie (ni tú)
+sabrá qué hay dentro. En programación pasa igual: \texttt{total\_ventas}
+es mucho mejor que \texttt{x} o \texttt{temp}.
+
+\subsection{🧠 Modelo mental}\label{modelo-mental}
+
+Las reglas de nombres en Python son \textbf{estrictas} (el intérprete te
+dará error si no las cumples) y \textbf{convencionales} (buenas
+prácticas que no son obligatorias pero que mejoran la legibilidad).
+
+\subsubsection{Reglas obligatorias}\label{reglas-obligatorias}
+
+\begin{itemize}
+\tightlist
+\item
+  Solo letras (A-Z, a-z), números (0-9) y guión bajo (\texttt{\_})
+\item
+  No puede empezar con número
+\item
+  No puede ser una palabra reservada de Python
+\item
+  Sensible a mayúsculas y minúsculas
+\end{itemize}
+
+\subsubsection{Convenciones}\label{convenciones}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{snake\_case} (recomendado por PEP 8)
+\item
+  Nombres descriptivos
+\item
+  Constantes en \texttt{MAYUSCULAS}
+\item
+  Clases en \texttt{PascalCase}
+\end{itemize}
+
+\subsection{📐 Desarrollo}\label{desarrollo}
+
+\subsubsection{1. Reglas estrictas (lo que es legal o
+ilegal)}\label{reglas-estrictas-lo-que-es-legal-o-ilegal}
+
+\textbf{Nombres legales} ✅:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nombre }\OperatorTok{=} \StringTok{"Ana"}        \CommentTok{\# Letras}
+\NormalTok{\_nombre }\OperatorTok{=} \StringTok{"Ana"}       \CommentTok{\# Empieza con guión bajo}
+\NormalTok{nombre2 }\OperatorTok{=} \StringTok{"Ana"}       \CommentTok{\# Termina con número}
+\NormalTok{nombre\_completo }\OperatorTok{=} \StringTok{"Ana"}  \CommentTok{\# Guión bajo}
+\NormalTok{Nombre }\OperatorTok{=} \StringTok{"Ana"}        \CommentTok{\# Mayúscula inicial (pero no recomendado)}
+\NormalTok{NOMBRE }\OperatorTok{=} \StringTok{"Ana"}        \CommentTok{\# Todo mayúsculas (para constantes)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Nombres ilegales} ❌:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2}\ErrorTok{nombre} \OperatorTok{=} \StringTok{"Ana"}       \CommentTok{\# Empieza con número}
+\NormalTok{mi}\OperatorTok{{-}}\NormalTok{nombre }\OperatorTok{=} \StringTok{"Ana"}     \CommentTok{\# Contiene guión ({-})}
+\NormalTok{mi nombre }\OperatorTok{=} \StringTok{"Ana"}     \CommentTok{\# Contiene espacio}
+\ControlFlowTok{if} \OperatorTok{=} \StringTok{"Ana"}            \CommentTok{\# Palabra reservada}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{2. Convenciones de estilo para nombres
+compuestos}\label{convenciones-de-estilo-para-nombres-compuestos}
+
+Cuando un nombre tiene varias palabras, usa una de estas convenciones:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1974}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2632}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5395}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Estilo
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Ejemplo
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Uso recomendado
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Snake Case} & \texttt{mi\_nombre\_variable} & Variables y
+funciones (PEP 8) \\
+\textbf{Camel Case} & \texttt{miNombreVariable} & A veces usado en
+JavaScript, no en Python \\
+\textbf{Pascal Case} & \texttt{MiNombreVariable} & Clases en Python \\
+\end{longtable}
+}
+
+\textbf{Recomendación:} usa \texttt{snake\_case} para variables en
+Python:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ✅ Snake Case (recomendado)}
+\NormalTok{precio\_total }\OperatorTok{=} \DecValTok{100}
+\NormalTok{nombre\_usuario }\OperatorTok{=} \StringTok{"Carlos"}
+\NormalTok{lista\_productos }\OperatorTok{=}\NormalTok{ [}\StringTok{"manzana"}\NormalTok{, }\StringTok{"pera"}\NormalTok{]}
+
+\CommentTok{\# ❌ Camel Case (no recomendado en Python)}
+\NormalTok{precioTotal }\OperatorTok{=} \DecValTok{100}
+\NormalTok{nombreUsuario }\OperatorTok{=} \StringTok{"Carlos"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{3. Palabras reservadas (no
+usar)}\label{palabras-reservadas-no-usar}
+
+Estas palabras tienen un significado especial en Python y no pueden
+usarse como nombres:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# No usar como variables}
+\CommentTok{\# False, class, finally, is, return, None, continue, for, lambda, try,}
+\CommentTok{\# True, def, from, nonlocal, while, and, del, global, not, with,}
+\CommentTok{\# as, elif, if, or, yield, assert, else, import, pass, break, except, in, raise}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{4. Convenciones especiales (por
+contexto)}\label{convenciones-especiales-por-contexto}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3750}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2361}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3889}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Convención
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Ejemplo
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Significado
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Mayúsculas} & \texttt{PI\ =\ 3.14159} & Constante (no debe
+cambiar) \\
+\textbf{Guión bajo al inicio} & \texttt{\_interno} & ``Privado'' (por
+convención) \\
+\textbf{Doble guión bajo} & \texttt{\_\_magico\_\_} & Métodos especiales
+de Python \\
+\textbf{Minúsculas y guión bajo} & \texttt{variable\_normal} & Variables
+estándar \\
+\end{longtable}
+}
+
+\subsection{🔬 Ejemplos}\label{ejemplos}
+
+\textbf{Mínimo ---} Nombres legales e ilegales:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ✅ Legales}
+\NormalTok{nombre }\OperatorTok{=} \StringTok{"Ana"}
+\NormalTok{\_edad }\OperatorTok{=} \DecValTok{25}
+\NormalTok{precio\_producto }\OperatorTok{=} \FloatTok{99.99}
+\NormalTok{total\_1 }\OperatorTok{=} \DecValTok{100}
+
+\CommentTok{\# ❌ Ilegales (descomentar da error)}
+\CommentTok{\# 1er\_lugar = "primero"     \# Empieza con número}
+\CommentTok{\# mi{-}variable = 10          \# Tiene guión}
+\CommentTok{\# class = "programacion"    \# Palabra reservada}
+\CommentTok{\# mi variable = "texto"     \# Tiene espacio}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Progresivo ---} Nombres descriptivos vs.~nombres confusos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ❌ Malos nombres (difíciles de entender)}
+\NormalTok{a }\OperatorTok{=} \FloatTok{12.5}
+\NormalTok{b }\OperatorTok{=} \StringTok{"Juan"}
+\NormalTok{c }\OperatorTok{=}\NormalTok{ a }\OperatorTok{*} \FloatTok{1.21}
+\BuiltInTok{print}\NormalTok{(c)}
+
+\CommentTok{\# ✅ Buenos nombres (autoexplicativos)}
+\NormalTok{precio\_base }\OperatorTok{=} \FloatTok{12.5}
+\NormalTok{nombre\_cliente }\OperatorTok{=} \StringTok{"Juan"}
+\NormalTok{precio\_con\_iva }\OperatorTok{=}\NormalTok{ precio\_base }\OperatorTok{*} \FloatTok{1.21}
+\BuiltInTok{print}\NormalTok{(precio\_con\_iva)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Real ---} Sistema de gestión de inventario:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Configuración del sistema}
+\NormalTok{LIMITE\_INVENTARIO }\OperatorTok{=} \DecValTok{100}          \CommentTok{\# Constante (mayúsculas)}
+\NormalTok{ruta\_archivo }\OperatorTok{=} \StringTok{"/data/inventario.csv"}  \CommentTok{\# Variable normal}
+\NormalTok{\_contador\_interno }\OperatorTok{=} \DecValTok{0}            \CommentTok{\# Variable "privada"}
+
+\CommentTok{\# Datos de productos}
+\NormalTok{producto\_nombre }\OperatorTok{=} \StringTok{"Laptop"}
+\NormalTok{producto\_precio }\OperatorTok{=} \FloatTok{850.50}
+\NormalTok{producto\_stock }\OperatorTok{=} \DecValTok{15}
+\NormalTok{producto\_activo }\OperatorTok{=} \VariableTok{True}
+
+\CommentTok{\# Mensaje de estado}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Producto:"}\NormalTok{, producto\_nombre)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Stock:"}\NormalTok{, producto\_stock, }\StringTok{"unidades"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Stock bajo:"}\NormalTok{, producto\_stock }\OperatorTok{\textless{}} \DecValTok{10}\NormalTok{)  }\CommentTok{\# Resultado: False}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{⚠️ Errores comunes}\label{errores-comunes}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2581}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2903}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4516}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Síntoma
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Cómo evitarlo
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Espacio en nombre} & \texttt{SyntaxError:\ invalid\ syntax} &
+Usa \texttt{\_} en lugar de espacio \\
+\textbf{Número al inicio} & \texttt{SyntaxError:\ invalid\ syntax} &
+Empieza con letra o \texttt{\_} \\
+\textbf{Palabra reservada} & \texttt{SyntaxError:\ invalid\ syntax} &
+Consulta la lista de palabras reservadas \\
+\textbf{Guión en lugar de guión bajo} &
+\texttt{SyntaxError:\ invalid\ syntax} & Usa \texttt{\_} no
+\texttt{-} \\
+\textbf{Mayúsculas incorrectas} &
+\texttt{NameError:\ name\ \textquotesingle{}x\textquotesingle{}\ is\ not\ defined}
+& Python es sensible a mayúsculas: \texttt{Variable} ≠
+\texttt{variable} \\
+\end{longtable}
+}
+
+\subsection{✅ Buenas prácticas}\label{buenas-pruxe1cticas}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Nombres descriptivos pero concisos}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ❌ Demasiado corto}
+\NormalTok{a }\OperatorTok{=} \DecValTok{100}
+
+\CommentTok{\# ❌ Demasiado largo}
+\NormalTok{precio\_total\_de\_la\_compra\_sin\_iva }\OperatorTok{=} \DecValTok{100}
+
+\CommentTok{\# ✅ Justo}
+\NormalTok{precio\_base }\OperatorTok{=} \DecValTok{100}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Usa verbos para funciones, sustantivos para variables}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Función: acción (verbo)}
+\KeywordTok{def}\NormalTok{ calcular\_total():}
+    \ControlFlowTok{pass}
+
+\CommentTok{\# Variable: dato (sustantivo)}
+\NormalTok{total }\OperatorTok{=} \DecValTok{100}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Sé consistente}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ❌ Inconsistente}
+\NormalTok{nombre\_usuario }\OperatorTok{=} \StringTok{"Ana"}
+\NormalTok{user\_email }\OperatorTok{=} \StringTok{"ana@mail.com"}
+
+\CommentTok{\# ✅ Consistente}
+\NormalTok{nombre\_usuario }\OperatorTok{=} \StringTok{"Ana"}
+\NormalTok{email\_usuario }\OperatorTok{=} \StringTok{"ana@mail.com"}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Evita abreviaturas no estándar}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ❌ Confuso}
+\NormalTok{prv }\OperatorTok{=} \StringTok{"Programación"}
+
+\CommentTok{\# ✅ Claro}
+\NormalTok{curso }\OperatorTok{=} \StringTok{"Programación"}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Usa nombres que tengan sentido en el contexto del programa}.
+\end{enumerate}
+
+\subsection{📝 Ejercicio}\label{ejercicio}
+
+\textbf{Básico} --- Corrige nombres ilegales
+
+Los siguientes nombres de variables tienen errores. Corrígelos para que
+sean válidos y sigan las convenciones de Python:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Corrige estos nombres ilegales/malos}
+\DecValTok{1}\ErrorTok{er\_trimestre} \OperatorTok{=} \DecValTok{2024}
+\NormalTok{total}\OperatorTok{{-}}\NormalTok{ventas }\OperatorTok{=} \DecValTok{15000}
+\NormalTok{mi variable }\OperatorTok{=} \StringTok{"casa"}
+\KeywordTok{class} \OperatorTok{=} \StringTok{"Python"}
+\NormalTok{NombreDeUsuario }\OperatorTok{=} \StringTok{"ana"}
+\NormalTok{precioTotal }\OperatorTok{=} \FloatTok{99.99}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Solución (no mires hasta haberlo intentado):}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Versión corregida (snake case)}
+\NormalTok{primer\_trimestre }\OperatorTok{=} \DecValTok{2024}
+\NormalTok{total\_ventas }\OperatorTok{=} \DecValTok{15000}
+\NormalTok{mi\_variable }\OperatorTok{=} \StringTok{"casa"}
+\NormalTok{clase }\OperatorTok{=} \StringTok{"Python"}  \CommentTok{\# O mejor: nombre\_clase}
+\NormalTok{nombre\_usuario }\OperatorTok{=} \StringTok{"ana"}
+\NormalTok{precio\_total }\OperatorTok{=} \FloatTok{99.99}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{🗂️ Síntesis}\label{suxedntesis}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Reglas obligatorias}: letras, números, \texttt{\_}; no empezar
+  con número; sin espacios ni \texttt{-}; sin palabras reservadas.
+\item
+  \textbf{Sensible a mayúsculas}: \texttt{nombre} ≠ \texttt{Nombre} ≠
+  \texttt{NOMBRE}.
+\item
+  \textbf{Snake Case}: convención recomendada para variables
+  (\texttt{mi\_variable}).
+\item
+  \textbf{Descriptivos}: usa nombres que revelen el propósito de la
+  variable.
+\item
+  \textbf{Constantes en mayúsculas}: \texttt{LIMITE\ =\ 100}.
+\item
+  \textbf{Palabras reservadas}: no usar \texttt{if}, \texttt{for},
+  \texttt{class}, \texttt{while}, etc.
+\end{itemize}
+
+\subsection{🔗 Qué sigue}\label{quuxe9-sigue}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Relacionado:} variables (asignación, tipos), palabras
+  reservadas
+\item
+  \textbf{Siguiente tema:} Tipos de datos --- aprenderás a manejar
+  diferentes tipos de datos y sus propiedades.
+\end{itemize}
+
+\section{Publicaciones Similares}\label{publicaciones-similares}
+
+Si te interesó este artículo, te recomendamos que explores otros blogs y
+recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo
+algunas sugerencias:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda}{Instalacion
+  De Anaconda}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda}{Configurar
+  Entorno Virtual Python Anaconda}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python}{01
+  Introducion A La Programacion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python}{02
+  Variables Expresiones Y Statements Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python}{03
+  Objetos De Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python}{04
+  Ejecucion Condicional Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python}{05
+  Iteraciones Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python}{06
+  Funciones Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python}{07
+  Dataframes Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python}{08
+  Prediccion Y Metrica De Performance Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python}{09
+  Metodos De Machine Learning Para Clasificacion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python}{10
+  Metodos De Machine Learning Para Regresion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python}{Visualizacion
+  De Datos Con Python}
+\end{enumerate}
+
+Esperamos que encuentres estas publicaciones igualmente interesantes y
+útiles. ¡Disfruta de la lectura!
+
+
+
+
+
+
+\end{document}

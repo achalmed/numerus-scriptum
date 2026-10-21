@@ -1,0 +1,755 @@
+\documentclass[
+  doc,
+  floatsintext,
+  longtable,
+  a4paper,
+  nolmodern,
+  notxfonts,
+  notimes,
+  12pt,
+  colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{apa7}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\geometry{inner=1in, outer=1in}
+\fancyhfoffset[LE,RO]{0cm}
+
+
+\usepackage[bidi=default]{babel}
+\babelprovide[main,import]{spanish}
+
+
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+
+\RequirePackage{longtable}
+\RequirePackage{threeparttablex}
+
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-.5em}%
+	{\normalfont\normalsize\bfseries\typesectitle}}
+
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{0.5em}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-\z@\relax}%
+	{\normalfont\normalsize\bfseries\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
+
+
+
+\usepackage{longtable, booktabs, multirow, multicol, colortbl, hhline, caption, array, float, xpatch}
+\usepackage{subcaption}
+
+
+\renewcommand\thesubfigure{\Alph{subfigure}}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,theorems, breakable, skins}
+\usepackage{fontawesome5}
+
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{ACACAC}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582EC}
+\definecolor{quarto-callout-important-color-frame}{HTML}{D9534F}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{F0AD4E}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02B875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{FD7E14}
+
+%\newlength\Oldarrayrulewidth
+%\newlength\Oldtabcolsep
+
+
+\usepackage{hyperref}
+
+
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+
+
+\usepackage{newtx}
+
+\defaultfontfeatures{Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+
+
+
+
+
+\title{Comentarios}
+
+
+\shorttitle{COMENTARIOS}
+
+
+\usepackage{etoolbox}
+
+
+
+\ccoppy{\textcopyright~2026}
+
+
+
+\author{Edison Achalma}
+
+
+
+\affiliation{
+{Escuela Profesional de Economía, Universidad Nacional de San Cristóbal
+de Huamanga}}
+
+
+
+
+\leftheader{Achalma}
+
+\date{2026-10-20}
+
+
+\abstract{Este abstract será actualizado una vez que se complete el
+contenido final del artículo. }
+
+
+
+\authornote{\par{\addORCIDlink{Edison Achalma}{0000-0001-6996-3364}} 
+\par{ }
+\par{   El autor no tiene conflictos de interés que revelar.    Los
+roles de autor se clasificaron utilizando la taxonomía de roles de
+colaborador (CRediT; https://credit.niso.org/) de la siguiente
+manera:  Edison Achalma:   conceptualización, metodología, análisis
+formal, investigación, recursos, curación de
+datos, redacción, visualización, supervisión, administración del
+proyecto}
+\par{La correspondencia relativa a este artículo debe dirigirse a Edison
+Achalma, Escuela Profesional de Economía, Universidad Nacional de San
+Cristóbal de Huamanga, Portal Independencia N°
+57, Ayacucho, AYA 5001, Perú, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
+}
+
+\makeatletter
+\let\endoldlt\endlongtable
+\def\endlongtable{
+\hline
+\endoldlt
+}
+\makeatother
+
+\urlstyle{same}
+
+
+
+\hypersetup{
+  pdftitle={Comentarios},
+  pdfauthor={Autor}
+}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Tabla de contenidos}
+\else
+  \newcommand\contentsname{Tabla de contenidos}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{Lista de Figuras}
+\else
+  \newcommand\listfigurename{Lista de Figuras}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{Lista de Tablas}
+\else
+  \newcommand\listtablename{Lista de Tablas}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figura}
+\else
+  \newcommand\figurename{Figura}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Tabla}
+\else
+  \newcommand\tablename{Tabla}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listados}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\makeatother
+
+% From https://tex.stackexchange.com/a/645996/211326
+%%% apa7 doesn't want to add appendix section titles in the toc
+%%% let's make it do it
+\makeatletter
+\xpatchcmd{\appendix}
+  {\par}
+  {\addcontentsline{toc}{section}{\@currentlabelname}\par}
+  {}{}
+\makeatother
+
+%% Disable longtable counter
+%% https://tex.stackexchange.com/a/248395/211326
+
+\usepackage{etoolbox}
+
+\makeatletter
+\patchcmd{\LT@caption}
+  {\bgroup}
+  {\bgroup\global\LTpatch@captiontrue}
+  {}{}
+\patchcmd{\longtable}
+  {\par}
+  {\par\global\LTpatch@captionfalse}
+  {}{}
+\apptocmd{\endlongtable}
+  {\ifLTpatch@caption\else\addtocounter{table}{-1}\fi}
+  {}{}
+\newif\ifLTpatch@caption
+\makeatother
+
+\begin{document}
+
+\maketitle
+
+
+\hypertarget{toc}{}
+\tableofcontents
+\newpage
+\section[Introduction]{Comentarios}
+
+\setcounter{secnumdepth}{3}
+
+\setlength\LTleft{0pt}
+
+
+
+
+\subsection{🎯 Motivación}\label{motivaciuxf3n}
+
+El código se escribe una vez, pero se lee muchas veces. Los comentarios
+son la forma en que te comunicas con otros programadores (y contigo
+mismo en el futuro). Un buen comentario explica el ``por qué'' detrás
+del ``qué'', haciendo que tu código sea más fácil de entender, mantener
+y depurar. Además, los comentarios son una herramienta poderosa para
+probar código temporalmente sin eliminarlo.
+
+\subsection{💡 Intuición}\label{intuiciuxf3n}
+
+Imagina que estás escribiendo un libro de cocina. Las instrucciones (el
+código) son los pasos de la receta. Los comentarios son como notas al
+margen: ``este paso es importante porque evita que se queme'', ``aquí
+puedes sustituir el ingrediente si no lo tienes''. El chef (Python)
+ignora completamente tus notas al margen y solo sigue las instrucciones
+principales.
+
+\subsection{🧠 Modelo mental}\label{modelo-mental}
+
+Los comentarios en Python:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Comienzan con \texttt{\#}}: todo lo que sigue en esa línea es
+  ignorado por Python.
+\item
+  \textbf{Pueden estar al inicio de la línea} o \textbf{al final} de una
+  línea de código.
+\item
+  \textbf{No tienen efecto en la ejecución}: son solo para humanos.
+\item
+  \textbf{No existe sintaxis oficial para comentarios de múltiples
+  líneas}, pero hay formas de simularlos.
+\end{enumerate}
+
+\subsection{📐 Desarrollo}\label{desarrollo}
+
+\subsubsection{1. Comentario de una
+línea}\label{comentario-de-una-luxednea}
+
+El comentario comienza con \texttt{\#} y Python ignora todo lo que sigue
+hasta el final de la línea:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Esto es un comentario}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Hola mundo"}\NormalTok{)  }\CommentTok{\# Esto también es un comentario}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{2. Comentarios al final de
+línea}\label{comentarios-al-final-de-luxednea}
+
+Útiles para explicar una línea específica:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{precio }\OperatorTok{=} \DecValTok{100}      \CommentTok{\# Precio base sin impuestos}
+\NormalTok{iva }\OperatorTok{=} \FloatTok{0.21}        \CommentTok{\# IVA del 21\%}
+\NormalTok{total }\OperatorTok{=}\NormalTok{ precio }\OperatorTok{*}\NormalTok{ (}\DecValTok{1} \OperatorTok{+}\NormalTok{ iva)  }\CommentTok{\# Cálculo del precio final}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{3. Desactivar código con
+comentarios}\label{desactivar-cuxf3digo-con-comentarios}
+
+Comentar una línea evita que se ejecute:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# print("Esta línea no se ejecuta")}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Esta línea sí se ejecuta"}\NormalTok{)}
+\CommentTok{\# Salida: Esta línea sí se ejecuta}
+\end{Highlighting}
+\end{Shaded}
+
+Útil para depuración: puedes desactivar temporalmente partes del código.
+
+\subsubsection{4. Comentarios de múltiples
+líneas}\label{comentarios-de-muxfaltiples-luxedneas}
+
+Python no tiene un símbolo especial para comentarios de varias líneas,
+pero puedes:
+
+\textbf{Opción 1: Usar \texttt{\#} en cada línea}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Esto es un comentario}
+\CommentTok{\# que ocupa varias líneas}
+\CommentTok{\# y explica algo complejo}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Hola"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Opción 2: Usar cadenas de texto con triple comilla (no
+asignadas)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{"""}
+\CommentTok{Este es un comentario}
+\CommentTok{que ocupa varias líneas}
+\CommentTok{Python lo ignora porque no está asignado a una variable}
+\CommentTok{"""}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Hola"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+⚠️ \textbf{Importante:} técnicamente esto es una cadena de texto
+(string), no un comentario. Aunque Python la ignora, la buena práctica
+es usar \texttt{\#} para comentarios oficiales.
+
+\subsubsection{5. Comentarios en bloque y
+documentación}\label{comentarios-en-bloque-y-documentaciuxf3n}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Comentarios de bloque}: explican secciones enteras de código.
+\item
+  \textbf{Docstrings}: comentarios especiales para documentar funciones
+  y clases (usando \texttt{"""} y asignados a la función).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ calcular\_area(base, altura):}
+    \CommentTok{"""}
+\CommentTok{    Calcula el área de un rectángulo.}
+
+\CommentTok{    Args:}
+\CommentTok{        base (float): La base del rectángulo}
+\CommentTok{        altura (float): La altura del rectángulo}
+
+\CommentTok{    Returns:}
+\CommentTok{        float: El área calculada}
+\CommentTok{    """}
+    \ControlFlowTok{return}\NormalTok{ base }\OperatorTok{*}\NormalTok{ altura}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{🔬 Ejemplos}\label{ejemplos}
+
+\textbf{Mínimo ---} Comentarios simples:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Saludo inicial}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Hola"}\NormalTok{)  }\CommentTok{\# Muestra un saludo}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Progresivo ---} Comentarios para explicar lógica:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Cálculo de descuento}
+\NormalTok{precio\_original }\OperatorTok{=} \DecValTok{120}
+\NormalTok{descuento }\OperatorTok{=} \FloatTok{0.15}  \CommentTok{\# 15\% de descuento}
+
+\CommentTok{\# El precio final es el original menos el descuento}
+\NormalTok{precio\_final }\OperatorTok{=}\NormalTok{ precio\_original }\OperatorTok{{-}}\NormalTok{ (precio\_original }\OperatorTok{*}\NormalTok{ descuento)}
+\BuiltInTok{print}\NormalTok{(precio\_final)  }\CommentTok{\# Muestra: 102.0}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Real ---} Documentación en un script de configuración:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ==========================================}
+\CommentTok{\# CONFIGURACIÓN DEL SISTEMA}
+\CommentTok{\# ==========================================}
+
+\CommentTok{\# Configuración de la base de datos}
+\CommentTok{\# Usamos SQLite para desarrollo local}
+\NormalTok{DB\_HOST }\OperatorTok{=} \StringTok{"localhost"}
+\NormalTok{DB\_PORT }\OperatorTok{=} \DecValTok{5432}
+
+\CommentTok{\# Límites del sistema}
+\NormalTok{MAX\_USERS }\OperatorTok{=} \DecValTok{100}  \CommentTok{\# Máximo de usuarios simultáneos}
+\NormalTok{TIMEOUT }\OperatorTok{=} \DecValTok{30}     \CommentTok{\# Tiempo de espera en segundos}
+
+\CommentTok{\# DEBUG = True   \# Descomentar para modo depuración}
+\NormalTok{DEBUG }\OperatorTok{=} \VariableTok{False}    \CommentTok{\# Modo producción}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{⚠️ Errores comunes}\label{errores-comunes}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2288}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2941}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4771}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Síntoma
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Cómo detectarlo
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Olvidar \texttt{\#}} & El texto se interpreta como código y da
+error & Asegúrate de que todo comentario comienza con \texttt{\#} \\
+\textbf{Espacio después de \texttt{\#}} & No da error, pero es una
+convención & Pon un espacio después de \texttt{\#} para legibilidad:
+\texttt{\#\ Esto\ es\ un\ comentario} \\
+\textbf{Confundir comentario con string} &
+\texttt{"Esto\ no\ es\ un\ comentario"} es código válido & Los
+comentarios usan \texttt{\#}, no comillas \\
+\textbf{Anidar comentarios} & No se puede anidar \texttt{\#} dentro de
+\texttt{\#} & Cada línea es independiente \\
+\end{longtable}
+}
+
+\subsection{✅ Buenas prácticas}\label{buenas-pruxe1cticas}
+
+\begin{itemize}
+\item
+  \textbf{Comenta el ``por qué'', no el ``qué''}: el código ya dice qué
+  hace.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ❌ Poco útil}
+\NormalTok{x }\OperatorTok{=}\NormalTok{ x }\OperatorTok{+} \DecValTok{1}  \CommentTok{\# Incrementa x en 1}
+
+\CommentTok{\# ✅ Útil}
+\NormalTok{x }\OperatorTok{=}\NormalTok{ x }\OperatorTok{+} \DecValTok{1}  \CommentTok{\# Contador de intentos fallidos}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Mantén los comentarios actualizados}: un comentario
+  desactualizado es peor que ninguno.
+\item
+  \textbf{Usa comentarios de bloque} para secciones largas:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ==========================================}
+\CommentTok{\# SECCIÓN: VALIDACIÓN DE DATOS}
+\CommentTok{\# ==========================================}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Documenta funciones con docstrings} (triple comilla):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ saludar(nombre):}
+    \CommentTok{"""Saluda al usuario por su nombre."""}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Hola, }\SpecialCharTok{\{}\NormalTok{nombre}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{No abuses de los comentarios}: el código limpio y
+  autoexplicativo es mejor que el código lleno de comentarios.
+\end{itemize}
+
+\subsection{📝 Ejercicio}\label{ejercicio}
+
+\textbf{Básico} --- Agrega comentarios apropiados
+
+El siguiente código funciona pero no tiene comentarios. Agrega
+comentarios que:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Expliquen qué hace cada sección
+\item
+  Documenten qué hace la función
+\item
+  Desactiven temporalmente una línea de código (sin eliminarla)
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ calcular\_total(precio, cantidad):}
+    \ControlFlowTok{return}\NormalTok{ precio }\OperatorTok{*}\NormalTok{ cantidad}
+
+\NormalTok{precio\_producto }\OperatorTok{=} \FloatTok{25.50}
+\NormalTok{unidades }\OperatorTok{=} \DecValTok{4}
+\NormalTok{total }\OperatorTok{=}\NormalTok{ calcular\_total(precio\_producto, unidades)}
+\BuiltInTok{print}\NormalTok{(total)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Fin del cálculo"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Solución (no mires hasta haberlo intentado):}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Función que calcula el total de una compra}
+\KeywordTok{def}\NormalTok{ calcular\_total(precio, cantidad):}
+    \CommentTok{"""Multiplica el precio por la cantidad para obtener el total."""}
+    \ControlFlowTok{return}\NormalTok{ precio }\OperatorTok{*}\NormalTok{ cantidad}
+
+\CommentTok{\# Datos del producto}
+\NormalTok{precio\_producto }\OperatorTok{=} \FloatTok{25.50}  \CommentTok{\# Precio unitario en euros}
+\NormalTok{unidades }\OperatorTok{=} \DecValTok{4}             \CommentTok{\# Cantidad de unidades compradas}
+
+\CommentTok{\# Cálculo del total}
+\NormalTok{total }\OperatorTok{=}\NormalTok{ calcular\_total(precio\_producto, unidades)}
+
+\CommentTok{\# Mostrar resultados}
+\BuiltInTok{print}\NormalTok{(total)            }\CommentTok{\# Muestra el total}
+\CommentTok{\# print("Fin del cálculo")  \# Desactivado temporalmente}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{🗂️ Síntesis}\label{suxedntesis}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\texttt{\#}} inicia un comentario de una línea.
+\item
+  \textbf{Todo después de \texttt{\#}} es ignorado por Python.
+\item
+  \textbf{Comentarios al final de línea} explican código específico.
+\item
+  \textbf{Múltiples \texttt{\#}} para comentarios de varias líneas (o
+  triple comilla).
+\item
+  \textbf{Desactivar código} comentando líneas es útil para pruebas.
+\item
+  \textbf{Docstrings} (\texttt{"""}) documentan funciones y clases.
+\item
+  \textbf{Buen comentario}: explica el ``por qué'', no repite el
+  ``qué''.
+\end{itemize}
+
+\subsection{🔗 Qué sigue}\label{quuxe9-sigue}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Relacionado:} variables (cómo nombrar bien las variables para
+  reducir necesidad de comentarios)
+\item
+  \textbf{Siguiente tema:} Variables --- aprenderás a almacenar datos
+  con nombres claros y autoexplicativos.
+\end{itemize}
+
+\section{Publicaciones Similares}\label{publicaciones-similares}
+
+Si te interesó este artículo, te recomendamos que explores otros blogs y
+recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo
+algunas sugerencias:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda}{Instalacion
+  De Anaconda}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda}{Configurar
+  Entorno Virtual Python Anaconda}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python}{01
+  Introducion A La Programacion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python}{02
+  Variables Expresiones Y Statements Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python}{03
+  Objetos De Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python}{04
+  Ejecucion Condicional Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python}{05
+  Iteraciones Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python}{06
+  Funciones Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python}{07
+  Dataframes Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python}{08
+  Prediccion Y Metrica De Performance Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python}{09
+  Metodos De Machine Learning Para Clasificacion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python}{10
+  Metodos De Machine Learning Para Regresion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python}{Visualizacion
+  De Datos Con Python}
+\end{enumerate}
+
+Esperamos que encuentres estas publicaciones igualmente interesantes y
+útiles. ¡Disfruta de la lectura!
+
+
+
+
+
+
+\end{document}

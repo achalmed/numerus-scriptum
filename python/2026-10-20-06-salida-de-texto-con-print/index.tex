@@ -1,0 +1,733 @@
+\documentclass[
+  doc,
+  floatsintext,
+  longtable,
+  a4paper,
+  nolmodern,
+  notxfonts,
+  notimes,
+  12pt,
+  colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{apa7}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\geometry{inner=1in, outer=1in}
+\fancyhfoffset[LE,RO]{0cm}
+
+
+\usepackage[bidi=default]{babel}
+\babelprovide[main,import]{spanish}
+
+
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+
+\RequirePackage{longtable}
+\RequirePackage{threeparttablex}
+
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-.5em}%
+	{\normalfont\normalsize\bfseries\typesectitle}}
+
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{0.5em}%
+	{0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+	{-\z@\relax}%
+	{\normalfont\normalsize\bfseries\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
+
+
+
+\usepackage{longtable, booktabs, multirow, multicol, colortbl, hhline, caption, array, float, xpatch}
+\usepackage{subcaption}
+
+
+\renewcommand\thesubfigure{\Alph{subfigure}}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,theorems, breakable, skins}
+\usepackage{fontawesome5}
+
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{ACACAC}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582EC}
+\definecolor{quarto-callout-important-color-frame}{HTML}{D9534F}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{F0AD4E}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02B875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{FD7E14}
+
+%\newlength\Oldarrayrulewidth
+%\newlength\Oldtabcolsep
+
+
+\usepackage{hyperref}
+
+
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+
+
+\usepackage{newtx}
+
+\defaultfontfeatures{Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+
+
+
+
+
+\title{Salida de texto con print()}
+
+
+\shorttitle{SALIDA DE TEXTO CON PRINT()}
+
+
+\usepackage{etoolbox}
+
+
+
+\ccoppy{\textcopyright~2026}
+
+
+
+\author{Edison Achalma}
+
+
+
+\affiliation{
+{Escuela Profesional de Economía, Universidad Nacional de San Cristóbal
+de Huamanga}}
+
+
+
+
+\leftheader{Achalma}
+
+\date{2026-10-20}
+
+
+\abstract{Este abstract será actualizado una vez que se complete el
+contenido final del artículo. }
+
+
+
+\authornote{\par{\addORCIDlink{Edison Achalma}{0000-0001-6996-3364}} 
+\par{ }
+\par{   El autor no tiene conflictos de interés que revelar.    Los
+roles de autor se clasificaron utilizando la taxonomía de roles de
+colaborador (CRediT; https://credit.niso.org/) de la siguiente
+manera:  Edison Achalma:   conceptualización, metodología, análisis
+formal, investigación, recursos, curación de
+datos, redacción, visualización, supervisión, administración del
+proyecto}
+\par{La correspondencia relativa a este artículo debe dirigirse a Edison
+Achalma, Escuela Profesional de Economía, Universidad Nacional de San
+Cristóbal de Huamanga, Portal Independencia N°
+57, Ayacucho, AYA 5001, Perú, Email: \href{mailto:elmer.achalma.09@unsch.edu.pe}{elmer.achalma.09@unsch.edu.pe}}
+}
+
+\makeatletter
+\let\endoldlt\endlongtable
+\def\endlongtable{
+\hline
+\endoldlt
+}
+\makeatother
+
+\urlstyle{same}
+
+
+
+\hypersetup{
+  pdftitle={Salida de texto con print()},
+  pdfauthor={Autor}
+}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Tabla de contenidos}
+\else
+  \newcommand\contentsname{Tabla de contenidos}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{Lista de Figuras}
+\else
+  \newcommand\listfigurename{Lista de Figuras}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{Lista de Tablas}
+\else
+  \newcommand\listtablename{Lista de Tablas}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figura}
+\else
+  \newcommand\figurename{Figura}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Tabla}
+\else
+  \newcommand\tablename{Tabla}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listados}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\makeatother
+
+% From https://tex.stackexchange.com/a/645996/211326
+%%% apa7 doesn't want to add appendix section titles in the toc
+%%% let's make it do it
+\makeatletter
+\xpatchcmd{\appendix}
+  {\par}
+  {\addcontentsline{toc}{section}{\@currentlabelname}\par}
+  {}{}
+\makeatother
+
+%% Disable longtable counter
+%% https://tex.stackexchange.com/a/248395/211326
+
+\usepackage{etoolbox}
+
+\makeatletter
+\patchcmd{\LT@caption}
+  {\bgroup}
+  {\bgroup\global\LTpatch@captiontrue}
+  {}{}
+\patchcmd{\longtable}
+  {\par}
+  {\par\global\LTpatch@captionfalse}
+  {}{}
+\apptocmd{\endlongtable}
+  {\ifLTpatch@caption\else\addtocounter{table}{-1}\fi}
+  {}{}
+\newif\ifLTpatch@caption
+\makeatother
+
+\begin{document}
+
+\maketitle
+
+
+\hypertarget{toc}{}
+\tableofcontents
+\newpage
+\section[Introduction]{Salida de texto con print()}
+
+\setcounter{secnumdepth}{3}
+
+\setlength\LTleft{0pt}
+
+
+
+
+\subsection{🎯 Motivación}\label{motivaciuxf3n}
+
+\texttt{print()} es tu ventana al mundo: es cómo ves lo que tu programa
+está haciendo. Sin \texttt{print()}, estarías programando a ciegas, sin
+saber si tus variables tienen los valores correctos o si tu lógica
+funciona. Dominar \texttt{print()} te permite ver, depurar y comunicar
+resultados de manera efectiva.
+
+\subsection{💡 Intuición}\label{intuiciuxf3n}
+
+Imagina que \texttt{print()} es como un altavoz: le das un mensaje y lo
+reproduce en voz alta para que todos lo escuchen. Puedes usarlo tantas
+veces como quieras, y cada vez que lo usas, empieza una ``nueva línea''
+automáticamente, como si presionaras Enter después de cada mensaje.
+
+\subsection{🧠 Modelo mental}\label{modelo-mental}
+
+La función \texttt{print()} funciona así:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Acepta uno o más argumentos}: puede recibir texto, números,
+  variables, o combinaciones.
+\item
+  \textbf{Convierte todo a texto}: si le pasas un número, lo convierte a
+  texto antes de mostrarlo.
+\item
+  \textbf{Añade un salto de línea al final}: por defecto, después de
+  imprimir pasa a la siguiente línea.
+\item
+  \textbf{Puede personalizarse}: con parámetros como \texttt{end} y
+  \texttt{sep} cambias su comportamiento.
+\end{enumerate}
+
+\subsection{📐 Desarrollo}\label{desarrollo}
+
+\subsubsection{1. Sintaxis básica}\label{sintaxis-buxe1sica}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"texto"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(variable)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"texto"}\NormalTok{, variable)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{2. Comillas: simples o
+dobles}\label{comillas-simples-o-dobles}
+
+Python acepta ambos tipos de comillas. La única regla: \textbf{abre y
+cierra con el mismo tipo}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Hola"}\NormalTok{)      }\CommentTok{\# ✅ Válido}
+\BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}Hola\textquotesingle{}}\NormalTok{)      }\CommentTok{\# ✅ Válido}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Hola\textquotesingle{})      \# ❌ Error: mezcla de comillas}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{¿Cuándo usar cada una?}
+
+\begin{itemize}
+\tightlist
+\item
+  Si tu texto contiene comillas simples, usa dobles:
+  \texttt{print("It\textquotesingle{}s\ awesome")}
+\item
+  Si contiene comillas dobles, usa simples:
+  \texttt{print(\textquotesingle{}Ella\ dijo\ "Hola"\textquotesingle{})}
+\item
+  O usa \texttt{\textbackslash{}} para escapar:
+  \texttt{print("It\textbackslash{}\textquotesingle{}s\ awesome")}
+\end{itemize}
+
+\subsubsection{\texorpdfstring{3. Múltiples \texttt{print()}: cada uno
+en nueva
+línea}{3. Múltiples print(): cada uno en nueva línea}}\label{muxfaltiples-print-cada-uno-en-nueva-luxednea}
+
+Por defecto, cada \texttt{print()} comienza en una línea nueva:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Línea 1"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Línea 2"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Línea 3"}\NormalTok{)}
+\CommentTok{\# Salida:}
+\CommentTok{\# Línea 1}
+\CommentTok{\# Línea 2}
+\CommentTok{\# Línea 3}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{\texorpdfstring{4. Múltiples argumentos en un
+\texttt{print()}}{4. Múltiples argumentos en un print()}}\label{muxfaltiples-argumentos-en-un-print}
+
+Puedes pasar varios elementos separados por comas:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nombre }\OperatorTok{=} \StringTok{"Ana"}
+\NormalTok{edad }\OperatorTok{=} \DecValTok{25}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Nombre:"}\NormalTok{, nombre, }\StringTok{"Edad:"}\NormalTok{, edad)}
+\CommentTok{\# Salida: Nombre: Ana Edad: 25}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{\texorpdfstring{5. Personalizar el final:
+\texttt{end}}{5. Personalizar el final: end}}\label{personalizar-el-final-end}
+
+El parámetro \texttt{end} controla qué se añade al final (por defecto es
+\texttt{\textbackslash{}n}, salto de línea):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Hola"}\NormalTok{, end}\OperatorTok{=}\StringTok{" "}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Mundo"}\NormalTok{)}
+\CommentTok{\# Salida: Hola Mundo}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Manzana"}\NormalTok{, end}\OperatorTok{=}\StringTok{", "}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Pera"}\NormalTok{, end}\OperatorTok{=}\StringTok{", "}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Banana"}\NormalTok{)}
+\CommentTok{\# Salida: Manzana, Pera, Banana}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{\texorpdfstring{6. Personalizar el separador:
+\texttt{sep}}{6. Personalizar el separador: sep}}\label{personalizar-el-separador-sep}
+
+El parámetro \texttt{sep} controla qué se pone entre múltiples
+argumentos (por defecto es espacio):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"uno"}\NormalTok{, }\StringTok{"dos"}\NormalTok{, }\StringTok{"tres"}\NormalTok{, sep}\OperatorTok{=}\StringTok{"{-}"}\NormalTok{)}
+\CommentTok{\# Salida: uno{-}dos{-}tres}
+
+\BuiltInTok{print}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, sep}\OperatorTok{=}\StringTok{" + "}\NormalTok{)}
+\CommentTok{\# Salida: 1 + 2 + 3}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{🔬 Ejemplos}\label{ejemplos}
+
+\textbf{Mínimo ---} Texto simple:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Hola Mundo"}\NormalTok{)}
+\CommentTok{\# Salida: Hola Mundo}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Progresivo ---} Variaciones de comillas:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}Python es "genial"\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"It\textquotesingle{}s a beautiful day"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Ella dijo: }\CharTok{\textbackslash{}"}\StringTok{Hola}\CharTok{\textbackslash{}"}\StringTok{"}\NormalTok{)  }\CommentTok{\# Escapando comillas}
+\CommentTok{\# Salida:}
+\CommentTok{\# Python es "genial"}
+\CommentTok{\# It\textquotesingle{}s a beautiful day}
+\CommentTok{\# Ella dijo: "Hola"}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Real ---} Menú de opciones con formato:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"=== MENÚ PRINCIPAL ==="}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"1. Ver perfil"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"2. Editar configuración"}\NormalTok{, end}\OperatorTok{=}\StringTok{" "}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"(requiere permisos)"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"3. Salir"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"======================"}\NormalTok{)}
+\CommentTok{\# Salida:}
+\CommentTok{\# === MENÚ PRINCIPAL ===}
+\CommentTok{\# 1. Ver perfil}
+\CommentTok{\# 2. Editar configuración (requiere permisos)}
+\CommentTok{\# 3. Salir}
+\CommentTok{\# ======================}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{⚠️ Errores comunes}\label{errores-comunes}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2292}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3681}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4028}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Síntoma
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Cómo detectarlo
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Olvidar comillas} & \texttt{SyntaxError:\ invalid\ syntax} & El
+texto siempre va entre \texttt{"\ "} o
+\texttt{\textquotesingle{}\ \textquotesingle{}} \\
+\textbf{Comillas desbalanceadas} &
+\texttt{SyntaxError:\ unterminated\ string\ literal} & Cuenta que abres
+y cierras el mismo número de comillas \\
+\textbf{Confundir \texttt{print} con \texttt{Print}} &
+\texttt{NameError:\ name\ \textquotesingle{}Print\textquotesingle{}\ is\ not\ defined}
+& Python es sensible a mayúsculas: usa \texttt{print} en minúsculas \\
+\textbf{Olvidar paréntesis} &
+\texttt{SyntaxError:\ Missing\ parentheses\ in\ call\ to\ \textquotesingle{}print\textquotesingle{}}
+& Python 3 requiere \texttt{()} \\
+\textbf{Espacio extra al final} & No da error, pero puede afectar
+formato & Usa \texttt{end=""} sin espacio si no quieres separador \\
+\end{longtable}
+}
+
+\subsection{✅ Buenas prácticas}\label{buenas-pruxe1cticas}
+
+\begin{itemize}
+\item
+  \textbf{Usa f-strings} para combinar texto y variables (lo veremos
+  pronto):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nombre }\OperatorTok{=} \StringTok{"Ana"}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Hola, }\SpecialCharTok{\{}\NormalTok{nombre}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# Más legible que concatenar}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Comillas simples por defecto}, usa dobles solo cuando el texto
+  contenga comillas simples.
+\item
+  \textbf{\texttt{end="\ "}} con espacio para mejor legibilidad al unir
+  líneas.
+\item
+  \textbf{No concatenes con \texttt{+}} innecesariamente: usa múltiples
+  argumentos en \texttt{print()} con comas.
+\item
+  \textbf{Mensajes descriptivos}: en lugar de \texttt{print(x)}, usa
+  \texttt{print("El\ resultado\ es:",\ x)}.
+\end{itemize}
+
+\subsection{📝 Ejercicio}\label{ejercicio}
+
+\textbf{Básico} --- Formato de salida
+
+Escribe un programa que:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Imprima ``--- BIENVENIDO ---'' en una línea
+\item
+  Imprima ``Usuario:'' y luego el nombre ``Carlos'' en la misma línea,
+  separados por un espacio
+\item
+  Imprima ``Edad:'' y luego ``30'' en la misma línea
+\item
+  Imprima ``Estado: Activo'' con un guión bajo (\texttt{\_}) entre las
+  palabras
+\item
+  Imprima ``--- FIN ---'' con un punto final (\texttt{.}) al final, sin
+  salto de línea
+\end{enumerate}
+
+\textbf{Pista:} usa los parámetros \texttt{sep}, \texttt{end} y
+múltiples argumentos.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Solución (no mires hasta haberlo intentado):}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"{-}{-}{-} BIENVENIDO {-}{-}{-}"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Usuario:"}\NormalTok{, }\StringTok{"Carlos"}\NormalTok{, sep}\OperatorTok{=}\StringTok{" "}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Edad:"}\NormalTok{, }\DecValTok{30}\NormalTok{, sep}\OperatorTok{=}\StringTok{" "}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Estado"}\NormalTok{, }\StringTok{"Activo"}\NormalTok{, sep}\OperatorTok{=}\StringTok{"\_"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"{-}{-}{-} FIN {-}{-}{-}"}\NormalTok{, end}\OperatorTok{=}\StringTok{"."}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Salida esperada:}
+
+\begin{verbatim}
+--- BIENVENIDO ---
+Usuario: Carlos
+Edad: 30
+Estado_Activo
+--- FIN ---.
+\end{verbatim}
+
+\subsection{🗂️ Síntesis}\label{suxedntesis}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\texttt{print()}} muestra texto y valores en la consola.
+\item
+  \textbf{Comillas simples o dobles} son válidas, pero deben coincidir.
+\item
+  \textbf{Cada \texttt{print()}} añade un salto de línea por defecto.
+\item
+  \textbf{\texttt{end}} personaliza el final de línea (por defecto
+  \texttt{\textbackslash{}n}).
+\item
+  \textbf{\texttt{sep}} personaliza el separador entre argumentos (por
+  defecto espacio).
+\item
+  \textbf{Múltiples argumentos} separados por comas se imprimen con
+  espacio entre ellos.
+\end{itemize}
+
+\subsection{🔗 Qué sigue}\label{quuxe9-sigue}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Relacionado:} variables (cómo almacenar datos para imprimir
+  después), f-strings (formato avanzado)
+\item
+  \textbf{Siguiente tema:} Variables y tipos de datos --- aprenderás a
+  crear y manejar datos que luego podrás imprimir.
+\end{itemize}
+
+\section{Publicaciones Similares}\label{publicaciones-similares}
+
+Si te interesó este artículo, te recomendamos que explores otros blogs y
+recursos relacionados que pueden ampliar tus conocimientos. Aquí te dejo
+algunas sugerencias:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-19-instalacion-de-anaconda}{Instalacion
+  De Anaconda}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2020-06-20-configurar-entorno-virtual-python-anaconda}{Configurar
+  Entorno Virtual Python Anaconda}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-04-17-01-introducion-a-la-programacion-con-python}{01
+  Introducion A La Programacion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-05-31-02-variables-expresiones-y-statements-con-python}{02
+  Variables Expresiones Y Statements Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-07-03-objetos-de-python}{03
+  Objetos De Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-14-04-ejecucion-condicional-con-python}{04
+  Ejecucion Condicional Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-06-21-05-iteraciones-con-python}{05
+  Iteraciones Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-16-06-funciones-con-python}{06
+  Funciones Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-08-23-07-dataframes-con-python}{07
+  Dataframes Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-11-29-08-prediccion-y-metrica-de-performance-con-python}{08
+  Prediccion Y Metrica De Performance Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-06-09-metodos-de-machine-learning-para-clasificacion-con-python}{09
+  Metodos De Machine Learning Para Clasificacion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2021-12-13-10-metodos-de-machine-learning-para-regresion-con-python}{10
+  Metodos De Machine Learning Para Regresion Con Python}
+\item
+  \href{https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python/index.pdf}{\faIcon{file-pdf}}
+  \href{https://numerus-scriptum.netlify.app/python/2025-05-10-visualizacion-de-datos-con-python}{Visualizacion
+  De Datos Con Python}
+\end{enumerate}
+
+Esperamos que encuentres estas publicaciones igualmente interesantes y
+útiles. ¡Disfruta de la lectura!
+
+
+
+
+
+
+\end{document}

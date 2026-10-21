@@ -35,7 +35,8 @@ citation:
 date: 2021-03-02
 draft: true
 image: ../featured.jpg
-curso: r_curso_base
+curso: r
+tema: "1.1"
 ---
 
 
