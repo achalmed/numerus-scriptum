@@ -1,6 +1,5 @@
 # _redirects — GENERADO por aula (src/integracion/recursos.mjs); no editar.
 # Cada post del sitio Quarto de numerus-scriptum lleva a su página nueva; los archivos del post (PDF, DOCX, figuras) también.
-/fundamentos-programacion/2018-06-09-typografia/*  /cursos/conceptos-de-programacion/typografia/:splat  301
 /python/2020-06-19-instalacion-de-anaconda/*  /cursos/python/instalacion-de-anaconda/:splat  301
 /python/2020-06-20-configurar-entorno-virtual-python-anaconda/*  /cursos/python/configurar-entorno-virtual-python-anaconda/:splat  301
 /python/2021-04-17-01-introducion-a-la-programacion-con-python/*  /cursos/python/introducion-a-la-programacion-con-python/:splat  301
@@ -36,3 +35,4 @@
 /ofimatica/2023-06-05-separando-hojas-de-excel-en-documentos-individuales/*  /blog/separando-hojas-de-excel-en-documentos-individuales/:splat  301
 /ofimatica/2023-05-31-combinando-hojas-de-excel-con-vba/*  /blog/combinando-hojas-de-excel-con-vba/:splat  301
 /fundamentos-programacion/2019-08-13-organizando-tipos-de-archivos-de-softwares/*  /blog/organizando-tipos-de-archivos-de-softwares/:splat  301
+/fundamentos-programacion/2018-06-09-typografia/*  /blog/typografia/:splat  301
