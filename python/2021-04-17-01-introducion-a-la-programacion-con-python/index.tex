@@ -435,6 +435,55 @@ primera línea de código con sentido.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
+\subsection{Antes de empezar}\label{antes-de-empezar}
+
+\subsubsection{Motivación}\label{motivaciuxf3n}
+
+Python es uno de los lenguajes más utilizados del mundo porque equilibra
+potencia con legibilidad. Puedes escribir desde un script de una línea
+hasta sistemas complejos de inteligencia artificial con la misma
+sintaxis clara. Aprender Python no es solo aprender un lenguaje: es
+abrir la puerta a automatización, análisis de datos, desarrollo web y
+mucho más.
+
+\subsubsection{Intuición}\label{intuiciuxf3n}
+
+Imagina que le das instrucciones a un asistente muy inteligente pero
+literal: no interpreta, ejecuta exactamente lo que le dices. Python es
+ese asistente. Escribes órdenes en un archivo de texto con extensión
+\texttt{.py} y se las pasas al ``intérprete'' (el programa que entiende
+Python). El intérprete las lee línea por línea y las ejecuta.
+
+Es como una receta de cocina: escribes los pasos en orden, y el
+intérprete los sigue al pie de la letra. Si un paso está mal escrito, la
+receta se detiene y te avisa.
+
+\subsubsection{Modelo mental}\label{modelo-mental}
+
+Python es un \textbf{lenguaje interpretado} (no compilado). Esto
+significa que:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{No necesitas compilar}: escribes código y lo ejecutas
+  directamente.
+\item
+  \textbf{Ejecución línea por línea}: Python lee tu archivo de arriba a
+  abajo.
+\item
+  \textbf{Tipado dinámico}: no declaras qué tipo de dato es cada
+  variable; Python lo deduce.
+\item
+  \textbf{Indentación como sintaxis}: los espacios o tabulaciones no son
+  solo estilo, \textbf{definen bloques de código}.
+\end{enumerate}
+
+Lo más importante ahora: \textbf{todo en Python es un objeto}
+(incluyendo números, texto y funciones), y las \textbf{variables son
+etiquetas} que apuntas a esos objetos.
+
 \subsection{1. ¿Qué es Python? Definición
 oficial}\label{quuxe9-es-python-definiciuxf3n-oficial}
 
@@ -727,6 +776,108 @@ el valor publicado oficialmente junto al instalador en la página de
 descargas correspondiente, antes de ejecutarlo.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Tu primer programa}\label{tu-primer-programa}
+
+\paragraph{\texorpdfstring{1. El archivo
+\texttt{.py}.}{1. El archivo .py.}}\label{el-archivo-.py}
+
+Los archivos de Python usan la extensión \texttt{.py}. Cualquier editor
+de texto sirve para escribirlos (VS Code, PyCharm, Notepad++, incluso el
+Bloc de notas).
+
+\paragraph{\texorpdfstring{2. \texttt{print()} --- tu primera
+función.}{2. print() --- tu primera función.}}\label{print-tu-primera-funciuxf3n}
+
+\texttt{print()} es la función más básica: muestra texto en la consola.
+Su sintaxis es:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"lo que quieras mostrar"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Las comillas pueden ser simples (\texttt{\textquotesingle{}}) o dobles
+(\texttt{"}) --- no importa, mientras abras y cierres con el mismo tipo.
+
+\paragraph{3. El intérprete
+interactivo.}\label{el-intuxe9rprete-interactivo}
+
+Puedes ejecutar Python de dos maneras:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4563}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2233}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3204}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Modo
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Qué hace
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Cuándo usarlo
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Script} (\texttt{python\ archivo.py}) & Ejecuta todo el archivo
+& Código largo, programas completos \\
+\textbf{Interactivo} (escribir \texttt{python} en terminal) & Ejecuta
+línea por línea & Probar ideas, experimentar rápido \\
+\end{longtable}
+}
+
+En el modo interactivo ves
+\texttt{\textgreater{}\textgreater{}\textgreater{}} (el prompt).
+Escribes código, presionas Enter, y Python ejecuta esa línea
+inmediatamente.
+
+\paragraph{\texorpdfstring{4. \texttt{exit()} --- salir del
+intérprete.}{4. exit() --- salir del intérprete.}}\label{exit-salir-del-intuxe9rprete}
+
+Cuando estés en el modo interactivo, escribe \texttt{exit()} para volver
+a la terminal normal.
+
+\subsubsection{Ejemplos}\label{ejemplos}
+
+\textbf{Mínimo ---} El clásico ``Hola mundo'', que todo programador
+escribe primero:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Hello, World!"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Progresivo ---} Podemos mostrar múltiples cosas:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Mi primer programa"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\DecValTok{42}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"El resultado es"}\NormalTok{, }\DecValTok{10} \OperatorTok{+} \DecValTok{5}\NormalTok{)}
+\CommentTok{\# Salida:}
+\CommentTok{\# Mi primer programa}
+\CommentTok{\# 42}
+\CommentTok{\# El resultado es 15}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Real ---} Un script que saluda al usuario (lo veremos con
+variables más adelante, pero es un caso real de uso):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# greet.py}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Bienvenido a Python"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Este es tu primer script"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Y lo ejecutas: \texttt{python\ greet.py}
 
 \subsection{11. Invocar el intérprete: conceptos
 generales}\label{invocar-el-intuxe9rprete-conceptos-generales}
@@ -1300,6 +1451,98 @@ escribir código con sentido semántico.
 \textbf{Edison Achalma} Economista --- Universidad Nacional de San
 Cristóbal de Huamanga (UNSCH) Ayacucho, Perú ORCID:
 \href{https://orcid.org/0000-0001-6996-3364}{0000-0001-6996-3364}
+
+\subsection{Para cerrar}\label{para-cerrar}
+
+\subsubsection{Errores comunes}\label{errores-comunes}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Olvidar las comillas:} \texttt{print(Hola)} →
+  \texttt{NameError} (Python cree que \texttt{Hola} es una variable que
+  no existe).
+\item
+  \textbf{Comillas desbalanceadas:}
+  \texttt{print("Hola\textquotesingle{})} → \texttt{SyntaxError}
+  (mezclaste comillas).
+\item
+  \textbf{Olvidar paréntesis:} \texttt{print\ "Hola"} →
+  \texttt{SyntaxError} (en Python 3, \texttt{print} es una función y
+  necesita \texttt{()}).
+\item
+  \textbf{Indentación incorrecta:} aunque por ahora solo escribimos una
+  línea, en el futuro, los espacios importan. No uses mezcla de espacios
+  y tabulaciones.
+\end{itemize}
+
+\subsubsection{Buenas prácticas}\label{buenas-pruxe1cticas}
+
+\begin{itemize}
+\tightlist
+\item
+  Usa \textbf{f-strings} en lugar de concatenar con \texttt{+} (los
+  veremos pronto) --- son más legibles.
+\item
+  Pon \textbf{una línea en blanco} entre bloques de código para que sea
+  más legible.
+\item
+  Escribe nombres de archivos en \textbf{minúsculas y sin espacios}:
+  \texttt{mi\_script.py}, no \texttt{Mi\ Script.py}.
+\item
+  Comenta tu código con \texttt{\#} para explicar partes complejas.
+\end{itemize}
+
+\subsubsection{Ejercicio}\label{ejercicio}
+
+\textbf{Básico} --- Escritura y ejecución
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Crea un archivo llamado \texttt{mi\_primer\_programa.py}
+\item
+  Escribe código que muestre:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Tu nombre
+  \item
+    Tu edad (un número)
+  \item
+    La frase: ``Estoy aprendiendo Python''
+  \end{itemize}
+\item
+  Guarda el archivo y ejecútalo desde la terminal con
+  \texttt{python\ mi\_primer\_programa.py}
+\item
+  Luego, abre el intérprete interactivo (\texttt{python}) y escribe
+  \texttt{print("Python\ es\ genial")} directamente para ver cómo se
+  ejecuta en el momento.
+\end{enumerate}
+
+\subsubsection{Síntesis}\label{suxedntesis}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Python es interpretado}: escribes \texttt{.py} y lo ejecutas
+  directamente.
+\item
+  \textbf{\texttt{print()}} muestra texto en la consola; es tu
+  herramienta principal para ver resultados.
+\item
+  \textbf{Dos modos}: script (archivo completo) e interactivo (línea por
+  línea con \texttt{\textgreater{}\textgreater{}\textgreater{}}).
+\item
+  \textbf{Extensión obligatoria}: \texttt{.py} en todos tus archivos
+  Python.
+\item
+  \textbf{Ejecución}: \texttt{python\ nombre\_del\_archivo.py} desde la
+  terminal.
+\end{itemize}
 
 \section{Publicaciones Similares}\label{publicaciones-similares}
 
